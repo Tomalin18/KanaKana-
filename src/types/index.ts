@@ -7,7 +7,13 @@
 // 基礎類型
 // ============================================================================
 
-export type GameMode = 'infinite' | 'practice' | 'daily_challenge';
+export type GameMode = 
+  | 'infinite' 
+  | 'practice' 
+  | 'daily_challenge'
+  | 'kanji_to_kana'      // 新增：漢字模式
+  | 'long_text'          // 新增：長文模式
+  | 'tetris_typing';     // 新增：俄羅斯方塊模式
 export type DifficultyLevel = 'beginner' | 'normal' | 'hard' | 'expert' | 'adaptive';
 export type GameStatus = 'idle' | 'playing' | 'paused' | 'finished' | 'game_over';
 export type InputType = 'hiragana' | 'katakana' | 'kanji' | 'mixed' | 'romaji' | 'unknown';
@@ -362,6 +368,96 @@ export interface InputValidationResult {
   confidence: number;
   errors: string[];
   suggestions: string[];
+}
+
+// ============================================================================
+// 新遊戲模式相關類型
+// ============================================================================
+
+/**
+ * 漢字模式設定
+ */
+export interface KanjiModeSettings {
+  showMeaning: boolean;
+  difficultyLevel: 'jlpt_n5' | 'jlpt_n4' | 'jlpt_n3' | 'jlpt_n2' | 'jlpt_n1';
+  readingType: 'hiragana' | 'katakana' | 'both';
+  hintDelay: number; // 提示延遲時間（秒）
+  showStrokeCount: boolean;
+}
+
+/**
+ * 長文模式設定
+ */
+export interface LongTextSettings {
+  includeSpaces: boolean;
+  includePunctuation: boolean;
+  textLength: 'short' | 'medium' | 'long';
+  textType: 'article' | 'story' | 'dialogue';
+  showProgress: boolean;
+  allowBackspace: boolean;
+}
+
+/**
+ * 俄羅斯方塊模式設定
+ */
+export interface TetrisSettings {
+  fallSpeed: number;
+  accelerationRate: number;
+  gridWidth: number;
+  gridHeight: number;
+  clearThreshold: number;
+  spawnRandomness: boolean;
+  previewNext: boolean;
+}
+
+/**
+ * 漢字單詞介面
+ */
+export interface KanjiWord extends Word {
+  kanji: string;          // 漢字
+  hiragana: string;       // 平假名讀音
+  katakana?: string;      // 片假名讀音（可選）
+  meaning: string;        // 中文意思
+  onyomi?: string[];      // 音讀
+  kunyomi?: string[];     // 訓讀
+  strokeCount?: number;   // 筆畫數
+  examples?: string[];    // 例句
+}
+
+/**
+ * 長文內容介面
+ */
+export interface LongTextContent {
+  id: string;
+  title: string;
+  content: string;
+  difficulty: DifficultyLevel;
+  category: 'article' | 'story' | 'dialogue';
+  estimatedTime: number; // 預估完成時間（秒）
+  vocabulary: string[];  // 包含的詞彙
+}
+
+/**
+ * 俄羅斯方塊遊戲狀態
+ */
+export interface TetrisGameState {
+  grid: (string | null)[][];  // 遊戲網格
+  fallingWords: TetrisPiece[];
+  nextWord: string;
+  dropSpeed: number;
+  level: number;
+  linesCleared: number;
+}
+
+/**
+ * 俄羅斯方塊掉落塊
+ */
+export interface TetrisPiece {
+  id: string;
+  word: string;
+  position: Position;
+  isActive: boolean;
+  timeRemaining: number;
 }
 
 // ============================================================================

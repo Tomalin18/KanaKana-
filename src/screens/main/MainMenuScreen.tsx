@@ -10,7 +10,9 @@ import {
 } from 'react-native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import type { RootStackParamList } from '@/navigation/AppNavigator';
+import type { GameMode } from '@/types';
 import { LightTheme, Typography, Spacing } from '@/constants/theme';
+import { isFeatureEnabled } from '@/utils/featureFlags';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'MainMenu'>;
 
@@ -19,7 +21,7 @@ type Props = NativeStackScreenProps<RootStackParamList, 'MainMenu'>;
  * 提供遊戲模式選擇和日式美學界面
  */
 export const MainMenuScreen: React.FC<Props> = ({ navigation }) => {
-  const handleGameModePress = (mode: 'infinite' | 'practice' | 'daily_challenge') => {
+  const handleGameModePress = (mode: GameMode) => {
     navigation.navigate('Game', { mode });
   };
 
@@ -60,6 +62,40 @@ export const MainMenuScreen: React.FC<Props> = ({ navigation }) => {
             emoji="🗓️"
             onPress={() => handleGameModePress('daily_challenge')}
           />
+
+          {/* 新遊戲模式（需要功能開關） */}
+          {isFeatureEnabled('KANJI_MODE') && (
+            <GameModeButton
+              title="漢字模式"
+              subtitle="Kanji Mode"
+              description="看漢字輸入假名，提升漢字讀音能力！"
+              emoji="🈴"
+              onPress={() => handleGameModePress('kanji_to_kana')}
+              isNew
+            />
+          )}
+
+          {isFeatureEnabled('LONG_TEXT_MODE') && (
+            <GameModeButton
+              title="長文模式"
+              subtitle="Long Text Mode"
+              description="挑戰長篇文章，練習流暢輸入！"
+              emoji="📄"
+              onPress={() => handleGameModePress('long_text')}
+              isNew
+            />
+          )}
+
+          {isFeatureEnabled('TETRIS_MODE') && (
+            <GameModeButton
+              title="俄羅斯方塊"
+              subtitle="Tetris Typing"
+              description="在方塊掉落前輸入完成，刺激有趣！"
+              emoji="🧩"
+              onPress={() => handleGameModePress('tetris_typing')}
+              isNew
+            />
+          )}
         </View>
 
         {/* 底部信息 */}
@@ -82,6 +118,7 @@ interface GameModeButtonProps {
   description: string;
   emoji: string;
   onPress: () => void;
+  isNew?: boolean;
 }
 
 const GameModeButton: React.FC<GameModeButtonProps> = ({
@@ -90,18 +127,23 @@ const GameModeButton: React.FC<GameModeButtonProps> = ({
   description,
   emoji,
   onPress,
+  isNew = false,
 }) => {
   return (
     <Pressable 
       style={({ pressed }) => [
         styles.modeButton,
+        isNew && styles.modeButtonNew,
         pressed && styles.modeButtonPressed
       ]}
       onPress={onPress}
     >
       <Text style={styles.modeEmoji}>{emoji}</Text>
       <View style={styles.modeTextContainer}>
-        <Text style={styles.modeTitle}>{title}</Text>
+        <View style={styles.modeTitleContainer}>
+          <Text style={styles.modeTitle}>{title}</Text>
+          {isNew && <Text style={styles.newBadge}>NEW</Text>}
+        </View>
         <Text style={styles.modeSubtitle}>{subtitle}</Text>
         <Text style={styles.modeDescription}>{description}</Text>
       </View>
@@ -194,5 +236,24 @@ const styles = StyleSheet.create({
     fontSize: Typography.sizes.ui.body,
     color: LightTheme.textSecondary,
     textAlign: 'center',
+  },
+  modeButtonNew: {
+    borderColor: LightTheme.accent,
+    borderWidth: 2,
+  },
+  modeTitleContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  newBadge: {
+    backgroundColor: LightTheme.accent,
+    color: 'white',
+    fontSize: 10,
+    fontWeight: '700',
+    paddingHorizontal: 6,
+    paddingVertical: 2,
+    borderRadius: 8,
+    overflow: 'hidden',
   },
 }); 

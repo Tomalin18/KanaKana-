@@ -10,11 +10,12 @@ import {
 } from 'react-native';
 import { LightTheme, Typography, Spacing } from '@/constants/theme';
 import { validateJapaneseInput } from '@/utils/japaneseInput';
+import { KanjiModeScreen } from '@/screens/game-modes/KanjiModeScreen';
 
 interface GameScreenProps {
   route?: {
     params: {
-      mode: 'infinite' | 'practice' | 'daily_challenge';
+      mode: 'infinite' | 'practice' | 'daily_challenge' | 'kanji_to_kana' | 'long_text' | 'tetris_typing';
     };
   };
   navigation?: {
@@ -28,6 +29,28 @@ interface GameScreenProps {
  */
 export const GameScreen: React.FC<GameScreenProps> = ({ route, navigation }) => {
   const gameMode = route?.params?.mode || 'infinite';
+  
+  // 如果是漢字模式，使用專用的漢字模式畫面
+  if (gameMode === 'kanji_to_kana') {
+    return <KanjiModeScreen navigation={navigation} />;
+  }
+  
+  // TODO: 其他新模式的路由
+  if (gameMode === 'long_text') {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text>長文模式開發中...</Text>
+      </View>
+    );
+  }
+  
+  if (gameMode === 'tetris_typing') {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text>俄羅斯方塊模式開發中...</Text>
+      </View>
+    );
+  }
   
   // 遊戲狀態
   const [gameState, setGameState] = useState<'idle' | 'playing' | 'paused' | 'finished'>('idle');
