@@ -153,51 +153,21 @@ export const LongTextModeScreen: React.FC<LongTextModeScreenProps> = ({ route, n
 
     const content = currentText.content;
     
-    // 將長文按固定字符數分行顯示
-    const charsPerLine = 15; // 每行顯示的字符數
-    const lines = [];
-    
-    for (let i = 0; i < content.length; i += charsPerLine) {
-      lines.push(content.substring(i, i + charsPerLine));
-    }
+    // 簡化顯示：直接顯示完整文字，不分行
+    const typedPart = content.substring(0, currentPosition);
+    const currentChar = content[currentPosition];
+    const remainingPart = content.substring(currentPosition + 1);
 
     return (
       <View style={styles.textDisplayContainer}>
         <Text style={styles.textTitle}>{currentText.title}</Text>
         <ScrollView style={styles.textContentContainer} showsVerticalScrollIndicator={true}>
           <View style={styles.textWrapper}>
-            {lines.map((line, lineIndex) => {
-              const lineStart = lineIndex * charsPerLine;
-              const lineEnd = lineStart + line.length;
-              
-              let lineContent;
-              if (currentPosition <= lineStart) {
-                // 整行都還沒輸入
-                lineContent = <Text style={styles.remainingText}>{line}</Text>;
-              } else if (currentPosition >= lineEnd) {
-                // 整行都已輸入
-                lineContent = <Text style={styles.typedText}>{line}</Text>;
-              } else {
-                // 行內部分輸入
-                const typedInLine = line.substring(0, currentPosition - lineStart);
-                const currentCharInLine = line[currentPosition - lineStart];
-                const remainingInLine = line.substring(currentPosition - lineStart + 1);
-                
-                lineContent = (
-                  <Text>
-                    <Text style={styles.typedText}>{typedInLine}</Text>
-                    <Text style={styles.currentChar}>{currentCharInLine}</Text>
-                    <Text style={styles.remainingText}>{remainingInLine}</Text>
-                  </Text>
-                );
-              }
-              
-              return (
-                <Text key={lineIndex} style={styles.lineText}>
-                  {lineContent}
-                </Text>
-              );
-            })}
+            <Text style={styles.simpleText}>
+              <Text style={styles.typedText}>{typedPart}</Text>
+              <Text style={styles.currentChar}>{currentChar}</Text>
+              <Text style={styles.remainingText}>{remainingPart}</Text>
+            </Text>
           </View>
         </ScrollView>
         {settings.showProgress && (
@@ -637,5 +607,11 @@ const styles = StyleSheet.create({
     fontSize: Typography.sizes.ui.body,
     fontWeight: '600',
     textAlign: 'center',
+  },
+  simpleText: {
+    fontSize: Typography.sizes.ui.body,
+    lineHeight: Typography.lineHeights.ui * 1.8,
+    textAlign: 'left',
+    width: '100%',
   },
 }); 
