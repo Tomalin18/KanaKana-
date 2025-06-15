@@ -152,21 +152,11 @@ export const LongTextModeScreen: React.FC<LongTextModeScreenProps> = ({ route, n
       <View style={styles.textDisplayContainer}>
         <Text style={styles.textTitle}>{currentText.title}</Text>
         <View style={styles.textContentContainer}>
-          <TextInput
-            style={styles.textDisplay}
-            value={content}
-            multiline={true}
-            editable={false}
-            scrollEnabled={true}
-            textAlignVertical="top"
-          />
-          <View style={styles.highlightOverlay}>
-            <Text style={styles.textContent} numberOfLines={0}>
-              <Text style={styles.typedText}>{typedPart}</Text>
-              <Text style={styles.currentChar}>{currentChar}</Text>
-              <Text style={styles.remainingText}>{remainingPart}</Text>
-            </Text>
-          </View>
+          <Text style={styles.textContent}>
+            <Text style={styles.typedText}>{typedPart}</Text>
+            <Text style={styles.currentChar}>{currentChar}</Text>
+            <Text style={styles.remainingText}>{remainingPart}</Text>
+          </Text>
         </View>
         {settings.showProgress && (
           <View style={styles.progressContainer}>
@@ -468,30 +458,12 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     padding: Spacing.md,
     marginHorizontal: Spacing.xs,
-    flex: 1,
-    position: 'relative',
-  },
-  textDisplay: {
-    fontSize: Typography.sizes.ui.body,
-    lineHeight: Typography.lineHeights.ui * 1.8,
-    color: 'transparent',
-    flex: 1,
-    textAlignVertical: 'top',
-  },
-  highlightOverlay: {
-    position: 'absolute',
-    top: Spacing.md,
-    left: Spacing.md,
-    right: Spacing.md,
-    bottom: Spacing.md,
-    pointerEvents: 'none',
+    minHeight: 200,
   },
   textContent: {
     fontSize: Typography.sizes.ui.body,
-    lineHeight: Typography.lineHeights.ui * 1.8,
+    lineHeight: Typography.lineHeights.ui * 1.6,
     textAlign: 'left',
-    flexWrap: 'wrap',
-    flex: 1,
   },
   typedText: {
     color: LightTheme.success,
