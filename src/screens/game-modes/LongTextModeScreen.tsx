@@ -153,7 +153,7 @@ export const LongTextModeScreen: React.FC<LongTextModeScreenProps> = ({ route, n
         <Text style={styles.textTitle}>{currentText.title}</Text>
         <ScrollView style={styles.textScrollView} contentContainerStyle={styles.textScrollContent}>
           <View style={styles.textContentContainer}>
-            <Text style={styles.textContent}>
+            <Text style={styles.textContent} numberOfLines={0}>
               <Text style={styles.typedText}>{typedPart}</Text>
               <Text style={styles.currentChar}>{currentChar}</Text>
               <Text style={styles.remainingText}>{remainingPart}</Text>
@@ -439,6 +439,7 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     marginVertical: Spacing.lg,
     padding: Spacing.lg,
+    width: '100%',
   },
   textTitle: {
     fontSize: Typography.sizes.ui.subtitle,
@@ -449,6 +450,7 @@ const styles = StyleSheet.create({
   },
   textScrollView: {
     flex: 1,
+    width: '100%',
   },
   textScrollContent: {
     paddingBottom: Spacing.lg,
@@ -458,14 +460,14 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     padding: Spacing.md,
     marginHorizontal: Spacing.xs,
-    width: '100%',
-    alignSelf: 'stretch',
+    flex: 1,
   },
   textContent: {
     fontSize: Typography.sizes.ui.body,
     lineHeight: Typography.lineHeights.ui * 1.8,
     textAlign: 'left',
-    width: '100%',
+    flexWrap: 'wrap',
+    flex: 1,
   },
   typedText: {
     color: LightTheme.success,
