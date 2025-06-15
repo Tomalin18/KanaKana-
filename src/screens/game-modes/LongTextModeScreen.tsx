@@ -610,8 +610,9 @@ const styles = StyleSheet.create({
   },
   simpleText: {
     fontSize: Typography.sizes.ui.body,
-    lineHeight: Typography.lineHeights.ui * 1.8,
+    lineHeight: Typography.sizes.ui.body * 2.5, // 使用字體大小的2.5倍作為行高
     textAlign: 'left',
     width: '100%',
+    color: LightTheme.text, // 確保文字顏色正確
   },
 }); 
