@@ -11,6 +11,7 @@ import {
 import { LightTheme, Typography, Spacing } from '@/constants/theme';
 import { validateJapaneseInput } from '@/utils/japaneseInput';
 import { KanjiModeScreen } from '@/screens/game-modes/KanjiModeScreen';
+import { LongTextModeScreen } from '@/screens/game-modes/LongTextModeScreen';
 
 interface GameScreenProps {
   route?: {
@@ -35,13 +36,9 @@ export const GameScreen: React.FC<GameScreenProps> = ({ route, navigation }) => 
     return <KanjiModeScreen navigation={navigation} />;
   }
   
-  // TODO: 其他新模式的路由
+  // 如果是長文模式，使用專用的長文模式畫面
   if (gameMode === 'long_text') {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>長文模式開發中...</Text>
-      </View>
-    );
+    return <LongTextModeScreen navigation={navigation} />;
   }
   
   if (gameMode === 'tetris_typing') {
