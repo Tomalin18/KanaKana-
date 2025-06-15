@@ -151,15 +151,23 @@ export const LongTextModeScreen: React.FC<LongTextModeScreenProps> = ({ route, n
     return (
       <View style={styles.textDisplayContainer}>
         <Text style={styles.textTitle}>{currentText.title}</Text>
-        <ScrollView style={styles.textScrollView} contentContainerStyle={styles.textScrollContent}>
-          <View style={styles.textContentContainer}>
+        <View style={styles.textContentContainer}>
+          <TextInput
+            style={styles.textDisplay}
+            value={content}
+            multiline={true}
+            editable={false}
+            scrollEnabled={true}
+            textAlignVertical="top"
+          />
+          <View style={styles.highlightOverlay}>
             <Text style={styles.textContent} numberOfLines={0}>
               <Text style={styles.typedText}>{typedPart}</Text>
               <Text style={styles.currentChar}>{currentChar}</Text>
               <Text style={styles.remainingText}>{remainingPart}</Text>
             </Text>
           </View>
-        </ScrollView>
+        </View>
         {settings.showProgress && (
           <View style={styles.progressContainer}>
             <Text style={styles.progressText}>
@@ -461,6 +469,22 @@ const styles = StyleSheet.create({
     padding: Spacing.md,
     marginHorizontal: Spacing.xs,
     flex: 1,
+    position: 'relative',
+  },
+  textDisplay: {
+    fontSize: Typography.sizes.ui.body,
+    lineHeight: Typography.lineHeights.ui * 1.8,
+    color: 'transparent',
+    flex: 1,
+    textAlignVertical: 'top',
+  },
+  highlightOverlay: {
+    position: 'absolute',
+    top: Spacing.md,
+    left: Spacing.md,
+    right: Spacing.md,
+    bottom: Spacing.md,
+    pointerEvents: 'none',
   },
   textContent: {
     fontSize: Typography.sizes.ui.body,
