@@ -458,12 +458,14 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     padding: Spacing.md,
     marginHorizontal: Spacing.xs,
+    width: '100%',
+    alignSelf: 'stretch',
   },
   textContent: {
     fontSize: Typography.sizes.ui.body,
-    lineHeight: Typography.lineHeights.ui * 2,
+    lineHeight: Typography.lineHeights.ui * 1.8,
     textAlign: 'left',
-    flexWrap: 'wrap',
+    width: '100%',
   },
   typedText: {
     color: LightTheme.success,
