@@ -462,8 +462,10 @@ const styles = StyleSheet.create({
   },
   textContent: {
     fontSize: Typography.sizes.ui.body,
-    lineHeight: Typography.lineHeights.ui * 1.6,
+    lineHeight: Typography.lineHeights.ui * 1.8, // 增加行高
     textAlign: 'left',
+    flexWrap: 'wrap', // 允許文字換行
+    width: '100%',    // 確保占滿寬度
   },
   typedText: {
     color: LightTheme.success,
