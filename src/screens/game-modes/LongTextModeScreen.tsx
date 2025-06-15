@@ -140,7 +140,7 @@ export const LongTextModeScreen: React.FC<LongTextModeScreenProps> = ({ route, n
   }, [gameState]);
 
   // 渲染文字內容
-  const renderTextContent = () => {
+  const renderTextContentWithParagraphs = () => {
     if (!currentText) return null;
 
     const content = currentText.content;
@@ -148,16 +148,49 @@ export const LongTextModeScreen: React.FC<LongTextModeScreenProps> = ({ route, n
     const currentChar = content[currentPosition];
     const remainingPart = content.substring(currentPosition + 1);
 
+    // 將文章按段落分割
+    const paragraphs = content.split('\n').filter(p => p.trim() !== '');
+    let charCount = 0;
+    
     return (
       <View style={styles.textDisplayContainer}>
         <Text style={styles.textTitle}>{currentText.title}</Text>
-        <View style={styles.textContentContainer}>
-          <Text style={styles.textContent}>
-            <Text style={styles.typedText}>{typedPart}</Text>
-            <Text style={styles.currentChar}>{currentChar}</Text>
-            <Text style={styles.remainingText}>{remainingPart}</Text>
-          </Text>
-        </View>
+        <ScrollView style={styles.textContentContainer} showsVerticalScrollIndicator={true}>
+          {paragraphs.map((paragraph, index) => {
+            const paragraphStart = charCount;
+            const paragraphEnd = charCount + paragraph.length;
+            charCount += paragraph.length + 1; // +1 for the newline character
+            
+            // 判斷這個段落的顯示狀態
+            let paragraphContent;
+            if (currentPosition <= paragraphStart) {
+              // 整個段落都還沒輸入
+              paragraphContent = <Text style={styles.remainingText}>{paragraph}</Text>;
+            } else if (currentPosition >= paragraphEnd) {
+              // 整個段落都已輸入
+              paragraphContent = <Text style={styles.typedText}>{paragraph}</Text>;
+            } else {
+              // 段落部分輸入
+              const typedInParagraph = paragraph.substring(0, currentPosition - paragraphStart);
+              const currentCharInParagraph = paragraph[currentPosition - paragraphStart];
+              const remainingInParagraph = paragraph.substring(currentPosition - paragraphStart + 1);
+              
+              paragraphContent = (
+                <Text>
+                  <Text style={styles.typedText}>{typedInParagraph}</Text>
+                  <Text style={styles.currentChar}>{currentCharInParagraph}</Text>
+                  <Text style={styles.remainingText}>{remainingInParagraph}</Text>
+                </Text>
+              );
+            }
+            
+            return (
+              <Text key={index} style={styles.paragraphText}>
+                {paragraphContent}
+              </Text>
+            );
+          })}
+        </ScrollView>
         {settings.showProgress && (
           <View style={styles.progressContainer}>
             <Text style={styles.progressText}>
@@ -178,7 +211,7 @@ export const LongTextModeScreen: React.FC<LongTextModeScreenProps> = ({ route, n
       case 'paused':
         return (
           <LongTextGamePlayScreen
-            renderTextContent={renderTextContent}
+            renderTextContent={renderTextContentWithParagraphs}
             userInput={userInput}
             onInputChange={handleInputChange}
             onPause={togglePause}
@@ -464,8 +497,14 @@ const styles = StyleSheet.create({
     fontSize: Typography.sizes.ui.body,
     lineHeight: Typography.lineHeights.ui * 1.8, // 增加行高
     textAlign: 'left',
-    flexWrap: 'wrap', // 允許文字換行
-    width: '100%',    // 確保占滿寬度
+    width: '100%',
+  },
+  // 新增段落樣式
+  paragraphText: {
+    fontSize: Typography.sizes.ui.body,
+    lineHeight: Typography.lineHeights.ui * 1.8,
+    marginBottom: Spacing.sm, // 段落間距
+    textAlign: 'left',
   },
   typedText: {
     color: LightTheme.success,
