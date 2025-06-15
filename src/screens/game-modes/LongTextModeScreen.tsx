@@ -144,52 +144,53 @@ export const LongTextModeScreen: React.FC<LongTextModeScreenProps> = ({ route, n
     if (!currentText) return null;
 
     const content = currentText.content;
-    const typedPart = content.substring(0, currentPosition);
-    const currentChar = content[currentPosition];
-    const remainingPart = content.substring(currentPosition + 1);
-
-    // 將文章按段落分割
-    const paragraphs = content.split('\n').filter(p => p.trim() !== '');
-    let charCount = 0;
     
+    // 將長文按固定字符數分行顯示
+    const charsPerLine = 15; // 每行顯示的字符數
+    const lines = [];
+    
+    for (let i = 0; i < content.length; i += charsPerLine) {
+      lines.push(content.substring(i, i + charsPerLine));
+    }
+
     return (
       <View style={styles.textDisplayContainer}>
         <Text style={styles.textTitle}>{currentText.title}</Text>
         <ScrollView style={styles.textContentContainer} showsVerticalScrollIndicator={true}>
-          {paragraphs.map((paragraph, index) => {
-            const paragraphStart = charCount;
-            const paragraphEnd = charCount + paragraph.length;
-            charCount += paragraph.length + 1; // +1 for the newline character
-            
-            // 判斷這個段落的顯示狀態
-            let paragraphContent;
-            if (currentPosition <= paragraphStart) {
-              // 整個段落都還沒輸入
-              paragraphContent = <Text style={styles.remainingText}>{paragraph}</Text>;
-            } else if (currentPosition >= paragraphEnd) {
-              // 整個段落都已輸入
-              paragraphContent = <Text style={styles.typedText}>{paragraph}</Text>;
-            } else {
-              // 段落部分輸入
-              const typedInParagraph = paragraph.substring(0, currentPosition - paragraphStart);
-              const currentCharInParagraph = paragraph[currentPosition - paragraphStart];
-              const remainingInParagraph = paragraph.substring(currentPosition - paragraphStart + 1);
+          <View style={styles.textWrapper}>
+            {lines.map((line, lineIndex) => {
+              const lineStart = lineIndex * charsPerLine;
+              const lineEnd = lineStart + line.length;
               
-              paragraphContent = (
-                <Text>
-                  <Text style={styles.typedText}>{typedInParagraph}</Text>
-                  <Text style={styles.currentChar}>{currentCharInParagraph}</Text>
-                  <Text style={styles.remainingText}>{remainingInParagraph}</Text>
+              let lineContent;
+              if (currentPosition <= lineStart) {
+                // 整行都還沒輸入
+                lineContent = <Text style={styles.remainingText}>{line}</Text>;
+              } else if (currentPosition >= lineEnd) {
+                // 整行都已輸入
+                lineContent = <Text style={styles.typedText}>{line}</Text>;
+              } else {
+                // 行內部分輸入
+                const typedInLine = line.substring(0, currentPosition - lineStart);
+                const currentCharInLine = line[currentPosition - lineStart];
+                const remainingInLine = line.substring(currentPosition - lineStart + 1);
+                
+                lineContent = (
+                  <Text>
+                    <Text style={styles.typedText}>{typedInLine}</Text>
+                    <Text style={styles.currentChar}>{currentCharInLine}</Text>
+                    <Text style={styles.remainingText}>{remainingInLine}</Text>
+                  </Text>
+                );
+              }
+              
+              return (
+                <Text key={lineIndex} style={styles.lineText}>
+                  {lineContent}
                 </Text>
               );
-            }
-            
-            return (
-              <Text key={index} style={styles.paragraphText}>
-                {paragraphContent}
-              </Text>
-            );
-          })}
+            })}
+          </View>
         </ScrollView>
         {settings.showProgress && (
           <View style={styles.progressContainer}>
@@ -499,12 +500,26 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     width: '100%',
   },
+  // 文字包裝容器
+  textWrapper: {
+    width: '100%',
+    paddingHorizontal: Spacing.sm,
+  },
   // 新增段落樣式
   paragraphText: {
     fontSize: Typography.sizes.ui.body,
     lineHeight: Typography.lineHeights.ui * 1.8,
-    marginBottom: Spacing.sm, // 段落間距
     textAlign: 'left',
+    width: '100%',
+    flexWrap: 'wrap',
+  },
+  // 行文字樣式
+  lineText: {
+    fontSize: Typography.sizes.ui.body,
+    lineHeight: Typography.lineHeights.ui * 1.8,
+    textAlign: 'left',
+    marginBottom: Spacing.xs, // 行間距
+    fontFamily: 'monospace', // 使用等寬字體確保對齊
   },
   typedText: {
     color: LightTheme.success,
