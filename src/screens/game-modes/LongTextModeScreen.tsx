@@ -437,7 +437,7 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     marginVertical: Spacing.lg,
     padding: Spacing.lg,
-    width: '100%',
+    marginHorizontal: Spacing.lg,
   },
   textTitle: {
     fontSize: Typography.sizes.ui.subtitle,
@@ -456,11 +456,9 @@ const styles = StyleSheet.create({
   textContentContainer: {
     backgroundColor: 'white',
     borderRadius: 12,
-    padding: Spacing.md,
-    marginHorizontal: Spacing.xs,
-    minHeight: 200,
-    width: '100%',
-    alignSelf: 'stretch',
+    padding: Spacing.lg,
+    flex: 1,
+    marginBottom: Spacing.md,
   },
   textContent: {
     fontSize: Typography.sizes.ui.body,
