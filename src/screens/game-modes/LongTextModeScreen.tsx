@@ -76,35 +76,49 @@ export const LongTextModeScreen: React.FC<LongTextModeScreenProps> = ({ route, n
 
     setUserInput(text);
 
-    // 檢查輸入是否正確（逐字比對）
+    // 獲取當前應該輸入的字符
     const targetText = currentText.content;
-    const isCorrect = text === targetText.substring(0, text.length);
+    const currentTargetChar = targetText[currentPosition];
     
-    if (isCorrect) {
-      setCurrentPosition(text.length);
+    if (!currentTargetChar) {
+      // 已經完成整個文章
+      return;
+    }
+
+    // 使用 validateJapaneseInput 驗證當前字符的輸入
+    const validation = validateJapaneseInput(text, currentTargetChar);
+    
+    if (validation.isComplete) {
+      // 當前字符輸入完成，移動到下一個字符
+      const newPosition = currentPosition + 1;
+      setCurrentPosition(newPosition);
+      setUserInput(''); // 清空輸入，準備輸入下一個字符
+      
+      // 增加分數和連擊
+      const points = 5 * (combo + 1);
+      setScore(prev => prev + points);
+      setCombo(prev => prev + 1);
       
       // 檢查是否完成整個文章
-      if (text.length === targetText.length) {
-        // 完成文章
-        const points = targetText.length * 5 * (combo + 1);
-        setScore(prev => prev + points);
-        setCombo(prev => prev + 1);
+      if (newPosition >= targetText.length) {
+        // 完成文章，額外獎勵
+        const bonusPoints = targetText.length * 10;
+        setScore(prev => prev + bonusPoints);
         endGame();
       }
-    } else {
+    } else if (!validation.canContinue && validation.errorType === 'wrong_character') {
       // 錯誤輸入
       setCombo(0);
       setErrors(prev => prev + 1);
       setLives(prev => Math.max(0, prev - 1));
+      setUserInput(''); // 清空錯誤輸入
       
       if (lives <= 1) {
         endGame();
       }
-      
-      // 重置到正確的位置
-      setUserInput(targetText.substring(0, text.length - 1));
     }
-  }, [currentText, combo, lives, gameState]);
+    // 如果是部分匹配或可以繼續，保持當前輸入狀態
+  }, [currentText, currentPosition, combo, lives, gameState]);
 
   // 結束遊戲
   const endGame = useCallback(() => {
@@ -153,8 +167,8 @@ export const LongTextModeScreen: React.FC<LongTextModeScreenProps> = ({ route, n
 
     const content = currentText.content;
     
-    // 簡化顯示：直接顯示完整文字，不分行
-    const typedPart = content.substring(0, currentPosition);
+    // 分割文字：已完成的字符、當前字符、剩餘字符
+    const completedPart = content.substring(0, currentPosition);
     const currentChar = content[currentPosition];
     const remainingPart = content.substring(currentPosition + 1);
 
@@ -164,7 +178,7 @@ export const LongTextModeScreen: React.FC<LongTextModeScreenProps> = ({ route, n
         <ScrollView style={styles.textContentContainer} showsVerticalScrollIndicator={true}>
           <View style={styles.textWrapper}>
             <Text style={styles.simpleText}>
-              <Text style={styles.typedText}>{typedPart}</Text>
+              <Text style={styles.completedText}>{completedPart}</Text>
               <Text style={styles.currentChar}>{currentChar}</Text>
               <Text style={styles.remainingText}>{remainingPart}</Text>
             </Text>
@@ -200,6 +214,8 @@ export const LongTextModeScreen: React.FC<LongTextModeScreenProps> = ({ route, n
             lives={lives}
             gameTime={gameTime}
             errors={errors}
+            currentText={currentText}
+            currentPosition={currentPosition}
           />
         );
       case 'finished':
@@ -260,6 +276,8 @@ interface LongTextGamePlayScreenProps {
   lives: number;
   gameTime: number;
   errors: number;
+  currentText: LongTextContent | null;
+  currentPosition: number;
 }
 
 const LongTextGamePlayScreen: React.FC<LongTextGamePlayScreenProps> = ({
@@ -273,6 +291,8 @@ const LongTextGamePlayScreen: React.FC<LongTextGamePlayScreenProps> = ({
   lives,
   gameTime,
   errors,
+  currentText,
+  currentPosition,
 }) => (
   <View style={styles.gameContainer}>
     {/* 遊戲狀態顯示 */}
@@ -306,6 +326,9 @@ const LongTextGamePlayScreen: React.FC<LongTextGamePlayScreenProps> = ({
       />
     </View>
 
+    {/* 輸入進度顯示 */}
+    <LongTextInputProgress userInput={userInput} targetChar={currentText?.content[currentPosition] || ''} />
+
     {/* 控制按鈕 */}
     <View style={styles.controlsContainer}>
       <Pressable style={styles.pauseButton} onPress={onPause}>
@@ -316,6 +339,43 @@ const LongTextGamePlayScreen: React.FC<LongTextGamePlayScreenProps> = ({
     </View>
   </View>
 );
+
+// 輸入進度顯示組件
+interface LongTextInputProgressProps {
+  userInput: string;
+  targetChar: string;
+}
+
+const LongTextInputProgress: React.FC<LongTextInputProgressProps> = ({ userInput, targetChar }) => {
+  if (!targetChar) return null;
+  
+  const validation = validateJapaneseInput(userInput, targetChar);
+  
+  return (
+    <View style={styles.inputProgressContainer}>
+      <Text style={styles.inputProgressLabel}>當前輸入：</Text>
+      <Text style={[
+        styles.inputProgressText,
+        validation.isPartialMatch ? styles.inputTextCorrect : styles.inputTextError
+      ]}>
+        {userInput || '（等待輸入）'}
+      </Text>
+      <Text style={styles.targetCharText}>
+        目標字符：{targetChar}
+      </Text>
+      {validation.hint && (
+        <Text style={styles.inputHint}>
+          💡 {validation.hint}
+        </Text>
+      )}
+      {validation.canContinue && validation.nextPossibleChars && validation.nextPossibleChars.length > 0 && (
+        <Text style={styles.inputHint}>
+          下一個字符: {validation.nextPossibleChars.join(' 或 ')}
+        </Text>
+      )}
+    </View>
+  );
+};
 
 // 遊戲結束畫面
 interface LongTextGameEndScreenProps {
@@ -614,5 +674,37 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     width: '100%',
     color: LightTheme.text, // 確保文字顏色正確
+  },
+  completedText: {
+    color: LightTheme.success,
+    backgroundColor: 'rgba(34, 197, 94, 0.1)',
+  },
+  inputProgressContainer: {
+    marginVertical: Spacing.lg,
+  },
+  inputProgressLabel: {
+    fontSize: Typography.sizes.ui.caption,
+    color: LightTheme.textSecondary,
+    marginBottom: Spacing.xs,
+  },
+  inputProgressText: {
+    fontSize: Typography.sizes.ui.body,
+    color: LightTheme.text,
+  },
+  inputTextCorrect: {
+    color: LightTheme.success,
+  },
+  inputTextError: {
+    color: LightTheme.error,
+  },
+  targetCharText: {
+    fontSize: Typography.sizes.ui.caption,
+    color: LightTheme.textSecondary,
+    marginBottom: Spacing.xs,
+  },
+  inputHint: {
+    fontSize: Typography.sizes.ui.caption,
+    color: LightTheme.textSecondary,
+    marginBottom: Spacing.xs,
   },
 }); 
