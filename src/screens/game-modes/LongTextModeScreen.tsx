@@ -459,6 +459,8 @@ const styles = StyleSheet.create({
     padding: Spacing.md,
     marginHorizontal: Spacing.xs,
     minHeight: 200,
+    width: '100%',
+    alignSelf: 'stretch',
   },
   textContent: {
     fontSize: Typography.sizes.ui.body,
