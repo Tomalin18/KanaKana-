@@ -527,7 +527,7 @@ const styles = StyleSheet.create({
     lineHeight: Typography.lineHeights.ui * 1.8,
     textAlign: 'left',
     marginBottom: Spacing.xs, // 行間距
-    fontFamily: 'monospace', // 使用等寬字體確保對齊
+    color: LightTheme.text, // 確保文字顏色正確
   },
   typedText: {
     color: LightTheme.success,
