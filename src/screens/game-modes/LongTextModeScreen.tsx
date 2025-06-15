@@ -152,11 +152,13 @@ export const LongTextModeScreen: React.FC<LongTextModeScreenProps> = ({ route, n
       <View style={styles.textDisplayContainer}>
         <Text style={styles.textTitle}>{currentText.title}</Text>
         <ScrollView style={styles.textScrollView} contentContainerStyle={styles.textScrollContent}>
-          <Text style={styles.textContent}>
-            <Text style={styles.typedText}>{typedPart}</Text>
-            <Text style={styles.currentChar}>{currentChar}</Text>
-            <Text style={styles.remainingText}>{remainingPart}</Text>
-          </Text>
+          <View style={styles.textContentContainer}>
+            <Text style={styles.textContent}>
+              <Text style={styles.typedText}>{typedPart}</Text>
+              <Text style={styles.currentChar}>{currentChar}</Text>
+              <Text style={styles.remainingText}>{remainingPart}</Text>
+            </Text>
+          </View>
         </ScrollView>
         {settings.showProgress && (
           <View style={styles.progressContainer}>
@@ -451,9 +453,17 @@ const styles = StyleSheet.create({
   textScrollContent: {
     paddingBottom: Spacing.lg,
   },
+  textContentContainer: {
+    backgroundColor: 'white',
+    borderRadius: 12,
+    padding: Spacing.md,
+    marginHorizontal: Spacing.xs,
+  },
   textContent: {
     fontSize: Typography.sizes.ui.body,
-    lineHeight: Typography.lineHeights.ui * 1.5,
+    lineHeight: Typography.lineHeights.ui * 2,
+    textAlign: 'left',
+    flexWrap: 'wrap',
   },
   typedText: {
     color: LightTheme.success,
