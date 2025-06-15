@@ -50,26 +50,25 @@ export const LongTextModeScreen: React.FC<LongTextModeScreenProps> = ({ route, n
   const [currentPosition, setCurrentPosition] = useState(0);
   const [errors, setErrors] = useState(0);
 
-  // 生成新長文
-  const generateNewText = useCallback(() => {
+
+
+  // 遊戲開始
+  const startGame = useCallback(() => {
+    // 先生成文章內容
     const difficulty = settings.textLength === 'short' ? 'beginner' : 'normal';
     const newText = getRandomLongText(difficulty);
+    
+    // 設置遊戲狀態
     setCurrentText(newText);
     setCurrentPosition(0);
     setUserInput('');
     setErrors(0);
-  }, [settings]);
-
-  // 遊戲開始
-  const startGame = useCallback(() => {
-    setGameState('playing');
     setScore(0);
     setCombo(0);
     setLives(3);
-    setUserInput('');
     setGameTime(0);
-    generateNewText();
-  }, [generateNewText]);
+    setGameState('playing');
+  }, [settings]);
 
   // 處理輸入
   const handleInputChange = useCallback((text: string) => {
@@ -141,7 +140,16 @@ export const LongTextModeScreen: React.FC<LongTextModeScreenProps> = ({ route, n
 
   // 渲染文字內容
   const renderTextContentWithParagraphs = () => {
-    if (!currentText) return null;
+    if (!currentText) {
+      return (
+        <View style={styles.textDisplayContainer}>
+          <Text style={styles.textTitle}>載入中...</Text>
+          <View style={styles.textContentContainer}>
+            <Text style={styles.remainingText}>正在載入文章內容...</Text>
+          </View>
+        </View>
+      );
+    }
 
     const content = currentText.content;
     
