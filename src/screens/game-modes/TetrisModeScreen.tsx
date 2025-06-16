@@ -10,8 +10,10 @@ import {
   ScrollView,
   Animated,
 } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { getRandomWordImproved, getWordByLength, getWordByLevelAndLength, type TetrisWord } from '@/data/tetrisData';
+import { GlassNavBar } from '@/components/common/GlassNavBar';
+import { GlassContainer } from '@/components/common/GlassContainer';
+import { PauseOverlay } from '@/components/common/PauseOverlay';
 import type { DifficultyLevel } from '@/types';
 
 // 類型定義
@@ -804,7 +806,7 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       {/* 星空背景 */}
       <View style={styles.starField}>
         {stars.map(star => (
@@ -821,8 +823,36 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
           />
         ))}
       </View>
+      
+      {/* 統一導航欄 */}
+      <GlassNavBar
+        title="俄羅斯方塊模式"
+        leftButton={{
+          text: '← 返回',
+          onPress: () => navigation?.goBack(),
+          style: 'secondary',
+        }}
+        rightButton={
+          gameState === 'playing' || gameState === 'paused'
+            ? {
+                text: gameState === 'paused' ? '繼續' : '暫停',
+                onPress: togglePause,
+                style: 'primary',
+              }
+            : undefined
+        }
+      />
+      
       {renderGameContent()}
-    </SafeAreaView>
+      
+      {/* 暫停覆蓋層 */}
+      <PauseOverlay
+        visible={gameState === 'paused'}
+        onResume={togglePause}
+        onRestart={startGame}
+        onMainMenu={() => navigation?.goBack()}
+      />
+    </View>
   );
 };
 

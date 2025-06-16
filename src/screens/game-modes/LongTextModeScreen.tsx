@@ -13,6 +13,9 @@ import { TechTheme, Typography, Spacing, Shadows, TechColors } from '@/constants
 import { validateJapaneseInput } from '@/utils/japaneseInput';
 import { getRandomLongText } from '@/data/longTexts';
 import { createAdvancedTextMapping, splitTextForDisplay, getTargetCharAtPosition, validateInputAtPosition } from '@/utils/textMapping';
+import { GlassNavBar } from '@/components/common/GlassNavBar';
+import { GlassContainer } from '@/components/common/GlassContainer';
+import { PauseOverlay } from '@/components/common/PauseOverlay';
 import type { LongTextContent, LongTextSettings } from '@/types';
 import type { TextMapping } from '@/utils/textMapping';
 
@@ -262,24 +265,31 @@ export const LongTextModeScreen: React.FC<LongTextModeScreenProps> = ({ route, n
     switch (gameState) {
       case 'idle':
         return <LongTextGameStartScreen onStart={startGame} settings={settings} />;
-      case 'playing':
+            case 'playing':
       case 'paused':
         return (
-          <LongTextGamePlayScreen
-                    renderTextContent={renderTextContentWithParagraphs}
-        userInput={userInput}
-        onInputChange={handleInputChange}
-        onPause={togglePause}
-        isPaused={gameState === 'paused'}
-        score={score}
-        combo={combo}
-        lives={lives}
-        gameTime={gameTime}
-        errors={errors}
-        currentText={currentText}
-        currentPosition={currentPosition}
-        textMapping={textMapping}
-          />
+          <>
+            <LongTextGamePlayScreen
+              renderTextContent={renderTextContentWithParagraphs}
+              userInput={userInput}
+              onInputChange={handleInputChange}
+              isPaused={gameState === 'paused'}
+              score={score}
+              combo={combo}
+              lives={lives}
+              gameTime={gameTime}
+              errors={errors}
+              currentText={currentText}
+              currentPosition={currentPosition}
+              textMapping={textMapping}
+            />
+            <PauseOverlay
+              visible={gameState === 'paused'}
+              onResume={togglePause}
+              onRestart={startGame}
+              onMainMenu={goBackToMenu}
+            />
+          </>
         );
       case 'finished':
         return (
@@ -298,12 +308,67 @@ export const LongTextModeScreen: React.FC<LongTextModeScreenProps> = ({ route, n
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar barStyle="light-content" backgroundColor={TechTheme.primary} />
+    <View style={styles.container}>
+      {/* 星空背景 */}
+      <StarfieldBackground />
+      
+      {/* 統一導航欄 */}
+      <GlassNavBar
+        title="長文模式"
+        leftButton={{
+          text: '← 返回',
+          onPress: goBackToMenu,
+          style: 'secondary',
+        }}
+        rightButton={
+          gameState === 'playing' || gameState === 'paused'
+            ? {
+                text: gameState === 'paused' ? '繼續' : '暫停',
+                onPress: togglePause,
+                style: 'primary',
+              }
+            : undefined
+        }
+      />
+      
+      {/* 遊戲內容 */}
       {renderGameContent()}
-    </SafeAreaView>
+    </View>
   );
 };
+
+/**
+ * 星空背景組件
+ */
+const StarfieldBackground: React.FC = () => {
+  const stars = Array.from({ length: 30 }, (_, i) => ({
+    id: i,
+    left: Math.random() * 100,
+    top: Math.random() * 100,
+    opacity: Math.random() * 0.6 + 0.2,
+    size: Math.random() * 2 + 1,
+  }));
+
+  return (
+    <View style={styles.starfield}>
+      {stars.map((star) => (
+        <View
+          key={star.id}
+          style={[
+            styles.star,
+            {
+              left: `${star.left}%`,
+              top: `${star.top}%`,
+              opacity: star.opacity,
+              width: star.size,
+              height: star.size,
+            },
+          ]}
+        />
+      ))}
+    </View>
+     );
+ };
 
 // 遊戲開始畫面
 interface LongTextGameStartScreenProps {
@@ -332,7 +397,6 @@ interface LongTextGamePlayScreenProps {
   renderTextContent: () => React.ReactNode;
   userInput: string;
   onInputChange: (text: string) => void;
-  onPause: () => void;
   isPaused: boolean;
   score: number;
   combo: number;
@@ -348,7 +412,6 @@ const LongTextGamePlayScreen: React.FC<LongTextGamePlayScreenProps> = ({
   renderTextContent,
   userInput,
   onInputChange,
-  onPause,
   isPaused,
   score,
   combo,
@@ -398,14 +461,7 @@ const LongTextGamePlayScreen: React.FC<LongTextGamePlayScreenProps> = ({
       validation={textMapping ? validateInputAtPosition(textMapping, userInput, currentPosition) : null}
     />
 
-    {/* 控制按鈕 */}
-    <View style={styles.controlsContainer}>
-      <Pressable style={styles.pauseButton} onPress={onPause}>
-        <Text style={styles.pauseButtonText}>
-          {isPaused ? '繼續' : '暫停'}
-        </Text>
-      </Pressable>
-    </View>
+    {/* 控制按鈕區域 - 現在由統一導航欄處理暫停功能 */}
   </View>
 );
 
@@ -530,6 +586,21 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: TechTheme.background,
+  },
+  
+  // 星空背景
+  starfield: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+  },
+  
+  star: {
+    position: 'absolute',
+    backgroundColor: TechColors.neonBlue,
+    borderRadius: 50,
   },
   centerContainer: {
     flex: 1,

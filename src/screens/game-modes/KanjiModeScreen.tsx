@@ -11,6 +11,9 @@ import {
 import { TechTheme, Typography, Spacing, Shadows, TechColors } from '@/constants/theme';
 import { validateJapaneseInput } from '@/utils/japaneseInput';
 import { getRandomKanjiWord } from '@/data/kanjiWords';
+import { GlassNavBar } from '@/components/common/GlassNavBar';
+import { GlassContainer } from '@/components/common/GlassContainer';
+import { PauseOverlay } from '@/components/common/PauseOverlay';
 import type { KanjiWord, KanjiModeSettings } from '@/types';
 
 interface KanjiModeScreenProps {
@@ -141,7 +144,7 @@ export const KanjiModeScreen: React.FC<KanjiModeScreenProps> = ({ route, navigat
   // 返回主選單
   const goBackToMenu = useCallback(() => {
     navigation?.goBack();
-  }, [navigation]);
+  }, []);
 
   // 顯示提示
   const showHintHandler = useCallback(() => {
@@ -173,21 +176,28 @@ export const KanjiModeScreen: React.FC<KanjiModeScreenProps> = ({ route, navigat
       case 'playing':
       case 'paused':
         return (
-          <KanjiGamePlayScreen
-            currentWord={currentWord}
-            userInput={userInput}
-            onInputChange={handleInputChange}
-            onPause={togglePause}
-            onShowHint={showHintHandler}
-            isPaused={gameState === 'paused'}
-            score={score}
-            combo={combo}
-            lives={lives}
-            gameTime={gameTime}
-            showMeaning={showMeaning}
-            showHint={showHint}
-            settings={settings}
-          />
+          <>
+            <KanjiGamePlayScreen
+              currentWord={currentWord}
+              userInput={userInput}
+              onInputChange={handleInputChange}
+              onShowHint={showHintHandler}
+              isPaused={gameState === 'paused'}
+              score={score}
+              combo={combo}
+              lives={lives}
+              gameTime={gameTime}
+              showMeaning={showMeaning}
+              showHint={showHint}
+              settings={settings}
+            />
+            <PauseOverlay
+              visible={gameState === 'paused'}
+              onResume={togglePause}
+              onRestart={startGame}
+              onMainMenu={goBackToMenu}
+            />
+          </>
         );
       case 'finished':
         return (
@@ -204,10 +214,65 @@ export const KanjiModeScreen: React.FC<KanjiModeScreenProps> = ({ route, navigat
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar barStyle="light-content" backgroundColor={TechTheme.primary} />
+    <View style={styles.container}>
+      {/* 星空背景 */}
+      <StarfieldBackground />
+      
+      {/* 統一導航欄 */}
+      <GlassNavBar
+        title="漢字模式"
+        leftButton={{
+          text: '← 返回',
+          onPress: goBackToMenu,
+          style: 'secondary',
+        }}
+        rightButton={
+          gameState === 'playing' || gameState === 'paused'
+            ? {
+                text: gameState === 'paused' ? '繼續' : '暫停',
+                onPress: togglePause,
+                style: 'primary',
+              }
+            : undefined
+        }
+      />
+      
+      {/* 遊戲內容 */}
       {renderGameContent()}
-    </SafeAreaView>
+    </View>
+  );
+};
+
+/**
+ * 星空背景組件
+ */
+const StarfieldBackground: React.FC = () => {
+  const stars = Array.from({ length: 30 }, (_, i) => ({
+    id: i,
+    left: Math.random() * 100,
+    top: Math.random() * 100,
+    opacity: Math.random() * 0.6 + 0.2,
+    size: Math.random() * 2 + 1,
+  }));
+
+  return (
+    <View style={styles.starfield}>
+      {stars.map((star) => (
+        <View
+          key={star.id}
+          style={[
+            styles.star,
+            {
+              left: `${star.left}%`,
+              top: `${star.top}%`,
+              opacity: star.opacity,
+              width: star.size,
+              height: star.size,
+            },
+          ]}
+        />
+      ))}
+    </View>
   );
 };
 
@@ -219,20 +284,34 @@ interface KanjiGameStartScreenProps {
 
 const KanjiGameStartScreen: React.FC<KanjiGameStartScreenProps> = ({ onStart, settings }) => (
   <View style={styles.centerContainer}>
-    <Text style={styles.gameModeTitle}>漢字模式</Text>
-    <Text style={styles.instructions}>
-      看漢字，輸入對應的{settings.readingType === 'hiragana' ? '平假名' : 
-                        settings.readingType === 'katakana' ? '片假名' : '假名'}讀音！
-    </Text>
-    <View style={styles.settingsInfo}>
-      <Text style={styles.settingText}>難度：{settings.difficultyLevel.toUpperCase()}</Text>
-      <Text style={styles.settingText}>
-        顯示意思：{settings.showMeaning ? '是' : '否'}
+    <GlassContainer
+      variant="accent"
+      glowEffect={true}
+      neonBorder={true}
+      style={styles.startContainer}
+    >
+      <Text style={styles.gameModeTitle}>🈯 漢字模式</Text>
+      <Text style={styles.instructions}>
+        看漢字，輸入對應的{settings.readingType === 'hiragana' ? '平假名' : 
+                          settings.readingType === 'katakana' ? '片假名' : '假名'}讀音！
       </Text>
-    </View>
-    <Pressable style={styles.startButton} onPress={onStart}>
-      <Text style={styles.startButtonText}>開始遊戲</Text>
-    </Pressable>
+      <View style={styles.settingsInfo}>
+        <Text style={styles.settingText}>難度：{settings.difficultyLevel.toUpperCase()}</Text>
+        <Text style={styles.settingText}>
+          顯示意思：{settings.showMeaning ? '是' : '否'}
+        </Text>
+      </View>
+      <Pressable 
+        style={({ pressed }) => [
+          styles.startButton,
+          pressed && styles.buttonPressed,
+          Shadows.neon.blue,
+        ]} 
+        onPress={onStart}
+      >
+        <Text style={styles.startButtonText}>🚀 開始遊戲</Text>
+      </Pressable>
+    </GlassContainer>
   </View>
 );
 
@@ -241,7 +320,6 @@ interface KanjiGamePlayScreenProps {
   currentWord: KanjiWord | null;
   userInput: string;
   onInputChange: (text: string) => void;
-  onPause: () => void;
   onShowHint: () => void;
   isPaused: boolean;
   score: number;
@@ -257,7 +335,6 @@ const KanjiGamePlayScreen: React.FC<KanjiGamePlayScreenProps> = ({
   currentWord,
   userInput,
   onInputChange,
-  onPause,
   onShowHint,
   isPaused,
   score,
@@ -270,21 +347,24 @@ const KanjiGamePlayScreen: React.FC<KanjiGamePlayScreenProps> = ({
 }) => (
   <View style={styles.gameContainer}>
     {/* 遊戲狀態顯示 */}
-    <View style={styles.gameStats}>
+    <GlassContainer
+      variant="secondary"
+      glowEffect={false}
+      style={styles.gameStats}
+    >
       <Text style={styles.statText}>分數: {score}</Text>
       <Text style={styles.statText}>連擊: {combo}</Text>
       <Text style={styles.statText}>❤️ {lives}</Text>
       <Text style={styles.statText}>{Math.floor(gameTime / 60)}:{(gameTime % 60).toString().padStart(2, '0')}</Text>
-    </View>
-
-    {isPaused && (
-      <View style={styles.pauseOverlay}>
-        <Text style={styles.pauseText}>遊戲暫停</Text>
-      </View>
-    )}
+    </GlassContainer>
 
     {/* 漢字顯示區域 */}
-    <View style={styles.kanjiDisplayContainer}>
+    <GlassContainer
+      variant="accent"
+      glowEffect={true}
+      neonBorder={true}
+      style={styles.kanjiDisplayContainer}
+    >
       {currentWord && (
         <>
           <Text style={styles.kanjiText}>{currentWord.kanji}</Text>
@@ -303,10 +383,14 @@ const KanjiGamePlayScreen: React.FC<KanjiGamePlayScreenProps> = ({
           )}
         </>
       )}
-    </View>
+    </GlassContainer>
 
     {/* 輸入區域 */}
-    <View style={styles.inputContainer}>
+    <GlassContainer
+      variant="primary"
+      glowEffect={true}
+      style={styles.inputContainer}
+    >
       <TextInput
         style={styles.textInput}
         value={userInput}
@@ -316,17 +400,18 @@ const KanjiGamePlayScreen: React.FC<KanjiGamePlayScreenProps> = ({
         autoFocus
         editable={!isPaused}
       />
-    </View>
+    </GlassContainer>
 
     {/* 控制按鈕 */}
     <View style={styles.controlsContainer}>
-      <Pressable style={styles.controlButton} onPress={onPause}>
-        <Text style={styles.controlButtonText}>
-          {isPaused ? '繼續' : '暫停'}
-        </Text>
-      </Pressable>
-      <Pressable style={styles.controlButton} onPress={onShowHint}>
-        <Text style={styles.controlButtonText}>提示</Text>
+      <Pressable 
+        style={({ pressed }) => [
+          styles.controlButton,
+          pressed && styles.buttonPressed,
+        ]} 
+        onPress={onShowHint}
+      >
+        <Text style={styles.controlButtonText}>💡 提示</Text>
       </Pressable>
     </View>
   </View>
@@ -347,22 +432,42 @@ const KanjiGameEndScreen: React.FC<KanjiGameEndScreenProps> = ({
   onBackToMenu,
 }) => (
   <View style={styles.centerContainer}>
-    <Text style={styles.gameOverTitle}>遊戲結束</Text>
-    <View style={styles.finalScoreContainer}>
-      <Text style={styles.finalScoreLabel}>最終分數</Text>
-      <Text style={styles.finalScoreValue}>{score}</Text>
-      <Text style={styles.finalTimeText}>
-        用時：{Math.floor(gameTime / 60)}分{gameTime % 60}秒
-      </Text>
-    </View>
-    <View style={styles.endButtonsContainer}>
-      <Pressable style={styles.restartButton} onPress={onRestart}>
-        <Text style={styles.restartButtonText}>再玩一次</Text>
-      </Pressable>
-      <Pressable style={styles.menuButton} onPress={onBackToMenu}>
-        <Text style={styles.menuButtonText}>回到主選單</Text>
-      </Pressable>
-    </View>
+    <GlassContainer
+      variant="surface"
+      glowEffect={true}
+      neonBorder={true}
+      style={styles.endGameContainer}
+    >
+      <Text style={styles.gameOverTitle}>🎮 遊戲結束！</Text>
+      <View style={styles.finalScoreContainer}>
+        <Text style={styles.finalScoreLabel}>最終分數</Text>
+        <Text style={styles.finalScoreValue}>{score}</Text>
+        <Text style={styles.finalTimeText}>
+          用時：{Math.floor(gameTime / 60)}分{gameTime % 60}秒
+        </Text>
+      </View>
+      <View style={styles.endButtonsContainer}>
+        <Pressable 
+          style={({ pressed }) => [
+            styles.restartButton,
+            pressed && styles.buttonPressed,
+            Shadows.neon.blue,
+          ]} 
+          onPress={onRestart}
+        >
+          <Text style={styles.restartButtonText}>🔄 再玩一次</Text>
+        </Pressable>
+        <Pressable 
+          style={({ pressed }) => [
+            styles.menuButton,
+            pressed && styles.buttonPressed,
+          ]} 
+          onPress={onBackToMenu}
+        >
+          <Text style={styles.menuButtonText}>🏠 回到主選單</Text>
+        </Pressable>
+      </View>
+    </GlassContainer>
   </View>
 );
 
@@ -371,15 +476,45 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: TechTheme.background,
   },
+  
+  // 星空背景
+  starfield: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+  },
+  
+  star: {
+    position: 'absolute',
+    backgroundColor: TechColors.neonBlue,
+    borderRadius: 50,
+  },
   centerContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     padding: Spacing.lg,
   },
+  
+  startContainer: {
+    alignItems: 'center',
+    minWidth: '90%',
+  },
+  
+  buttonPressed: {
+    opacity: 0.8,
+    transform: [{ scale: 0.95 }],
+  },
   gameContainer: {
     flex: 1,
     padding: Spacing.lg,
+  },
+  
+  endGameContainer: {
+    alignItems: 'center',
+    minWidth: '90%',
   },
   gameModeTitle: {
     fontSize: Typography.sizes.ui.title,
