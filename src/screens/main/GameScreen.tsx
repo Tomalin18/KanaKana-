@@ -12,6 +12,7 @@ import { LightTheme, Typography, Spacing } from '@/constants/theme';
 import { validateJapaneseInput } from '@/utils/japaneseInput';
 import { KanjiModeScreen } from '@/screens/game-modes/KanjiModeScreen';
 import { LongTextModeScreen } from '@/screens/game-modes/LongTextModeScreen';
+import { TetrisModeScreen } from '@/screens/game-modes/TetrisModeScreen';
 
 interface GameScreenProps {
   route?: {
@@ -41,12 +42,9 @@ export const GameScreen: React.FC<GameScreenProps> = ({ route, navigation }) => 
     return <LongTextModeScreen navigation={navigation} />;
   }
   
+  // 如果是俄羅斯方塊模式，使用專用的俄羅斯方塊模式畫面
   if (gameMode === 'tetris_typing') {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>俄羅斯方塊模式開發中...</Text>
-      </View>
-    );
+    return <TetrisModeScreen navigation={navigation} />;
   }
   
   // 遊戲狀態
