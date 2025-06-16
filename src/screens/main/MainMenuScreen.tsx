@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { 
   View, 
   Text, 
@@ -10,9 +10,9 @@ import {
 } from 'react-native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import type { RootStackParamList } from '@/navigation/AppNavigator';
-import type { GameMode } from '@/types';
+import type { GameMode, ClassicModeSettings, KanjiModeSettings } from '@/types';
 import { TechTheme, Typography, Spacing, Shadows, TechColors } from '@/constants/theme';
-import { GlassContainer } from '@/components/common/GlassContainer';
+import { GlassContainer, GameSettingsModal } from '@/components/common';
 import { isFeatureEnabled } from '@/utils/featureFlags';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'MainMenu'>;
@@ -22,8 +22,59 @@ type Props = NativeStackScreenProps<RootStackParamList, 'MainMenu'>;
  * 提供遊戲模式選擇和現代科技美學界面
  */
 export const MainMenuScreen: React.FC<Props> = ({ navigation }) => {
+  const [settingsModalVisible, setSettingsModalVisible] = useState(false);
+  const [selectedMode, setSelectedMode] = useState<'classic' | 'kanji' | null>(null);
+
+  // 預設設定
+  const defaultClassicSettings: ClassicModeSettings = {
+    difficulty: 'normal',
+    showHints: true,
+    vocabularyLevel: 'n5',
+  };
+
+  const defaultKanjiSettings: KanjiModeSettings = {
+    difficulty: 'normal',
+    showMeaning: true,
+    difficultyLevel: 'jlpt_n5',
+    readingType: 'hiragana',
+    hintDelay: 3,
+    showStrokeCount: false,
+  };
+
   const handleGameModePress = (mode: GameMode) => {
-    navigation.navigate('Game', { mode });
+    if (mode === 'classic' || mode === 'kanji_to_kana') {
+      setSelectedMode(mode === 'classic' ? 'classic' : 'kanji');
+      setSettingsModalVisible(true);
+    } else {
+      // 其他模式直接導航
+      navigation.navigate('Game', { mode });
+    }
+  };
+
+  const handleSettingsStart = (settings: ClassicModeSettings | KanjiModeSettings) => {
+    console.log('MainMenuScreen: handleSettingsStart called with mode:', selectedMode, 'settings:', settings);
+    setSettingsModalVisible(false);
+    
+    if (selectedMode === 'classic') {
+      console.log('MainMenuScreen: Navigating to classic mode');
+      navigation.navigate('Game', { 
+        mode: 'classic',
+        settings: settings as ClassicModeSettings,
+      });
+    } else if (selectedMode === 'kanji') {
+      console.log('MainMenuScreen: Navigating to kanji mode');
+      navigation.navigate('Game', { 
+        mode: 'kanji_to_kana',
+        settings: settings as KanjiModeSettings,
+      });
+    }
+    
+    setSelectedMode(null);
+  };
+
+  const handleSettingsClose = () => {
+    setSettingsModalVisible(false);
+    setSelectedMode(null);
   };
 
   return (
@@ -119,6 +170,17 @@ export const MainMenuScreen: React.FC<Props> = ({ navigation }) => {
           </View>
         </ScrollView>
       </SafeAreaView>
+
+      {/* 設定模態框 */}
+      {selectedMode && (
+        <GameSettingsModal
+          visible={settingsModalVisible}
+          mode={selectedMode}
+          settings={selectedMode === 'classic' ? defaultClassicSettings : defaultKanjiSettings}
+          onClose={handleSettingsClose}
+          onStart={handleSettingsStart}
+        />
+      )}
     </View>
   );
 };

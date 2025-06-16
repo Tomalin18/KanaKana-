@@ -22,6 +22,7 @@ interface GameScreenProps {
   route?: {
     params: {
       mode: 'classic' | 'kanji_to_kana' | 'long_text' | 'tetris_typing';
+      settings?: any;
     };
   };
   navigation?: {
@@ -35,10 +36,11 @@ interface GameScreenProps {
  */
 export const GameScreen: React.FC<GameScreenProps> = ({ route, navigation }) => {
   const mode = route?.params?.mode || 'classic';
+  const settings = route?.params?.settings;
   
   // 如果是漢字模式，使用專用的漢字模式畫面
   if (mode === 'kanji_to_kana') {
-    return <KanjiModeScreen navigation={navigation} />;
+    return <KanjiModeScreen navigation={navigation} route={{ params: { settings } }} />;
   }
   
   // 如果是長文模式，使用專用的長文模式畫面
@@ -51,11 +53,28 @@ export const GameScreen: React.FC<GameScreenProps> = ({ route, navigation }) => 
     return <TetrisModeScreen navigation={navigation} />;
   }
   
+  // 經典模式設定
+  const classicSettings = settings as any || {
+    difficulty: 'normal',
+    showHints: true,
+    vocabularyLevel: 'n5',
+  };
+
+  // 根據難度設定初始生命值
+  const getInitialLives = () => {
+    switch (classicSettings.difficulty) {
+      case 'easy': return 5;
+      case 'normal': return 3;
+      case 'hard': return 1;
+      default: return 3;
+    }
+  };
+
   // 遊戲狀態
   const [gameState, setGameState] = useState<'start' | 'playing' | 'paused' | 'ended'>('start');
   const [score, setScore] = useState(0);
   const [combo, setCombo] = useState(0);
-  const [lives, setLives] = useState(3);
+  const [lives, setLives] = useState(getInitialLives());
   const [currentWord, setCurrentWord] = useState('');
   const [userInput, setUserInput] = useState('');
   const [gameTime, setGameTime] = useState(0);
@@ -87,7 +106,7 @@ export const GameScreen: React.FC<GameScreenProps> = ({ route, navigation }) => 
     setGameState('playing');
     setScore(0);
     setCombo(0);
-    setLives(3);
+    setLives(getInitialLives());
     setUserInput('');
     setGameTime(0);
     setCurrentWord(getRandomWord());
@@ -143,7 +162,7 @@ export const GameScreen: React.FC<GameScreenProps> = ({ route, navigation }) => 
   const renderGameContent = () => {
     switch (gameState) {
       case 'start':
-        return <GameStartScreen onStart={startGame} mode={mode} />;
+        return <GameStartScreen onStart={startGame} mode={mode} settings={classicSettings} />;
       case 'playing':
       case 'paused':
         return (
@@ -378,36 +397,70 @@ const FloatingBubble: React.FC<FloatingBubbleProps> = ({ children, style, bubble
 interface GameStartScreenProps {
   onStart: () => void;
   mode: string;
+  settings?: any;
 }
 
-const GameStartScreen: React.FC<GameStartScreenProps> = ({ onStart, mode }) => (
-  <View style={styles.centerContainer}>
-    <GlassContainer
-      variant="accent"
-      glowEffect={true}
-      neonBorder={true}
-      style={styles.startContainer}
-    >
-      <Text style={styles.gameModeTitle}>
-        {mode === 'classic' ? '🎯 經典模式' : '其他模式'}
-      </Text>
-      <Text style={styles.instructions}>
-        輸入日文假名來完成單詞！{'\n'}
-        正確輸入可獲得分數和連擊獎勵。
-      </Text>
-      <Pressable
-        style={({ pressed }) => [
-          styles.startButton,
-          pressed && styles.buttonPressed,
-          Shadows.neon.blue,
-        ]}
-        onPress={onStart}
+const GameStartScreen: React.FC<GameStartScreenProps> = ({ onStart, mode, settings }) => {
+  const getDifficultyInfo = (difficulty: string) => {
+    switch (difficulty) {
+      case 'easy':
+        return { name: '簡單', color: TechColors.neonGreen, lives: 5 };
+      case 'normal':
+        return { name: '普通', color: TechColors.neonBlue, lives: 3 };
+      case 'hard':
+        return { name: '困難', color: TechColors.neonPink, lives: 1 };
+      default:
+        return { name: '普通', color: TechColors.neonBlue, lives: 3 };
+    }
+  };
+
+  const difficultyInfo = getDifficultyInfo(settings?.difficulty || 'normal');
+
+  return (
+    <View style={styles.centerContainer}>
+      <GlassContainer
+        variant="accent"
+        glowEffect={true}
+        neonBorder={true}
+        style={styles.startContainer}
       >
-        <Text style={styles.startButtonText}>🚀 開始遊戲</Text>
-      </Pressable>
-    </GlassContainer>
-  </View>
-);
+        <Text style={styles.gameModeTitle}>
+          {mode === 'classic' ? '🎯 經典模式' : '其他模式'}
+        </Text>
+        <Text style={styles.instructions}>
+          輸入日文假名來完成單詞！{'\n'}
+          正確輸入可獲得分數和連擊獎勵。
+        </Text>
+        
+        {/* 難度信息 */}
+        {settings && (
+          <View style={styles.settingsInfo}>
+            <Text style={[styles.settingText, { color: difficultyInfo.color }]}>
+              難度：{difficultyInfo.name} (❤️ {difficultyInfo.lives} 生命)
+            </Text>
+            <Text style={styles.settingText}>
+              提示：{settings.showHints ? '開啟' : '關閉'}
+            </Text>
+            <Text style={styles.settingText}>
+              詞彙等級：{settings.vocabularyLevel?.toUpperCase() || 'N5'}
+            </Text>
+          </View>
+        )}
+        
+        <Pressable
+          style={({ pressed }) => [
+            styles.startButton,
+            pressed && styles.buttonPressed,
+            Shadows.neon.blue,
+          ]}
+          onPress={onStart}
+        >
+          <Text style={styles.startButtonText}>🚀 開始遊戲</Text>
+        </Pressable>
+      </GlassContainer>
+    </View>
+  );
+};
 
 // 遊戲進行屏幕
 interface GamePlayScreenProps {
@@ -749,6 +802,19 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginBottom: Spacing.xl,
     lineHeight: Typography.lineHeights.ui,
+  },
+  
+  settingsInfo: {
+    marginBottom: Spacing.xl,
+    alignItems: 'center',
+  },
+  
+  settingText: {
+    fontSize: Typography.sizes.ui.caption,
+    color: TechTheme.textSecondary,
+    textAlign: 'center',
+    marginBottom: Spacing.xs,
+    fontWeight: '500',
   },
   
   startButton: {
