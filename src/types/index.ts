@@ -373,9 +373,20 @@ export interface InputValidationResult {
 // ============================================================================
 
 /**
+ * 經典模式設定
+ */
+export interface ClassicModeSettings {
+  difficulty: 'easy' | 'normal' | 'hard';
+  showHints: boolean;
+  timeLimit?: number; // 時間限制（秒），undefined 表示無限制
+  vocabularyLevel: 'n5' | 'n4' | 'n3' | 'n2' | 'n1';
+}
+
+/**
  * 漢字模式設定
  */
 export interface KanjiModeSettings {
+  difficulty: 'easy' | 'normal' | 'hard';
   showMeaning: boolean;
   difficultyLevel: 'jlpt_n5' | 'jlpt_n4' | 'jlpt_n3' | 'jlpt_n2' | 'jlpt_n1';
   readingType: 'hiragana' | 'katakana' | 'both';
