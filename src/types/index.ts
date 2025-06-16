@@ -8,10 +8,10 @@
 // ============================================================================
 
 export type GameMode = 
-  | 'infinite'           // 經典模式 (原無限模式)
-  | 'kanji_to_kana'      // 漢字道場
-  | 'long_text'          // 長文修行
-  | 'tetris_typing';     // 方塊道
+  | 'classic'            // 原無限模式改名為經典模式
+  | 'kanji_to_kana'      // 新增：漢字模式
+  | 'long_text'          // 新增：長文模式
+  | 'tetris_typing';     // 新增：俄羅斯方塊模式
 export type DifficultyLevel = 'beginner' | 'normal' | 'hard' | 'expert' | 'adaptive';
 export type GameStatus = 'idle' | 'playing' | 'paused' | 'finished' | 'game_over';
 export type InputType = 'hiragana' | 'katakana' | 'kanji' | 'mixed' | 'romaji' | 'unknown';
