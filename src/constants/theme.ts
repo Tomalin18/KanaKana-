@@ -49,16 +49,16 @@ export const JapaneseColors = {
 export const LightTheme: ThemeColors = {
   primary: JapaneseColors.ai,
   secondary: JapaneseColors.sakura,
-  background: '#F8FAFC',
-  surface: '#FFFFFF',
-  text: '#1F2937',
-  textSecondary: '#6B7280',
+  background: JapaneseColors.sumi,
+  surface: 'rgba(255, 255, 255, 0.1)',
+  text: JapaneseColors.shiro,
+  textSecondary: 'rgba(255, 255, 255, 0.7)',
   accent: JapaneseColors.yuhi,
   success: JapaneseColors.matcha,
   warning: '#F59E0B',
   error: '#EF4444',
-  overlay: 'rgba(0, 0, 0, 0.5)',
-  border: '#E5E7EB',
+  overlay: 'rgba(0, 0, 0, 0.7)',
+  border: 'rgba(255, 255, 255, 0.2)',
 };
 
 export const DarkTheme: ThemeColors = {

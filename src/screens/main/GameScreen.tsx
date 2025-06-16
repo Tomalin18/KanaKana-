@@ -8,7 +8,7 @@ import {
   Pressable,
   StatusBar,
 } from 'react-native';
-import { LightTheme, Typography, Spacing } from '@/constants/theme';
+import { LightTheme, Typography, Spacing, JapaneseColors } from '@/constants/theme';
 import { validateJapaneseInput } from '@/utils/japaneseInput';
 import { KanjiModeScreen } from '@/screens/game-modes/KanjiModeScreen';
 import { LongTextModeScreen } from '@/screens/game-modes/LongTextModeScreen';
@@ -16,7 +16,7 @@ import { LongTextModeScreen } from '@/screens/game-modes/LongTextModeScreen';
 interface GameScreenProps {
   route?: {
     params: {
-      mode: 'infinite' | 'practice' | 'daily_challenge' | 'kanji_to_kana' | 'long_text' | 'tetris_typing';
+      mode: 'infinite' | 'kanji_to_kana' | 'long_text' | 'tetris_typing';
     };
   };
   navigation?: {
@@ -202,17 +202,39 @@ interface GameStartScreenProps {
 
 const GameStartScreen: React.FC<GameStartScreenProps> = ({ onStart, mode }) => (
   <View style={styles.centerContainer}>
-    <Text style={styles.gameModeTitle}>
-      {mode === 'infinite' && '無限模式'}
-      {mode === 'practice' && '練習模式'}
-      {mode === 'daily_challenge' && '每日挑戰'}
-    </Text>
-    <Text style={styles.instructions}>
-      輸入出現的日文單詞來消除氣泡！
-    </Text>
+    {/* 日式背景裝飾 */}
+    <View style={styles.backgroundPattern} />
+    
+    {/* 模式標題 */}
+    <View style={styles.modeHeader}>
+      <Text style={styles.gameModeTitle}>
+        {mode === 'infinite' && '経典模式'}
+      </Text>
+      <Text style={styles.gameModeSubtitle}>
+        {mode === 'infinite' && 'けいてんモード'}
+      </Text>
+      <View style={styles.titleDivider} />
+    </View>
+    
+    {/* 遊戲說明 */}
+    <View style={styles.instructionsContainer}>
+      <Text style={styles.instructions}>
+        🎯 輸入出現的日文單詞來消除氣泡
+      </Text>
+      <Text style={styles.subInstructions}>
+        挑戰你的極限，看看能打多少字！
+      </Text>
+    </View>
+    
+    {/* 開始按鈕 */}
     <Pressable style={styles.startButton} onPress={onStart}>
-      <Text style={styles.startButtonText}>開始遊戲</Text>
+      <Text style={styles.startButtonText}>🚀 開始修行</Text>
     </Pressable>
+    
+    {/* 日式印章裝飾 */}
+    <View style={styles.startSeal}>
+      <Text style={styles.startSealText}>始</Text>
+    </View>
   </View>
 );
 
@@ -370,13 +392,27 @@ const GameEndScreen: React.FC<GameEndScreenProps> = ({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: LightTheme.background,
+    backgroundColor: JapaneseColors.sumi,
   },
   centerContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     padding: Spacing.lg,
+    backgroundColor: JapaneseColors.sumi,
+  },
+  backgroundPattern: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    opacity: 0.05,
+    backgroundColor: 'transparent',
+  },
+  modeHeader: {
+    alignItems: 'center',
+    marginBottom: Spacing.xl,
   },
   gameContainer: {
     flex: 1,
@@ -384,27 +420,87 @@ const styles = StyleSheet.create({
   gameModeTitle: {
     fontSize: Typography.sizes.ui.title,
     fontWeight: '700',
-    color: LightTheme.primary,
-    marginBottom: Spacing.lg,
+    color: JapaneseColors.shiro,
+    marginBottom: Spacing.sm,
     textAlign: 'center',
+    textShadowColor: 'rgba(255, 255, 255, 0.3)',
+    textShadowOffset: { width: 0, height: 2 },
+    textShadowRadius: 4,
+  },
+  gameModeSubtitle: {
+    fontSize: Typography.sizes.ui.caption,
+    color: 'rgba(255, 255, 255, 0.7)',
+    textAlign: 'center',
+    marginBottom: Spacing.sm,
+    fontStyle: 'italic',
+  },
+  titleDivider: {
+    width: 80,
+    height: 2,
+    backgroundColor: JapaneseColors.yuhi,
+    borderRadius: 1,
+  },
+  instructionsContainer: {
+    alignItems: 'center',
+    marginBottom: Spacing.xl,
+    backgroundColor: 'rgba(255, 255, 255, 0.05)',
+    padding: Spacing.lg,
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.1)',
   },
   instructions: {
     fontSize: Typography.sizes.ui.body,
-    color: LightTheme.textSecondary,
+    color: JapaneseColors.shiro,
     textAlign: 'center',
-    marginBottom: Spacing.xl,
+    marginBottom: Spacing.sm,
+    lineHeight: Typography.lineHeights.ui,
+  },
+  subInstructions: {
+    fontSize: Typography.sizes.ui.caption,
+    color: 'rgba(255, 255, 255, 0.7)',
+    textAlign: 'center',
     lineHeight: Typography.lineHeights.ui,
   },
   startButton: {
-    backgroundColor: LightTheme.primary,
+    backgroundColor: 'transparent',
     paddingHorizontal: Spacing.xl,
     paddingVertical: Spacing.md,
-    borderRadius: 12,
+    borderRadius: 25,
+    borderWidth: 2,
+    borderColor: JapaneseColors.yuhi,
+    shadowColor: JapaneseColors.yuhi,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+    elevation: 8,
+    marginBottom: Spacing.xl,
   },
   startButtonText: {
-    color: LightTheme.surface,
+    color: JapaneseColors.yuhi,
     fontSize: Typography.sizes.ui.body,
-    fontWeight: '600',
+    fontWeight: '700',
+    textAlign: 'center',
+  },
+  startSeal: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    backgroundColor: JapaneseColors.sakura,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 2,
+    borderColor: JapaneseColors.shiro,
+    shadowColor: JapaneseColors.sakura,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+    elevation: 8,
+  },
+  startSealText: {
+    fontSize: 20,
+    fontWeight: '900',
+    color: JapaneseColors.shiro,
   },
   gameHeader: {
     flexDirection: 'row',
