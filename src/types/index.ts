@@ -430,7 +430,9 @@ export interface KanjiWord extends Word {
 export interface LongTextContent {
   id: string;
   title: string;
-  content: string;
+  content: string;        // 原始內容（向後兼容）
+  displayContent?: string; // 顯示版本（包含漢字）
+  inputContent?: string;   // 輸入版本（純假名）
   difficulty: DifficultyLevel;
   category: 'article' | 'story' | 'dialogue';
   estimatedTime: number; // 預估完成時間（秒）
