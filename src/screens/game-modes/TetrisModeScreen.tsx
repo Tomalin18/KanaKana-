@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   TextInput,
   Alert,
+  ScrollView,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { getRandomWord, getWordByLength, type TetrisWord } from '@/data/tetrisData';
@@ -196,11 +197,8 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
     
     setBoard(newBoard);
     
-    // 檢查遊戲結束
-    if (piece.y <= 0) {
-      setGameState('finished');
-      return;
-    }
+    // 檢查遊戲結束 - 如果新方塊無法放置在頂部，遊戲結束
+    // 這個檢查應該在生成新方塊時進行，而不是在這裡
   }, [board]);
 
   // 方塊下落邏輯
@@ -220,7 +218,13 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
       // 生成新方塊
       setTimeout(() => {
         const newPiece = generateRandomPiece();
-        setCurrentPiece(newPiece);
+        // 檢查新方塊是否可以放置在起始位置
+        if (canPlacePiece(newPiece, newPiece.x, newPiece.y)) {
+          setCurrentPiece(newPiece);
+        } else {
+          // 無法放置新方塊，遊戲結束
+          setGameState('finished');
+        }
       }, 100);
     }
   }, [currentPiece, gameState, canPlacePiece, placePieceOnBoard, generateRandomPiece]);
@@ -250,10 +254,16 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
       // 生成新方塊
       setTimeout(() => {
         const newPiece = generateRandomPiece();
-        setCurrentPiece(newPiece);
+        // 檢查新方塊是否可以放置在起始位置
+        if (canPlacePiece(newPiece, newPiece.x, newPiece.y)) {
+          setCurrentPiece(newPiece);
+        } else {
+          // 無法放置新方塊，遊戲結束
+          setGameState('finished');
+        }
       }, 100);
     }
-  }, [currentPiece, level, piecesCleared, generateRandomPiece]);
+  }, [currentPiece, level, piecesCleared, generateRandomPiece, canPlacePiece]);
 
   // 開始遊戲
   const startGame = useCallback(() => {
@@ -304,10 +314,22 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
 
   // 渲染遊戲板
   const renderBoard = () => {
-    const cellSize = (Dimensions.get('window').width - 40) / BOARD_WIDTH;
+    const screenWidth = Dimensions.get('window').width;
+    const screenHeight = Dimensions.get('window').height;
+    const availableWidth = screenWidth - 40; // 減去 padding
+    const availableHeight = screenHeight * 0.5; // 使用螢幕高度的50%
+    
+    // 根據可用空間計算最適合的格子大小
+    const cellSizeByWidth = availableWidth / BOARD_WIDTH;
+    const cellSizeByHeight = availableHeight / BOARD_HEIGHT;
+    const cellSize = Math.min(cellSizeByWidth, cellSizeByHeight, 25); // 最大25px
     
     return (
-      <View style={[styles.board, { width: cellSize * BOARD_WIDTH, height: cellSize * BOARD_HEIGHT }]}>
+      <View style={[styles.board, { 
+        width: cellSize * BOARD_WIDTH, 
+        height: cellSize * BOARD_HEIGHT,
+        marginVertical: 10
+      }]}>
         {board.map((row, rowIndex) =>
           row.map((cell, colIndex) => (
             <View
@@ -315,6 +337,8 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
               style={[
                 styles.cell,
                 {
+                  left: colIndex * cellSize,
+                  top: rowIndex * cellSize,
                   width: cellSize,
                   height: cellSize,
                   backgroundColor: cell === 1 ? '#666' : 'transparent',
@@ -325,30 +349,52 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
         )}
         
         {/* 渲染當前下落的方塊 */}
-        {currentPiece && currentPiece.shape.map((row, rowIndex) =>
-          row.map((cell, colIndex) => {
-            if (cell === 1) {
-              const x = (currentPiece.x + colIndex) * cellSize;
-              const y = (currentPiece.y + rowIndex) * cellSize;
-              
-              return (
-                <View
-                  key={`piece-${rowIndex}-${colIndex}`}
-                  style={[
-                    styles.pieceCell,
-                    {
-                      left: x,
-                      top: y,
-                      width: cellSize,
-                      height: cellSize,
-                      backgroundColor: currentPiece.color,
-                    }
-                  ]}
-                />
-              );
-            }
-            return null;
-          })
+        {currentPiece && (
+          <View style={styles.fallingPiece}>
+            {/* 方塊背景 */}
+            {currentPiece.shape.map((row, rowIndex) =>
+              row.map((cell, colIndex) => {
+                if (cell === 1) {
+                  const x = (currentPiece.x + colIndex) * cellSize;
+                  const y = (currentPiece.y + rowIndex) * cellSize;
+                  
+                  return (
+                    <View
+                      key={`piece-${rowIndex}-${colIndex}`}
+                      style={[
+                        styles.pieceCell,
+                        {
+                          left: x,
+                          top: y,
+                          width: cellSize,
+                          height: cellSize,
+                          backgroundColor: currentPiece.color,
+                        }
+                      ]}
+                    />
+                  );
+                }
+                return null;
+              })
+            )}
+            
+            {/* 方塊中的文字 */}
+            <View
+              style={[
+                styles.pieceText,
+                {
+                  left: currentPiece.x * cellSize,
+                  top: currentPiece.y * cellSize,
+                  width: currentPiece.shape[0].length * cellSize,
+                  height: currentPiece.shape.length * cellSize,
+                }
+              ]}
+            >
+              <Text style={[styles.pieceTextContent, { fontSize: Math.min(cellSize * 0.4, 14) }]}>
+                {currentPiece.kana}
+              </Text>
+            </View>
+          </View>
         )}
       </View>
     );
@@ -378,7 +424,11 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
       case 'playing':
       case 'paused':
         return (
-          <View style={styles.gameContainer}>
+          <ScrollView 
+            style={styles.gameScrollView}
+            contentContainerStyle={styles.gameContainer}
+            showsVerticalScrollIndicator={false}
+          >
             {/* 遊戲信息 */}
             <View style={styles.gameInfo}>
               <Text style={styles.infoText}>分數: {score}</Text>
@@ -426,7 +476,7 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
                 <Text style={styles.pauseText}>遊戲暫停</Text>
               </View>
             )}
-          </View>
+          </ScrollView>
         );
         
       case 'finished':
@@ -505,9 +555,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   gameContainer: {
-    flex: 1,
+    flexGrow: 1,
     padding: 20,
     alignItems: 'center',
+    minHeight: Dimensions.get('window').height - 100,
   },
   gameInfo: {
     flexDirection: 'row',
@@ -643,5 +694,30 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 18,
     textAlign: 'center',
+  },
+  fallingPiece: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'transparent',
+  },
+  pieceText: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  pieceTextContent: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#fff',
+  },
+  gameScrollView: {
+    flex: 1,
   },
 }); 
