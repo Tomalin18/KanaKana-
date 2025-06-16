@@ -123,10 +123,10 @@ export const getWordsByType = (words: TetrisWord[], wordType: 'hiragana' | 'kata
   switch (wordType) {
     case 'hiragana':
       // 只返回平假名單字
-      return words.filter(word => /^[ひらがな]+$/.test(word.kana));
+      return words.filter(word => /^[ひ-ゖ]+$/.test(word.kana));
     case 'katakana':
       // 只返回包含片假名的單字
-      return words.filter(word => /[カタカナ]/.test(word.kana));
+      return words.filter(word => /[ア-ヶ]/.test(word.kana));
     case 'mixed':
     default:
       return words;
@@ -139,6 +139,19 @@ export const getWordsByType = (words: TetrisWord[], wordType: 'hiragana' | 'kata
 export const getRandomWord = (difficulty: DifficultyLevel, wordType: 'hiragana' | 'katakana' | 'mixed' = 'mixed'): TetrisWord => {
   const words = getWordsByDifficulty(difficulty);
   const filteredWords = getWordsByType(words, wordType);
+  
+  // 確保有可用的單字
+  if (filteredWords.length === 0) {
+    // 如果過濾後沒有單字，使用所有單字
+    const allWords = getWordsByDifficulty(difficulty);
+    if (allWords.length === 0) {
+      // 如果還是沒有，使用初級單字
+      return BEGINNER_WORDS[0];
+    }
+    const randomIndex = Math.floor(Math.random() * allWords.length);
+    return allWords[randomIndex];
+  }
+  
   const randomIndex = Math.floor(Math.random() * filteredWords.length);
   return filteredWords[randomIndex];
 };
@@ -154,6 +167,18 @@ export const getWordByLength = (
   const words = getWordsByDifficulty(difficulty);
   const filteredWords = getWordsByType(words, wordType);
   
+  // 確保有可用的單字
+  if (filteredWords.length === 0) {
+    // 如果過濾後沒有單字，使用所有單字
+    const allWords = getWordsByDifficulty(difficulty);
+    if (allWords.length === 0) {
+      // 如果還是沒有，使用初級單字
+      return BEGINNER_WORDS[0];
+    }
+    const randomIndex = Math.floor(Math.random() * allWords.length);
+    return allWords[randomIndex];
+  }
+  
   // 找到符合長度的單字
   const matchingWords = filteredWords.filter(word => word.kana.length === targetLength);
   
@@ -163,7 +188,8 @@ export const getWordByLength = (
   }
   
   // 如果沒有符合長度的單字，返回隨機單字
-  return getRandomWord(difficulty, wordType);
+  const randomIndex = Math.floor(Math.random() * filteredWords.length);
+  return filteredWords[randomIndex];
 };
 
 /**

@@ -108,6 +108,34 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
     
     // 根據方塊大小選擇合適長度的單字
     const word = getWordByLength(charCount, settings.difficulty, settings.wordType);
+    
+    // 安全檢查：確保 word 對象有效
+    if (!word || !word.word || !word.kana || !word.meaning) {
+      console.error('Invalid word object:', word);
+      // 使用備用單字
+      const fallbackWord = {
+        word: 'ともだち',
+        kana: 'ともだち',
+        meaning: '朋友',
+        difficulty: 'beginner' as const,
+        category: '人物'
+      };
+      const color = PIECE_COLORS[Math.floor(Math.random() * PIECE_COLORS.length)];
+      const maxX = BOARD_WIDTH - shape[0].length;
+      const x = Math.floor(Math.random() * (maxX + 1));
+      
+      return {
+        id: Date.now().toString(),
+        shape,
+        word: fallbackWord.word,
+        kana: fallbackWord.kana,
+        meaning: fallbackWord.meaning,
+        x,
+        y: 0,
+        color,
+      };
+    }
+    
     const color = PIECE_COLORS[Math.floor(Math.random() * PIECE_COLORS.length)];
     
     // 隨機X位置（確保方塊不會超出邊界）
