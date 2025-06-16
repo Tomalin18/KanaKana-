@@ -8,6 +8,7 @@ import {
   TextInput,
   Alert,
   ScrollView,
+  Animated,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { getRandomWordImproved, getWordByLength, getWordByLevelAndLength, type TetrisWord } from '@/data/tetrisData';
@@ -64,10 +65,16 @@ const TETRIS_SHAPES = {
 
 const SHAPE_NAMES = Object.keys(TETRIS_SHAPES) as Array<keyof typeof TETRIS_SHAPES>;
 
-// 顏色定義
+// 科技感霓虹顏色定義
 const PIECE_COLORS = [
-  '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', 
-  '#FFEAA7', '#DDA0DD', '#98D8C8', '#F7DC6F'
+  '#00ffff', // 青色霓虹
+  '#ff0080', // 粉紅霓虹
+  '#00ff00', // 綠色霓虹
+  '#ffff00', // 黃色霓虹
+  '#ff8000', // 橙色霓虹
+  '#8000ff', // 紫色霓虹
+  '#0080ff', // 藍色霓虹
+  '#ff4080'  // 玫瑰霓虹
 ];
 
 // 遊戲設定
@@ -88,6 +95,14 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
   const [level, setLevel] = useState(1);
   const [piecesCleared, setPiecesCleared] = useState(0);
   const [fallSpeed, setFallSpeed] = useState(INITIAL_FALL_SPEED);
+  const [inputFocused, setInputFocused] = useState(false);
+  const [stars, setStars] = useState<Array<{id: number, x: number, y: number, opacity: number}>>([]);
+  
+  // 動畫值
+  const titlePulse = useRef(new Animated.Value(1)).current;
+  const scoreGlow = useRef(new Animated.Value(0.5)).current;
+  const buttonScale = useRef(new Animated.Value(1)).current;
+  const pieceGlow = useRef(new Animated.Value(0)).current;
   
   // 設定
   const settings: TetrisSettings = route?.params?.settings || {
@@ -97,6 +112,103 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
 
   // 定時器引用
   const fallTimerRef = useRef<NodeJS.Timeout | null>(null);
+
+  // 根據背景色計算最佳文字顏色
+  const getTextColorForBackground = useCallback((backgroundColor: string): string => {
+    // 移除 # 符號並轉換為RGB
+    const hex = backgroundColor.replace('#', '');
+    const r = parseInt(hex.substr(0, 2), 16);
+    const g = parseInt(hex.substr(2, 2), 16);
+    const b = parseInt(hex.substr(4, 2), 16);
+    
+    // 計算亮度 (使用 YIQ 公式)
+    const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+    
+    // 如果背景色亮度高於128，使用深色文字；否則使用淺色文字
+    return brightness > 128 ? '#000000' : '#ffffff';
+  }, []);
+
+  // 啟動動畫效果
+  useEffect(() => {
+    // 標題脈動動畫
+    const titleAnimation = Animated.loop(
+      Animated.sequence([
+        Animated.timing(titlePulse, {
+          toValue: 1.1,
+          duration: 2000,
+          useNativeDriver: true,
+        }),
+        Animated.timing(titlePulse, {
+          toValue: 1,
+          duration: 2000,
+          useNativeDriver: true,
+        }),
+      ])
+    );
+
+    // 分數發光動畫
+    const scoreAnimation = Animated.loop(
+      Animated.sequence([
+        Animated.timing(scoreGlow, {
+          toValue: 1,
+          duration: 1500,
+          useNativeDriver: false,
+        }),
+        Animated.timing(scoreGlow, {
+          toValue: 0.5,
+          duration: 1500,
+          useNativeDriver: false,
+        }),
+      ])
+    );
+
+    // 方塊發光動畫
+    const pieceAnimation = Animated.loop(
+      Animated.sequence([
+        Animated.timing(pieceGlow, {
+          toValue: 1,
+          duration: 1000,
+          useNativeDriver: false,
+        }),
+        Animated.timing(pieceGlow, {
+          toValue: 0,
+          duration: 1000,
+          useNativeDriver: false,
+        }),
+      ])
+    );
+
+    titleAnimation.start();
+    scoreAnimation.start();
+    pieceAnimation.start();
+
+    return () => {
+      titleAnimation.stop();
+      scoreAnimation.stop();
+      pieceAnimation.stop();
+    };
+  }, [titlePulse, scoreGlow, pieceGlow]);
+
+  // 生成星空背景
+  useEffect(() => {
+    const generateStars = () => {
+      const newStars = [];
+      const screenWidth = Dimensions.get('window').width;
+      const screenHeight = Dimensions.get('window').height;
+      
+      for (let i = 0; i < 50; i++) {
+        newStars.push({
+          id: i,
+          x: Math.random() * screenWidth,
+          y: Math.random() * screenHeight,
+          opacity: Math.random() * 0.8 + 0.2,
+        });
+      }
+      setStars(newStars);
+    };
+
+    generateStars();
+  }, []);
 
   // 計算方塊需要的字符數
   const getShapeCharCount = useCallback((shape: number[][]): number => {
@@ -380,7 +492,14 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
                   top: rowIndex * cellSize,
                   width: cellSize,
                   height: cellSize,
-                  backgroundColor: cell === 1 ? '#666' : 'transparent',
+                  backgroundColor: cell === 1 ? 'rgba(0, 255, 255, 0.4)' : 'rgba(0, 255, 255, 0.02)',
+                  borderColor: cell === 1 ? 'rgba(0, 255, 255, 0.8)' : 'rgba(0, 255, 255, 0.15)',
+                  borderWidth: cell === 1 ? 2 : 0.5,
+                  shadowColor: cell === 1 ? '#00ffff' : 'transparent',
+                  shadowOffset: { width: 0, height: 0 },
+                  shadowOpacity: cell === 1 ? 0.6 : 0,
+                  shadowRadius: cell === 1 ? 8 : 0,
+                  elevation: cell === 1 ? 5 : 0,
                 }
               ]}
             />
@@ -417,7 +536,7 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
                   const character = displayText[charIndex] || '';
                   
                   return (
-                    <View
+                    <Animated.View
                       key={`piece-${rowIndex}-${colIndex}`}
                       style={[
                         styles.pieceCell,
@@ -427,13 +546,38 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
                           width: cellSize,
                           height: cellSize,
                           backgroundColor: currentPiece.color,
+                          shadowColor: currentPiece.color,
+                          shadowOffset: { width: 0, height: 0 },
+                          shadowOpacity: pieceGlow.interpolate({
+                            inputRange: [0, 1],
+                            outputRange: [0.6, 1],
+                          }),
+                          shadowRadius: pieceGlow.interpolate({
+                            inputRange: [0, 1],
+                            outputRange: [cellSize * 0.3, cellSize * 0.5],
+                          }),
+                          elevation: 12,
+                          borderColor: currentPiece.color,
+                          borderWidth: 2,
                         }
                       ]}
                     >
-                      <Text style={[styles.pieceCharacter, { fontSize: Math.min(cellSize * 0.6, 16) }]}>
+                      <Animated.Text style={[
+                        styles.pieceCharacter, 
+                        { 
+                          fontSize: Math.min(cellSize * 0.6, 16),
+                          color: getTextColorForBackground(currentPiece.color),
+                          textShadowColor: getTextColorForBackground(currentPiece.color) === '#000000' ? '#ffffff' : '#000000',
+                          textShadowOffset: { width: 0, height: 0 },
+                          textShadowRadius: pieceGlow.interpolate({
+                            inputRange: [0, 1],
+                            outputRange: [8, 15],
+                          }),
+                        }
+                      ]}>
                         {character}
-                      </Text>
-                    </View>
+                      </Animated.Text>
+                    </Animated.View>
                   );
                 }
                 return null;
@@ -451,18 +595,44 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
       case 'idle':
         return (
           <View style={styles.menuContainer}>
-            <Text style={styles.title}>俄羅斯方塊模式</Text>
-            <Text style={styles.description}>
-              輸入方塊上的假名來消除方塊！{'\n'}
-              方塊會自動下落，在落地前輸入正確的假名即可消除{'\n'}
-              第5關開始出現漢字方塊，第10關出現更長的漢字方塊
-            </Text>
+            <Animated.Text 
+              style={[
+                styles.title,
+                {
+                  transform: [{ scale: titlePulse }],
+                }
+              ]}
+            >
+🎮 俄羅斯方塊模式 🎮
+            </Animated.Text>
+                          <Text style={styles.description}>
+                ⚡ 輸入方塊上的假名來消除方塊！ ⚡{'\n'}
+                🎯 方塊會自動下落，在落地前輸入正確的假名即可消除 🎯{'\n'}
+                🔥 第5關開始出現漢字方塊，第10關出現更長的漢字方塊 🔥
+              </Text>
             <View style={styles.settingsInfo}>
-              <Text style={styles.settingText}>難度: {settings.difficulty}</Text>
-              <Text style={styles.settingText}>類型: {settings.wordType}</Text>
+                              <Text style={styles.settingText}>⚙️ 難度: {settings.difficulty}</Text>
+                <Text style={styles.settingText}>📝 類型: {settings.wordType}</Text>
             </View>
-            <TouchableOpacity style={styles.startButton} onPress={startGame}>
-              <Text style={styles.startButtonText}>開始遊戲</Text>
+            <TouchableOpacity 
+              style={styles.startButton} 
+              onPress={startGame}
+              onPressIn={() => {
+                Animated.spring(buttonScale, {
+                  toValue: 0.95,
+                  useNativeDriver: true,
+                }).start();
+              }}
+              onPressOut={() => {
+                Animated.spring(buttonScale, {
+                  toValue: 1,
+                  useNativeDriver: true,
+                }).start();
+              }}
+            >
+              <Animated.View style={{ transform: [{ scale: buttonScale }] }}>
+                <Text style={styles.startButtonText}>🚀 開始遊戲 🚀</Text>
+              </Animated.View>
             </TouchableOpacity>
           </View>
         );
@@ -476,11 +646,30 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
             showsVerticalScrollIndicator={false}
           >
             {/* 遊戲信息 */}
-            <View style={styles.gameInfo}>
-              <Text style={styles.infoText}>分數: {score}</Text>
-              <Text style={styles.infoText}>等級: {level}</Text>
-              <Text style={styles.infoText}>已消除: {piecesCleared}</Text>
-            </View>
+            <Animated.View 
+              style={[
+                styles.gameInfo,
+                {
+                  shadowOpacity: scoreGlow,
+                }
+              ]}
+            >
+              <Animated.Text 
+                style={[
+                  styles.infoText,
+                  {
+                    textShadowRadius: scoreGlow.interpolate({
+                      inputRange: [0.5, 1],
+                      outputRange: [8, 15],
+                    }),
+                  }
+                ]}
+              >
+                                 🏆 分數: {score}
+               </Animated.Text>
+               <Text style={styles.infoText}>📈 等級: {level}</Text>
+               <Text style={styles.infoText}>🧩 已消除: {piecesCleared}</Text>
+            </Animated.View>
             
             {/* 遊戲板 */}
             {renderBoard()}
@@ -507,23 +696,36 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
             
             {/* 輸入框 */}
             <TextInput
-              style={styles.input}
+              style={[
+                styles.input,
+                inputFocused && {
+                  borderColor: '#00ffff',
+                  shadowColor: '#00ffff',
+                  shadowOffset: { width: 0, height: 0 },
+                  shadowOpacity: 0.6,
+                  shadowRadius: 15,
+                  elevation: 8,
+                }
+              ]}
               value={userInput}
               onChangeText={handleInputChange}
-              placeholder="輸入假名..."
+              placeholder=">>> 輸入假名來消除方塊 <<<"
+              placeholderTextColor="rgba(255, 255, 255, 0.5)"
               autoFocus={gameState === 'playing'}
               editable={gameState === 'playing'}
+              onFocus={() => setInputFocused(true)}
+              onBlur={() => setInputFocused(false)}
             />
             
             {/* 控制按鈕 */}
             <View style={styles.controlButtons}>
               <TouchableOpacity style={styles.controlButton} onPress={togglePause}>
                 <Text style={styles.controlButtonText}>
-                  {gameState === 'playing' ? '暫停' : '繼續'}
+                  {gameState === 'playing' ? '⏸️ 暫停' : '▶️ 繼續'}
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.controlButton} onPress={goBackToMenu}>
-                <Text style={styles.controlButtonText}>返回</Text>
+                <Text style={styles.controlButtonText}>🏠 返回</Text>
               </TouchableOpacity>
             </View>
             
@@ -535,11 +737,20 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
                 activeOpacity={1}
               >
                 <View style={styles.pauseContent}>
-                  <Text style={styles.pauseText}>遊戲暫停</Text>
-                  <Text style={styles.pauseHint}>點擊任意處繼續</Text>
-                  <TouchableOpacity style={styles.resumeButton} onPress={togglePause}>
-                    <Text style={styles.resumeButtonText}>繼續遊戲</Text>
-                  </TouchableOpacity>
+                  <Animated.Text 
+                    style={[
+                      styles.pauseText,
+                      {
+                        transform: [{ scale: titlePulse }],
+                      }
+                    ]}
+                  >
+                    ⏸️ 遊戲暫停 ⏸️
+                  </Animated.Text>
+                  <Text style={styles.pauseHint}>🎮 點擊任意處繼續 🎮</Text>
+                                      <TouchableOpacity style={styles.resumeButton} onPress={togglePause}>
+                      <Text style={styles.resumeButtonText}>▶️ 繼續遊戲 ▶️</Text>
+                    </TouchableOpacity>
                 </View>
               </TouchableOpacity>
             )}
@@ -549,16 +760,39 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
       case 'finished':
         return (
           <View style={styles.gameOverContainer}>
-            <Text style={styles.gameOverTitle}>遊戲結束</Text>
-            <Text style={styles.finalScore}>最終分數: {score}</Text>
-            <Text style={styles.finalStats}>等級: {level} | 消除方塊: {piecesCleared}</Text>
+            <Animated.Text 
+              style={[
+                styles.gameOverTitle,
+                {
+                  transform: [{ scale: titlePulse }],
+                }
+              ]}
+            >
+                             💀 遊戲結束 💀
+             </Animated.Text>
+             <Animated.Text 
+               style={[
+                 styles.finalScore,
+                 {
+                   textShadowRadius: scoreGlow.interpolate({
+                     inputRange: [0.5, 1],
+                     outputRange: [15, 25],
+                   }),
+                 }
+               ]}
+             >
+               🏆 最終分數: {score} 🏆
+             </Animated.Text>
+             <Text style={styles.finalStats}>
+               📊 等級: {level} | 🧩 消除方塊: {piecesCleared} 📊
+             </Text>
             
             <View style={styles.gameOverButtons}>
               <TouchableOpacity style={styles.restartButton} onPress={restartGame}>
-                <Text style={styles.restartButtonText}>重新開始</Text>
+                <Text style={styles.restartButtonText}>🔄 重新開始 🔄</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.backButton} onPress={goBackToMenu}>
-                <Text style={styles.backButtonText}>返回主選單</Text>
+                <Text style={styles.backButtonText}>🏠 返回主選單 🏠</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -571,6 +805,22 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
 
   return (
     <SafeAreaView style={styles.container}>
+      {/* 星空背景 */}
+      <View style={styles.starField}>
+        {stars.map(star => (
+          <View
+            key={star.id}
+            style={[
+              styles.star,
+              {
+                left: star.x,
+                top: star.y,
+                opacity: star.opacity,
+              }
+            ]}
+          />
+        ))}
+      </View>
       {renderGameContent()}
     </SafeAreaView>
   );
@@ -579,138 +829,231 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#1a1a2e',
+    backgroundColor: '#0a0a0f',
   },
   menuContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
+    backgroundColor: 'rgba(10, 10, 15, 0.95)',
   },
   title: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    color: '#fff',
+    fontSize: 32,
+    fontWeight: '900',
+    color: '#00ffff',
     marginBottom: 20,
     textAlign: 'center',
+    textShadowColor: '#00ffff',
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 20,
+    letterSpacing: 2,
   },
   description: {
     fontSize: 16,
-    color: '#ccc',
+    color: '#b8c6db',
     textAlign: 'center',
     marginBottom: 30,
     lineHeight: 24,
+    backgroundColor: 'rgba(0, 255, 255, 0.05)',
+    padding: 15,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: 'rgba(0, 255, 255, 0.2)',
   },
   settingsInfo: {
     marginBottom: 30,
     alignItems: 'center',
+    backgroundColor: 'rgba(255, 255, 255, 0.05)',
+    padding: 20,
+    borderRadius: 15,
+    borderWidth: 1,
+    borderColor: 'rgba(0, 255, 255, 0.3)',
   },
   settingText: {
-    fontSize: 14,
-    color: '#4ECDC4',
-    marginBottom: 5,
+    fontSize: 16,
+    color: '#00ffff',
+    marginBottom: 8,
+    fontWeight: '600',
+    textShadowColor: '#00ffff',
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 10,
   },
   startButton: {
-    backgroundColor: '#4ECDC4',
+    backgroundColor: 'transparent',
     paddingHorizontal: 40,
-    paddingVertical: 15,
-    borderRadius: 25,
+    paddingVertical: 18,
+    borderRadius: 30,
+    borderWidth: 2,
+    borderColor: '#00ffff',
+    shadowColor: '#00ffff',
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.8,
+    shadowRadius: 20,
+    elevation: 10,
   },
   startButtonText: {
-    color: '#fff',
-    fontSize: 18,
-    fontWeight: 'bold',
+    color: '#00ffff',
+    fontSize: 20,
+    fontWeight: '800',
+    textAlign: 'center',
+    textShadowColor: '#00ffff',
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 10,
+    letterSpacing: 1,
   },
   gameContainer: {
     flexGrow: 1,
     padding: 20,
     alignItems: 'center',
     minHeight: Dimensions.get('window').height - 100,
+    backgroundColor: 'rgba(10, 10, 15, 0.95)',
   },
   gameInfo: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     width: '100%',
     marginBottom: 20,
+    backgroundColor: 'rgba(0, 255, 255, 0.1)',
+    padding: 15,
+    borderRadius: 15,
+    borderWidth: 1,
+    borderColor: 'rgba(0, 255, 255, 0.3)',
   },
   infoText: {
-    color: '#fff',
+    color: '#00ffff',
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: '700',
+    textShadowColor: '#00ffff',
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 8,
   },
   board: {
-    borderWidth: 2,
-    borderColor: '#444',
-    backgroundColor: '#000',
+    borderWidth: 3,
+    borderColor: '#00ffff',
+    backgroundColor: 'rgba(0, 0, 0, 0.8)',
     position: 'relative',
+    shadowColor: '#00ffff',
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.6,
+    shadowRadius: 25,
+    elevation: 15,
+    borderRadius: 8,
   },
   cell: {
     position: 'absolute',
     borderWidth: 0.5,
-    borderColor: '#333',
+    borderColor: 'rgba(0, 255, 255, 0.1)',
+    backgroundColor: 'rgba(0, 255, 255, 0.02)',
   },
   pieceCell: {
     position: 'absolute',
-    borderWidth: 1,
-    borderColor: '#fff',
-    borderRadius: 2,
+    borderWidth: 2,
+    borderColor: '#ffffff',
+    borderRadius: 4,
     justifyContent: 'center',
     alignItems: 'center',
+    shadowColor: '#ffffff',
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.8,
+    shadowRadius: 10,
+    elevation: 8,
   },
   pieceCharacter: {
-    color: '#fff',
-    fontWeight: 'bold',
+    fontWeight: '900',
     textAlign: 'center',
+    textShadowOffset: { width: 1, height: 1 },
+    textShadowRadius: 3,
   },
   wordContainer: {
-    marginTop: 20,
+    marginTop: 25,
     alignItems: 'center',
+    backgroundColor: 'rgba(0, 255, 255, 0.1)',
+    padding: 20,
+    borderRadius: 20,
+    borderWidth: 2,
+    borderColor: 'rgba(0, 255, 255, 0.4)',
+    shadowColor: '#00ffff',
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.5,
+    shadowRadius: 15,
+    elevation: 10,
   },
   wordText: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#4ECDC4',
+    fontSize: 28,
+    fontWeight: '900',
+    color: '#00ffff',
+    textShadowColor: '#00ffff',
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 15,
+    letterSpacing: 2,
   },
   kanaText: {
-    fontSize: 18,
-    color: '#ccc',
-    marginTop: 5,
+    fontSize: 20,
+    color: '#b8c6db',
+    marginTop: 8,
+    fontWeight: '600',
   },
   meaningText: {
-    fontSize: 14,
-    color: '#999',
-    marginTop: 3,
+    fontSize: 16,
+    color: '#8892b0',
+    marginTop: 5,
+    fontWeight: '500',
   },
   hintText: {
-    fontSize: 12,
-    color: '#FFD93D',
-    marginTop: 5,
+    fontSize: 14,
+    color: '#ffd700',
+    marginTop: 8,
     fontStyle: 'italic',
+    fontWeight: '600',
+    textShadowColor: '#ffd700',
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 8,
   },
   input: {
-    backgroundColor: '#fff',
-    borderRadius: 10,
-    paddingHorizontal: 20,
-    paddingVertical: 15,
-    fontSize: 18,
-    marginTop: 20,
-    width: '80%',
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    borderRadius: 15,
+    paddingHorizontal: 25,
+    paddingVertical: 18,
+    fontSize: 20,
+    marginTop: 25,
+    width: '85%',
     textAlign: 'center',
+    color: '#ffffff',
+    borderWidth: 2,
+    borderColor: 'rgba(0, 255, 255, 0.5)',
+    shadowColor: '#00ffff',
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.3,
+    shadowRadius: 10,
+    elevation: 5,
+    fontWeight: '600',
   },
   controlButtons: {
     flexDirection: 'row',
-    marginTop: 20,
-    gap: 15,
+    marginTop: 25,
+    gap: 20,
   },
   controlButton: {
-    backgroundColor: '#666',
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    borderRadius: 15,
+    backgroundColor: 'rgba(0, 255, 255, 0.1)',
+    paddingHorizontal: 25,
+    paddingVertical: 12,
+    borderRadius: 20,
+    borderWidth: 2,
+    borderColor: 'rgba(0, 255, 255, 0.4)',
+    shadowColor: '#00ffff',
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.4,
+    shadowRadius: 8,
+    elevation: 5,
   },
   controlButtonText: {
-    color: '#fff',
+    color: '#00ffff',
     fontSize: 16,
+    fontWeight: '700',
+    textShadowColor: '#00ffff',
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 5,
   },
   pauseOverlay: {
     position: 'absolute',
@@ -718,82 +1061,138 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+    backgroundColor: 'rgba(0, 0, 0, 0.9)',
     justifyContent: 'center',
     alignItems: 'center',
   },
   pauseContent: {
-    padding: 20,
+    padding: 30,
     alignItems: 'center',
+    backgroundColor: 'rgba(0, 255, 255, 0.1)',
+    borderRadius: 25,
+    borderWidth: 2,
+    borderColor: 'rgba(0, 255, 255, 0.4)',
+    shadowColor: '#00ffff',
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.6,
+    shadowRadius: 20,
+    elevation: 15,
   },
   pauseText: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    color: '#fff',
-    marginBottom: 20,
+    fontSize: 36,
+    fontWeight: '900',
+    color: '#00ffff',
+    marginBottom: 25,
+    textShadowColor: '#00ffff',
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 20,
+    letterSpacing: 3,
   },
   pauseHint: {
     fontSize: 18,
-    color: '#ccc',
+    color: '#b8c6db',
+    marginBottom: 20,
+    textAlign: 'center',
   },
   resumeButton: {
-    backgroundColor: '#4ECDC4',
-    paddingHorizontal: 30,
+    backgroundColor: 'transparent',
+    paddingHorizontal: 35,
     paddingVertical: 15,
     borderRadius: 25,
+    borderWidth: 2,
+    borderColor: '#00ffff',
+    shadowColor: '#00ffff',
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.8,
+    shadowRadius: 15,
+    elevation: 10,
   },
   resumeButtonText: {
-    color: '#fff',
+    color: '#00ffff',
     fontSize: 18,
-    fontWeight: 'bold',
+    fontWeight: '800',
+    textShadowColor: '#00ffff',
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 10,
   },
   gameOverContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
+    backgroundColor: 'rgba(10, 10, 15, 0.95)',
   },
   gameOverTitle: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    color: '#FF6B6B',
-    marginBottom: 20,
+    fontSize: 36,
+    fontWeight: '900',
+    color: '#ff0080',
+    marginBottom: 25,
+    textShadowColor: '#ff0080',
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 20,
+    letterSpacing: 2,
   },
   finalScore: {
-    fontSize: 24,
-    color: '#4ECDC4',
-    marginBottom: 10,
+    fontSize: 26,
+    color: '#00ffff',
+    marginBottom: 15,
+    fontWeight: '700',
+    textShadowColor: '#00ffff',
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 15,
   },
   finalStats: {
     fontSize: 18,
-    color: '#ccc',
+    color: '#b8c6db',
     marginBottom: 40,
+    textAlign: 'center',
+    backgroundColor: 'rgba(0, 255, 255, 0.05)',
+    padding: 15,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: 'rgba(0, 255, 255, 0.2)',
   },
   gameOverButtons: {
-    gap: 15,
+    gap: 20,
+    alignItems: 'center',
   },
   restartButton: {
-    backgroundColor: '#4ECDC4',
-    paddingHorizontal: 30,
-    paddingVertical: 15,
-    borderRadius: 25,
+    backgroundColor: 'transparent',
+    paddingHorizontal: 35,
+    paddingVertical: 18,
+    borderRadius: 30,
+    borderWidth: 2,
+    borderColor: '#00ffff',
+    shadowColor: '#00ffff',
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.8,
+    shadowRadius: 20,
+    elevation: 10,
+    minWidth: 200,
   },
   restartButtonText: {
-    color: '#fff',
+    color: '#00ffff',
     fontSize: 18,
-    fontWeight: 'bold',
+    fontWeight: '800',
     textAlign: 'center',
+    textShadowColor: '#00ffff',
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 10,
   },
   backButton: {
-    backgroundColor: '#666',
-    paddingHorizontal: 30,
-    paddingVertical: 15,
-    borderRadius: 25,
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    paddingHorizontal: 35,
+    paddingVertical: 18,
+    borderRadius: 30,
+    borderWidth: 2,
+    borderColor: 'rgba(255, 255, 255, 0.3)',
+    minWidth: 200,
   },
   backButtonText: {
-    color: '#fff',
+    color: '#b8c6db',
     fontSize: 18,
     textAlign: 'center',
+    fontWeight: '600',
   },
   fallingPiece: {
     position: 'absolute',
@@ -805,5 +1204,25 @@ const styles = StyleSheet.create({
   },
   gameScrollView: {
     flex: 1,
+  },
+  starField: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    zIndex: -1,
+  },
+  star: {
+    position: 'absolute',
+    width: 2,
+    height: 2,
+    backgroundColor: '#ffffff',
+    borderRadius: 1,
+    shadowColor: '#ffffff',
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.8,
+    shadowRadius: 3,
+    elevation: 2,
   },
 }); 
