@@ -9,7 +9,7 @@ import {
   StatusBar,
   ScrollView,
 } from 'react-native';
-import { LightTheme, Typography, Spacing } from '@/constants/theme';
+import { TechTheme, Typography, Spacing, Shadows, TechColors } from '@/constants/theme';
 import { validateJapaneseInput } from '@/utils/japaneseInput';
 import { getRandomLongText } from '@/data/longTexts';
 import { createAdvancedTextMapping, splitTextForDisplay, getTargetCharAtPosition, validateInputAtPosition } from '@/utils/textMapping';
@@ -299,7 +299,7 @@ export const LongTextModeScreen: React.FC<LongTextModeScreenProps> = ({ route, n
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar barStyle="light-content" backgroundColor={LightTheme.primary} />
+      <StatusBar barStyle="light-content" backgroundColor={TechTheme.primary} />
       {renderGameContent()}
     </SafeAreaView>
   );
@@ -384,7 +384,7 @@ const LongTextGamePlayScreen: React.FC<LongTextGamePlayScreenProps> = ({
         value={userInput}
         onChangeText={onInputChange}
         placeholder="在這裡輸入文章內容..."
-        placeholderTextColor={LightTheme.textSecondary}
+        placeholderTextColor={TechTheme.textSecondary}
         multiline
         autoFocus
         editable={!isPaused}
@@ -529,7 +529,7 @@ const LongTextGameEndScreen: React.FC<LongTextGameEndScreenProps> = ({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: LightTheme.background,
+    backgroundColor: TechTheme.background,
   },
   centerContainer: {
     flex: 1,
@@ -544,13 +544,13 @@ const styles = StyleSheet.create({
   gameModeTitle: {
     fontSize: Typography.sizes.ui.title,
     fontWeight: '700',
-    color: LightTheme.primary,
+    color: TechTheme.primary,
     marginBottom: Spacing.md,
     textAlign: 'center',
   },
   instructions: {
     fontSize: Typography.sizes.ui.body,
-    color: LightTheme.textSecondary,
+    color: TechTheme.textSecondary,
     textAlign: 'center',
     marginBottom: Spacing.lg,
     lineHeight: Typography.lineHeights.ui,
@@ -560,12 +560,12 @@ const styles = StyleSheet.create({
   },
   settingText: {
     fontSize: Typography.sizes.ui.caption,
-    color: LightTheme.textSecondary,
+    color: TechTheme.textSecondary,
     textAlign: 'center',
     marginBottom: Spacing.xs,
   },
   startButton: {
-    backgroundColor: LightTheme.primary,
+    backgroundColor: TechTheme.primary,
     borderRadius: 12,
     paddingVertical: Spacing.md,
     paddingHorizontal: Spacing.xl,
@@ -581,14 +581,14 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingVertical: Spacing.md,
     paddingHorizontal: Spacing.sm,
-    backgroundColor: LightTheme.surface,
+    backgroundColor: TechTheme.surface,
     borderRadius: 12,
     marginBottom: Spacing.lg,
   },
   statText: {
     fontSize: Typography.sizes.ui.caption,
     fontWeight: '600',
-    color: LightTheme.text,
+    color: TechTheme.text,
   },
   pauseOverlay: {
     position: 'absolute',
@@ -608,7 +608,7 @@ const styles = StyleSheet.create({
   },
   textDisplayContainer: {
     flex: 1,
-    backgroundColor: LightTheme.surface,
+    backgroundColor: TechTheme.surface,
     borderRadius: 16,
     marginVertical: Spacing.lg,
     padding: Spacing.lg,
@@ -617,7 +617,7 @@ const styles = StyleSheet.create({
   textTitle: {
     fontSize: Typography.sizes.ui.subtitle,
     fontWeight: '600',
-    color: LightTheme.text,
+    color: TechTheme.text,
     marginBottom: Spacing.md,
     textAlign: 'center',
   },
@@ -660,18 +660,18 @@ const styles = StyleSheet.create({
     lineHeight: Typography.lineHeights.ui * 1.8,
     textAlign: 'left',
     marginBottom: Spacing.xs, // 行間距
-    color: LightTheme.text, // 確保文字顏色正確
+    color: TechTheme.text, // 確保文字顏色正確
   },
   typedText: {
-    color: LightTheme.success,
+    color: TechTheme.success,
     backgroundColor: 'rgba(34, 197, 94, 0.1)',
   },
   currentChar: {
-    backgroundColor: LightTheme.accent,
+    backgroundColor: TechTheme.accent,
     color: 'white',
   },
   remainingText: {
-    color: LightTheme.textSecondary,
+    color: TechTheme.textSecondary,
   },
   progressContainer: {
     marginTop: Spacing.md,
@@ -679,17 +679,17 @@ const styles = StyleSheet.create({
   },
   progressText: {
     fontSize: Typography.sizes.ui.caption,
-    color: LightTheme.textSecondary,
+    color: TechTheme.textSecondary,
   },
   inputContainer: {
     marginVertical: Spacing.lg,
   },
   textInput: {
-    backgroundColor: LightTheme.surface,
+    backgroundColor: TechTheme.surface,
     borderRadius: 12,
     padding: Spacing.md,
     fontSize: Typography.sizes.ui.body,
-    color: LightTheme.text,
+    color: TechTheme.text,
     minHeight: 80,
     textAlignVertical: 'top',
   },
@@ -698,7 +698,7 @@ const styles = StyleSheet.create({
     marginTop: Spacing.lg,
   },
   pauseButton: {
-    backgroundColor: LightTheme.secondary,
+    backgroundColor: TechTheme.secondary,
     borderRadius: 12,
     paddingVertical: Spacing.sm,
     paddingHorizontal: Spacing.lg,
@@ -712,7 +712,7 @@ const styles = StyleSheet.create({
   gameOverTitle: {
     fontSize: Typography.sizes.ui.title,
     fontWeight: '700',
-    color: LightTheme.text,
+    color: TechTheme.text,
     marginBottom: Spacing.lg,
   },
   finalScoreContainer: {
@@ -721,34 +721,34 @@ const styles = StyleSheet.create({
   },
   finalScoreLabel: {
     fontSize: Typography.sizes.ui.body,
-    color: LightTheme.textSecondary,
+    color: TechTheme.textSecondary,
     marginBottom: Spacing.xs,
   },
   finalScoreValue: {
     fontSize: 48,
     fontWeight: '700',
-    color: LightTheme.primary,
+    color: TechTheme.primary,
     marginBottom: Spacing.sm,
   },
   finalTimeText: {
     fontSize: Typography.sizes.ui.caption,
-    color: LightTheme.textSecondary,
+    color: TechTheme.textSecondary,
     marginBottom: Spacing.xs,
   },
   finalErrorText: {
     fontSize: Typography.sizes.ui.caption,
-    color: LightTheme.textSecondary,
+    color: TechTheme.textSecondary,
     marginBottom: Spacing.xs,
   },
   finalTextText: {
     fontSize: Typography.sizes.ui.caption,
-    color: LightTheme.textSecondary,
+    color: TechTheme.textSecondary,
   },
   endButtonsContainer: {
     gap: Spacing.md,
   },
   restartButton: {
-    backgroundColor: LightTheme.primary,
+    backgroundColor: TechTheme.primary,
     borderRadius: 12,
     paddingVertical: Spacing.md,
     paddingHorizontal: Spacing.xl,
@@ -760,13 +760,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   menuButton: {
-    backgroundColor: LightTheme.surface,
+    backgroundColor: TechTheme.surface,
     borderRadius: 12,
     paddingVertical: Spacing.md,
     paddingHorizontal: Spacing.xl,
   },
   menuButtonText: {
-    color: LightTheme.text,
+    color: TechTheme.text,
     fontSize: Typography.sizes.ui.body,
     fontWeight: '600',
     textAlign: 'center',
@@ -776,10 +776,10 @@ const styles = StyleSheet.create({
     lineHeight: Typography.sizes.ui.body * 2.5, // 使用字體大小的2.5倍作為行高
     textAlign: 'left',
     width: '100%',
-    color: LightTheme.text, // 確保文字顏色正確
+    color: TechTheme.text, // 確保文字顏色正確
   },
   completedText: {
-    color: LightTheme.success,
+    color: TechTheme.success,
     backgroundColor: 'rgba(34, 197, 94, 0.1)',
   },
   inputProgressContainer: {
@@ -787,35 +787,35 @@ const styles = StyleSheet.create({
   },
   inputProgressLabel: {
     fontSize: Typography.sizes.ui.caption,
-    color: LightTheme.textSecondary,
+    color: TechTheme.textSecondary,
     marginBottom: Spacing.xs,
   },
   inputProgressText: {
     fontSize: Typography.sizes.ui.body,
-    color: LightTheme.text,
+    color: TechTheme.text,
   },
   inputTextCorrect: {
-    color: LightTheme.success,
+    color: TechTheme.success,
   },
   inputTextPartial: {
-    color: LightTheme.accent,
+    color: TechTheme.accent,
   },
   inputTextError: {
-    color: LightTheme.error,
+    color: TechTheme.error,
   },
   targetCharText: {
     fontSize: Typography.sizes.ui.caption,
-    color: LightTheme.textSecondary,
+    color: TechTheme.textSecondary,
     marginBottom: Spacing.xs,
   },
   inputHint: {
     fontSize: Typography.sizes.ui.caption,
-    color: LightTheme.textSecondary,
+    color: TechTheme.textSecondary,
     marginBottom: Spacing.xs,
   },
   transformationHint: {
     fontSize: Typography.sizes.ui.caption,
-    color: LightTheme.accent,
+    color: TechTheme.accent,
     marginTop: Spacing.xs,
     fontStyle: 'italic',
   },

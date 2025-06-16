@@ -7,114 +7,157 @@ import {
   SafeAreaView,
   ScrollView,
   StatusBar,
-  ImageBackground 
 } from 'react-native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import type { RootStackParamList } from '@/navigation/AppNavigator';
 import type { GameMode } from '@/types';
-import { LightTheme, Typography, Spacing, JapaneseColors, Shadows, getSeasonalTheme } from '@/constants/theme';
+import { TechTheme, Typography, Spacing, Shadows, TechColors } from '@/constants/theme';
+import { GlassContainer } from '@/components/common/GlassContainer';
 import { isFeatureEnabled } from '@/utils/featureFlags';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'MainMenu'>;
 
 /**
- * 主選單屏幕
- * 提供遊戲模式選擇和日式美學界面
+ * 主選單屏幕 - 科技感毛玻璃風格
+ * 提供遊戲模式選擇和現代科技美學界面
  */
 export const MainMenuScreen: React.FC<Props> = ({ navigation }) => {
-  const seasonalTheme = getSeasonalTheme();
-  
   const handleGameModePress = (mode: GameMode) => {
     navigation.navigate('Game', { mode });
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar barStyle="light-content" backgroundColor={JapaneseColors.ai} />
+    <View style={styles.container}>
+      <StatusBar barStyle="light-content" backgroundColor={TechTheme.background} />
       
-      {/* 日式背景漸變 */}
-      <View style={styles.backgroundGradient} />
+      {/* 星空背景 */}
+      <StarfieldBackground />
       
-      <ScrollView contentContainerStyle={styles.scrollContent}>
-        {/* 應用標題 - 日式設計 */}
-        <View style={styles.header}>
-          <View style={styles.titleContainer}>
-            <Text style={styles.titleJapanese}>かなタワー</Text>
-            <View style={styles.titleUnderline} />
+      <SafeAreaView style={styles.safeArea}>
+        <ScrollView contentContainerStyle={styles.scrollContent}>
+          {/* 應用標題 - 科技風格 */}
+          <View style={styles.header}>
+            <GlassContainer
+              variant="accent"
+              glowEffect={true}
+              neonBorder={true}
+              style={styles.titleContainer}
+            >
+              <Text style={styles.titleJapanese}>かなタワー</Text>
+              <Text style={styles.titleEnglish}>KANA TOWER</Text>
+              <Text style={styles.subtitle}>NEURAL TYPING SYSTEM</Text>
+              
+              {/* 科技裝飾元素 */}
+              <View style={styles.techElements}>
+                <Text style={styles.techSymbol}>⚡</Text>
+                <Text style={styles.techSymbol}>🔮</Text>
+                <Text style={styles.techSymbol}>⚡</Text>
+              </View>
+            </GlassContainer>
           </View>
-          <Text style={styles.titleEnglish}>KANA TOWER</Text>
-          <Text style={styles.subtitle}>日本語タイピング練習</Text>
-          
-          {/* 日式裝飾元素 */}
-          <View style={styles.decorativeElements}>
-            <Text style={styles.sakuraEmoji}>🌸</Text>
-            <Text style={styles.sakuraEmoji}>🌸</Text>
-            <Text style={styles.sakuraEmoji}>🌸</Text>
+
+          {/* 遊戲模式選擇 - 科技卡片設計 */}
+          <View style={styles.modesContainer}>
+            <GameModeButton
+              title="經典模式"
+              subtitle="CLASSIC MODE"
+              description="挑戰你的極限，看看能打多少字！"
+              emoji="🎯"
+              onPress={() => handleGameModePress('classic')}
+              isPrimary
+            />
+
+            {/* 新遊戲模式 */}
+            {isFeatureEnabled('KANJI_MODE') && (
+              <GameModeButton
+                title="漢字模式"
+                subtitle="KANJI MODE"
+                description="看漢字輸入假名，提升漢字讀音能力！"
+                emoji="🈴"
+                onPress={() => handleGameModePress('kanji_to_kana')}
+                isNew
+              />
+            )}
+
+            {isFeatureEnabled('LONG_TEXT_MODE') && (
+              <GameModeButton
+                title="長文模式"
+                subtitle="LONG TEXT MODE"
+                description="挑戰長篇文章，練習流暢輸入！"
+                emoji="📜"
+                onPress={() => handleGameModePress('long_text')}
+                isNew
+              />
+            )}
+
+            {isFeatureEnabled('TETRIS_MODE') && (
+              <GameModeButton
+                title="俄羅斯方塊"
+                subtitle="TETRIS TYPING"
+                description="在方塊掉落前輸入完成，刺激有趣！"
+                emoji="🧩"
+                onPress={() => handleGameModePress('tetris_typing')}
+                isNew
+              />
+            )}
           </View>
-        </View>
 
-        {/* 遊戲模式選擇 - 日式卡片設計 */}
-        <View style={styles.modesContainer}>
-          <GameModeButton
-            title="経典模式"
-            subtitle="Classic Mode"
-            description="挑戰你的極限，看看能打多少字！"
-            emoji="⛩️"
-            onPress={() => handleGameModePress('classic')}
-            isPrimary
-          />
-
-          {/* 新遊戲模式（需要功能開關） */}
-          {isFeatureEnabled('KANJI_MODE') && (
-            <GameModeButton
-              title="漢字模式"
-              subtitle="Kanji Mode"
-              description="看漢字輸入假名，提升漢字讀音能力！"
-              emoji="🈴"
-              onPress={() => handleGameModePress('kanji_to_kana')}
-              isNew
-            />
-          )}
-
-          {isFeatureEnabled('LONG_TEXT_MODE') && (
-            <GameModeButton
-              title="長文模式"
-              subtitle="Long Text Mode"
-              description="挑戰長篇文章，練習流暢輸入！"
-              emoji="📜"
-              onPress={() => handleGameModePress('long_text')}
-              isNew
-            />
-          )}
-
-          {isFeatureEnabled('TETRIS_MODE') && (
-            <GameModeButton
-              title="俄羅斯方塊"
-              subtitle="Tetris Typing"
-              description="在方塊掉落前輸入完成，刺激有趣！"
-              emoji="🧩"
-              onPress={() => handleGameModePress('tetris_typing')}
-              isNew
-            />
-          )}
-        </View>
-
-        {/* 底部信息 - 日式格言 */}
-        <View style={styles.footer}>
-          <Text style={styles.footerQuote}>
-            "千里の道も一歩から"
-          </Text>
-          <Text style={styles.footerTranslation}>
-            千里之行，始於足下
-          </Text>
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+          {/* 底部信息 - 科技格言 */}
+          <View style={styles.footer}>
+            <GlassContainer
+              variant="secondary"
+              glowEffect={false}
+              style={styles.footerContainer}
+            >
+              <Text style={styles.footerQuote}>
+                "NEURAL PATHWAYS STRENGTHEN WITH PRACTICE"
+              </Text>
+              <Text style={styles.footerTranslation}>
+                神經通路因練習而強化
+              </Text>
+            </GlassContainer>
+          </View>
+        </ScrollView>
+      </SafeAreaView>
+    </View>
   );
 };
 
 /**
- * 遊戲模式按鈕組件 - 日式設計
+ * 星空背景組件
+ */
+const StarfieldBackground: React.FC = () => {
+  const stars = Array.from({ length: 50 }, (_, i) => ({
+    id: i,
+    left: Math.random() * 100,
+    top: Math.random() * 100,
+    opacity: Math.random() * 0.8 + 0.2,
+    size: Math.random() * 3 + 1,
+  }));
+
+  return (
+    <View style={styles.starfield}>
+      {stars.map((star) => (
+        <View
+          key={star.id}
+          style={[
+            styles.star,
+            {
+              left: `${star.left}%`,
+              top: `${star.top}%`,
+              opacity: star.opacity,
+              width: star.size,
+              height: star.size,
+            },
+          ]}
+        />
+      ))}
+    </View>
+  );
+};
+
+/**
+ * 遊戲模式按鈕組件 - 科技風格
  */
 interface GameModeButtonProps {
   title: string;
@@ -139,31 +182,60 @@ const GameModeButton: React.FC<GameModeButtonProps> = ({
     <Pressable 
       style={({ pressed }) => [
         styles.modeButton,
-        isPrimary && styles.modeButtonPrimary,
-        isNew && styles.modeButtonNew,
         pressed && styles.modeButtonPressed
       ]}
       onPress={onPress}
     >
-      {/* 日式邊框裝飾 */}
-      <View style={styles.modeButtonBorder} />
-      
-      <Text style={[styles.modeEmoji, isPrimary && styles.modeEmojiPrimary]}>{emoji}</Text>
-      <View style={styles.modeTextContainer}>
-        <View style={styles.modeTitleContainer}>
-          <Text style={[styles.modeTitle, isPrimary && styles.modeTitlePrimary]}>{title}</Text>
-          {isNew && <Text style={styles.newBadge}>新</Text>}
+      <GlassContainer
+        variant={isPrimary ? "accent" : "primary"}
+        glowEffect={true}
+        neonBorder={isPrimary}
+        style={styles.modeButtonContent}
+      >
+        {/* 模式圖標 */}
+        <View style={styles.modeIconContainer}>
+          <Text style={[
+            styles.modeEmoji,
+            isPrimary && styles.modeEmojiPrimary
+          ]}>
+            {emoji}
+          </Text>
+          {isNew && (
+            <View style={styles.newBadge}>
+              <Text style={styles.newBadgeText}>NEW</Text>
+            </View>
+          )}
         </View>
-        <Text style={[styles.modeSubtitle, isPrimary && styles.modeSubtitlePrimary]}>{subtitle}</Text>
-        <Text style={[styles.modeDescription, isPrimary && styles.modeDescriptionPrimary]}>{description}</Text>
-      </View>
-      
-      {/* 日式角落裝飾 */}
-      {isPrimary && (
-        <View style={styles.cornerDecoration}>
-          <Text style={styles.cornerText}>主</Text>
+        
+        {/* 模式信息 */}
+        <View style={styles.modeTextContainer}>
+          <Text style={[
+            styles.modeTitle,
+            isPrimary && styles.modeTitlePrimary
+          ]}>
+            {title}
+          </Text>
+          <Text style={[
+            styles.modeSubtitle,
+            isPrimary && styles.modeSubtitlePrimary
+          ]}>
+            {subtitle}
+          </Text>
+          <Text style={[
+            styles.modeDescription,
+            isPrimary && styles.modeDescriptionPrimary
+          ]}>
+            {description}
+          </Text>
         </View>
-      )}
+        
+        {/* 科技裝飾 */}
+        {isPrimary && (
+          <View style={styles.primaryIndicator}>
+            <Text style={styles.primaryIndicatorText}>◆</Text>
+          </View>
+        )}
+      </GlassContainer>
     </Pressable>
   );
 };
@@ -171,177 +243,217 @@ const GameModeButton: React.FC<GameModeButtonProps> = ({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: LightTheme.background,
+    backgroundColor: TechTheme.background,
   },
+  
+  safeArea: {
+    flex: 1,
+  },
+  
+  // 星空背景
+  starfield: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+  },
+  
+  star: {
+    position: 'absolute',
+    backgroundColor: TechColors.neonBlue,
+    borderRadius: 50,
+  },
+  
   scrollContent: {
     flexGrow: 1,
     padding: Spacing.lg,
   },
+  
+  // 標題區域
   header: {
     alignItems: 'center',
     marginVertical: Spacing.xxl,
-    paddingHorizontal: Spacing.md,
   },
+  
+  titleContainer: {
+    alignItems: 'center',
+    minWidth: '90%',
+  },
+  
   titleJapanese: {
-    fontSize: Typography.sizes.japanese.large,
-    fontWeight: Typography.weights.heavy,
-    color: JapaneseColors.ai,
+    fontSize: Typography.sizes.ui.hero,
+    fontWeight: Typography.weights.bold,
+    color: TechTheme.text,
     marginBottom: Spacing.sm,
     textAlign: 'center',
-    letterSpacing: Typography.letterSpacing.japanese,
+    letterSpacing: Typography.letterSpacing.ui,
+    textShadowColor: TechColors.neonBlue,
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 15,
   },
+  
   titleEnglish: {
     fontSize: Typography.sizes.ui.title,
-    fontWeight: '300',
-    color: LightTheme.textSecondary,
-    letterSpacing: 2,
+    fontWeight: Typography.weights.light,
+    color: TechTheme.textSecondary,
+    letterSpacing: 3,
     marginBottom: Spacing.sm,
   },
+  
   subtitle: {
-    fontSize: Typography.sizes.ui.body,
-    color: LightTheme.textSecondary,
-    textAlign: 'center',
+    fontSize: Typography.sizes.ui.caption,
+    color: TechTheme.textSecondary,
+    letterSpacing: 2,
+    marginBottom: Spacing.md,
   },
+  
+  techElements: {
+    flexDirection: 'row',
+    gap: Spacing.lg,
+    marginTop: Spacing.sm,
+  },
+  
+  techSymbol: {
+    fontSize: 20,
+    color: TechColors.neonGreen,
+  },
+  
+  // 模式選擇區域
   modesContainer: {
-    flex: 1,
-    gap: Spacing.md,
+    gap: Spacing.lg,
+    marginBottom: Spacing.xxl,
   },
+  
   modeButton: {
-    backgroundColor: LightTheme.surface,
-    borderRadius: 20,
-    padding: Spacing.lg,
+    marginBottom: Spacing.sm,
+  },
+  
+  modeButtonPressed: {
+    opacity: 0.8,
+    transform: [{ scale: 0.98 }],
+  },
+  
+  modeButtonContent: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginVertical: Spacing.xs,
-    ...Shadows.medium,
-    borderWidth: 1,
-    borderColor: LightTheme.border,
+    minHeight: 100,
   },
-  modeButtonPressed: {
-    transform: [{ scale: 0.98 }],
-    opacity: 0.8,
+  
+  modeIconContainer: {
+    width: 80,
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'relative',
   },
+  
   modeEmoji: {
     fontSize: 32,
-    marginRight: Spacing.md,
   },
+  
+  modeEmojiPrimary: {
+    textShadowColor: TechColors.neonBlue,
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 10,
+  },
+  
+  newBadge: {
+    position: 'absolute',
+    top: -5,
+    right: -5,
+    backgroundColor: TechColors.neonPink,
+    borderRadius: 8,
+    paddingHorizontal: 6,
+    paddingVertical: 2,
+    ...Shadows.neon.green,
+  },
+  
+  newBadgeText: {
+    fontSize: 10,
+    fontWeight: Typography.weights.bold,
+    color: TechTheme.background,
+    letterSpacing: 0.5,
+  },
+  
   modeTextContainer: {
     flex: 1,
+    paddingLeft: Spacing.md,
   },
+  
   modeTitle: {
     fontSize: Typography.sizes.ui.subtitle,
-    fontWeight: '600',
-    color: LightTheme.text,
+    fontWeight: Typography.weights.bold,
+    color: TechTheme.text,
     marginBottom: Spacing.xs,
+    letterSpacing: Typography.letterSpacing.ui,
   },
+  
+  modeTitlePrimary: {
+    color: TechColors.neonBlue,
+    textShadowColor: TechColors.neonBlue,
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 8,
+  },
+  
   modeSubtitle: {
     fontSize: Typography.sizes.ui.caption,
-    color: LightTheme.textSecondary,
+    color: TechTheme.textSecondary,
     marginBottom: Spacing.xs,
-    fontWeight: '500',
+    letterSpacing: 1,
   },
+  
+  modeSubtitlePrimary: {
+    color: TechColors.neonGreen,
+  },
+  
   modeDescription: {
     fontSize: Typography.sizes.ui.caption,
-    color: LightTheme.textSecondary,
+    color: TechTheme.textSecondary,
     lineHeight: Typography.lineHeights.ui,
   },
+  
+  modeDescriptionPrimary: {
+    color: TechTheme.text,
+  },
+  
+  primaryIndicator: {
+    position: 'absolute',
+    top: Spacing.sm,
+    right: Spacing.sm,
+  },
+  
+  primaryIndicatorText: {
+    fontSize: 16,
+    color: TechColors.neonBlue,
+    textShadowColor: TechColors.neonBlue,
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 8,
+  },
+  
+  // 底部區域
   footer: {
     alignItems: 'center',
     marginTop: Spacing.xl,
-    paddingVertical: Spacing.lg,
   },
+  
+  footerContainer: {
+    alignItems: 'center',
+    minWidth: '90%',
+  },
+  
   footerQuote: {
-    fontSize: Typography.sizes.ui.body,
-    color: LightTheme.textSecondary,
-    textAlign: 'center',
-  },
-  footerTranslation: {
-    fontSize: Typography.sizes.ui.body,
-    color: LightTheme.textSecondary,
-    textAlign: 'center',
-  },
-  modeButtonNew: {
-    borderColor: LightTheme.accent,
-    borderWidth: 2,
-  },
-  modeButtonPrimary: {
-    backgroundColor: LightTheme.accent,
-  },
-  modeTitleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  newBadge: {
-    backgroundColor: LightTheme.accent,
-    color: 'white',
-    fontSize: 10,
-    fontWeight: '700',
-    paddingHorizontal: 6,
-    paddingVertical: 2,
-    borderRadius: 8,
-    overflow: 'hidden',
-  },
-  modeButtonBorder: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    borderWidth: 2,
-    borderColor: LightTheme.accent,
-    borderRadius: 16,
-  },
-  modeEmojiPrimary: {
-    color: 'white',
-  },
-  modeTitlePrimary: {
-    color: 'white',
-  },
-  modeSubtitlePrimary: {
-    color: 'white',
-  },
-  modeDescriptionPrimary: {
-    color: 'white',
-  },
-  cornerDecoration: {
-    position: 'absolute',
-    top: 0,
-    right: 0,
-    padding: Spacing.sm,
-    borderRadius: 8,
-    backgroundColor: LightTheme.accent,
-  },
-  cornerText: {
     fontSize: Typography.sizes.ui.caption,
-    color: 'white',
-    fontWeight: '700',
+    color: TechTheme.textSecondary,
+    textAlign: 'center',
+    marginBottom: Spacing.xs,
+    letterSpacing: 1,
+    fontStyle: 'italic',
   },
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  titleUnderline: {
-    flex: 1,
-    height: 2,
-    backgroundColor: LightTheme.accent,
-    marginHorizontal: Spacing.sm,
-  },
-  decorativeElements: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginTop: Spacing.sm,
-  },
-  sakuraEmoji: {
-    fontSize: 24,
-    marginHorizontal: Spacing.sm,
-  },
-  backgroundGradient: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: JapaneseColors.ai,
+  
+  footerTranslation: {
+    fontSize: Typography.sizes.ui.caption,
+    color: TechTheme.textSecondary,
+    textAlign: 'center',
+    opacity: 0.7,
   },
 }); 

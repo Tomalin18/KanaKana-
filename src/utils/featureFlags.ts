@@ -26,7 +26,7 @@ export const isFeatureEnabled = (feature: keyof typeof FEATURE_FLAGS): boolean =
  * 獲取可用的遊戲模式
  */
 export const getAvailableGameModes = () => {
-  const baseModes = ['infinite', 'practice', 'daily_challenge'] as const;
+  const baseModes = ['classic', 'practice', 'daily_challenge'] as const;
   const newModes = [];
   
   if (isFeatureEnabled('KANJI_MODE')) {

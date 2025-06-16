@@ -2,260 +2,383 @@ import { Platform } from 'react-native';
 import type { ThemeColors, Season, TimeOfDay } from '@/types';
 
 /**
- * 日式文化主題顏色系統
- * 基於真實的日本傳統色彩和現代設計原則
+ * 科技感毛玻璃風格主題系統
+ * 結合現代科技美學與日式簡約設計
  */
 
 // ============================================================================
-// 傳統日本色彩 - 擴展版
+// 科技感配色系統
 // ============================================================================
 
-export const JapaneseColors = {
-  // 基本色彩 - 基於日本傳統色名
-  ai: '#1E40AF',           // 深藍 (AI/科技主題)
-  sakura: '#FFB7C5',       // 櫻花粉
-  matcha: '#87A96B',       // 抹茶綠
-  yuhi: '#FF6B35',         // 夕陽橙
-  sumi: '#1C1C1C',         // 墨色
-  shiro: '#FFFFFF',        // 白
+export const TechColors = {
+  // 主要科技色彩
+  neonBlue: '#00D4FF',        // 霓虹藍
+  neonPurple: '#8B5CF6',      // 霓虹紫
+  neonGreen: '#00FF88',       // 霓虹綠
+  neonPink: '#FF006E',        // 霓虹粉
+  neonOrange: '#FF8500',      // 霓虹橙
   
-  // 傳統色彩擴展
-  beni: '#D2001F',         // 紅 (深紅)
-  kon: '#223A70',          // 紺 (深藍)
-  yamabuki: '#F8B500',     // 山吹色 (金黃)
-  mizu: '#86C8BC',         // 水色 (淺藍綠)
-  murasaki: '#884898',     // 紫
-  kinari: '#FFEAA7',       // 生成色 (米色)
+  // 深色背景系統
+  darkSpace: '#0A0A0F',       // 深空色
+  darkMatter: '#1A1A2E',      // 暗物質
+  darkNebula: '#16213E',      // 星雲色
+  darkVoid: '#0F0F23',        // 虛空色
   
-  // 季節色彩
-  haru: {                  // 春
-    primary: '#FFB7C5',    // 櫻花
-    secondary: '#98FB98',  // 新綠
-    tertiary: '#87CEEB',   // 春空
-    accent: '#F8B500',     // 菜花色
-  },
-  natsu: {                 // 夏
-    primary: '#00CED1',    // 青碧
-    secondary: '#98FB98',  // 翠綠
-    tertiary: '#FFD700',   // 向日葵
-    accent: '#FF6B35',     // 夏橙
-  },
-  aki: {                   // 秋
-    primary: '#FF6B35',    // 紅葉
-    secondary: '#DAA520',  // 銀杏
-    tertiary: '#CD853F',   // 栗色
-    accent: '#D2001F',     // 深紅
-  },
-  fuyu: {                  // 冬
-    primary: '#B0C4DE',    // 淡雪
-    secondary: '#E6E6FA',  // 薄紫
-    tertiary: '#F0F8FF',   // 雪白
-    accent: '#223A70',     // 冬空
-  },
+  // 毛玻璃效果色彩
+  glassDark: 'rgba(26, 26, 46, 0.8)',      // 深色毛玻璃
+  glassLight: 'rgba(255, 255, 255, 0.1)',  // 淺色毛玻璃
+  glassMedium: 'rgba(255, 255, 255, 0.05)', // 中等毛玻璃
+  glassAccent: 'rgba(0, 212, 255, 0.1)',   // 強調毛玻璃
   
-  // 和風漸變
+  // 漸變系統
   gradients: {
-    sakura: ['#FFB7C5', '#FFF0F5'],      // 櫻花漸變
-    sunset: ['#FF6B35', '#F8B500'],      // 夕陽漸變
-    ocean: ['#00CED1', '#86C8BC'],       // 海洋漸變
-    forest: ['#87A96B', '#98FB98'],      // 森林漸變
-    winter: ['#B0C4DE', '#F0F8FF'],      // 冬雪漸變
+    primary: ['#00D4FF', '#8B5CF6'],        // 主要漸變
+    secondary: ['#FF006E', '#FF8500'],      // 次要漸變
+    background: ['#0A0A0F', '#1A1A2E'],     // 背景漸變
+    glass: ['rgba(255,255,255,0.1)', 'rgba(255,255,255,0.05)'], // 毛玻璃漸變
+    neon: ['#00D4FF', '#00FF88', '#FF006E'], // 霓虹漸變
   }
 } as const;
 
 // ============================================================================
-// 主題配色系統 - 日式優化
+// 毛玻璃效果系統
 // ============================================================================
 
-export const LightTheme: ThemeColors = {
-  primary: JapaneseColors.ai,
-  secondary: JapaneseColors.sakura,
-  background: '#FAFAFA',              // 更溫暖的背景
-  surface: '#FFFFFF',
-  text: '#2D3748',                    // 更柔和的文字色
-  textSecondary: '#718096',
-  accent: JapaneseColors.yuhi,
-  success: JapaneseColors.matcha,
-  warning: JapaneseColors.yamabuki,
-  error: JapaneseColors.beni,
-  overlay: 'rgba(0, 0, 0, 0.5)',
-  border: '#E2E8F0',
+export const GlassEffects = {
+  // 模糊強度
+  blur: {
+    light: 10,
+    medium: 20,
+    strong: 30,
+    ultra: 50,
+  },
+  
+  // 毛玻璃背景
+  backgrounds: {
+    primary: {
+      backgroundColor: TechColors.glassDark,
+      backdropFilter: 'blur(20px)',
+    },
+    secondary: {
+      backgroundColor: TechColors.glassLight,
+      backdropFilter: 'blur(15px)',
+    },
+    accent: {
+      backgroundColor: TechColors.glassAccent,
+      backdropFilter: 'blur(25px)',
+    },
+  },
+  
+  // 邊框效果
+  borders: {
+    neon: {
+      borderWidth: 1,
+      borderColor: TechColors.neonBlue,
+      shadowColor: TechColors.neonBlue,
+      shadowOffset: { width: 0, height: 0 },
+      shadowOpacity: 0.5,
+      shadowRadius: 10,
+      elevation: 10,
+    },
+    glass: {
+      borderWidth: 1,
+      borderColor: 'rgba(255, 255, 255, 0.2)',
+      shadowColor: 'rgba(0, 0, 0, 0.3)',
+      shadowOffset: { width: 0, height: 4 },
+      shadowOpacity: 0.3,
+      shadowRadius: 12,
+      elevation: 8,
+    },
+  }
+} as const;
+
+// ============================================================================
+// 科技感主題配色
+// ============================================================================
+
+export const TechTheme: ThemeColors = {
+  primary: TechColors.neonBlue,
+  secondary: TechColors.neonPurple,
+  background: TechColors.darkSpace,
+  surface: TechColors.glassDark,
+  text: '#FFFFFF',
+  textSecondary: 'rgba(255, 255, 255, 0.7)',
+  accent: TechColors.neonGreen,
+  success: TechColors.neonGreen,
+  warning: TechColors.neonOrange,
+  error: TechColors.neonPink,
+  overlay: 'rgba(10, 10, 15, 0.9)',
+  border: 'rgba(255, 255, 255, 0.2)',
 };
+
+// 傳統日本色彩（保留原有的）
+export const JapaneseColors = {
+  ai: '#1E40AF',
+  sakura: '#FFB7C5',
+  matcha: '#87A96B',
+  yuhi: '#FF6B35',
+  sumi: '#1C1C1C',
+  shiro: '#FFFFFF',
+  beni: '#D2001F',
+  kon: '#223A70',
+  yamabuki: '#F8B500',
+  mizu: '#86C8BC',
+  murasaki: '#884898',
+  kinari: '#FFEAA7',
+  
+  haru: {
+    primary: '#FFB7C5',
+    secondary: '#98FB98',
+    tertiary: '#87CEEB',
+    accent: '#F8B500',
+  },
+  natsu: {
+    primary: '#00CED1',
+    secondary: '#98FB98',
+    tertiary: '#FFD700',
+    accent: '#FF6B35',
+  },
+  aki: {
+    primary: '#FF6B35',
+    secondary: '#DAA520',
+    tertiary: '#CD853F',
+    accent: '#D2001F',
+  },
+  fuyu: {
+    primary: '#B0C4DE',
+    secondary: '#E6E6FA',
+    tertiary: '#F0F8FF',
+    accent: '#223A70',
+  },
+  
+  gradients: {
+    sakura: ['#FFB7C5', '#FFF0F5'],
+    sunset: ['#FF6B35', '#F8B500'],
+    ocean: ['#00CED1', '#86C8BC'],
+    forest: ['#87A96B', '#98FB98'],
+    winter: ['#B0C4DE', '#F0F8FF'],
+  }
+} as const;
+
+// 使用科技主題作為默認主題
+export const LightTheme: ThemeColors = TechTheme;
 
 export const DarkTheme: ThemeColors = {
-  primary: '#4299E1',
-  secondary: '#ED64A6',
-  background: '#1A202C',
-  surface: '#2D3748',
-  text: '#F7FAFC',
-  textSecondary: '#A0AEC0',
-  accent: '#F56500',
-  success: '#68D391',
-  warning: '#F6E05E',
-  error: '#FC8181',
-  overlay: 'rgba(0, 0, 0, 0.7)',
-  border: '#4A5568',
+  ...TechTheme,
+  background: TechColors.darkVoid,
+  surface: TechColors.darkMatter,
 };
 
-// 季節性主題
+// 季節性主題（科技風格）
 export const SeasonalThemes = {
   spring: {
-    ...LightTheme,
-    primary: JapaneseColors.haru.primary,
-    accent: JapaneseColors.haru.accent,
-    background: '#FFF8F0',
+    ...TechTheme,
+    accent: TechColors.neonGreen,
+    secondary: TechColors.neonPink,
   },
   summer: {
-    ...LightTheme,
-    primary: JapaneseColors.natsu.primary,
-    accent: JapaneseColors.natsu.accent,
-    background: '#F0FFFF',
+    ...TechTheme,
+    accent: TechColors.neonBlue,
+    secondary: TechColors.neonGreen,
   },
   autumn: {
-    ...LightTheme,
-    primary: JapaneseColors.aki.primary,
-    accent: JapaneseColors.aki.accent,
-    background: '#FFF8DC',
+    ...TechTheme,
+    accent: TechColors.neonOrange,
+    secondary: TechColors.neonPink,
   },
   winter: {
-    ...LightTheme,
-    primary: JapaneseColors.fuyu.primary,
-    accent: JapaneseColors.fuyu.accent,
-    background: '#F8F8FF',
+    ...TechTheme,
+    accent: TechColors.neonPurple,
+    secondary: TechColors.neonBlue,
   },
 } as const;
 
 // ============================================================================
-// 字體系統 - 日式優化
+// 字體系統 - 科技感優化
 // ============================================================================
 
 export const Typography = {
   fonts: {
     japanese: {
-      ios: 'Hiragino Sans',
-      android: 'Noto Sans CJK JP',
-      fallback: 'sans-serif',
+      primary: 'NotoSansJP-Regular',
+      fallback: 'System',
     },
-    ui: {
-      primary: Platform.select({
-        ios: 'SF Pro Display',
-        android: 'Roboto',
-        default: 'system',
-      }),
-      monospace: Platform.select({
-        ios: 'SF Mono',
-        android: 'Roboto Mono',
-        default: 'monospace',
-      }),
+    system: {
+      primary: 'SF Pro Display',
+      fallback: 'System',
     },
   },
   sizes: {
-    // 針對日文字符優化的大小
-    bubble: {
-      hiragana: 32,
-      katakana: 30,
-      mixed: 28,
-    },
     ui: {
-      hero: 42,                         // 增大標題
-      title: 28,                        // 增大標題
-      subtitle: 20,                     // 增大副標題
+      hero: 48,
+      title: 32,
+      subtitle: 24,
       body: 16,
-      caption: 14,
-      micro: 12,
+      caption: 12,
     },
-    japanese: {
-      large: 36,                        // 大型日文
-      medium: 24,                       // 中型日文
-      small: 18,                        // 小型日文
+    bubble: {
+      hiragana: 36,
+      katakana: 32,
+      kanji: 40,
+      romaji: 28,
+    },
+    game: {
+      score: 20,
+      timer: 18,
+      combo: 16,
     },
   },
-  // 日文需要更多的垂直空間
-  lineHeights: {
-    japanese: 1.8,
-    ui: 1.6,                           // 增加行高
-    dense: 1.4,
-  },
-  // 字符間距以提高清晰度
-  letterSpacing: {
-    japanese: 0.5,
-    ui: 0.3,                           // 增加字母間距
-    wide: 1.5,
-  },
-  // 字重
   weights: {
-    light: '300',
-    regular: '400',
-    medium: '500',
-    semibold: '600',
-    bold: '700',
-    heavy: '800',
+    light: '300' as const,
+    regular: '400' as const,
+    medium: '500' as const,
+    semibold: '600' as const,
+    bold: '700' as const,
   },
-} as const;
+  lineHeights: {
+    ui: 24,
+    bubble: 44,
+    game: 28,
+  },
+  letterSpacing: {
+    ui: 0.5,
+    bubble: 1,
+    game: 0.25,
+  },
+};
 
 // ============================================================================
-// 間距系統 (基於8px網格) - 日式優化
+// 間距系統 - 科技感優化
 // ============================================================================
 
 export const Spacing = {
+  // 基礎間距 (8px 網格)
   xs: 4,
   sm: 8,
   md: 16,
   lg: 24,
   xl: 32,
   xxl: 48,
-  xxxl: 64,
   
-  // 日式特殊間距
-  tatami: 12,                          // 榻榻米比例間距
-  ma: 20,                              // 間 (日式空間概念)
+  // 日式概念間距
+  tatami: 12,  // 榻榻米間距
+  ma: 20,      // 間 (日式空間概念)
+  
+  // 科技感間距
+  nano: 2,
+  micro: 6,
+  circuit: 10,  // 電路板間距
+  matrix: 14,   // 矩陣間距
 } as const;
 
 // ============================================================================
-// 陰影系統 - 日式柔和陰影
+// 陰影系統 - 科技感
 // ============================================================================
 
 export const Shadows = {
-  soft: {
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 8,
-    elevation: 2,
+  // 霓虹發光效果
+  neon: {
+    blue: {
+      shadowColor: TechColors.neonBlue,
+      shadowOffset: { width: 0, height: 0 },
+      shadowOpacity: 0.8,
+      shadowRadius: 15,
+      elevation: 15,
+    },
+    purple: {
+      shadowColor: TechColors.neonPurple,
+      shadowOffset: { width: 0, height: 0 },
+      shadowOpacity: 0.8,
+      shadowRadius: 15,
+      elevation: 15,
+    },
+    green: {
+      shadowColor: TechColors.neonGreen,
+      shadowOffset: { width: 0, height: 0 },
+      shadowOpacity: 0.8,
+      shadowRadius: 15,
+      elevation: 15,
+    },
   },
-  medium: {
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.15,
-    shadowRadius: 12,
-    elevation: 4,
-  },
-  strong: {
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.2,
-    shadowRadius: 16,
-    elevation: 8,
+  
+  // 毛玻璃陰影
+  glass: {
+    soft: {
+      shadowColor: 'rgba(0, 0, 0, 0.3)',
+      shadowOffset: { width: 0, height: 4 },
+      shadowOpacity: 0.3,
+      shadowRadius: 12,
+      elevation: 8,
+    },
+    medium: {
+      shadowColor: 'rgba(0, 0, 0, 0.4)',
+      shadowOffset: { width: 0, height: 8 },
+      shadowOpacity: 0.4,
+      shadowRadius: 20,
+      elevation: 12,
+    },
+    strong: {
+      shadowColor: 'rgba(0, 0, 0, 0.5)',
+      shadowOffset: { width: 0, height: 12 },
+      shadowOpacity: 0.5,
+      shadowRadius: 30,
+      elevation: 16,
+    },
   },
 } as const;
 
 // ============================================================================
-// 輔助函數
+// 動畫系統
+// ============================================================================
+
+export const Animations = {
+  // 持續時間
+  duration: {
+    fast: 200,
+    normal: 300,
+    slow: 500,
+    ultra: 800,
+  },
+  
+  // 緩動函數
+  easing: {
+    ease: 'ease',
+    easeIn: 'ease-in',
+    easeOut: 'ease-out',
+    easeInOut: 'ease-in-out',
+    bounce: 'cubic-bezier(0.68, -0.55, 0.265, 1.55)',
+  },
+  
+  // 霓虹閃爍動畫
+  neonPulse: {
+    duration: 2000,
+    iterations: -1, // 無限循環
+  },
+  
+  // 毛玻璃浮動動畫
+  glassFloat: {
+    duration: 3000,
+    iterations: -1,
+  },
+} as const;
+
+// ============================================================================
+// 工具函數
 // ============================================================================
 
 export const getCurrentSeason = (): Season => {
-  const month = new Date().getMonth();
-  if (month >= 2 && month <= 4) return 'spring';
-  if (month >= 5 && month <= 7) return 'summer';
-  if (month >= 8 && month <= 10) return 'autumn';
+  const month = new Date().getMonth() + 1;
+  if (month >= 3 && month <= 5) return 'spring';
+  if (month >= 6 && month <= 8) return 'summer';
+  if (month >= 9 && month <= 11) return 'autumn';
   return 'winter';
 };
 
 export const getCurrentTimeOfDay = (): TimeOfDay => {
   const hour = new Date().getHours();
-  if (hour >= 6 && hour <= 10) return 'morning';
-  if (hour >= 11 && hour <= 16) return 'day';
-  if (hour >= 17 && hour <= 20) return 'evening';
+  if (hour >= 6 && hour < 12) return 'morning';
+  if (hour >= 12 && hour < 18) return 'day';
+  if (hour >= 18 && hour < 22) return 'evening';
   return 'night';
 };
 
