@@ -258,6 +258,8 @@ function checkAllTransformations(
   fullTarget: string,
   position: number
 ): TransformResult {
+  console.log(`[checkAllTransformations] 檢查轉換: "${inputChar}" → "${targetChar}"`);
+  console.log(`[checkAllTransformations] 完整輸入: "${fullInput}", 完整目標: "${fullTarget}", 位置: ${position}`);
   
   // 1. 平假名↔片假名轉換
   if (HIRAGANA_KATAKANA_MAP[inputChar] === targetChar) {
@@ -322,7 +324,80 @@ function checkAllTransformations(
     }
   }
 
-  // 4. 小字轉換：や → ゃ
+  // 4. 檢查三段式轉換的第一階段：は → ば → ぱ 或 ハ → バ → パ
+  // 當目標是半濁音時，檢查輸入是否是對應的基本音
+  const targetIsHandakuten = Object.values(HANDAKUTEN_MAP).includes(targetChar);
+  console.log(`[checkAllTransformations] 目標 "${targetChar}" 是半濁音: ${targetIsHandakuten}`);
+  
+  if (targetIsHandakuten) {
+    // 找到目標字符對應的基本字符和濁音字符
+    const baseToHandakuten = Object.entries(HANDAKUTEN_MAP).find(([key, value]) => 
+      value === targetChar && !key.match(/[ばびぶべぼバビブベボ]/));
+    
+    console.log(`[checkAllTransformations] 查找基本字符結果:`, baseToHandakuten);
+    
+    if (baseToHandakuten) {
+      const [baseChar] = baseToHandakuten;
+      console.log(`[checkAllTransformations] 找到基本字符: "${baseChar}"`);
+      
+      // 檢查輸入是否是基本字符（第一階段：は 或 ハ）
+      if (inputChar === baseChar) {
+        console.log(`[checkAllTransformations] ✅ 三段式第一階段匹配: ${inputChar} === ${baseChar}`);
+        return {
+          isValid: true,
+          score: 0.7 / fullTarget.length,
+          hint: `${inputChar} 可以變成 ${targetChar} (三段式第一階段: ${baseChar}→${DAKUTEN_MAP[baseChar]}→${targetChar})`,
+          path: [baseChar, DAKUTEN_MAP[baseChar], targetChar]
+        };
+      }
+      
+      // 檢查跨文字系統的轉換：平假名輸入 → 片假名目標
+      // 例如：輸入「は」，目標「パ」
+      if (targetChar.match(/[パピプペポ]/)) {
+        console.log(`[checkAllTransformations] 檢查跨文字系統轉換（平假名→片假名）`);
+        // 目標是片假名半濁音，檢查輸入是否是對應的平假名基本音
+        const hiraganaBase = KATAKANA_HIRAGANA_MAP[baseChar];
+        console.log(`[checkAllTransformations] baseChar "${baseChar}" → hiraganaBase "${hiraganaBase}"`);
+        console.log(`[checkAllTransformations] 比較: inputChar "${inputChar}" === hiraganaBase "${hiraganaBase}"`);
+        
+        if (hiraganaBase && inputChar === hiraganaBase) {
+          console.log(`[checkAllTransformations] ✅ 跨文字系統三段式匹配成功！`);
+          return {
+            isValid: true,
+            score: 0.7 / fullTarget.length,
+            hint: `${inputChar} 可以變成 ${targetChar} (跨文字系統三段式: ${inputChar}→${DAKUTEN_MAP[hiraganaBase]}→${targetChar})`,
+            path: [inputChar, DAKUTEN_MAP[hiraganaBase], targetChar]
+          };
+        } else {
+          console.log(`[checkAllTransformations] ❌ 跨文字系統三段式匹配失敗`);
+        }
+      }
+      
+      // 檢查跨文字系統的轉換：片假名輸入 → 平假名目標
+      // 例如：輸入「ハ」，目標「ぱ」
+      if (targetChar.match(/[ぱぴぷぺぽ]/)) {
+        console.log(`[checkAllTransformations] 檢查跨文字系統轉換（片假名→平假名）`);
+        // 目標是平假名半濁音，檢查輸入是否是對應的片假名基本音
+        const katakanaBase = HIRAGANA_KATAKANA_MAP[baseChar];
+        console.log(`[checkAllTransformations] baseChar "${baseChar}" → katakanaBase "${katakanaBase}"`);
+        console.log(`[checkAllTransformations] 比較: inputChar "${inputChar}" === katakanaBase "${katakanaBase}"`);
+        
+        if (katakanaBase && inputChar === katakanaBase) {
+          console.log(`[checkAllTransformations] ✅ 跨文字系統三段式匹配成功！`);
+          return {
+            isValid: true,
+            score: 0.7 / fullTarget.length,
+            hint: `${inputChar} 可以變成 ${targetChar} (跨文字系統三段式: ${inputChar}→${DAKUTEN_MAP[KATAKANA_HIRAGANA_MAP[inputChar]]}→${targetChar})`,
+            path: [inputChar, DAKUTEN_MAP[KATAKANA_HIRAGANA_MAP[inputChar]], targetChar]
+          };
+        } else {
+          console.log(`[checkAllTransformations] ❌ 跨文字系統三段式匹配失敗`);
+        }
+      }
+    }
+  }
+
+  // 5. 小字轉換：や → ゃ
   if (SMALL_CHAR_MAP[inputChar] === targetChar) {
     return {
       isValid: true,
@@ -332,7 +407,7 @@ function checkAllTransformations(
     };
   }
 
-  // 5. 拗音檢查（特殊處理多字符組合）
+  // 6. 拗音檢查（特殊處理多字符組合）
   if (position > 0) {
     const prevInputChar = fullInput[position - 1];
     const prevTargetChar = fullTarget[position - 1];
@@ -349,7 +424,7 @@ function checkAllTransformations(
     }
   }
 
-  // 6. 長音檢查
+  // 7. 長音檢查
   if (position > 0) {
     const prevTargetChar = fullTarget[position - 1];
     const longVowelOptions = LONG_VOWEL_MAP[getVowelType(prevTargetChar)];
@@ -364,7 +439,7 @@ function checkAllTransformations(
     }
   }
 
-  // 7. 促音檢查：つ → っ
+  // 8. 促音檢查：つ → っ
   if (inputChar === 'つ' && targetChar === 'っ') {
     return {
       isValid: true,
@@ -383,6 +458,7 @@ function checkAllTransformations(
     };
   }
 
+  console.log(`[checkAllTransformations] ❌ 沒有找到任何匹配的轉換`);
   return { isValid: false, score: 0 };
 }
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import {
   View,
   Text,
@@ -12,7 +12,9 @@ import {
 import { LightTheme, Typography, Spacing } from '@/constants/theme';
 import { validateJapaneseInput } from '@/utils/japaneseInput';
 import { getRandomLongText } from '@/data/longTexts';
+import { createAdvancedTextMapping, splitTextForDisplay, getTargetCharAtPosition, validateInputAtPosition } from '@/utils/textMapping';
 import type { LongTextContent, LongTextSettings } from '@/types';
+import type { TextMapping } from '@/utils/textMapping';
 
 interface LongTextModeScreenProps {
   route?: {
@@ -45,12 +47,54 @@ export const LongTextModeScreen: React.FC<LongTextModeScreenProps> = ({ route, n
   const [combo, setCombo] = useState(0);
   const [lives, setLives] = useState(3);
   const [currentText, setCurrentText] = useState<LongTextContent | null>(null);
+  const [textMapping, setTextMapping] = useState<TextMapping | null>(null);
   const [userInput, setUserInput] = useState('');
   const [gameTime, setGameTime] = useState(0);
   const [currentPosition, setCurrentPosition] = useState(0);
   const [errors, setErrors] = useState(0);
+  
+  // ScrollView ref for auto-scroll
+  const scrollViewRef = useRef<ScrollView>(null);
 
+  // 追蹤當前行數
+  const [currentLineNumber, setCurrentLineNumber] = useState(0);
+  
+  // 自動滾動函數 - 當移動到新行時，將該行滾動到第一行位置
+  const autoScroll = useCallback((position: number, totalLength: number) => {
+    if (!scrollViewRef.current || !textMapping || !currentText) return;
+    
+    // 獲取當前顯示的文本
+    const { completedPart, currentChar } = splitTextForDisplay(textMapping, position);
+    const textUpToCurrent = completedPart + currentChar;
+    
+    // 自動滾動邏輯 - 每完成一定數量的字符就滾動
+    const lineHeight = 40; // 對應樣式中的行高
+    const charsPerScroll = 12; // 每12個字符滾動一次（更頻繁）
+    
+    // 計算應該滾動的次數
+    const newScrollCount = Math.floor(textUpToCurrent.length / charsPerScroll);
+    
+    // 當滾動次數改變時就滾動
+    if (newScrollCount !== currentLineNumber) {
+      setCurrentLineNumber(newScrollCount);
+      
+      // 滾動距離 = 滾動次數 * 行高
+      const scrollToY = newScrollCount * lineHeight;
+      
+      // 平滑滾動到新位置
+      scrollViewRef.current.scrollTo({
+        y: scrollToY,
+        animated: true,
+      });
+    }
+  }, [textMapping, currentText, currentLineNumber]);
 
+  // 監聽位置變化，觸發自動滾動
+  useEffect(() => {
+    if (textMapping && currentPosition > 0) {
+      autoScroll(currentPosition, textMapping.totalInputLength);
+    }
+  }, [currentPosition, textMapping, autoScroll]);
 
   // 遊戲開始
   const startGame = useCallback(() => {
@@ -58,8 +102,14 @@ export const LongTextModeScreen: React.FC<LongTextModeScreenProps> = ({ route, n
     const difficulty = settings.textLength === 'short' ? 'beginner' : 'normal';
     const newText = getRandomLongText(difficulty);
     
+    // 創建文本映射
+    const displayContent = newText.displayContent || newText.content;
+    const inputContent = newText.inputContent || newText.content;
+    const mapping = createAdvancedTextMapping(displayContent, inputContent);
+    
     // 設置遊戲狀態
     setCurrentText(newText);
+    setTextMapping(mapping);
     setCurrentPosition(0);
     setUserInput('');
     setErrors(0);
@@ -67,28 +117,35 @@ export const LongTextModeScreen: React.FC<LongTextModeScreenProps> = ({ route, n
     setCombo(0);
     setLives(3);
     setGameTime(0);
+    setCurrentLineNumber(0); // 重置行數
     setGameState('playing');
   }, [settings]);
 
   // 處理輸入
   const handleInputChange = useCallback((text: string) => {
-    if (!currentText || gameState !== 'playing') return;
+    if (!currentText || !textMapping || gameState !== 'playing') return;
 
     setUserInput(text);
 
-    // 獲取當前應該輸入的字符
-    const targetText = currentText.content;
-    const currentTargetChar = targetText[currentPosition];
+    // 獲取目標字符用於調試
+    const targetChar = getTargetCharAtPosition(textMapping, currentPosition);
     
-    if (!currentTargetChar) {
-      // 已經完成整個文章
-      return;
-    }
+    // 添加調試日誌
+    console.log(`[長文模式調試] 輸入: "${text}", 目標: "${targetChar}"`);
 
-    // 使用 validateJapaneseInput 驗證當前字符的輸入
-    const validation = validateJapaneseInput(text, currentTargetChar);
+    // 使用新的驗證系統（支援多讀音和三段式輸入）
+    const validation = validateInputAtPosition(textMapping, text, currentPosition);
+    
+    // 詳細的調試信息
+    console.log(`[長文模式調試] 驗證結果:`, {
+      isValid: validation.isValid,
+      isComplete: validation.isComplete,
+      canContinue: validation.canContinue,
+      possibleChars: validation.possibleChars
+    });
     
     if (validation.isComplete) {
+      console.log(`[長文模式調試] ✅ 字符完成，移動到下一個位置`);
       // 當前字符輸入完成，移動到下一個字符
       const newPosition = currentPosition + 1;
       setCurrentPosition(newPosition);
@@ -100,14 +157,16 @@ export const LongTextModeScreen: React.FC<LongTextModeScreenProps> = ({ route, n
       setCombo(prev => prev + 1);
       
       // 檢查是否完成整個文章
-      if (newPosition >= targetText.length) {
+      if (newPosition >= textMapping.totalInputLength) {
         // 完成文章，額外獎勵
-        const bonusPoints = targetText.length * 10;
+        const bonusPoints = textMapping.totalInputLength * 10;
         setScore(prev => prev + bonusPoints);
         endGame();
       }
-    } else if (!validation.canContinue && validation.errorType === 'wrong_character') {
-      // 錯誤輸入
+    } else if (!validation.canContinue && text.length > 0) {
+      console.log(`[長文模式調試] ❌ 輸入錯誤，扣分`);
+      // 只有在確實無法繼續時才視為錯誤
+      // 這樣可以支援三段式輸入（は→ば→ぱ）
       setCombo(0);
       setErrors(prev => prev + 1);
       setLives(prev => Math.max(0, prev - 1));
@@ -116,9 +175,11 @@ export const LongTextModeScreen: React.FC<LongTextModeScreenProps> = ({ route, n
       if (lives <= 1) {
         endGame();
       }
+    } else {
+      console.log(`[長文模式調試] ⏳ 允許繼續輸入`);
     }
-    // 如果是部分匹配或可以繼續，保持當前輸入狀態
-  }, [currentText, currentPosition, combo, lives, gameState]);
+    // 如果 validation.canContinue 為 true，保持當前輸入狀態，允許繼續輸入
+  }, [currentText, textMapping, currentPosition, combo, lives, gameState]);
 
   // 結束遊戲
   const endGame = useCallback(() => {
@@ -154,7 +215,7 @@ export const LongTextModeScreen: React.FC<LongTextModeScreenProps> = ({ route, n
 
   // 渲染文字內容
   const renderTextContentWithParagraphs = () => {
-    if (!currentText) {
+    if (!currentText || !textMapping) {
       return (
         <View style={styles.textDisplayContainer}>
           <Text style={styles.textTitle}>載入中...</Text>
@@ -165,17 +226,18 @@ export const LongTextModeScreen: React.FC<LongTextModeScreenProps> = ({ route, n
       );
     }
 
-    const content = currentText.content;
-    
-    // 分割文字：已完成的字符、當前字符、剩餘字符
-    const completedPart = content.substring(0, currentPosition);
-    const currentChar = content[currentPosition];
-    const remainingPart = content.substring(currentPosition + 1);
+    // 使用文本映射來正確分割顯示文字
+    const { completedPart, currentChar, remainingPart } = splitTextForDisplay(textMapping, currentPosition);
 
     return (
       <View style={styles.textDisplayContainer}>
         <Text style={styles.textTitle}>{currentText.title}</Text>
-        <ScrollView style={styles.textContentContainer} showsVerticalScrollIndicator={true}>
+        <ScrollView 
+          ref={scrollViewRef}
+          style={styles.textContentContainer} 
+          showsVerticalScrollIndicator={true}
+          scrollEventThrottle={16}
+        >
           <View style={styles.textWrapper}>
             <Text style={styles.simpleText}>
               <Text style={styles.completedText}>{completedPart}</Text>
@@ -187,7 +249,7 @@ export const LongTextModeScreen: React.FC<LongTextModeScreenProps> = ({ route, n
         {settings.showProgress && (
           <View style={styles.progressContainer}>
             <Text style={styles.progressText}>
-              進度: {currentPosition}/{content.length} ({Math.round((currentPosition / content.length) * 100)}%)
+              進度: {currentPosition}/{textMapping.totalInputLength} ({Math.round((currentPosition / textMapping.totalInputLength) * 100)}%)
             </Text>
           </View>
         )}
@@ -204,18 +266,19 @@ export const LongTextModeScreen: React.FC<LongTextModeScreenProps> = ({ route, n
       case 'paused':
         return (
           <LongTextGamePlayScreen
-            renderTextContent={renderTextContentWithParagraphs}
-            userInput={userInput}
-            onInputChange={handleInputChange}
-            onPause={togglePause}
-            isPaused={gameState === 'paused'}
-            score={score}
-            combo={combo}
-            lives={lives}
-            gameTime={gameTime}
-            errors={errors}
-            currentText={currentText}
-            currentPosition={currentPosition}
+                    renderTextContent={renderTextContentWithParagraphs}
+        userInput={userInput}
+        onInputChange={handleInputChange}
+        onPause={togglePause}
+        isPaused={gameState === 'paused'}
+        score={score}
+        combo={combo}
+        lives={lives}
+        gameTime={gameTime}
+        errors={errors}
+        currentText={currentText}
+        currentPosition={currentPosition}
+        textMapping={textMapping}
           />
         );
       case 'finished':
@@ -278,6 +341,7 @@ interface LongTextGamePlayScreenProps {
   errors: number;
   currentText: LongTextContent | null;
   currentPosition: number;
+  textMapping: TextMapping | null;
 }
 
 const LongTextGamePlayScreen: React.FC<LongTextGamePlayScreenProps> = ({
@@ -293,6 +357,7 @@ const LongTextGamePlayScreen: React.FC<LongTextGamePlayScreenProps> = ({
   errors,
   currentText,
   currentPosition,
+  textMapping,
 }) => (
   <View style={styles.gameContainer}>
     {/* 遊戲狀態顯示 */}
@@ -327,7 +392,11 @@ const LongTextGamePlayScreen: React.FC<LongTextGamePlayScreenProps> = ({
     </View>
 
     {/* 輸入進度顯示 */}
-    <LongTextInputProgress userInput={userInput} targetChar={currentText?.content[currentPosition] || ''} />
+    <LongTextInputProgress 
+      userInput={userInput} 
+      targetChar={textMapping ? getTargetCharAtPosition(textMapping, currentPosition) : ''} 
+      validation={textMapping ? validateInputAtPosition(textMapping, userInput, currentPosition) : null}
+    />
 
     {/* 控制按鈕 */}
     <View style={styles.controlsContainer}>
@@ -344,33 +413,67 @@ const LongTextGamePlayScreen: React.FC<LongTextGamePlayScreenProps> = ({
 interface LongTextInputProgressProps {
   userInput: string;
   targetChar: string;
+  validation: {
+    isValid: boolean;
+    isComplete: boolean;
+    canContinue: boolean;
+    possibleChars: string[];
+  } | null;
 }
 
-const LongTextInputProgress: React.FC<LongTextInputProgressProps> = ({ userInput, targetChar }) => {
+const LongTextInputProgress: React.FC<LongTextInputProgressProps> = ({ userInput, targetChar, validation }) => {
   if (!targetChar) return null;
   
-  const validation = validateJapaneseInput(userInput, targetChar);
+  const isValid = validation ? validation.canContinue : userInput === targetChar;
+  const isComplete = validation ? validation.isComplete : userInput === targetChar;
+  const possibleChars = validation?.possibleChars || [];
+  
+  // 判斷輸入狀態
+  let inputStatus = 'waiting';
+  let statusColor = styles.inputTextError;
+  
+  if (!userInput) {
+    inputStatus = 'waiting';
+    statusColor = styles.inputTextError;
+  } else if (isComplete) {
+    inputStatus = 'complete';
+    statusColor = styles.inputTextCorrect;
+  } else if (isValid) {
+    inputStatus = 'partial';
+    statusColor = styles.inputTextPartial;
+  } else {
+    inputStatus = 'error';
+    statusColor = styles.inputTextError;
+  }
   
   return (
     <View style={styles.inputProgressContainer}>
       <Text style={styles.inputProgressLabel}>當前輸入：</Text>
-      <Text style={[
-        styles.inputProgressText,
-        validation.isPartialMatch ? styles.inputTextCorrect : styles.inputTextError
-      ]}>
+      <Text style={[styles.inputProgressText, statusColor]}>
         {userInput || '（等待輸入）'}
       </Text>
       <Text style={styles.targetCharText}>
         目標字符：{targetChar}
       </Text>
-      {validation.hint && (
+      
+      {/* 顯示狀態提示 */}
+      {inputStatus === 'partial' && (
         <Text style={styles.inputHint}>
-          💡 {validation.hint}
+          ✓ 可以繼續輸入（支援濁音半濁音轉換）
         </Text>
       )}
-      {validation.canContinue && validation.nextPossibleChars && validation.nextPossibleChars.length > 0 && (
+      
+      {/* 顯示可能的讀音 */}
+      {possibleChars.length > 1 && (
         <Text style={styles.inputHint}>
-          下一個字符: {validation.nextPossibleChars.join(' 或 ')}
+          可接受的讀音: {possibleChars.join(' 或 ')}
+        </Text>
+      )}
+      
+      {/* 顯示轉換提示 */}
+      {validation && !validation.canContinue && userInput && (
+        <Text style={styles.transformationHint}>
+          提示：試試濁音半濁音轉換 (如 し→じ, は→ば→ぱ)
         </Text>
       )}
     </View>
@@ -694,6 +797,9 @@ const styles = StyleSheet.create({
   inputTextCorrect: {
     color: LightTheme.success,
   },
+  inputTextPartial: {
+    color: LightTheme.accent,
+  },
   inputTextError: {
     color: LightTheme.error,
   },
@@ -706,5 +812,11 @@ const styles = StyleSheet.create({
     fontSize: Typography.sizes.ui.caption,
     color: LightTheme.textSecondary,
     marginBottom: Spacing.xs,
+  },
+  transformationHint: {
+    fontSize: Typography.sizes.ui.caption,
+    color: LightTheme.accent,
+    marginTop: Spacing.xs,
+    fontStyle: 'italic',
   },
 }); 
