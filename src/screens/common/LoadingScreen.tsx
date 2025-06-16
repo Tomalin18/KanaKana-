@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, ActivityIndicator, StyleSheet } from 'react-native';
-import { LightTheme, Typography, Spacing } from '@/constants/theme';
+import { TechTheme, Typography, Spacing, Shadows, TechColors } from '@/constants/theme';
 
 /**
  * 加載屏幕組件
@@ -15,7 +15,7 @@ export const LoadingScreen: React.FC = () => {
         
         <ActivityIndicator 
           size="large" 
-          color={LightTheme.primary} 
+          color={TechTheme.primary} 
           style={styles.spinner}
         />
         
@@ -28,7 +28,7 @@ export const LoadingScreen: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: LightTheme.background,
+    backgroundColor: TechTheme.background,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -38,13 +38,13 @@ const styles = StyleSheet.create({
   title: {
     fontSize: Typography.sizes.ui.hero,
     fontWeight: '700',
-    color: LightTheme.primary,
+    color: TechTheme.primary,
     marginBottom: Spacing.xs,
     fontFamily: Typography.fonts.japanese.fallback,
   },
   subtitle: {
     fontSize: Typography.sizes.ui.subtitle,
-    color: LightTheme.textSecondary,
+    color: TechTheme.textSecondary,
     marginBottom: Spacing.xxl,
     fontWeight: '300',
   },
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   },
   loadingText: {
     fontSize: Typography.sizes.ui.body,
-    color: LightTheme.textSecondary,
+    color: TechTheme.textSecondary,
     marginTop: Spacing.md,
   },
 }); 

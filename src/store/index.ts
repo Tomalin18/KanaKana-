@@ -67,7 +67,7 @@ interface AppActions {
 // ============================================================================
 
 const initialGameState: GameState = {
-  mode: 'infinite',
+  mode: 'classic',
   status: 'idle',
   score: 0,
   combo: 0,
@@ -96,7 +96,7 @@ const initialSettings: GameSettings = {
     particleCount: 30,
   },
   gameplay: {
-    defaultMode: 'infinite',
+    defaultMode: 'classic',
     defaultDifficulty: 'normal',
     adaptiveDifficulty: true,
     vocabularyThemes: ['jlpt_n5'],
