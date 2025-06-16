@@ -122,11 +122,31 @@ export const getWordsByDifficulty = (difficulty: DifficultyLevel): TetrisWord[] 
 export const getWordsByType = (words: TetrisWord[], wordType: 'hiragana' | 'katakana' | 'mixed'): TetrisWord[] => {
   switch (wordType) {
     case 'hiragana':
-      // 只返回平假名單字
-      return words.filter(word => /^[ひ-ゖ]+$/.test(word.kana));
+      // 只返回平假名單字 - 使用更兼容的檢測方式
+      return words.filter(word => {
+        // 檢查是否只包含平假名字符
+        for (let i = 0; i < word.kana.length; i++) {
+          const char = word.kana.charCodeAt(i);
+          // 平假名 Unicode 範圍: 0x3041-0x3096
+          if (char < 0x3041 || char > 0x3096) {
+            return false;
+          }
+        }
+        return true;
+      });
     case 'katakana':
-      // 只返回包含片假名的單字
-      return words.filter(word => /[ア-ヶ]/.test(word.kana));
+      // 只返回包含片假名的單字 - 使用更兼容的檢測方式
+      return words.filter(word => {
+        // 檢查是否包含片假名字符
+        for (let i = 0; i < word.kana.length; i++) {
+          const char = word.kana.charCodeAt(i);
+          // 片假名 Unicode 範圍: 0x30A1-0x30F6
+          if (char >= 0x30A1 && char <= 0x30F6) {
+            return true;
+          }
+        }
+        return false;
+      });
     case 'mixed':
     default:
       return words;
