@@ -9,7 +9,7 @@ import {
   Pressable,
   Alert,
 } from 'react-native';
-import { LightTheme, Typography, Spacing } from '@/constants/theme';
+import { LightTheme, Typography, Spacing, JapaneseColors } from '@/constants/theme';
 import { useAppStore } from '@/store';
 import { SEASONAL_THEMES, VOCABULARY_THEMES, INPUT_VALIDATION } from '@/constants/game';
 
@@ -157,17 +157,27 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ navigation }) =>
 
   return (
     <SafeAreaView style={styles.container}>
+      {/* 日式背景 */}
+      <View style={styles.backgroundGradient} />
+      
       <View style={styles.header}>
         <Pressable onPress={() => navigation?.goBack()} style={styles.backButton}>
-          <Text style={styles.backButtonText}>← 返回</Text>
+          <Text style={styles.backButtonText}>← 戻る</Text>
         </Pressable>
-        <Text style={styles.headerTitle}>設定</Text>
+        
+        {/* 日式標題設計 */}
+        <View style={styles.headerTitleContainer}>
+          <Text style={styles.headerTitle}>設定</Text>
+          <Text style={styles.headerTitleJapanese}>せってい</Text>
+          <View style={styles.headerUnderline} />
+        </View>
+        
         <View style={styles.headerActions}>
           <Pressable onPress={resetSettings} style={styles.resetButton}>
-            <Text style={styles.resetButtonText}>重置</Text>
+            <Text style={styles.resetButtonText}>🔄 初期化</Text>
           </Pressable>
           <Pressable onPress={saveSettings} style={styles.saveButton}>
-            <Text style={styles.saveButtonText}>保存</Text>
+            <Text style={styles.saveButtonText}>💾 保存</Text>
           </Pressable>
         </View>
       </View>
@@ -348,52 +358,91 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ navigation }) =>
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: LightTheme.background,
+    backgroundColor: JapaneseColors.sumi,
+  },
+  backgroundGradient: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'linear-gradient(135deg, #1C1C1C 0%, #2D2D2D 50%, #1A1A1A 100%)',
+    opacity: 0.9,
   },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: Spacing.md,
-    paddingVertical: Spacing.sm,
+    paddingVertical: Spacing.lg,
     borderBottomWidth: 1,
-    borderBottomColor: LightTheme.border,
+    borderBottomColor: 'rgba(255, 255, 255, 0.1)',
+    backgroundColor: 'rgba(255, 255, 255, 0.05)',
+  },
+  headerTitleContainer: {
+    alignItems: 'center',
   },
   backButton: {
     padding: Spacing.xs,
   },
   backButtonText: {
     fontSize: Typography.sizes.ui.body,
-    color: LightTheme.primary,
+    color: JapaneseColors.sakura,
+    fontWeight: '600',
   },
   headerTitle: {
     fontSize: Typography.sizes.ui.title,
-    fontWeight: '600',
-    color: LightTheme.text,
+    fontWeight: '700',
+    color: JapaneseColors.shiro,
+    textShadowColor: 'rgba(255, 255, 255, 0.3)',
+    textShadowOffset: { width: 0, height: 1 },
+    textShadowRadius: 2,
+  },
+  headerTitleJapanese: {
+    fontSize: Typography.sizes.ui.caption,
+    color: 'rgba(255, 255, 255, 0.7)',
+    fontStyle: 'italic',
+    marginTop: 2,
+  },
+  headerUnderline: {
+    width: 40,
+    height: 2,
+    backgroundColor: JapaneseColors.yuhi,
+    marginTop: 4,
+    borderRadius: 1,
   },
   headerActions: {
     flexDirection: 'row',
     gap: Spacing.sm,
   },
   resetButton: {
-    paddingHorizontal: Spacing.sm,
-    paddingVertical: Spacing.xs,
-    borderRadius: 6,
-    backgroundColor: LightTheme.error + '20',
+    paddingHorizontal: Spacing.md,
+    paddingVertical: Spacing.sm,
+    borderRadius: 20,
+    backgroundColor: 'rgba(239, 68, 68, 0.2)',
+    borderWidth: 1,
+    borderColor: 'rgba(239, 68, 68, 0.5)',
   },
   resetButtonText: {
     fontSize: Typography.sizes.ui.caption,
-    color: LightTheme.error,
+    color: '#EF4444',
+    fontWeight: '600',
   },
   saveButton: {
-    paddingHorizontal: Spacing.sm,
-    paddingVertical: Spacing.xs,
-    borderRadius: 6,
-    backgroundColor: LightTheme.primary,
+    paddingHorizontal: Spacing.md,
+    paddingVertical: Spacing.sm,
+    borderRadius: 20,
+    backgroundColor: JapaneseColors.yuhi,
+    shadowColor: JapaneseColors.yuhi,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+    elevation: 4,
   },
   saveButtonText: {
     fontSize: Typography.sizes.ui.caption,
-    color: LightTheme.surface,
+    color: JapaneseColors.shiro,
+    fontWeight: '700',
   },
   content: {
     flex: 1,

@@ -4,9 +4,7 @@
 
 // 遊戲模式配置
 export const GAME_MODES = {
-  INFINITE: 'infinite',
-  PRACTICE: 'practice', 
-  DAILY_CHALLENGE: 'daily_challenge',
+  INFINITE: 'infinite', // 經典模式
 } as const;
 
 // 難度設置

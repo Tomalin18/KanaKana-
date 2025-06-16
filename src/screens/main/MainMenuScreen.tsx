@@ -6,19 +6,21 @@ import {
   Pressable, 
   SafeAreaView,
   ScrollView,
-  StatusBar 
+  StatusBar,
+  ImageBackground,
+  Dimensions 
 } from 'react-native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import type { RootStackParamList } from '@/navigation/AppNavigator';
 import type { GameMode } from '@/types';
-import { LightTheme, Typography, Spacing } from '@/constants/theme';
+import { LightTheme, Typography, Spacing, JapaneseColors } from '@/constants/theme';
 import { isFeatureEnabled } from '@/utils/featureFlags';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'MainMenu'>;
 
 /**
- * 主選單屏幕
- * 提供遊戲模式選擇和日式美學界面
+ * 主選單屏幕 - 日本風格設計
+ * 提供簡化的遊戲模式選擇和傳統日式美學界面
  */
 export const MainMenuScreen: React.FC<Props> = ({ navigation }) => {
   const handleGameModePress = (mode: GameMode) => {
@@ -27,81 +29,91 @@ export const MainMenuScreen: React.FC<Props> = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar barStyle="light-content" backgroundColor={LightTheme.primary} />
+      <StatusBar barStyle="light-content" backgroundColor={JapaneseColors.sumi} />
+      
+      {/* 日式背景漸變 */}
+      <View style={styles.backgroundGradient} />
+      
+      {/* 傳統日式圖案背景 */}
+      <View style={styles.patternOverlay} />
       
       <ScrollView contentContainerStyle={styles.scrollContent}>
-        {/* 應用標題 */}
+        {/* 應用標題 - 日式書法風格 */}
         <View style={styles.header}>
-          <Text style={styles.titleJapanese}>かなタワー</Text>
+          <View style={styles.titleContainer}>
+            <Text style={styles.titleJapanese}>かなタワー</Text>
+            <View style={styles.titleUnderline} />
+          </View>
           <Text style={styles.titleEnglish}>KANA TOWER</Text>
-          <Text style={styles.subtitle}>日本語タイピング練習</Text>
+          <Text style={styles.subtitle}>日本語タイピング道場</Text>
+          
+          {/* 傳統印章風格裝飾 */}
+          <View style={styles.sealContainer}>
+            <Text style={styles.sealText}>練</Text>
+          </View>
         </View>
 
-        {/* 遊戲模式選擇 */}
+        {/* 遊戲模式選擇 - 日式卡片設計 */}
         <View style={styles.modesContainer}>
-          <GameModeButton
-            title="無限模式"
-            subtitle="Infinite Mode"
-            description="挑戰你的極限，看看能打多少字！"
-            emoji="♾️"
+          <GameModeCard
+            title="経典模式"
+            titleJapanese="けいてん"
+            subtitle="Classic Mode"
+            description="傳統的日文打字練習，挑戰你的極限"
+            emoji="🏮"
+            gradient={['#FF6B35', '#FF8E53']}
             onPress={() => handleGameModePress('infinite')}
+            isPrimary
           />
 
-          <GameModeButton
-            title="練習模式"
-            subtitle="Practice Mode"
-            description="輕鬆練習，掌握假名輸入技巧"
-            emoji="📚"
-            onPress={() => handleGameModePress('practice')}
-          />
-
-          <GameModeButton
-            title="每日挑戰"
-            subtitle="Daily Challenge"
-            description="每天一個新挑戰，持續進步！"
-            emoji="🗓️"
-            onPress={() => handleGameModePress('daily_challenge')}
-          />
-
-          {/* 新遊戲模式（需要功能開關） */}
+          {/* 新遊戲模式 */}
           {isFeatureEnabled('KANJI_MODE') && (
-            <GameModeButton
-              title="漢字模式"
-              subtitle="Kanji Mode"
-              description="看漢字輸入假名，提升漢字讀音能力！"
+            <GameModeCard
+              title="漢字道場"
+              titleJapanese="かんじどうじょう"
+              subtitle="Kanji Dojo"
+              description="看漢字輸入假名，提升漢字讀音能力"
               emoji="🈴"
+              gradient={['#1E40AF', '#3B82F6']}
               onPress={() => handleGameModePress('kanji_to_kana')}
               isNew
             />
           )}
 
           {isFeatureEnabled('LONG_TEXT_MODE') && (
-            <GameModeButton
-              title="長文模式"
-              subtitle="Long Text Mode"
-              description="挑戰長篇文章，練習流暢輸入！"
-              emoji="📄"
+            <GameModeCard
+              title="長文修行"
+              titleJapanese="ちょうぶんしゅぎょう"
+              subtitle="Long Text Training"
+              description="挑戰長篇文章，練習流暢輸入技巧"
+              emoji="📜"
+              gradient={['#87A96B', '#A4C3A2']}
               onPress={() => handleGameModePress('long_text')}
               isNew
             />
           )}
 
           {isFeatureEnabled('TETRIS_MODE') && (
-            <GameModeButton
-              title="俄羅斯方塊"
-              subtitle="Tetris Typing"
-              description="在方塊掉落前輸入完成，刺激有趣！"
+            <GameModeCard
+              title="方塊道"
+              titleJapanese="ほうかくどう"
+              subtitle="Block Typing Way"
+              description="在方塊掉落前完成輸入，刺激有趣"
               emoji="🧩"
+              gradient={['#EC4899', '#F472B6']}
               onPress={() => handleGameModePress('tetris_typing')}
               isNew
             />
           )}
         </View>
 
-        {/* 底部信息 */}
+        {/* 底部信息 - 日式格言 */}
         <View style={styles.footer}>
-          <Text style={styles.footerText}>
-            開始你的日文打字之旅
+          <Text style={styles.footerQuote}>
+            "千里之行，始於足下"
+          </Text>
+          <Text style={styles.footerSubtext}>
+            開始你的日文修行之旅
           </Text>
         </View>
       </ScrollView>
@@ -110,51 +122,92 @@ export const MainMenuScreen: React.FC<Props> = ({ navigation }) => {
 };
 
 /**
- * 遊戲模式按鈕組件
+ * 日式遊戲模式卡片組件
  */
-interface GameModeButtonProps {
+interface GameModeCardProps {
   title: string;
+  titleJapanese: string;
   subtitle: string;
   description: string;
   emoji: string;
+  gradient: [string, string];
   onPress: () => void;
   isNew?: boolean;
+  isPrimary?: boolean;
 }
 
-const GameModeButton: React.FC<GameModeButtonProps> = ({
+const GameModeCard: React.FC<GameModeCardProps> = ({
   title,
+  titleJapanese,
   subtitle,
   description,
   emoji,
+  gradient,
   onPress,
   isNew = false,
+  isPrimary = false,
 }) => {
   return (
     <Pressable 
       style={({ pressed }) => [
-        styles.modeButton,
-        isNew && styles.modeButtonNew,
-        pressed && styles.modeButtonPressed
+        styles.modeCard,
+        isPrimary && styles.modeCardPrimary,
+        isNew && styles.modeCardNew,
+        pressed && styles.modeCardPressed
       ]}
       onPress={onPress}
     >
-      <Text style={styles.modeEmoji}>{emoji}</Text>
-      <View style={styles.modeTextContainer}>
-        <View style={styles.modeTitleContainer}>
-          <Text style={styles.modeTitle}>{title}</Text>
-          {isNew && <Text style={styles.newBadge}>NEW</Text>}
+      {/* 漸變背景 */}
+      <View style={[styles.cardGradient, { backgroundColor: gradient[0] }]} />
+      
+      {/* 內容 */}
+      <View style={styles.cardContent}>
+        <View style={styles.cardHeader}>
+          <Text style={styles.cardEmoji}>{emoji}</Text>
+          {isNew && (
+            <View style={styles.newBadge}>
+              <Text style={styles.newBadgeText}>新</Text>
+            </View>
+          )}
         </View>
-        <Text style={styles.modeSubtitle}>{subtitle}</Text>
-        <Text style={styles.modeDescription}>{description}</Text>
+        
+        <View style={styles.cardTextContainer}>
+          <Text style={styles.cardTitle}>{title}</Text>
+          <Text style={styles.cardTitleJapanese}>{titleJapanese}</Text>
+          <Text style={styles.cardSubtitle}>{subtitle}</Text>
+          <Text style={styles.cardDescription}>{description}</Text>
+        </View>
+        
+        {/* 日式裝飾線 */}
+        <View style={styles.cardDecorationLine} />
       </View>
     </Pressable>
   );
 };
 
+const { width: screenWidth } = Dimensions.get('window');
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: LightTheme.background,
+    backgroundColor: JapaneseColors.sumi,
+  },
+  backgroundGradient: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'linear-gradient(135deg, #1C1C1C 0%, #2D2D2D 50%, #1A1A1A 100%)',
+  },
+  patternOverlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    opacity: 0.05,
+    backgroundColor: 'transparent',
   },
   scrollContent: {
     flexGrow: 1,
@@ -163,97 +216,178 @@ const styles = StyleSheet.create({
   header: {
     alignItems: 'center',
     marginVertical: Spacing.xxl,
+    paddingVertical: Spacing.xl,
+  },
+  titleContainer: {
+    alignItems: 'center',
+    marginBottom: Spacing.sm,
   },
   titleJapanese: {
-    fontSize: 42,
+    fontSize: 48,
     fontWeight: '700',
-    color: LightTheme.primary,
-    marginBottom: Spacing.xs,
+    color: JapaneseColors.shiro,
     textAlign: 'center',
+    letterSpacing: 2,
+    textShadowColor: 'rgba(255, 255, 255, 0.3)',
+    textShadowOffset: { width: 0, height: 2 },
+    textShadowRadius: 4,
+  },
+  titleUnderline: {
+    width: 120,
+    height: 3,
+    backgroundColor: JapaneseColors.yuhi,
+    marginTop: Spacing.xs,
+    borderRadius: 2,
   },
   titleEnglish: {
     fontSize: Typography.sizes.ui.title,
     fontWeight: '300',
-    color: LightTheme.textSecondary,
-    letterSpacing: 2,
+    color: '#B0B0B0',
+    letterSpacing: 4,
     marginBottom: Spacing.sm,
   },
   subtitle: {
     fontSize: Typography.sizes.ui.body,
-    color: LightTheme.textSecondary,
+    color: '#888888',
     textAlign: 'center',
+    marginBottom: Spacing.lg,
+  },
+  sealContainer: {
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    backgroundColor: JapaneseColors.yuhi,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 3,
+    borderColor: JapaneseColors.shiro,
+    shadowColor: JapaneseColors.yuhi,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+    elevation: 8,
+  },
+  sealText: {
+    fontSize: 24,
+    fontWeight: '900',
+    color: JapaneseColors.shiro,
   },
   modesContainer: {
     flex: 1,
-    gap: Spacing.md,
+    gap: Spacing.lg,
+    marginBottom: Spacing.xl,
   },
-  modeButton: {
-    backgroundColor: LightTheme.surface,
-    borderRadius: 16,
-    padding: Spacing.lg,
-    flexDirection: 'row',
-    alignItems: 'center',
+  modeCard: {
+    borderRadius: 20,
+    overflow: 'hidden',
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 8,
-    elevation: 3,
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.3,
+    shadowRadius: 16,
+    elevation: 12,
+    marginHorizontal: 4,
   },
-  modeButtonPressed: {
+  modeCardPrimary: {
+    transform: [{ scale: 1.02 }],
+    shadowOpacity: 0.4,
+    shadowRadius: 20,
+  },
+  modeCardNew: {
+    borderWidth: 2,
+    borderColor: JapaneseColors.sakura,
+  },
+  modeCardPressed: {
     transform: [{ scale: 0.98 }],
-    opacity: 0.8,
+    opacity: 0.9,
   },
-  modeEmoji: {
-    fontSize: 32,
-    marginRight: Spacing.md,
+  cardGradient: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    opacity: 0.9,
   },
-  modeTextContainer: {
+  cardContent: {
+    padding: Spacing.lg,
+    minHeight: 140,
+  },
+  cardHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    marginBottom: Spacing.md,
+  },
+  cardEmoji: {
+    fontSize: 36,
+    textShadowColor: 'rgba(0, 0, 0, 0.3)',
+    textShadowOffset: { width: 1, height: 1 },
+    textShadowRadius: 2,
+  },
+  newBadge: {
+    backgroundColor: JapaneseColors.sakura,
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: JapaneseColors.shiro,
+  },
+  newBadgeText: {
+    color: JapaneseColors.shiro,
+    fontSize: 12,
+    fontWeight: '700',
+  },
+  cardTextContainer: {
     flex: 1,
   },
-  modeTitle: {
+  cardTitle: {
     fontSize: Typography.sizes.ui.subtitle,
-    fontWeight: '600',
-    color: LightTheme.text,
+    fontWeight: '700',
+    color: JapaneseColors.shiro,
     marginBottom: Spacing.xs,
+    textShadowColor: 'rgba(0, 0, 0, 0.5)',
+    textShadowOffset: { width: 1, height: 1 },
+    textShadowRadius: 2,
   },
-  modeSubtitle: {
-    fontSize: Typography.sizes.ui.caption,
-    color: LightTheme.textSecondary,
+  cardTitleJapanese: {
+    fontSize: 14,
+    color: 'rgba(255, 255, 255, 0.8)',
     marginBottom: Spacing.xs,
+    fontStyle: 'italic',
+  },
+  cardSubtitle: {
+    fontSize: Typography.sizes.ui.caption,
+    color: 'rgba(255, 255, 255, 0.7)',
+    marginBottom: Spacing.sm,
     fontWeight: '500',
   },
-  modeDescription: {
+  cardDescription: {
     fontSize: Typography.sizes.ui.caption,
-    color: LightTheme.textSecondary,
+    color: 'rgba(255, 255, 255, 0.8)',
     lineHeight: Typography.lineHeights.ui,
+  },
+  cardDecorationLine: {
+    height: 2,
+    backgroundColor: 'rgba(255, 255, 255, 0.3)',
+    marginTop: Spacing.md,
+    borderRadius: 1,
   },
   footer: {
     alignItems: 'center',
-    marginTop: Spacing.xl,
-    paddingVertical: Spacing.lg,
+    paddingVertical: Spacing.xl,
+    borderTopWidth: 1,
+    borderTopColor: 'rgba(255, 255, 255, 0.1)',
   },
-  footerText: {
+  footerQuote: {
     fontSize: Typography.sizes.ui.body,
-    color: LightTheme.textSecondary,
+    color: JapaneseColors.sakura,
     textAlign: 'center',
+    fontStyle: 'italic',
+    marginBottom: Spacing.sm,
   },
-  modeButtonNew: {
-    borderColor: LightTheme.accent,
-    borderWidth: 2,
-  },
-  modeTitleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  newBadge: {
-    backgroundColor: LightTheme.accent,
-    color: 'white',
-    fontSize: 10,
-    fontWeight: '700',
-    paddingHorizontal: 6,
-    paddingVertical: 2,
-    borderRadius: 8,
-    overflow: 'hidden',
+  footerSubtext: {
+    fontSize: Typography.sizes.ui.caption,
+    color: '#888888',
+    textAlign: 'center',
   },
 }); 
