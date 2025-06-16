@@ -63,8 +63,8 @@ const PIECE_COLORS = [
 // 遊戲設定
 const BOARD_WIDTH = 10;
 const BOARD_HEIGHT = 20;
-const INITIAL_FALL_SPEED = 2000; // 2秒
-const SPEED_INCREASE_FACTOR = 0.9; // 每次加速10%
+const INITIAL_FALL_SPEED = 1000; // 1秒 (原本是2秒)
+const SPEED_INCREASE_FACTOR = 0.85; // 每次加速15% (原本是10%)
 
 export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navigation }) => {
   // 遊戲狀態
@@ -246,9 +246,9 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
       
       // 檢查是否需要升級
       const newPiecesCleared = piecesCleared + 1;
-      if (newPiecesCleared % 10 === 0) {
+      if (newPiecesCleared % 5 === 0) { // 每5個方塊升級一次 (原本是10個)
         setLevel(prev => prev + 1);
-        setFallSpeed(prev => Math.max(500, prev * SPEED_INCREASE_FACTOR));
+        setFallSpeed(prev => Math.max(200, prev * SPEED_INCREASE_FACTOR)); // 最低速度200ms (原本是500ms)
       }
       
       // 生成新方塊
@@ -351,12 +351,29 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
         {/* 渲染當前下落的方塊 */}
         {currentPiece && (
           <View style={styles.fallingPiece}>
-            {/* 方塊背景 */}
+            {/* 方塊背景和文字 */}
             {currentPiece.shape.map((row, rowIndex) =>
               row.map((cell, colIndex) => {
                 if (cell === 1) {
                   const x = (currentPiece.x + colIndex) * cellSize;
                   const y = (currentPiece.y + rowIndex) * cellSize;
+                  
+                  // 計算當前格子應該顯示的字符
+                  let charIndex = 0;
+                  for (let r = 0; r < rowIndex; r++) {
+                    for (let c = 0; c < currentPiece.shape[r].length; c++) {
+                      if (currentPiece.shape[r][c] === 1) {
+                        charIndex++;
+                      }
+                    }
+                  }
+                  for (let c = 0; c < colIndex; c++) {
+                    if (currentPiece.shape[rowIndex][c] === 1) {
+                      charIndex++;
+                    }
+                  }
+                  
+                  const character = currentPiece.kana[charIndex] || '';
                   
                   return (
                     <View
@@ -371,29 +388,16 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
                           backgroundColor: currentPiece.color,
                         }
                       ]}
-                    />
+                    >
+                      <Text style={[styles.pieceCharacter, { fontSize: Math.min(cellSize * 0.6, 16) }]}>
+                        {character}
+                      </Text>
+                    </View>
                   );
                 }
                 return null;
               })
             )}
-            
-            {/* 方塊中的文字 */}
-            <View
-              style={[
-                styles.pieceText,
-                {
-                  left: currentPiece.x * cellSize,
-                  top: currentPiece.y * cellSize,
-                  width: currentPiece.shape[0].length * cellSize,
-                  height: currentPiece.shape.length * cellSize,
-                }
-              ]}
-            >
-              <Text style={[styles.pieceTextContent, { fontSize: Math.min(cellSize * 0.4, 14) }]}>
-                {currentPiece.kana}
-              </Text>
-            </View>
           </View>
         )}
       </View>
@@ -587,6 +591,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#fff',
     borderRadius: 2,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   wordContainer: {
     marginTop: 20,
@@ -703,16 +709,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     backgroundColor: 'transparent',
   },
-  pieceText: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  pieceTextContent: {
+  pieceCharacter: {
     fontSize: 16,
     fontWeight: 'bold',
     color: '#fff',
