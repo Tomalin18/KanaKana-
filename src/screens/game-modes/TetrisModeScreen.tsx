@@ -110,7 +110,7 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
     const word = getWordByLength(charCount, settings.difficulty, settings.wordType);
     
     // 安全檢查：確保 word 對象有效
-    if (!word || !word.word || !word.kana || !word.meaning) {
+    if (!word || typeof word !== 'object' || !word.word || !word.kana || !word.meaning) {
       console.error('Invalid word object:', word);
       // 使用備用單字
       const fallbackWord = {
