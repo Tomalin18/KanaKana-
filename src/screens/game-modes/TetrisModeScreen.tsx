@@ -10,7 +10,7 @@ import {
   ScrollView,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { getRandomWord, getWordByLength, type TetrisWord } from '@/data/tetrisData';
+import { getRandomWordImproved, getWordByLength, getWordByLevelAndLength, type TetrisWord } from '@/data/tetrisData';
 import type { DifficultyLevel } from '@/types';
 
 // 類型定義
@@ -23,6 +23,8 @@ interface TetrisPiece {
   y: number;
   color: string;
   meaning: string;
+  kanji?: string; // 漢字版本（可選）
+  isKanji?: boolean; // 是否為漢字方塊
 }
 
 interface TetrisSettings {
@@ -43,13 +45,21 @@ interface TetrisModeScreenProps {
 
 // 方塊形狀定義
 const TETRIS_SHAPES = {
-  I: [[1, 1, 1, 1]], // 長條
-  O: [[1, 1], [1, 1]], // 正方形
-  T: [[0, 1, 0], [1, 1, 1]], // T型
-  L: [[1, 0], [1, 0], [1, 1]], // L型
-  J: [[0, 1], [0, 1], [1, 1]], // J型
-  S: [[0, 1, 1], [1, 1, 0]], // S型
-  Z: [[1, 1, 0], [0, 1, 1]], // Z型
+  I: [[1, 1, 1, 1]], // 長條 - 4格
+  O: [[1, 1], [1, 1]], // 正方形 - 4格
+  T: [[0, 1, 0], [1, 1, 1]], // T型 - 4格
+  L: [[1, 0], [1, 0], [1, 1]], // L型 - 4格
+  J: [[0, 1], [0, 1], [1, 1]], // J型 - 4格
+  S: [[0, 1, 1], [1, 1, 0]], // S型 - 4格
+  Z: [[1, 1, 0], [0, 1, 1]], // Z型 - 4格
+  // 新增2格方塊用於漢字
+  H: [[1, 1]], // 水平2格 - 2格
+  V: [[1], [1]], // 垂直2格 - 2格
+  // 新增3格方塊用於漢字
+  I3H: [[1, 1, 1]], // 水平3格 - 3格
+  I3V: [[1], [1], [1]], // 垂直3格 - 3格
+  L3A: [[1, 0], [1, 1]], // 短L型 - 3格
+  L3B: [[0, 1], [1, 1]], // 短J型 - 3格
 };
 
 const SHAPE_NAMES = Object.keys(TETRIS_SHAPES) as Array<keyof typeof TETRIS_SHAPES>;
@@ -107,8 +117,14 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
     const shape = TETRIS_SHAPES[shapeKey];
     const charCount = getShapeCharCount(shape);
     
-    // 根據方塊大小選擇合適長度的單字
-    const word = getWordByLength(charCount, settings.difficulty, settings.wordType);
+    // 調試信息
+    console.log(`生成方塊 - 形狀: ${shapeKey}, 格數: ${charCount}, 等級: ${level}`);
+    
+    // 使用改進的隨機選擇函數
+    const word = getWordByLevelAndLength(charCount, level, settings.difficulty, settings.wordType);
+    
+    // 調試信息
+    console.log(`選擇單字:`, word);
     
     // 安全檢查：確保 word 對象有效
     if (!word || typeof word !== 'object' || !word.word || !word.kana || !word.meaning) {
@@ -149,11 +165,13 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
       word: word.word,
       kana: word.kana,
       meaning: word.meaning,
+      kanji: word.kanji,
+      isKanji: word.isKanji,
       x,
       y: 0,
       color,
     };
-  }, [settings, getShapeCharCount]);
+  }, [settings, getShapeCharCount, level]);
 
   // 檢查方塊是否可以放置在指定位置
   const canPlacePiece = useCallback((piece: TetrisPiece, newX: number, newY: number): boolean => {
@@ -229,6 +247,19 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
     }
   }, [currentPiece, gameState, canPlacePiece, placePieceOnBoard, generateRandomPiece]);
 
+  // 計算階段性加速
+  const calculateSpeedDecrease = useCallback((newLevel: number): number => {
+    // 確定當前階段 (1-5級=階段1, 6-10級=階段2, 等等)
+    const stage = Math.ceil(newLevel / 5);
+    
+    // 每個階段的加速度：階段1=1, 階段2=1.5, 階段3=2, 等等
+    const stageSpeedIncrease = stage * 0.5 + 0.5;
+    
+    console.log(`等級 ${newLevel}, 階段 ${stage}, 加速度 ${stageSpeedIncrease}`);
+    
+    return stageSpeedIncrease;
+  }, []);
+
   // 處理用戶輸入
   const handleInputChange = useCallback((text: string) => {
     setUserInput(text);
@@ -246,9 +277,17 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
       
       // 檢查是否需要升級
       const newPiecesCleared = piecesCleared + 1;
-      if (newPiecesCleared % 5 === 0) { // 每5個方塊升級一次 (原本是10個)
-        setLevel(prev => prev + 1);
-        setFallSpeed(prev => Math.max(200, prev * SPEED_INCREASE_FACTOR)); // 最低速度200ms (原本是500ms)
+      if (newPiecesCleared % 5 === 0) { // 每5個方塊升級一次
+        const newLevel = level + 1;
+        setLevel(newLevel);
+        
+        // 階段性加速
+        const speedDecrease = calculateSpeedDecrease(newLevel);
+        setFallSpeed(prev => {
+          const newSpeed = Math.max(100, prev - (speedDecrease * 50)); // 最低速度100ms
+          console.log(`速度變化: ${prev}ms -> ${newSpeed}ms (減少${speedDecrease * 50}ms)`);
+          return newSpeed;
+        });
       }
       
       // 生成新方塊
@@ -263,14 +302,14 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
         }
       }, 100);
     }
-  }, [currentPiece, level, piecesCleared, generateRandomPiece, canPlacePiece]);
+  }, [currentPiece, level, piecesCleared, generateRandomPiece, canPlacePiece, calculateSpeedDecrease]);
 
   // 開始遊戲
   const startGame = useCallback(() => {
     setGameState('playing');
     setBoard(Array(BOARD_HEIGHT).fill(null).map(() => Array(BOARD_WIDTH).fill(0)));
     setScore(0);
-    setLevel(1);
+    setLevel(5); // 暫時從第5關開始，方便測試漢字方塊
     setPiecesCleared(0);
     setFallSpeed(INITIAL_FALL_SPEED);
     setUserInput('');
@@ -373,7 +412,9 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
                     }
                   }
                   
-                  const character = currentPiece.kana[charIndex] || '';
+                  // 如果是漢字方塊，顯示漢字；否則顯示假名
+                  const displayText = currentPiece.isKanji && currentPiece.kanji ? currentPiece.kanji : currentPiece.kana;
+                  const character = displayText[charIndex] || '';
                   
                   return (
                     <View
@@ -413,7 +454,8 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
             <Text style={styles.title}>俄羅斯方塊模式</Text>
             <Text style={styles.description}>
               輸入方塊上的假名來消除方塊！{'\n'}
-              方塊會自動下落，在落地前輸入正確的假名即可消除
+              方塊會自動下落，在落地前輸入正確的假名即可消除{'\n'}
+              第5關開始出現漢字方塊，第10關出現更長的漢字方塊
             </Text>
             <View style={styles.settingsInfo}>
               <Text style={styles.settingText}>難度: {settings.difficulty}</Text>
@@ -446,9 +488,20 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
             {/* 當前單字顯示 */}
             {currentPiece && (
               <View style={styles.wordContainer}>
-                <Text style={styles.wordText}>{currentPiece.word}</Text>
-                <Text style={styles.kanaText}>({currentPiece.kana})</Text>
-                <Text style={styles.meaningText}>{currentPiece.meaning}</Text>
+                {currentPiece.isKanji ? (
+                  <>
+                    <Text style={styles.wordText}>{currentPiece.kanji}</Text>
+                    <Text style={styles.kanaText}>讀音: {currentPiece.kana}</Text>
+                    <Text style={styles.meaningText}>{currentPiece.meaning}</Text>
+                    <Text style={styles.hintText}>輸入完整讀音來消除漢字方塊</Text>
+                  </>
+                ) : (
+                  <>
+                    <Text style={styles.wordText}>{currentPiece.word}</Text>
+                    <Text style={styles.kanaText}>({currentPiece.kana})</Text>
+                    <Text style={styles.meaningText}>{currentPiece.meaning}</Text>
+                  </>
+                )}
               </View>
             )}
             
@@ -476,9 +529,19 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
             
             {/* 暫停覆蓋層 */}
             {gameState === 'paused' && (
-              <View style={styles.pauseOverlay}>
-                <Text style={styles.pauseText}>遊戲暫停</Text>
-              </View>
+              <TouchableOpacity 
+                style={styles.pauseOverlay}
+                onPress={togglePause}
+                activeOpacity={1}
+              >
+                <View style={styles.pauseContent}>
+                  <Text style={styles.pauseText}>遊戲暫停</Text>
+                  <Text style={styles.pauseHint}>點擊任意處繼續</Text>
+                  <TouchableOpacity style={styles.resumeButton} onPress={togglePause}>
+                    <Text style={styles.resumeButtonText}>繼續遊戲</Text>
+                  </TouchableOpacity>
+                </View>
+              </TouchableOpacity>
             )}
           </ScrollView>
         );
@@ -594,6 +657,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  pieceCharacter: {
+    color: '#fff',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
   wordContainer: {
     marginTop: 20,
     alignItems: 'center',
@@ -612,6 +680,12 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#999',
     marginTop: 3,
+  },
+  hintText: {
+    fontSize: 12,
+    color: '#FFD93D',
+    marginTop: 5,
+    fontStyle: 'italic',
   },
   input: {
     backgroundColor: '#fff',
@@ -648,10 +722,30 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  pauseContent: {
+    padding: 20,
+    alignItems: 'center',
+  },
   pauseText: {
     fontSize: 32,
     fontWeight: 'bold',
     color: '#fff',
+    marginBottom: 20,
+  },
+  pauseHint: {
+    fontSize: 18,
+    color: '#ccc',
+  },
+  resumeButton: {
+    backgroundColor: '#4ECDC4',
+    paddingHorizontal: 30,
+    paddingVertical: 15,
+    borderRadius: 25,
+  },
+  resumeButtonText: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: 'bold',
   },
   gameOverContainer: {
     flex: 1,
@@ -708,11 +802,6 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     backgroundColor: 'transparent',
-  },
-  pieceCharacter: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#fff',
   },
   gameScrollView: {
     flex: 1,
