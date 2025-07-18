@@ -7,6 +7,12 @@ import { generateReadingVariations, getPossibleReadings } from './multipleReadin
 import { isKanji, getKanaReading, hasKanaReading } from './kanjiToKanaMapping';
 import { validateJapaneseInput } from './japaneseInput';
 import { tokenize } from 'react-native-japanese-text-analyzer';
+import Kuromoji from '@charlescoeder/react-native-kuromoji';
+
+// 型別宣告（如無 @types）
+// @ts-ignore
+// eslint-disable-next-line
+declare module '@charlescoeder/react-native-kuromoji';
 
 // 新增：全域 tokenizer 實例（初始化後重用）
 let tokenizer: any | null = null;
@@ -385,5 +391,37 @@ export const validateInputAtPosition = (
     isComplete,
     canContinue,
     possibleChars: allPossibleChars,
+  };
+}; 
+
+export const splitTextForDisplayAsync = async (
+  displayText: string,
+  currentInputPosition: number
+): Promise<{
+  completedPart: string;
+  currentChar: string;
+  remainingPart: string;
+}> => {
+  // 取得分詞結果
+  const tokens = await Kuromoji.tokenize(displayText);
+  let inputPos = 0;
+  for (let i = 0; i < tokens.length; i++) {
+    const token = tokens[i];
+    const reading = token.reading || token.surface_form;
+    const readingLen = reading.length;
+    if (currentInputPosition < inputPos + readingLen) {
+      // 高光這個 token
+      const completedPart = tokens.slice(0, i).map((t: any) => t.surface_form).join('');
+      const currentChar = token.surface_form;
+      const remainingPart = tokens.slice(i + 1).map((t: any) => t.surface_form).join('');
+      return { completedPart, currentChar, remainingPart };
+    }
+    inputPos += readingLen;
+  }
+  // 全部完成
+  return {
+    completedPart: displayText,
+    currentChar: '',
+    remainingPart: '',
   };
 }; 
