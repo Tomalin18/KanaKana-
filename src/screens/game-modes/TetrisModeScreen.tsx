@@ -605,7 +605,7 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
                 }
               ]}
             >
-🎮 俄羅斯方塊模式 🎮
+🎯 練習模式-假名
             </Animated.Text>
                           <Text style={styles.description}>
                 ⚡ 輸入方塊上的假名來消除方塊！ ⚡{'\n'}
@@ -656,21 +656,12 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
                 }
               ]}
             >
-              <Animated.Text 
-                style={[
-                  styles.infoText,
-                  {
-                    textShadowRadius: scoreGlow.interpolate({
-                      inputRange: [0.5, 1],
-                      outputRange: [8, 15],
-                    }),
-                  }
-                ]}
-              >
-                                 🏆 分數: {score}
-               </Animated.Text>
-               <Text style={styles.infoText}>📈 等級: {level}</Text>
-               <Text style={styles.infoText}>🧩 已消除: {piecesCleared}</Text>
+              <View style={styles.infoItem}>
+                <Text style={styles.infoText}>🏆 分數: {score}</Text>
+              </View>
+              <View style={styles.infoItem}>
+                <Text style={styles.infoText}>📈 等級: {level}</Text>
+              </View>
             </Animated.View>
             
             {/* 遊戲板 */}
@@ -826,7 +817,7 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
       
       {/* 統一導航欄 */}
       <GlassNavBar
-        title="俄羅斯方塊模式"
+        title="練習模式-假名"
         leftButton={{
           text: '← 返回',
           onPress: () => navigation?.goBack(),
@@ -1254,5 +1245,8 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.8,
     shadowRadius: 3,
     elevation: 2,
+  },
+  infoItem: {
+    alignItems: 'center',
   },
 }); 

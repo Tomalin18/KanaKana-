@@ -205,7 +205,7 @@ export const GameScreen: React.FC<GameScreenProps> = ({ route, navigation }) => 
       
       {/* 統一導航欄 */}
       <GlassNavBar
-        title={mode === 'classic' ? '經典模式' : '其他模式'}
+        title={mode === 'classic' ? '練習模式-假名' : '其他模式'}
         leftButton={{
           text: '← 返回',
           onPress: backToMenu,
@@ -425,7 +425,7 @@ const GameStartScreen: React.FC<GameStartScreenProps> = ({ onStart, mode, settin
         style={styles.startContainer}
       >
         <Text style={styles.gameModeTitle}>
-          {mode === 'classic' ? '🎯 經典模式' : '其他模式'}
+          {mode === 'classic' ? '🎯 練習模式-假名' : '其他模式'}
         </Text>
         <Text style={styles.instructions}>
           輸入日文假名來完成單詞！{'\n'}

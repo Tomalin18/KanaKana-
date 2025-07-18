@@ -133,22 +133,10 @@ export const LongTextModeScreen: React.FC<LongTextModeScreenProps> = ({ route, n
     // 獲取目標字符用於調試
     const targetChar = getTargetCharAtPosition(textMapping, currentPosition);
     
-    // 添加調試日誌
-    console.log(`[長文模式調試] 輸入: "${text}", 目標: "${targetChar}"`);
-
     // 使用新的驗證系統（支援多讀音和三段式輸入）
     const validation = validateInputAtPosition(textMapping, text, currentPosition);
     
-    // 詳細的調試信息
-    console.log(`[長文模式調試] 驗證結果:`, {
-      isValid: validation.isValid,
-      isComplete: validation.isComplete,
-      canContinue: validation.canContinue,
-      possibleChars: validation.possibleChars
-    });
-    
     if (validation.isComplete) {
-      console.log(`[長文模式調試] ✅ 字符完成，移動到下一個位置`);
       // 當前字符輸入完成，移動到下一個字符
       const newPosition = currentPosition + 1;
       setCurrentPosition(newPosition);
@@ -167,7 +155,6 @@ export const LongTextModeScreen: React.FC<LongTextModeScreenProps> = ({ route, n
         endGame();
       }
     } else if (!validation.canContinue && text.length > 0) {
-      console.log(`[長文模式調試] ❌ 輸入錯誤，扣分`);
       // 只有在確實無法繼續時才視為錯誤
       // 這樣可以支援三段式輸入（は→ば→ぱ）
       setCombo(0);
@@ -178,8 +165,6 @@ export const LongTextModeScreen: React.FC<LongTextModeScreenProps> = ({ route, n
       if (lives <= 1) {
         endGame();
       }
-    } else {
-      console.log(`[長文模式調試] ⏳ 允許繼續輸入`);
     }
     // 如果 validation.canContinue 為 true，保持當前輸入狀態，允許繼續輸入
   }, [currentText, textMapping, currentPosition, combo, lives, gameState]);
@@ -700,7 +685,7 @@ const styles = StyleSheet.create({
     paddingBottom: Spacing.lg,
   },
   textContentContainer: {
-    backgroundColor: 'white',
+    backgroundColor: TechTheme.surface,
     borderRadius: 12,
     padding: Spacing.lg,
     flex: 1,
@@ -724,6 +709,7 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     width: '100%',
     flexWrap: 'wrap',
+    color: TechTheme.text,
   },
   // 行文字樣式
   lineText: {
@@ -738,8 +724,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(34, 197, 94, 0.1)',
   },
   currentChar: {
-    backgroundColor: TechTheme.accent,
-    color: 'white',
+    backgroundColor: TechColors.neonBlue,
+    color: '#fff',
   },
   remainingText: {
     color: TechTheme.textSecondary,
