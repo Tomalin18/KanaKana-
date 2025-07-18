@@ -6,6 +6,25 @@
 import { generateReadingVariations, getPossibleReadings } from './multipleReadings';
 import { isKanji, getKanaReading, hasKanaReading } from './kanjiToKanaMapping';
 import { validateJapaneseInput } from './japaneseInput';
+import kuromoji from 'kuromoji';
+
+// 新增：全域 tokenizer 實例（初始化後重用）
+let tokenizer: kuromoji.Tokenizer<kuromoji.IpadicFeatures> | null = null;
+let tokenizerReady: Promise<void> | null = null;
+
+export const initKuromoji = async () => {
+  if (tokenizer) return;
+  if (!tokenizerReady) {
+    tokenizerReady = new Promise((resolve, reject) => {
+      kuromoji.builder({ dicPath: 'node_modules/kuromoji/dict/' }).build((err: Error | null, _tokenizer: kuromoji.Tokenizer<kuromoji.IpadicFeatures>) => {
+        if (err) reject(err);
+        tokenizer = _tokenizer;
+        resolve();
+      });
+    });
+  }
+  await tokenizerReady;
+};
 
 /**
  * 字符映射信息
@@ -198,74 +217,100 @@ export const getTargetCharAtPosition = (mapping: TextMapping, inputPosition: num
  * 分割文本用於顯示（基於輸入進度）
  */
 export const splitTextForDisplay = (
-  mapping: TextMapping, 
+  mapping: TextMapping,
   currentInputPosition: number
 ): {
   completedPart: string;
   currentChar: string;
   remainingPart: string;
 } => {
-  // 找到當前輸入位置對應的顯示字符
-  const currentMapping = mapping.mappings.find(m => m.inputIndex === currentInputPosition);
-  if (!currentMapping) {
-    // 已完成所有輸入
+  // --- 新增：用 kuromoji 斷詞 ---
+  if (!tokenizer) {
+    // fallback: 沒初始化時用原本邏輯
+    // 找到當前輸入位置對應的顯示字符
+    const currentMapping = mapping.mappings.find(m => m.inputIndex === currentInputPosition);
+    if (!currentMapping) {
+      // 已完成所有輸入
+      return {
+        completedPart: mapping.displayText,
+        currentChar: '',
+        remainingPart: '',
+      };
+    }
+    const displayPosition = currentMapping.displayIndex;
+    const currentDisplayChar = currentMapping.displayChar;
+
+    // --- 新增：複合詞整體高光（含漢字+假名）---
+    if (currentMapping.kanjiWord && currentMapping.kanjiWord.length > 1) {
+      // 找到這個詞的所有 mapping（不論 isKanji）
+      const word = currentMapping.kanjiWord;
+      const wordMappings = mapping.mappings.filter(m => m.kanjiWord === word);
+      const minInput = Math.min(...wordMappings.map(m => m.inputIndex));
+      const maxInput = Math.max(...wordMappings.map(m => m.inputIndex));
+      const wordStart = wordMappings[0].displayIndex;
+      const wordEnd = wordMappings[wordMappings.length - 1].displayIndex;
+      if (currentInputPosition >= minInput && currentInputPosition <= maxInput) {
+        return {
+          completedPart: mapping.displayText.substring(0, wordStart),
+          currentChar: mapping.displayText.substring(wordStart, wordEnd + 1),
+          remainingPart: mapping.displayText.substring(wordEnd + 1),
+        };
+      } else {
+        return {
+          completedPart: mapping.displayText.substring(0, wordEnd + 1),
+          currentChar: '',
+          remainingPart: mapping.displayText.substring(wordEnd + 1),
+        };
+      }
+    }
+    // --- 單個漢字高光（原本邏輯）---
+    if (currentMapping.isKanji) {
+      const kanjiMappings = mapping.mappings.filter(m => 
+        m.displayIndex === displayPosition && m.isKanji
+      );
+      const isStillInputtingKanji = kanjiMappings.some(m => m.inputIndex >= currentInputPosition);
+      if (isStillInputtingKanji) {
+        return {
+          completedPart: mapping.displayText.substring(0, displayPosition),
+          currentChar: currentDisplayChar,
+          remainingPart: mapping.displayText.substring(displayPosition + 1),
+        };
+      } else {
+        return {
+          completedPart: mapping.displayText.substring(0, displayPosition + 1),
+          currentChar: '',
+          remainingPart: mapping.displayText.substring(displayPosition + 1),
+        };
+      }
+    }
+    // --- 假名/標點 ---
     return {
-      completedPart: mapping.displayText,
-      currentChar: '',
-      remainingPart: '',
+      completedPart: mapping.displayText.substring(0, displayPosition),
+      currentChar: currentDisplayChar,
+      remainingPart: mapping.displayText.substring(displayPosition + 1),
     };
   }
-  const displayPosition = currentMapping.displayIndex;
-  const currentDisplayChar = currentMapping.displayChar;
-
-  // --- 新增：複合詞整體高光（含漢字+假名）---
-  if (currentMapping.kanjiWord && currentMapping.kanjiWord.length > 1) {
-    // 找到這個詞的所有 mapping（不論 isKanji）
-    const word = currentMapping.kanjiWord;
-    const wordMappings = mapping.mappings.filter(m => m.kanjiWord === word);
-    const minInput = Math.min(...wordMappings.map(m => m.inputIndex));
-    const maxInput = Math.max(...wordMappings.map(m => m.inputIndex));
-    const wordStart = wordMappings[0].displayIndex;
-    const wordEnd = wordMappings[wordMappings.length - 1].displayIndex;
-    if (currentInputPosition >= minInput && currentInputPosition <= maxInput) {
-      return {
-        completedPart: mapping.displayText.substring(0, wordStart),
-        currentChar: mapping.displayText.substring(wordStart, wordEnd + 1),
-        remainingPart: mapping.displayText.substring(wordEnd + 1),
-      };
-    } else {
-      return {
-        completedPart: mapping.displayText.substring(0, wordEnd + 1),
-        currentChar: '',
-        remainingPart: mapping.displayText.substring(wordEnd + 1),
-      };
+  // 取得分詞結果
+  const tokens = tokenizer.tokenize(mapping.displayText);
+  let inputPos = 0;
+  for (let i = 0; i < tokens.length; i++) {
+    const token = tokens[i];
+    const reading = token.reading || token.surface_form;
+    const readingLen = reading.length;
+    if (currentInputPosition < inputPos + readingLen) {
+      // 高光這個 token
+      const completedPart = tokens.slice(0, i).map((t: kuromoji.IpadicFeatures) => t.surface_form).join('');
+      const currentChar = token.surface_form;
+      const remainingPart = tokens.slice(i + 1).map((t: kuromoji.IpadicFeatures) => t.surface_form).join('');
+      return { completedPart, currentChar, remainingPart };
     }
+    inputPos += readingLen;
   }
-  // --- 單個漢字高光（原本邏輯）---
-  if (currentMapping.isKanji) {
-    const kanjiMappings = mapping.mappings.filter(m => 
-      m.displayIndex === displayPosition && m.isKanji
-    );
-    const isStillInputtingKanji = kanjiMappings.some(m => m.inputIndex >= currentInputPosition);
-    if (isStillInputtingKanji) {
-      return {
-        completedPart: mapping.displayText.substring(0, displayPosition),
-        currentChar: currentDisplayChar,
-        remainingPart: mapping.displayText.substring(displayPosition + 1),
-      };
-    } else {
-      return {
-        completedPart: mapping.displayText.substring(0, displayPosition + 1),
-        currentChar: '',
-        remainingPart: mapping.displayText.substring(displayPosition + 1),
-      };
-    }
-  }
-  // --- 假名/標點 ---
+  // 全部完成
   return {
-    completedPart: mapping.displayText.substring(0, displayPosition),
-    currentChar: currentDisplayChar,
-    remainingPart: mapping.displayText.substring(displayPosition + 1),
+    completedPart: mapping.displayText,
+    currentChar: '',
+    remainingPart: '',
   };
 };
 
