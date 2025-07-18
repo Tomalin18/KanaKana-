@@ -141,7 +141,7 @@ Expo CLI >= 6.0.0
 ```bash
 # 1. 克隆項目
 git clone https://github.com/Tomalin18/Kana-Tower.git
-cd kana-tower
+cd Kana Tower
 
 # 2. 安裝依賴項
 npm install
