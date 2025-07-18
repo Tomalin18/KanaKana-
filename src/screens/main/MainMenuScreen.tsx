@@ -109,9 +109,10 @@ export const MainMenuScreen: React.FC<Props> = ({ navigation }) => {
 
           {/* 遊戲模式選擇 - 科技卡片設計 */}
           <View style={styles.modesContainer}>
+            {/* 經典模式按鈕 */}
             <GameModeButton
-              title="經典模式"
-              subtitle="CLASSIC MODE"
+              title="練習模式-假名"
+              subtitle="PRACTICE - KANA"
               description="挑戰你的極限，看看能打多少字！"
               emoji="🎯"
               onPress={() => handleGameModePress('classic')}
@@ -121,10 +122,10 @@ export const MainMenuScreen: React.FC<Props> = ({ navigation }) => {
             {/* 新遊戲模式 */}
             {isFeatureEnabled('KANJI_MODE') && (
               <GameModeButton
-                title="漢字模式"
-                subtitle="KANJI MODE"
+                title="練習模式-漢字"
+                subtitle="PRACTICE - KANJI"
                 description="看漢字輸入假名，提升漢字讀音能力！"
-                emoji="🈴"
+                emoji="🈯"
                 onPress={() => handleGameModePress('kanji_to_kana')}
                 isNew
               />

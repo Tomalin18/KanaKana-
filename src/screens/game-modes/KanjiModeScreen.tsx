@@ -70,17 +70,7 @@ export const KanjiModeScreen: React.FC<KanjiModeScreenProps> = ({ route, navigat
     const level = settings.difficultyLevel.replace('jlpt_', '') as 'n5' | 'n4' | 'n3' | 'n2' | 'n1';
     const newWord = getRandomKanjiWord(level);
     setCurrentWord(newWord);
-    setShowMeaning(false);
     setShowHint(false);
-    
-    // 根據設定決定是否延遲顯示提示
-    if (settings.hintDelay > 0) {
-      setTimeout(() => {
-        setShowMeaning(settings.showMeaning);
-      }, settings.hintDelay * 1000);
-    } else {
-      setShowMeaning(settings.showMeaning);
-    }
   }, [settings]);
 
   // 遊戲開始
@@ -197,7 +187,6 @@ export const KanjiModeScreen: React.FC<KanjiModeScreenProps> = ({ route, navigat
               onShowHint={showHintHandler}
               isPaused={gameState === 'paused'}
               score={score}
-              combo={combo}
               lives={lives}
               gameTime={gameTime}
               showMeaning={showMeaning}
@@ -233,7 +222,7 @@ export const KanjiModeScreen: React.FC<KanjiModeScreenProps> = ({ route, navigat
       
       {/* 統一導航欄 */}
       <GlassNavBar
-        title="漢字模式"
+        title="練習模式-漢字"
         leftButton={{
           text: '← 返回',
           onPress: goBackToMenu,
@@ -319,7 +308,7 @@ const KanjiGameStartScreen: React.FC<KanjiGameStartScreenProps> = ({ onStart, se
         neonBorder={true}
         style={styles.startContainer}
       >
-        <Text style={styles.gameModeTitle}>🈯 漢字模式</Text>
+        <Text style={styles.gameModeTitle}>🈯 練習模式-漢字</Text>
         <Text style={styles.instructions}>
           看漢字，輸入對應的{settings.readingType === 'hiragana' ? '平假名' : 
                             settings.readingType === 'katakana' ? '片假名' : '假名'}讀音！
@@ -362,7 +351,6 @@ interface KanjiGamePlayScreenProps {
   onShowHint: () => void;
   isPaused: boolean;
   score: number;
-  combo: number;
   lives: number;
   gameTime: number;
   showMeaning: boolean;
@@ -377,7 +365,6 @@ const KanjiGamePlayScreen: React.FC<KanjiGamePlayScreenProps> = ({
   onShowHint,
   isPaused,
   score,
-  combo,
   lives,
   gameTime,
   showMeaning,
@@ -385,97 +372,75 @@ const KanjiGamePlayScreen: React.FC<KanjiGamePlayScreenProps> = ({
   settings,
 }) => (
   <View style={styles.gameContainer}>
-    {/* 上方區域 - 題目泡泡和輸入 */}
-    <View style={styles.topSection}>
-      <FloatingParticles />
-      
-      {/* 題目泡泡 */}
-      <View style={styles.bubbleContainer}>
-        <FloatingBubble 
-          bubbleSize={calculateBubbleSize(currentWord?.kanji || '')}
-          style={styles.questionBubble}
-        >
-          <View style={[
-            styles.bubble,
-            { 
-              width: calculateBubbleSize(currentWord?.kanji || ''),
-              height: calculateBubbleSize(currentWord?.kanji || ''),
-            }
+    {/* 統計資訊（最上方，經典模式風格） */}
+    <View style={styles.gameInfo}>
+      <View style={styles.infoItem}>
+        <Text style={styles.infoText}>🏆 分數: {score}</Text>
+      </View>
+      <View style={styles.infoItem}>
+        <Text style={styles.infoText}>❤️ 生命: {lives}</Text>
+      </View>
+      <View style={styles.infoItem}>
+        <Text style={styles.infoText}>⏰ 時間: {Math.floor(gameTime / 60)}:{(gameTime % 60).toString().padStart(2, '0')}</Text>
+      </View>
+    </View>
+    {/* 提示按鈕（統計資訊下方靠右，避免被鍵盤擋住） */}
+    <View style={styles.hintButtonRow}>
+      <View style={{flex:1}} />
+      <Pressable 
+        style={({ pressed }) => [
+          styles.hintButton,
+          pressed && styles.buttonPressed,
+        ]} 
+        onPress={onShowHint}
+      >
+        <Text style={styles.hintButtonText}>💡 提示</Text>
+      </Pressable>
+    </View>
+    {/* 題目泡泡（中間） */}
+    <View style={styles.bubbleContainer}>
+      <FloatingBubble 
+        bubbleSize={calculateBubbleSize(currentWord?.kanji || '')}
+        style={styles.questionBubble}
+      >
+        <View style={[
+          styles.bubble,
+          { 
+            width: calculateBubbleSize(currentWord?.kanji || ''),
+            height: calculateBubbleSize(currentWord?.kanji || ''),
+          }
+        ]}>
+          <Text style={[
+            styles.bubbleText,
+            { fontSize: calculateFontSize(currentWord?.kanji || '') }
           ]}>
-            <Text style={[
-              styles.bubbleText,
-              { fontSize: calculateFontSize(currentWord?.kanji || '') }
-            ]}>
-              {currentWord?.kanji}
+            {currentWord?.kanji}
+          </Text>
+          {showHint && (
+            <Text style={styles.bubbleMeaning}>{currentWord?.meaning}</Text>
+          )}
+          {showHint && (
+            <Text style={styles.bubbleHint}>
+              {settings.readingType === 'hiragana' ? currentWord?.hiragana : 
+               settings.readingType === 'katakana' && currentWord?.katakana ? currentWord.katakana :
+               `${currentWord?.hiragana} / ${currentWord?.katakana || ''}`}
             </Text>
-            {showMeaning && (
-              <Text style={styles.bubbleMeaning}>{currentWord?.meaning}</Text>
-            )}
-            {showHint && (
-              <Text style={styles.bubbleHint}>
-                {settings.readingType === 'hiragana' ? currentWord?.hiragana : 
-                 settings.readingType === 'katakana' && currentWord?.katakana ? currentWord.katakana :
-                 `${currentWord?.hiragana} / ${currentWord?.katakana || ''}`}
-              </Text>
-            )}
-          </View>
-        </FloatingBubble>
-      </View>
-      
-      {/* 輸入區域 */}
-      <View style={styles.inputSection}>
-        <GlassContainer variant="secondary" style={styles.inputContainer}>
-          <TextInput
-            style={styles.input}
-            value={userInput}
-            onChangeText={onInputChange}
-            placeholder="輸入假名讀音..."
-            placeholderTextColor={TechColors.neonBlue + '60'}
-            autoFocus
-            editable={!isPaused}
-            textAlign="center"
-            numberOfLines={1}
-          />
-        </GlassContainer>
-      </View>
-    </View>
-    
-    {/* 下方區域 - 統計信息和控制 */}
-    <View style={styles.bottomSection}>
-      <GlassContainer variant="accent" style={styles.statsContainer}>
-        <View style={styles.gameStats}>
-          <View style={styles.statItem}>
-            <Text style={styles.statLabel}>分數</Text>
-            <Text style={styles.statValue}>{score}</Text>
-          </View>
-          <View style={styles.statItem}>
-            <Text style={styles.statLabel}>連擊</Text>
-            <Text style={styles.statValue}>{combo}</Text>
-          </View>
-          <View style={styles.statItem}>
-            <Text style={styles.statLabel}>生命</Text>
-            <Text style={styles.statValue}>❤️ {lives}</Text>
-          </View>
-          <View style={styles.statItem}>
-            <Text style={styles.statLabel}>時間</Text>
-            <Text style={styles.statValue}>{Math.floor(gameTime / 60)}:{(gameTime % 60).toString().padStart(2, '0')}</Text>
-          </View>
+          )}
         </View>
-      </GlassContainer>
-      
-      {/* 控制按鈕 */}
-      <View style={styles.controlsContainer}>
-        <Pressable 
-          style={({ pressed }) => [
-            styles.controlButton,
-            pressed && styles.buttonPressed,
-          ]} 
-          onPress={onShowHint}
-        >
-          <Text style={styles.controlButtonText}>💡 提示</Text>
-        </Pressable>
-      </View>
+      </FloatingBubble>
     </View>
+    {/* 輸入區（題目下方，經典模式風格） */}
+    <TextInput
+      style={styles.input}
+      value={userInput}
+      onChangeText={onInputChange}
+      placeholder="輸入假名讀音..."
+      placeholderTextColor={TechColors.neonBlue + '60'}
+      autoFocus
+      editable={!isPaused}
+      textAlign="center"
+      numberOfLines={1}
+    />
   </View>
 );
 
@@ -643,13 +608,26 @@ const styles = StyleSheet.create({
     paddingHorizontal: Spacing.lg,
   },
   
+  // 保留新版 input 樣式（經典模式風格）
   input: {
-    fontSize: Typography.sizes.ui.title,
-    color: TechColors.neonBlue,
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    borderRadius: 15,
+    paddingHorizontal: 25,
+    paddingVertical: 18,
+    fontSize: 20,
+    marginTop: 18,
+    width: '85%',
+    alignSelf: 'center',
     textAlign: 'center',
-    paddingVertical: Spacing.md,
-    paddingHorizontal: Spacing.lg,
-    minHeight: 50,
+    color: '#ffffff',
+    borderWidth: 2,
+    borderColor: 'rgba(0, 255, 255, 0.5)',
+    shadowColor: '#00ffff',
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.3,
+    shadowRadius: 10,
+    elevation: 5,
+    fontWeight: '600',
   },
   
   // 統計區域
@@ -877,6 +855,64 @@ const styles = StyleSheet.create({
     fontSize: Typography.sizes.ui.body,
     fontWeight: '600',
     textAlign: 'center',
+  },
+  gameInfo: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: '100%',
+    marginBottom: 10,
+    backgroundColor: 'rgba(0, 255, 255, 0.1)',
+    padding: 12,
+    borderRadius: 15,
+    borderWidth: 1,
+    borderColor: 'rgba(0, 255, 255, 0.3)',
+    // flexWrap: 'wrap', // 移除換行
+  },
+  infoItem: {
+    flex: 1,
+    minWidth: 0,
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginHorizontal: 2,
+  },
+  infoText: {
+    color: '#00ffff',
+    fontSize: 13,
+    fontWeight: '700',
+    textShadowColor: '#00ffff',
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 8,
+    marginLeft: 4,
+  },
+  hintButtonRow: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    width: '100%',
+    marginBottom: 8,
+  },
+  hintButton: {
+    backgroundColor: 'rgba(0, 255, 255, 0.15)',
+    paddingHorizontal: 18,
+    paddingVertical: 8,
+    borderRadius: 16,
+    borderWidth: 1.5,
+    borderColor: '#00ffff',
+    shadowColor: '#00ffff',
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.4,
+    shadowRadius: 8,
+    elevation: 5,
+  },
+  hintButtonText: {
+    color: '#00ffff',
+    fontSize: 15,
+    fontWeight: '700',
+    textShadowColor: '#00ffff',
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 5,
   },
 });
 
