@@ -9,6 +9,8 @@ import {
   Alert,
   ScrollView,
   Animated,
+  KeyboardAvoidingView,
+  Platform,
 } from 'react-native';
 import { getRandomWordImproved, getWordByLength, getWordByLevelAndLength, type TetrisWord } from '@/data/tetrisData';
 import { GlassNavBar } from '@/components/common/GlassNavBar';
@@ -114,6 +116,15 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
 
   // 定時器引用
   const fallTimerRef = useRef<NodeJS.Timeout | null>(null);
+
+  // 當題目（currentPiece）id 變動時，自動清空輸入框
+  const prevPieceId = useRef<string | null>(null);
+  useEffect(() => {
+    if (currentPiece && currentPiece.id !== prevPieceId.current) {
+      setUserInput('');
+      prevPieceId.current = currentPiece.id;
+    }
+  }, [currentPiece]);
 
   // 根據背景色計算最佳文字顏色
   const getTextColorForBackground = useCallback((backgroundColor: string): string => {
@@ -366,8 +377,8 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
     // 確定當前階段 (1-5級=階段1, 6-10級=階段2, 等等)
     const stage = Math.ceil(newLevel / 5);
     
-    // 每個階段的加速度：階段1=1, 階段2=1.5, 階段3=2, 等等
-    const stageSpeedIncrease = stage * 0.5 + 0.5;
+    // 每個階段的加速度：階段1=0.6, 階段2=0.9, 階段3=1.2, 等等 (調低加速度)
+    const stageSpeedIncrease = stage * 0.3 + 0.3;
     
     console.log(`等級 ${newLevel}, 階段 ${stage}, 加速度 ${stageSpeedIncrease}`);
     
@@ -468,125 +479,141 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
   // 渲染遊戲板
   const renderBoard = () => {
     const screenWidth = Dimensions.get('window').width;
-    const screenHeight = Dimensions.get('window').height;
     const availableWidth = screenWidth - 40; // 減去 padding
-    const availableHeight = screenHeight * 0.5; // 使用螢幕高度的50%
-    
-    // 根據可用空間計算最適合的格子大小
-    const cellSizeByWidth = availableWidth / BOARD_WIDTH;
-    const cellSizeByHeight = availableHeight / BOARD_HEIGHT;
-    const cellSize = Math.min(cellSizeByWidth, cellSizeByHeight, 25); // 最大25px
-    
+    const availableHeight = 340; // 固定高度，避免被鍵盤遮住
+    // 預留邊框厚度
+    const borderThickness = 6;
+    const cellSizeByWidth = (availableWidth - borderThickness * 2) / BOARD_WIDTH;
+    const cellSizeByHeight = (availableHeight - borderThickness * 2) / BOARD_HEIGHT;
+    const cellSize = Math.min(cellSizeByWidth, cellSizeByHeight, 25);
+    const boardWidth = cellSize * BOARD_WIDTH;
+    const boardHeight = cellSize * BOARD_HEIGHT;
     return (
-      <View style={[styles.board, { 
-        width: cellSize * BOARD_WIDTH, 
-        height: cellSize * BOARD_HEIGHT,
-        marginVertical: 10
-      }]}>
-        {board.map((row, rowIndex) =>
-          row.map((cell, colIndex) => (
-            <View
-              key={`${rowIndex}-${colIndex}`}
-              style={[
-                styles.cell,
-                {
-                  left: colIndex * cellSize,
-                  top: rowIndex * cellSize,
-                  width: cellSize,
-                  height: cellSize,
-                  backgroundColor: cell === 1 ? 'rgba(0, 255, 255, 0.4)' : 'rgba(0, 255, 255, 0.02)',
-                  borderColor: cell === 1 ? 'rgba(0, 255, 255, 0.8)' : 'rgba(0, 255, 255, 0.15)',
-                  borderWidth: cell === 1 ? 2 : 0.5,
-                  shadowColor: cell === 1 ? '#00ffff' : 'transparent',
-                  shadowOffset: { width: 0, height: 0 },
-                  shadowOpacity: cell === 1 ? 0.6 : 0,
-                  shadowRadius: cell === 1 ? 8 : 0,
-                  elevation: cell === 1 ? 5 : 0,
-                }
-              ]}
-            />
-          ))
-        )}
-        
-        {/* 渲染當前下落的方塊 */}
-        {currentPiece && (
-          <View style={styles.fallingPiece}>
-            {/* 方塊背景和文字 */}
-            {currentPiece.shape.map((row, rowIndex) =>
-              row.map((cell, colIndex) => {
-                if (cell === 1) {
-                  const x = (currentPiece.x + colIndex) * cellSize;
-                  const y = (currentPiece.y + rowIndex) * cellSize;
-                  
-                  // 計算當前格子應該顯示的字符
-                  let charIndex = 0;
-                  for (let r = 0; r < rowIndex; r++) {
-                    for (let c = 0; c < currentPiece.shape[r].length; c++) {
-                      if (currentPiece.shape[r][c] === 1) {
+      <View style={{
+        borderWidth: borderThickness,
+        borderColor: '#00ffff',
+        borderRadius: 12,
+        shadowColor: '#00ffff',
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 0.6,
+        shadowRadius: 25,
+        elevation: 15,
+        backgroundColor: 'rgba(0,0,0,0.8)',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginVertical: 10,
+        width: boardWidth + borderThickness * 2,
+        height: boardHeight + borderThickness * 2,
+      }}>
+        <View style={{
+          width: boardWidth,
+          height: boardHeight,
+          position: 'relative',
+          backgroundColor: 'rgba(0,0,0,0.8)',
+          borderRadius: 6,
+          overflow: 'hidden',
+        }}>
+          {board.map((row, rowIndex) =>
+            row.map((cell, colIndex) => (
+              <View
+                key={`${rowIndex}-${colIndex}`}
+                style={[
+                  styles.cell,
+                  {
+                    left: colIndex * cellSize,
+                    top: rowIndex * cellSize,
+                    width: cellSize,
+                    height: cellSize,
+                    backgroundColor: cell === 1 ? 'rgba(0, 255, 255, 0.4)' : 'rgba(0, 255, 255, 0.02)',
+                    borderColor: cell === 1 ? 'rgba(0, 255, 255, 0.8)' : 'rgba(0, 255, 255, 0.15)',
+                    borderWidth: cell === 1 ? 2 : 0.5,
+                    shadowColor: cell === 1 ? '#00ffff' : 'transparent',
+                    shadowOffset: { width: 0, height: 0 },
+                    shadowOpacity: cell === 1 ? 0.6 : 0,
+                    shadowRadius: cell === 1 ? 8 : 0,
+                    elevation: cell === 1 ? 5 : 0,
+                  }
+                ]}
+              />
+            ))
+          )}
+          {/* 渲染當前下落的方塊 */}
+          {currentPiece && (
+            <View style={styles.fallingPiece}>
+              {/* 方塊背景和文字 */}
+              {currentPiece.shape.map((row, rowIndex) =>
+                row.map((cell, colIndex) => {
+                  if (cell === 1) {
+                    const x = (currentPiece.x + colIndex) * cellSize;
+                    const y = (currentPiece.y + rowIndex) * cellSize;
+                    // 計算當前格子應該顯示的字符
+                    let charIndex = 0;
+                    for (let r = 0; r < rowIndex; r++) {
+                      for (let c = 0; c < currentPiece.shape[r].length; c++) {
+                        if (currentPiece.shape[r][c] === 1) {
+                          charIndex++;
+                        }
+                      }
+                    }
+                    for (let c = 0; c < colIndex; c++) {
+                      if (currentPiece.shape[rowIndex][c] === 1) {
                         charIndex++;
                       }
                     }
+                    // 如果是漢字方塊，顯示漢字；否則顯示假名
+                    const displayText = currentPiece.isKanji && currentPiece.kanji ? currentPiece.kanji : currentPiece.kana;
+                    const character = displayText[charIndex] || '';
+                    return (
+                      <Animated.View
+                        key={`piece-${rowIndex}-${colIndex}`}
+                        style={[
+                          styles.pieceCell,
+                          {
+                            left: x,
+                            top: y,
+                            width: cellSize,
+                            height: cellSize,
+                            backgroundColor: currentPiece.color,
+                            shadowColor: currentPiece.color,
+                            shadowOffset: { width: 0, height: 0 },
+                            shadowOpacity: pieceGlow.interpolate({
+                              inputRange: [0, 1],
+                              outputRange: [0.6, 1],
+                            }),
+                            shadowRadius: pieceGlow.interpolate({
+                              inputRange: [0, 1],
+                              outputRange: [cellSize * 0.3, cellSize * 0.5],
+                            }),
+                            elevation: 12,
+                            borderColor: currentPiece.color,
+                            borderWidth: 2,
+                          }
+                        ]}
+                      >
+                        <Animated.Text style={[
+                          styles.pieceCharacter, 
+                          { 
+                            fontSize: Math.min(cellSize * 0.6, 16),
+                            color: getTextColorForBackground(currentPiece.color),
+                            textShadowColor: getTextColorForBackground(currentPiece.color) === '#000000' ? '#ffffff' : '#000000',
+                            textShadowOffset: { width: 0, height: 0 },
+                            textShadowRadius: pieceGlow.interpolate({
+                              inputRange: [0, 1],
+                              outputRange: [8, 15],
+                            }),
+                          }
+                        ]}>
+                          {character}
+                        </Animated.Text>
+                      </Animated.View>
+                    );
                   }
-                  for (let c = 0; c < colIndex; c++) {
-                    if (currentPiece.shape[rowIndex][c] === 1) {
-                      charIndex++;
-                    }
-                  }
-                  
-                  // 如果是漢字方塊，顯示漢字；否則顯示假名
-                  const displayText = currentPiece.isKanji && currentPiece.kanji ? currentPiece.kanji : currentPiece.kana;
-                  const character = displayText[charIndex] || '';
-                  
-                  return (
-                    <Animated.View
-                      key={`piece-${rowIndex}-${colIndex}`}
-                      style={[
-                        styles.pieceCell,
-                        {
-                          left: x,
-                          top: y,
-                          width: cellSize,
-                          height: cellSize,
-                          backgroundColor: currentPiece.color,
-                          shadowColor: currentPiece.color,
-                          shadowOffset: { width: 0, height: 0 },
-                          shadowOpacity: pieceGlow.interpolate({
-                            inputRange: [0, 1],
-                            outputRange: [0.6, 1],
-                          }),
-                          shadowRadius: pieceGlow.interpolate({
-                            inputRange: [0, 1],
-                            outputRange: [cellSize * 0.3, cellSize * 0.5],
-                          }),
-                          elevation: 12,
-                          borderColor: currentPiece.color,
-                          borderWidth: 2,
-                        }
-                      ]}
-                    >
-                      <Animated.Text style={[
-                        styles.pieceCharacter, 
-                        { 
-                          fontSize: Math.min(cellSize * 0.6, 16),
-                          color: getTextColorForBackground(currentPiece.color),
-                          textShadowColor: getTextColorForBackground(currentPiece.color) === '#000000' ? '#ffffff' : '#000000',
-                          textShadowOffset: { width: 0, height: 0 },
-                          textShadowRadius: pieceGlow.interpolate({
-                            inputRange: [0, 1],
-                            outputRange: [8, 15],
-                          }),
-                        }
-                      ]}>
-                        {character}
-                      </Animated.Text>
-                    </Animated.View>
-                  );
-                }
-                return null;
-              })
-            )}
-          </View>
-        )}
+                  return null;
+                })
+              )}
+            </View>
+          )}
+        </View>
       </View>
     );
   };
@@ -605,12 +632,12 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
                 }
               ]}
             >
-🎯 練習模式-假名
+🎯 Tetris Mode
             </Animated.Text>
                           <Text style={styles.description}>
-                ⚡ 輸入方塊上的假名來消除方塊！ ⚡{'\n'}
-                🎯 方塊會自動下落，在落地前輸入正確的假名即可消除 🎯{'\n'}
-                🔥 第5關開始出現漢字方塊，第10關出現更長的漢字方塊 🔥
+                ⚡ Type the romaji or kana shown on the falling blocks to clear them! ⚡{'\n'}
+                🎯 Blocks will fall automatically. Type the correct answer before they land to clear them. 🎯{'\n'}
+                🔥 Kanji blocks appear from level 5, and longer kanji words from level 10. 🔥
               </Text>
             <View style={styles.settingsInfo}>
                               <Text style={styles.settingText}>⚙️ 難度: {settings.difficulty}</Text>
@@ -642,112 +669,65 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
       case 'playing':
       case 'paused':
         return (
-          <ScrollView 
-            style={styles.gameScrollView}
-            contentContainerStyle={styles.gameContainer}
-            showsVerticalScrollIndicator={false}
-          >
-            {/* 遊戲信息 */}
-            <Animated.View 
-              style={[
-                styles.gameInfo,
-                {
-                  shadowOpacity: scoreGlow,
-                }
-              ]}
-            >
-              <View style={styles.infoItem}>
-                <Text style={styles.infoText}>🏆 分數: {score}</Text>
+          <View style={{ flex: 1 }}>
+            {/* 主內容：左右分佈，固定在上方 */}
+            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'center', paddingHorizontal: 10 }}>
+              {/* 左側：方塊堆疊區 */}
+              <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+                {renderBoard()}
               </View>
-              <View style={styles.infoItem}>
-                <Text style={styles.infoText}>📈 等級: {level}</Text>
-              </View>
-            </Animated.View>
-            
-            {/* 遊戲板 */}
-            {renderBoard()}
-            
-            {/* 當前單字顯示 */}
-            {currentPiece && (
-              <View style={styles.wordContainer}>
-                {currentPiece.isKanji ? (
-                  <>
-                    <Text style={styles.wordText}>{currentPiece.kanji}</Text>
-                    <Text style={styles.kanaText}>讀音: {currentPiece.kana}</Text>
-                    <Text style={styles.meaningText}>{currentPiece.meaning}</Text>
-                    <Text style={styles.hintText}>輸入完整讀音來消除漢字方塊</Text>
-                  </>
-                ) : (
-                  <>
-                    <Text style={styles.wordText}>{currentPiece.word}</Text>
-                    <Text style={styles.kanaText}>({currentPiece.kana})</Text>
-                    <Text style={styles.meaningText}>{currentPiece.meaning}</Text>
-                  </>
+              {/* 右側：題目提示、分數等級、輸入匡 */}
+              <View style={{ flex: 1, marginLeft: 10, justifyContent: 'flex-start', marginTop: 10 }}>
+                {/* 題目提示 */}
+                {currentPiece && (
+                  <View style={[styles.wordContainer, { marginTop: 0, padding: 12, borderRadius: 14 }]}> 
+                    {currentPiece.isKanji ? (
+                      <>
+                        <Text style={[styles.wordText, { fontSize: 20 }]}> {currentPiece.kanji} </Text>
+                        <Text style={[styles.kanaText, { fontSize: 14 }]}>讀音: {currentPiece.kana}</Text>
+                        <Text style={[styles.meaningText, { fontSize: 13 }]}>{currentPiece.meaning}</Text>
+                      </>
+                    ) : (
+                      <>
+                        <Text style={[styles.wordText, { fontSize: 20 }]}>{currentPiece.word}</Text>
+                        <Text style={[styles.kanaText, { fontSize: 14 }]}>({currentPiece.kana})</Text>
+                        <Text style={[styles.meaningText, { fontSize: 13 }]}>{currentPiece.meaning}</Text>
+                      </>
+                    )}
+                  </View>
                 )}
-              </View>
-            )}
-            
-            {/* 輸入框 */}
-            <TextInput
-              style={[
-                styles.input,
-                inputFocused && {
-                  borderColor: '#00ffff',
-                  shadowColor: '#00ffff',
-                  shadowOffset: { width: 0, height: 0 },
-                  shadowOpacity: 0.6,
-                  shadowRadius: 15,
-                  elevation: 8,
-                }
-              ]}
-              value={userInput}
-              onChangeText={handleInputChange}
-              placeholder=">>> 輸入假名來消除方塊 <<<"
-              placeholderTextColor="rgba(255, 255, 255, 0.5)"
-              autoFocus={gameState === 'playing'}
-              editable={gameState === 'playing'}
-              onFocus={() => setInputFocused(true)}
-              onBlur={() => setInputFocused(false)}
-            />
-            
-            {/* 控制按鈕 */}
-            <View style={styles.controlButtons}>
-              <TouchableOpacity style={styles.controlButton} onPress={togglePause}>
-                <Text style={styles.controlButtonText}>
-                  {gameState === 'playing' ? '⏸️ 暫停' : '▶️ 繼續'}
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.controlButton} onPress={goBackToMenu}>
-                <Text style={styles.controlButtonText}>🏠 返回</Text>
-              </TouchableOpacity>
-            </View>
-            
-            {/* 暫停覆蓋層 */}
-            {gameState === 'paused' && (
-              <TouchableOpacity 
-                style={styles.pauseOverlay}
-                onPress={togglePause}
-                activeOpacity={1}
-              >
-                <View style={styles.pauseContent}>
-                  <Animated.Text 
-                    style={[
-                      styles.pauseText,
-                      {
-                        transform: [{ scale: titlePulse }],
-                      }
-                    ]}
-                  >
-                    ⏸️ 遊戲暫停 ⏸️
-                  </Animated.Text>
-                  <Text style={styles.pauseHint}>🎮 點擊任意處繼續 🎮</Text>
-                                      <TouchableOpacity style={styles.resumeButton} onPress={togglePause}>
-                      <Text style={styles.resumeButtonText}>▶️ 繼續遊戲 ▶️</Text>
-                    </TouchableOpacity>
+                {/* 分數等級消除數 */}
+                <View style={{ backgroundColor: 'rgba(255,180,0,0.12)', borderRadius: 14, borderWidth: 1.5, borderColor: '#ffb84d', marginTop: 18, padding: 10, alignItems: 'center' }}>
+                  <Text style={{ color: '#ffb84d', fontSize: 15, fontWeight: '700', marginBottom: 4 }}>🏆 分數: {score}</Text>
+                  <Text style={{ color: '#ffb84d', fontSize: 15, fontWeight: '700', marginBottom: 4 }}>📈 等級: {level}</Text>
+                  <Text style={{ color: '#ffb84d', fontSize: 15, fontWeight: '700' }}>🧩 消除數: {piecesCleared}</Text>
                 </View>
-              </TouchableOpacity>
-            )}
-          </ScrollView>
+                {/* 輸入匡 */}
+                <TextInput
+                  style={[
+                    styles.input,
+                    { marginTop: 18, width: '100%', fontSize: 18 },
+                    inputFocused && {
+                      borderColor: '#00ffff',
+                      shadowColor: '#00ffff',
+                      shadowOffset: { width: 0, height: 0 },
+                      shadowOpacity: 0.6,
+                      shadowRadius: 15,
+                      elevation: 8,
+                    }
+                  ]}
+                  value={userInput}
+                  onChangeText={handleInputChange}
+                  placeholder="請輸入"
+                  placeholderTextColor="rgba(255, 255, 255, 0.5)"
+                  autoFocus={gameState === 'playing'}
+                  editable={gameState === 'playing'}
+                  onFocus={() => setInputFocused(true)}
+                  onBlur={() => setInputFocused(false)}
+                />
+              </View>
+            </View>
+          </View>
         );
         
       case 'finished':
@@ -817,7 +797,7 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
       
       {/* 統一導航欄 */}
       <GlassNavBar
-        title="練習模式-假名"
+        title="Tetris Mode"
         leftButton={{
           text: '← 返回',
           onPress: () => navigation?.goBack(),
