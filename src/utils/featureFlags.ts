@@ -6,7 +6,7 @@
 export const FEATURE_FLAGS = {
   // 新遊戲模式
   KANJI_MODE: __DEV__ || false,        // 開發環境開啟
-  LONG_TEXT_MODE: __DEV__ || false,
+  LONG_TEXT_MODE: false, // 上架版隱藏長文模式
   TETRIS_MODE: __DEV__ || false,
   
   // 其他功能
