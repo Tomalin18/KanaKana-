@@ -94,10 +94,9 @@ export const MainMenuScreen: React.FC<Props> = ({ navigation }) => {
               neonBorder={true}
               style={styles.titleContainer}
             >
-              <Text style={styles.titleJapanese}>かなタワー</Text>
-              <Text style={styles.titleEnglish}>KANA TOWER</Text>
-              <Text style={styles.subtitle}>NEURAL TYPING SYSTEM</Text>
-              
+              <Text style={styles.titleJapanese}>かなカナ</Text>
+              <Text style={styles.titleEnglish}>KANAKANA</Text>
+              {/* <Text style={styles.subtitle}>NEURAL TYPING SYSTEM</Text> */}
               {/* 科技裝飾元素 */}
               <View style={styles.techElements}>
                 <Text style={styles.techSymbol}>⚡</Text>
@@ -154,20 +153,33 @@ export const MainMenuScreen: React.FC<Props> = ({ navigation }) => {
             )}
           </View>
 
-          {/* 底部信息 - 科技格言 */}
+          {/* 底部信息 - 改為贊助按鈕 */}
           <View style={styles.footer}>
-            <GlassContainer
-              variant="secondary"
-              glowEffect={false}
-              style={styles.footerContainer}
+            <Pressable
+              onPress={() => {
+                // React Native Linking API
+                // @ts-ignore
+                if (typeof window !== 'undefined' && window.open) {
+                  window.open('https://coff.ee/tomalin', '_blank');
+                } else if (globalThis && globalThis.open) {
+                  globalThis.open('https://coff.ee/tomalin', '_blank');
+                } else {
+                  // React Native Linking
+                  try {
+                    const Linking = require('react-native').Linking;
+                    Linking.openURL('https://coff.ee/tomalin');
+                  } catch (e) {}
+                }
+              }}
+              style={({ pressed }) => [
+                styles.sponsorButton,
+                pressed && styles.sponsorButtonPressed
+              ]}
             >
-              <Text style={styles.footerQuote}>
-                "NEURAL PATHWAYS STRENGTHEN WITH PRACTICE"
+              <Text style={styles.sponsorButtonText}>
+                獨自設計開發的小遊戲，各位的幫助是我最大的鼓勵
               </Text>
-              <Text style={styles.footerTranslation}>
-                神經通路因練習而強化
-              </Text>
-            </GlassContainer>
+            </Pressable>
           </View>
         </ScrollView>
       </SafeAreaView>
@@ -518,5 +530,28 @@ const styles = StyleSheet.create({
     color: TechTheme.textSecondary,
     textAlign: 'center',
     opacity: 0.7,
+  },
+
+  sponsorButton: {
+    backgroundColor: TechColors.neonPink,
+    paddingVertical: Spacing.md,
+    paddingHorizontal: Spacing.lg,
+    borderRadius: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    minWidth: '90%',
+    ...Shadows.neon.purple,
+  },
+
+  sponsorButtonPressed: {
+    opacity: 0.9,
+  },
+
+  sponsorButtonText: {
+    fontSize: Typography.sizes.ui.caption,
+    color: TechTheme.background,
+    textAlign: 'center',
+    fontWeight: Typography.weights.bold,
+    letterSpacing: 1,
   },
 }); 
