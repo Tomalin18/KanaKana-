@@ -17,6 +17,7 @@ import { GlassNavBar } from '@/components/common/GlassNavBar';
 import { GlassContainer } from '@/components/common/GlassContainer';
 import { PauseOverlay } from '@/components/common/PauseOverlay';
 import type { DifficultyLevel } from '@/types';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // 類型定義
 interface TetrisPiece {
@@ -113,6 +114,50 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
     difficulty: 'beginner',
     wordType: 'hiragana'
   };
+
+  // 新增最高紀錄狀態
+  const [bestScore, setBestScore] = useState(0);
+  const [bestLevel, setBestLevel] = useState(0);
+  const [bestCleared, setBestCleared] = useState(0);
+
+  // 讀取本地最高紀錄
+  useEffect(() => {
+    const loadBestRecords = async () => {
+      try {
+        const score = await AsyncStorage.getItem('tetris_best_score');
+        const level = await AsyncStorage.getItem('tetris_best_level');
+        const cleared = await AsyncStorage.getItem('tetris_best_cleared');
+        if (score) setBestScore(Number(score));
+        if (level) setBestLevel(Number(level));
+        if (cleared) setBestCleared(Number(cleared));
+      } catch (e) {
+        // ignore
+      }
+    };
+    loadBestRecords();
+  }, []);
+
+  // 遊戲結束時自動更新最高紀錄
+  useEffect(() => {
+    if (gameState === 'finished') {
+      let updated = false;
+      if (score > bestScore) {
+        setBestScore(score);
+        AsyncStorage.setItem('tetris_best_score', String(score));
+        updated = true;
+      }
+      if (level > bestLevel) {
+        setBestLevel(level);
+        AsyncStorage.setItem('tetris_best_level', String(level));
+        updated = true;
+      }
+      if (piecesCleared > bestCleared) {
+        setBestCleared(piecesCleared);
+        AsyncStorage.setItem('tetris_best_cleared', String(piecesCleared));
+        updated = true;
+      }
+    }
+  }, [gameState]);
 
   // 定時器引用
   const fallTimerRef = useRef<NodeJS.Timeout | null>(null);
@@ -351,7 +396,7 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
     const newY = currentPiece.y + 1;
     
     if (canPlacePiece(currentPiece, currentPiece.x, newY)) {
-      setCurrentPiece(prev => prev ? { ...prev, y: newY } : null);
+      setCurrentPiece((prev: TetrisPiece | null) => prev ? { ...prev, y: newY } : null);
     } else {
       // 方塊無法繼續下落，固定到遊戲板
       placePieceOnBoard(currentPiece);
@@ -395,8 +440,8 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
       const levelBonus = level;
       const totalScore = baseScore * levelBonus;
       
-      setScore(prev => prev + totalScore);
-      setPiecesCleared(prev => prev + 1);
+      setScore((prev: number) => prev + totalScore);
+      setPiecesCleared((prev: number) => prev + 1);
       setCurrentPiece(null);
       setUserInput('');
       
@@ -404,11 +449,11 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
       const newPiecesCleared = piecesCleared + 1;
       if (newPiecesCleared % 5 === 0) { // 每5個方塊升級一次
         const newLevel = level + 1;
-        setLevel(newLevel);
+        setLevel((prev: number) => newLevel);
         
         // 階段性加速
         const speedDecrease = calculateSpeedDecrease(newLevel);
-        setFallSpeed(prev => {
+        setFallSpeed((prev: number) => {
           const newSpeed = Math.max(100, prev - (speedDecrease * 50)); // 最低速度100ms
           console.log(`速度變化: ${prev}ms -> ${newSpeed}ms (減少${speedDecrease * 50}ms)`);
           return newSpeed;
@@ -513,8 +558,8 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
           borderRadius: 6,
           overflow: 'hidden',
         }}>
-          {board.map((row, rowIndex) =>
-            row.map((cell, colIndex) => (
+          {board.map((row: number[], rowIndex: number) =>
+            row.map((cell: number, colIndex: number) => (
               <View
                 key={`${rowIndex}-${colIndex}`}
                 style={[
@@ -541,8 +586,8 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
           {currentPiece && (
             <View style={styles.fallingPiece}>
               {/* 方塊背景和文字 */}
-              {currentPiece.shape.map((row, rowIndex) =>
-                row.map((cell, colIndex) => {
+              {currentPiece.shape.map((row: number[], rowIndex: number) =>
+                row.map((cell: number, colIndex: number) => {
                   if (cell === 1) {
                     const x = (currentPiece.x + colIndex) * cellSize;
                     const y = (currentPiece.y + rowIndex) * cellSize;
@@ -634,14 +679,18 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
             >
 🎯 Tetris Mode
             </Animated.Text>
-                          <Text style={styles.description}>
-                ⚡ Type the romaji or kana shown on the falling blocks to clear them! ⚡{'\n'}
-                🎯 Blocks will fall automatically. Type the correct answer before they land to clear them. 🎯{'\n'}
-                🔥 Kanji blocks appear from level 5, and longer kanji words from level 10. 🔥
+            <View style={{marginBottom: 30}}>
+              <Text style={styles.description}>
+                {'1. 每個方塊上會顯示日文單字或漢字，請在方塊落地前輸入正確的假名或羅馬拼音消除方塊。\n'}
+                {'2. 方塊會自動下落，輸入正確即可消除。\n'}
+                {'3. 每消除 5 個方塊會提升等級，等級越高方塊下落速度越快。\n'}
+                {'4. 遊戲結束時會記錄你的最高分、最高等級與最高消除數。'}
               </Text>
+            </View>
             <View style={styles.settingsInfo}>
-                              <Text style={styles.settingText}>⚙️ 難度: {settings.difficulty}</Text>
-                <Text style={styles.settingText}>📝 類型: {settings.wordType}</Text>
+                              <Text style={{color: '#00ffff', fontWeight: 'bold', fontSize: 16}}>🏅 最高分：{bestScore}</Text>
+                <Text style={{color: '#00ffff', fontWeight: 'bold', fontSize: 16}}>📈 最高等級：{bestLevel}</Text>
+                <Text style={{color: '#00ffff', fontWeight: 'bold', fontSize: 16}}>🧩 最高消除數：{bestCleared}</Text>
             </View>
             <TouchableOpacity 
               style={styles.startButton} 
@@ -741,25 +790,29 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
                 }
               ]}
             >
-                             💀 遊戲結束 💀
-             </Animated.Text>
-             <Animated.Text 
-               style={[
-                 styles.finalScore,
-                 {
-                   textShadowRadius: scoreGlow.interpolate({
-                     inputRange: [0.5, 1],
-                     outputRange: [15, 25],
-                   }),
-                 }
-               ]}
-             >
-               🏆 最終分數: {score} 🏆
-             </Animated.Text>
-             <Text style={styles.finalStats}>
-               📊 等級: {level} | 🧩 消除方塊: {piecesCleared} 📊
-             </Text>
-            
+              💀 遊戲結束 💀
+            </Animated.Text>
+            <Animated.Text 
+              style={[
+                styles.finalScore,
+                {
+                  textShadowRadius: scoreGlow.interpolate({
+                    inputRange: [0.5, 1],
+                    outputRange: [15, 25],
+                  }),
+                }
+              ]}
+            >
+              🏆 最終分數: {score} 🏆
+            </Animated.Text>
+            <Text style={styles.finalStats}>
+              📊 等級: {level} | 🧩 消除方塊: {piecesCleared} 📊
+            </Text>
+            {/* 新增最高紀錄顯示 */}
+            <View style={{marginBottom: 20, backgroundColor: 'rgba(0,255,255,0.07)', borderRadius: 10, padding: 10, borderWidth: 1, borderColor: '#00ffff33'}}>
+              <Text style={{color: '#00ffff', fontWeight: 'bold', fontSize: 15, marginBottom: 2}}>🏅 最高紀錄</Text>
+              <Text style={{color: '#00ffff', fontSize: 14}}>分數：{bestScore}　等級：{bestLevel}　消除數：{bestCleared}</Text>
+            </View>
             <View style={styles.gameOverButtons}>
               <TouchableOpacity style={styles.restartButton} onPress={restartGame}>
                 <Text style={styles.restartButtonText}>🔄 重新開始 🔄</Text>
@@ -780,7 +833,7 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
     <View style={styles.container}>
       {/* 星空背景 */}
       <View style={styles.starField}>
-        {stars.map(star => (
+        {stars.map((star: {id: number, x: number, y: number, opacity: number}) => (
           <View
             key={star.id}
             style={[
@@ -853,7 +906,7 @@ const styles = StyleSheet.create({
   description: {
     fontSize: 16,
     color: '#b8c6db',
-    textAlign: 'center',
+    textAlign: 'left',
     marginBottom: 30,
     lineHeight: 24,
     backgroundColor: 'rgba(0, 255, 255, 0.05)',
