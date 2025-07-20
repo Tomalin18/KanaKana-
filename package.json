@@ -1,7 +1,7 @@
 {
-  "name": "kana-tower",
+  "name": "kanakana",
   "version": "1.0.0",
-  "description": "かなタワー - The definitive Japanese typing practice game",
+  "description": "かなカナ - The definitive Japanese typing practice game",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
@@ -96,16 +96,16 @@
     "expo"
   ],
   "author": {
-    "name": "Kana Tower Team",
-    "email": "team@kanatower.com"
+    "name": "KanaKana Team",
+    "email": "team@kanakana.com"
   },
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/kanatower/kana-tower.git"
+    "url": "https://github.com/kanakana/kanakana.git"
   },
   "bugs": {
-    "url": "https://github.com/kanatower/kana-tower/issues"
+    "url": "https://github.com/kanakana/kanakana/issues"
   },
-  "homepage": "https://kanatower.com"
+  "homepage": "https://kanakana.com"
 }
