@@ -5,6 +5,11 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "userInterfaceStyle": "automatic",
+    "icon": "./src/assets/images/app-icon.png",
+    "adaptiveIcon": {
+      "foregroundImage": "./src/assets/images/app-icon.png",
+      "backgroundColor": "#1E40AF"
+    },
     "splash": {
       "resizeMode": "contain",
       "backgroundColor": "#1E40AF"
@@ -34,6 +39,7 @@
       "eas": {
         "projectId": "78bd67aa-751a-4ea7-91f3-c017131ffeef"
       }
-    }
+    },
+    "owner": "tomalin"
   }
 }
