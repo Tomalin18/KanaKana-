@@ -84,6 +84,15 @@ const PIECE_COLORS = [
   '#ff4080'  // 玫瑰霓虹
 ];
 
+// 新增：主題色切換用霓虹主色陣列
+const NEON_THEME_COLORS = [
+  '#00D4FF', // 青色
+  '#FF8500', // 橙色
+  '#8B5CF6', // 紫色
+  '#FF006E', // 粉紅
+  '#00FF88', // 綠色
+];
+
 // 遊戲設定
 const BOARD_WIDTH = 10;
 const BOARD_HEIGHT = 20;
@@ -131,6 +140,10 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
   const [bossResult, setBossResult] = useState<'success' | 'fail' | null>(null);
   const bossLineAnim = useRef(new Animated.Value(1)).current;
   const [lastBossCleared, setLastBossCleared] = useState(0);
+
+  // 新增主題色 index 狀態
+  const [themeColorIndex, setThemeColorIndex] = useState(0);
+  const currentThemeColor = NEON_THEME_COLORS[themeColorIndex];
 
   // 主遊戲輸入框 ref
   const mainInputRef = useRef<TextInput>(null);
@@ -235,6 +248,8 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
       });
       setLevel(Math.floor(piecesCleared / 10) + 1);
       setFallSpeed(prev => Math.max(100, prev * SPEED_INCREASE_FACTOR));
+      // 新增：切換主題色
+      setThemeColorIndex(idx => (idx + 1) % NEON_THEME_COLORS.length);
       setBossMode(false);
       setBossQuestion(null);
       setBossInput('');
@@ -250,6 +265,8 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
         newBoard.push(Array(BOARD_WIDTH).fill(1));
         return newBoard;
       });
+      // 新增：切換主題色
+      setThemeColorIndex(idx => (idx + 1) % NEON_THEME_COLORS.length);
       setBossMode(false);
       setBossQuestion(null);
       setBossInput('');
@@ -623,9 +640,9 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
     return (
       <View style={{
         borderWidth: borderThickness,
-        borderColor: '#00ffff',
+        borderColor: currentThemeColor,
         borderRadius: 12,
-        shadowColor: '#00ffff',
+        shadowColor: currentThemeColor,
         shadowOffset: { width: 0, height: 0 },
         shadowOpacity: 0.6,
         shadowRadius: 25,
@@ -659,7 +676,7 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
                     backgroundColor: cell === 1 ? 'rgba(0, 255, 255, 0.4)' : 'rgba(0, 255, 255, 0.02)',
                     borderColor: cell === 1 ? 'rgba(0, 255, 255, 0.8)' : 'rgba(0, 255, 255, 0.15)',
                     borderWidth: cell === 1 ? 2 : 0.5,
-                    shadowColor: cell === 1 ? '#00ffff' : 'transparent',
+                    shadowColor: cell === 1 ? currentThemeColor : 'transparent',
                     shadowOffset: { width: 0, height: 0 },
                     shadowOpacity: cell === 1 ? 0.6 : 0,
                     shadowRadius: cell === 1 ? 8 : 0,
@@ -771,8 +788,8 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
           paddingHorizontal: 20,
           alignItems: 'center',
           borderWidth: 2.5,
-          borderColor: '#00ffff',
-          shadowColor: '#00ffff',
+          borderColor: currentThemeColor,
+          shadowColor: currentThemeColor,
           shadowOffset: { width: 0, height: 0 },
           shadowOpacity: 0.4,
           shadowRadius: 18,
@@ -781,10 +798,10 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
           <Text style={{
             fontSize: 22,
             fontWeight: '900',
-            color: '#00ffff',
+            color: currentThemeColor,
             marginBottom: 12,
             letterSpacing: 2,
-            textShadowColor: '#00ffff',
+            textShadowColor: currentThemeColor,
             textShadowOffset: { width: 0, height: 0 },
             textShadowRadius: 12,
           }}>
@@ -797,7 +814,7 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
             marginBottom: 18,
             textAlign: 'center',
             lineHeight: 32,
-            textShadowColor: '#00ffff',
+            textShadowColor: currentThemeColor,
             textShadowOffset: { width: 0, height: 0 },
             textShadowRadius: 8,
           }}>
@@ -807,10 +824,10 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
           <View style={{width: '100%', height: 8, backgroundColor: '#003a4d', borderRadius: 4, marginBottom: 14, overflow: 'hidden'}}>
             <Animated.View style={{
               height: 8,
-              backgroundColor: '#00ffff',
+              backgroundColor: currentThemeColor,
               borderRadius: 4,
               width: bossLineAnim.interpolate({inputRange: [0,1], outputRange: ['0%','100%']}),
-              shadowColor: '#00ffff',
+              shadowColor: currentThemeColor,
               shadowOffset: { width: 0, height: 0 },
               shadowOpacity: 0.7,
               shadowRadius: 8,
@@ -818,11 +835,11 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
           </View>
           <Text style={{
             fontSize: 15,
-            color: '#00ffff',
+            color: currentThemeColor,
             marginBottom: 12,
             fontWeight: '700',
             letterSpacing: 1,
-            textShadowColor: '#00ffff',
+            textShadowColor: currentThemeColor,
             textShadowOffset: { width: 0, height: 0 },
             textShadowRadius: 6,
           }}>
@@ -833,7 +850,7 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
               backgroundColor: 'rgba(255,255,255,0.13)',
               borderRadius: 12,
               borderWidth: 2,
-              borderColor: '#00ffff',
+              borderColor: currentThemeColor,
               padding: 14,
               fontSize: 18,
               minWidth: 200,
@@ -841,7 +858,7 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
               marginBottom: 6,
               color: '#fff',
               fontWeight: '700',
-              shadowColor: '#00ffff',
+              shadowColor: currentThemeColor,
               shadowOffset: { width: 0, height: 0 },
               shadowOpacity: 0.3,
               shadowRadius: 8,
@@ -882,9 +899,9 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
                 </Text>
               </View>
               <View style={styles.settingsInfo}>
-                <Text style={{color: '#00ffff', fontWeight: 'bold', fontSize: 16}}>🏅 最高分：{bestScore}</Text>
-                <Text style={{color: '#00ffff', fontWeight: 'bold', fontSize: 16}}>📈 最高等級：{bestLevel}</Text>
-                <Text style={{color: '#00ffff', fontWeight: 'bold', fontSize: 16}}>🧩 最高消除數：{bestCleared}</Text>
+                <Text style={{color: currentThemeColor, fontWeight: 'bold', fontSize: 16}}>🏅 最高分：{bestScore}</Text>
+                <Text style={{color: currentThemeColor, fontWeight: 'bold', fontSize: 16}}>📈 最高等級：{bestLevel}</Text>
+                <Text style={{color: currentThemeColor, fontWeight: 'bold', fontSize: 16}}>🧩 最高消除數：{bestCleared}</Text>
               </View>
               <TouchableOpacity 
                 style={styles.startButton} 
@@ -923,27 +940,27 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
                 <View style={{ flex: 1, marginLeft: 10, justifyContent: 'flex-start', marginTop: 10 }}>
                   {/* 題目提示 */}
                   {currentPiece && (
-                    <View style={[styles.wordContainer, { marginTop: 0, padding: 12, borderRadius: 14 }]}> 
+                    <View style={[styles.wordContainer, { marginTop: 0, padding: 12, borderRadius: 14, borderColor: currentThemeColor, shadowColor: currentThemeColor, backgroundColor: currentThemeColor + '22' }]}> 
                       {currentPiece.isKanji ? (
                         <>
-                          <Text style={[styles.wordText, { fontSize: 20 }]}> {currentPiece.kanji} </Text>
-                          <Text style={[styles.kanaText, { fontSize: 14 }]}>讀音: {currentPiece.kana}</Text>
-                          <Text style={[styles.meaningText, { fontSize: 13 }]}>{currentPiece.meaning}</Text>
+                          <Text style={[styles.wordText, { fontSize: 20, color: currentThemeColor, textShadowColor: currentThemeColor }]}>{currentPiece.kanji}</Text>
+                          <Text style={[styles.kanaText, { fontSize: 14, color: currentThemeColor }]}>{'讀音: ' + currentPiece.kana}</Text>
+                          <Text style={[styles.meaningText, { fontSize: 13, color: currentThemeColor }]}>{currentPiece.meaning}</Text>
                         </>
                       ) : (
                         <>
-                          <Text style={[styles.wordText, { fontSize: 20 }]}>{currentPiece.word}</Text>
-                          <Text style={[styles.kanaText, { fontSize: 14 }]}>({currentPiece.kana})</Text>
-                          <Text style={[styles.meaningText, { fontSize: 13 }]}>{currentPiece.meaning}</Text>
+                          <Text style={[styles.wordText, { fontSize: 20, color: currentThemeColor, textShadowColor: currentThemeColor }]}>{currentPiece.word}</Text>
+                          <Text style={[styles.kanaText, { fontSize: 14, color: currentThemeColor }]}>{'(' + currentPiece.kana + ')'}</Text>
+                          <Text style={[styles.meaningText, { fontSize: 13, color: currentThemeColor }]}>{currentPiece.meaning}</Text>
                         </>
                       )}
                     </View>
                   )}
                   {/* 分數等級消除數 */}
-                  <View style={{ backgroundColor: 'rgba(255,180,0,0.12)', borderRadius: 14, borderWidth: 1.5, borderColor: '#ffb84d', marginTop: 18, padding: 10, alignItems: 'center' }}>
-                    <Text style={{ color: '#ffb84d', fontSize: 15, fontWeight: '700', marginBottom: 4 }}>🏆 分數: {score}</Text>
-                    <Text style={{ color: '#ffb84d', fontSize: 15, fontWeight: '700', marginBottom: 4 }}>📈 等級: {level}</Text>
-                    <Text style={{ color: '#ffb84d', fontSize: 15, fontWeight: '700' }}>🧩 消除數: {piecesCleared}</Text>
+                  <View style={{ backgroundColor: currentThemeColor + '22', borderRadius: 14, borderWidth: 1.5, borderColor: currentThemeColor, marginTop: 18, padding: 10, alignItems: 'center', shadowColor: currentThemeColor, shadowOpacity: 0.3, shadowRadius: 8 }}>
+                    <Text style={{ color: currentThemeColor, fontSize: 15, fontWeight: '700', marginBottom: 4 }}>🏆 分數: {score}</Text>
+                    <Text style={{ color: currentThemeColor, fontSize: 15, fontWeight: '700', marginBottom: 4 }}>📈 等級: {level}</Text>
+                    <Text style={{ color: currentThemeColor, fontSize: 15, fontWeight: '700' }}>🧩 消除數: {piecesCleared}</Text>
                   </View>
                   {/* 輸入匡 */}
                   <TextInput
@@ -952,18 +969,19 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
                       styles.input,
                       { marginTop: 18, width: '100%', fontSize: 18 },
                       inputFocused && {
-                        borderColor: '#00ffff',
-                        shadowColor: '#00ffff',
+                        borderColor: currentThemeColor,
+                        shadowColor: currentThemeColor,
                         shadowOffset: { width: 0, height: 0 },
                         shadowOpacity: 0.6,
                         shadowRadius: 15,
                         elevation: 8,
-                      }
+                      },
+                      { borderColor: currentThemeColor, color: currentThemeColor }
                     ]}
                     value={userInput}
                     onChangeText={handleInputChange}
                     placeholder="請輸入"
-                    placeholderTextColor="rgba(255, 255, 255, 0.5)"
+                    placeholderTextColor={currentThemeColor + '88'}
                     autoFocus={gameState === 'playing' && !bossMode}
                     editable={gameState === 'playing' && !bossMode}
                     onFocus={() => setInputFocused(true)}
@@ -1005,8 +1023,8 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
               </Text>
               {/* 新增最高紀錄顯示 */}
               <View style={{marginBottom: 20, backgroundColor: 'rgba(0,255,255,0.07)', borderRadius: 10, padding: 10, borderWidth: 1, borderColor: '#00ffff33'}}>
-                <Text style={{color: '#00ffff', fontWeight: 'bold', fontSize: 15, marginBottom: 2}}>🏅 最高紀錄</Text>
-                <Text style={{color: '#00ffff', fontSize: 14}}>分數：{bestScore}　等級：{bestLevel}　消除數：{bestCleared}</Text>
+                <Text style={{color: currentThemeColor, fontWeight: 'bold', fontSize: 15, marginBottom: 2}}>🏅 最高紀錄</Text>
+                <Text style={{color: currentThemeColor, fontSize: 14}}>分數：{bestScore}　等級：{bestLevel}　消除數：{bestCleared}</Text>
               </View>
               <View style={styles.gameOverButtons}>
                 <TouchableOpacity style={styles.restartButton} onPress={restartGame}>
