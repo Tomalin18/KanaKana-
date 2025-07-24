@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "KanaKana",
-    "slug": "kanakana",
+    "slug": "kana-tower",
     "version": "1.0.0",
     "orientation": "portrait",
     "userInterfaceStyle": "automatic",
@@ -9,6 +9,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#1E40AF"
     },
+    "icon": "./src/assets/images/app-icon.png",
     "assetBundlePatterns": [
       "**/*"
     ],
@@ -34,6 +35,7 @@
       "eas": {
         "projectId": "78bd67aa-751a-4ea7-91f3-c017131ffeef"
       }
-    }
+    },
+    "owner": "tomalin"
   }
 }
