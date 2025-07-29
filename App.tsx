@@ -6,8 +6,13 @@ import { useAppInitialization } from '@/hooks/useAppInitialization';
 import { AppNavigator } from '@/navigation/AppNavigator';
 
 /**
- * 主應用程式組件 - Kana Tower的入口點
- * 處理應用程式初始化、錯誤邊界和導航設定
+ * 主應用程式組件 - KanaKana的入口點
+ * 
+ * 負責：
+ * - 應用程式初始化
+ * - 錯誤邊界處理
+ * - 主題和字體載入
+ * - 導航設置
  */
 export default function App(): React.JSX.Element {
   const { isReady, error } = useAppInitialization();

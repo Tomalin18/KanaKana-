@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import {
   View,
   Text,
@@ -7,10 +7,15 @@ import {
   TextInput,
   Pressable,
   StatusBar,
+  Animated,
+  Easing,
 } from 'react-native';
-import { LightTheme, Typography, Spacing } from '@/constants/theme';
+import { TechTheme, Typography, Spacing, Shadows, TechColors } from '@/constants/theme';
 import { validateJapaneseInput } from '@/utils/japaneseInput';
 import { getRandomKanjiWord } from '@/data/kanjiWords';
+import { GlassNavBar } from '@/components/common/GlassNavBar';
+import { GlassContainer } from '@/components/common/GlassContainer';
+import { PauseOverlay } from '@/components/common/PauseOverlay';
 import type { KanjiWord, KanjiModeSettings } from '@/types';
 
 interface KanjiModeScreenProps {
@@ -30,6 +35,7 @@ interface KanjiModeScreenProps {
  */
 export const KanjiModeScreen: React.FC<KanjiModeScreenProps> = ({ route, navigation }) => {
   const settings: KanjiModeSettings = route?.params?.settings || {
+    difficulty: 'normal',
     showMeaning: true,
     difficultyLevel: 'jlpt_n5',
     readingType: 'hiragana',
@@ -37,11 +43,21 @@ export const KanjiModeScreen: React.FC<KanjiModeScreenProps> = ({ route, navigat
     showStrokeCount: false,
   };
 
+  // 根據難度設定初始生命值
+  const getInitialLives = () => {
+    switch (settings.difficulty) {
+      case 'easy': return 5;
+      case 'normal': return 3;
+      case 'hard': return 1;
+      default: return 3;
+    }
+  };
+
   // 遊戲狀態
   const [gameState, setGameState] = useState<'idle' | 'playing' | 'paused' | 'finished'>('idle');
   const [score, setScore] = useState(0);
   const [combo, setCombo] = useState(0);
-  const [lives, setLives] = useState(3);
+  const [lives, setLives] = useState(getInitialLives());
   const [currentWord, setCurrentWord] = useState<KanjiWord | null>(null);
   const [userInput, setUserInput] = useState('');
   const [gameTime, setGameTime] = useState(0);
@@ -54,17 +70,7 @@ export const KanjiModeScreen: React.FC<KanjiModeScreenProps> = ({ route, navigat
     const level = settings.difficultyLevel.replace('jlpt_', '') as 'n5' | 'n4' | 'n3' | 'n2' | 'n1';
     const newWord = getRandomKanjiWord(level);
     setCurrentWord(newWord);
-    setShowMeaning(false);
     setShowHint(false);
-    
-    // 根據設定決定是否延遲顯示提示
-    if (settings.hintDelay > 0) {
-      setTimeout(() => {
-        setShowMeaning(settings.showMeaning);
-      }, settings.hintDelay * 1000);
-    } else {
-      setShowMeaning(settings.showMeaning);
-    }
   }, [settings]);
 
   // 遊戲開始
@@ -72,11 +78,11 @@ export const KanjiModeScreen: React.FC<KanjiModeScreenProps> = ({ route, navigat
     setGameState('playing');
     setScore(0);
     setCombo(0);
-    setLives(3);
+    setLives(getInitialLives());
     setUserInput('');
     setGameTime(0);
     generateNewWord();
-  }, [generateNewWord]);
+  }, [generateNewWord, getInitialLives]);
 
   // 處理輸入
   const handleInputChange = useCallback((text: string) => {
@@ -141,7 +147,7 @@ export const KanjiModeScreen: React.FC<KanjiModeScreenProps> = ({ route, navigat
   // 返回主選單
   const goBackToMenu = useCallback(() => {
     navigation?.goBack();
-  }, [navigation]);
+  }, []);
 
   // 顯示提示
   const showHintHandler = useCallback(() => {
@@ -173,21 +179,27 @@ export const KanjiModeScreen: React.FC<KanjiModeScreenProps> = ({ route, navigat
       case 'playing':
       case 'paused':
         return (
-          <KanjiGamePlayScreen
-            currentWord={currentWord}
-            userInput={userInput}
-            onInputChange={handleInputChange}
-            onPause={togglePause}
-            onShowHint={showHintHandler}
-            isPaused={gameState === 'paused'}
-            score={score}
-            combo={combo}
-            lives={lives}
-            gameTime={gameTime}
-            showMeaning={showMeaning}
-            showHint={showHint}
-            settings={settings}
-          />
+          <>
+            <KanjiGamePlayScreen
+              currentWord={currentWord}
+              userInput={userInput}
+              onInputChange={handleInputChange}
+              onShowHint={showHintHandler}
+              isPaused={gameState === 'paused'}
+              score={score}
+              lives={lives}
+              gameTime={gameTime}
+              showMeaning={showMeaning}
+              showHint={showHint}
+              settings={settings}
+            />
+            <PauseOverlay
+              visible={gameState === 'paused'}
+              onResume={togglePause}
+              onRestart={startGame}
+              onMainMenu={goBackToMenu}
+            />
+          </>
         );
       case 'finished':
         return (
@@ -204,10 +216,65 @@ export const KanjiModeScreen: React.FC<KanjiModeScreenProps> = ({ route, navigat
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar barStyle="light-content" backgroundColor={LightTheme.primary} />
+    <View style={styles.container}>
+      {/* 星空背景 */}
+      <StarfieldBackground />
+      
+      {/* 統一導航欄 */}
+      <GlassNavBar
+        title="練習模式-漢字"
+        leftButton={{
+          text: '← 返回',
+          onPress: goBackToMenu,
+          style: 'secondary',
+        }}
+        rightButton={
+          gameState === 'playing' || gameState === 'paused'
+            ? {
+                text: gameState === 'paused' ? '繼續' : '暫停',
+                onPress: togglePause,
+                style: 'primary',
+              }
+            : undefined
+        }
+      />
+      
+      {/* 遊戲內容 */}
       {renderGameContent()}
-    </SafeAreaView>
+    </View>
+  );
+};
+
+/**
+ * 星空背景組件
+ */
+const StarfieldBackground: React.FC = () => {
+  const stars = Array.from({ length: 30 }, (_, i) => ({
+    id: i,
+    left: Math.random() * 100,
+    top: Math.random() * 100,
+    opacity: Math.random() * 0.6 + 0.2,
+    size: Math.random() * 2 + 1,
+  }));
+
+  return (
+    <View style={styles.starfield}>
+      {stars.map((star) => (
+        <View
+          key={star.id}
+          style={[
+            styles.star,
+            {
+              left: `${star.left}%`,
+              top: `${star.top}%`,
+              opacity: star.opacity,
+              width: star.size,
+              height: star.size,
+            },
+          ]}
+        />
+      ))}
+    </View>
   );
 };
 
@@ -217,35 +284,73 @@ interface KanjiGameStartScreenProps {
   settings: KanjiModeSettings;
 }
 
-const KanjiGameStartScreen: React.FC<KanjiGameStartScreenProps> = ({ onStart, settings }) => (
-  <View style={styles.centerContainer}>
-    <Text style={styles.gameModeTitle}>漢字模式</Text>
-    <Text style={styles.instructions}>
-      看漢字，輸入對應的{settings.readingType === 'hiragana' ? '平假名' : 
-                        settings.readingType === 'katakana' ? '片假名' : '假名'}讀音！
-    </Text>
-    <View style={styles.settingsInfo}>
-      <Text style={styles.settingText}>難度：{settings.difficultyLevel.toUpperCase()}</Text>
-      <Text style={styles.settingText}>
-        顯示意思：{settings.showMeaning ? '是' : '否'}
-      </Text>
+const KanjiGameStartScreen: React.FC<KanjiGameStartScreenProps> = ({ onStart, settings }) => {
+  const getDifficultyInfo = (difficulty: string) => {
+    switch (difficulty) {
+      case 'easy':
+        return { name: '簡單', color: TechColors.neonGreen, lives: 5 };
+      case 'normal':
+        return { name: '普通', color: TechColors.neonBlue, lives: 3 };
+      case 'hard':
+        return { name: '困難', color: TechColors.neonPink, lives: 1 };
+      default:
+        return { name: '普通', color: TechColors.neonBlue, lives: 3 };
+    }
+  };
+
+  const difficultyInfo = getDifficultyInfo(settings.difficulty);
+
+  return (
+    <View style={styles.centerContainer}>
+      <GlassContainer
+        variant="accent"
+        glowEffect={true}
+        neonBorder={true}
+        style={styles.startContainer}
+      >
+        <Text style={styles.gameModeTitle}>🈯 練習模式-漢字</Text>
+        <Text style={styles.instructions}>
+          看漢字，輸入對應的{settings.readingType === 'hiragana' ? '平假名' : 
+                            settings.readingType === 'katakana' ? '片假名' : '假名'}讀音！
+        </Text>
+        <View style={styles.settingsInfo}>
+          <Text style={[styles.settingText, { color: difficultyInfo.color }]}>
+            難度：{difficultyInfo.name} (❤️ {difficultyInfo.lives} 生命)
+          </Text>
+          <Text style={styles.settingText}>
+            JLPT等級：{settings.difficultyLevel.toUpperCase()}
+          </Text>
+          <Text style={styles.settingText}>
+            顯示意思：{settings.showMeaning ? '是' : '否'}
+          </Text>
+          <Text style={styles.settingText}>
+            讀音類型：{settings.readingType === 'hiragana' ? '平假名' : 
+                      settings.readingType === 'katakana' ? '片假名' : '混合'}
+          </Text>
+        </View>
+        <Pressable 
+          style={({ pressed }) => [
+            styles.startButton,
+            pressed && styles.buttonPressed,
+            Shadows.neon.blue,
+          ]} 
+          onPress={onStart}
+        >
+          <Text style={styles.startButtonText}>🚀 開始遊戲</Text>
+        </Pressable>
+      </GlassContainer>
     </View>
-    <Pressable style={styles.startButton} onPress={onStart}>
-      <Text style={styles.startButtonText}>開始遊戲</Text>
-    </Pressable>
-  </View>
-);
+  );
+};
 
 // 遊戲進行畫面
 interface KanjiGamePlayScreenProps {
   currentWord: KanjiWord | null;
   userInput: string;
   onInputChange: (text: string) => void;
-  onPause: () => void;
   onShowHint: () => void;
   isPaused: boolean;
   score: number;
-  combo: number;
   lives: number;
   gameTime: number;
   showMeaning: boolean;
@@ -257,11 +362,9 @@ const KanjiGamePlayScreen: React.FC<KanjiGamePlayScreenProps> = ({
   currentWord,
   userInput,
   onInputChange,
-  onPause,
   onShowHint,
   isPaused,
   score,
-  combo,
   lives,
   gameTime,
   showMeaning,
@@ -269,66 +372,75 @@ const KanjiGamePlayScreen: React.FC<KanjiGamePlayScreenProps> = ({
   settings,
 }) => (
   <View style={styles.gameContainer}>
-    {/* 遊戲狀態顯示 */}
-    <View style={styles.gameStats}>
-      <Text style={styles.statText}>分數: {score}</Text>
-      <Text style={styles.statText}>連擊: {combo}</Text>
-      <Text style={styles.statText}>❤️ {lives}</Text>
-      <Text style={styles.statText}>{Math.floor(gameTime / 60)}:{(gameTime % 60).toString().padStart(2, '0')}</Text>
-    </View>
-
-    {isPaused && (
-      <View style={styles.pauseOverlay}>
-        <Text style={styles.pauseText}>遊戲暫停</Text>
+    {/* 統計資訊（最上方，經典模式風格） */}
+    <View style={styles.gameInfo}>
+      <View style={styles.infoItem}>
+        <Text style={styles.infoText}>🏆 分數: {score}</Text>
       </View>
-    )}
-
-    {/* 漢字顯示區域 */}
-    <View style={styles.kanjiDisplayContainer}>
-      {currentWord && (
-        <>
-          <Text style={styles.kanjiText}>{currentWord.kanji}</Text>
-          {showMeaning && (
-            <Text style={styles.meaningText}>{currentWord.meaning}</Text>
+      <View style={styles.infoItem}>
+        <Text style={styles.infoText}>❤️ 生命: {lives}</Text>
+      </View>
+      <View style={styles.infoItem}>
+        <Text style={styles.infoText}>⏰ 時間: {Math.floor(gameTime / 60)}:{(gameTime % 60).toString().padStart(2, '0')}</Text>
+      </View>
+    </View>
+    {/* 提示按鈕（統計資訊下方靠右，避免被鍵盤擋住） */}
+    <View style={styles.hintButtonRow}>
+      <View style={{flex:1}} />
+      <Pressable 
+        style={({ pressed }) => [
+          styles.hintButton,
+          pressed && styles.buttonPressed,
+        ]} 
+        onPress={onShowHint}
+      >
+        <Text style={styles.hintButtonText}>💡 提示</Text>
+      </Pressable>
+    </View>
+    {/* 題目泡泡（中間） */}
+    <View style={styles.bubbleContainer}>
+      <FloatingBubble 
+        bubbleSize={calculateBubbleSize(currentWord?.kanji || '')}
+        style={styles.questionBubble}
+      >
+        <View style={[
+          styles.bubble,
+          { 
+            width: calculateBubbleSize(currentWord?.kanji || ''),
+            height: calculateBubbleSize(currentWord?.kanji || ''),
+          }
+        ]}>
+          <Text style={[
+            styles.bubbleText,
+            { fontSize: calculateFontSize(currentWord?.kanji || '') }
+          ]}>
+            {currentWord?.kanji}
+          </Text>
+          {showHint && (
+            <Text style={styles.bubbleMeaning}>{currentWord?.meaning}</Text>
           )}
           {showHint && (
-            <Text style={styles.hintText}>
-              提示：{settings.readingType === 'hiragana' ? currentWord.hiragana : 
-                    settings.readingType === 'katakana' && currentWord.katakana ? currentWord.katakana :
-                    `${currentWord.hiragana} / ${currentWord.katakana || ''}`}
+            <Text style={styles.bubbleHint}>
+              {settings.readingType === 'hiragana' ? currentWord?.hiragana : 
+               settings.readingType === 'katakana' && currentWord?.katakana ? currentWord.katakana :
+               `${currentWord?.hiragana} / ${currentWord?.katakana || ''}`}
             </Text>
           )}
-          {settings.showStrokeCount && currentWord.strokeCount && (
-            <Text style={styles.strokeText}>筆畫：{currentWord.strokeCount}</Text>
-          )}
-        </>
-      )}
+        </View>
+      </FloatingBubble>
     </View>
-
-    {/* 輸入區域 */}
-    <View style={styles.inputContainer}>
-      <TextInput
-        style={styles.textInput}
-        value={userInput}
-        onChangeText={onInputChange}
-        placeholder="輸入假名讀音..."
-        placeholderTextColor={LightTheme.textSecondary}
-        autoFocus
-        editable={!isPaused}
-      />
-    </View>
-
-    {/* 控制按鈕 */}
-    <View style={styles.controlsContainer}>
-      <Pressable style={styles.controlButton} onPress={onPause}>
-        <Text style={styles.controlButtonText}>
-          {isPaused ? '繼續' : '暫停'}
-        </Text>
-      </Pressable>
-      <Pressable style={styles.controlButton} onPress={onShowHint}>
-        <Text style={styles.controlButtonText}>提示</Text>
-      </Pressable>
-    </View>
+    {/* 輸入區（題目下方，經典模式風格） */}
+    <TextInput
+      style={styles.input}
+      value={userInput}
+      onChangeText={onInputChange}
+      placeholder="輸入假名讀音..."
+      placeholderTextColor={TechColors.neonBlue + '60'}
+      autoFocus
+      editable={!isPaused}
+      textAlign="center"
+      numberOfLines={1}
+    />
   </View>
 );
 
@@ -347,50 +459,238 @@ const KanjiGameEndScreen: React.FC<KanjiGameEndScreenProps> = ({
   onBackToMenu,
 }) => (
   <View style={styles.centerContainer}>
-    <Text style={styles.gameOverTitle}>遊戲結束</Text>
-    <View style={styles.finalScoreContainer}>
-      <Text style={styles.finalScoreLabel}>最終分數</Text>
-      <Text style={styles.finalScoreValue}>{score}</Text>
-      <Text style={styles.finalTimeText}>
-        用時：{Math.floor(gameTime / 60)}分{gameTime % 60}秒
-      </Text>
-    </View>
-    <View style={styles.endButtonsContainer}>
-      <Pressable style={styles.restartButton} onPress={onRestart}>
-        <Text style={styles.restartButtonText}>再玩一次</Text>
-      </Pressable>
-      <Pressable style={styles.menuButton} onPress={onBackToMenu}>
-        <Text style={styles.menuButtonText}>回到主選單</Text>
-      </Pressable>
-    </View>
+    <GlassContainer
+      variant="surface"
+      glowEffect={true}
+      neonBorder={true}
+      style={styles.endGameContainer}
+    >
+      <Text style={styles.gameOverTitle}>🎮 遊戲結束！</Text>
+      <View style={styles.finalScoreContainer}>
+        <Text style={styles.finalScoreLabel}>最終分數</Text>
+        <Text style={styles.finalScoreValue}>{score}</Text>
+        <Text style={styles.finalTimeText}>
+          用時：{Math.floor(gameTime / 60)}分{gameTime % 60}秒
+        </Text>
+      </View>
+      <View style={styles.endButtonsContainer}>
+        <Pressable 
+          style={({ pressed }) => [
+            styles.restartButton,
+            pressed && styles.buttonPressed,
+            Shadows.neon.blue,
+          ]} 
+          onPress={onRestart}
+        >
+          <Text style={styles.restartButtonText}>🔄 再玩一次</Text>
+        </Pressable>
+        <Pressable 
+          style={({ pressed }) => [
+            styles.menuButton,
+            pressed && styles.buttonPressed,
+          ]} 
+          onPress={onBackToMenu}
+        >
+          <Text style={styles.menuButtonText}>🏠 回到主選單</Text>
+        </Pressable>
+      </View>
+    </GlassContainer>
   </View>
 );
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: LightTheme.background,
+    backgroundColor: TechTheme.background,
   },
+  
+  // 星空背景
+  starfield: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+  },
+  
+  star: {
+    position: 'absolute',
+    backgroundColor: TechColors.neonBlue,
+    borderRadius: 50,
+  },
+  // 粒子效果
+  particlesContainer: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    pointerEvents: 'none',
+  },
+  
+  particle: {
+    position: 'absolute',
+    width: 4,
+    height: 4,
+    backgroundColor: TechColors.neonBlue,
+    borderRadius: 2,
+    shadowColor: TechColors.neonBlue,
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.8,
+    shadowRadius: 4,
+  },
+
+  // 遊戲佈局
+  topSection: {
+    flex: 2,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingTop: Spacing.xl,
+  },
+  
+  bottomSection: {
+    flex: 1,
+    justifyContent: 'flex-start',
+    paddingHorizontal: Spacing.lg,
+    paddingBottom: Spacing.xl,
+  },
+  
+  // 泡泡相關
+  bubbleContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: Spacing.xl,
+  },
+  
+  questionBubble: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  
+  bubble: {
+    backgroundColor: TechColors.darkSpace + 'E6',
+    borderRadius: 1000,
+    borderWidth: 2,
+    borderColor: TechColors.neonBlue,
+    alignItems: 'center',
+    justifyContent: 'center',
+    ...Shadows.neon.blue,
+  },
+  
+  bubbleText: {
+    color: TechColors.neonBlue,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    textShadowColor: TechColors.neonBlue,
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 10,
+  },
+  
+  bubbleMeaning: {
+    color: TechColors.neonPurple,
+    fontSize: Typography.sizes.ui.body,
+    textAlign: 'center',
+    marginTop: Spacing.xs,
+    fontWeight: '500',
+  },
+  
+  bubbleHint: {
+    color: TechColors.neonGreen,
+    fontSize: Typography.sizes.ui.caption,
+    textAlign: 'center',
+    marginTop: Spacing.xs,
+    fontWeight: '400',
+  },
+  
+  // 輸入區域
+  inputSection: {
+    width: '100%',
+    paddingHorizontal: Spacing.lg,
+  },
+  
+  // 保留新版 input 樣式（經典模式風格）
+  input: {
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    borderRadius: 15,
+    paddingHorizontal: 25,
+    paddingVertical: 18,
+    fontSize: 20,
+    marginTop: 18,
+    width: '85%',
+    alignSelf: 'center',
+    textAlign: 'center',
+    color: '#ffffff',
+    borderWidth: 2,
+    borderColor: 'rgba(0, 255, 255, 0.5)',
+    shadowColor: '#00ffff',
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.3,
+    shadowRadius: 10,
+    elevation: 5,
+    fontWeight: '600',
+  },
+  
+  // 統計區域
+  statsContainer: {
+    marginBottom: Spacing.lg,
+  },
+  
+  statItem: {
+    alignItems: 'center',
+    flex: 1,
+  },
+  
+  statLabel: {
+    fontSize: Typography.sizes.ui.caption,
+    color: TechColors.neonPurple,
+    marginBottom: Spacing.xs,
+    fontWeight: '500',
+  },
+  
+  statValue: {
+    fontSize: Typography.sizes.ui.body,
+    color: TechColors.neonBlue,
+    fontWeight: 'bold',
+    textShadowColor: TechColors.neonBlue,
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 5,
+  },
+
   centerContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     padding: Spacing.lg,
   },
+  
+  startContainer: {
+    alignItems: 'center',
+    minWidth: '90%',
+  },
+  
+  buttonPressed: {
+    opacity: 0.8,
+    transform: [{ scale: 0.95 }],
+  },
   gameContainer: {
     flex: 1,
     padding: Spacing.lg,
   },
+  
+  endGameContainer: {
+    alignItems: 'center',
+    minWidth: '90%',
+  },
   gameModeTitle: {
     fontSize: Typography.sizes.ui.title,
     fontWeight: '700',
-    color: LightTheme.primary,
+    color: TechTheme.primary,
     marginBottom: Spacing.md,
     textAlign: 'center',
   },
   instructions: {
     fontSize: Typography.sizes.ui.body,
-    color: LightTheme.textSecondary,
+    color: TechTheme.textSecondary,
     textAlign: 'center',
     marginBottom: Spacing.lg,
     lineHeight: Typography.lineHeights.ui,
@@ -400,12 +700,12 @@ const styles = StyleSheet.create({
   },
   settingText: {
     fontSize: Typography.sizes.ui.caption,
-    color: LightTheme.textSecondary,
+    color: TechTheme.textSecondary,
     textAlign: 'center',
     marginBottom: Spacing.xs,
   },
   startButton: {
-    backgroundColor: LightTheme.primary,
+    backgroundColor: TechTheme.primary,
     borderRadius: 12,
     paddingVertical: Spacing.md,
     paddingHorizontal: Spacing.xl,
@@ -421,14 +721,14 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingVertical: Spacing.md,
     paddingHorizontal: Spacing.sm,
-    backgroundColor: LightTheme.surface,
+    backgroundColor: TechTheme.surface,
     borderRadius: 12,
     marginBottom: Spacing.lg,
   },
   statText: {
     fontSize: Typography.sizes.ui.caption,
     fontWeight: '600',
-    color: LightTheme.text,
+    color: TechTheme.text,
   },
   pauseOverlay: {
     position: 'absolute',
@@ -450,7 +750,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: LightTheme.surface,
+    backgroundColor: TechTheme.surface,
     borderRadius: 16,
     marginVertical: Spacing.lg,
     padding: Spacing.xl,
@@ -458,33 +758,33 @@ const styles = StyleSheet.create({
   kanjiText: {
     fontSize: 120,
     fontWeight: '400',
-    color: LightTheme.text,
+    color: TechTheme.text,
     marginBottom: Spacing.md,
   },
   meaningText: {
     fontSize: Typography.sizes.ui.subtitle,
-    color: LightTheme.textSecondary,
+    color: TechTheme.textSecondary,
     marginBottom: Spacing.sm,
   },
   hintText: {
     fontSize: Typography.sizes.ui.body,
-    color: LightTheme.accent,
+    color: TechTheme.accent,
     fontWeight: '600',
     marginBottom: Spacing.sm,
   },
   strokeText: {
     fontSize: Typography.sizes.ui.caption,
-    color: LightTheme.textSecondary,
+    color: TechTheme.textSecondary,
   },
   inputContainer: {
     marginVertical: Spacing.lg,
   },
   textInput: {
-    backgroundColor: LightTheme.surface,
+    backgroundColor: TechTheme.surface,
     borderRadius: 12,
     padding: Spacing.md,
     fontSize: Typography.sizes.ui.body,
-    color: LightTheme.text,
+    color: TechTheme.text,
     textAlign: 'center',
   },
   controlsContainer: {
@@ -493,7 +793,7 @@ const styles = StyleSheet.create({
     marginTop: Spacing.lg,
   },
   controlButton: {
-    backgroundColor: LightTheme.secondary,
+    backgroundColor: TechTheme.secondary,
     borderRadius: 12,
     paddingVertical: Spacing.sm,
     paddingHorizontal: Spacing.lg,
@@ -507,7 +807,7 @@ const styles = StyleSheet.create({
   gameOverTitle: {
     fontSize: Typography.sizes.ui.title,
     fontWeight: '700',
-    color: LightTheme.text,
+    color: TechTheme.text,
     marginBottom: Spacing.lg,
   },
   finalScoreContainer: {
@@ -516,24 +816,24 @@ const styles = StyleSheet.create({
   },
   finalScoreLabel: {
     fontSize: Typography.sizes.ui.body,
-    color: LightTheme.textSecondary,
+    color: TechTheme.textSecondary,
     marginBottom: Spacing.xs,
   },
   finalScoreValue: {
     fontSize: 48,
     fontWeight: '700',
-    color: LightTheme.primary,
+    color: TechTheme.primary,
     marginBottom: Spacing.sm,
   },
   finalTimeText: {
     fontSize: Typography.sizes.ui.caption,
-    color: LightTheme.textSecondary,
+    color: TechTheme.textSecondary,
   },
   endButtonsContainer: {
     gap: Spacing.md,
   },
   restartButton: {
-    backgroundColor: LightTheme.primary,
+    backgroundColor: TechTheme.primary,
     borderRadius: 12,
     paddingVertical: Spacing.md,
     paddingHorizontal: Spacing.xl,
@@ -545,15 +845,301 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   menuButton: {
-    backgroundColor: LightTheme.surface,
+    backgroundColor: TechTheme.surface,
     borderRadius: 12,
     paddingVertical: Spacing.md,
     paddingHorizontal: Spacing.xl,
   },
   menuButtonText: {
-    color: LightTheme.text,
+    color: TechTheme.text,
     fontSize: Typography.sizes.ui.body,
     fontWeight: '600',
     textAlign: 'center',
   },
-}); 
+  gameInfo: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: '100%',
+    marginBottom: 10,
+    backgroundColor: 'rgba(0, 255, 255, 0.1)',
+    padding: 12,
+    borderRadius: 15,
+    borderWidth: 1,
+    borderColor: 'rgba(0, 255, 255, 0.3)',
+    // flexWrap: 'wrap', // 移除換行
+  },
+  infoItem: {
+    flex: 1,
+    minWidth: 0,
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginHorizontal: 2,
+  },
+  infoText: {
+    color: '#00ffff',
+    fontSize: 13,
+    fontWeight: '700',
+    textShadowColor: '#00ffff',
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 8,
+    marginLeft: 4,
+  },
+  hintButtonRow: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    width: '100%',
+    marginBottom: 8,
+  },
+  hintButton: {
+    backgroundColor: 'rgba(0, 255, 255, 0.15)',
+    paddingHorizontal: 18,
+    paddingVertical: 8,
+    borderRadius: 16,
+    borderWidth: 1.5,
+    borderColor: '#00ffff',
+    shadowColor: '#00ffff',
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.4,
+    shadowRadius: 8,
+    elevation: 5,
+  },
+  hintButtonText: {
+    color: '#00ffff',
+    fontSize: 15,
+    fontWeight: '700',
+    textShadowColor: '#00ffff',
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 5,
+  },
+});
+
+/**
+ * 根據文字長度計算泡泡尺寸
+ */
+const calculateBubbleSize = (text: string) => {
+  const length = text.length;
+  
+  // 基礎尺寸
+  const baseSize = 100;
+  
+  // 根據字數計算額外尺寸
+  let extraSize = 0;
+  if (length <= 2) {
+    extraSize = 20; // 1-2字：120px
+  } else if (length <= 3) {
+    extraSize = 35; // 3字：135px
+  } else if (length <= 4) {
+    extraSize = 50; // 4字：150px
+  } else if (length <= 5) {
+    extraSize = 65; // 5字：165px
+  } else {
+    extraSize = 80; // 6字以上：180px
+  }
+  
+  return baseSize + extraSize;
+};
+
+/**
+ * 根據文字長度計算字體大小
+ */
+const calculateFontSize = (text: string) => {
+  const length = text.length;
+  
+  if (length <= 2) {
+    return Typography.sizes.bubble.kanji; // 40
+  } else if (length <= 3) {
+    return Typography.sizes.bubble.hiragana; // 36
+  } else if (length <= 4) {
+    return Typography.sizes.bubble.katakana; // 32
+  } else {
+    return Typography.sizes.bubble.romaji; // 28
+  }
+};
+
+/**
+ * 飄動泡泡組件 - 輕微的飄動和呼吸效果
+ */
+interface FloatingBubbleProps {
+  children: React.ReactNode;
+  style?: any;
+  bubbleSize: number;
+}
+
+const FloatingBubble: React.FC<FloatingBubbleProps> = ({ children, style, bubbleSize }) => {
+  const floatAnim = useRef(new Animated.Value(0)).current;
+  const scaleAnim = useRef(new Animated.Value(1)).current;
+
+  useEffect(() => {
+    // 輕微飄動動畫
+    const floatAnimation = Animated.loop(
+      Animated.sequence([
+        Animated.timing(floatAnim, {
+          toValue: 1,
+          duration: 4000,
+          easing: Easing.inOut(Easing.sin),
+          useNativeDriver: true,
+        }),
+        Animated.timing(floatAnim, {
+          toValue: 0,
+          duration: 4000,
+          easing: Easing.inOut(Easing.sin),
+          useNativeDriver: true,
+        }),
+      ])
+    );
+
+    // 輕微呼吸動畫
+    const scaleAnimation = Animated.loop(
+      Animated.sequence([
+        Animated.timing(scaleAnim, {
+          toValue: 1.02,
+          duration: 3000,
+          easing: Easing.inOut(Easing.quad),
+          useNativeDriver: true,
+        }),
+        Animated.timing(scaleAnim, {
+          toValue: 0.98,
+          duration: 3000,
+          easing: Easing.inOut(Easing.quad),
+          useNativeDriver: true,
+        }),
+      ])
+    );
+
+    floatAnimation.start();
+    scaleAnimation.start();
+
+    return () => {
+      floatAnimation.stop();
+      scaleAnimation.stop();
+    };
+  }, []);
+
+  const translateY = floatAnim.interpolate({
+    inputRange: [0, 1],
+    outputRange: [-3, 3],
+  });
+
+  const translateX = floatAnim.interpolate({
+    inputRange: [0, 0.5, 1],
+    outputRange: [0, 1.5, 0],
+  });
+
+  return (
+    <Animated.View
+      style={[
+        style,
+        {
+          width: bubbleSize,
+          height: bubbleSize,
+          transform: [
+            { translateY },
+            { translateX },
+            { scale: scaleAnim },
+          ],
+        },
+      ]}
+    >
+      {children}
+    </Animated.View>
+  );
+};
+
+/**
+ * 飄動粒子效果組件
+ */
+const FloatingParticles: React.FC = () => {
+  const particles = Array.from({ length: 8 }, (_, i) => ({
+    id: i,
+    left: Math.random() * 80 + 10,
+    delay: Math.random() * 2000,
+    duration: 3000 + Math.random() * 2000,
+  }));
+
+  return (
+    <View style={styles.particlesContainer}>
+      {particles.map((particle) => (
+        <FloatingParticle
+          key={particle.id}
+          left={particle.left}
+          delay={particle.delay}
+          duration={particle.duration}
+        />
+      ))}
+    </View>
+  );
+};
+
+interface FloatingParticleProps {
+  left: number;
+  delay: number;
+  duration: number;
+}
+
+const FloatingParticle: React.FC<FloatingParticleProps> = ({ left, delay, duration }) => {
+  const animValue = useRef(new Animated.Value(0)).current;
+  const opacityValue = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    const animation = Animated.loop(
+      Animated.sequence([
+        Animated.delay(delay),
+        Animated.parallel([
+          Animated.timing(animValue, {
+            toValue: 1,
+            duration,
+            easing: Easing.out(Easing.quad),
+            useNativeDriver: true,
+          }),
+          Animated.sequence([
+            Animated.timing(opacityValue, {
+              toValue: 0.6,
+              duration: duration * 0.3,
+              useNativeDriver: true,
+            }),
+            Animated.timing(opacityValue, {
+              toValue: 0,
+              duration: duration * 0.7,
+              useNativeDriver: true,
+            }),
+          ]),
+        ]),
+        Animated.timing(animValue, {
+          toValue: 0,
+          duration: 0,
+          useNativeDriver: true,
+        }),
+      ])
+    );
+
+    animation.start();
+
+    return () => animation.stop();
+  }, []);
+
+  const translateY = animValue.interpolate({
+    inputRange: [0, 1],
+    outputRange: [0, -200],
+  });
+
+  const scale = animValue.interpolate({
+    inputRange: [0, 0.5, 1],
+    outputRange: [0.5, 1, 0.3],
+  });
+
+  return (
+    <Animated.View
+      style={[
+        styles.particle,
+        {
+          left: `${left}%`,
+          opacity: opacityValue,
+          transform: [{ translateY }, { scale }],
+        },
+      ]}
+    />
+  );
+}; 

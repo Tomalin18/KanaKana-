@@ -207,7 +207,6 @@ export const splitTextForDisplay = (
 } => {
   // 找到當前輸入位置對應的顯示字符
   const currentMapping = mapping.mappings.find(m => m.inputIndex === currentInputPosition);
-  
   if (!currentMapping) {
     // 已完成所有輸入
     return {
@@ -216,43 +215,58 @@ export const splitTextForDisplay = (
       remainingPart: '',
     };
   }
-  
   const displayPosition = currentMapping.displayIndex;
   const currentDisplayChar = currentMapping.displayChar;
-  
+
+  // --- 新增：複合詞整體高光（含漢字+假名）---
+  if (currentMapping.kanjiWord && currentMapping.kanjiWord.length > 1) {
+    // 找到這個詞的所有 mapping（不論 isKanji）
+    const word = currentMapping.kanjiWord;
+    const wordMappings = mapping.mappings.filter(m => m.kanjiWord === word);
+    const minInput = Math.min(...wordMappings.map(m => m.inputIndex));
+    const maxInput = Math.max(...wordMappings.map(m => m.inputIndex));
+    const wordStart = wordMappings[0].displayIndex;
+    const wordEnd = wordMappings[wordMappings.length - 1].displayIndex;
+    if (currentInputPosition >= minInput && currentInputPosition <= maxInput) {
+      return {
+        completedPart: mapping.displayText.substring(0, wordStart),
+        currentChar: mapping.displayText.substring(wordStart, wordEnd + 1),
+        remainingPart: mapping.displayText.substring(wordEnd + 1),
+      };
+    } else {
+      return {
+        completedPart: mapping.displayText.substring(0, wordEnd + 1),
+        currentChar: '',
+        remainingPart: mapping.displayText.substring(wordEnd + 1),
+      };
+    }
+  }
+  // --- 單個漢字高光（原本邏輯）---
   if (currentMapping.isKanji) {
-    // 對於漢字，在整個讀音輸入完成之前都保持高亮
-    // 找到這個漢字對應的所有假名映射
     const kanjiMappings = mapping.mappings.filter(m => 
       m.displayIndex === displayPosition && m.isKanji
     );
-    
-    // 檢查是否還在輸入這個漢字的讀音
     const isStillInputtingKanji = kanjiMappings.some(m => m.inputIndex >= currentInputPosition);
-    
     if (isStillInputtingKanji) {
-      // 仍在輸入這個漢字的讀音，保持高亮
       return {
         completedPart: mapping.displayText.substring(0, displayPosition),
         currentChar: currentDisplayChar,
         remainingPart: mapping.displayText.substring(displayPosition + 1),
       };
     } else {
-      // 這個漢字的讀音已經輸入完成，移到已完成部分
       return {
         completedPart: mapping.displayText.substring(0, displayPosition + 1),
         currentChar: '',
         remainingPart: mapping.displayText.substring(displayPosition + 1),
       };
     }
-  } else {
-    // 非漢字字符，正常處理
-    return {
-      completedPart: mapping.displayText.substring(0, displayPosition),
-      currentChar: currentDisplayChar,
-      remainingPart: mapping.displayText.substring(displayPosition + 1),
-    };
   }
+  // --- 假名/標點 ---
+  return {
+    completedPart: mapping.displayText.substring(0, displayPosition),
+    currentChar: currentDisplayChar,
+    remainingPart: mapping.displayText.substring(displayPosition + 1),
+  };
 };
 
 /**
@@ -334,26 +348,11 @@ export const validateInputAtPosition = (
   // 使用高級日文輸入驗證（支援濁音半濁音轉換）
   const japaneseValidation = validateJapaneseInput(userInput, targetChar);
   
-  // 添加調試信息
-  console.log(`[textMapping調試] validateJapaneseInput("${userInput}", "${targetChar}"):`, {
-    isValid: japaneseValidation.isValid,
-    isComplete: japaneseValidation.isComplete,
-    canContinue: japaneseValidation.canContinue,
-    confidence: japaneseValidation.confidence,
-    hint: japaneseValidation.hint
-  });
-  
   // 檢查是否通過基本匹配
   const isValidBasic = possibleChars.includes(userInput);
   
   // 檢查是否通過高級日文驗證（包括三段式輸入）
   const isValidAdvanced = japaneseValidation.isValid;
-  
-  console.log(`[textMapping調試] 匹配檢查:`, {
-    isValidBasic,
-    isValidAdvanced,
-    possibleChars
-  });
   
   // 總體有效性：基本匹配或高級驗證通過
   const isValid = isValidBasic || isValidAdvanced;
@@ -369,12 +368,6 @@ export const validateInputAtPosition = (
   // 2. 高級驗證通過且可以繼續（支援三段式輸入）
   const canContinue = (isValidBasic && !isComplete) || 
                      (japaneseValidation.isValid && japaneseValidation.canContinue);
-  
-  console.log(`[textMapping調試] 最終結果:`, {
-    isValid,
-    isComplete,
-    canContinue
-  });
   
   // 收集所有可能的字符
   let allPossibleChars = [...possibleChars];

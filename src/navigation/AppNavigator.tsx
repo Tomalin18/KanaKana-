@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import type { GameMode } from '@/types';
+import type { GameMode, ClassicModeSettings, KanjiModeSettings } from '@/types';
 import { MainMenuScreen } from '@/screens/main/MainMenuScreen';
 import { GameScreen } from '@/screens/main/GameScreen';
 
@@ -9,6 +9,7 @@ export type RootStackParamList = {
   MainMenu: undefined;
   Game: {
     mode: GameMode;
+    settings?: ClassicModeSettings | KanjiModeSettings;
   };
 };
 

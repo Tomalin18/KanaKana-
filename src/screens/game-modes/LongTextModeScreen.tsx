@@ -9,10 +9,13 @@ import {
   StatusBar,
   ScrollView,
 } from 'react-native';
-import { LightTheme, Typography, Spacing } from '@/constants/theme';
+import { TechTheme, Typography, Spacing, Shadows, TechColors } from '@/constants/theme';
 import { validateJapaneseInput } from '@/utils/japaneseInput';
 import { getRandomLongText } from '@/data/longTexts';
 import { createAdvancedTextMapping, splitTextForDisplay, getTargetCharAtPosition, validateInputAtPosition } from '@/utils/textMapping';
+import { GlassNavBar } from '@/components/common/GlassNavBar';
+import { GlassContainer } from '@/components/common/GlassContainer';
+import { PauseOverlay } from '@/components/common/PauseOverlay';
 import type { LongTextContent, LongTextSettings } from '@/types';
 import type { TextMapping } from '@/utils/textMapping';
 
@@ -130,22 +133,10 @@ export const LongTextModeScreen: React.FC<LongTextModeScreenProps> = ({ route, n
     // 獲取目標字符用於調試
     const targetChar = getTargetCharAtPosition(textMapping, currentPosition);
     
-    // 添加調試日誌
-    console.log(`[長文模式調試] 輸入: "${text}", 目標: "${targetChar}"`);
-
     // 使用新的驗證系統（支援多讀音和三段式輸入）
     const validation = validateInputAtPosition(textMapping, text, currentPosition);
     
-    // 詳細的調試信息
-    console.log(`[長文模式調試] 驗證結果:`, {
-      isValid: validation.isValid,
-      isComplete: validation.isComplete,
-      canContinue: validation.canContinue,
-      possibleChars: validation.possibleChars
-    });
-    
     if (validation.isComplete) {
-      console.log(`[長文模式調試] ✅ 字符完成，移動到下一個位置`);
       // 當前字符輸入完成，移動到下一個字符
       const newPosition = currentPosition + 1;
       setCurrentPosition(newPosition);
@@ -164,7 +155,6 @@ export const LongTextModeScreen: React.FC<LongTextModeScreenProps> = ({ route, n
         endGame();
       }
     } else if (!validation.canContinue && text.length > 0) {
-      console.log(`[長文模式調試] ❌ 輸入錯誤，扣分`);
       // 只有在確實無法繼續時才視為錯誤
       // 這樣可以支援三段式輸入（は→ば→ぱ）
       setCombo(0);
@@ -175,8 +165,6 @@ export const LongTextModeScreen: React.FC<LongTextModeScreenProps> = ({ route, n
       if (lives <= 1) {
         endGame();
       }
-    } else {
-      console.log(`[長文模式調試] ⏳ 允許繼續輸入`);
     }
     // 如果 validation.canContinue 為 true，保持當前輸入狀態，允許繼續輸入
   }, [currentText, textMapping, currentPosition, combo, lives, gameState]);
@@ -262,24 +250,31 @@ export const LongTextModeScreen: React.FC<LongTextModeScreenProps> = ({ route, n
     switch (gameState) {
       case 'idle':
         return <LongTextGameStartScreen onStart={startGame} settings={settings} />;
-      case 'playing':
+            case 'playing':
       case 'paused':
         return (
-          <LongTextGamePlayScreen
-                    renderTextContent={renderTextContentWithParagraphs}
-        userInput={userInput}
-        onInputChange={handleInputChange}
-        onPause={togglePause}
-        isPaused={gameState === 'paused'}
-        score={score}
-        combo={combo}
-        lives={lives}
-        gameTime={gameTime}
-        errors={errors}
-        currentText={currentText}
-        currentPosition={currentPosition}
-        textMapping={textMapping}
-          />
+          <>
+            <LongTextGamePlayScreen
+              renderTextContent={renderTextContentWithParagraphs}
+              userInput={userInput}
+              onInputChange={handleInputChange}
+              isPaused={gameState === 'paused'}
+              score={score}
+              combo={combo}
+              lives={lives}
+              gameTime={gameTime}
+              errors={errors}
+              currentText={currentText}
+              currentPosition={currentPosition}
+              textMapping={textMapping}
+            />
+            <PauseOverlay
+              visible={gameState === 'paused'}
+              onResume={togglePause}
+              onRestart={startGame}
+              onMainMenu={goBackToMenu}
+            />
+          </>
         );
       case 'finished':
         return (
@@ -298,12 +293,67 @@ export const LongTextModeScreen: React.FC<LongTextModeScreenProps> = ({ route, n
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar barStyle="light-content" backgroundColor={LightTheme.primary} />
+    <View style={styles.container}>
+      {/* 星空背景 */}
+      <StarfieldBackground />
+      
+      {/* 統一導航欄 */}
+      <GlassNavBar
+        title="長文模式"
+        leftButton={{
+          text: '← 返回',
+          onPress: goBackToMenu,
+          style: 'secondary',
+        }}
+        rightButton={
+          gameState === 'playing' || gameState === 'paused'
+            ? {
+                text: gameState === 'paused' ? '繼續' : '暫停',
+                onPress: togglePause,
+                style: 'primary',
+              }
+            : undefined
+        }
+      />
+      
+      {/* 遊戲內容 */}
       {renderGameContent()}
-    </SafeAreaView>
+    </View>
   );
 };
+
+/**
+ * 星空背景組件
+ */
+const StarfieldBackground: React.FC = () => {
+  const stars = Array.from({ length: 30 }, (_, i) => ({
+    id: i,
+    left: Math.random() * 100,
+    top: Math.random() * 100,
+    opacity: Math.random() * 0.6 + 0.2,
+    size: Math.random() * 2 + 1,
+  }));
+
+  return (
+    <View style={styles.starfield}>
+      {stars.map((star) => (
+        <View
+          key={star.id}
+          style={[
+            styles.star,
+            {
+              left: `${star.left}%`,
+              top: `${star.top}%`,
+              opacity: star.opacity,
+              width: star.size,
+              height: star.size,
+            },
+          ]}
+        />
+      ))}
+    </View>
+     );
+ };
 
 // 遊戲開始畫面
 interface LongTextGameStartScreenProps {
@@ -332,7 +382,6 @@ interface LongTextGamePlayScreenProps {
   renderTextContent: () => React.ReactNode;
   userInput: string;
   onInputChange: (text: string) => void;
-  onPause: () => void;
   isPaused: boolean;
   score: number;
   combo: number;
@@ -348,7 +397,6 @@ const LongTextGamePlayScreen: React.FC<LongTextGamePlayScreenProps> = ({
   renderTextContent,
   userInput,
   onInputChange,
-  onPause,
   isPaused,
   score,
   combo,
@@ -384,7 +432,7 @@ const LongTextGamePlayScreen: React.FC<LongTextGamePlayScreenProps> = ({
         value={userInput}
         onChangeText={onInputChange}
         placeholder="在這裡輸入文章內容..."
-        placeholderTextColor={LightTheme.textSecondary}
+        placeholderTextColor={TechTheme.textSecondary}
         multiline
         autoFocus
         editable={!isPaused}
@@ -398,14 +446,7 @@ const LongTextGamePlayScreen: React.FC<LongTextGamePlayScreenProps> = ({
       validation={textMapping ? validateInputAtPosition(textMapping, userInput, currentPosition) : null}
     />
 
-    {/* 控制按鈕 */}
-    <View style={styles.controlsContainer}>
-      <Pressable style={styles.pauseButton} onPress={onPause}>
-        <Text style={styles.pauseButtonText}>
-          {isPaused ? '繼續' : '暫停'}
-        </Text>
-      </Pressable>
-    </View>
+    {/* 控制按鈕區域 - 現在由統一導航欄處理暫停功能 */}
   </View>
 );
 
@@ -529,7 +570,22 @@ const LongTextGameEndScreen: React.FC<LongTextGameEndScreenProps> = ({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: LightTheme.background,
+    backgroundColor: TechTheme.background,
+  },
+  
+  // 星空背景
+  starfield: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+  },
+  
+  star: {
+    position: 'absolute',
+    backgroundColor: TechColors.neonBlue,
+    borderRadius: 50,
   },
   centerContainer: {
     flex: 1,
@@ -544,13 +600,13 @@ const styles = StyleSheet.create({
   gameModeTitle: {
     fontSize: Typography.sizes.ui.title,
     fontWeight: '700',
-    color: LightTheme.primary,
+    color: TechTheme.primary,
     marginBottom: Spacing.md,
     textAlign: 'center',
   },
   instructions: {
     fontSize: Typography.sizes.ui.body,
-    color: LightTheme.textSecondary,
+    color: TechTheme.textSecondary,
     textAlign: 'center',
     marginBottom: Spacing.lg,
     lineHeight: Typography.lineHeights.ui,
@@ -560,12 +616,12 @@ const styles = StyleSheet.create({
   },
   settingText: {
     fontSize: Typography.sizes.ui.caption,
-    color: LightTheme.textSecondary,
+    color: TechTheme.textSecondary,
     textAlign: 'center',
     marginBottom: Spacing.xs,
   },
   startButton: {
-    backgroundColor: LightTheme.primary,
+    backgroundColor: TechTheme.primary,
     borderRadius: 12,
     paddingVertical: Spacing.md,
     paddingHorizontal: Spacing.xl,
@@ -581,14 +637,14 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingVertical: Spacing.md,
     paddingHorizontal: Spacing.sm,
-    backgroundColor: LightTheme.surface,
+    backgroundColor: TechTheme.surface,
     borderRadius: 12,
     marginBottom: Spacing.lg,
   },
   statText: {
     fontSize: Typography.sizes.ui.caption,
     fontWeight: '600',
-    color: LightTheme.text,
+    color: TechTheme.text,
   },
   pauseOverlay: {
     position: 'absolute',
@@ -608,7 +664,7 @@ const styles = StyleSheet.create({
   },
   textDisplayContainer: {
     flex: 1,
-    backgroundColor: LightTheme.surface,
+    backgroundColor: TechTheme.surface,
     borderRadius: 16,
     marginVertical: Spacing.lg,
     padding: Spacing.lg,
@@ -617,7 +673,7 @@ const styles = StyleSheet.create({
   textTitle: {
     fontSize: Typography.sizes.ui.subtitle,
     fontWeight: '600',
-    color: LightTheme.text,
+    color: TechTheme.text,
     marginBottom: Spacing.md,
     textAlign: 'center',
   },
@@ -629,7 +685,7 @@ const styles = StyleSheet.create({
     paddingBottom: Spacing.lg,
   },
   textContentContainer: {
-    backgroundColor: 'white',
+    backgroundColor: TechTheme.surface,
     borderRadius: 12,
     padding: Spacing.lg,
     flex: 1,
@@ -653,6 +709,7 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     width: '100%',
     flexWrap: 'wrap',
+    color: TechTheme.text,
   },
   // 行文字樣式
   lineText: {
@@ -660,18 +717,18 @@ const styles = StyleSheet.create({
     lineHeight: Typography.lineHeights.ui * 1.8,
     textAlign: 'left',
     marginBottom: Spacing.xs, // 行間距
-    color: LightTheme.text, // 確保文字顏色正確
+    color: TechTheme.text, // 確保文字顏色正確
   },
   typedText: {
-    color: LightTheme.success,
+    color: TechTheme.success,
     backgroundColor: 'rgba(34, 197, 94, 0.1)',
   },
   currentChar: {
-    backgroundColor: LightTheme.accent,
-    color: 'white',
+    backgroundColor: TechColors.neonBlue,
+    color: '#fff',
   },
   remainingText: {
-    color: LightTheme.textSecondary,
+    color: TechTheme.textSecondary,
   },
   progressContainer: {
     marginTop: Spacing.md,
@@ -679,17 +736,17 @@ const styles = StyleSheet.create({
   },
   progressText: {
     fontSize: Typography.sizes.ui.caption,
-    color: LightTheme.textSecondary,
+    color: TechTheme.textSecondary,
   },
   inputContainer: {
     marginVertical: Spacing.lg,
   },
   textInput: {
-    backgroundColor: LightTheme.surface,
+    backgroundColor: TechTheme.surface,
     borderRadius: 12,
     padding: Spacing.md,
     fontSize: Typography.sizes.ui.body,
-    color: LightTheme.text,
+    color: TechTheme.text,
     minHeight: 80,
     textAlignVertical: 'top',
   },
@@ -698,7 +755,7 @@ const styles = StyleSheet.create({
     marginTop: Spacing.lg,
   },
   pauseButton: {
-    backgroundColor: LightTheme.secondary,
+    backgroundColor: TechTheme.secondary,
     borderRadius: 12,
     paddingVertical: Spacing.sm,
     paddingHorizontal: Spacing.lg,
@@ -712,7 +769,7 @@ const styles = StyleSheet.create({
   gameOverTitle: {
     fontSize: Typography.sizes.ui.title,
     fontWeight: '700',
-    color: LightTheme.text,
+    color: TechTheme.text,
     marginBottom: Spacing.lg,
   },
   finalScoreContainer: {
@@ -721,34 +778,34 @@ const styles = StyleSheet.create({
   },
   finalScoreLabel: {
     fontSize: Typography.sizes.ui.body,
-    color: LightTheme.textSecondary,
+    color: TechTheme.textSecondary,
     marginBottom: Spacing.xs,
   },
   finalScoreValue: {
     fontSize: 48,
     fontWeight: '700',
-    color: LightTheme.primary,
+    color: TechTheme.primary,
     marginBottom: Spacing.sm,
   },
   finalTimeText: {
     fontSize: Typography.sizes.ui.caption,
-    color: LightTheme.textSecondary,
+    color: TechTheme.textSecondary,
     marginBottom: Spacing.xs,
   },
   finalErrorText: {
     fontSize: Typography.sizes.ui.caption,
-    color: LightTheme.textSecondary,
+    color: TechTheme.textSecondary,
     marginBottom: Spacing.xs,
   },
   finalTextText: {
     fontSize: Typography.sizes.ui.caption,
-    color: LightTheme.textSecondary,
+    color: TechTheme.textSecondary,
   },
   endButtonsContainer: {
     gap: Spacing.md,
   },
   restartButton: {
-    backgroundColor: LightTheme.primary,
+    backgroundColor: TechTheme.primary,
     borderRadius: 12,
     paddingVertical: Spacing.md,
     paddingHorizontal: Spacing.xl,
@@ -760,13 +817,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   menuButton: {
-    backgroundColor: LightTheme.surface,
+    backgroundColor: TechTheme.surface,
     borderRadius: 12,
     paddingVertical: Spacing.md,
     paddingHorizontal: Spacing.xl,
   },
   menuButtonText: {
-    color: LightTheme.text,
+    color: TechTheme.text,
     fontSize: Typography.sizes.ui.body,
     fontWeight: '600',
     textAlign: 'center',
@@ -776,10 +833,10 @@ const styles = StyleSheet.create({
     lineHeight: Typography.sizes.ui.body * 2.5, // 使用字體大小的2.5倍作為行高
     textAlign: 'left',
     width: '100%',
-    color: LightTheme.text, // 確保文字顏色正確
+    color: TechTheme.text, // 確保文字顏色正確
   },
   completedText: {
-    color: LightTheme.success,
+    color: TechTheme.success,
     backgroundColor: 'rgba(34, 197, 94, 0.1)',
   },
   inputProgressContainer: {
@@ -787,35 +844,35 @@ const styles = StyleSheet.create({
   },
   inputProgressLabel: {
     fontSize: Typography.sizes.ui.caption,
-    color: LightTheme.textSecondary,
+    color: TechTheme.textSecondary,
     marginBottom: Spacing.xs,
   },
   inputProgressText: {
     fontSize: Typography.sizes.ui.body,
-    color: LightTheme.text,
+    color: TechTheme.text,
   },
   inputTextCorrect: {
-    color: LightTheme.success,
+    color: TechTheme.success,
   },
   inputTextPartial: {
-    color: LightTheme.accent,
+    color: TechTheme.accent,
   },
   inputTextError: {
-    color: LightTheme.error,
+    color: TechTheme.error,
   },
   targetCharText: {
     fontSize: Typography.sizes.ui.caption,
-    color: LightTheme.textSecondary,
+    color: TechTheme.textSecondary,
     marginBottom: Spacing.xs,
   },
   inputHint: {
     fontSize: Typography.sizes.ui.caption,
-    color: LightTheme.textSecondary,
+    color: TechTheme.textSecondary,
     marginBottom: Spacing.xs,
   },
   transformationHint: {
     fontSize: Typography.sizes.ui.caption,
-    color: LightTheme.accent,
+    color: TechTheme.accent,
     marginTop: Spacing.xs,
     fontStyle: 'italic',
   },

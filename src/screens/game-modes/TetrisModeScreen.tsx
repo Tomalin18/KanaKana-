@@ -8,10 +8,18 @@ import {
   TextInput,
   Alert,
   ScrollView,
+  Animated,
+  KeyboardAvoidingView,
+  Platform,
 } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { getRandomWordImproved, getWordByLength, getWordByLevelAndLength, type TetrisWord } from '@/data/tetrisData';
+import { GlassNavBar } from '@/components/common/GlassNavBar';
+import { GlassContainer } from '@/components/common/GlassContainer';
+import { PauseOverlay } from '@/components/common/PauseOverlay';
 import type { DifficultyLevel } from '@/types';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { bossQuestions, BossQuestion } from '@/data/bossData';
+import { BlurView } from 'expo-blur';
 
 // 類型定義
 interface TetrisPiece {
@@ -64,10 +72,25 @@ const TETRIS_SHAPES = {
 
 const SHAPE_NAMES = Object.keys(TETRIS_SHAPES) as Array<keyof typeof TETRIS_SHAPES>;
 
-// 顏色定義
+// 科技感霓虹顏色定義
 const PIECE_COLORS = [
-  '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', 
-  '#FFEAA7', '#DDA0DD', '#98D8C8', '#F7DC6F'
+  '#00ffff', // 青色霓虹
+  '#ff0080', // 粉紅霓虹
+  '#00ff00', // 綠色霓虹
+  '#ffff00', // 黃色霓虹
+  '#ff8000', // 橙色霓虹
+  '#8000ff', // 紫色霓虹
+  '#0080ff', // 藍色霓虹
+  '#ff4080'  // 玫瑰霓虹
+];
+
+// 新增：主題色切換用霓虹主色陣列
+const NEON_THEME_COLORS = [
+  '#00D4FF', // 青色
+  '#FF8500', // 橙色
+  '#8B5CF6', // 紫色
+  '#FF006E', // 粉紅
+  '#00FF88', // 綠色
 ];
 
 // 遊戲設定
@@ -88,6 +111,14 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
   const [level, setLevel] = useState(1);
   const [piecesCleared, setPiecesCleared] = useState(0);
   const [fallSpeed, setFallSpeed] = useState(INITIAL_FALL_SPEED);
+  const [inputFocused, setInputFocused] = useState(false);
+  const [stars, setStars] = useState<Array<{id: number, x: number, y: number, opacity: number}>>([]);
+  
+  // 動畫值
+  const titlePulse = useRef(new Animated.Value(1)).current;
+  const scoreGlow = useRef(new Animated.Value(0.5)).current;
+  const buttonScale = useRef(new Animated.Value(1)).current;
+  const pieceGlow = useRef(new Animated.Value(0)).current;
   
   // 設定
   const settings: TetrisSettings = route?.params?.settings || {
@@ -95,8 +126,267 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
     wordType: 'hiragana'
   };
 
+  // 新增最高紀錄狀態
+  const [bestScore, setBestScore] = useState(0);
+  const [bestLevel, setBestLevel] = useState(0);
+  const [bestCleared, setBestCleared] = useState(0);
+
+  // 新增 boss 狀態
+  const [bossMode, setBossMode] = useState(false);
+  const [bossQuestion, setBossQuestion] = useState<BossQuestion | null>(null);
+  const [bossInput, setBossInput] = useState('');
+  const [bossTimer, setBossTimer] = useState(0);
+  const bossTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const [bossResult, setBossResult] = useState<'success' | 'fail' | null>(null);
+  const bossLineAnim = useRef(new Animated.Value(1)).current;
+  const [lastBossCleared, setLastBossCleared] = useState(0);
+
+  // 新增主題色 index 狀態
+  const [themeColorIndex, setThemeColorIndex] = useState(0);
+  const currentThemeColor = NEON_THEME_COLORS[themeColorIndex];
+
+  // 主遊戲輸入框 ref
+  const mainInputRef = useRef<TextInput>(null);
+
+  // 讀取本地最高紀錄
+  useEffect(() => {
+    const loadBestRecords = async () => {
+      try {
+        const score = await AsyncStorage.getItem('tetris_best_score');
+        const level = await AsyncStorage.getItem('tetris_best_level');
+        const cleared = await AsyncStorage.getItem('tetris_best_cleared');
+        if (score) setBestScore(Number(score));
+        if (level) setBestLevel(Number(level));
+        if (cleared) setBestCleared(Number(cleared));
+      } catch (e) {
+        // ignore
+      }
+    };
+    loadBestRecords();
+  }, []);
+
+  // 遊戲結束時自動更新最高紀錄
+  useEffect(() => {
+    if (gameState === 'finished') {
+      let updated = false;
+      if (score > bestScore) {
+        setBestScore(score);
+        AsyncStorage.setItem('tetris_best_score', String(score));
+        updated = true;
+      }
+      if (level > bestLevel) {
+        setBestLevel(level);
+        AsyncStorage.setItem('tetris_best_level', String(level));
+        updated = true;
+      }
+      if (piecesCleared > bestCleared) {
+        setBestCleared(piecesCleared);
+        AsyncStorage.setItem('tetris_best_cleared', String(piecesCleared));
+        updated = true;
+      }
+    }
+  }, [gameState]);
+
+  // 觸發 boss 機制
+  useEffect(() => {
+    if (
+      !bossMode &&
+      piecesCleared > 0 &&
+      piecesCleared % 10 === 0 &&
+      piecesCleared !== lastBossCleared &&
+      gameState === 'playing'
+    ) {
+      // 每次隨機抽一題
+      const q = bossQuestions[Math.floor(Math.random() * bossQuestions.length)];
+      if (q) {
+        setBossMode(true);
+        setBossQuestion(q);
+        setBossInput('');
+        setBossTimer(q.timeLimit);
+        setBossResult(null);
+        setLastBossCleared(piecesCleared);
+        bossLineAnim.setValue(1);
+        Animated.timing(bossLineAnim, {
+          toValue: 0,
+          duration: q.timeLimit * 1000,
+          useNativeDriver: false,
+        }).start();
+      }
+    }
+  }, [piecesCleared, gameState, bossMode, lastBossCleared]);
+
+  // boss 倒數計時
+  useEffect(() => {
+    if (bossMode && bossTimer > 0 && bossResult === null) {
+      bossTimerRef.current = setTimeout(() => {
+        setBossTimer(t => t - 1);
+      }, 1000);
+    } else if (bossMode && bossTimer === 0 && bossResult === null) {
+      setBossResult('fail');
+    }
+    return () => {
+      if (bossTimerRef.current) clearTimeout(bossTimerRef.current);
+    };
+  }, [bossMode, bossTimer, bossResult]);
+
+  // 處理 boss 輸入
+  const handleBossInput = (text: string) => {
+    setBossInput(text);
+    if (bossQuestion && text === bossQuestion.inputContent && bossResult === null) {
+      setBossResult('success');
+    }
+  };
+
+  // boss 結果處理
+  useEffect(() => {
+    if (!bossMode || bossResult === null) return;
+    if (bossResult === 'success') {
+      setBoard(prev => {
+        const newBoard = prev.slice(0, -1);
+        newBoard.unshift(Array(BOARD_WIDTH).fill(0));
+        return newBoard;
+      });
+      setLevel(Math.floor(piecesCleared / 10) + 1);
+      setFallSpeed(prev => Math.max(100, prev * SPEED_INCREASE_FACTOR));
+      // 新增：切換主題色
+      setThemeColorIndex(idx => (idx + 1) % NEON_THEME_COLORS.length);
+      setBossMode(false);
+      setBossQuestion(null);
+      setBossInput('');
+      setBossTimer(0);
+      setBossResult(null);
+      setGameState('playing');
+      setTimeout(() => {
+        mainInputRef.current?.focus();
+      }, 100);
+    } else if (bossResult === 'fail') {
+      setBoard(prev => {
+        const newBoard = prev.slice(1);
+        newBoard.push(Array(BOARD_WIDTH).fill(1));
+        return newBoard;
+      });
+      // 新增：切換主題色
+      setThemeColorIndex(idx => (idx + 1) % NEON_THEME_COLORS.length);
+      setBossMode(false);
+      setBossQuestion(null);
+      setBossInput('');
+      setBossTimer(0);
+      setBossResult(null);
+      setGameState('playing');
+      setTimeout(() => {
+        mainInputRef.current?.focus();
+      }, 100);
+    }
+  }, [bossResult, bossMode, piecesCleared]);
+
   // 定時器引用
   const fallTimerRef = useRef<NodeJS.Timeout | null>(null);
+
+  // 當題目（currentPiece）id 變動時，自動清空輸入框
+  const prevPieceId = useRef<string | null>(null);
+  useEffect(() => {
+    if (currentPiece && currentPiece.id !== prevPieceId.current) {
+      setUserInput('');
+      prevPieceId.current = currentPiece.id;
+    }
+  }, [currentPiece]);
+
+  // 根據背景色計算最佳文字顏色
+  const getTextColorForBackground = useCallback((backgroundColor: string): string => {
+    // 移除 # 符號並轉換為RGB
+    const hex = backgroundColor.replace('#', '');
+    const r = parseInt(hex.substr(0, 2), 16);
+    const g = parseInt(hex.substr(2, 2), 16);
+    const b = parseInt(hex.substr(4, 2), 16);
+    
+    // 計算亮度 (使用 YIQ 公式)
+    const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+    
+    // 如果背景色亮度高於128，使用深色文字；否則使用淺色文字
+    return brightness > 128 ? '#000000' : '#ffffff';
+  }, []);
+
+  // 啟動動畫效果
+  useEffect(() => {
+    // 標題脈動動畫
+    const titleAnimation = Animated.loop(
+      Animated.sequence([
+        Animated.timing(titlePulse, {
+          toValue: 1.1,
+          duration: 2000,
+          useNativeDriver: true,
+        }),
+        Animated.timing(titlePulse, {
+          toValue: 1,
+          duration: 2000,
+          useNativeDriver: true,
+        }),
+      ])
+    );
+
+    // 分數發光動畫
+    const scoreAnimation = Animated.loop(
+      Animated.sequence([
+        Animated.timing(scoreGlow, {
+          toValue: 1,
+          duration: 1500,
+          useNativeDriver: false,
+        }),
+        Animated.timing(scoreGlow, {
+          toValue: 0.5,
+          duration: 1500,
+          useNativeDriver: false,
+        }),
+      ])
+    );
+
+    // 方塊發光動畫
+    const pieceAnimation = Animated.loop(
+      Animated.sequence([
+        Animated.timing(pieceGlow, {
+          toValue: 1,
+          duration: 1000,
+          useNativeDriver: false,
+        }),
+        Animated.timing(pieceGlow, {
+          toValue: 0,
+          duration: 1000,
+          useNativeDriver: false,
+        }),
+      ])
+    );
+
+    titleAnimation.start();
+    scoreAnimation.start();
+    pieceAnimation.start();
+
+    return () => {
+      titleAnimation.stop();
+      scoreAnimation.stop();
+      pieceAnimation.stop();
+    };
+  }, [titlePulse, scoreGlow, pieceGlow]);
+
+  // 生成星空背景
+  useEffect(() => {
+    const generateStars = () => {
+      const newStars = [];
+      const screenWidth = Dimensions.get('window').width;
+      const screenHeight = Dimensions.get('window').height;
+      
+      for (let i = 0; i < 50; i++) {
+        newStars.push({
+          id: i,
+          x: Math.random() * screenWidth,
+          y: Math.random() * screenHeight,
+          opacity: Math.random() * 0.8 + 0.2,
+        });
+      }
+      setStars(newStars);
+    };
+
+    generateStars();
+  }, []);
 
   // 計算方塊需要的字符數
   const getShapeCharCount = useCallback((shape: number[][]): number => {
@@ -226,7 +516,7 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
     const newY = currentPiece.y + 1;
     
     if (canPlacePiece(currentPiece, currentPiece.x, newY)) {
-      setCurrentPiece(prev => prev ? { ...prev, y: newY } : null);
+      setCurrentPiece((prev: TetrisPiece | null) => prev ? { ...prev, y: newY } : null);
     } else {
       // 方塊無法繼續下落，固定到遊戲板
       placePieceOnBoard(currentPiece);
@@ -252,8 +542,8 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
     // 確定當前階段 (1-5級=階段1, 6-10級=階段2, 等等)
     const stage = Math.ceil(newLevel / 5);
     
-    // 每個階段的加速度：階段1=1, 階段2=1.5, 階段3=2, 等等
-    const stageSpeedIncrease = stage * 0.5 + 0.5;
+    // 每個階段的加速度：階段1=0.6, 階段2=0.9, 階段3=1.2, 等等 (調低加速度)
+    const stageSpeedIncrease = stage * 0.3 + 0.3;
     
     console.log(`等級 ${newLevel}, 階段 ${stage}, 加速度 ${stageSpeedIncrease}`);
     
@@ -270,25 +560,10 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
       const levelBonus = level;
       const totalScore = baseScore * levelBonus;
       
-      setScore(prev => prev + totalScore);
-      setPiecesCleared(prev => prev + 1);
+      setScore((prev: number) => prev + totalScore);
+      setPiecesCleared((prev: number) => prev + 1);
       setCurrentPiece(null);
       setUserInput('');
-      
-      // 檢查是否需要升級
-      const newPiecesCleared = piecesCleared + 1;
-      if (newPiecesCleared % 5 === 0) { // 每5個方塊升級一次
-        const newLevel = level + 1;
-        setLevel(newLevel);
-        
-        // 階段性加速
-        const speedDecrease = calculateSpeedDecrease(newLevel);
-        setFallSpeed(prev => {
-          const newSpeed = Math.max(100, prev - (speedDecrease * 50)); // 最低速度100ms
-          console.log(`速度變化: ${prev}ms -> ${newSpeed}ms (減少${speedDecrease * 50}ms)`);
-          return newSpeed;
-        });
-      }
       
       // 生成新方塊
       setTimeout(() => {
@@ -302,14 +577,14 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
         }
       }, 100);
     }
-  }, [currentPiece, level, piecesCleared, generateRandomPiece, canPlacePiece, calculateSpeedDecrease]);
+  }, [currentPiece, level, piecesCleared, generateRandomPiece, canPlacePiece]);
 
   // 開始遊戲
   const startGame = useCallback(() => {
     setGameState('playing');
     setBoard(Array(BOARD_HEIGHT).fill(null).map(() => Array(BOARD_WIDTH).fill(0)));
     setScore(0);
-    setLevel(5); // 暫時從第5關開始，方便測試漢字方塊
+    setLevel(1); // 從1級開始
     setPiecesCleared(0);
     setFallSpeed(INITIAL_FALL_SPEED);
     setUserInput('');
@@ -333,9 +608,9 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
     navigation?.goBack();
   }, [navigation]);
 
-  // 設置下落定時器
+  // 設置下落定時器（bossMode 時暫停）
   useEffect(() => {
-    if (gameState === 'playing') {
+    if (gameState === 'playing' && !bossMode) {
       fallTimerRef.current = setInterval(dropPiece, fallSpeed);
     } else {
       if (fallTimerRef.current) {
@@ -343,374 +618,719 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
         fallTimerRef.current = null;
       }
     }
-    
     return () => {
       if (fallTimerRef.current) {
         clearInterval(fallTimerRef.current);
       }
     };
-  }, [gameState, fallSpeed, dropPiece]);
+  }, [gameState, fallSpeed, dropPiece, bossMode]);
 
   // 渲染遊戲板
   const renderBoard = () => {
     const screenWidth = Dimensions.get('window').width;
-    const screenHeight = Dimensions.get('window').height;
     const availableWidth = screenWidth - 40; // 減去 padding
-    const availableHeight = screenHeight * 0.5; // 使用螢幕高度的50%
-    
-    // 根據可用空間計算最適合的格子大小
-    const cellSizeByWidth = availableWidth / BOARD_WIDTH;
-    const cellSizeByHeight = availableHeight / BOARD_HEIGHT;
-    const cellSize = Math.min(cellSizeByWidth, cellSizeByHeight, 25); // 最大25px
-    
+    const availableHeight = 340; // 固定高度，避免被鍵盤遮住
+    // 預留邊框厚度
+    const borderThickness = 6;
+    const cellSizeByWidth = (availableWidth - borderThickness * 2) / BOARD_WIDTH;
+    const cellSizeByHeight = (availableHeight - borderThickness * 2) / BOARD_HEIGHT;
+    const cellSize = Math.min(cellSizeByWidth, cellSizeByHeight, 25);
+    const boardWidth = cellSize * BOARD_WIDTH;
+    const boardHeight = cellSize * BOARD_HEIGHT;
     return (
-      <View style={[styles.board, { 
-        width: cellSize * BOARD_WIDTH, 
-        height: cellSize * BOARD_HEIGHT,
-        marginVertical: 10
-      }]}>
-        {board.map((row, rowIndex) =>
-          row.map((cell, colIndex) => (
-            <View
-              key={`${rowIndex}-${colIndex}`}
-              style={[
-                styles.cell,
-                {
-                  left: colIndex * cellSize,
-                  top: rowIndex * cellSize,
-                  width: cellSize,
-                  height: cellSize,
-                  backgroundColor: cell === 1 ? '#666' : 'transparent',
-                }
-              ]}
-            />
-          ))
-        )}
-        
-        {/* 渲染當前下落的方塊 */}
-        {currentPiece && (
-          <View style={styles.fallingPiece}>
-            {/* 方塊背景和文字 */}
-            {currentPiece.shape.map((row, rowIndex) =>
-              row.map((cell, colIndex) => {
-                if (cell === 1) {
-                  const x = (currentPiece.x + colIndex) * cellSize;
-                  const y = (currentPiece.y + rowIndex) * cellSize;
-                  
-                  // 計算當前格子應該顯示的字符
-                  let charIndex = 0;
-                  for (let r = 0; r < rowIndex; r++) {
-                    for (let c = 0; c < currentPiece.shape[r].length; c++) {
-                      if (currentPiece.shape[r][c] === 1) {
+      <View style={{
+        borderWidth: borderThickness,
+        borderColor: currentThemeColor,
+        borderRadius: 12,
+        shadowColor: currentThemeColor,
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 0.6,
+        shadowRadius: 25,
+        elevation: 15,
+        backgroundColor: 'rgba(0,0,0,0.8)',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginVertical: 10,
+        width: boardWidth + borderThickness * 2,
+        height: boardHeight + borderThickness * 2,
+      }}>
+        <View style={{
+          width: boardWidth,
+          height: boardHeight,
+          position: 'relative',
+          backgroundColor: 'rgba(0,0,0,0.8)',
+          borderRadius: 6,
+          overflow: 'hidden',
+        }}>
+          {board.map((row: number[], rowIndex: number) =>
+            row.map((cell: number, colIndex: number) => (
+              <View
+                key={`${rowIndex}-${colIndex}`}
+                style={[
+                  styles.cell,
+                  {
+                    left: colIndex * cellSize,
+                    top: rowIndex * cellSize,
+                    width: cellSize,
+                    height: cellSize,
+                    backgroundColor: cell === 1 ? 'rgba(0, 255, 255, 0.4)' : 'rgba(0, 255, 255, 0.02)',
+                    borderColor: cell === 1 ? 'rgba(0, 255, 255, 0.8)' : 'rgba(0, 255, 255, 0.15)',
+                    borderWidth: cell === 1 ? 2 : 0.5,
+                    shadowColor: cell === 1 ? currentThemeColor : 'transparent',
+                    shadowOffset: { width: 0, height: 0 },
+                    shadowOpacity: cell === 1 ? 0.6 : 0,
+                    shadowRadius: cell === 1 ? 8 : 0,
+                    elevation: cell === 1 ? 5 : 0,
+                  }
+                ]}
+              />
+            ))
+          )}
+          {/* 渲染當前下落的方塊 */}
+          {currentPiece && (
+            <View style={styles.fallingPiece}>
+              {/* 方塊背景和文字 */}
+              {currentPiece.shape.map((row: number[], rowIndex: number) =>
+                row.map((cell: number, colIndex: number) => {
+                  if (cell === 1) {
+                    const x = (currentPiece.x + colIndex) * cellSize;
+                    const y = (currentPiece.y + rowIndex) * cellSize;
+                    // 計算當前格子應該顯示的字符
+                    let charIndex = 0;
+                    for (let r = 0; r < rowIndex; r++) {
+                      for (let c = 0; c < currentPiece.shape[r].length; c++) {
+                        if (currentPiece.shape[r][c] === 1) {
+                          charIndex++;
+                        }
+                      }
+                    }
+                    for (let c = 0; c < colIndex; c++) {
+                      if (currentPiece.shape[rowIndex][c] === 1) {
                         charIndex++;
                       }
                     }
+                    // 如果是漢字方塊，顯示漢字；否則顯示假名
+                    const displayText = currentPiece.isKanji && currentPiece.kanji ? currentPiece.kanji : currentPiece.kana;
+                    const character = displayText[charIndex] || '';
+                    return (
+                      <Animated.View
+                        key={`piece-${rowIndex}-${colIndex}`}
+                        style={[
+                          styles.pieceCell,
+                          {
+                            left: x,
+                            top: y,
+                            width: cellSize,
+                            height: cellSize,
+                            backgroundColor: currentPiece.color,
+                            shadowColor: currentPiece.color,
+                            shadowOffset: { width: 0, height: 0 },
+                            shadowOpacity: pieceGlow.interpolate({
+                              inputRange: [0, 1],
+                              outputRange: [0.6, 1],
+                            }),
+                            shadowRadius: pieceGlow.interpolate({
+                              inputRange: [0, 1],
+                              outputRange: [cellSize * 0.3, cellSize * 0.5],
+                            }),
+                            elevation: 12,
+                            borderColor: currentPiece.color,
+                            borderWidth: 2,
+                          }
+                        ]}
+                      >
+                        <Animated.Text style={[
+                          styles.pieceCharacter, 
+                          { 
+                            fontSize: Math.min(cellSize * 0.6, 16),
+                            color: getTextColorForBackground(currentPiece.color),
+                            textShadowColor: getTextColorForBackground(currentPiece.color) === '#000000' ? '#ffffff' : '#000000',
+                            textShadowOffset: { width: 0, height: 0 },
+                            textShadowRadius: pieceGlow.interpolate({
+                              inputRange: [0, 1],
+                              outputRange: [8, 15],
+                            }),
+                          }
+                        ]}>
+                          {character}
+                        </Animated.Text>
+                      </Animated.View>
+                    );
                   }
-                  for (let c = 0; c < colIndex; c++) {
-                    if (currentPiece.shape[rowIndex][c] === 1) {
-                      charIndex++;
-                    }
-                  }
-                  
-                  // 如果是漢字方塊，顯示漢字；否則顯示假名
-                  const displayText = currentPiece.isKanji && currentPiece.kanji ? currentPiece.kanji : currentPiece.kana;
-                  const character = displayText[charIndex] || '';
-                  
-                  return (
-                    <View
-                      key={`piece-${rowIndex}-${colIndex}`}
-                      style={[
-                        styles.pieceCell,
-                        {
-                          left: x,
-                          top: y,
-                          width: cellSize,
-                          height: cellSize,
-                          backgroundColor: currentPiece.color,
-                        }
-                      ]}
-                    >
-                      <Text style={[styles.pieceCharacter, { fontSize: Math.min(cellSize * 0.6, 16) }]}>
-                        {character}
-                      </Text>
-                    </View>
-                  );
-                }
-                return null;
-              })
-            )}
-          </View>
-        )}
+                  return null;
+                })
+              )}
+            </View>
+          )}
+        </View>
       </View>
     );
   };
 
   // 渲染遊戲界面
   const renderGameContent = () => {
-    switch (gameState) {
-      case 'idle':
-        return (
-          <View style={styles.menuContainer}>
-            <Text style={styles.title}>俄羅斯方塊模式</Text>
-            <Text style={styles.description}>
-              輸入方塊上的假名來消除方塊！{'\n'}
-              方塊會自動下落，在落地前輸入正確的假名即可消除{'\n'}
-              第5關開始出現漢字方塊，第10關出現更長的漢字方塊
-            </Text>
-            <View style={styles.settingsInfo}>
-              <Text style={styles.settingText}>難度: {settings.difficulty}</Text>
-              <Text style={styles.settingText}>類型: {settings.wordType}</Text>
-            </View>
-            <TouchableOpacity style={styles.startButton} onPress={startGame}>
-              <Text style={styles.startButtonText}>開始遊戲</Text>
-            </TouchableOpacity>
+    // bossMode 彈跳卡片
+    const bossCard = bossMode && bossQuestion && (
+      <View
+        style={{
+          position: 'absolute',
+          top: 80,
+          left: '5%',
+          width: '90%',
+          alignItems: 'center',
+          zIndex: 21,
+        }}>
+        <View style={{
+          width: '100%',
+          backgroundColor: 'rgba(10, 30, 40, 0.92)',
+          borderRadius: 20,
+          paddingVertical: 28,
+          paddingHorizontal: 20,
+          alignItems: 'center',
+          borderWidth: 2.5,
+          borderColor: currentThemeColor,
+          shadowColor: currentThemeColor,
+          shadowOffset: { width: 0, height: 0 },
+          shadowOpacity: 0.4,
+          shadowRadius: 18,
+          elevation: 16,
+        }}>
+          <Text style={{
+            fontSize: 22,
+            fontWeight: '900',
+            color: currentThemeColor,
+            marginBottom: 12,
+            letterSpacing: 2,
+            textShadowColor: currentThemeColor,
+            textShadowOffset: { width: 0, height: 0 },
+            textShadowRadius: 12,
+          }}>
+            BOSS 挑戰
+          </Text>
+          <Text style={{
+            fontSize: 20,
+            fontWeight: 'bold',
+            color: '#fff',
+            marginBottom: 18,
+            textAlign: 'center',
+            lineHeight: 32,
+            textShadowColor: currentThemeColor,
+            textShadowOffset: { width: 0, height: 0 },
+            textShadowRadius: 8,
+          }}>
+            {bossQuestion.displayContent}
+          </Text>
+          {/* 倒數引線動畫 */}
+          <View style={{width: '100%', height: 8, backgroundColor: '#003a4d', borderRadius: 4, marginBottom: 14, overflow: 'hidden'}}>
+            <Animated.View style={{
+              height: 8,
+              backgroundColor: currentThemeColor,
+              borderRadius: 4,
+              width: bossLineAnim.interpolate({inputRange: [0,1], outputRange: ['0%','100%']}),
+              shadowColor: currentThemeColor,
+              shadowOffset: { width: 0, height: 0 },
+              shadowOpacity: 0.7,
+              shadowRadius: 8,
+            }}/>
           </View>
-        );
-        
-      case 'playing':
-      case 'paused':
-        return (
-          <ScrollView 
-            style={styles.gameScrollView}
-            contentContainerStyle={styles.gameContainer}
-            showsVerticalScrollIndicator={false}
-          >
-            {/* 遊戲信息 */}
-            <View style={styles.gameInfo}>
-              <Text style={styles.infoText}>分數: {score}</Text>
-              <Text style={styles.infoText}>等級: {level}</Text>
-              <Text style={styles.infoText}>已消除: {piecesCleared}</Text>
-            </View>
-            
-            {/* 遊戲板 */}
-            {renderBoard()}
-            
-            {/* 當前單字顯示 */}
-            {currentPiece && (
-              <View style={styles.wordContainer}>
-                {currentPiece.isKanji ? (
-                  <>
-                    <Text style={styles.wordText}>{currentPiece.kanji}</Text>
-                    <Text style={styles.kanaText}>讀音: {currentPiece.kana}</Text>
-                    <Text style={styles.meaningText}>{currentPiece.meaning}</Text>
-                    <Text style={styles.hintText}>輸入完整讀音來消除漢字方塊</Text>
-                  </>
-                ) : (
-                  <>
-                    <Text style={styles.wordText}>{currentPiece.word}</Text>
-                    <Text style={styles.kanaText}>({currentPiece.kana})</Text>
-                    <Text style={styles.meaningText}>{currentPiece.meaning}</Text>
-                  </>
-                )}
-              </View>
-            )}
-            
-            {/* 輸入框 */}
-            <TextInput
-              style={styles.input}
-              value={userInput}
-              onChangeText={handleInputChange}
-              placeholder="輸入假名..."
-              autoFocus={gameState === 'playing'}
-              editable={gameState === 'playing'}
-            />
-            
-            {/* 控制按鈕 */}
-            <View style={styles.controlButtons}>
-              <TouchableOpacity style={styles.controlButton} onPress={togglePause}>
-                <Text style={styles.controlButtonText}>
-                  {gameState === 'playing' ? '暫停' : '繼續'}
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.controlButton} onPress={goBackToMenu}>
-                <Text style={styles.controlButtonText}>返回</Text>
-              </TouchableOpacity>
-            </View>
-            
-            {/* 暫停覆蓋層 */}
-            {gameState === 'paused' && (
-              <TouchableOpacity 
-                style={styles.pauseOverlay}
-                onPress={togglePause}
-                activeOpacity={1}
+          <Text style={{
+            fontSize: 15,
+            color: currentThemeColor,
+            marginBottom: 12,
+            fontWeight: '700',
+            letterSpacing: 1,
+            textShadowColor: currentThemeColor,
+            textShadowOffset: { width: 0, height: 0 },
+            textShadowRadius: 6,
+          }}>
+            剩餘時間：{bossTimer} 秒
+          </Text>
+          <TextInput
+            style={{
+              backgroundColor: 'rgba(255,255,255,0.13)',
+              borderRadius: 12,
+              borderWidth: 2,
+              borderColor: currentThemeColor,
+              padding: 14,
+              fontSize: 18,
+              minWidth: 200,
+              textAlign: 'center',
+              marginBottom: 6,
+              color: '#fff',
+              fontWeight: '700',
+              shadowColor: currentThemeColor,
+              shadowOffset: { width: 0, height: 0 },
+              shadowOpacity: 0.3,
+              shadowRadius: 8,
+              elevation: 4,
+            }}
+            value={bossInput}
+            onChangeText={handleBossInput}
+            placeholder="請輸入全文..."
+            placeholderTextColor="#b8c6db"
+            editable={bossResult===null}
+            autoFocus
+          />
+        </View>
+      </View>
+    );
+    // 主內容：左右分佈，固定在上方
+    const mainContent = (() => {
+      switch (gameState) {
+        case 'idle':
+          return (
+            <View style={styles.menuContainer}>
+              <Animated.Text 
+                style={[
+                  styles.title,
+                  {
+                    transform: [{ scale: titlePulse }],
+                  }
+                ]}
               >
-                <View style={styles.pauseContent}>
-                  <Text style={styles.pauseText}>遊戲暫停</Text>
-                  <Text style={styles.pauseHint}>點擊任意處繼續</Text>
-                  <TouchableOpacity style={styles.resumeButton} onPress={togglePause}>
-                    <Text style={styles.resumeButtonText}>繼續遊戲</Text>
-                  </TouchableOpacity>
-                </View>
-              </TouchableOpacity>
-            )}
-          </ScrollView>
-        );
-        
-      case 'finished':
-        return (
-          <View style={styles.gameOverContainer}>
-            <Text style={styles.gameOverTitle}>遊戲結束</Text>
-            <Text style={styles.finalScore}>最終分數: {score}</Text>
-            <Text style={styles.finalStats}>等級: {level} | 消除方塊: {piecesCleared}</Text>
-            
-            <View style={styles.gameOverButtons}>
-              <TouchableOpacity style={styles.restartButton} onPress={restartGame}>
-                <Text style={styles.restartButtonText}>重新開始</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.backButton} onPress={goBackToMenu}>
-                <Text style={styles.backButtonText}>返回主選單</Text>
+🎯 Tetris Mode
+              </Animated.Text>
+              <View style={{marginBottom: 30}}>
+                <Text style={styles.description}>
+                  {'1. 每個方塊上會顯示日文單字或漢字，請在方塊落地前輸入正確的假名或羅馬拼音消除方塊。\n'}
+                  {'2. 方塊會自動下落，輸入正確即可消除。\n'}
+                  {'3. 每消除 5 個方塊會提升等級，等級越高方塊下落速度越快。\n'}
+                  {'4. 遊戲結束時會記錄你的最高分、最高等級與最高消除數。'}
+                </Text>
+              </View>
+              <View style={styles.settingsInfo}>
+                <Text style={{color: currentThemeColor, fontWeight: 'bold', fontSize: 16}}>🏅 最高分：{bestScore}</Text>
+                <Text style={{color: currentThemeColor, fontWeight: 'bold', fontSize: 16}}>📈 最高等級：{bestLevel}</Text>
+                <Text style={{color: currentThemeColor, fontWeight: 'bold', fontSize: 16}}>🧩 最高消除數：{bestCleared}</Text>
+              </View>
+              <TouchableOpacity 
+                style={styles.startButton} 
+                onPress={startGame}
+                onPressIn={() => {
+                  Animated.spring(buttonScale, {
+                    toValue: 0.95,
+                    useNativeDriver: true,
+                  }).start();
+                }}
+                onPressOut={() => {
+                  Animated.spring(buttonScale, {
+                    toValue: 1,
+                    useNativeDriver: true,
+                  }).start();
+                }}
+              >
+                <Animated.View style={{ transform: [{ scale: buttonScale }] }}>
+                  <Text style={styles.startButtonText}>🚀 開始遊戲 🚀</Text>
+                </Animated.View>
               </TouchableOpacity>
             </View>
-          </View>
-        );
+          );
         
-      default:
-        return null;
-    }
+        case 'playing':
+        case 'paused':
+          return (
+            <View style={{ flex: 1 }}>
+              {/* 主內容：左右分佈，固定在上方 */}
+              <View style={{ flex: 1, flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'center', paddingHorizontal: 10 }}>
+                {/* 左側：方塊堆疊區 */}
+                <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+                  {renderBoard()}
+                </View>
+                {/* 右側：題目提示、分數等級、輸入匡 */}
+                <View style={{ flex: 1, marginLeft: 10, justifyContent: 'flex-start', marginTop: 10 }}>
+                  {/* 題目提示 */}
+                  {currentPiece && (
+                    <View style={[styles.wordContainer, { marginTop: 0, padding: 12, borderRadius: 14, borderColor: currentThemeColor, shadowColor: currentThemeColor, backgroundColor: currentThemeColor + '22' }]}> 
+                      {currentPiece.isKanji ? (
+                        <>
+                          <Text style={[styles.wordText, { fontSize: 20, color: currentThemeColor, textShadowColor: currentThemeColor }]}>{currentPiece.kanji}</Text>
+                          <Text style={[styles.kanaText, { fontSize: 14, color: currentThemeColor }]}>{'讀音: ' + currentPiece.kana}</Text>
+                          <Text style={[styles.meaningText, { fontSize: 13, color: currentThemeColor }]}>{currentPiece.meaning}</Text>
+                        </>
+                      ) : (
+                        <>
+                          <Text style={[styles.wordText, { fontSize: 20, color: currentThemeColor, textShadowColor: currentThemeColor }]}>{currentPiece.word}</Text>
+                          <Text style={[styles.kanaText, { fontSize: 14, color: currentThemeColor }]}>{'(' + currentPiece.kana + ')'}</Text>
+                          <Text style={[styles.meaningText, { fontSize: 13, color: currentThemeColor }]}>{currentPiece.meaning}</Text>
+                        </>
+                      )}
+                    </View>
+                  )}
+                  {/* 分數等級消除數 */}
+                  <View style={{ backgroundColor: currentThemeColor + '22', borderRadius: 14, borderWidth: 1.5, borderColor: currentThemeColor, marginTop: 18, padding: 10, alignItems: 'center', shadowColor: currentThemeColor, shadowOpacity: 0.3, shadowRadius: 8 }}>
+                    <Text style={{ color: currentThemeColor, fontSize: 15, fontWeight: '700', marginBottom: 4 }}>🏆 分數: {score}</Text>
+                    <Text style={{ color: currentThemeColor, fontSize: 15, fontWeight: '700', marginBottom: 4 }}>📈 等級: {level}</Text>
+                    <Text style={{ color: currentThemeColor, fontSize: 15, fontWeight: '700' }}>🧩 消除數: {piecesCleared}</Text>
+                  </View>
+                  {/* 輸入匡 */}
+                  <TextInput
+                    ref={mainInputRef}
+                    style={[
+                      styles.input,
+                      { marginTop: 18, width: '100%', fontSize: 18 },
+                      inputFocused && {
+                        borderColor: currentThemeColor,
+                        shadowColor: currentThemeColor,
+                        shadowOffset: { width: 0, height: 0 },
+                        shadowOpacity: 0.6,
+                        shadowRadius: 15,
+                        elevation: 8,
+                      },
+                      { borderColor: currentThemeColor, color: currentThemeColor }
+                    ]}
+                    value={userInput}
+                    onChangeText={handleInputChange}
+                    placeholder="請輸入"
+                    placeholderTextColor={currentThemeColor + '88'}
+                    autoFocus={gameState === 'playing' && !bossMode}
+                    editable={gameState === 'playing' && !bossMode}
+                    onFocus={() => setInputFocused(true)}
+                    onBlur={() => setInputFocused(false)}
+                  />
+                </View>
+              </View>
+            </View>
+          );
+        
+        case 'finished':
+          return (
+            <View style={styles.gameOverContainer}>
+              <Animated.Text 
+                style={[
+                  styles.gameOverTitle,
+                  {
+                    transform: [{ scale: titlePulse }],
+                  }
+                ]}
+              >
+                💀 遊戲結束 💀
+              </Animated.Text>
+              <Animated.Text 
+                style={[
+                  styles.finalScore,
+                  {
+                    textShadowRadius: scoreGlow.interpolate({
+                      inputRange: [0.5, 1],
+                      outputRange: [15, 25],
+                    }),
+                  }
+                ]}
+              >
+                🏆 最終分數: {score} 🏆
+              </Animated.Text>
+              <Text style={styles.finalStats}>
+                📊 等級: {level} | 🧩 消除方塊: {piecesCleared} 📊
+              </Text>
+              {/* 新增最高紀錄顯示 */}
+              <View style={{marginBottom: 20, backgroundColor: 'rgba(0,255,255,0.07)', borderRadius: 10, padding: 10, borderWidth: 1, borderColor: '#00ffff33'}}>
+                <Text style={{color: currentThemeColor, fontWeight: 'bold', fontSize: 15, marginBottom: 2}}>🏅 最高紀錄</Text>
+                <Text style={{color: currentThemeColor, fontSize: 14}}>分數：{bestScore}　等級：{bestLevel}　消除數：{bestCleared}</Text>
+              </View>
+              <View style={styles.gameOverButtons}>
+                <TouchableOpacity style={styles.restartButton} onPress={restartGame}>
+                  <Text style={styles.restartButtonText}>🔄 重新開始 🔄</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.backButton} onPress={goBackToMenu}>
+                  <Text style={styles.backButtonText}>🏠 返回主選單 🏠</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          );
+        
+        default:
+          return null;
+      }
+    })();
+    return (
+      <View style={{flex:1}}>
+        {mainContent}
+        {bossMode && (
+          <BlurView intensity={30} tint="light" style={{position:'absolute',top:0,left:0,right:0,bottom:0,zIndex:20}} />
+        )}
+        {bossCard}
+      </View>
+    );
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
+      {/* 星空背景 */}
+      <View style={styles.starField}>
+        {stars.map((star: {id: number, x: number, y: number, opacity: number}) => (
+          <View
+            key={star.id}
+            style={[
+              styles.star,
+              {
+                left: star.x,
+                top: star.y,
+                opacity: star.opacity,
+              }
+            ]}
+          />
+        ))}
+      </View>
+      
+      {/* 統一導航欄 */}
+      <GlassNavBar
+        title="Tetris Mode"
+        leftButton={{
+          text: '← 返回',
+          onPress: () => navigation?.goBack(),
+          style: 'secondary',
+        }}
+        rightButton={
+          gameState === 'playing' || gameState === 'paused'
+            ? {
+                text: gameState === 'paused' ? '繼續' : '暫停',
+                onPress: togglePause,
+                style: 'primary',
+              }
+            : undefined
+        }
+      />
+      
       {renderGameContent()}
-    </SafeAreaView>
+      
+      {/* 暫停覆蓋層 */}
+      <PauseOverlay
+        visible={gameState === 'paused'}
+        onResume={togglePause}
+        onRestart={startGame}
+        onMainMenu={() => navigation?.goBack()}
+      />
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#1a1a2e',
+    backgroundColor: '#0a0a0f',
   },
   menuContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
+    backgroundColor: 'rgba(10, 10, 15, 0.95)',
   },
   title: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    color: '#fff',
+    fontSize: 32,
+    fontWeight: '900',
+    color: '#00ffff',
     marginBottom: 20,
     textAlign: 'center',
+    textShadowColor: '#00ffff',
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 20,
+    letterSpacing: 2,
   },
   description: {
     fontSize: 16,
-    color: '#ccc',
-    textAlign: 'center',
+    color: '#b8c6db',
+    textAlign: 'left',
     marginBottom: 30,
     lineHeight: 24,
+    backgroundColor: 'rgba(0, 255, 255, 0.05)',
+    padding: 15,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: 'rgba(0, 255, 255, 0.2)',
   },
   settingsInfo: {
     marginBottom: 30,
     alignItems: 'center',
+    backgroundColor: 'rgba(255, 255, 255, 0.05)',
+    padding: 20,
+    borderRadius: 15,
+    borderWidth: 1,
+    borderColor: 'rgba(0, 255, 255, 0.3)',
   },
   settingText: {
-    fontSize: 14,
-    color: '#4ECDC4',
-    marginBottom: 5,
+    fontSize: 16,
+    color: '#00ffff',
+    marginBottom: 8,
+    fontWeight: '600',
+    textShadowColor: '#00ffff',
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 10,
   },
   startButton: {
-    backgroundColor: '#4ECDC4',
+    backgroundColor: 'transparent',
     paddingHorizontal: 40,
-    paddingVertical: 15,
-    borderRadius: 25,
+    paddingVertical: 18,
+    borderRadius: 30,
+    borderWidth: 2,
+    borderColor: '#00ffff',
+    shadowColor: '#00ffff',
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.8,
+    shadowRadius: 20,
+    elevation: 10,
   },
   startButtonText: {
-    color: '#fff',
-    fontSize: 18,
-    fontWeight: 'bold',
+    color: '#00ffff',
+    fontSize: 20,
+    fontWeight: '800',
+    textAlign: 'center',
+    textShadowColor: '#00ffff',
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 10,
+    letterSpacing: 1,
   },
   gameContainer: {
     flexGrow: 1,
     padding: 20,
     alignItems: 'center',
     minHeight: Dimensions.get('window').height - 100,
+    backgroundColor: 'rgba(10, 10, 15, 0.95)',
   },
   gameInfo: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     width: '100%',
     marginBottom: 20,
+    backgroundColor: 'rgba(0, 255, 255, 0.1)',
+    padding: 15,
+    borderRadius: 15,
+    borderWidth: 1,
+    borderColor: 'rgba(0, 255, 255, 0.3)',
   },
   infoText: {
-    color: '#fff',
+    color: '#00ffff',
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: '700',
+    textShadowColor: '#00ffff',
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 8,
   },
   board: {
-    borderWidth: 2,
-    borderColor: '#444',
-    backgroundColor: '#000',
+    borderWidth: 3,
+    borderColor: '#00ffff',
+    backgroundColor: 'rgba(0, 0, 0, 0.8)',
     position: 'relative',
+    shadowColor: '#00ffff',
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.6,
+    shadowRadius: 25,
+    elevation: 15,
+    borderRadius: 8,
   },
   cell: {
     position: 'absolute',
     borderWidth: 0.5,
-    borderColor: '#333',
+    borderColor: 'rgba(0, 255, 255, 0.1)',
+    backgroundColor: 'rgba(0, 255, 255, 0.02)',
   },
   pieceCell: {
     position: 'absolute',
-    borderWidth: 1,
-    borderColor: '#fff',
-    borderRadius: 2,
+    borderWidth: 2,
+    borderColor: '#ffffff',
+    borderRadius: 4,
     justifyContent: 'center',
     alignItems: 'center',
+    shadowColor: '#ffffff',
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.8,
+    shadowRadius: 10,
+    elevation: 8,
   },
   pieceCharacter: {
-    color: '#fff',
-    fontWeight: 'bold',
+    fontWeight: '900',
     textAlign: 'center',
+    textShadowOffset: { width: 1, height: 1 },
+    textShadowRadius: 3,
   },
   wordContainer: {
-    marginTop: 20,
+    marginTop: 25,
     alignItems: 'center',
+    backgroundColor: 'rgba(0, 255, 255, 0.1)',
+    padding: 20,
+    borderRadius: 20,
+    borderWidth: 2,
+    borderColor: 'rgba(0, 255, 255, 0.4)',
+    shadowColor: '#00ffff',
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.5,
+    shadowRadius: 15,
+    elevation: 10,
   },
   wordText: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#4ECDC4',
+    fontSize: 28,
+    fontWeight: '900',
+    color: '#00ffff',
+    textShadowColor: '#00ffff',
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 15,
+    letterSpacing: 2,
   },
   kanaText: {
-    fontSize: 18,
-    color: '#ccc',
-    marginTop: 5,
+    fontSize: 20,
+    color: '#b8c6db',
+    marginTop: 8,
+    fontWeight: '600',
   },
   meaningText: {
-    fontSize: 14,
-    color: '#999',
-    marginTop: 3,
+    fontSize: 16,
+    color: '#8892b0',
+    marginTop: 5,
+    fontWeight: '500',
   },
   hintText: {
-    fontSize: 12,
-    color: '#FFD93D',
-    marginTop: 5,
+    fontSize: 14,
+    color: '#ffd700',
+    marginTop: 8,
     fontStyle: 'italic',
+    fontWeight: '600',
+    textShadowColor: '#ffd700',
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 8,
   },
   input: {
-    backgroundColor: '#fff',
-    borderRadius: 10,
-    paddingHorizontal: 20,
-    paddingVertical: 15,
-    fontSize: 18,
-    marginTop: 20,
-    width: '80%',
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    borderRadius: 15,
+    paddingHorizontal: 25,
+    paddingVertical: 18,
+    fontSize: 20,
+    marginTop: 25,
+    width: '85%',
     textAlign: 'center',
+    color: '#ffffff',
+    borderWidth: 2,
+    borderColor: 'rgba(0, 255, 255, 0.5)',
+    shadowColor: '#00ffff',
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.3,
+    shadowRadius: 10,
+    elevation: 5,
+    fontWeight: '600',
   },
   controlButtons: {
     flexDirection: 'row',
-    marginTop: 20,
-    gap: 15,
+    marginTop: 25,
+    gap: 20,
   },
   controlButton: {
-    backgroundColor: '#666',
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    borderRadius: 15,
+    backgroundColor: 'rgba(0, 255, 255, 0.1)',
+    paddingHorizontal: 25,
+    paddingVertical: 12,
+    borderRadius: 20,
+    borderWidth: 2,
+    borderColor: 'rgba(0, 255, 255, 0.4)',
+    shadowColor: '#00ffff',
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.4,
+    shadowRadius: 8,
+    elevation: 5,
   },
   controlButtonText: {
-    color: '#fff',
+    color: '#00ffff',
     fontSize: 16,
+    fontWeight: '700',
+    textShadowColor: '#00ffff',
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 5,
   },
   pauseOverlay: {
     position: 'absolute',
@@ -718,82 +1338,138 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+    backgroundColor: 'rgba(0, 0, 0, 0.9)',
     justifyContent: 'center',
     alignItems: 'center',
   },
   pauseContent: {
-    padding: 20,
+    padding: 30,
     alignItems: 'center',
+    backgroundColor: 'rgba(0, 255, 255, 0.1)',
+    borderRadius: 25,
+    borderWidth: 2,
+    borderColor: 'rgba(0, 255, 255, 0.4)',
+    shadowColor: '#00ffff',
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.6,
+    shadowRadius: 20,
+    elevation: 15,
   },
   pauseText: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    color: '#fff',
-    marginBottom: 20,
+    fontSize: 36,
+    fontWeight: '900',
+    color: '#00ffff',
+    marginBottom: 25,
+    textShadowColor: '#00ffff',
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 20,
+    letterSpacing: 3,
   },
   pauseHint: {
     fontSize: 18,
-    color: '#ccc',
+    color: '#b8c6db',
+    marginBottom: 20,
+    textAlign: 'center',
   },
   resumeButton: {
-    backgroundColor: '#4ECDC4',
-    paddingHorizontal: 30,
+    backgroundColor: 'transparent',
+    paddingHorizontal: 35,
     paddingVertical: 15,
     borderRadius: 25,
+    borderWidth: 2,
+    borderColor: '#00ffff',
+    shadowColor: '#00ffff',
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.8,
+    shadowRadius: 15,
+    elevation: 10,
   },
   resumeButtonText: {
-    color: '#fff',
+    color: '#00ffff',
     fontSize: 18,
-    fontWeight: 'bold',
+    fontWeight: '800',
+    textShadowColor: '#00ffff',
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 10,
   },
   gameOverContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
+    backgroundColor: 'rgba(10, 10, 15, 0.95)',
   },
   gameOverTitle: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    color: '#FF6B6B',
-    marginBottom: 20,
+    fontSize: 36,
+    fontWeight: '900',
+    color: '#ff0080',
+    marginBottom: 25,
+    textShadowColor: '#ff0080',
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 20,
+    letterSpacing: 2,
   },
   finalScore: {
-    fontSize: 24,
-    color: '#4ECDC4',
-    marginBottom: 10,
+    fontSize: 26,
+    color: '#00ffff',
+    marginBottom: 15,
+    fontWeight: '700',
+    textShadowColor: '#00ffff',
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 15,
   },
   finalStats: {
     fontSize: 18,
-    color: '#ccc',
+    color: '#b8c6db',
     marginBottom: 40,
+    textAlign: 'center',
+    backgroundColor: 'rgba(0, 255, 255, 0.05)',
+    padding: 15,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: 'rgba(0, 255, 255, 0.2)',
   },
   gameOverButtons: {
-    gap: 15,
+    gap: 20,
+    alignItems: 'center',
   },
   restartButton: {
-    backgroundColor: '#4ECDC4',
-    paddingHorizontal: 30,
-    paddingVertical: 15,
-    borderRadius: 25,
+    backgroundColor: 'transparent',
+    paddingHorizontal: 35,
+    paddingVertical: 18,
+    borderRadius: 30,
+    borderWidth: 2,
+    borderColor: '#00ffff',
+    shadowColor: '#00ffff',
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.8,
+    shadowRadius: 20,
+    elevation: 10,
+    minWidth: 200,
   },
   restartButtonText: {
-    color: '#fff',
+    color: '#00ffff',
     fontSize: 18,
-    fontWeight: 'bold',
+    fontWeight: '800',
     textAlign: 'center',
+    textShadowColor: '#00ffff',
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 10,
   },
   backButton: {
-    backgroundColor: '#666',
-    paddingHorizontal: 30,
-    paddingVertical: 15,
-    borderRadius: 25,
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    paddingHorizontal: 35,
+    paddingVertical: 18,
+    borderRadius: 30,
+    borderWidth: 2,
+    borderColor: 'rgba(255, 255, 255, 0.3)',
+    minWidth: 200,
   },
   backButtonText: {
-    color: '#fff',
+    color: '#b8c6db',
     fontSize: 18,
     textAlign: 'center',
+    fontWeight: '600',
   },
   fallingPiece: {
     position: 'absolute',
@@ -805,5 +1481,28 @@ const styles = StyleSheet.create({
   },
   gameScrollView: {
     flex: 1,
+  },
+  starField: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    zIndex: -1,
+  },
+  star: {
+    position: 'absolute',
+    width: 2,
+    height: 2,
+    backgroundColor: '#ffffff',
+    borderRadius: 1,
+    shadowColor: '#ffffff',
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.8,
+    shadowRadius: 3,
+    elevation: 2,
+  },
+  infoItem: {
+    alignItems: 'center',
   },
 }); 
