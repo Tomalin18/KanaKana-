@@ -5,9 +5,9 @@
 
 export const FEATURE_FLAGS = {
   // 新遊戲模式
-  KANJI_MODE: __DEV__ || false,        // 開發環境開啟
-  LONG_TEXT_MODE: __DEV__ || false,
-  TETRIS_MODE: __DEV__ || false,
+  KANJI_MODE: true,        // 啟用漢字模式
+  LONG_TEXT_MODE: false,   // 上架版隱藏長文模式
+  TETRIS_MODE: true,       // 啟用俄羅斯方塊模式
   
   // 其他功能
   BETA_FEATURES: __DEV__,
@@ -26,7 +26,7 @@ export const isFeatureEnabled = (feature: keyof typeof FEATURE_FLAGS): boolean =
  * 獲取可用的遊戲模式
  */
 export const getAvailableGameModes = () => {
-  const baseModes = ['infinite', 'practice', 'daily_challenge'] as const;
+  const baseModes = ['classic', 'practice', 'daily_challenge'] as const;
   const newModes = [];
   
   if (isFeatureEnabled('KANJI_MODE')) {

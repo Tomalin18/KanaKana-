@@ -1,6 +1,8 @@
 /**
- * 核心類型定義 - Kana Tower
- * 定義了應用程式中使用的所有主要類型和介面
+ * 核心類型定義 - KanaKana
+ * 
+ * 定義應用程式中使用的所有 TypeScript 類型
+ * 包括遊戲狀態、用戶設定、UI 組件等
  */
 
 // ============================================================================
@@ -8,9 +10,7 @@
 // ============================================================================
 
 export type GameMode = 
-  | 'infinite' 
-  | 'practice' 
-  | 'daily_challenge'
+  | 'classic'            // 原無限模式改名為經典模式
   | 'kanji_to_kana'      // 新增：漢字模式
   | 'long_text'          // 新增：長文模式
   | 'tetris_typing';     // 新增：俄羅斯方塊模式
@@ -375,9 +375,20 @@ export interface InputValidationResult {
 // ============================================================================
 
 /**
+ * 經典模式設定
+ */
+export interface ClassicModeSettings {
+  difficulty: 'easy' | 'normal' | 'hard';
+  showHints: boolean;
+  timeLimit?: number; // 時間限制（秒），undefined 表示無限制
+  vocabularyLevel: 'n5' | 'n4' | 'n3' | 'n2' | 'n1';
+}
+
+/**
  * 漢字模式設定
  */
 export interface KanjiModeSettings {
+  difficulty: 'easy' | 'normal' | 'hard';
   showMeaning: boolean;
   difficultyLevel: 'jlpt_n5' | 'jlpt_n4' | 'jlpt_n3' | 'jlpt_n2' | 'jlpt_n1';
   readingType: 'hiragana' | 'katakana' | 'both';

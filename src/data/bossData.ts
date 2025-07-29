@@ -1,0 +1,58 @@
+export interface BossQuestion {
+  content: string;           // 題目原文/說明
+  displayContent: string;    // 顯示在卡片上的內容（漢字混假名）
+  inputContent: string;      // 用戶要輸入的正確答案（純假名）
+  timeLimit: number;         // 秒數
+}
+
+export const bossQuestions: BossQuestion[] = [
+  { content: '我叫山田太郎。', displayContent: '私は山田太郎です。', inputContent: 'わたしはやまだたろうです。', timeLimit: 10 },
+  { content: '我住在東京。', displayContent: '私は東京に住んでいます。', inputContent: 'わたしはとうきょうにすんでいます。', timeLimit: 12 },
+  { content: '我每天早上六點起床。', displayContent: '私は毎朝六時に起きます。', inputContent: 'わたしはまいあさろくじにおきます。', timeLimit: 13 },
+  { content: '我喜歡吃壽司。', displayContent: '私は寿司を食べるのが好きです。', inputContent: 'わたしはすしをたべるのがすきです。', timeLimit: 12 },
+  { content: '今天的天氣很熱。', displayContent: '今日はとても暑いです。', inputContent: 'きょうはとてもあついです。', timeLimit: 10 },
+  { content: '我正在學習日語。', displayContent: '私は日本語を勉強しています。', inputContent: 'わたしはにほんごをべんきょうしています。', timeLimit: 13 },
+  { content: '明天要和朋友見面。', displayContent: '明日は友達と会います。', inputContent: 'あしたはともだちとあいます。', timeLimit: 11 },
+  { content: '我最喜歡的運動是足球。', displayContent: '私の一番好きなスポーツはサッカーです。', inputContent: 'わたしのいちばんすきなすぽーつはさっかーです。', timeLimit: 15 },
+  { content: '我有一隻貓。', displayContent: '私は猫を飼っています。', inputContent: 'わたしはねこをかっています。', timeLimit: 11 },
+  { content: '週末常常去圖書館。', displayContent: '週末はよく図書館に行きます。', inputContent: 'しゅうまつはよくとしょかんにいきます。', timeLimit: 13 },
+  { content: '我喜歡喝綠茶。', displayContent: '私は緑茶を飲むのが好きです。', inputContent: 'わたしはりょくちゃをのむのがすきです。', timeLimit: 12 },
+  { content: '我每天都會寫日記。', displayContent: '私は毎日日記を書きます。', inputContent: 'わたしはまいにちにっきをかきます。', timeLimit: 12 },
+  { content: '我想去京都旅行。', displayContent: '私は京都へ旅行したいです。', inputContent: 'わたしはきょうとへりょこうしたいです。', timeLimit: 12 },
+  { content: '我正在看一本有趣的書。', displayContent: '私は面白い本を読んでいます。', inputContent: 'わたしはおもしろいほんをよんでいます。', timeLimit: 13 },
+  { content: '我每天晚上十點睡覺。', displayContent: '私は毎晩十時に寝ます。', inputContent: 'わたしはまいばんじゅうじにねます。', timeLimit: 12 },
+  { content: '我喜歡聽音樂。', displayContent: '私は音楽を聴くのが好きです。', inputContent: 'わたしはおんがくをきくのがすきです。', timeLimit: 12 },
+  { content: '我有兩個兄弟。', displayContent: '私は兄弟が二人います。', inputContent: 'わたしはきょうだいがふたりいます。', timeLimit: 11 },
+  { content: '我想成為老師。', displayContent: '私は先生になりたいです。', inputContent: 'わたしはせんせいになりたいです。', timeLimit: 11 },
+  { content: '我喜歡畫畫。', displayContent: '私は絵を描くのが好きです。', inputContent: 'わたしはえをかくのがすきです。', timeLimit: 11 },
+  { content: '我每天搭電車上學。', displayContent: '私は毎日電車で学校に行きます。', inputContent: 'わたしはまいにちでんしゃでがっこうにいきます。', timeLimit: 14 },
+  { content: '我喜歡春天的櫻花。', displayContent: '私は春の桜が好きです。', inputContent: 'わたしははるのさくらがすきです。', timeLimit: 11 },
+  { content: '我正在準備明天的考試。', displayContent: '私は明日の試験の準備をしています。', inputContent: 'わたしはあしたのしけんのじゅんびをしています。', timeLimit: 15 },
+  { content: '我想吃拉麵。', displayContent: '私はラーメンを食べたいです。', inputContent: 'わたしはらーめんをたべたいです。', timeLimit: 10 },
+  { content: '我喜歡在公園散步。', displayContent: '私は公園を散歩するのが好きです。', inputContent: 'わたしはこうえんをさんぽするのがすきです。', timeLimit: 12 },
+  { content: '我每天晚上看電視。', displayContent: '私は毎晩テレビを見ます。', inputContent: 'わたしはまいばんてれびをみます。', timeLimit: 11 },
+  { content: '我想學會游泳。', displayContent: '私は泳げるようになりたいです。', inputContent: 'わたしはおよげるようになりたいです。', timeLimit: 12 },
+  { content: '我喜歡夏天去海邊。', displayContent: '私は夏に海へ行くのが好きです。', inputContent: 'わたしはなつにうみへいくのがすきです。', timeLimit: 12 },
+  { content: '我有很多朋友。', displayContent: '私は友達がたくさんいます。', inputContent: 'わたしはともだちがたくさんいます。', timeLimit: 11 },
+  { content: '我想要一台新電腦。', displayContent: '私は新しいパソコンが欲しいです。', inputContent: 'わたしはあたらしいぱそこんがほしいです。', timeLimit: 12 },
+  { content: '我喜歡看電影。', displayContent: '私は映画を見るのが好きです。', inputContent: 'わたしはえいがをみるのがすきです。', timeLimit: 11 },
+  { content: '我每天都會運動。', displayContent: '私は毎日運動します。', inputContent: 'わたしはまいにちうんどうします。', timeLimit: 10 },
+  { content: '我想去北海道旅遊。', displayContent: '私は北海道へ旅行に行きたいです。', inputContent: 'わたしはほっかいどうへりょこうにいきたいです。', timeLimit: 13 },
+  { content: '我喜歡吃甜點。', displayContent: '私は甘いものを食べるのが好きです。', inputContent: 'わたしはあまいものをたべるのがすきです。', timeLimit: 12 },
+  { content: '我正在學習彈鋼琴。', displayContent: '私はピアノを習っています。', inputContent: 'わたしはぴあのをならっています。', timeLimit: 11 },
+  { content: '我有一個妹妹。', displayContent: '私は妹が一人います。', inputContent: 'わたしはいもうとがひとりいます。', timeLimit: 10 },
+  { content: '我喜歡秋天的紅葉。', displayContent: '私は秋の紅葉が好きです。', inputContent: 'わたしはあきのこうようがすきです。', timeLimit: 11 },
+  { content: '我每天都喝咖啡。', displayContent: '私は毎日コーヒーを飲みます。', inputContent: 'わたしはまいにちこーひーをのみます。', timeLimit: 11 },
+  { content: '我想成為醫生。', displayContent: '私は医者になりたいです。', inputContent: 'わたしはいしゃになりたいです。', timeLimit: 10 },
+  { content: '我喜歡冬天的雪景。', displayContent: '私は冬の雪景色が好きです。', inputContent: 'わたしはふゆのゆきげしきがすきです。', timeLimit: 11 },
+  { content: '我正在寫信給朋友。', displayContent: '私は友達に手紙を書いています。', inputContent: 'わたしはともだちにてがみをかいています。', timeLimit: 13 },
+  { content: '我每天都會打掃房間。', displayContent: '私は毎日部屋を掃除します。', inputContent: 'わたしはまいにちへやをそうじします。', timeLimit: 12 },
+  { content: '我想學會做飯。', displayContent: '私は料理ができるようになりたいです。', inputContent: 'わたしはりょうりができるようになりたいです。', timeLimit: 13 },
+  { content: '我喜歡參加學校活動。', displayContent: '私は学校のイベントに参加するのが好きです。', inputContent: 'わたしはがっこうのいべんとにさんかするのがすきです。', timeLimit: 14 },
+  { content: '我有一台自行車。', displayContent: '私は自転車を持っています。', inputContent: 'わたしはじてんしゃをもっています。', timeLimit: 11 },
+  { content: '我想去看櫻花。', displayContent: '私は桜を見に行きたいです。', inputContent: 'わたしはさくらをみにいきたいです。', timeLimit: 11 },
+  { content: '我每天都會洗澡。', displayContent: '私は毎日お風呂に入ります。', inputContent: 'わたしはまいにちおふろにはいります。', timeLimit: 11 },
+  { content: '我喜歡閱讀小說。', displayContent: '私は小説を読むのが好きです。', inputContent: 'わたしはしょうせつをよむのがすきです。', timeLimit: 12 },
+  { content: '我想學會開車。', displayContent: '私は車の運転ができるようになりたいです。', inputContent: 'わたしはくるまのうんてんができるようになりたいです。', timeLimit: 14 },
+  { content: '我有一隻狗。', displayContent: '私は犬を飼っています。', inputContent: 'わたしはいぬをかっています。', timeLimit: 10 }
+];

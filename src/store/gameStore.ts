@@ -33,7 +33,7 @@ export interface GameSettings {
 
 export const useGameStore = () => {
   const [gameState, setGameState] = useState<GameState>({
-    mode: 'infinite',
+    mode: 'classic',
     status: 'idle',
     score: 0,
     combo: 0,
@@ -134,7 +134,7 @@ export const useGameStore = () => {
 
   const resetGame = useCallback(() => {
     setGameState({
-      mode: 'infinite',
+      mode: 'classic',
       status: 'idle',
       score: 0,
       combo: 0,
