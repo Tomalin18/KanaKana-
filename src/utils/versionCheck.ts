@@ -36,13 +36,12 @@ export const getCurrentVersion = (): VersionInfo => {
  */
 const getVersionCheckApiUrl = (): string => {
   const config = Constants.expoConfig?.extra?.versionCheck;
-  return config?.apiUrl || 'https://your-api.com/api/version-check';
+  return config?.apiUrl || 'https://neobase.app/v1/workflows/run';
 };
 
 /**
  * 從服務器檢查版本更新
- * 這裡使用一個簡單的API端點來檢查版本
- * 在實際應用中，您需要替換為您的版本檢查API
+ * 使用真實的版本號API
  */
 export const checkForUpdates = async (): Promise<UpdateInfo> => {
   try {
@@ -66,12 +65,13 @@ export const checkForUpdates = async (): Promise<UpdateInfo> => {
     const response = await fetch(apiUrl, {
       method: 'POST',
       headers: {
+        'Authorization': 'Bearer app-uoOi4HzYwlp5PWmrgb583ZWJ',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        platform: currentVersion.platform,
-        currentVersion: currentVersion.version,
-        buildNumber: currentVersion.buildNumber,
+        inputs: {},
+        response_mode: "blocking",
+        user: "kana"
       }),
     });
 
@@ -79,16 +79,27 @@ export const checkForUpdates = async (): Promise<UpdateInfo> => {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    const updateData = await response.json();
+    const apiResponse = await response.json();
     
+    // 從API響應中提取版本號
+    const latestVersion = apiResponse.data?.outputs?.answer || currentVersion.version;
+    
+    // 設置最低要求版本為當前版本，避免強制更新
+    // 如果需要強制更新，可以將minRequiredVersion設置為較高版本
+    const minRequiredVersion = currentVersion.version;
+    
+    // 比較版本
+    const isUpdateAvailable = compareVersions(currentVersion.version, latestVersion) < 0;
+    const isUpdateRequired = compareVersions(currentVersion.version, minRequiredVersion) < 0;
+
     const result = {
-      isRequired: updateData.isRequired || false,
-      isAvailable: updateData.isAvailable || false,
+      isRequired: isUpdateRequired,
+      isAvailable: isUpdateAvailable,
       currentVersion: currentVersion.version,
-      latestVersion: updateData.latestVersion || currentVersion.version,
-      minRequiredVersion: updateData.minRequiredVersion || currentVersion.version,
-      updateUrl: updateData.updateUrl || getDefaultUpdateUrl(currentVersion.platform),
-      releaseNotes: updateData.releaseNotes,
+      latestVersion: latestVersion,
+      minRequiredVersion: minRequiredVersion,
+      updateUrl: getDefaultUpdateUrl(currentVersion.platform),
+      releaseNotes: '• 修復已知問題\n• 提升性能\n• 新增功能',
     };
 
     console.log('Update check result:', result);

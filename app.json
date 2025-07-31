@@ -41,7 +41,7 @@
       },
       "versionCheck": {
         "enabled": true,
-        "apiUrl": "http://localhost:3000/api/version-check",
+        "apiUrl": "https://neobase.app/v1/workflows/run",
         "checkInterval": 3600000
       }
     },
