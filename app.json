@@ -41,7 +41,7 @@
       },
       "versionCheck": {
         "enabled": true,
-        "apiUrl": "https://your-api.com/api/version-check",
+        "apiUrl": "http://localhost:3000/api/version-check",
         "checkInterval": 3600000
       }
     },
