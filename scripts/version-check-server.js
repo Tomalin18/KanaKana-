@@ -11,14 +11,14 @@ app.use(express.json());
 const VERSION_CONFIG = {
   ios: {
     latestVersion: '1.1.0',
-    minRequiredVersion: '1.0.0',
+    minRequiredVersion: '1.0.1', // 設置較高的最低要求版本來測試強制更新
     buildNumber: '2',
     updateUrl: 'https://apps.apple.com/app/kanakana/id123456789',
     releaseNotes: '• 修復已知問題\n• 提升性能\n• 新增功能'
   },
   android: {
     latestVersion: '1.1.0',
-    minRequiredVersion: '1.0.0',
+    minRequiredVersion: '1.0.1', // 設置較高的最低要求版本來測試強制更新
     versionCode: 2,
     updateUrl: 'https://play.google.com/store/apps/details?id=com.kanakana.app',
     releaseNotes: '• 修復已知問題\n• 提升性能\n• 新增功能'
