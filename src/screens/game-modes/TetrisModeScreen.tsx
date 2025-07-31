@@ -17,6 +17,9 @@ import { GlassNavBar } from '@/components/common/GlassNavBar';
 import { GlassContainer } from '@/components/common/GlassContainer';
 import { PauseOverlay } from '@/components/common/PauseOverlay';
 import type { DifficultyLevel } from '@/types';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { bossQuestions, BossQuestion } from '@/data/bossData';
+import { BlurView } from 'expo-blur';
 
 // 類型定義
 interface TetrisPiece {
@@ -81,6 +84,15 @@ const PIECE_COLORS = [
   '#ff4080'  // 玫瑰霓虹
 ];
 
+// 新增：主題色切換用霓虹主色陣列
+const NEON_THEME_COLORS = [
+  '#00D4FF', // 青色
+  '#FF8500', // 橙色
+  '#8B5CF6', // 紫色
+  '#FF006E', // 粉紅
+  '#00FF88', // 綠色
+];
+
 // 遊戲設定
 const BOARD_WIDTH = 10;
 const BOARD_HEIGHT = 20;
@@ -113,6 +125,159 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
     difficulty: 'beginner',
     wordType: 'hiragana'
   };
+
+  // 新增最高紀錄狀態
+  const [bestScore, setBestScore] = useState(0);
+  const [bestLevel, setBestLevel] = useState(0);
+  const [bestCleared, setBestCleared] = useState(0);
+
+  // 新增 boss 狀態
+  const [bossMode, setBossMode] = useState(false);
+  const [bossQuestion, setBossQuestion] = useState<BossQuestion | null>(null);
+  const [bossInput, setBossInput] = useState('');
+  const [bossTimer, setBossTimer] = useState(0);
+  const bossTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const [bossResult, setBossResult] = useState<'success' | 'fail' | null>(null);
+  const bossLineAnim = useRef(new Animated.Value(1)).current;
+  const [lastBossCleared, setLastBossCleared] = useState(0);
+
+  // 新增主題色 index 狀態
+  const [themeColorIndex, setThemeColorIndex] = useState(0);
+  const currentThemeColor = NEON_THEME_COLORS[themeColorIndex];
+
+  // 主遊戲輸入框 ref
+  const mainInputRef = useRef<TextInput>(null);
+
+  // 讀取本地最高紀錄
+  useEffect(() => {
+    const loadBestRecords = async () => {
+      try {
+        const score = await AsyncStorage.getItem('tetris_best_score');
+        const level = await AsyncStorage.getItem('tetris_best_level');
+        const cleared = await AsyncStorage.getItem('tetris_best_cleared');
+        if (score) setBestScore(Number(score));
+        if (level) setBestLevel(Number(level));
+        if (cleared) setBestCleared(Number(cleared));
+      } catch (e) {
+        // ignore
+      }
+    };
+    loadBestRecords();
+  }, []);
+
+  // 遊戲結束時自動更新最高紀錄
+  useEffect(() => {
+    if (gameState === 'finished') {
+      let updated = false;
+      if (score > bestScore) {
+        setBestScore(score);
+        AsyncStorage.setItem('tetris_best_score', String(score));
+        updated = true;
+      }
+      if (level > bestLevel) {
+        setBestLevel(level);
+        AsyncStorage.setItem('tetris_best_level', String(level));
+        updated = true;
+      }
+      if (piecesCleared > bestCleared) {
+        setBestCleared(piecesCleared);
+        AsyncStorage.setItem('tetris_best_cleared', String(piecesCleared));
+        updated = true;
+      }
+    }
+  }, [gameState]);
+
+  // 觸發 boss 機制
+  useEffect(() => {
+    if (
+      !bossMode &&
+      piecesCleared > 0 &&
+      piecesCleared % 10 === 0 &&
+      piecesCleared !== lastBossCleared &&
+      gameState === 'playing'
+    ) {
+      // 每次隨機抽一題
+      const q = bossQuestions[Math.floor(Math.random() * bossQuestions.length)];
+      if (q) {
+        setBossMode(true);
+        setBossQuestion(q);
+        setBossInput('');
+        setBossTimer(q.timeLimit);
+        setBossResult(null);
+        setLastBossCleared(piecesCleared);
+        bossLineAnim.setValue(1);
+        Animated.timing(bossLineAnim, {
+          toValue: 0,
+          duration: q.timeLimit * 1000,
+          useNativeDriver: false,
+        }).start();
+      }
+    }
+  }, [piecesCleared, gameState, bossMode, lastBossCleared]);
+
+  // boss 倒數計時
+  useEffect(() => {
+    if (bossMode && bossTimer > 0 && bossResult === null) {
+      bossTimerRef.current = setTimeout(() => {
+        setBossTimer(t => t - 1);
+      }, 1000);
+    } else if (bossMode && bossTimer === 0 && bossResult === null) {
+      setBossResult('fail');
+    }
+    return () => {
+      if (bossTimerRef.current) clearTimeout(bossTimerRef.current);
+    };
+  }, [bossMode, bossTimer, bossResult]);
+
+  // 處理 boss 輸入
+  const handleBossInput = (text: string) => {
+    setBossInput(text);
+    if (bossQuestion && text === bossQuestion.inputContent && bossResult === null) {
+      setBossResult('success');
+    }
+  };
+
+  // boss 結果處理
+  useEffect(() => {
+    if (!bossMode || bossResult === null) return;
+    if (bossResult === 'success') {
+      setBoard(prev => {
+        const newBoard = prev.slice(0, -1);
+        newBoard.unshift(Array(BOARD_WIDTH).fill(0));
+        return newBoard;
+      });
+      setLevel(Math.floor(piecesCleared / 10) + 1);
+      setFallSpeed(prev => Math.max(100, prev * SPEED_INCREASE_FACTOR));
+      // 新增：切換主題色
+      setThemeColorIndex(idx => (idx + 1) % NEON_THEME_COLORS.length);
+      setBossMode(false);
+      setBossQuestion(null);
+      setBossInput('');
+      setBossTimer(0);
+      setBossResult(null);
+      setGameState('playing');
+      setTimeout(() => {
+        mainInputRef.current?.focus();
+      }, 100);
+    } else if (bossResult === 'fail') {
+      setBoard(prev => {
+        const newBoard = prev.slice(1);
+        newBoard.push(Array(BOARD_WIDTH).fill(1));
+        return newBoard;
+      });
+      // 新增：切換主題色
+      setThemeColorIndex(idx => (idx + 1) % NEON_THEME_COLORS.length);
+      setBossMode(false);
+      setBossQuestion(null);
+      setBossInput('');
+      setBossTimer(0);
+      setBossResult(null);
+      setGameState('playing');
+      setTimeout(() => {
+        mainInputRef.current?.focus();
+      }, 100);
+    }
+  }, [bossResult, bossMode, piecesCleared]);
 
   // 定時器引用
   const fallTimerRef = useRef<NodeJS.Timeout | null>(null);
@@ -351,7 +516,7 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
     const newY = currentPiece.y + 1;
     
     if (canPlacePiece(currentPiece, currentPiece.x, newY)) {
-      setCurrentPiece(prev => prev ? { ...prev, y: newY } : null);
+      setCurrentPiece((prev: TetrisPiece | null) => prev ? { ...prev, y: newY } : null);
     } else {
       // 方塊無法繼續下落，固定到遊戲板
       placePieceOnBoard(currentPiece);
@@ -395,25 +560,10 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
       const levelBonus = level;
       const totalScore = baseScore * levelBonus;
       
-      setScore(prev => prev + totalScore);
-      setPiecesCleared(prev => prev + 1);
+      setScore((prev: number) => prev + totalScore);
+      setPiecesCleared((prev: number) => prev + 1);
       setCurrentPiece(null);
       setUserInput('');
-      
-      // 檢查是否需要升級
-      const newPiecesCleared = piecesCleared + 1;
-      if (newPiecesCleared % 5 === 0) { // 每5個方塊升級一次
-        const newLevel = level + 1;
-        setLevel(newLevel);
-        
-        // 階段性加速
-        const speedDecrease = calculateSpeedDecrease(newLevel);
-        setFallSpeed(prev => {
-          const newSpeed = Math.max(100, prev - (speedDecrease * 50)); // 最低速度100ms
-          console.log(`速度變化: ${prev}ms -> ${newSpeed}ms (減少${speedDecrease * 50}ms)`);
-          return newSpeed;
-        });
-      }
       
       // 生成新方塊
       setTimeout(() => {
@@ -427,14 +577,14 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
         }
       }, 100);
     }
-  }, [currentPiece, level, piecesCleared, generateRandomPiece, canPlacePiece, calculateSpeedDecrease]);
+  }, [currentPiece, level, piecesCleared, generateRandomPiece, canPlacePiece]);
 
   // 開始遊戲
   const startGame = useCallback(() => {
     setGameState('playing');
     setBoard(Array(BOARD_HEIGHT).fill(null).map(() => Array(BOARD_WIDTH).fill(0)));
     setScore(0);
-    setLevel(5); // 暫時從第5關開始，方便測試漢字方塊
+    setLevel(1); // 從1級開始
     setPiecesCleared(0);
     setFallSpeed(INITIAL_FALL_SPEED);
     setUserInput('');
@@ -458,9 +608,9 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
     navigation?.goBack();
   }, [navigation]);
 
-  // 設置下落定時器
+  // 設置下落定時器（bossMode 時暫停）
   useEffect(() => {
-    if (gameState === 'playing') {
+    if (gameState === 'playing' && !bossMode) {
       fallTimerRef.current = setInterval(dropPiece, fallSpeed);
     } else {
       if (fallTimerRef.current) {
@@ -468,13 +618,12 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
         fallTimerRef.current = null;
       }
     }
-    
     return () => {
       if (fallTimerRef.current) {
         clearInterval(fallTimerRef.current);
       }
     };
-  }, [gameState, fallSpeed, dropPiece]);
+  }, [gameState, fallSpeed, dropPiece, bossMode]);
 
   // 渲染遊戲板
   const renderBoard = () => {
@@ -491,9 +640,9 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
     return (
       <View style={{
         borderWidth: borderThickness,
-        borderColor: '#00ffff',
+        borderColor: currentThemeColor,
         borderRadius: 12,
-        shadowColor: '#00ffff',
+        shadowColor: currentThemeColor,
         shadowOffset: { width: 0, height: 0 },
         shadowOpacity: 0.6,
         shadowRadius: 25,
@@ -513,8 +662,8 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
           borderRadius: 6,
           overflow: 'hidden',
         }}>
-          {board.map((row, rowIndex) =>
-            row.map((cell, colIndex) => (
+          {board.map((row: number[], rowIndex: number) =>
+            row.map((cell: number, colIndex: number) => (
               <View
                 key={`${rowIndex}-${colIndex}`}
                 style={[
@@ -527,7 +676,7 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
                     backgroundColor: cell === 1 ? 'rgba(0, 255, 255, 0.4)' : 'rgba(0, 255, 255, 0.02)',
                     borderColor: cell === 1 ? 'rgba(0, 255, 255, 0.8)' : 'rgba(0, 255, 255, 0.15)',
                     borderWidth: cell === 1 ? 2 : 0.5,
-                    shadowColor: cell === 1 ? '#00ffff' : 'transparent',
+                    shadowColor: cell === 1 ? currentThemeColor : 'transparent',
                     shadowOffset: { width: 0, height: 0 },
                     shadowOpacity: cell === 1 ? 0.6 : 0,
                     shadowRadius: cell === 1 ? 8 : 0,
@@ -541,8 +690,8 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
           {currentPiece && (
             <View style={styles.fallingPiece}>
               {/* 方塊背景和文字 */}
-              {currentPiece.shape.map((row, rowIndex) =>
-                row.map((cell, colIndex) => {
+              {currentPiece.shape.map((row: number[], rowIndex: number) =>
+                row.map((cell: number, colIndex: number) => {
                   if (cell === 1) {
                     const x = (currentPiece.x + colIndex) * cellSize;
                     const y = (currentPiece.y + rowIndex) * cellSize;
@@ -620,167 +769,294 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
 
   // 渲染遊戲界面
   const renderGameContent = () => {
-    switch (gameState) {
-      case 'idle':
-        return (
-          <View style={styles.menuContainer}>
-            <Animated.Text 
-              style={[
-                styles.title,
-                {
-                  transform: [{ scale: titlePulse }],
-                }
-              ]}
-            >
+    // bossMode 彈跳卡片
+    const bossCard = bossMode && bossQuestion && (
+      <View
+        style={{
+          position: 'absolute',
+          top: 80,
+          left: '5%',
+          width: '90%',
+          alignItems: 'center',
+          zIndex: 21,
+        }}>
+        <View style={{
+          width: '100%',
+          backgroundColor: 'rgba(10, 30, 40, 0.92)',
+          borderRadius: 20,
+          paddingVertical: 28,
+          paddingHorizontal: 20,
+          alignItems: 'center',
+          borderWidth: 2.5,
+          borderColor: currentThemeColor,
+          shadowColor: currentThemeColor,
+          shadowOffset: { width: 0, height: 0 },
+          shadowOpacity: 0.4,
+          shadowRadius: 18,
+          elevation: 16,
+        }}>
+          <Text style={{
+            fontSize: 22,
+            fontWeight: '900',
+            color: currentThemeColor,
+            marginBottom: 12,
+            letterSpacing: 2,
+            textShadowColor: currentThemeColor,
+            textShadowOffset: { width: 0, height: 0 },
+            textShadowRadius: 12,
+          }}>
+            BOSS 挑戰
+          </Text>
+          <Text style={{
+            fontSize: 20,
+            fontWeight: 'bold',
+            color: '#fff',
+            marginBottom: 18,
+            textAlign: 'center',
+            lineHeight: 32,
+            textShadowColor: currentThemeColor,
+            textShadowOffset: { width: 0, height: 0 },
+            textShadowRadius: 8,
+          }}>
+            {bossQuestion.displayContent}
+          </Text>
+          {/* 倒數引線動畫 */}
+          <View style={{width: '100%', height: 8, backgroundColor: '#003a4d', borderRadius: 4, marginBottom: 14, overflow: 'hidden'}}>
+            <Animated.View style={{
+              height: 8,
+              backgroundColor: currentThemeColor,
+              borderRadius: 4,
+              width: bossLineAnim.interpolate({inputRange: [0,1], outputRange: ['0%','100%']}),
+              shadowColor: currentThemeColor,
+              shadowOffset: { width: 0, height: 0 },
+              shadowOpacity: 0.7,
+              shadowRadius: 8,
+            }}/>
+          </View>
+          <Text style={{
+            fontSize: 15,
+            color: currentThemeColor,
+            marginBottom: 12,
+            fontWeight: '700',
+            letterSpacing: 1,
+            textShadowColor: currentThemeColor,
+            textShadowOffset: { width: 0, height: 0 },
+            textShadowRadius: 6,
+          }}>
+            剩餘時間：{bossTimer} 秒
+          </Text>
+          <TextInput
+            style={{
+              backgroundColor: 'rgba(255,255,255,0.13)',
+              borderRadius: 12,
+              borderWidth: 2,
+              borderColor: currentThemeColor,
+              padding: 14,
+              fontSize: 18,
+              minWidth: 200,
+              textAlign: 'center',
+              marginBottom: 6,
+              color: '#fff',
+              fontWeight: '700',
+              shadowColor: currentThemeColor,
+              shadowOffset: { width: 0, height: 0 },
+              shadowOpacity: 0.3,
+              shadowRadius: 8,
+              elevation: 4,
+            }}
+            value={bossInput}
+            onChangeText={handleBossInput}
+            placeholder="請輸入全文..."
+            placeholderTextColor="#b8c6db"
+            editable={bossResult===null}
+            autoFocus
+          />
+        </View>
+      </View>
+    );
+    // 主內容：左右分佈，固定在上方
+    const mainContent = (() => {
+      switch (gameState) {
+        case 'idle':
+          return (
+            <View style={styles.menuContainer}>
+              <Animated.Text 
+                style={[
+                  styles.title,
+                  {
+                    transform: [{ scale: titlePulse }],
+                  }
+                ]}
+              >
 🎯 Tetris Mode
-            </Animated.Text>
-                          <Text style={styles.description}>
-                ⚡ Type the romaji or kana shown on the falling blocks to clear them! ⚡{'\n'}
-                🎯 Blocks will fall automatically. Type the correct answer before they land to clear them. 🎯{'\n'}
-                🔥 Kanji blocks appear from level 5, and longer kanji words from level 10. 🔥
-              </Text>
-            <View style={styles.settingsInfo}>
-                              <Text style={styles.settingText}>⚙️ 難度: {settings.difficulty}</Text>
-                <Text style={styles.settingText}>📝 類型: {settings.wordType}</Text>
-            </View>
-            <TouchableOpacity 
-              style={styles.startButton} 
-              onPress={startGame}
-              onPressIn={() => {
-                Animated.spring(buttonScale, {
-                  toValue: 0.95,
-                  useNativeDriver: true,
-                }).start();
-              }}
-              onPressOut={() => {
-                Animated.spring(buttonScale, {
-                  toValue: 1,
-                  useNativeDriver: true,
-                }).start();
-              }}
-            >
-              <Animated.View style={{ transform: [{ scale: buttonScale }] }}>
-                <Text style={styles.startButtonText}>🚀 開始遊戲 🚀</Text>
-              </Animated.View>
-            </TouchableOpacity>
-          </View>
-        );
-        
-      case 'playing':
-      case 'paused':
-        return (
-          <View style={{ flex: 1 }}>
-            {/* 主內容：左右分佈，固定在上方 */}
-            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'center', paddingHorizontal: 10 }}>
-              {/* 左側：方塊堆疊區 */}
-              <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-                {renderBoard()}
+              </Animated.Text>
+              <View style={{marginBottom: 30}}>
+                <Text style={styles.description}>
+                  {'1. 每個方塊上會顯示日文單字或漢字，請在方塊落地前輸入正確的假名或羅馬拼音消除方塊。\n'}
+                  {'2. 方塊會自動下落，輸入正確即可消除。\n'}
+                  {'3. 每消除 5 個方塊會提升等級，等級越高方塊下落速度越快。\n'}
+                  {'4. 遊戲結束時會記錄你的最高分、最高等級與最高消除數。'}
+                </Text>
               </View>
-              {/* 右側：題目提示、分數等級、輸入匡 */}
-              <View style={{ flex: 1, marginLeft: 10, justifyContent: 'flex-start', marginTop: 10 }}>
-                {/* 題目提示 */}
-                {currentPiece && (
-                  <View style={[styles.wordContainer, { marginTop: 0, padding: 12, borderRadius: 14 }]}> 
-                    {currentPiece.isKanji ? (
-                      <>
-                        <Text style={[styles.wordText, { fontSize: 20 }]}> {currentPiece.kanji} </Text>
-                        <Text style={[styles.kanaText, { fontSize: 14 }]}>讀音: {currentPiece.kana}</Text>
-                        <Text style={[styles.meaningText, { fontSize: 13 }]}>{currentPiece.meaning}</Text>
-                      </>
-                    ) : (
-                      <>
-                        <Text style={[styles.wordText, { fontSize: 20 }]}>{currentPiece.word}</Text>
-                        <Text style={[styles.kanaText, { fontSize: 14 }]}>({currentPiece.kana})</Text>
-                        <Text style={[styles.meaningText, { fontSize: 13 }]}>{currentPiece.meaning}</Text>
-                      </>
-                    )}
-                  </View>
-                )}
-                {/* 分數等級消除數 */}
-                <View style={{ backgroundColor: 'rgba(255,180,0,0.12)', borderRadius: 14, borderWidth: 1.5, borderColor: '#ffb84d', marginTop: 18, padding: 10, alignItems: 'center' }}>
-                  <Text style={{ color: '#ffb84d', fontSize: 15, fontWeight: '700', marginBottom: 4 }}>🏆 分數: {score}</Text>
-                  <Text style={{ color: '#ffb84d', fontSize: 15, fontWeight: '700', marginBottom: 4 }}>📈 等級: {level}</Text>
-                  <Text style={{ color: '#ffb84d', fontSize: 15, fontWeight: '700' }}>🧩 消除數: {piecesCleared}</Text>
+              <View style={styles.settingsInfo}>
+                <Text style={{color: currentThemeColor, fontWeight: 'bold', fontSize: 16}}>🏅 最高分：{bestScore}</Text>
+                <Text style={{color: currentThemeColor, fontWeight: 'bold', fontSize: 16}}>📈 最高等級：{bestLevel}</Text>
+                <Text style={{color: currentThemeColor, fontWeight: 'bold', fontSize: 16}}>🧩 最高消除數：{bestCleared}</Text>
+              </View>
+              <TouchableOpacity 
+                style={styles.startButton} 
+                onPress={startGame}
+                onPressIn={() => {
+                  Animated.spring(buttonScale, {
+                    toValue: 0.95,
+                    useNativeDriver: true,
+                  }).start();
+                }}
+                onPressOut={() => {
+                  Animated.spring(buttonScale, {
+                    toValue: 1,
+                    useNativeDriver: true,
+                  }).start();
+                }}
+              >
+                <Animated.View style={{ transform: [{ scale: buttonScale }] }}>
+                  <Text style={styles.startButtonText}>🚀 開始遊戲 🚀</Text>
+                </Animated.View>
+              </TouchableOpacity>
+            </View>
+          );
+        
+        case 'playing':
+        case 'paused':
+          return (
+            <View style={{ flex: 1 }}>
+              {/* 主內容：左右分佈，固定在上方 */}
+              <View style={{ flex: 1, flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'center', paddingHorizontal: 10 }}>
+                {/* 左側：方塊堆疊區 */}
+                <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+                  {renderBoard()}
                 </View>
-                {/* 輸入匡 */}
-                <TextInput
-                  style={[
-                    styles.input,
-                    { marginTop: 18, width: '100%', fontSize: 18 },
-                    inputFocused && {
-                      borderColor: '#00ffff',
-                      shadowColor: '#00ffff',
-                      shadowOffset: { width: 0, height: 0 },
-                      shadowOpacity: 0.6,
-                      shadowRadius: 15,
-                      elevation: 8,
-                    }
-                  ]}
-                  value={userInput}
-                  onChangeText={handleInputChange}
-                  placeholder="請輸入"
-                  placeholderTextColor="rgba(255, 255, 255, 0.5)"
-                  autoFocus={gameState === 'playing'}
-                  editable={gameState === 'playing'}
-                  onFocus={() => setInputFocused(true)}
-                  onBlur={() => setInputFocused(false)}
-                />
+                {/* 右側：題目提示、分數等級、輸入匡 */}
+                <View style={{ flex: 1, marginLeft: 10, justifyContent: 'flex-start', marginTop: 10 }}>
+                  {/* 題目提示 */}
+                  {currentPiece && (
+                    <View style={[styles.wordContainer, { marginTop: 0, padding: 12, borderRadius: 14, borderColor: currentThemeColor, shadowColor: currentThemeColor, backgroundColor: currentThemeColor + '22' }]}> 
+                      {currentPiece.isKanji ? (
+                        <>
+                          <Text style={[styles.wordText, { fontSize: 20, color: currentThemeColor, textShadowColor: currentThemeColor }]}>{currentPiece.kanji}</Text>
+                          <Text style={[styles.kanaText, { fontSize: 14, color: currentThemeColor }]}>{'讀音: ' + currentPiece.kana}</Text>
+                          <Text style={[styles.meaningText, { fontSize: 13, color: currentThemeColor }]}>{currentPiece.meaning}</Text>
+                        </>
+                      ) : (
+                        <>
+                          <Text style={[styles.wordText, { fontSize: 20, color: currentThemeColor, textShadowColor: currentThemeColor }]}>{currentPiece.word}</Text>
+                          <Text style={[styles.kanaText, { fontSize: 14, color: currentThemeColor }]}>{'(' + currentPiece.kana + ')'}</Text>
+                          <Text style={[styles.meaningText, { fontSize: 13, color: currentThemeColor }]}>{currentPiece.meaning}</Text>
+                        </>
+                      )}
+                    </View>
+                  )}
+                  {/* 分數等級消除數 */}
+                  <View style={{ backgroundColor: currentThemeColor + '22', borderRadius: 14, borderWidth: 1.5, borderColor: currentThemeColor, marginTop: 18, padding: 10, alignItems: 'center', shadowColor: currentThemeColor, shadowOpacity: 0.3, shadowRadius: 8 }}>
+                    <Text style={{ color: currentThemeColor, fontSize: 15, fontWeight: '700', marginBottom: 4 }}>🏆 分數: {score}</Text>
+                    <Text style={{ color: currentThemeColor, fontSize: 15, fontWeight: '700', marginBottom: 4 }}>📈 等級: {level}</Text>
+                    <Text style={{ color: currentThemeColor, fontSize: 15, fontWeight: '700' }}>🧩 消除數: {piecesCleared}</Text>
+                  </View>
+                  {/* 輸入匡 */}
+                  <TextInput
+                    ref={mainInputRef}
+                    style={[
+                      styles.input,
+                      { marginTop: 18, width: '100%', fontSize: 18 },
+                      inputFocused && {
+                        borderColor: currentThemeColor,
+                        shadowColor: currentThemeColor,
+                        shadowOffset: { width: 0, height: 0 },
+                        shadowOpacity: 0.6,
+                        shadowRadius: 15,
+                        elevation: 8,
+                      },
+                      { borderColor: currentThemeColor, color: currentThemeColor }
+                    ]}
+                    value={userInput}
+                    onChangeText={handleInputChange}
+                    placeholder="請輸入"
+                    placeholderTextColor={currentThemeColor + '88'}
+                    autoFocus={gameState === 'playing' && !bossMode}
+                    editable={gameState === 'playing' && !bossMode}
+                    onFocus={() => setInputFocused(true)}
+                    onBlur={() => setInputFocused(false)}
+                  />
+                </View>
               </View>
             </View>
-          </View>
-        );
+          );
         
-      case 'finished':
-        return (
-          <View style={styles.gameOverContainer}>
-            <Animated.Text 
-              style={[
-                styles.gameOverTitle,
-                {
-                  transform: [{ scale: titlePulse }],
-                }
-              ]}
-            >
-                             💀 遊戲結束 💀
-             </Animated.Text>
-             <Animated.Text 
-               style={[
-                 styles.finalScore,
-                 {
-                   textShadowRadius: scoreGlow.interpolate({
-                     inputRange: [0.5, 1],
-                     outputRange: [15, 25],
-                   }),
-                 }
-               ]}
-             >
-               🏆 最終分數: {score} 🏆
-             </Animated.Text>
-             <Text style={styles.finalStats}>
-               📊 等級: {level} | 🧩 消除方塊: {piecesCleared} 📊
-             </Text>
-            
-            <View style={styles.gameOverButtons}>
-              <TouchableOpacity style={styles.restartButton} onPress={restartGame}>
-                <Text style={styles.restartButtonText}>🔄 重新開始 🔄</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.backButton} onPress={goBackToMenu}>
-                <Text style={styles.backButtonText}>🏠 返回主選單 🏠</Text>
-              </TouchableOpacity>
+        case 'finished':
+          return (
+            <View style={styles.gameOverContainer}>
+              <Animated.Text 
+                style={[
+                  styles.gameOverTitle,
+                  {
+                    transform: [{ scale: titlePulse }],
+                  }
+                ]}
+              >
+                💀 遊戲結束 💀
+              </Animated.Text>
+              <Animated.Text 
+                style={[
+                  styles.finalScore,
+                  {
+                    textShadowRadius: scoreGlow.interpolate({
+                      inputRange: [0.5, 1],
+                      outputRange: [15, 25],
+                    }),
+                  }
+                ]}
+              >
+                🏆 最終分數: {score} 🏆
+              </Animated.Text>
+              <Text style={styles.finalStats}>
+                📊 等級: {level} | 🧩 消除方塊: {piecesCleared} 📊
+              </Text>
+              {/* 新增最高紀錄顯示 */}
+              <View style={{marginBottom: 20, backgroundColor: 'rgba(0,255,255,0.07)', borderRadius: 10, padding: 10, borderWidth: 1, borderColor: '#00ffff33'}}>
+                <Text style={{color: currentThemeColor, fontWeight: 'bold', fontSize: 15, marginBottom: 2}}>🏅 最高紀錄</Text>
+                <Text style={{color: currentThemeColor, fontSize: 14}}>分數：{bestScore}　等級：{bestLevel}　消除數：{bestCleared}</Text>
+              </View>
+              <View style={styles.gameOverButtons}>
+                <TouchableOpacity style={styles.restartButton} onPress={restartGame}>
+                  <Text style={styles.restartButtonText}>🔄 重新開始 🔄</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.backButton} onPress={goBackToMenu}>
+                  <Text style={styles.backButtonText}>🏠 返回主選單 🏠</Text>
+                </TouchableOpacity>
+              </View>
             </View>
-          </View>
-        );
+          );
         
-      default:
-        return null;
-    }
+        default:
+          return null;
+      }
+    })();
+    return (
+      <View style={{flex:1}}>
+        {mainContent}
+        {bossMode && (
+          <BlurView intensity={30} tint="light" style={{position:'absolute',top:0,left:0,right:0,bottom:0,zIndex:20}} />
+        )}
+        {bossCard}
+      </View>
+    );
   };
 
   return (
     <View style={styles.container}>
       {/* 星空背景 */}
       <View style={styles.starField}>
-        {stars.map(star => (
+        {stars.map((star: {id: number, x: number, y: number, opacity: number}) => (
           <View
             key={star.id}
             style={[
@@ -853,7 +1129,7 @@ const styles = StyleSheet.create({
   description: {
     fontSize: 16,
     color: '#b8c6db',
-    textAlign: 'center',
+    textAlign: 'left',
     marginBottom: 30,
     lineHeight: 24,
     backgroundColor: 'rgba(0, 255, 255, 0.05)',

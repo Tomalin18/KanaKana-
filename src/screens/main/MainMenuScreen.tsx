@@ -94,10 +94,9 @@ export const MainMenuScreen: React.FC<Props> = ({ navigation }) => {
               neonBorder={true}
               style={styles.titleContainer}
             >
-              <Text style={styles.titleJapanese}>かなタワー</Text>
-              <Text style={styles.titleEnglish}>KANA TOWER</Text>
-              <Text style={styles.subtitle}>NEURAL TYPING SYSTEM</Text>
-              
+              <Text style={styles.titleJapanese}>かなカナ</Text>
+              <Text style={styles.titleEnglish}>KANAKANA</Text>
+              {/* <Text style={styles.subtitle}>NEURAL TYPING SYSTEM</Text> */}
               {/* 科技裝飾元素 */}
               <View style={styles.techElements}>
                 <Text style={styles.techSymbol}>⚡</Text>
@@ -154,21 +153,7 @@ export const MainMenuScreen: React.FC<Props> = ({ navigation }) => {
             )}
           </View>
 
-          {/* 底部信息 - 科技格言 */}
-          <View style={styles.footer}>
-            <GlassContainer
-              variant="secondary"
-              glowEffect={false}
-              style={styles.footerContainer}
-            >
-              <Text style={styles.footerQuote}>
-                "NEURAL PATHWAYS STRENGTHEN WITH PRACTICE"
-              </Text>
-              <Text style={styles.footerTranslation}>
-                神經通路因練習而強化
-              </Text>
-            </GlassContainer>
-          </View>
+          {/* 底部信息 - 改為贊助按鈕 */}
         </ScrollView>
       </SafeAreaView>
 
@@ -518,5 +503,28 @@ const styles = StyleSheet.create({
     color: TechTheme.textSecondary,
     textAlign: 'center',
     opacity: 0.7,
+  },
+
+  sponsorButton: {
+    backgroundColor: TechColors.neonPink,
+    paddingVertical: Spacing.md,
+    paddingHorizontal: Spacing.lg,
+    borderRadius: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    minWidth: '90%',
+    ...Shadows.neon.purple,
+  },
+
+  sponsorButtonPressed: {
+    opacity: 0.9,
+  },
+
+  sponsorButtonText: {
+    fontSize: Typography.sizes.ui.caption,
+    color: TechTheme.background,
+    textAlign: 'center',
+    fontWeight: Typography.weights.bold,
+    letterSpacing: 1,
   },
 }); 

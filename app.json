@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Kana Tower",
+    "name": "KanaKana",
     "slug": "kana-tower",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -9,22 +9,42 @@
       "resizeMode": "contain",
       "backgroundColor": "#1E40AF"
     },
+    "icon": "./src/assets/images/app-icon.png",
     "assetBundlePatterns": [
       "**/*"
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.kanatower.app"
+      "bundleIdentifier": "com.kanakana.app",
+      "buildNumber": "1",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false,
+        "CFBundleDisplayName": "KanaKana",
+        "CFBundleShortVersionString": "1.0.0"
+      }
     },
     "android": {
-      "package": "com.kanatower.app",
-      "versionCode": 1
+      "package": "com.kanakana.app",
+      "versionCode": 1,
+      "versionName": "1.0.0"
     },
     "web": {
       "bundler": "metro"
     },
     "plugins": [
-      "expo-font"
-    ]
+      "expo-font",
+      "expo-localization"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "78bd67aa-751a-4ea7-91f3-c017131ffeef"
+      },
+      "versionCheck": {
+        "enabled": true,
+        "apiUrl": "http://localhost:3000/api/version-check",
+        "checkInterval": 3600000
+      }
+    },
+    "owner": "tomalin"
   }
-} 
+}

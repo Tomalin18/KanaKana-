@@ -10,8 +10,8 @@ export const LoadingScreen: React.FC = () => {
   return (
     <View style={styles.container}>
       <View style={styles.content}>
-        <Text style={styles.title}>かなタワー</Text>
-        <Text style={styles.subtitle}>Kana Tower</Text>
+        <Text style={styles.title}>かなカナ</Text>
+        <Text style={styles.subtitle}>KanaKana</Text>
         
         <ActivityIndicator 
           size="large" 

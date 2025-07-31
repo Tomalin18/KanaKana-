@@ -1,0 +1,25 @@
+{
+  "name": "kanakana-version-check-server",
+  "version": "1.0.0",
+  "description": "Version check server for KanaKana app",
+  "main": "version-check-server.js",
+  "scripts": {
+    "start": "node version-check-server.js",
+    "dev": "nodemon version-check-server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "node-fetch": "^3.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "keywords": [
+    "version-check",
+    "api",
+    "server"
+  ],
+  "author": "KanaKana Team",
+  "license": "MIT"
+}
