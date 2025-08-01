@@ -20,6 +20,10 @@ export interface UpdateInfo {
   releaseNotes?: string;
 }
 
+// 測試模式配置
+const TEST_MODE = __DEV__ && false; // 在開發環境中啟用測試模式
+const TEST_SCENARIO: 'force_update' | 'optional_update' | 'no_update' | 'normal' = 'force_update'; // 可選值: 'force_update', 'optional_update', 'no_update', 'normal'
+
 /**
  * 獲取當前應用版本信息
  * 使用Expo內建的方式獲取版本號
@@ -110,11 +114,77 @@ const getVersionCheckApiUrl = (): string => {
 };
 
 /**
+ * 測試模式下的版本檢查模擬
+ */
+const getTestUpdateInfo = (currentVersion: string): UpdateInfo => {
+  console.log(`🧪 測試模式 - 場景: ${TEST_SCENARIO}`);
+  
+  switch (TEST_SCENARIO) {
+    case 'force_update':
+      // 強制更新場景：當前版本 1.0.0，最低要求版本 1.1.0
+      return {
+        isRequired: true,
+        isAvailable: true,
+        currentVersion: currentVersion,
+        latestVersion: '1.2.0',
+        minRequiredVersion: '1.1.0',
+        updateUrl: getDefaultUpdateUrl(Device.osName?.toLowerCase() === 'ios' ? 'ios' : 'android'),
+        releaseNotes: '• 🔴 重要安全更新\n• 修復已知問題\n• 提升性能\n• 新增功能',
+      };
+      
+    case 'optional_update':
+      // 可選更新場景：當前版本 1.0.0，最新版本 1.1.0
+      return {
+        isRequired: false,
+        isAvailable: true,
+        currentVersion: currentVersion,
+        latestVersion: '1.1.0',
+        minRequiredVersion: '1.0.0',
+        updateUrl: getDefaultUpdateUrl(Device.osName?.toLowerCase() === 'ios' ? 'ios' : 'android'),
+        releaseNotes: '• 🟡 可選更新\n• 修復已知問題\n• 提升性能\n• 新增功能',
+      };
+      
+    case 'no_update':
+      // 無更新場景：當前版本 1.0.0，最新版本也是 1.0.0
+      return {
+        isRequired: false,
+        isAvailable: false,
+        currentVersion: currentVersion,
+        latestVersion: '1.0.0',
+        minRequiredVersion: '1.0.0',
+        updateUrl: getDefaultUpdateUrl(Device.osName?.toLowerCase() === 'ios' ? 'ios' : 'android'),
+        releaseNotes: '• 🟢 已是最新版本',
+      };
+      
+    default:
+      // 正常檢查場景：當前版本 1.0.0，最新版本 1.0.1
+      return {
+        isRequired: false,
+        isAvailable: true,
+        currentVersion: currentVersion,
+        latestVersion: '1.0.1',
+        minRequiredVersion: '1.0.0',
+        updateUrl: getDefaultUpdateUrl(Device.osName?.toLowerCase() === 'ios' ? 'ios' : 'android'),
+        releaseNotes: '• 🔵 正常更新\n• 修復已知問題\n• 提升性能',
+      };
+  }
+};
+
+/**
  * 從服務器檢查版本更新
  * 使用真實的版本號API
  */
 export const checkForUpdates = async (): Promise<UpdateInfo> => {
   try {
+    // 測試模式：直接返回模擬數據
+    if (TEST_MODE) {
+      const currentVersion = getCurrentVersion();
+      console.log('🧪 測試模式 - 跳過網絡請求');
+      const testResult = getTestUpdateInfo(currentVersion.version);
+      console.log('測試結果:', testResult);
+      return testResult;
+    }
+
     // 檢查網絡連接
     const networkState = await Network.getNetworkStateAsync();
     if (!networkState.isConnected) {
@@ -153,12 +223,19 @@ export const checkForUpdates = async (): Promise<UpdateInfo> => {
 
     const apiResponse = await response.json();
     
+    console.log('API 響應:', JSON.stringify(apiResponse, null, 2));
+    
+    // 檢查 API 響應狀態
+    if (apiResponse.data?.status !== 'succeeded') {
+      throw new Error(`API 響應狀態錯誤: ${apiResponse.data?.status}`);
+    }
+    
     // 從API響應中提取版本號
     const latestVersion = apiResponse.data?.outputs?.answer || currentVersion.version;
     
-    // 設置最低要求版本為當前版本，避免強制更新
-    // 如果需要強制更新，可以將minRequiredVersion設置為較高版本
-    const minRequiredVersion = currentVersion.version;
+    // 強制更新策略：只要有新版本就強制更新
+    // 這樣確保用戶始終使用最新版本
+    const minRequiredVersion = latestVersion;
     
     // 比較版本
     const isUpdateAvailable = compareVersions(currentVersion.version, latestVersion) < 0;
@@ -197,7 +274,7 @@ export const checkForUpdates = async (): Promise<UpdateInfo> => {
  */
 const getDefaultUpdateUrl = (platform: 'ios' | 'android'): string => {
   if (platform === 'ios') {
-    return 'https://apps.apple.com/app/kanakana/id123456789'; // 替換為實際的App Store URL
+    return 'https://apps.apple.com/jp/app/kanakana-%E3%81%8B%E3%81%AA%E3%82%AB%E3%83%8A/id6748865873'; // 您的真實 App Store 連結
   } else {
     return 'https://play.google.com/store/apps/details?id=com.kanakana.app'; // 替換為實際的Google Play URL
   }
