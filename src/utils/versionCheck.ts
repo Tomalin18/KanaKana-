@@ -6,6 +6,8 @@ export interface VersionInfo {
   version: string;
   buildNumber: string;
   platform: 'ios' | 'android';
+  nativeVersion?: string;
+  nativeBuildVersion?: string;
 }
 
 export interface UpdateInfo {
@@ -20,15 +22,83 @@ export interface UpdateInfo {
 
 /**
  * 獲取當前應用版本信息
+ * 使用Expo內建的方式獲取版本號
  */
 export const getCurrentVersion = (): VersionInfo => {
   const appConfig = Constants.expoConfig;
+  const platform = Device.osName?.toLowerCase() === 'ios' ? 'ios' : 'android';
+  
+  // 獲取基本版本信息
+  const version = appConfig?.version || '1.0.0';
+  
+  // 獲取構建號/版本代碼
+  let buildNumber = '1';
+  if (platform === 'ios') {
+    buildNumber = appConfig?.ios?.buildNumber || '1';
+  } else {
+    buildNumber = appConfig?.android?.versionCode?.toString() || '1';
+  }
+  
+  // 獲取原生版本信息
+  let nativeVersion: string | undefined;
+  let nativeBuildVersion: string | undefined;
+  
+  if (platform === 'ios') {
+    nativeVersion = appConfig?.ios?.infoPlist?.CFBundleShortVersionString;
+    nativeBuildVersion = appConfig?.ios?.buildNumber;
+  } else {
+    // Android使用versionCode作為版本代碼
+    nativeVersion = appConfig?.version; // Android通常使用expo.version
+    nativeBuildVersion = appConfig?.android?.versionCode?.toString();
+  }
   
   return {
-    version: appConfig?.version || '1.0.0',
-    buildNumber: appConfig?.ios?.buildNumber || appConfig?.android?.versionCode?.toString() || '1',
-    platform: Device.osName?.toLowerCase() === 'ios' ? 'ios' : 'android'
+    version,
+    buildNumber,
+    platform,
+    nativeVersion,
+    nativeBuildVersion
   };
+};
+
+/**
+ * 獲取詳細的版本信息（用於調試和日誌）
+ */
+export const getDetailedVersionInfo = () => {
+  const appConfig = Constants.expoConfig;
+  const platform = Device.osName?.toLowerCase() === 'ios' ? 'ios' : 'android';
+  
+  console.log('📱 詳細版本信息:');
+  console.log('=' .repeat(40));
+  console.log(`📋 應用名稱: ${appConfig?.name || 'Unknown'}`);
+  console.log(`🏷️  應用標識: ${appConfig?.slug || 'Unknown'}`);
+  console.log(`📦 版本號: ${appConfig?.version || 'Unknown'}`);
+  console.log(`🖥️  平台: ${platform}`);
+  
+  if (platform === 'ios') {
+    console.log('\n🍎 iOS 版本信息:');
+    console.log(`   Bundle ID: ${appConfig?.ios?.bundleIdentifier || 'Unknown'}`);
+    console.log(`   版本號: ${appConfig?.ios?.infoPlist?.CFBundleShortVersionString || appConfig?.version || 'Unknown'}`);
+    console.log(`   構建號: ${appConfig?.ios?.buildNumber || 'Unknown'}`);
+  } else {
+    console.log('\n🤖 Android 版本信息:');
+    console.log(`   Package: ${appConfig?.android?.package || 'Unknown'}`);
+    console.log(`   版本號: ${appConfig?.version || 'Unknown'}`);
+    console.log(`   版本代碼: ${appConfig?.android?.versionCode || 'Unknown'}`);
+  }
+  
+  // 版本檢查配置
+  const versionCheckConfig = appConfig?.extra?.versionCheck;
+  if (versionCheckConfig) {
+    console.log('\n🔧 版本檢查配置:');
+    console.log(`   API端點: ${versionCheckConfig.apiUrl || 'Unknown'}`);
+    console.log(`   啟用狀態: ${versionCheckConfig.enabled ? '✅ 已啟用' : '❌ 已禁用'}`);
+    if (versionCheckConfig.checkInterval) {
+      console.log(`   檢查間隔: ${versionCheckConfig.checkInterval / 1000 / 60} 分鐘`);
+    }
+  }
+  
+  console.log('=' .repeat(40));
 };
 
 /**
@@ -58,6 +128,8 @@ export const checkForUpdates = async (): Promise<UpdateInfo> => {
       platform: currentVersion.platform,
       currentVersion: currentVersion.version,
       buildNumber: currentVersion.buildNumber,
+      nativeVersion: currentVersion.nativeVersion,
+      nativeBuildVersion: currentVersion.nativeBuildVersion,
       apiUrl
     });
 

@@ -32,7 +32,7 @@ async function testRealVersionAPI() {
     const latestVersion = apiResponse.data?.outputs?.answer;
     console.log(`\n🎯 最新版本號: ${latestVersion}`);
     
-    // 自動獲取當前應用版本號
+    // 從app.json獲取當前版本號（用於測試）
     const currentVersion = getCurrentAppVersion();
     console.log(`📱 當前應用版本: ${currentVersion}`);
     
@@ -52,7 +52,7 @@ async function testRealVersionAPI() {
   }
 }
 
-// 自動獲取當前應用版本號
+// 從app.json獲取當前版本號（僅用於測試腳本）
 function getCurrentAppVersion() {
   try {
     // 讀取app.json文件
