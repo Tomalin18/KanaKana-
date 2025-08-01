@@ -32,11 +32,13 @@ async function testRealVersionAPI() {
     const latestVersion = apiResponse.data?.outputs?.answer;
     console.log(`\n🎯 最新版本號: ${latestVersion}`);
     
+    // 自動獲取當前應用版本號
+    const currentVersion = getCurrentAppVersion();
+    console.log(`📱 當前應用版本: ${currentVersion}`);
+    
     // 測試版本比較
-    const currentVersion = '1.0.0';
     const isUpdateAvailable = compareVersions(currentVersion, latestVersion) < 0;
     
-    console.log(`📱 當前版本: ${currentVersion}`);
     console.log(`🔄 有更新可用: ${isUpdateAvailable ? '是' : '否'}`);
     
     if (isUpdateAvailable) {
@@ -47,6 +49,27 @@ async function testRealVersionAPI() {
     
   } catch (error) {
     console.error('❌ API測試失敗:', error.message);
+  }
+}
+
+// 自動獲取當前應用版本號
+function getCurrentAppVersion() {
+  try {
+    // 讀取app.json文件
+    const fs = require('fs');
+    const path = require('path');
+    
+    const appJsonPath = path.join(__dirname, '..', 'app.json');
+    const appJson = JSON.parse(fs.readFileSync(appJsonPath, 'utf8'));
+    
+    // 獲取版本號
+    const version = appJson.expo.version;
+    console.log(`📋 從app.json讀取版本號: ${version}`);
+    
+    return version;
+  } catch (error) {
+    console.warn('⚠️ 無法讀取app.json，使用默認版本號1.0.0');
+    return '1.0.0';
   }
 }
 
