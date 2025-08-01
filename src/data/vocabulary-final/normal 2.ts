@@ -18915,7 +18915,7 @@ export const NORMAL_WORDS: TetrisWord[] = [
   },
   {
     "word": "嘘",
-    "kana": "嘘",
+    "kana": "うそ",
     "meaning": "lie",
     "difficulty": "normal",
     "category": "一般",
@@ -19805,7 +19805,7 @@ export const NORMAL_WORDS: TetrisWord[] = [
   },
   {
     "word": "挨拶",
-    "kana": "挨拶",
+    "kana": "あいさつ",
     "meaning": "greet(ing)",
     "difficulty": "normal",
     "category": "一般",
@@ -20493,7 +20493,7 @@ export const NORMAL_WORDS: TetrisWord[] = [
   },
   {
     "word": "一杯",
-    "kana": "一杯",
+    "kana": "いっぱい",
     "meaning": "full, 到 the utmost (full, 到 the utmost) (full, 到 the utmost (full, to the utmost))",
     "difficulty": "normal",
     "category": "一般",
@@ -21768,7 +21768,7 @@ export const NORMAL_WORDS: TetrisWord[] = [
   },
   {
     "word": "格好",
-    "kana": "格好",
+    "kana": "かっこう",
     "meaning": "appearance, manner, shape, f或m, posture (appearance, manner, shape, f或m, posture) (appearance, manner, shape, f或m, posture (appearance, manner, shape, form, posture))",
     "difficulty": "normal",
     "category": "一般",
@@ -22320,7 +22320,7 @@ export const NORMAL_WORDS: TetrisWord[] = [
   },
   {
     "word": "お陰",
-    "kana": "お陰",
+    "kana": "おかげ",
     "meaning": "thanks 或 owing 到 (thanks 或 owing 到) (thanks 或 owing 到 (thanks or owing to))",
     "difficulty": "normal",
     "category": "一般",
