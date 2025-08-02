@@ -89,7 +89,8 @@ export const getWordsByType = (words: TetrisWord[], wordType: 'hiragana' | 'kata
   
   switch (wordType) {
     case 'hiragana':
-      return words.filter(word => !word.isKanji);
+      // 簡化邏輯：如果沒有 isKanji 屬性或 isKanji 為 false，則包含
+      return words.filter(word => word.isKanji !== true);
     case 'katakana':
       return words.filter(word => {
         for (let i = 0; i < word.kana.length; i++) {
@@ -154,8 +155,25 @@ export const getWordByLength = (
   const matchingWords = filteredWords.filter(word => word.kana.length === targetLength);
   
   if (matchingWords.length > 0) {
-    const randomIndex = Math.floor(Math.random() * matchingWords.length);
-    return matchingWords[randomIndex];
+    // 過濾掉最近使用過的詞彙
+    const nonRecentWords = matchingWords.filter(word => 
+      !recentWords.includes(word.word)
+    );
+    
+    // 選擇最終詞彙池
+    const finalWords = nonRecentWords.length >= 3 ? nonRecentWords : matchingWords;
+    
+    // 隨機選擇
+    const randomIndex = Math.floor(Math.random() * finalWords.length);
+    const selectedWord = finalWords[randomIndex];
+    
+    // 更新最近使用詞彙列表
+    recentWords.push(selectedWord.word);
+    if (recentWords.length > MAX_RECENT_WORDS) {
+      recentWords.shift();
+    }
+    
+    return selectedWord;
   }
   
   return getRandomWordImproved(difficulty, wordType);
