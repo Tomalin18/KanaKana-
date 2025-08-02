@@ -24,7 +24,7 @@ import { BEGINNER_WORDS } from './beginner_converted';
 import { NORMAL_WORDS } from './normal 2';
 import { HARD_WORDS } from './hard 2';
 import { EXPERT_WORDS } from './expert 2';
-import { HIRAGANA_WORDS } from './hiragana';
+import { HIRAGANA_WORDS } from './hiragana 2';
 import { JLPT_N3_N2_WORDS } from './jlpt-chunks';
 
 // 導入漢字檔案
