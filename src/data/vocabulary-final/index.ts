@@ -23,12 +23,29 @@ import { HARD_WORDS } from './hard 2';
 import { EXPERT_WORDS } from './expert 2';
 import { JLPT_N3_N2_WORDS } from './jlpt-chunks';
 
+// 導入漢字專用詞彙
+import { KANJI_WORDS_01 } from './kanji-01';
+import { KANJI_WORDS_02 } from './kanji-02';
+import { KANJI_WORDS_03 } from './kanji-03';
+import { KANJI_WORDS_04 } from './kanji-04';
+import { KANJI_WORDS_05 } from './kanji-05';
+import { KANJI_WORDS_06 } from './kanji-06';
+import { KANJI_WORDS_07 } from './kanji-07';
+
 export const allVocabulary: TetrisWord[] = [
   ...BEGINNER_WORDS,
   ...NORMAL_WORDS,
   ...HARD_WORDS,
   ...EXPERT_WORDS,
-  ...JLPT_N3_N2_WORDS
+  ...JLPT_N3_N2_WORDS,
+  // 添加漢字專用詞彙
+  ...KANJI_WORDS_01,
+  ...KANJI_WORDS_02,
+  ...KANJI_WORDS_03,
+  ...KANJI_WORDS_04,
+  ...KANJI_WORDS_05,
+  ...KANJI_WORDS_06,
+  ...KANJI_WORDS_07
 ];
 
 export const getRandomWordByCombinedDifficulty = (difficulty: CombinedDifficultyLevel): TetrisWord => {
