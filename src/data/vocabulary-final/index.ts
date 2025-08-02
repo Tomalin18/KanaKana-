@@ -24,8 +24,8 @@ import { EXPERT_WORDS } from './expert 2';
 import { JLPT_N3_N2_WORDS } from './jlpt-chunks';
 
 // 導入包含N1詞彙的原始檔案
-import { normal as NORMAL_WORDS_WITH_N1 } from './normal';
-import { expert as EXPERT_WORDS_WITH_N1 } from './expert';
+import { NORMAL_WORDS as NORMAL_WORDS_WITH_N1 } from './normal 2';
+import { EXPERT_WORDS as EXPERT_WORDS_WITH_N1 } from './expert 2';
 
 // 導入漢字專用詞彙
 import { KANJI_WORDS_01 } from './kanji-01';
