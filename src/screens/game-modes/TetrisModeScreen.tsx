@@ -412,12 +412,13 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
     console.log(`🎲 生成方塊 - 形狀: ${shapeKey}, 格數: ${charCount}, 等級: ${level}`);
     console.log(`⚙️ 設定 - 難度: ${settings.difficulty}, 詞彙類型: ${settings.wordType}`);
     
-    // 使用改進的隨機選擇函數
+    // 使用簡單的隨機選擇函數，更接近原本的實現
     let word;
     try {
-      word = getWordByLevelAndLength(charCount, level, settings.difficulty, settings.wordType);
+      // 先嘗試根據長度選擇
+      word = getWordByLength(charCount, settings.difficulty, settings.wordType);
     } catch (error) {
-      console.error('❌ getWordByLevelAndLength 錯誤:', error);
+      console.error('❌ getWordByLength 錯誤:', error);
       // 使用備用方法
       word = getRandomWordImproved(settings.difficulty, settings.wordType);
     }

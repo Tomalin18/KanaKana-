@@ -186,14 +186,8 @@ export const getWordByLevelAndLength = (
   difficulty: DifficultyLevel,
   wordType: 'hiragana' | 'katakana' | 'mixed' = 'mixed'
 ): TetrisWord => {
+  // 簡化版本，更接近原本的實現
   let availableWords: TetrisWord[] = [];
-  
-  // 調試信息
-  console.log(`🔍 getWordByLevelAndLength 調用:`);
-  console.log(`  目標長度: ${targetLength}`);
-  console.log(`  等級: ${level}`);
-  console.log(`  難度: ${difficulty}`);
-  console.log(`  詞彙類型: ${wordType}`);
   
   // 根據等級添加漢字詞彙
   if (level >= 5) {
@@ -201,7 +195,6 @@ export const getWordByLevelAndLength = (
       word.kana.length === targetLength
     );
     availableWords = [...availableWords, ...levelKanjiWords];
-    console.log(`  漢字詞彙數量: ${levelKanjiWords.length}`);
   }
   
   // 獲取常規詞彙
@@ -210,42 +203,8 @@ export const getWordByLevelAndLength = (
     .filter(word => word.kana.length === targetLength && !word.isKanji);
   availableWords = [...availableWords, ...filteredRegularWords];
   
-  console.log(`  常規詞彙數量: ${filteredRegularWords.length}`);
-  console.log(`  總可用詞彙數量: ${availableWords.length}`);
-  
-  // 如果沒有找到匹配長度的詞彙，嘗試使用相近長度的詞彙
+  // 如果沒有找到匹配長度的詞彙，直接使用隨機詞彙
   if (availableWords.length === 0) {
-    console.log(`  ⚠️ 沒有找到長度為 ${targetLength} 的詞彙，嘗試相近長度`);
-    
-    // 嘗試相近長度 (±1)
-    for (let offset = 1; offset <= 2; offset++) {
-      const nearbyLengths = [targetLength - offset, targetLength + offset];
-      
-      for (const nearbyLength of nearbyLengths) {
-        if (nearbyLength > 0) {
-          const nearbyKanjiWords = level >= 5 ? KANJI_WORDS.filter(word => 
-            word.kana.length === nearbyLength
-          ) : [];
-          
-          const nearbyRegularWords = getWordsByType(regularWords, wordType)
-            .filter(word => word.kana.length === nearbyLength && !word.isKanji);
-          
-          availableWords = [...availableWords, ...nearbyKanjiWords, ...nearbyRegularWords];
-          
-          if (availableWords.length > 0) {
-            console.log(`  ✅ 找到長度為 ${nearbyLength} 的詞彙 ${availableWords.length} 個`);
-            break;
-          }
-        }
-      }
-      
-      if (availableWords.length > 0) break;
-    }
-  }
-  
-  // 如果仍然沒有詞彙，使用隨機詞彙
-  if (availableWords.length === 0) {
-    console.log(`  ⚠️ 仍然沒有找到合適的詞彙，使用隨機詞彙`);
     return getRandomWordImproved(difficulty, wordType);
   }
   
@@ -254,16 +213,12 @@ export const getWordByLevelAndLength = (
     !recentWords.includes(word.word)
   );
   
-  console.log(`  非最近使用詞彙數量: ${nonRecentWords.length}`);
-  
   // 選擇最終詞彙池
   const finalWords = nonRecentWords.length >= 3 ? nonRecentWords : availableWords;
   
   // 隨機選擇
   const randomIndex = Math.floor(Math.random() * finalWords.length);
   const selectedWord = finalWords[randomIndex];
-  
-  console.log(`  選擇詞彙: ${selectedWord.word} (${selectedWord.kana}) - ${selectedWord.meaning}`);
   
   // 更新最近使用詞彙列表
   recentWords.push(selectedWord.word);
