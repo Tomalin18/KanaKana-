@@ -12,7 +12,7 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from 'react-native';
-import { getRandomWordImproved, getWordByLength, getWordByLevelAndLength, type TetrisWord } from '@/data/vocabulary-final/index 2';
+import { getRandomWordImproved, getWordByLength, getWordByLevelAndLength, type TetrisWord } from '@/data/tetrisData';
 import { GlassNavBar } from '@/components/common/GlassNavBar';
 import { GlassContainer } from '@/components/common/GlassContainer';
 import { PauseOverlay } from '@/components/common/PauseOverlay';
