@@ -16,7 +16,7 @@ import { getRandomWordImproved, getWordByLength, getWordByLevelAndLength, type T
 import { GlassNavBar } from '@/components/common/GlassNavBar';
 import { GlassContainer } from '@/components/common/GlassContainer';
 import { PauseOverlay } from '@/components/common/PauseOverlay';
-import type { DifficultyLevel } from '@/types';
+import type { DifficultyLevel, CombinedDifficultyLevel } from '@/types';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { bossQuestions, BossQuestion } from '@/data/bossData';
 import { BlurView } from 'expo-blur';
@@ -37,7 +37,7 @@ interface TetrisPiece {
 }
 
 interface TetrisSettings {
-  difficulty: DifficultyLevel;
+  difficulty: CombinedDifficultyLevel;
   wordType: 'hiragana' | 'katakana' | 'mixed';
 }
 
@@ -123,7 +123,7 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
   
   // 設定
   const settings: TetrisSettings = route?.params?.settings || {
-    difficulty: 'beginner',
+    difficulty: 'elementary',
     wordType: 'hiragana'
   };
 
