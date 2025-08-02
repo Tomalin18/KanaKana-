@@ -14,14 +14,13 @@
 
 ## 修復方案
 
-### 1. 修復詞彙選擇邏輯
+### 1. 簡化詞彙選擇邏輯
 
 **文件**：`src/data/vocabulary-final/index 2.ts`
 
-- 添加詳細的調試信息，記錄詞彙選擇過程
-- 實現相近長度詞彙選擇機制（±1, ±2 字符）
-- 添加錯誤處理和備用詞彙選擇
-- 改進最近使用詞彙過濾邏輯
+- 簡化 `getWordByLevelAndLength` 函數，移除複雜的調試信息
+- 保持原本的簡單邏輯：如果找不到特定長度詞彙，直接使用隨機詞彙
+- 保留最近使用詞彙過濾機制，避免重複
 
 ```typescript
 export const getWordByLevelAndLength = (
@@ -53,49 +52,40 @@ export const getWordByLevelAndLength = (
 };
 ```
 
-### 2. 修復導入路徑
+### 2. 使用原本的詞彙選擇方式
 
 **文件**：`src/screens/game-modes/TetrisModeScreen.tsx`
 
-- 直接從 `vocabulary-final/index 2` 導入詞彙函數
-- 避免通過 `tetrisData.ts` 中間層導入
-- 添加錯誤處理機制
+- 使用 `getWordByLength` 而不是 `getWordByLevelAndLength`
+- 更接近原本上架時的實現方式
+- 保持簡單的詞彙選擇邏輯
 
 ```typescript
 // 修改前
-import { getRandomWordImproved, getWordByLength, getWordByLevelAndLength, type TetrisWord } from '@/data/tetrisData';
+word = getWordByLevelAndLength(charCount, level, settings.difficulty, settings.wordType);
 
 // 修改後
-import { getRandomWordImproved, getWordByLength, getWordByLevelAndLength, type TetrisWord } from '@/data/vocabulary-final/index 2';
+word = getWordByLength(charCount, settings.difficulty, settings.wordType);
 ```
 
-### 3. 改進調試信息
+### 3. 移除複雜的調試信息
 
 **文件**：`src/screens/game-modes/TetrisModeScreen.tsx`
 
-- 在 `generateRandomPiece` 函數中添加詳細調試信息
-- 記錄方塊生成、詞彙選擇的完整過程
-- 添加錯誤處理和備用機制
+- 移除過於詳細的調試信息
+- 保持簡潔的錯誤處理
+- 更接近原本的實現方式
 
 ```typescript
 const generateRandomPiece = useCallback((): TetrisPiece => {
-  // 添加詳細調試信息
-  console.log(`🎲 生成方塊 - 形狀: ${shapeKey}, 格數: ${charCount}, 等級: ${level}`);
-  console.log(`⚙️ 設定 - 難度: ${settings.difficulty}, 詞彙類型: ${settings.wordType}`);
-  
-  // 添加錯誤處理
+  // 使用簡單的詞彙選擇
   let word;
   try {
-    word = getWordByLevelAndLength(charCount, level, settings.difficulty, settings.wordType);
+    word = getWordByLength(charCount, settings.difficulty, settings.wordType);
   } catch (error) {
-    console.error('❌ getWordByLevelAndLength 錯誤:', error);
+    console.error('❌ getWordByLength 錯誤:', error);
     word = getRandomWordImproved(settings.difficulty, settings.wordType);
   }
-  
-  console.log(`📝 選擇單字:`, word);
-  console.log(`  單字: ${word?.word}`);
-  console.log(`  假名: ${word?.kana}`);
-  console.log(`  意思: ${word?.meaning}`);
 });
 ```
 
@@ -140,8 +130,8 @@ const generateRandomPiece = useCallback((): TetrisPiece => {
 
 1. ✅ 顯示多樣化的詞彙，不再只顯示「そうです」
 2. ✅ 根據方塊大小選擇合適長度的詞彙
-3. ✅ 根據遊戲等級和難度調整詞彙選擇
-4. ✅ 提供詳細的調試信息，方便後續維護
+3. ✅ 使用與原本上架時相同的詞彙選擇邏輯
+4. ✅ 保持簡潔的實現方式
 5. ✅ 在詞彙選擇失敗時使用備用機制
 
 ## 後續建議
