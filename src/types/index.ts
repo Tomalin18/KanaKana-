@@ -15,6 +15,13 @@ export type GameMode =
   | 'long_text'          // 新增：長文模式
   | 'tetris_typing';     // 新增：俄羅斯方塊模式
 export type DifficultyLevel = 'beginner' | 'normal' | 'hard' | 'expert' | 'adaptive';
+
+// 新增：組合難度等級
+export type CombinedDifficultyLevel = 'elementary' | 'intermediate' | 'advanced';
+
+// 新增：JLPT等級
+export type JLPTLevel = 'n5' | 'n4' | 'n3' | 'n2' | 'n1';
+
 export type GameStatus = 'idle' | 'playing' | 'paused' | 'finished' | 'game_over';
 export type InputType = 'hiragana' | 'katakana' | 'kanji' | 'mixed' | 'romaji' | 'unknown';
 export type VocabularyTheme = 'jlpt_n5' | 'jlpt_n4' | 'jlpt_n3' | 'jlpt_n2' | 'jlpt_n1' 
@@ -43,6 +50,7 @@ export interface Word {
   text: string;
   reading?: string;
   meaning?: string;
+  chineseMeaning?: string; // 中文解釋
   difficulty: number;
   theme: VocabularyTheme;
   jlptLevel?: 'n1' | 'n2' | 'n3' | 'n4' | 'n5';

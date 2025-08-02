@@ -12,6 +12,7 @@ export interface TetrisWord {
   word: string;
   kana: string;
   meaning: string;
+  chineseMeaning?: string;
   difficulty: DifficultyLevel;
   category: string;
   kanji?: string;
@@ -19,11 +20,12 @@ export interface TetrisWord {
 }
 
 // 導入基本檔案
-import { BEGINNER_WORDS } from './beginner';
-import { NORMAL_WORDS } from './normal';
-import { HARD_WORDS } from './hard';
-import { EXPERT_WORDS } from './expert';
+import { BEGINNER_WORDS } from './beginner_converted';
+import { NORMAL_WORDS } from './normal 2';
+import { HARD_WORDS } from './hard 2';
+import { EXPERT_WORDS } from './expert 2';
 import { HIRAGANA_WORDS } from './hiragana';
+import { JLPT_N3_N2_WORDS } from './jlpt-chunks';
 
 // 導入漢字檔案
 import { KANJI_WORDS_01 } from './kanji-01';
@@ -46,22 +48,30 @@ export {
   HARD_WORDS,
   EXPERT_WORDS,
   HIRAGANA_WORDS,
-  KANJI_WORDS
+  KANJI_WORDS,
+  JLPT_N3_N2_WORDS
 };
 
 /**
  * 根據難度獲取單字
  */
 export const getWordsByDifficulty = (difficulty: DifficultyLevel): TetrisWord[] => {
+  // 根據難度等級選擇詞彙池，並包含相應的JLPT詞彙
   switch (difficulty) {
     case 'beginner':
+      // 初級：只包含初級詞彙
       return BEGINNER_WORDS;
     case 'normal':
-      return [...BEGINNER_WORDS, ...NORMAL_WORDS];
+      // 中級：包含初級、中級詞彙 + N3詞彙
+      const n3Words = JLPT_N3_N2_WORDS.filter(word => word.jlptLevel === 'n3');
+      return [...BEGINNER_WORDS, ...NORMAL_WORDS, ...n3Words];
     case 'hard':
-      return [...BEGINNER_WORDS, ...NORMAL_WORDS, ...HARD_WORDS];
+      // 高級：包含中級、高級詞彙 + N2詞彙
+      const n2Words = JLPT_N3_N2_WORDS.filter(word => word.jlptLevel === 'n2');
+      return [...NORMAL_WORDS, ...HARD_WORDS, ...n2Words];
     case 'expert':
-      return [...BEGINNER_WORDS, ...NORMAL_WORDS, ...HARD_WORDS, ...EXPERT_WORDS];
+      // 專家級：包含所有詞彙
+      return [...BEGINNER_WORDS, ...NORMAL_WORDS, ...HARD_WORDS, ...EXPERT_WORDS, ...JLPT_N3_N2_WORDS];
     default:
       return BEGINNER_WORDS.length > 0 ? BEGINNER_WORDS : EXPERT_WORDS;
   }
@@ -71,6 +81,12 @@ export const getWordsByDifficulty = (difficulty: DifficultyLevel): TetrisWord[] 
  * 根據單字類型過濾
  */
 export const getWordsByType = (words: TetrisWord[], wordType: 'hiragana' | 'katakana' | 'mixed'): TetrisWord[] => {
+  // 檢查 words 是否為 undefined 或 null
+  if (!words || !Array.isArray(words)) {
+    console.warn('getWordsByType: words is undefined or not an array, returning empty array');
+    return [];
+  }
+  
   switch (wordType) {
     case 'hiragana':
       return words.filter(word => !word.isKanji);

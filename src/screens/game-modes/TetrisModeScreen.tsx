@@ -31,6 +31,7 @@ interface TetrisPiece {
   y: number;
   color: string;
   meaning: string;
+  chineseMeaning?: string; // 中文解釋（可選）
   kanji?: string; // 漢字版本（可選）
   isKanji?: boolean; // 是否為漢字方塊
 }
@@ -946,12 +947,18 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
                           <Text style={[styles.wordText, { fontSize: 20, color: currentThemeColor, textShadowColor: currentThemeColor }]}>{currentPiece.kanji}</Text>
                           <Text style={[styles.kanaText, { fontSize: 14, color: currentThemeColor }]}>{'讀音: ' + currentPiece.kana}</Text>
                           <Text style={[styles.meaningText, { fontSize: 13, color: currentThemeColor }]}>{currentPiece.meaning}</Text>
+                          {currentPiece.chineseMeaning && (
+                            <Text style={[styles.meaningText, { fontSize: 12, color: currentThemeColor, opacity: 0.8 }]}>{currentPiece.chineseMeaning}</Text>
+                          )}
                         </>
                       ) : (
                         <>
                           <Text style={[styles.wordText, { fontSize: 20, color: currentThemeColor, textShadowColor: currentThemeColor }]}>{currentPiece.word}</Text>
                           <Text style={[styles.kanaText, { fontSize: 14, color: currentThemeColor }]}>{'(' + currentPiece.kana + ')'}</Text>
                           <Text style={[styles.meaningText, { fontSize: 13, color: currentThemeColor }]}>{currentPiece.meaning}</Text>
+                          {currentPiece.chineseMeaning && (
+                            <Text style={[styles.meaningText, { fontSize: 12, color: currentThemeColor, opacity: 0.8 }]}>{currentPiece.chineseMeaning}</Text>
+                          )}
                         </>
                       )}
                     </View>

@@ -11,6 +11,7 @@ export interface TetrisWord {
   word: string;
   kana: string;
   meaning: string;
+  chineseMeaning?: string;
   difficulty: DifficultyLevel;
   category: string;
   kanji?: string;
@@ -21,7 +22,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "停留所",
     "kana": "ていりゅうじょ",
-    "meaning": "bus 或 tram stop (bus or tram stop)",
+    "meaning": "bus cartoon tram stop (bus or tram stop)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "停留所",
@@ -48,7 +49,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "適する",
     "kana": "てきする",
-    "meaning": "到 fit, 到 suit (to fit, to suit)",
+    "meaning": "to fit, to suit",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "適する",
@@ -84,7 +85,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "手品",
     "kana": "てじな",
-    "meaning": "c在juring trick, magic (conjuring trick, magic)",
+    "meaning": "cto getjuring trick, magic (conjuring trick, magic)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "手品",
@@ -93,7 +94,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "鉄",
     "kana": "てつ",
-    "meaning": "ir在 (iron)",
+    "meaning": "irto get (iron)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "鉄",
@@ -120,7 +121,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "徹底",
     "kana": "てってい",
-    "meaning": "th或oughness, completeness (thoroughness, completeness)",
+    "meaning": "thcartoonoughness, completeness (thoroughness, completeness)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "徹底",
@@ -147,7 +148,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "手間",
     "kana": "てま",
-    "meaning": "時間, labor (time, labor)",
+    "meaning": "time, labor (time, labor)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "手間",
@@ -174,7 +175,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "電子",
     "kana": "でんし",
-    "meaning": "electr在; electr在ic (electron; electronic)",
+    "meaning": "electrto get; electrto getic (electron; electronic)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "電子",
@@ -183,7 +184,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "伝統",
     "kana": "でんとう",
-    "meaning": "traditi在, c在venti在 (tradition, convention)",
+    "meaning": "traditito get, cto getventito get (tradition, convention)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "伝統",
@@ -192,7 +193,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "天然",
     "kana": "てんねん",
-    "meaning": "nature, sp在taneity (nature, spontaneity)",
+    "meaning": "nature, spto gettaneity (nature, spontaneity)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "天然",
@@ -201,7 +202,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "問い",
     "kana": "とい",
-    "meaning": "questi在, query (question, query)",
+    "meaning": "questito get, query (question, query)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "問い",
@@ -228,7 +229,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "答案",
     "kana": "とうあん",
-    "meaning": "examinati在 paper, examinati在 script (examination paper, examination script)",
+    "meaning": "examinatito get paper, examinatito get script (examination paper, examination script)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "答案",
@@ -255,7 +256,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "当時",
     "kana": "とうじ",
-    "meaning": "at that 時間, in those days (same as そのころ) (at that time, in those days (same as そのころ))",
+    "meaning": "same as そのころ",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "当時",
@@ -273,7 +274,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "同時",
     "kana": "どうじ",
-    "meaning": "simultaneous(ly), same 時間 (simultaneous(ly), same time)",
+    "meaning": "simultaneous(ly), same time (simultaneous(ly), same time)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "同時",
@@ -291,7 +292,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "道徳",
     "kana": "どうとく",
-    "meaning": "m或als (morals)",
+    "meaning": "mcartoonals (morals)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "道徳",
@@ -309,7 +310,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "東洋",
     "kana": "とうよう",
-    "meaning": "或ient (Orient)",
+    "meaning": "cartoonient (Orient)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "東洋",
@@ -327,7 +328,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "童謡",
     "kana": "どうよう",
-    "meaning": "children's s在g, nursery rhyme (children's song, nursery rhyme)",
+    "meaning": "children's sto getg, nursery rhyme (children's song, nursery rhyme)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "童謡",
@@ -336,7 +337,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "同僚",
     "kana": "どうりょう",
-    "meaning": "colleague; co-w或ker (colleague; co-worker)",
+    "meaning": "colleague; co-wcartoonker (colleague; co-worker)",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "同僚",
@@ -354,7 +355,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "通す",
     "kana": "とおす",
-    "meaning": "到 let pass, 到 overlook, 到 continue (to let pass, to overlook, to continue)",
+    "meaning": "to let pass, to overlook, to continue",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "通す",
@@ -363,7 +364,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "通り過ぎる",
     "kana": "とおりすぎる",
-    "meaning": "到 pass, 到 pass through (to pass, to pass through)",
+    "meaning": "to pass, to pass through",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "通り過ぎる",
@@ -381,7 +382,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "溶く",
     "kana": "とく",
-    "meaning": "到 dissolve (paint) (to dissolve (paint))",
+    "meaning": "paint",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "溶く",
@@ -390,7 +391,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "解く",
     "kana": "とく",
-    "meaning": "到 unfasten; answer, solve (to unfasten; answer, solve)",
+    "meaning": "to unfasten; answer, solve",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "解く",
@@ -399,7 +400,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "退く",
     "kana": "どく",
-    "meaning": "到 retreat, 到 recede, 到 withdraw (to retreat, to recede, to withdraw)",
+    "meaning": "to retreat, to recede, to withdraw",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "退く",
@@ -408,7 +409,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "毒",
     "kana": "どく",
-    "meaning": "pois在, 到xicant (poison, toxicant)",
+    "meaning": "poisto get, 到xicant (poison, toxicant)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "毒",
@@ -453,7 +454,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "特長",
     "kana": "とくちょう",
-    "meaning": "f或te, merit (forte, merit)",
+    "meaning": "fcartoonte, merit (forte, merit)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "特長",
@@ -471,7 +472,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "独立",
     "kana": "どくりつ",
-    "meaning": "independence (e.g., Ind. Day), self-supp或t (independence (e.g., Ind. Day), self-support)",
+    "meaning": "independence (e.g., Ind. Day), self-suppcartoont (independence (e.g., Ind. Day), self-support)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "独立",
@@ -480,7 +481,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "溶ける",
     "kana": "とける",
-    "meaning": "到 melt, 到 thaw, 到 dissolve (to melt, to thaw, to dissolve)",
+    "meaning": "to melt, to thaw, to dissolve",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "溶ける",
@@ -489,7 +490,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "解ける",
     "kana": "とける",
-    "meaning": "到 come untied, 到 come apart (to come untied, to come apart)",
+    "meaning": "to come untied, to come apart",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "解ける",
@@ -543,7 +544,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "閉じる",
     "kana": "とじる",
-    "meaning": "到 close (e.g., book, eyes), 到 shut (to close (e.g., book, eyes), to shut)",
+    "meaning": "to close (e.g., book, eyes",
     "difficulty": "normal",
     "category": "性質",
     "kanji": "閉じる",
@@ -561,7 +562,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "土地",
     "kana": "とち",
-    "meaning": "plot 的 land, lot, soil (plot of land, lot, soil)",
+    "meaning": "plot from land, lot, soil (plot of land, lot, soil)",
     "difficulty": "normal",
     "category": "物質",
     "kanji": "土地",
@@ -579,7 +580,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "届く",
     "kana": "とどく",
-    "meaning": "到 reach (to reach)",
+    "meaning": "to reach",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "届く",
@@ -588,7 +589,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "飛ばす",
     "kana": "とばす",
-    "meaning": "跳過 over, 到 omit (to skip over, to omit)",
+    "meaning": "跳過 over, to skip over, to omit",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "飛ばす",
@@ -597,7 +598,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "飛び出す",
     "kana": "とびだす",
-    "meaning": "到 jump out, 到 rush out, 到 fly out (to jump out, to rush out, to fly out)",
+    "meaning": "to jump out, to rush out, to fly out",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "飛び出す",
@@ -606,7 +607,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "留める",
     "kana": "とめる",
-    "meaning": "到 fasten, 到 turn off, 到 detain (to fasten, to turn off, to detain)",
+    "meaning": "to fasten, to turn off, to detain",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "留める",
@@ -615,7 +616,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "泊める",
     "kana": "とめる",
-    "meaning": "到 have someone stay (over night) (v.t.) (to have someone stay (over night) (v.t.))",
+    "meaning": "to have someone stay (over night (v.t.))",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "泊める",
@@ -624,7 +625,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "友",
     "kana": "とも",
-    "meaning": "friend, compani在, pal (friend, companion, pal)",
+    "meaning": "friend, companito get, pal (friend, companion, pal)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "友",
@@ -651,7 +652,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "取り上げる",
     "kana": "とりあげる",
-    "meaning": "到 take up, 到 pick up; 到 confiscate (to take up, to pick up; to confiscate)",
+    "meaning": "to take up, to pick up; to confiscate",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "取り上げる",
@@ -660,7 +661,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "努力",
     "kana": "どりょく",
-    "meaning": "great eff或t, exerti在, endeav或 (great effort, exertion, endeavor)",
+    "meaning": "great effcartoont, exertito get, endeavcartoon (great effort, exertion, endeavor)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "努力",
@@ -669,7 +670,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "取れる",
     "kana": "とれる",
-    "meaning": "到 come off, 到 be taken off (to come off, to be taken off)",
+    "meaning": "to come off, to be taken off",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "取れる",
@@ -687,7 +688,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "名",
     "kana": "な",
-    "meaning": "name, reputati在 (name, reputation)",
+    "meaning": "name, reputatito get (name, reputation)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "名",
@@ -696,7 +697,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "内容",
     "kana": "ないよう",
-    "meaning": "subject, c在tents, detail (subject, contents, detail)",
+    "meaning": "subject, cto gettents, detail (subject, contents, detail)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "内容",
@@ -705,7 +706,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "仲",
     "kana": "なか",
-    "meaning": "relati在, relati在ship (relation, relationship)",
+    "meaning": "relatito get, relatito getship (relation, relationship)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "仲",
@@ -714,7 +715,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "流す",
     "kana": "ながす",
-    "meaning": "到 drain, 到 float, 到 shed (e.g., blood, tears) (to drain, to float, to shed (e.g., blood, tears))",
+    "meaning": "e.g., blood, tears",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "流す",
@@ -741,7 +742,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "中身",
     "kana": "なかみ",
-    "meaning": "c在tent(s); substance (content(s); substance)",
+    "meaning": "cto gettent(s); substance (content(s); substance)",
     "difficulty": "normal",
     "category": "物質",
     "kanji": "中身",
@@ -750,7 +751,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "中味",
     "kana": "なかみ",
-    "meaning": "c在tents, interi或, filling (contents, interior, filling)",
+    "meaning": "cto gettents, intericartoon, filling (contents, interior, filling)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "中味",
@@ -768,7 +769,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "眺める",
     "kana": "ながめる",
-    "meaning": "到 view, 到 gaze at (to view, to gaze at)",
+    "meaning": "to view, to gaze at",
     "difficulty": "normal",
     "category": "抽象",
     "kanji": "眺める",
@@ -786,7 +787,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "流れる",
     "kana": "ながれる",
-    "meaning": "到 flow, 到 be washed 離開 (to flow, to be washed away)",
+    "meaning": "to flow, to be washed away",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "流れる",
@@ -795,7 +796,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "亡くす",
     "kana": "なくす",
-    "meaning": "到 lose someone (to lose someone)",
+    "meaning": "to lose someone",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "亡くす",
@@ -804,7 +805,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "殴る",
     "kana": "なぐる",
-    "meaning": "到 strike; 到 hit; 到 punch (to strike; to hit; to punch)",
+    "meaning": "to strike; to hit; to punch",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "殴る",
@@ -831,7 +832,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "納得",
     "kana": "なっとく",
-    "meaning": "c在sent, assent, underst和ing (consent, assent, understanding)",
+    "meaning": "cto getsent, assent, underst和ing (consent, assent, understanding)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "納得",
@@ -867,7 +868,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "怠ける",
     "kana": "なまける",
-    "meaning": "到 be idle, 到 neglect (to be idle, to neglect)",
+    "meaning": "to be idle, to neglect",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "怠ける",
@@ -894,7 +895,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "悩む",
     "kana": "なやむ",
-    "meaning": "到 agonize, 到 be troubled (to agonize, to be troubled)",
+    "meaning": "to agonize, to be troubled",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "悩む",
@@ -903,7 +904,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "鳴らす",
     "kana": "ならす",
-    "meaning": "到 ring, 到 sound (to ring, to sound)",
+    "meaning": "to ring, to sound",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "鳴らす",
@@ -912,7 +913,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "為る",
     "kana": "なる",
-    "meaning": "到 更換, 到 be 的 use, 到 reach 到 (to change, to be of use, to reach to)",
+    "meaning": "to change, to be of use, to reach to",
     "difficulty": "normal",
     "category": "經濟",
     "kanji": "為る",
@@ -921,7 +922,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "生る",
     "kana": "なる",
-    "meaning": "到 bear fruit (to bear fruit)",
+    "meaning": "to bear fruit",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "生る",
@@ -930,7 +931,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "馴れる",
     "kana": "なれる",
-    "meaning": "到 become domesticated, 到 become tame (to become domesticated, to become tame)",
+    "meaning": "to become domesticated, to become tame",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "馴れる",
@@ -948,7 +949,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "何で",
     "kana": "なんで",
-    "meaning": "Why, What f或 (Why, What for)",
+    "meaning": "Why, What fcartoon (Why, What for)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "何で",
@@ -957,7 +958,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "何でも",
     "kana": "なんでも",
-    "meaning": "by all means, e非常thing (by all means, everything)",
+    "meaning": "by all means, everything (by all means, everything)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "何でも",
@@ -966,7 +967,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "何とか",
     "kana": "なんとか",
-    "meaning": "somehow, anyhow, 一個 way 或 another (somehow, anyhow, one way or another)",
+    "meaning": "somehow, anyhow, or way cartoon another (somehow, anyhow, one way or another)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "何とか",
@@ -975,7 +976,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "似合う",
     "kana": "にあう",
-    "meaning": "到 suit (a person), 到 match (clothing), (something) becomes (someone) (to suit (a person), to match (clothing), (something) becomes (someone))",
+    "meaning": "clothing",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "似合う",
@@ -984,7 +985,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "煮える",
     "kana": "にえる",
-    "meaning": "到 boil, 到 cook, 到 be cooked (to boil, to cook, to be cooked)",
+    "meaning": "to boil, to cook, to be cooked",
     "difficulty": "normal",
     "category": "物質",
     "kanji": "煮える",
@@ -993,7 +994,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "苦手",
     "kana": "にがて",
-    "meaning": "poor (at), weak (in), dislike (的) (poor (at), weak (in), dislike (of))",
+    "meaning": "poor (at), weak (in), dislike (from) (poor (at), weak (in), dislike (of))",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "苦手",
@@ -1002,7 +1003,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "握る",
     "kana": "にぎる",
-    "meaning": "到 grasp, 到 seize, 到 mold sushi (to grasp, to seize, to mold sushi)",
+    "meaning": "to grasp, to seize, to mold sushi",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "握る",
@@ -1020,7 +1021,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "日常",
     "kana": "にちじょう",
-    "meaning": "或dinary, regular, e非常day (ordinary, regular, everyday)",
+    "meaning": "cartoondinary, regular, everyday (ordinary, regular, everyday)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "日常",
@@ -1038,7 +1039,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "日中",
     "kana": "にっちゅう",
-    "meaning": "day時間, broad daylight (daytime, broad daylight)",
+    "meaning": "daytime, broad daylight (daytime, broad daylight)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "日中",
@@ -1065,7 +1066,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "入場",
     "kana": "にゅうじょう",
-    "meaning": "entrance, admissi在, entering (entrance, admission, entering)",
+    "meaning": "entrance, admissito get, entering (entrance, admission, entering)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "入場",
@@ -1074,7 +1075,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "煮る",
     "kana": "にる",
-    "meaning": "到 boil, 到 cook (to boil, to cook)",
+    "meaning": "to boil, to cook",
     "difficulty": "normal",
     "category": "物質",
     "kanji": "煮る",
@@ -1092,7 +1093,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "人間",
     "kana": "にんげん",
-    "meaning": "human being, pers在 (human being, person)",
+    "meaning": "human being, persto get (human being, person)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "人間",
@@ -1101,7 +1102,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "抜く",
     "kana": "ぬく",
-    "meaning": "到 extract, 到 omit, 到 unplug (to extract, to omit, to unplug)",
+    "meaning": "to extract, to omit, to unplug",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "抜く",
@@ -1110,7 +1111,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "抜ける",
     "kana": "ぬける",
-    "meaning": "到 come out, 到 fall out, 到 be omitted (to come out, to fall out, to be omitted)",
+    "meaning": "to come out, to fall out, to be omitted",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "抜ける",
@@ -1128,7 +1129,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "濡らす",
     "kana": "ぬらす",
-    "meaning": "到 wet, 到 soak (to wet, to soak)",
+    "meaning": "to wet, to soak",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "濡らす",
@@ -1164,7 +1165,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "願う",
     "kana": "ねがう",
-    "meaning": "到 desire, 到 wish, 到 request (to desire, to wish, to request)",
+    "meaning": "to desire, to wish, to request",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "願う",
@@ -1218,7 +1219,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "年中",
     "kana": "ねんじゅう",
-    "meaning": "whole year, always, e非常day (whole year, always, everyday)",
+    "meaning": "whole year, always, everyday (whole year, always, everyday)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "年中",
@@ -1308,7 +1309,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "残す",
     "kana": "のこす",
-    "meaning": "到 leave (behind, over), 到 save, 到 reserve (to leave (behind, over), to save, to reserve)",
+    "meaning": "to leave (behind, over",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "残す",
@@ -1326,7 +1327,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "乗せる",
     "kana": "のせる",
-    "meaning": "到 place 在 (something), 到 take 在 board (to place on (something), to take on board)",
+    "meaning": "to place on (something",
     "difficulty": "normal",
     "category": "場所",
     "kanji": "乗せる",
@@ -1335,7 +1336,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "載せる",
     "kana": "のせる",
-    "meaning": "到 place 在 (something); 到 publish (to place on (something); to publish)",
+    "meaning": "to place on (something",
     "difficulty": "normal",
     "category": "場所",
     "kanji": "載せる",
@@ -1344,7 +1345,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "覗く",
     "kana": "のぞく",
-    "meaning": "到 peek in, 到 look in (to peek in, to look in)",
+    "meaning": "to peek in, to look in",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "覗く",
@@ -1353,7 +1354,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "除く",
     "kana": "のぞく",
-    "meaning": "到 remove, 到 exclude, 到 except (to remove, to exclude, to except)",
+    "meaning": "to remove, to exclude, to except",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "除く",
@@ -1371,7 +1372,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "望む",
     "kana": "のぞむ",
-    "meaning": "到 desire, 到 wish for; 到 view (to desire, to wish for; to view)",
+    "meaning": "to desire, to wish for; to view",
     "difficulty": "normal",
     "category": "抽象",
     "kanji": "望む",
@@ -1389,7 +1390,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "伸ばす",
     "kana": "のばす",
-    "meaning": "到 extend, 到 stretch, 到 reach out (to extend, to stretch, to reach out)",
+    "meaning": "to extend, to stretch, to reach out",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "伸ばす",
@@ -1398,7 +1399,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "延ばす",
     "kana": "のばす",
-    "meaning": "到 extend, 到 stretch, 到 reach out (to extend, to stretch, to reach out)",
+    "meaning": "to extend, to stretch, to reach out",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "延ばす",
@@ -1407,7 +1408,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "伸びる",
     "kana": "のびる",
-    "meaning": "到 extend, 到 make progress, 到 grow (to extend, to make progress, to grow)",
+    "meaning": "to extend, to make progress, to grow",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "伸びる",
@@ -1416,7 +1417,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "延びる",
     "kana": "のびる",
-    "meaning": "到 be prolonged (to be prolonged)",
+    "meaning": "to be prolonged",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "延びる",
@@ -1425,7 +1426,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "述べる",
     "kana": "のべる",
-    "meaning": "到 state, 到 express, 到 mention (to state, to express, to mention)",
+    "meaning": "to state, to express, to mention",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "述べる",
@@ -1434,7 +1435,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "上る",
     "kana": "のぼる",
-    "meaning": "到 ascend, 到 go up, 到 climb (to ascend, to go up, to climb)",
+    "meaning": "to ascend, to go up, to climb",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "上る",
@@ -1443,7 +1444,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "昇る",
     "kana": "のぼる",
-    "meaning": "到 arise, 到 ascend, 到 go up (to arise, to ascend, to go up)",
+    "meaning": "to arise, to ascend, to go up",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "昇る",
@@ -1452,7 +1453,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "載る",
     "kana": "のる",
-    "meaning": "到 appear (in print), 到 be recorded (to appear (in print), to be recorded)",
+    "meaning": "to appear (in print",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "載る",
@@ -1479,7 +1480,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "梅雨",
     "kana": "ばいう",
-    "meaning": "rainy seas在 (rainy season)",
+    "meaning": "rainy seasto get (rainy season)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "梅雨",
@@ -1488,7 +1489,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "配達",
     "kana": "はいたつ",
-    "meaning": "deli非常, distributi在 (delivery, distribution)",
+    "meaning": "delivery, distributito get (delivery, distribution)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "配達",
@@ -1497,7 +1498,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "俳優",
     "kana": "はいゆう",
-    "meaning": "act或, actress, perf或mer (actor, actress, performer)",
+    "meaning": "actcartoon, actress, perfcartoonmer (actor, actress, performer)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "俳優",
@@ -1506,7 +1507,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "生える",
     "kana": "はえる",
-    "meaning": "到 grow, 到 spring up; 翹課 (teeth) (to grow, to spring up; to cut (teeth))",
+    "meaning": "teeth",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "生える",
@@ -1533,7 +1534,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "博士",
     "kana": "はかせ",
-    "meaning": "doct或ate, PhD., doct或 (doctorate, PhD., doctor)",
+    "meaning": "doctcartoonate, PhD., doctcartoon (doctorate, PhD., doctor)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "博士",
@@ -1542,7 +1543,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "計る",
     "kana": "はかる",
-    "meaning": "到 measure, 到 weigh, 到 survey (to measure, to weigh, to survey)",
+    "meaning": "to measure, to weigh, to survey",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "計る",
@@ -1551,7 +1552,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "量る",
     "kana": "はかる",
-    "meaning": "到 measure, 到 weigh, 到 survey (to measure, to weigh, to survey)",
+    "meaning": "to measure, to weigh, to survey",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "量る",
@@ -1560,7 +1561,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "測る",
     "kana": "はかる",
-    "meaning": "到 measure, 到 weigh, 到 survey (to measure, to weigh, to survey)",
+    "meaning": "to measure, to weigh, to survey",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "測る",
@@ -1569,7 +1570,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "掃く",
     "kana": "はく",
-    "meaning": "到 sweep, 到 brush, 到 gather up (to sweep, to brush, to gather up)",
+    "meaning": "to sweep, to brush, to gather up",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "掃く",
@@ -1578,7 +1579,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "吐く",
     "kana": "はく",
-    "meaning": "到 throw up, 到 vomit (to throw up, to vomit)",
+    "meaning": "to throw up, to vomit",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "吐く",
@@ -1587,7 +1588,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "拍手",
     "kana": "はくしゅ",
-    "meaning": "clapping h和s, applause (clapping hands, applause)",
+    "meaning": "clapping lands, applause (clapping hands, applause)",
     "difficulty": "normal",
     "category": "經濟",
     "kanji": "拍手",
@@ -1596,7 +1597,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "莫大",
     "kana": "ばくだい",
-    "meaning": "en或mous, vast (enormous, vast)",
+    "meaning": "encartoonmous, vast (enormous, vast)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "莫大",
@@ -1605,7 +1606,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "爆発",
     "kana": "ばくはつ",
-    "meaning": "explosi在, det在ati在, erupti在 (explosion, detonation, eruption)",
+    "meaning": "explosito get, detto getatito get, eruptito get (explosion, detonation, eruption)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "爆発",
@@ -1632,7 +1633,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "破産",
     "kana": "はさん",
-    "meaning": "(pers在al) bankruptcy ((personal) bankruptcy)",
+    "meaning": "(persto getal) bankruptcy ((personal) bankruptcy)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "破産",
@@ -1641,7 +1642,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "端",
     "kana": "はし",
-    "meaning": "end (e.g., 的 street), edge, margin (end (e.g., of street), edge, margin)",
+    "meaning": "end (e.g., from street), edge, margin (end (e.g., of street), edge, margin)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "端",
@@ -1650,7 +1651,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "始まり",
     "kana": "はじまり",
-    "meaning": "或igin, beginning (origin, beginning)",
+    "meaning": "cartoonigin, beginning (origin, beginning)",
     "difficulty": "normal",
     "category": "抽象",
     "kanji": "始まり",
@@ -1659,7 +1660,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "外す",
     "kana": "はずす",
-    "meaning": "到 unfasten, 到 remove (to unfasten, to remove)",
+    "meaning": "to unfasten, to remove",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "外す",
@@ -1668,7 +1669,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "外れる",
     "kana": "はずれる",
-    "meaning": "到 be disconnected, 到 be out (e.g., 的 gear) (to be disconnected, to be out (e.g., of gear))",
+    "meaning": "e.g., of gear",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "外れる",
@@ -1713,7 +1714,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "働き",
     "kana": "はたらき",
-    "meaning": "w或k, lab或 (work, labor)",
+    "meaning": "wcartoonk, labcartoon (work, labor)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "働き",
@@ -1722,7 +1723,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "発見",
     "kana": "はっけん",
-    "meaning": "disco非常, detecti在, finding (discovery, detection, finding)",
+    "meaning": "discovery, detectito get, finding (discovery, detection, finding)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "発見",
@@ -1731,7 +1732,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "発行",
     "kana": "はっこう",
-    "meaning": "issue (publicati在s) (issue (publications))",
+    "meaning": "publications",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "発行",
@@ -1740,7 +1741,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "発車",
     "kana": "はっしゃ",
-    "meaning": "departure 的 a vehicle (departure of a vehicle)",
+    "meaning": "departure from a vehicle (departure of a vehicle)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "発車",
@@ -1758,7 +1759,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "罰する",
     "kana": "ばっする",
-    "meaning": "到 punish, 到 penalize (to punish, to penalize)",
+    "meaning": "to punish, to penalize",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "罰する",
@@ -1785,7 +1786,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "発表",
     "kana": "はっぴょう",
-    "meaning": "announcement; publicati在; presentati在 (announcement; publication; presentation)",
+    "meaning": "announcement; publicatito get; presentatito get (announcement; publication; presentation)",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "発表",
@@ -1794,7 +1795,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "発明",
     "kana": "はつめい",
-    "meaning": "inventi在 (invention)",
+    "meaning": "inventito get (invention)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "発明",
@@ -1812,7 +1813,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "話し合う",
     "kana": "はなしあう",
-    "meaning": "到 discuss, 到 talk together (to discuss, to talk together)",
+    "meaning": "to discuss, to talk together",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "話し合う",
@@ -1821,7 +1822,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "離す",
     "kana": "はなす",
-    "meaning": "到 part, 到 separate (to part, to separate)",
+    "meaning": "to part, to separate",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "離す",
@@ -1830,7 +1831,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "放す",
     "kana": "はなす",
-    "meaning": "到 separate, 到 set free (to separate, to set free)",
+    "meaning": "to separate, to set free",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "放す",
@@ -1839,7 +1840,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "離れる",
     "kana": "はなれる",
-    "meaning": "(something, someone) separates; parts 從; 到 be apart ((something, someone) separates; parts from; to be apart)",
+    "meaning": "(something, someone) separates; parts towel; (something, someone separates; parts from; to be apart)",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "離れる",
@@ -1848,7 +1849,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "放れる",
     "kana": "はなれる",
-    "meaning": "到 leave, 變得 free, 翹課 oneself off (to leave, to get free, to cut oneself off)",
+    "meaning": "to leave, to get free, to cut oneself off",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "放れる",
@@ -1893,7 +1894,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "省く",
     "kana": "はぶく",
-    "meaning": "到 omit, 到 eliminate (to omit, to eliminate)",
+    "meaning": "to omit, to eliminate",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "省く",
@@ -1902,7 +1903,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "場面",
     "kana": "ばめん",
-    "meaning": "scene, setting (e.g., 的 novel) (scene, setting (e.g., of novel))",
+    "meaning": "e.g., of novel",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "場面",
@@ -1911,7 +1912,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "流行る",
     "kana": "はやる",
-    "meaning": "到 be popular, 到 come into fashion (to be popular, to come into fashion)",
+    "meaning": "to be popular, to come into fashion",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "流行る",
@@ -1938,7 +1939,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "針",
     "kana": "はり",
-    "meaning": "needle, h和 (e.g., clock) (needle, hand (e.g., clock))",
+    "meaning": "e.g., clock",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "針",
@@ -1956,7 +1957,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "反抗",
     "kana": "はんこう",
-    "meaning": "oppositi在, resistance (opposition, resistance)",
+    "meaning": "oppositito get, resistance (opposition, resistance)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "反抗",
@@ -1974,7 +1975,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "反省",
     "kana": "はんせい",
-    "meaning": "reflecti在, rec在siderati在, regret (reflection, reconsideration, regret)",
+    "meaning": "reflectito get, recto getsideratito get, regret (reflection, reconsideration, regret)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "反省",
@@ -1983,7 +1984,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "判断",
     "kana": "はんだん",
-    "meaning": "judgment, decisi在 (judgment, decision)",
+    "meaning": "judgment, decisito get (judgment, decision)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "判断",
@@ -1992,7 +1993,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "犯人",
     "kana": "はんにん",
-    "meaning": "的fender, criminal (offender, criminal)",
+    "meaning": "fromfender, criminal (offender, criminal)",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "犯人",
@@ -2028,7 +2029,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "比較",
     "kana": "ひかく",
-    "meaning": "comparis在 (comparison)",
+    "meaning": "comparisto get (comparison)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "比較",
@@ -2046,7 +2047,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "飛行",
     "kana": "ひこう",
-    "meaning": "aviati在, flight (aviation, flight)",
+    "meaning": "aviatito get, flight (aviation, flight)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "飛行",
@@ -2064,7 +2065,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "非常",
     "kana": "ひじょう",
-    "meaning": "emergency, extra或dinary, unusual (emergency, extraordinary, unusual)",
+    "meaning": "emergency, extracartoondinary, unusual (emergency, extraordinary, unusual)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "非常",
@@ -2073,7 +2074,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "美人",
     "kana": "びじん",
-    "meaning": "beautiful person (女性) (beautiful person (woman))",
+    "meaning": "woman",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "美人",
@@ -2082,7 +2083,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "額",
     "kana": "ひたい",
-    "meaning": "f或ehead, brow (forehead, brow)",
+    "meaning": "fcartoonehead, brow (forehead, brow)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "額",
@@ -2109,7 +2110,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "必死",
     "kana": "ひっし",
-    "meaning": "desperati在, frantic, inevitable result (desperation, frantic, inevitable result)",
+    "meaning": "desperatito get, frantic, inevitable result (desperation, frantic, inevitable result)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "必死",
@@ -2118,7 +2119,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "引っ張る",
     "kana": "ひっぱる",
-    "meaning": "到 pull, 到 stretch, 到 drag (to pull, to stretch, to drag)",
+    "meaning": "to pull, to stretch, to drag",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "引っ張る",
@@ -2127,7 +2128,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "否定",
     "kana": "ひてい",
-    "meaning": "negati在, denial (negation, denial)",
+    "meaning": "negatito get, denial (negation, denial)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "否定",
@@ -2136,7 +2137,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "一言",
     "kana": "ひとこと",
-    "meaning": "一個 word (one word)",
+    "meaning": "or word (one word)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "一言",
@@ -2145,7 +2146,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "人込み",
     "kana": "ひとごみ",
-    "meaning": "crowd 的 people (crowd of people)",
+    "meaning": "crowd from people (crowd of people)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "人込み",
@@ -2163,7 +2164,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "独り",
     "kana": "ひとり",
-    "meaning": "al在e, unmarried (alone, unmarried)",
+    "meaning": "alto gete, unmarried (alone, unmarried)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "独り",
@@ -2172,7 +2173,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "一人一人",
     "kana": "ひとりひとり",
-    "meaning": "一個 by 一個, each (one by one, each)",
+    "meaning": "or by or, each (one by one, each)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "一人一人",
@@ -2217,7 +2218,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "紐",
     "kana": "ひも",
-    "meaning": "string, c或d (string, cord)",
+    "meaning": "string, ccartoond (string, cord)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "紐",
@@ -2226,7 +2227,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "冷やす",
     "kana": "ひやす",
-    "meaning": "到 cool, 到 refrigerate (to cool, to refrigerate)",
+    "meaning": "to cool, to refrigerate",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "冷やす",
@@ -2253,7 +2254,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "秒",
     "kana": "びょう",
-    "meaning": "sec在d (60th min) (second (60th min))",
+    "meaning": "60th min",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "秒",
@@ -2262,7 +2263,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "評価",
     "kana": "ひょうか",
-    "meaning": "assessment, evaluati在 (assessment, evaluation)",
+    "meaning": "assessment, evaluatito get (assessment, evaluation)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "評価",
@@ -2271,7 +2272,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "表現",
     "kana": "ひょうげん",
-    "meaning": "expressi在, presentati在 (expression, presentation)",
+    "meaning": "expressito get, presentatito get (expression, presentation)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "表現",
@@ -2280,7 +2281,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "表情",
     "kana": "ひょうじょう",
-    "meaning": "facial expressi在 (facial expression)",
+    "meaning": "facial expressito get (facial expression)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "表情",
@@ -2298,7 +2299,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "評判",
     "kana": "ひょうばん",
-    "meaning": "fame, reputati在 (fame, reputation)",
+    "meaning": "fame, reputatito get (fame, reputation)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "評判",
@@ -2316,7 +2317,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "広がる",
     "kana": "ひろがる",
-    "meaning": "到 spread (out), 到 extend, 到 stretch, 到 reach 到, 變得 around (to spread (out), to extend, to stretch, to reach to, to get around)",
+    "meaning": "to spread (out",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "広がる",
@@ -2325,7 +2326,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "広げる",
     "kana": "ひろげる",
-    "meaning": "到 spread, 到 extend, 到 expand, 到 enlarge (to spread, to extend, to expand, to enlarge)",
+    "meaning": "to spread, to extend, to expand, to enlarge",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "広げる",
@@ -2334,7 +2335,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "広める",
     "kana": "ひろめる",
-    "meaning": "到 broaden, 到 propagate (to broaden, to propagate)",
+    "meaning": "to broaden, to propagate",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "広める",
@@ -2370,7 +2371,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "不",
     "kana": "ふ",
-    "meaning": "un(~), n在(~), negative prefix (un(~), non(~), negative prefix)",
+    "meaning": "un(~), nto get(~), negative prefix (un(~), non(~), negative prefix)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "不",
@@ -2379,7 +2380,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "不",
     "kana": "ぶ",
-    "meaning": "un(~), n在(~), negative prefix (un(~), non(~), negative prefix)",
+    "meaning": "un(~), nto get(~), negative prefix (un(~), non(~), negative prefix)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "不",
@@ -2442,7 +2443,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "不可",
     "kana": "ふか",
-    "meaning": "wr在g, bad, impossible (wrong, bad, impossible)",
+    "meaning": "wrto getg, bad, impossible (wrong, bad, impossible)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "不可",
@@ -2451,7 +2452,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "深まる",
     "kana": "ふかまる",
-    "meaning": "到 deepen (to deepen)",
+    "meaning": "to deepen",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "深まる",
@@ -2460,7 +2461,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "武器",
     "kana": "ぶき",
-    "meaning": "weap在, arms (weapon, arms)",
+    "meaning": "weapto get, arms (weapon, arms)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "武器",
@@ -2469,7 +2470,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "拭く",
     "kana": "ふく",
-    "meaning": "到 wipe, 到 dry (to wipe, to dry)",
+    "meaning": "to wipe, to dry",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "拭く",
@@ -2478,7 +2479,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "服装",
     "kana": "ふくそう",
-    "meaning": "衣服, attire (clothes, attire)",
+    "meaning": "atom, attire (clothes, attire)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "服装",
@@ -2487,7 +2488,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "含む",
     "kana": "ふくむ",
-    "meaning": "到 contain, 到 include (to contain, to include)",
+    "meaning": "to contain, to include",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "含む",
@@ -2496,7 +2497,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "含める",
     "kana": "ふくめる",
-    "meaning": "到 include (to include)",
+    "meaning": "to include",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "含める",
@@ -2514,7 +2515,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "不幸",
     "kana": "ふこう",
-    "meaning": "unhappiness, s或row, misf或tune (unhappiness, sorrow, misfortune)",
+    "meaning": "unhappiness, scartoonrow, misfcartoontune (unhappiness, sorrow, misfortune)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "不幸",
@@ -2523,7 +2524,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "節",
     "kana": "ふし",
-    "meaning": "tune, t在e, knob (tune, tone, knob)",
+    "meaning": "tune, tto gete, knob (tune, tone, knob)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "節",
@@ -2550,7 +2551,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "不自由",
     "kana": "ふじゆう",
-    "meaning": "discomf或t, disability, inc在venience (discomfort, disability, inconvenience)",
+    "meaning": "discomfcartoont, disability, incto getvenience (discomfort, disability, inconvenience)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "不自由",
@@ -2586,7 +2587,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "防ぐ",
     "kana": "ふせぐ",
-    "meaning": "到 defend (against), 到 protect, 到 prevent (to defend (against), to protect, to prevent)",
+    "meaning": "to defend (against",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "防ぐ",
@@ -2595,7 +2596,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "不足",
     "kana": "ふそく",
-    "meaning": "insufficiency, sh或tage (insufficiency, shortage)",
+    "meaning": "insufficiency, shcartoontage (insufficiency, shortage)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "不足",
@@ -2622,7 +2623,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "再び",
     "kana": "ふたたび",
-    "meaning": "again, once more, a second 時間 (again, once more, a second time)",
+    "meaning": "again, once more, a second time (again, once more, a second time)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "再び",
@@ -2631,7 +2632,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "普段",
     "kana": "ふだん",
-    "meaning": "in e非常day situati在s, usually, 或dinarily (in everyday situations, usually, ordinarily)",
+    "meaning": "in everyday situatito gets, usually, cartoondinarily (in everyday situations, usually, ordinarily)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "普段",
@@ -2649,7 +2650,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "打つ",
     "kana": "ぶつ",
-    "meaning": "到 hit, 到 strike (to hit, to strike)",
+    "meaning": "to hit, to strike",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "打つ",
@@ -2658,7 +2659,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "不通",
     "kana": "ふつう",
-    "meaning": "blockade, interrupti在, s到ppage (blockade, interruption, stoppage)",
+    "meaning": "blockade, interruptito get, s到ppage (blockade, interruption, stoppage)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "不通",
@@ -2667,7 +2668,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "物価",
     "kana": "ぶっか",
-    "meaning": "(commodity/c在sumer) prices ((commodity/consumer) prices)",
+    "meaning": "(commodity/cto getsumer) prices ((commodity/consumer) prices)",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "物価",
@@ -2703,7 +2704,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "部分",
     "kana": "ぶぶん",
-    "meaning": "p或ti在, secti在, part (portion, section, part)",
+    "meaning": "pcartoontito get, sectito get, part (portion, section, part)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "部分",
@@ -2712,7 +2713,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "不平",
     "kana": "ふへい",
-    "meaning": "complaint, disc在tent, dissatisfacti在 (complaint, discontent, dissatisfaction)",
+    "meaning": "complaint, discto gettent, dissatisfactito get (complaint, discontent, dissatisfaction)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "不平",
@@ -2721,7 +2722,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "不満",
     "kana": "ふまん",
-    "meaning": "dissatisfacti在, disc在tent, complaints (dissatisfaction, discontent, complaints)",
+    "meaning": "dissatisfactito get, discto gettent, complaints (dissatisfaction, discontent, complaints)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "不満",
@@ -2730,7 +2731,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "増やす",
     "kana": "ふやす",
-    "meaning": "到 increase (v.t.), 到 add 到 (to increase (v.t.), to add to)",
+    "meaning": "to increase (v.t.",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "増やす",
@@ -2739,7 +2740,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "殖やす",
     "kana": "ふやす",
-    "meaning": "到 increase, 到 add 到 (to increase, to add to)",
+    "meaning": "to increase, to add to",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "殖やす",
@@ -2757,7 +2758,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "振る",
     "kana": "ふる",
-    "meaning": "到 wave, 到 shake; 到 sprinkle; 到 cast (actor) (to wave, to shake; to sprinkle; to cast (actor))",
+    "meaning": "actor",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "振る",
@@ -2766,7 +2767,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "震える",
     "kana": "ふるえる",
-    "meaning": "到 shiver, 到 shake, 到 quake (to shiver, to shake, to quake)",
+    "meaning": "to shiver, to shake, to quake",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "震える",
@@ -2775,7 +2776,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "触れる",
     "kana": "ふれる",
-    "meaning": "到 touch, 到 feel, 到 violate (to touch, to feel, to violate)",
+    "meaning": "to touch, to feel, to violate",
     "difficulty": "normal",
     "category": "感情",
     "kanji": "触れる",
@@ -2820,7 +2821,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "文明",
     "kana": "ぶんめい",
-    "meaning": "civilizati在 (civilization)",
+    "meaning": "civilizatito get (civilization)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "文明",
@@ -2874,7 +2875,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "減らす",
     "kana": "へらす",
-    "meaning": "到 decrease, 到 diminish (to decrease, to diminish)",
+    "meaning": "to decrease, to diminish",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "減らす",
@@ -2883,7 +2884,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "減る",
     "kana": "へる",
-    "meaning": "到 decrease (in size 或 number), 到 diminish (to decrease (in size or number), to diminish)",
+    "meaning": "to decrease (in size or number",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "減る",
@@ -2892,7 +2893,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "変化",
     "kana": "へんか",
-    "meaning": "更換, variation, shift (change, variation, shift)",
+    "meaning": "change, variation, shift (change, variation, shift)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "変化",
@@ -2901,7 +2902,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "変更",
     "kana": "へんこう",
-    "meaning": "更換, modification, alteration (change, modification, alteration)",
+    "meaning": "change, modification, alteration (change, modification, alteration)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "変更",
@@ -2955,7 +2956,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "方向",
     "kana": "ほうこう",
-    "meaning": "directi在, course, way (direction, course, way)",
+    "meaning": "directito get, course, way (direction, course, way)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "方向",
@@ -2964,7 +2965,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "報告",
     "kana": "ほうこく",
-    "meaning": "rep或t, inf或mati在 (report, information)",
+    "meaning": "repcartoont, infcartoonmatito get (report, information)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "報告",
@@ -3027,7 +3028,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "吠える",
     "kana": "ほえる",
-    "meaning": "到 bark, 到 howl (to bark, to howl)",
+    "meaning": "to bark, to howl",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "吠える",
@@ -3036,7 +3037,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "他",
     "kana": "ほか",
-    "meaning": "other (esp. places 和 things) (other (esp. places and things))",
+    "meaning": "esp. places and things",
     "difficulty": "normal",
     "category": "場所",
     "kanji": "他",
@@ -3072,7 +3073,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "保存",
     "kana": "ほぞん",
-    "meaning": "preservati在, c在servati在 (preservation, conservation)",
+    "meaning": "preservatito get, cto getservatito get (preservation, conservation)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "保存",
@@ -3099,7 +3100,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "骨",
     "kana": "ほね",
-    "meaning": "b在e (bone)",
+    "meaning": "bto gete (bone)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "骨",
@@ -3117,7 +3118,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "頬",
     "kana": "ほほ",
-    "meaning": "cheek (的 face) (cheek (of face))",
+    "meaning": "of face",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "頬",
@@ -3126,7 +3127,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "頬",
     "kana": "ほお",
-    "meaning": "cheek (的 face) (cheek (of face))",
+    "meaning": "of face",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "頬",
@@ -3135,7 +3136,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "微笑む",
     "kana": "ほほえむ",
-    "meaning": "到 smile (to smile)",
+    "meaning": "to smile",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "微笑む",
@@ -3171,7 +3172,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "本人",
     "kana": "ほんにん",
-    "meaning": "the pers在 himself (the person himself)",
+    "meaning": "the persto get himself (the person himself)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "本人",
@@ -3207,7 +3208,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "任せる",
     "kana": "まかせる",
-    "meaning": "到 entrust 到 another, 到 leave 到 (to entrust to another, to leave to)",
+    "meaning": "to entrust to another, to leave to",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "任せる",
@@ -3216,7 +3217,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "巻く",
     "kana": "まく",
-    "meaning": "到 wind, 到 coil, 到 roll (to wind, to coil, to roll)",
+    "meaning": "to wind, to coil, to roll",
     "difficulty": "normal",
     "category": "物質",
     "kanji": "巻く",
@@ -3225,7 +3226,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "蒔く",
     "kana": "まく",
-    "meaning": "到 sow (seeds) (to sow (seeds))",
+    "meaning": "seeds",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "蒔く",
@@ -3234,7 +3235,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "撒く",
     "kana": "まく",
-    "meaning": "到 scatter, 到 sprinkle, 到 sow (to scatter, to sprinkle, to sow)",
+    "meaning": "to scatter, to sprinkle, to sow",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "撒く",
@@ -3261,7 +3262,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "孫",
     "kana": "まご",
-    "meaning": "gr和child (grandchild)",
+    "meaning": "grandchild (grandchild)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "孫",
@@ -3270,7 +3271,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "混ざる",
     "kana": "まざる",
-    "meaning": "到 be mixed, 到 mingle with (to be mixed, to mingle with)",
+    "meaning": "to be mixed, to mingle with",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "混ざる",
@@ -3279,7 +3280,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "交ざる",
     "kana": "まざる",
-    "meaning": "到 be mixed, 到 mingle with (to be mixed, to mingle with)",
+    "meaning": "to be mixed, to mingle with",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "交ざる",
@@ -3288,7 +3289,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "混じる",
     "kana": "まじる",
-    "meaning": "到 be mixed, 到 mingle with (to be mixed, to mingle with)",
+    "meaning": "to be mixed, to mingle with",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "混じる",
@@ -3297,7 +3298,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "交じる",
     "kana": "まじる",
-    "meaning": "到 be mixed, 到 mingle with (to be mixed, to mingle with)",
+    "meaning": "to be mixed, to mingle with",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "交じる",
@@ -3306,7 +3307,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "増す",
     "kana": "ます",
-    "meaning": "到 increase, 到 gain (to increase, to gain)",
+    "meaning": "to increase, to gain",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "増す",
@@ -3315,7 +3316,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "貧しい",
     "kana": "まずしい",
-    "meaning": "po或, needy (poor, needy)",
+    "meaning": "pocartoon, needy (poor, needy)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "貧しい",
@@ -3324,7 +3325,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "混ぜる",
     "kana": "まぜる",
-    "meaning": "到 mix, 到 stir (to mix, to stir)",
+    "meaning": "to mix, to stir",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "混ぜる",
@@ -3333,7 +3334,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "交ぜる",
     "kana": "まぜる",
-    "meaning": "到 be mixed, 到 be blended with (to be mixed, to be blended with)",
+    "meaning": "to be mixed, to be blended with",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "交ぜる",
@@ -3369,7 +3370,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "真っ赤",
     "kana": "まっか",
-    "meaning": "deep red, flushed (的 face) (deep red, flushed (of face))",
+    "meaning": "of face",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "真っ赤",
@@ -3378,7 +3379,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "全く",
     "kana": "まったく",
-    "meaning": "真的, completely (really, completely)",
+    "meaning": "真from, completely (really, completely)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "全く",
@@ -3396,7 +3397,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "学ぶ",
     "kana": "まなぶ",
-    "meaning": "到 learn; 到 study (to learn; to study)",
+    "meaning": "to learn; to study",
     "difficulty": "normal",
     "category": "學術",
     "kanji": "学ぶ",
@@ -3405,7 +3406,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "真似",
     "kana": "まね",
-    "meaning": "mimicry, imitati在, behavi或 (mimicry, imitation, behavior)",
+    "meaning": "mimicry, imitatito get, behavicartoon (mimicry, imitation, behavior)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "真似",
@@ -3414,7 +3415,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "招く",
     "kana": "まねく",
-    "meaning": "到 invite (to invite)",
+    "meaning": "to invite",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "招く",
@@ -3432,7 +3433,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "裂ける",
     "kana": "さける",
-    "meaning": "到 split, 到 tear, 到 burst (to split, to tear, to burst)",
+    "meaning": "to split, to tear, to burst",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "裂ける",
@@ -3441,7 +3442,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "裁く",
     "kana": "さばく",
-    "meaning": "到 judge (to judge)",
+    "meaning": "to judge",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "裁く",
@@ -3450,7 +3451,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "酸化",
     "kana": "さんか",
-    "meaning": "oxidati在 (oxidation)",
+    "meaning": "oxidatito get (oxidation)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "酸化",
@@ -3468,7 +3469,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "資格",
     "kana": "しかく",
-    "meaning": "qualificati在s, requirements, capabilities (qualifications, requirements, capabilities)",
+    "meaning": "qualificatito gets, requirements, capabilities (qualifications, requirements, capabilities)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "資格",
@@ -3477,7 +3478,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "視覚",
     "kana": "しかく",
-    "meaning": "sense 的 sight, vision (sense of sight, vision)",
+    "meaning": "sense from sight, vision (sense of sight, vision)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "視覚",
@@ -3486,7 +3487,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "指揮",
     "kana": "しき",
-    "meaning": "comm和, directi在 (command, direction)",
+    "meaning": "comm和, directito get (command, direction)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "指揮",
@@ -3504,7 +3505,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "磁器",
     "kana": "じき",
-    "meaning": "p或celain, china (porcelain, china)",
+    "meaning": "pcartooncelain, china (porcelain, china)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "磁器",
@@ -3513,7 +3514,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "自己",
     "kana": "じこ",
-    "meaning": "self, 在eself (self, oneself)",
+    "meaning": "self, to geteself (self, oneself)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "自己",
@@ -3522,7 +3523,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "字体",
     "kana": "じたい",
-    "meaning": "f在t, lettering (font, lettering)",
+    "meaning": "fto gett, lettering (font, lettering)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "字体",
@@ -3540,7 +3541,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "視点",
     "kana": "してん",
-    "meaning": "opinion, point 的 view, visual point (opinion, point of view, visual point)",
+    "meaning": "opinion, point from view, visual point (opinion, point of view, visual point)",
     "difficulty": "normal",
     "category": "場所",
     "kanji": "視点",
@@ -3558,7 +3559,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "志望",
     "kana": "しぼう",
-    "meaning": "wish, desire, ambiti在 (wish, desire, ambition)",
+    "meaning": "wish, desire, ambitito get (wish, desire, ambition)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "志望",
@@ -3585,7 +3586,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "修飾",
     "kana": "しゅうしょく",
-    "meaning": "或namentati在; modificati在 (gram) (ornamentation; modification (gram))",
+    "meaning": "gram",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "修飾",
@@ -3594,7 +3595,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "私用",
     "kana": "しよう",
-    "meaning": "personal use, private 商業的 (personal use, private business)",
+    "meaning": "personal use, private 商業from (personal use, private business)",
     "difficulty": "normal",
     "category": "經濟",
     "kanji": "私用",
@@ -3603,7 +3604,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "仕様",
     "kana": "しよう",
-    "meaning": "way, method, specificati在 (way, method, specification)",
+    "meaning": "way, method, specificatito get (way, method, specification)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "仕様",
@@ -3612,7 +3613,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "情",
     "kana": "じょう",
-    "meaning": "feelings, emoti在, passi在 (feelings, emotion, passion)",
+    "meaning": "feelings, emotito get, passito get (feelings, emotion, passion)",
     "difficulty": "normal",
     "category": "感情",
     "kanji": "情",
@@ -3621,7 +3622,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "生涯",
     "kana": "しょうがい",
-    "meaning": "一個's lifetime (one's lifetime)",
+    "meaning": "or's lifetime (one's lifetime)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "生涯",
@@ -3630,7 +3631,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "上司",
     "kana": "じょうし",
-    "meaning": "一個's superior (one's superior)",
+    "meaning": "or's superior (one's superior)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "上司",
@@ -3639,7 +3640,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "正体",
     "kana": "しょうたい",
-    "meaning": "natural shape, 一個's true colors, true character (natural shape, one's true colors, true character)",
+    "meaning": "natural shape, or's true colors, true character (natural shape, one's true colors, true character)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "正体",
@@ -3648,7 +3649,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "照明",
     "kana": "しょうめい",
-    "meaning": "illuminati在 (illumination)",
+    "meaning": "illuminatito get (illumination)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "照明",
@@ -3666,7 +3667,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "助詞",
     "kana": "じょし",
-    "meaning": "(gram) particle(s), postpositi在 ((gram) particle(s), postposition)",
+    "meaning": "(gram) particle(s), postpositito get ((gram) particle(s), postposition)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "助詞",
@@ -3693,7 +3694,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "振興",
     "kana": "しんこう",
-    "meaning": "promoti在, encouragement (promotion, encouragement)",
+    "meaning": "promotito get, encouragement (promotion, encouragement)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "振興",
@@ -3702,7 +3703,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "申告",
     "kana": "しんこく",
-    "meaning": "rep或t, statement (report, statement)",
+    "meaning": "repcartoont, statement (report, statement)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "申告",
@@ -3729,7 +3730,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "擦る",
     "kana": "する",
-    "meaning": "到 rub, 到 chafe (to rub, to chafe)",
+    "meaning": "to rub, to chafe",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "擦る",
@@ -3747,7 +3748,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "精巧",
     "kana": "せいこう",
-    "meaning": "elab或ate, delicate, exquisite (elaborate, delicate, exquisite)",
+    "meaning": "elabcartoonate, delicate, exquisite (elaborate, delicate, exquisite)",
     "difficulty": "normal",
     "category": "場所",
     "kanji": "精巧",
@@ -3756,7 +3757,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "精算",
     "kana": "せいさん",
-    "meaning": "exact calculati在, adjustment (exact calculation, adjustment)",
+    "meaning": "exact calculatito get, adjustment (exact calculation, adjustment)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "精算",
@@ -3765,7 +3766,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "成年",
     "kana": "せいねん",
-    "meaning": "maj或ity, adult age (majority, adult age)",
+    "meaning": "majcartoonity, adult age (majority, adult age)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "成年",
@@ -3774,7 +3775,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "声明",
     "kana": "せいめい",
-    "meaning": "declarati在, statement, proclamati在 (declaration, statement, proclamation)",
+    "meaning": "declaratito get, statement, proclamatito get (declaration, statement, proclamation)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "声明",
@@ -3801,7 +3802,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "節",
     "kana": "せつ",
-    "meaning": "when, if; secti在; clause (when, if; section; clause)",
+    "meaning": "when, if; sectito get; clause (when, if; section; clause)",
     "difficulty": "normal",
     "category": "經濟",
     "kanji": "節",
@@ -3828,7 +3829,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "選挙",
     "kana": "せんきょ",
-    "meaning": "electi在 (election)",
+    "meaning": "electito get (election)",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "選挙",
@@ -3846,7 +3847,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "選考",
     "kana": "せんこう",
-    "meaning": "selecti在, screening (selection, screening)",
+    "meaning": "selectito get, screening (selection, screening)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "選考",
@@ -3864,7 +3865,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "沿う",
     "kana": "そう",
-    "meaning": "到 run along, 到 follow (to run along, to follow)",
+    "meaning": "to run along, to follow",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "沿う",
@@ -3873,7 +3874,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "添う",
     "kana": "そう",
-    "meaning": "到 accompany, 到 comply with (to accompany, to comply with)",
+    "meaning": "to accompany, to comply with",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "添う",
@@ -3882,7 +3883,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "僧",
     "kana": "そう",
-    "meaning": "m在k, priest (monk, priest)",
+    "meaning": "mto getk, priest (monk, priest)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "僧",
@@ -3900,7 +3901,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "捜査",
     "kana": "そうさ",
-    "meaning": "search (esp. in criminal investigati在s, investigati在) (search (esp. in criminal investigations, investigation))",
+    "meaning": "esp. in criminal investigations, investigation",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "捜査",
@@ -3909,7 +3910,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "操縦",
     "kana": "そうじゅう",
-    "meaning": "management, c在trol, manipulati在 (management, control, manipulation)",
+    "meaning": "management, cto gettrol, manipulatito get (management, control, manipulation)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "操縦",
@@ -3918,7 +3919,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "創造",
     "kana": "そうぞう",
-    "meaning": "creati在 (creation)",
+    "meaning": "creatito get (creation)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "創造",
@@ -3936,7 +3937,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "退学",
     "kana": "たいがく",
-    "meaning": "dropping out 的 學校 (dropping out of school)",
+    "meaning": "dropping out from 學校 (dropping out of school)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "退学",
@@ -3945,7 +3946,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "高まる",
     "kana": "たかまる",
-    "meaning": "到 rise; 到 grow; 到 mount (v.i.) (to rise; to grow; to mount (v.i.))",
+    "meaning": "v.i.",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "高まる",
@@ -3954,7 +3955,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "断つ",
     "kana": "たつ",
-    "meaning": "到 sever, 翹課 off (to sever, to cut off)",
+    "meaning": "to sever, to cut off",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "断つ",
@@ -4008,7 +4009,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "接ぐ",
     "kana": "つぐ",
-    "meaning": "到 join; 到 piece together; 到 set (bones); 到 graft (trees) (to join; to piece together; to set (bones); to graft (trees))",
+    "meaning": "trees",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "接ぐ",
@@ -4017,7 +4018,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "継ぐ",
     "kana": "つぐ",
-    "meaning": "到 succeed (someone in a 商業的 或 inheritance (to succeed (someone in a business or inheritance)",
+    "meaning": "someone in a 商業from cartoon inheritance (to succeed (someone in a business or inheritance",
     "difficulty": "normal",
     "category": "經濟",
     "kanji": "継ぐ",
@@ -4026,7 +4027,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "摘む",
     "kana": "つむ",
-    "meaning": "到 pluck, 到 pick, 到 trim (to pluck, to pick, to trim)",
+    "meaning": "to pluck, to pick, to trim",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "摘む",
@@ -4044,7 +4045,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "強まる",
     "kana": "つよまる",
-    "meaning": "變得 strong, 到 gain strength (to get strong, to gain strength)",
+    "meaning": "hand strong, to get strong, to gain strength",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "強まる",
@@ -4053,7 +4054,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "強める",
     "kana": "つよめる",
-    "meaning": "到 strengthen, 到 emphasize (to strengthen, to emphasize)",
+    "meaning": "to strengthen, to emphasize",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "強める",
@@ -4062,7 +4063,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "転校",
     "kana": "てんこう",
-    "meaning": "更換 schools (change schools)",
+    "meaning": "change schools (change schools)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "転校",
@@ -4080,7 +4081,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "問う",
     "kana": "とう",
-    "meaning": "到 ask, 到 question (to ask, to question)",
+    "meaning": "to ask, to question",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "問う",
@@ -4089,7 +4090,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "棟",
     "kana": "とう",
-    "meaning": "ridge (的 roof (ridge (of roof)",
+    "meaning": "ridge (from roof (ridge (of roof)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "棟",
@@ -4098,7 +4099,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "倒産",
     "kana": "とうさん",
-    "meaning": "(c或p或ate) bankruptcy, insolvency ((corporate) bankruptcy, insolvency)",
+    "meaning": "(ccartoonpcartoonate) bankruptcy, insolvency ((corporate) bankruptcy, insolvency)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "倒産",
@@ -4107,7 +4108,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "同士",
     "kana": "どうし",
-    "meaning": "一個 another, companion, comrade (one another, companion, comrade)",
+    "meaning": "or another, companion, comrade (one another, companion, comrade)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "同士",
@@ -4143,7 +4144,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "説く",
     "kana": "とく",
-    "meaning": "到 explain, 到 advocate (to explain, to advocate)",
+    "meaning": "to explain, to advocate",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "説く",
@@ -4152,7 +4153,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "綴じる",
     "kana": "とじる",
-    "meaning": "到 bind, 到 檔案 (to bind, to file)",
+    "meaning": "to bind, to file",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "綴じる",
@@ -4161,7 +4162,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "供",
     "kana": "とも",
-    "meaning": "accompanying, attendant, compani在, retinue (accompanying, attendant, companion, retinue)",
+    "meaning": "accompanying, attendant, companito get, retinue (accompanying, attendant, companion, retinue)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "供",
@@ -4170,7 +4171,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "並",
     "kana": "なみ",
-    "meaning": "medium (e.g., food serving size, quality, price, etc.), 或dinary (medium (e.g., food serving size, quality, price, etc.), ordinary)",
+    "meaning": "medium (e.g., food serving size, quality, price, etc.), cartoondinary (medium (e.g., food serving size, quality, price, etc.), ordinary)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "並",
@@ -4179,7 +4180,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "慣らす",
     "kana": "ならす",
-    "meaning": "到 accustom (to accustom)",
+    "meaning": "to accustom",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "慣らす",
@@ -4188,7 +4189,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "馴らす",
     "kana": "ならす",
-    "meaning": "到 domesticate, 到 tame (to domesticate, to tame)",
+    "meaning": "to domesticate, to tame",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "馴らす",
@@ -4224,7 +4225,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "脳",
     "kana": "のう",
-    "meaning": "brain, mem或y (brain, memory)",
+    "meaning": "brain, memcartoony (brain, memory)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "脳",
@@ -4233,7 +4234,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "臨む",
     "kana": "のぞむ",
-    "meaning": "到 look out 在, 到 face, 到 attend (function) (to look out on, to face, to attend (function))",
+    "meaning": "function",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "臨む",
@@ -4251,7 +4252,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "映える",
     "kana": "はえる",
-    "meaning": "到 shine, 到 look attractive, 到 look pretty (to shine, to look attractive, to look pretty)",
+    "meaning": "to shine, to look attractive, to look pretty",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "映える",
@@ -4260,7 +4261,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "諮る",
     "kana": "はかる",
-    "meaning": "到 consult with, 到 confer (to consult with, to confer)",
+    "meaning": "to consult with, to confer",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "諮る",
@@ -4269,7 +4270,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "図る",
     "kana": "はかる",
-    "meaning": "到 plot, 到 attempt, 到 devise, 到 design, 到 refer A 到 B (to plot, to attempt, to devise, to design, to refer A to B)",
+    "meaning": "to plot, to attempt, to devise, to design, to refer A to B",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "図る",
@@ -4278,7 +4279,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "生やす",
     "kana": "はやす",
-    "meaning": "到 grow, 到 cultivate, 到 wear beard (to grow, to cultivate, to wear beard)",
+    "meaning": "to grow, to cultivate, to wear beard",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "生やす",
@@ -4287,7 +4288,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "班",
     "kana": "はん",
-    "meaning": "group, party, secti在 (mil) (group, party, section (mil))",
+    "meaning": "mil",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "班",
@@ -4296,7 +4297,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "判",
     "kana": "はん",
-    "meaning": "size (的 paper 或 books) (size (of paper or books))",
+    "meaning": "of paper or books",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "判",
@@ -4305,7 +4306,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "版",
     "kana": "はん",
-    "meaning": "editi在 (edition)",
+    "meaning": "editito get (edition)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "版",
@@ -4314,7 +4315,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "碑",
     "kana": "ひ",
-    "meaning": "st在e m在ument bearing an inscripti在 (stone monument bearing an inscription)",
+    "meaning": "stto gete mto getument bearing an inscriptito get (stone monument bearing an inscription)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "碑",
@@ -4323,7 +4324,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "非行",
     "kana": "ひこう",
-    "meaning": "delinquency, misc在duct (delinquency, misconduct)",
+    "meaning": "delinquency, miscto getduct (delinquency, misconduct)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "非行",
@@ -4341,7 +4342,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "広まる",
     "kana": "ひろまる",
-    "meaning": "到 spread, 到 be propagated (to spread, to be propagated)",
+    "meaning": "to spread, to be propagated",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "広まる",
@@ -4350,7 +4351,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "深める",
     "kana": "ふかめる",
-    "meaning": "到 deepen, 到 heighten, 到 intensify (to deepen, to heighten, to intensify)",
+    "meaning": "to deepen, to heighten, to intensify",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "深める",
@@ -4359,7 +4360,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "福",
     "kana": "ふく",
-    "meaning": "good f或tune (good fortune)",
+    "meaning": "good fcartoontune (good fortune)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "福",
@@ -4377,7 +4378,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "経る",
     "kana": "へる",
-    "meaning": "到 pass, 到 elapse, 到 experience (to pass, to elapse, to experience)",
+    "meaning": "to pass, to elapse, to experience",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "経る",
@@ -4386,7 +4387,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "保護",
     "kana": "ほご",
-    "meaning": "照顧, protection, shelter (care, protection, shelter)",
+    "meaning": "care, protection, shelter (care, protection, shelter)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "保護",
@@ -4404,7 +4405,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "補償",
     "kana": "ほしょう",
-    "meaning": "compensati在, reparati在 (compensation, reparation)",
+    "meaning": "compensatito get, reparatito get (compensation, reparation)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "補償",
@@ -4413,7 +4414,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "前もって",
     "kana": "まえもって",
-    "meaning": "in advance, bef或eh和, previously (in advance, beforehand, previously)",
+    "meaning": "in advance, befcartooneland, previously (in advance, beforehand, previously)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "前もって",
@@ -4440,7 +4441,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "末",
     "kana": "まつ",
-    "meaning": "the end 的 (the end of)",
+    "meaning": "the end from (the end of)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "末",
@@ -4449,7 +4450,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "見掛ける",
     "kana": "みかける",
-    "meaning": "到 (happen 到 see), 到 notice, 到 catch sight 的 (to (happen to see), to notice, to catch sight of)",
+    "meaning": "到 (happen to (happen to see, to notice, to catch sight of)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "見掛ける",
@@ -4458,7 +4459,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "捲る",
     "kana": "めくる",
-    "meaning": "到 turn over, 到 turn pages 的 a book (to turn over, to turn pages of a book)",
+    "meaning": "to turn over, to turn pages of a book",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "捲る",
@@ -4467,7 +4468,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "野党",
     "kana": "やとう",
-    "meaning": "oppositi在 party (opposition party)",
+    "meaning": "oppositito get party (opposition party)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "野党",
@@ -4476,7 +4477,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "優",
     "kana": "ゆう",
-    "meaning": "superi或ity, high grade (superiority, high grade)",
+    "meaning": "supericartoonity, high grade (superiority, high grade)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "優",
@@ -4485,7 +4486,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "有機",
     "kana": "ゆうき",
-    "meaning": "或ganic (organic)",
+    "meaning": "cartoonganic (organic)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "有機",
@@ -4494,7 +4495,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "世",
     "kana": "よ",
-    "meaning": "w或ld, society, generati在 (world, society, generation)",
+    "meaning": "wcartoonld, society, generatito get (world, society, generation)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "世",
@@ -4512,7 +4513,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "予想",
     "kana": "よそう",
-    "meaning": "expectati在, anticipati在, predicti在 (expectation, anticipation, prediction)",
+    "meaning": "expectatito get, anticipatito get, predictito get (expectation, anticipation, prediction)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "予想",
@@ -4521,7 +4522,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "弱まる",
     "kana": "よわまる",
-    "meaning": "到 weaken, 到 be emaciated, 到 be dejected (to weaken, to be emaciated, to be dejected)",
+    "meaning": "to weaken, to be emaciated, to be dejected",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "弱まる",
@@ -4530,7 +4531,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "弱める",
     "kana": "よわめる",
-    "meaning": "到 weaken (to weaken)",
+    "meaning": "to weaken",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "弱める",
@@ -4548,7 +4549,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "踏む",
     "kana": "ふむ",
-    "meaning": "到 step 在, 到 tread 在 (to step on, to tread on)",
+    "meaning": "to step on, to tread on",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "踏む",
@@ -4557,7 +4558,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "盗む",
     "kana": "ぬすむ",
-    "meaning": "到 steal; 到 rob (to steal; to rob)",
+    "meaning": "to steal; to rob",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "盗む",
@@ -4575,7 +4576,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "鳴る",
     "kana": "なる",
-    "meaning": "到 sound, 到 ring (v.i.) (to sound, to ring (v.i.))",
+    "meaning": "v.i.",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "鳴る",
@@ -4584,7 +4585,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "生きる",
     "kana": "いきる",
-    "meaning": "到 live (to live)",
+    "meaning": "to live",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "生きる",
@@ -4602,7 +4603,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "沸く",
     "kana": "わく",
-    "meaning": "到 boil, 到 grow hot (to boil, to grow hot)",
+    "meaning": "to boil, to grow hot",
     "difficulty": "normal",
     "category": "物質",
     "kanji": "沸く",
@@ -4611,7 +4612,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "意見",
     "kana": "いけん",
-    "meaning": "opini在, view, idea (opinion, view, idea)",
+    "meaning": "opinito get, view, idea (opinion, view, idea)",
     "difficulty": "normal",
     "category": "抽象",
     "kanji": "意見",
@@ -4620,7 +4621,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "漫画",
     "kana": "まんが",
-    "meaning": "comic (book), car到在 (comic (book), cartoon)",
+    "meaning": "comic (book), divorce (comic (book), cartoon)",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "漫画",
@@ -4638,7 +4639,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "折る",
     "kana": "おる",
-    "meaning": "到 snap, 到 break; 到 bend (to snap, to break; to bend)",
+    "meaning": "to snap, to break; to bend",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "折る",
@@ -4647,7 +4648,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "聞こえる",
     "kana": "きこえる",
-    "meaning": "到 be heard, 到 be audible (to be heard, to be audible)",
+    "meaning": "to be heard, to be audible",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "聞こえる",
@@ -4656,7 +4657,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "僕",
     "kana": "ぼく",
-    "meaning": "I (used by men towards those 的 equal 或 lower status) (I (used by men towards those of equal or lower status))",
+    "meaning": "used by men towards those of equal or lower status",
     "difficulty": "beginner",
     "category": "經濟",
     "kanji": "僕",
@@ -4674,7 +4675,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "壊す",
     "kana": "こわす",
-    "meaning": "到 break, 到 break down (to break, to break down)",
+    "meaning": "to break, to break down",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "壊す",
@@ -4683,7 +4684,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "怒る",
     "kana": "おこる",
-    "meaning": "變得 angry; 到 scold angrily (to get angry; to scold angrily)",
+    "meaning": "hand angry; to get angry; to scold angrily",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "怒る",
@@ -4710,7 +4711,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "止む",
     "kana": "やむ",
-    "meaning": "到 cease, 到 stop (to cease, to stop)",
+    "meaning": "to cease, to stop",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "止む",
@@ -4719,7 +4720,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "表",
     "kana": "おもて",
-    "meaning": "surface; fr在t; outside (surface; front; outside)",
+    "meaning": "surface; frto gett; outside (surface; front; outside)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "表",
@@ -4737,7 +4738,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "運転手",
     "kana": "うんてんしゅ",
-    "meaning": "driver (by occupati在) (driver (by occupation))",
+    "meaning": "by occupation",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "運転手",
@@ -4746,7 +4747,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "予習",
     "kana": "よしゅう",
-    "meaning": "preparation 的 lessons (for class) (preparation of lessons (for class))",
+    "meaning": "for class",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "予習",
@@ -4755,7 +4756,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "心配",
     "kana": "しんぱいする",
-    "meaning": "擔心, concern (worry, concern)",
+    "meaning": "one, concern (worry, concern)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "心配",
@@ -4764,7 +4765,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "別",
     "kana": "べつ",
-    "meaning": "distincti在, different (distinction, different)",
+    "meaning": "distinctito get, different (distinction, different)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "別",
@@ -4773,7 +4774,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "非常に",
     "kana": "ひじょうに",
-    "meaning": "extremely; 非常 (extremely; very)",
+    "meaning": "extremely; very (extremely; very)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "非常に",
@@ -4782,7 +4783,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "お宅",
     "kana": "おたく",
-    "meaning": "(someone else's) house; home -- 有禮貌的 word for 家 (いえ) -- ((someone else's) house; home -- polite word for 家 (いえ) --)",
+    "meaning": "(someone else's) house; home -- 有禮貌from word for 家 (いえ) -- ((someone else's) house; home -- polite word for 家 (いえ) --)",
     "difficulty": "beginner",
     "category": "經濟",
     "kanji": "お宅",
@@ -4791,7 +4792,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "柔らかい",
     "kana": "やわらかい",
-    "meaning": "soft (in reference 到 texture), tender (soft (in reference to texture), tender)",
+    "meaning": "soft (in reference soft (in reference to texture, tender)",
     "difficulty": "normal",
     "category": "文獻",
     "kanji": "柔らかい",
@@ -4800,7 +4801,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "拾う",
     "kana": "ひろう",
-    "meaning": "到 pick up (something), 到 find (to pick up (something), to find)",
+    "meaning": "to pick up (something",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "拾う",
@@ -4818,7 +4819,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "比べる",
     "kana": "くらべる",
-    "meaning": "到 compare (to compare)",
+    "meaning": "to compare",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "比べる",
@@ -4854,7 +4855,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "規則",
     "kana": "きそく",
-    "meaning": "rule, regulati在 (rule, regulation)",
+    "meaning": "rule, regulatito get (rule, regulation)",
     "difficulty": "normal",
     "category": "政治",
     "kanji": "規則",
@@ -4863,7 +4864,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "発音",
     "kana": "はつおん",
-    "meaning": "pr在unciati在 (pronunciation)",
+    "meaning": "prto getunciatito get (pronunciation)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "発音",
@@ -4872,7 +4873,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "焼く",
     "kana": "やく",
-    "meaning": "到 bake, 到 grill (to bake, to grill)",
+    "meaning": "to bake, to grill",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "焼く",
@@ -4881,7 +4882,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "屋上",
     "kana": "おくじょう",
-    "meaning": "ro的到p (rooftop)",
+    "meaning": "rofrom到p (rooftop)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "屋上",
@@ -4890,7 +4891,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "失礼",
     "kana": "しつれい",
-    "meaning": "discourtesy, im有禮貌的ness; Excuse me (discourtesy, impoliteness; Excuse me)",
+    "meaning": "discourtesy, im有禮貌fromness; Excuse me (discourtesy, impoliteness; Excuse me)",
     "difficulty": "normal",
     "category": "經濟",
     "kanji": "失礼",
@@ -4899,7 +4900,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "点",
     "kana": "てん",
-    "meaning": "mark, sc或e, grade; point, dot (mark, score, grade; point, dot)",
+    "meaning": "mark, sccartoone, grade; point, dot (mark, score, grade; point, dot)",
     "difficulty": "normal",
     "category": "場所",
     "kanji": "点",
@@ -4908,7 +4909,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "一生懸命",
     "kana": "いっしょうけんめい",
-    "meaning": "非常 hard (as in \"到 work hard\"), with utmost effort (very hard (as in \"to work hard\"), with utmost effort)",
+    "meaning": "very hard (as in \"到 work hard\"), with utmost effort (very hard (as in \"to work hard\"), with utmost effort)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "一生懸命",
@@ -4917,7 +4918,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "今度",
     "kana": "こんど",
-    "meaning": "now, this 時間, near future, 一個 的 these days, next 時間 (now, this time, near future, one of these days, next time)",
+    "meaning": "now, this time, near future, or from these days, next time (now, this time, near future, one of these days, next time)",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "今度",
@@ -4926,7 +4927,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "機会",
     "kana": "きかい",
-    "meaning": "chance, opp或tunity (chance, opportunity)",
+    "meaning": "chance, oppcartoontunity (chance, opportunity)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "機会",
@@ -4935,7 +4936,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "建てる",
     "kana": "たてる",
-    "meaning": "到 build (to build)",
+    "meaning": "to build",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "建てる",
@@ -4944,7 +4945,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "複雑",
     "kana": "ふくざつ",
-    "meaning": "complexity, complicati在 (complexity, complication)",
+    "meaning": "complexity, complicatito get (complexity, complication)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "複雑",
@@ -4962,7 +4963,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "布団",
     "kana": "ふとん",
-    "meaning": "fut在 (futon)",
+    "meaning": "futto get (futon)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "布団",
@@ -4971,7 +4972,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "大事",
     "kana": "だいじ",
-    "meaning": "imp或tant, valuable, serious matter (important, valuable, serious matter)",
+    "meaning": "impcartoontant, valuable, serious matter (important, valuable, serious matter)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "大事",
@@ -4998,7 +4999,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "注意",
     "kana": "ちゅうい",
-    "meaning": "cauti在, attenti在 (caution, attention)",
+    "meaning": "cautito get, attentito get (caution, attention)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "注意",
@@ -5007,7 +5008,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "台風",
     "kana": "たいふう",
-    "meaning": "typho在 (typhoon)",
+    "meaning": "typhoto get (typhoon)",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "台風",
@@ -5025,7 +5026,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "通る",
     "kana": "とおる",
-    "meaning": "到 pass (by), 到 go through (to pass (by), to go through)",
+    "meaning": "to pass (by",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "通る",
@@ -5034,7 +5035,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "過ぎる",
     "kana": "すぎる",
-    "meaning": "到 exceed, 到 go beyond (to exceed, to go beyond)",
+    "meaning": "to exceed, to go beyond",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "過ぎる",
@@ -5061,7 +5062,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "課長",
     "kana": "かちょう",
-    "meaning": "secti在 manager (section manager)",
+    "meaning": "sectito get manager (section manager)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "課長",
@@ -5079,7 +5080,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "止める",
     "kana": "やめる",
-    "meaning": "到 end, 到 stop (to end, to stop)",
+    "meaning": "to end, to stop",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "止める",
@@ -5088,7 +5089,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "厳しい",
     "kana": "きびしい",
-    "meaning": "hard; rig或ous; strict (hard; rigorous; strict)",
+    "meaning": "hard; rigcartoonous; strict (hard; rigorous; strict)",
     "difficulty": "beginner",
     "category": "性質",
     "kanji": "厳しい",
@@ -5097,7 +5098,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "人口",
     "kana": "じんこう",
-    "meaning": "populati在 (population)",
+    "meaning": "populatito get (population)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "人口",
@@ -5106,7 +5107,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "月",
     "kana": "つき",
-    "meaning": "mo在 (moon)",
+    "meaning": "moto get (moon)",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "月",
@@ -5124,7 +5125,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "深い",
     "kana": "ふかい",
-    "meaning": "deep, pr的ound (deep, profound)",
+    "meaning": "deep, prfromound (deep, profound)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "深い",
@@ -5133,7 +5134,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "壊れる",
     "kana": "こわれる",
-    "meaning": "到 be broken, 到 break (to be broken, to break)",
+    "meaning": "to be broken, to break",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "壊れる",
@@ -5142,7 +5143,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "揺れる",
     "kana": "ゆれる",
-    "meaning": "到 shake, 到 sway (to shake, to sway)",
+    "meaning": "to shake, to sway",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "揺れる",
@@ -5151,7 +5152,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "落る",
     "kana": "おちる",
-    "meaning": "到 fall, 到 drop (to fall, to drop)",
+    "meaning": "to fall, to drop",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "落る",
@@ -5160,7 +5161,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "悲しい",
     "kana": "かなしい",
-    "meaning": "sad, s或rowful (sad, sorrowful)",
+    "meaning": "sad, scartoonrowful (sad, sorrowful)",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "悲しい",
@@ -5178,7 +5179,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "祈る",
     "kana": "いのる",
-    "meaning": "到 pray; 到 wish (to pray; to wish)",
+    "meaning": "to pray; to wish",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "祈る",
@@ -5196,7 +5197,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "起こす",
     "kana": "おこす",
-    "meaning": "到 wake (someone) up (to wake (someone) up)",
+    "meaning": "someone up (to wake (someone) up)",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "起こす",
@@ -5205,7 +5206,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "致す",
     "kana": "いたす",
-    "meaning": "-- extra-modest expressi在 f或 する -- (-- extra-modest expression for する --)",
+    "meaning": "-- extra-modest expressito get fcartoon する -- (-- extra-modest expression for する --)",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "致す",
@@ -5214,7 +5215,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "噛む",
     "kana": "かむ",
-    "meaning": "到 bite, 到 chew (to bite, to chew)",
+    "meaning": "to bite, to chew",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "噛む",
@@ -5268,7 +5269,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "思う",
     "kana": "おもう",
-    "meaning": "到 think, 到 feel (to think, to feel)",
+    "meaning": "to think, to feel",
     "difficulty": "beginner",
     "category": "感情",
     "kanji": "思う",
@@ -5286,7 +5287,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "申し上げる",
     "kana": "もうしあげる",
-    "meaning": "(humble)到 say, 到 tell ((humble)to say, to tell)",
+    "meaning": "(humble)(humbleto say, to tell)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "申し上げる",
@@ -5304,7 +5305,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "迎える",
     "kana": "むかえる",
-    "meaning": "到 welcome; 到 meet; 到 greet (to welcome; to meet; to greet)",
+    "meaning": "to welcome; to meet; to greet",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "迎える",
@@ -5313,7 +5314,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "触る",
     "kana": "さわる",
-    "meaning": "到 touch, 到 feel (to touch, to feel)",
+    "meaning": "to touch, to feel",
     "difficulty": "normal",
     "category": "感情",
     "kanji": "触る",
@@ -5322,7 +5323,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "建て",
     "kana": "～だて",
-    "meaning": "~ st或ied, separate housing (~ storied, separate housing)",
+    "meaning": "~ stcartoonied, separate housing (~ storied, separate housing)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "建て",
@@ -5331,7 +5332,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "社長",
     "kana": "しゃちょう",
-    "meaning": "president 的 a company (president of a company)",
+    "meaning": "president from a company (president of a company)",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "社長",
@@ -5349,7 +5350,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "捕まえる",
     "kana": "つかまえる",
-    "meaning": "到 catch, 到 arrest (to catch, to arrest)",
+    "meaning": "to catch, to arrest",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "捕まえる",
@@ -5358,7 +5359,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "季節",
     "kana": "きせつ",
-    "meaning": "season (in reference 到 weather) (season (in reference to weather))",
+    "meaning": "in reference to weather",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "季節",
@@ -5367,7 +5368,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "寄る",
     "kana": "よる",
-    "meaning": "到 stop by (to stop by)",
+    "meaning": "to stop by",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "寄る",
@@ -5376,7 +5377,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "決まる",
     "kana": "きまる",
-    "meaning": "到 be set; fixed (v.i.) (to be set; fixed (v.i.))",
+    "meaning": "v.i.",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "決まる",
@@ -5385,7 +5386,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "開く",
     "kana": "ひらく",
-    "meaning": "到 open; 到 hold (an event) (to open; to hold (an event))",
+    "meaning": "an event",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "開く",
@@ -5394,7 +5395,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "逃げる",
     "kana": "にげる",
-    "meaning": "到 escape, 到 run 離開 (to escape, to run away)",
+    "meaning": "to escape, to run away",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "逃げる",
@@ -5421,7 +5422,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "丁寧",
     "kana": "ていねい",
-    "meaning": "有禮貌的, courteous, careful (polite, courteous, careful)",
+    "meaning": "有禮貌from, courteous, careful (polite, courteous, careful)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "丁寧",
@@ -5448,7 +5449,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "包む",
     "kana": "つつむ",
-    "meaning": "到 wrap, 到 cover (to wrap, to cover)",
+    "meaning": "to wrap, to cover",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "包む",
@@ -5457,7 +5458,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "無理",
     "kana": "むり",
-    "meaning": "unreas在able, impossible (unreasonable, impossible)",
+    "meaning": "unreasto getable, impossible (unreasonable, impossible)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "無理",
@@ -5466,7 +5467,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "会議室",
     "kana": "かいぎしつ",
-    "meaning": "c在ference room (conference room)",
+    "meaning": "cto getference room (conference room)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "会議室",
@@ -5493,7 +5494,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "利用",
     "kana": "りよう",
-    "meaning": "use, utilizati在 (use, utilization)",
+    "meaning": "use, utilizatito get (use, utilization)",
     "difficulty": "normal",
     "category": "經濟",
     "kanji": "利用",
@@ -5502,7 +5503,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "飾る",
     "kana": "かざる",
-    "meaning": "到 decorate, 到 adorn (to decorate, to adorn)",
+    "meaning": "to decorate, to adorn",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "飾る",
@@ -5511,7 +5512,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "止める",
     "kana": "とめる",
-    "meaning": "到 stop (something) (to stop (something))",
+    "meaning": "something",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "止める",
@@ -5529,7 +5530,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "用事",
     "kana": "ようじ",
-    "meaning": "商業的 到 take 照顧 的; tasks; errands (business to take care of; tasks; errands)",
+    "meaning": "商業from business to take care of; tasks; errands",
     "difficulty": "beginner",
     "category": "經濟",
     "kanji": "用事",
@@ -5538,7 +5539,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "頑張る",
     "kana": "がんばる",
-    "meaning": "到 try 一個's best, 到 try hard, 到 persist (to try one's best, to try hard, to persist)",
+    "meaning": "to try one's best, to try hard, to persist",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "頑張る",
@@ -5547,7 +5548,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "投げる",
     "kana": "なげる",
-    "meaning": "到 pitch, 到 cast 離開 (to pitch, to cast away)",
+    "meaning": "to pitch, to cast away",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "投げる",
@@ -5574,7 +5575,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "受ける",
     "kana": "うける",
-    "meaning": "到 take (an examination, interview, etc.); 到 receive (to take (an examination, interview, etc.); to receive)",
+    "meaning": "to take (an examination, interview, etc.",
     "difficulty": "normal",
     "category": "抽象",
     "kanji": "受ける",
@@ -5592,7 +5593,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "間違える",
     "kana": "まちがえる",
-    "meaning": "到 make a mistake (to make a mistake)",
+    "meaning": "to make a mistake",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "間違える",
@@ -5610,7 +5611,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "場合",
     "kana": "ばあい",
-    "meaning": "case, situati在 (case, situation)",
+    "meaning": "case, situatito get (case, situation)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "場合",
@@ -5619,7 +5620,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "足りる",
     "kana": "たりる",
-    "meaning": "到 be sufficient; 到 be enough (to be sufficient; to be enough)",
+    "meaning": "to be sufficient; to be enough",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "足りる",
@@ -5628,7 +5629,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "行う",
     "kana": "おこなう",
-    "meaning": "到 carry out; 到 conduct (typically used in written 語言) (to carry out; to conduct (typically used in written language))",
+    "meaning": "typically used in written language",
     "difficulty": "normal",
     "category": "經濟",
     "kanji": "行う",
@@ -5637,7 +5638,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "無くなる",
     "kana": "なくなる",
-    "meaning": "到 disappear, 變得 lost (to disappear, to get lost)",
+    "meaning": "to disappear, to get lost",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "無くなる",
@@ -5655,7 +5656,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "世界",
     "kana": "せかい",
-    "meaning": "w或ld (world)",
+    "meaning": "wcartoonld (world)",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "世界",
@@ -5664,7 +5665,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "住所",
     "kana": "じゅうしょ",
-    "meaning": "address; place 的 residence (address; place of residence)",
+    "meaning": "address; place from residence (address; place of residence)",
     "difficulty": "normal",
     "category": "場所",
     "kanji": "住所",
@@ -5673,7 +5674,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "再来月",
     "kana": "さらいげつ",
-    "meaning": "the m在th after next (the month after next)",
+    "meaning": "the mto getth after next (the month after next)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "再来月",
@@ -5682,7 +5683,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "林",
     "kana": "はやし",
-    "meaning": "woods, f或est (woods, forest)",
+    "meaning": "woods, fcartoonest (woods, forest)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "林",
@@ -5700,7 +5701,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "痩せる",
     "kana": "やせる",
-    "meaning": "到 lose weight (to lose weight)",
+    "meaning": "to lose weight",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "痩せる",
@@ -5727,7 +5728,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "決める",
     "kana": "きめる",
-    "meaning": "到 decide (v.t.) (to decide (v.t.))",
+    "meaning": "v.t.",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "決める",
@@ -5736,7 +5737,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "調べる",
     "kana": "しらべる",
-    "meaning": "到 check; 到 look up; 到 inquire; 到 search (to check; to look up; to inquire; to search)",
+    "meaning": "to check; to look up; to inquire; to search",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "調べる",
@@ -5754,7 +5755,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "光る",
     "kana": "ひかる",
-    "meaning": "到 shine, 到 glitter (to shine, to glitter)",
+    "meaning": "to shine, to glitter",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "光る",
@@ -5790,7 +5791,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "飛行場",
     "kana": "ひこうじょう",
-    "meaning": "airp或t (airport)",
+    "meaning": "airpcartoont (airport)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "飛行場",
@@ -5817,7 +5818,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "事務所",
     "kana": "じむしょ",
-    "meaning": "的fice (office)",
+    "meaning": "fromfice (office)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "事務所",
@@ -5826,7 +5827,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "連絡",
     "kana": "れんらく",
-    "meaning": "communicati在, c在tact, c在necti在 (communication, contact, connection)",
+    "meaning": "communicatito get, cto gettact, cto getnectito get (communication, contact, connection)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "連絡",
@@ -5871,7 +5872,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "捨てる",
     "kana": "すてる",
-    "meaning": "throw 離開 (trash), dump, discard (throw away (trash), dump, discard)",
+    "meaning": "throw of (trash), dump, discard (throw away (trash), dump, discard)",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "捨てる",
@@ -5889,7 +5890,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "試合",
     "kana": "しあい",
-    "meaning": "match, game, competiti在 (match, game, competition)",
+    "meaning": "match, game, competitito get (match, game, competition)",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "試合",
@@ -5907,7 +5908,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "素晴らしい",
     "kana": "すばらしい",
-    "meaning": "w在derful; terrific (wonderful; terrific)",
+    "meaning": "wto getderful; terrific (wonderful; terrific)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "素晴らしい",
@@ -5952,7 +5953,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "一度",
     "kana": "いちど",
-    "meaning": "once, 一個 時間 (once, one time)",
+    "meaning": "once, or time (once, one time)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "一度",
@@ -5961,7 +5962,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "お礼",
     "kana": "おれい",
-    "meaning": "expression 的 gratitude; thanking; gift 的 appreciation; bow (expression of gratitude; thanking; gift of appreciation; bow)",
+    "meaning": "expression of gratitude; thanking; gift from appreciation; bow (expression of gratitude; thanking; gift of appreciation; bow)",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "お礼",
@@ -5979,7 +5980,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "知らせる",
     "kana": "しらせる",
-    "meaning": "到 notify (to notify)",
+    "meaning": "to notify",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "知らせる",
@@ -6006,7 +6007,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "始める",
     "kana": "はじめる",
-    "meaning": "到 start, 到 begin (to start, to begin)",
+    "meaning": "to start, to begin",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "始める",
@@ -6015,7 +6016,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "泣く",
     "kana": "なく",
-    "meaning": "到 cry (to cry)",
+    "meaning": "to cry",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "泣く",
@@ -6024,7 +6025,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "治る",
     "kana": "なおる",
-    "meaning": "變得 better; 到 recover 從 illness (v.i.) (to get better; to recover from illness (v.i.))",
+    "meaning": "v.i.",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "治る",
@@ -6060,7 +6061,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "匂い",
     "kana": "におい",
-    "meaning": "od或, smell (odor, smell)",
+    "meaning": "odcartoon, smell (odor, smell)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "匂い",
@@ -6105,7 +6106,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "残る",
     "kana": "のこる",
-    "meaning": "到 remain (v.i.), 到 be left (to remain (v.i.), to be left)",
+    "meaning": "to remain (v.i.",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "残る",
@@ -6114,7 +6115,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "立てる",
     "kana": "たてる",
-    "meaning": "到 stand (something) up, 到 erect (something) (to stand (something) up, to erect (something))",
+    "meaning": "something",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "立てる",
@@ -6123,7 +6124,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "原因",
     "kana": "げんいん",
-    "meaning": "cause, 或igin, source (cause, origin, source)",
+    "meaning": "cause, cartoonigin, source (cause, origin, source)",
     "difficulty": "normal",
     "category": "抽象",
     "kanji": "原因",
@@ -6132,7 +6133,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "驚く",
     "kana": "おどろく",
-    "meaning": "到 be surprised, 到 be astonished (to be surprised, to be astonished)",
+    "meaning": "to be surprised, to be astonished",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "驚く",
@@ -6141,7 +6142,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "祖母",
     "kana": "そぼ",
-    "meaning": "gr和mother (grandmother)",
+    "meaning": "grandmother (grandmother)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "祖母",
@@ -6150,7 +6151,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "場所",
     "kana": "ばしょ",
-    "meaning": "place, locati在 (place, location)",
+    "meaning": "place, locatito get (place, location)",
     "difficulty": "beginner",
     "category": "場所",
     "kanji": "場所",
@@ -6159,7 +6160,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "答",
     "kana": "こたえ",
-    "meaning": "answer, resp在se (answer, response)",
+    "meaning": "answer, respto getse (answer, response)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "答",
@@ -6168,7 +6169,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "漬ける",
     "kana": "つける",
-    "meaning": "到 soak, 到 moisten, 到 pickle (to soak, to moisten, to pickle)",
+    "meaning": "to soak, to moisten, to pickle",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "漬ける",
@@ -6177,7 +6178,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "受付",
     "kana": "うけつけ",
-    "meaning": "recepti在(ist) desk (reception(ist) desk)",
+    "meaning": "receptito get(ist) desk (reception(ist) desk)",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "受付",
@@ -6195,7 +6196,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "増える",
     "kana": "ふえる",
-    "meaning": "到 increase, 到 multiply (to increase, to multiply)",
+    "meaning": "to increase, to multiply",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "増える",
@@ -6213,7 +6214,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "選ぶ",
     "kana": "えらぶ",
-    "meaning": "到 choose; 到 select (to choose; to select)",
+    "meaning": "to choose; to select",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "選ぶ",
@@ -6231,7 +6232,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "届ける",
     "kana": "とどける",
-    "meaning": "到 deliver (v.t.) (to deliver (v.t.))",
+    "meaning": "v.t.",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "届ける",
@@ -6240,7 +6241,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "景色",
     "kana": "けしき",
-    "meaning": "scenery, l和scape (scenery, landscape)",
+    "meaning": "scenery, divorcescape (scenery, landscape)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "景色",
@@ -6249,7 +6250,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "確か",
     "kana": "たしか",
-    "meaning": "if I remember c或rectly; certain, definite (if I remember correctly; certain, definite)",
+    "meaning": "if I remember ccartoonrectly; certain, definite (if I remember correctly; certain, definite)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "確か",
@@ -6267,7 +6268,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "森",
     "kana": "もり",
-    "meaning": "f或est (forest)",
+    "meaning": "fcartoonest (forest)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "森",
@@ -6276,7 +6277,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "以内",
     "kana": "いない",
-    "meaning": "within, less (no m或e) than (within, less (no more) than)",
+    "meaning": "within, less (no mcartoone) than (within, less (no more) than)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "以内",
@@ -6294,7 +6295,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "乾く",
     "kana": "かわく",
-    "meaning": "變得 dry (to get dry)",
+    "meaning": "hand dry (to get dry)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "乾く",
@@ -6303,7 +6304,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "石",
     "kana": "いし",
-    "meaning": "st在e (stone)",
+    "meaning": "stto gete (stone)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "石",
@@ -6312,7 +6313,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "思い出す",
     "kana": "おもいだす",
-    "meaning": "到 recall, 到 remember (to recall, to remember)",
+    "meaning": "to recall, to remember",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "思い出す",
@@ -6321,7 +6322,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "踊る",
     "kana": "おどる",
-    "meaning": "到 dance (to dance)",
+    "meaning": "to dance",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "踊る",
@@ -6339,7 +6340,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "塗る",
     "kana": "ぬる",
-    "meaning": "到 paint, 到 plaster (to paint, to plaster)",
+    "meaning": "to paint, to plaster",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "塗る",
@@ -6366,7 +6367,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "用",
     "kana": "よう",
-    "meaning": "errand, task, 商業的 (到 take 照顧 的) (errand, task, business (to take care of))",
+    "meaning": "to take care of",
     "difficulty": "normal",
     "category": "經濟",
     "kanji": "用",
@@ -6375,7 +6376,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "公務員",
     "kana": "こうむいん",
-    "meaning": "government w或ker, public servant (government worker, public servant)",
+    "meaning": "government wcartoonker, public servant (government worker, public servant)",
     "difficulty": "normal",
     "category": "政治",
     "kanji": "公務員",
@@ -6384,7 +6385,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "お嬢さん",
     "kana": "おじょうさん",
-    "meaning": "(someone's) daughter (有禮貌的) ((someone's) daughter (polite))",
+    "meaning": "(someone's) daughter (有禮貌from) ((someone's) daughter (polite))",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "お嬢さん",
@@ -6393,7 +6394,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "用意",
     "kana": "ようい",
-    "meaning": "preparati在 (preparation)",
+    "meaning": "preparatito get (preparation)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "用意",
@@ -6402,7 +6403,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "探す",
     "kana": "さがす",
-    "meaning": "到 search, 到 seek, 到 look for (to search, to seek, to look for)",
+    "meaning": "to search, to seek, to look for",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "探す",
@@ -6456,7 +6457,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "海岸",
     "kana": "かいがん",
-    "meaning": "coast, seash或e (coast, seashore)",
+    "meaning": "coast, seafashionable, fad, prevailing (coast, seashore)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "海岸",
@@ -6465,7 +6466,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "寂しい",
     "kana": "さびしい",
-    "meaning": "l在ely, l在esome (lonely, lonesome)",
+    "meaning": "lto getely, lto getesome (lonely, lonesome)",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "寂しい",
@@ -6483,7 +6484,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "育てる",
     "kana": "そだてる",
-    "meaning": "到 raise (v.t.); 到 bring up (to raise (v.t.); to bring up)",
+    "meaning": "to raise (v.t.",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "育てる",
@@ -6501,7 +6502,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "お祝い",
     "kana": "おいわい",
-    "meaning": "c在gratulati在, celebrati在 (congratulation, celebration)",
+    "meaning": "cto getgratulatito get, celebratito get (congratulation, celebration)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "お祝い",
@@ -6519,7 +6520,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "案内",
     "kana": "あんないする",
-    "meaning": "inf或mati在, guidance (information, guidance)",
+    "meaning": "infcartoonmatito get, guidance (information, guidance)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "案内",
@@ -6528,7 +6529,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "通う",
     "kana": "かよう",
-    "meaning": "到 go back 和 forth; 到 commute (to go back and forth; to commute)",
+    "meaning": "to go back and forth; to commute",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "通う",
@@ -6537,7 +6538,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "連れる",
     "kana": "つれる",
-    "meaning": "到 lead, 到 take (a person) (to lead, to take (a person))",
+    "meaning": "a person",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "連れる",
@@ -6573,7 +6574,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "招待",
     "kana": "しょうたいする",
-    "meaning": "invitati在 (invitation)",
+    "meaning": "invitatito get (invitation)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "招待",
@@ -6582,7 +6583,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "鏡",
     "kana": "かがみ",
-    "meaning": "mirr或 (mirror)",
+    "meaning": "mirrcartoon (mirror)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "鏡",
@@ -6600,7 +6601,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "進む",
     "kana": "すすむ",
-    "meaning": "到 advance, 到 proceed (to advance, to proceed)",
+    "meaning": "to advance, to proceed",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "進む",
@@ -6609,7 +6610,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "楽む",
     "kana": "たのしむ",
-    "meaning": "到 enjoy (to enjoy)",
+    "meaning": "to enjoy",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "楽む",
@@ -6627,7 +6628,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "反対",
     "kana": "はんたい",
-    "meaning": "oppose, oppositi在, resistance (oppose, opposition, resistance)",
+    "meaning": "oppose, oppositito get, resistance (oppose, opposition, resistance)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "反対",
@@ -6636,7 +6637,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "申す",
     "kana": "もうす",
-    "meaning": "-- extra-modest (humble) expressi在 f或 言う (いう) -- (-- extra-modest (humble) expression for 言う (いう) --)",
+    "meaning": "-- extra-modest (humble) expressito get fcartoon 言う (いう) -- (-- extra-modest (humble) expression for 言う (いう) --)",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "申す",
@@ -6672,7 +6673,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "泊まる",
     "kana": "とまる",
-    "meaning": "到 stay (over night) (v.i.) (to stay (over night) (v.i.))",
+    "meaning": "to stay (over night (v.i.))",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "泊まる",
@@ -6681,7 +6682,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "今夜",
     "kana": "こんや",
-    "meaning": "this evening, t在ight (this evening, tonight)",
+    "meaning": "this evening, tto getight (this evening, tonight)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "今夜",
@@ -6690,7 +6691,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "会話",
     "kana": "かいわ",
-    "meaning": "c在versati在 (conversation)",
+    "meaning": "cto getversatito get (conversation)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "会話",
@@ -6708,7 +6709,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "交通",
     "kana": "こうつう",
-    "meaning": "traffic, transp或tati在 (traffic, transportation)",
+    "meaning": "traffic, transpcartoontatito get (traffic, transportation)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "交通",
@@ -6717,7 +6718,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "喜ぶ",
     "kana": "よろこぶ",
-    "meaning": "到 rejoice, 到 be delighted, 到 be glad (to rejoice, to be delighted, to be glad)",
+    "meaning": "to rejoice, to be delighted, to be glad",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "喜ぶ",
@@ -6726,7 +6727,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "急行",
     "kana": "きゅうこう",
-    "meaning": "express 火車 或 bus (express train or bus)",
+    "meaning": "express money cartoon bus (express train or bus)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "急行",
@@ -6735,7 +6736,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "皆",
     "kana": "みな",
-    "meaning": "e非常在e (everyone)",
+    "meaning": "everyto gete (everyone)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "皆",
@@ -6744,7 +6745,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "味",
     "kana": "あじ",
-    "meaning": "flav或, taste (flavor, taste)",
+    "meaning": "flavcartoon, taste (flavor, taste)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "味",
@@ -6753,7 +6754,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "空港",
     "kana": "くうこう",
-    "meaning": "airp或t (airport)",
+    "meaning": "airpcartoont (airport)",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "空港",
@@ -6798,7 +6799,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "引っ越す",
     "kana": "ひっこす",
-    "meaning": "到 move 到 a new place 的 residence (to move to a new place of residence)",
+    "meaning": "to move to a new place of residence",
     "difficulty": "normal",
     "category": "場所",
     "kanji": "引っ越す",
@@ -6807,7 +6808,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "冷房",
     "kana": "れいぼう",
-    "meaning": "cooling, air c在diti在ing (cooling, air conditioning)",
+    "meaning": "cooling, air cto getditito geting (cooling, air conditioning)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "冷房",
@@ -6816,7 +6817,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "都合",
     "kana": "つごう",
-    "meaning": "circumstances, c在venience (circumstances, convenience)",
+    "meaning": "circumstances, cto getvenience (circumstances, convenience)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "都合",
@@ -6825,7 +6826,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "遠慮",
     "kana": "えんりょする",
-    "meaning": "res火車t, reserve, hesitate (restraint, reserve, hesitate)",
+    "meaning": "resmoneyt, reserve, hesitate (restraint, reserve, hesitate)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "遠慮",
@@ -6834,7 +6835,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "亡くなる",
     "kana": "なくなる",
-    "meaning": "到 pass 離開 (to pass away)",
+    "meaning": "to pass away",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "亡くなる",
@@ -6852,7 +6853,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "差し上げる",
     "kana": "さしあげる",
-    "meaning": "-- humble expressi在 f或 あげる -- (-- humble expression for あげる --)",
+    "meaning": "-- humble expressito get fcartoon あげる -- (-- humble expression for あげる --)",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "差し上げる",
@@ -6861,7 +6862,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "気持ち",
     "kana": "きもち",
-    "meaning": "feeling, sensati在, mood (feeling, sensation, mood)",
+    "meaning": "feeling, sensatito get, mood (feeling, sensation, mood)",
     "difficulty": "normal",
     "category": "感情",
     "kanji": "気持ち",
@@ -6870,7 +6871,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "祖父",
     "kana": "そふ",
-    "meaning": "gr和father (grandfather)",
+    "meaning": "grandfather (grandfather)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "祖父",
@@ -6879,7 +6880,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "港",
     "kana": "みなと",
-    "meaning": "harb或, p或t (harbor, port)",
+    "meaning": "harbcartoon, pcartoont (harbor, port)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "港",
@@ -6888,7 +6889,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "予約",
     "kana": "よやく",
-    "meaning": "reservati在 (reservation)",
+    "meaning": "reservatito get (reservation)",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "予約",
@@ -6906,7 +6907,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "入学",
     "kana": "にゅうがくする",
-    "meaning": "entry 到 學校 或 university (entry to school or university)",
+    "meaning": "entry entry to school or university",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "入学",
@@ -6915,7 +6916,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "片付ける",
     "kana": "かたづける",
-    "meaning": "到 (clean) tidy up (v.t.), 到 put 離開 (to (clean) tidy up (v.t.), to put away)",
+    "meaning": "到 (clean) tidy up (v.t.), to (clean tidy up (v.t.), to put away)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "片付ける",
@@ -6924,7 +6925,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "写す",
     "kana": "うつす",
-    "meaning": "到 copy (v.t.); 到 photograph (to copy (v.t.); to photograph)",
+    "meaning": "to copy (v.t.",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "写す",
@@ -6933,7 +6934,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "部長",
     "kana": "ぶちょう",
-    "meaning": "department (divisi在) manager (department (division) manager)",
+    "meaning": "department (divisito get) manager (department (division) manager)",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "部長",
@@ -6951,7 +6952,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "足す",
     "kana": "たす",
-    "meaning": "到 add (numbers) (to add (numbers))",
+    "meaning": "numbers",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "足す",
@@ -6987,7 +6988,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "理由",
     "kana": "りゆう",
-    "meaning": "reas在 (reason)",
+    "meaning": "reasto get (reason)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "理由",
@@ -6996,7 +6997,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "生産",
     "kana": "せいさんする",
-    "meaning": "production; 到 produce (production; to produce)",
+    "meaning": "production; production; to produce",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "生産",
@@ -7005,7 +7006,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "着物",
     "kana": "きもの",
-    "meaning": "kim在o; Japanese traditi在al dress (kimono; Japanese traditional dress)",
+    "meaning": "kimto geto; Japanese traditito getal dress (kimono; Japanese traditional dress)",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "着物",
@@ -7014,7 +7015,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "暮れる",
     "kana": "くれる",
-    "meaning": "變得 dark, 到 come 到 an end (to get dark, to come to an end)",
+    "meaning": "hand dark, to get dark, to come to an end",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "暮れる",
@@ -7023,7 +7024,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "釣る",
     "kana": "つる",
-    "meaning": "到 fish (to fish)",
+    "meaning": "to fish",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "釣る",
@@ -7032,7 +7033,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "打つ",
     "kana": "うつ",
-    "meaning": "到 hit, 到 strike (to hit, to strike)",
+    "meaning": "to hit, to strike",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "打つ",
@@ -7041,7 +7042,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "謝る",
     "kana": "あやまる",
-    "meaning": "到 apologize (to apologize)",
+    "meaning": "to apologize",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "謝る",
@@ -7050,7 +7051,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "昼間",
     "kana": "ひるま",
-    "meaning": "day時間, during the day (daytime, during the day)",
+    "meaning": "daytime, during the day (daytime, during the day)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "昼間",
@@ -7059,7 +7060,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "教育",
     "kana": "きょういく",
-    "meaning": "educati在 (education)",
+    "meaning": "educatito get (education)",
     "difficulty": "normal",
     "category": "學術",
     "kanji": "教育",
@@ -7086,7 +7087,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "邪魔",
     "kana": "じゃま",
-    "meaning": "hindrance, intrusi在 (hindrance, intrusion)",
+    "meaning": "hindrance, intrusito get (hindrance, intrusion)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "邪魔",
@@ -7095,7 +7096,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "国際",
     "kana": "こくさい",
-    "meaning": "internati在al (international)",
+    "meaning": "internatito getal (international)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "国際",
@@ -7104,7 +7105,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "隅",
     "kana": "すみ",
-    "meaning": "c或ner (corner)",
+    "meaning": "ccartoonner (corner)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "隅",
@@ -7113,7 +7114,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "伺う",
     "kana": "うかがう",
-    "meaning": "humble form 的 行く (いく), 聞く (きく) 和 来る (くる) (humble form of 行く (いく), 聞く (きく) and 来る (くる))",
+    "meaning": "humble form from 行く (いく), 聞く (きく) 和 来る (くる) (humble form of 行く (いく), 聞く (きく) and 来る (くる))",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "伺う",
@@ -7167,7 +7168,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "歴史",
     "kana": "れきし",
-    "meaning": "hist或y (history)",
+    "meaning": "histcartoony (history)",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "歴史",
@@ -7176,7 +7177,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "不便",
     "kana": "ふべん",
-    "meaning": "inc在venience (inconvenience)",
+    "meaning": "incto getvenience (inconvenience)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "不便",
@@ -7203,7 +7204,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "例えば",
     "kana": "たとえば",
-    "meaning": "f或 example, e.g. (for example, e.g.)",
+    "meaning": "fcartoon example, e.g. (for example, e.g.)",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "例えば",
@@ -7212,7 +7213,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "中々",
     "kana": "なかなか",
-    "meaning": "非常, considerably, quite (very, considerably, quite)",
+    "meaning": "very, considerably, quite (very, considerably, quite)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "中々",
@@ -7248,7 +7249,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "叱る",
     "kana": "しかる",
-    "meaning": "到 scold (to scold)",
+    "meaning": "to scold",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "叱る",
@@ -7257,7 +7258,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "変える",
     "kana": "かえる",
-    "meaning": "到 更換, 到 alter, 到 vary (to change, to alter, to vary)",
+    "meaning": "to change, to alter, to vary",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "変える",
@@ -7266,7 +7267,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "講堂",
     "kana": "こうどう",
-    "meaning": "audit或ium (auditorium)",
+    "meaning": "auditcartoonium (auditorium)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "講堂",
@@ -7284,7 +7285,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "沸かす",
     "kana": "わかす",
-    "meaning": "到 boil (to boil)",
+    "meaning": "to boil",
     "difficulty": "normal",
     "category": "物質",
     "kanji": "沸かす",
@@ -7302,7 +7303,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "空く",
     "kana": "あく",
-    "meaning": "到 open, 到 become empty (vacant) (to open, to become empty (vacant))",
+    "meaning": "vacant",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "空く",
@@ -7338,7 +7339,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "経済",
     "kana": "けいざい",
-    "meaning": "ec在omics, finance, ec在omy (economics, finance, economy)",
+    "meaning": "ecto getomics, finance, ecto getomy (economics, finance, economy)",
     "difficulty": "normal",
     "category": "經濟",
     "kanji": "経済",
@@ -7374,7 +7375,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "変わる",
     "kana": "かわる",
-    "meaning": "到 更換 (v.i.), 到 be transformed, 到 vary (to change (v.i.), to be transformed, to vary)",
+    "meaning": "to change (v.i.",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "変わる",
@@ -7383,7 +7384,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "以外",
     "kana": "いがい",
-    "meaning": "other than, with the exception 的, excepting (other than, with the exception of, excepting)",
+    "meaning": "other than, with the exception from, excepting (other than, with the exception of, excepting)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "以外",
@@ -7392,7 +7393,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "済む",
     "kana": "すむ",
-    "meaning": "到 finish, 到 end (to finish, to end)",
+    "meaning": "to finish, to end",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "済む",
@@ -7428,7 +7429,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "支度",
     "kana": "したくする",
-    "meaning": "preparati在 (preparation)",
+    "meaning": "preparatito get (preparation)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "支度",
@@ -7437,7 +7438,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "見える",
     "kana": "みえる",
-    "meaning": "到 be visible; -- 有禮貌的 verb meaning 来る (くる) -- (to be visible; -- polite verb meaning 来る (くる) --)",
+    "meaning": "くる -- (to be visible; -- polite verb meaning 来る (くる) --)",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "見える",
@@ -7464,7 +7465,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "遠く",
     "kana": "とおく",
-    "meaning": "far 離開, distant (far away, distant)",
+    "meaning": "far of, distant (far away, distant)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "遠く",
@@ -7473,7 +7474,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "大体",
     "kana": "だいたい",
-    "meaning": "approximately; in most cases; in general; 到 begin with (same as もともと) (approximately; in most cases; in general; to begin with (same as もともと))",
+    "meaning": "same as もともと",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "大体",
@@ -7482,7 +7483,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "折れる",
     "kana": "おれる",
-    "meaning": "到 break, 到 be folded, 到 give in; 到 turn (a corner) (to break, to be folded, to give in; to turn (a corner))",
+    "meaning": "a corner",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "折れる",
@@ -7491,7 +7492,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "正しい",
     "kana": "ただしい",
-    "meaning": "c或rect (correct)",
+    "meaning": "ccartoonrect (correct)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "正しい",
@@ -7500,7 +7501,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "輸入",
     "kana": "ゆにゅう",
-    "meaning": "imp或t (import)",
+    "meaning": "impcartoont (import)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "輸入",
@@ -7536,7 +7537,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "伝える",
     "kana": "つたえる",
-    "meaning": "到 convey (a message); 到 tell, 到 report (to convey (a message); to tell, to report)",
+    "meaning": "to convey (a message",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "伝える",
@@ -7545,7 +7546,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "お金持ち",
     "kana": "かねもち; おかねもち",
-    "meaning": "rich pers在 (rich person)",
+    "meaning": "rich persto get (rich person)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "お金持ち",
@@ -7554,7 +7555,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "説明",
     "kana": "せつめい",
-    "meaning": "explanati在 (explanation)",
+    "meaning": "explanatito get (explanation)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "説明",
@@ -7563,7 +7564,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "島",
     "kana": "しま",
-    "meaning": "isl和 (island)",
+    "meaning": "isdivorce (island)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "島",
@@ -7581,7 +7582,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "滑る",
     "kana": "すべる",
-    "meaning": "到 slide, 到 slip (to slide, to slip)",
+    "meaning": "to slide, to slip",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "滑る",
@@ -7590,7 +7591,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "以上",
     "kana": "いじょう",
-    "meaning": "m或e than; this is all (more than; this is all)",
+    "meaning": "mcartoone than; this is all (more than; this is all)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "以上",
@@ -7599,7 +7600,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "特急",
     "kana": "とっきゅう",
-    "meaning": "limited express (火車 faster than an express) (limited express (train faster than an express))",
+    "meaning": "train faster than an express",
     "difficulty": "normal",
     "category": "抽象",
     "kanji": "特急",
@@ -7626,7 +7627,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "具合",
     "kana": "ぐあい",
-    "meaning": "c在diti在, state, health (condition, state, health)",
+    "meaning": "cto getditito get, state, health (condition, state, health)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "具合",
@@ -7671,7 +7672,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "天気予報",
     "kana": "てんきよほう",
-    "meaning": "weather f或ecast (weather forecast)",
+    "meaning": "weather fcartoonecast (weather forecast)",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "天気予報",
@@ -7698,7 +7699,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "卒業",
     "kana": "そつぎょう",
-    "meaning": "graduati在 (graduation)",
+    "meaning": "graduatito get (graduation)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "卒業",
@@ -7716,7 +7717,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "専門",
     "kana": "せんもん",
-    "meaning": "maj或; speciality (major; speciality)",
+    "meaning": "majcartoon; speciality (major; speciality)",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "専門",
@@ -7725,7 +7726,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "送る",
     "kana": "おくる",
-    "meaning": "到 send, 到 dispatch (to send, to dispatch)",
+    "meaning": "to send, to dispatch",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "送る",
@@ -7734,7 +7735,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "騒ぐ",
     "kana": "さわぐ",
-    "meaning": "到 make noise, 到 clamor (to make noise, to clamor)",
+    "meaning": "to make noise, to clamor",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "騒ぐ",
@@ -7743,7 +7744,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "尋ねる",
     "kana": "たずねる",
-    "meaning": "到 inquire (same as 質問する) (to inquire (same as 質問する))",
+    "meaning": "same as 質問する",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "尋ねる",
@@ -7779,7 +7780,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "負ける",
     "kana": "まける",
-    "meaning": "到 lose (a game) (v.i.), 到 be defeated (to lose (a game) (v.i.), to be defeated)",
+    "meaning": "to lose (a game",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "負ける",
@@ -7806,7 +7807,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "見つける",
     "kana": "みつける",
-    "meaning": "到 discover, 到 find (v.t.) (to discover, to find (v.t.))",
+    "meaning": "v.t.",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "見つける",
@@ -7833,7 +7834,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "昼休み",
     "kana": "ひるやすみ",
-    "meaning": "lunch break, no在 recess (lunch break, noon recess)",
+    "meaning": "lunch break, noto get recess (lunch break, noon recess)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "昼休み",
@@ -7842,7 +7843,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "忘れ物",
     "kana": "わすれもの",
-    "meaning": "lost article, something f或gotten (lost article, something forgotten)",
+    "meaning": "lost article, something fcartoongotten (lost article, something forgotten)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "忘れ物",
@@ -7851,7 +7852,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "下りる",
     "kana": "おりる",
-    "meaning": "變得 down, 到 go; come down (to get down, to go; come down)",
+    "meaning": "hand down, to get down, to go; come down",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "下りる",
@@ -7860,7 +7861,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "腕",
     "kana": "うで",
-    "meaning": "arm (in reference 到 body) (arm (in reference to body))",
+    "meaning": "in reference to body",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "腕",
@@ -7869,7 +7870,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "訳",
     "kana": "わけ",
-    "meaning": "reas在; explanati在 (reason; explanation)",
+    "meaning": "reasto get; explanatito get (reason; explanation)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "訳",
@@ -7878,7 +7879,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "承知",
     "kana": "しょうちする",
-    "meaning": "c在sent, acceptance (consent, acceptance)",
+    "meaning": "cto getsent, acceptance (consent, acceptance)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "承知",
@@ -7905,7 +7906,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "似る",
     "kana": "にる",
-    "meaning": "到 resemble, 到 be similar (to resemble, to be similar)",
+    "meaning": "to resemble, to be similar",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "似る",
@@ -7950,7 +7951,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "慣れる",
     "kana": "なれる",
-    "meaning": "到 grow accustomed 到 (to grow accustomed to)",
+    "meaning": "to grow accustomed to",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "慣れる",
@@ -7959,7 +7960,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "普通",
     "kana": "ふつう",
-    "meaning": "comm在; usual (common; usual)",
+    "meaning": "commto get; usual (common; usual)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "普通",
@@ -7968,7 +7969,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "手伝う",
     "kana": "てつだう",
-    "meaning": "到 help (to help)",
+    "meaning": "to help",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "手伝う",
@@ -7977,7 +7978,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "息子",
     "kana": "むすこ",
-    "meaning": "(humble) s在 ((humble) son)",
+    "meaning": "(humble) sto get ((humble) son)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "息子",
@@ -7986,7 +7987,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "お子さん",
     "kana": "おこさん",
-    "meaning": "(someone else's) child (有禮貌的) ((someone else's) child (polite))",
+    "meaning": "(someone else's) child (有禮貌from) ((someone else's) child (polite))",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "お子さん",
@@ -8004,7 +8005,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "笑う",
     "kana": "わらう",
-    "meaning": "到 laugh, 到 smile (to laugh, to smile)",
+    "meaning": "to laugh, to smile",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "笑う",
@@ -8013,7 +8014,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "運ぶ",
     "kana": "はこぶ",
-    "meaning": "到 transport, 到 carry (to transport, to carry)",
+    "meaning": "to transport, to carry",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "運ぶ",
@@ -8040,7 +8041,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "お見舞い",
     "kana": "おみまい",
-    "meaning": "calling 在 someone who is ill, visit (calling on someone who is ill, visit)",
+    "meaning": "calling to get someone who is ill, visit (calling on someone who is ill, visit)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "お見舞い",
@@ -8067,7 +8068,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "下る",
     "kana": "さがる",
-    "meaning": "到 descend, 到 drop, 到 fall (to descend, to drop, to fall)",
+    "meaning": "to descend, to drop, to fall",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "下る",
@@ -8085,7 +8086,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "褒める",
     "kana": "ほめる",
-    "meaning": "到 praise; 到 say nice things (to praise; to say nice things)",
+    "meaning": "to praise; to say nice things",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "褒める",
@@ -8094,7 +8095,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "空く",
     "kana": "すく",
-    "meaning": "到 be empty (in reference 到 people), 到 be less crowded (to be empty (in reference to people), to be less crowded)",
+    "meaning": "to be empty (in reference to people",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "空く",
@@ -8112,7 +8113,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "合う",
     "kana": "あう",
-    "meaning": "到 fit, 到 match (to fit, to match)",
+    "meaning": "to fit, to match",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "合う",
@@ -8148,7 +8149,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "展覧会",
     "kana": "てんらんかい",
-    "meaning": "exhibiti在 (exhibition)",
+    "meaning": "exhibitito get (exhibition)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "展覧会",
@@ -8157,7 +8158,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "久しぶり",
     "kana": "ひさしぶり",
-    "meaning": "it has been a long 時間; for the first 時間 in a long 時間 (it has been a long time; for the first time in a long time)",
+    "meaning": "it has been a long time; for the first time in a long time (it has been a long time; for the first time in a long time)",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "久しぶり",
@@ -8166,7 +8167,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "汽車",
     "kana": "きしゃ",
-    "meaning": "火車 (steam) (train (steam))",
+    "meaning": "steam",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "汽車",
@@ -8184,7 +8185,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "見つかる",
     "kana": "みつかる",
-    "meaning": "到 be found (v.i.), 到 be discovered (to be found (v.i.), to be discovered)",
+    "meaning": "to be found (v.i.",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "見つかる",
@@ -8193,7 +8194,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "召し上がる",
     "kana": "めしあがる",
-    "meaning": "-- 敬語 form 的 食べる (たべる) 和 飲む (のむ) -- (-- honorific form of 食べる (たべる) and 飲む (のむ) --)",
+    "meaning": "-- 敬語 form from 食べる (たべる) 和 飲む (のむ) -- (-- honorific form of 食べる (たべる) and 飲む (のむ) --)",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "召し上がる",
@@ -8202,7 +8203,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "太る",
     "kana": "ふとる",
-    "meaning": "到 gain weight (to gain weight)",
+    "meaning": "to gain weight",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "太る",
@@ -8211,7 +8212,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "注射",
     "kana": "ちゅうしゃ",
-    "meaning": "injecti在 (injection)",
+    "meaning": "injectito get (injection)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "注射",
@@ -8238,7 +8239,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "安心",
     "kana": "あんしん",
-    "meaning": "peace 的 mind, relief (peace of mind, relief)",
+    "meaning": "peace from mind, relief (peace of mind, relief)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "安心",
@@ -8247,7 +8248,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "直る",
     "kana": "なおる",
-    "meaning": "到 be fixed (to be fixed)",
+    "meaning": "to be fixed",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "直る",
@@ -8256,7 +8257,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "集める",
     "kana": "あつめる",
-    "meaning": "到 collect, 到 gather (v.t.), 到 assemble (to collect, to gather (v.t.), to assemble)",
+    "meaning": "to collect, to gather (v.t.",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "集める",
@@ -8265,7 +8266,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "直す",
     "kana": "なおす",
-    "meaning": "到 correct (v.t.); 到 fix (to correct (v.t.); to fix)",
+    "meaning": "to correct (v.t.",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "直す",
@@ -8274,7 +8275,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "続く",
     "kana": "つづく",
-    "meaning": "到 be continued (to be continued)",
+    "meaning": "to be continued",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "続く",
@@ -8283,7 +8284,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "先輩",
     "kana": "せんぱい",
-    "meaning": "senior members 的 a group (senior members of a group)",
+    "meaning": "senior members from a group (senior members of a group)",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "先輩",
@@ -8301,7 +8302,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "世話",
     "kana": "せわする",
-    "meaning": "looking after; 到 look after (looking after; to look after)",
+    "meaning": "looking after; looking after; to look after",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "世話",
@@ -8310,7 +8311,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "近所",
     "kana": "きんじょ",
-    "meaning": "neighb或hood (neighborhood)",
+    "meaning": "neighbcartoonhood (neighborhood)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "近所",
@@ -8328,7 +8329,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "億",
     "kana": "おく",
-    "meaning": "hundred milli在 (hundred million)",
+    "meaning": "hundred millito get (hundred million)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "億",
@@ -8355,7 +8356,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "払う",
     "kana": "はらう",
-    "meaning": "到 pay (to pay)",
+    "meaning": "to pay",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "払う",
@@ -8364,7 +8365,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "習慣",
     "kana": "しゅうかん",
-    "meaning": "custom (in reference 到 culture) (custom (in reference to culture))",
+    "meaning": "in reference to culture",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "習慣",
@@ -8373,7 +8374,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "焼ける",
     "kana": "やける",
-    "meaning": "到 burn, 到 be roasted (to burn, to be roasted)",
+    "meaning": "to burn, to be roasted",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "焼ける",
@@ -8382,7 +8383,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "君",
     "kana": "きみ",
-    "meaning": "you (inf或mal f或 men) (you (informal for men))",
+    "meaning": "informal for men",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "君",
@@ -8391,7 +8392,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "冷える",
     "kana": "ひえる",
-    "meaning": "到 grow cold, 到 cool down (to grow cold, to cool down)",
+    "meaning": "to grow cold, to cool down",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "冷える",
@@ -8400,7 +8401,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "点く",
     "kana": "つく",
-    "meaning": "到 be started, 到 be switched 在 (to be started, to be switched on)",
+    "meaning": "to be started, to be switched on",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "点く",
@@ -8418,7 +8419,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "続ける",
     "kana": "つづける",
-    "meaning": "到 continue, 到 keep up (to continue, to keep up)",
+    "meaning": "to continue, to keep up",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "続ける",
@@ -8427,7 +8428,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "落す",
     "kana": "おとす",
-    "meaning": "到 drop, 到 lose (to drop, to lose)",
+    "meaning": "to drop, to lose",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "落す",
@@ -8436,7 +8437,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "明日",
     "kana": "あす",
-    "meaning": "到m或row (tomorrow)",
+    "meaning": "到mcartoonrow (tomorrow)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "明日",
@@ -8454,7 +8455,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "拝見",
     "kana": "はいけんする",
-    "meaning": "(humble) (有禮貌的) seeing, look at ((humble) (polite) seeing, look at)",
+    "meaning": "(humble) (有禮貌from) seeing, look at ((humble) (polite) seeing, look at)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "拝見",
@@ -8463,7 +8464,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "割れる",
     "kana": "われる",
-    "meaning": "到 break (to break)",
+    "meaning": "to break",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "割れる",
@@ -8472,7 +8473,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "背中",
     "kana": "せなか",
-    "meaning": "back (的 body) (back (of body))",
+    "meaning": "of body",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "背中",
@@ -8490,7 +8491,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "回る、回す",
     "kana": "まわる、まわす",
-    "meaning": "到 go around, 到 revolve (to go around, to revolve)",
+    "meaning": "to go around, to revolve",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "回る、回す",
@@ -8508,7 +8509,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "濡れる",
     "kana": "ぬれる",
-    "meaning": "變得 wet (to get wet)",
+    "meaning": "hand wet (to get wet)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "濡れる",
@@ -8517,7 +8518,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "倒れる",
     "kana": "たおれる",
-    "meaning": "到 collapse, 到 break down (to collapse, to break down)",
+    "meaning": "to collapse, to break down",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "倒れる",
@@ -8526,7 +8527,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "考える",
     "kana": "かんがえる",
-    "meaning": "到 think (about); 到 consider (to think (about); to consider)",
+    "meaning": "to think (about",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "考える",
@@ -8535,7 +8536,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "向かう",
     "kana": "むかう",
-    "meaning": "到 face, 到 go towards (to face, to go towards)",
+    "meaning": "to face, to go towards",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "向かう",
@@ -8553,7 +8554,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "仕方",
     "kana": "しかた",
-    "meaning": "way (的 doing something) (way (of doing something))",
+    "meaning": "of doing something",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "仕方",
@@ -8607,7 +8608,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "移る",
     "kana": "うつる",
-    "meaning": "到 move (從 a house); 到 transfer (從 a department); 到 shift (to move (from a house); to transfer (from a department); to shift)",
+    "meaning": "towel a department",
     "difficulty": "normal",
     "category": "經濟",
     "kanji": "移る",
@@ -8616,7 +8617,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "研究室",
     "kana": "けんきゅうしつ",
-    "meaning": "the pr的ess或's 的fice; lab或at或y (the professor's office; laboratory)",
+    "meaning": "the prfromesscartoon's fromfice; labcartoonatcartoony (the professor's office; laboratory)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "研究室",
@@ -8625,7 +8626,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "工場",
     "kana": "こうじょう",
-    "meaning": "fact或y (factory)",
+    "meaning": "factcartoony (factory)",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "工場",
@@ -8634,7 +8635,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "紹介",
     "kana": "しょうかい",
-    "meaning": "an introducti在 (an introduction)",
+    "meaning": "an introductito get (an introduction)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "紹介",
@@ -8652,7 +8653,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "動く",
     "kana": "うごく",
-    "meaning": "到 move (to move)",
+    "meaning": "to move",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "動く",
@@ -8670,7 +8671,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "優しい",
     "kana": "やさしい",
-    "meaning": "kind (pers在), gentle (pers在), easy (problem) (kind (person), gentle (person), easy (problem))",
+    "meaning": "kind (persto get), gentle (persto get), easy (problem) (kind (person), gentle (person), easy (problem))",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "優しい",
@@ -8679,7 +8680,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "植える",
     "kana": "うえる",
-    "meaning": "到 plant (to plant)",
+    "meaning": "to plant",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "植える",
@@ -8697,7 +8698,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "汚れる",
     "kana": "よごれる",
-    "meaning": "到 become dirty (to become dirty)",
+    "meaning": "to become dirty",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "汚れる",
@@ -8724,7 +8725,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "勝つ",
     "kana": "かつ",
-    "meaning": "到 win (to win)",
+    "meaning": "to win",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "勝つ",
@@ -8742,7 +8743,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "警察",
     "kana": "けいさつ",
-    "meaning": "police; police stati在 (police; police station)",
+    "meaning": "police; police statito get (police; police station)",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "警察",
@@ -8751,7 +8752,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "取り替える",
     "kana": "とりかえる",
-    "meaning": "到 exchange, 到 replace (to exchange, to replace)",
+    "meaning": "to exchange, to replace",
     "difficulty": "normal",
     "category": "場所",
     "kanji": "取り替える",
@@ -8760,7 +8761,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "急ぐ",
     "kana": "いそぐ",
-    "meaning": "到 hurry, 到 be in a hurry, 到 rush (to hurry, to be in a hurry, to rush)",
+    "meaning": "to hurry, to be in a hurry, to rush",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "急ぐ",
@@ -8805,7 +8806,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "復習",
     "kana": "ふくしゅう",
-    "meaning": "review (的 lessons), revision (review (of lessons), revision)",
+    "meaning": "review (from lessons), revision (review (of lessons), revision)",
     "difficulty": "normal",
     "category": "抽象",
     "kanji": "復習",
@@ -8814,7 +8815,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "間に合う",
     "kana": "まにあう",
-    "meaning": "到 be in 時間 for (to be in time for)",
+    "meaning": "to be in time for",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "間に合う",
@@ -8823,7 +8824,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "役に立つ",
     "kana": "やくにたつ",
-    "meaning": "到 be helpful, 到 be useful (to be helpful, to be useful)",
+    "meaning": "to be helpful, to be useful",
     "difficulty": "normal",
     "category": "經濟",
     "kanji": "役に立つ",
@@ -8841,7 +8842,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "戻る",
     "kana": "もどる",
-    "meaning": "到 return (v.i.); 到 come back (to return (v.i.); to come back)",
+    "meaning": "to return (v.i.",
     "difficulty": "beginner",
     "category": "一般",
     "kanji": "戻る",
@@ -8850,7 +8851,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "研究",
     "kana": "けんきゅう",
-    "meaning": "study, research, investigati在 (study, research, investigation)",
+    "meaning": "study, research, investigatito get (study, research, investigation)",
     "difficulty": "normal",
     "category": "學術",
     "kanji": "研究",
@@ -8868,7 +8869,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "込む",
     "kana": "こむ",
-    "meaning": "到 be crowded (to be crowded)",
+    "meaning": "to be crowded",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "込む",
@@ -8886,7 +8887,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "訪ねる",
     "kana": "たずねる",
-    "meaning": "到 visit (to visit)",
+    "meaning": "to visit",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "訪ねる",
@@ -8895,7 +8896,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "下げる",
     "kana": "さげる",
-    "meaning": "到 lower (v.t.); 到 hang (to lower (v.t.); to hang)",
+    "meaning": "to lower (v.t.",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "下げる",
@@ -8913,7 +8914,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "途中",
     "kana": "とちゅう",
-    "meaning": "在 the way, midway (on the way, midway)",
+    "meaning": "to get the way, midway (on the way, midway)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "途中",
@@ -8922,7 +8923,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "入院",
     "kana": "にゅういんする",
-    "meaning": "hospitalizati在 (hospitalization)",
+    "meaning": "hospitalizatito get (hospitalization)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "入院",
@@ -8931,7 +8932,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "乗り換える",
     "kana": "のりかえる",
-    "meaning": "到 transfer (trains), 到 更換 (bus, 火車, etc.) (to transfer (trains), to change (bus, train, etc.))",
+    "meaning": "bus, money, etc.",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "乗り換える",
@@ -8940,7 +8941,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "別れる",
     "kana": "わかれる",
-    "meaning": "到 part 從, 到 separate (to part from, to separate)",
+    "meaning": "to part from, to separate",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "別れる",
@@ -8976,7 +8977,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "相談",
     "kana": "そうだんする",
-    "meaning": "c在sultati在 (consultation)",
+    "meaning": "cto getsultatito get (consultation)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "相談",
@@ -8985,7 +8986,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "眠る",
     "kana": "ねむる",
-    "meaning": "到 sleep (to sleep)",
+    "meaning": "to sleep",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "眠る",
@@ -8994,7 +8995,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "上がる",
     "kana": "あがる",
-    "meaning": "到 rise, 到 go up (to rise, to go up)",
+    "meaning": "to rise, to go up",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "上がる",
@@ -9003,7 +9004,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   {
     "word": "翻訳",
     "kana": "ほんやく",
-    "meaning": "translati在 (translation)",
+    "meaning": "translatito get (translation)",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "翻訳",

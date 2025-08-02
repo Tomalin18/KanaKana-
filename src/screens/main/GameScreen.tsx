@@ -9,8 +9,10 @@ import {
   Easing,
 } from 'react-native';
 import { TechTheme, Typography, Spacing, Shadows, TechColors } from '@/constants/theme';
-import { validateJapaneseInput } from '@/utils/japaneseInput';
-import { getRandomWord } from '@/store/gameStore';
+import { getRandomWordByCombinedDifficulty, type TetrisWord } from '@/data/vocabulary-final';
+import { useTypingDetection } from '@/hooks/useTypingDetection';
+import { DifficultySelector } from '@/components/common/DifficultySelector';
+import type { CombinedDifficultyLevel, DifficultyLevel } from '@/types';
 import { GlassNavBar } from '@/components/common/GlassNavBar';
 import { GlassContainer } from '@/components/common/GlassContainer';
 import { PauseOverlay } from '@/components/common/PauseOverlay';
@@ -54,32 +56,39 @@ export const GameScreen: React.FC<GameScreenProps> = ({ route, navigation }) => 
   }
   
   // 經典模式設定
-  const classicSettings = settings as any || {
-    difficulty: 'normal',
-    showHints: true,
-    vocabularyLevel: 'n5',
-  };
-
-  // 根據難度設定初始生命值
-  const getInitialLives = () => {
-    switch (classicSettings.difficulty) {
-      case 'easy': return 5;
-      case 'normal': return 3;
-      case 'hard': return 1;
-      default: return 3;
-    }
-  };
+  const [selectedDifficulty, setSelectedDifficulty] = useState<CombinedDifficultyLevel>('elementary');
+  const [showDifficultySelector, setShowDifficultySelector] = useState(true);
 
   // 遊戲狀態
   const [gameState, setGameState] = useState<'start' | 'playing' | 'paused' | 'ended'>('start');
-  const [score, setScore] = useState(0);
-  const [combo, setCombo] = useState(0);
-  const [lives, setLives] = useState(getInitialLives());
-  const [currentWord, setCurrentWord] = useState('');
-  const [userInput, setUserInput] = useState('');
+  const [currentWord, setCurrentWord] = useState<TetrisWord | null>(null);
   const [gameTime, setGameTime] = useState(0);
   
   const gameTimerRef = useRef<NodeJS.Timeout | null>(null);
+
+  // 使用統一的打字偵測 hook
+  const {
+    userInput,
+    combo,
+    score,
+    isTyping,
+    handleInputChange: typingHandleInputChange,
+    resetState,
+    setScore
+  } = useTypingDetection(currentWord?.kana || '', {
+    onCorrect: (word, points) => {
+      // getRandomWordByCombinedDifficulty 需要 CombinedDifficultyLevel 參數
+      const newWord = getRandomWordByCombinedDifficulty(selectedDifficulty);
+      setCurrentWord(newWord);
+    },
+    onError: () => {
+      // 錯誤處理（只重置連擊，不扣生命）
+    },
+    baseScoreMultiplier: 10,
+    comboMultiplier: 5,
+  });
+
+
 
   // 遊戲計時器
   useEffect(() => {
@@ -104,12 +113,11 @@ export const GameScreen: React.FC<GameScreenProps> = ({ route, navigation }) => 
   // 開始遊戲
   const startGame = () => {
     setGameState('playing');
-    setScore(0);
-    setCombo(0);
-    setLives(getInitialLives());
-    setUserInput('');
+    resetState();
     setGameTime(0);
-    setCurrentWord(getRandomWord());
+    const newWord = getRandomWordByCombinedDifficulty(selectedDifficulty);
+    setCurrentWord(newWord);
+    setShowDifficultySelector(false);
   };
 
   // 暫停/繼續遊戲
@@ -120,32 +128,7 @@ export const GameScreen: React.FC<GameScreenProps> = ({ route, navigation }) => 
   // 處理輸入變化
   const handleInputChange = (text: string) => {
     if (gameState !== 'playing') return;
-    
-    setUserInput(text);
-    
-    // 檢查是否完成當前單詞
-    const validation = validateJapaneseInput(text, currentWord);
-    if (validation.isComplete) {
-      // 正確完成
-      const points = 100 + (combo * 10);
-      setScore(prev => prev + points);
-      setCombo(prev => prev + 1);
-      
-      // 生成新單詞
-      setCurrentWord(getRandomWord());
-      setUserInput('');
-    } else if (!validation.canContinue && text.length > 0) {
-      // 輸入錯誤
-      setCombo(0);
-      setLives(prev => {
-        const newLives = prev - 1;
-        if (newLives <= 0) {
-          setGameState('ended');
-        }
-        return newLives;
-      });
-      setUserInput('');
-    }
+    typingHandleInputChange(text);
   };
 
   // 重新開始遊戲
@@ -160,9 +143,27 @@ export const GameScreen: React.FC<GameScreenProps> = ({ route, navigation }) => 
 
   // 渲染遊戲界面
   const renderGameContent = () => {
+    // 顯示難度選擇器
+    if (showDifficultySelector) {
+      return (
+        <View style={styles.container}>
+          <DifficultySelector
+            selectedDifficulty={selectedDifficulty}
+            onSelectDifficulty={setSelectedDifficulty}
+          />
+          <Pressable
+            style={styles.startButton}
+            onPress={startGame}
+          >
+            <Text style={styles.startButtonText}>開始遊戲</Text>
+          </Pressable>
+        </View>
+      );
+    }
+
     switch (gameState) {
       case 'start':
-        return <GameStartScreen onStart={startGame} mode={mode} settings={classicSettings} />;
+        return <GameStartScreen onStart={startGame} mode={mode} />;
       case 'playing':
       case 'paused':
         return (
@@ -173,7 +174,6 @@ export const GameScreen: React.FC<GameScreenProps> = ({ route, navigation }) => 
               onInputChange={handleInputChange}
               score={score}
               combo={combo}
-              lives={lives}
               gameTime={gameTime}
             />
             <PauseOverlay
@@ -464,12 +464,11 @@ const GameStartScreen: React.FC<GameStartScreenProps> = ({ onStart, mode, settin
 
 // 遊戲進行屏幕
 interface GamePlayScreenProps {
-  currentWord: string;
+  currentWord: TetrisWord | null;
   userInput: string;
   onInputChange: (text: string) => void;
   score: number;
   combo: number;
-  lives: number;
   gameTime: number;
 }
 
@@ -479,75 +478,85 @@ const GamePlayScreen: React.FC<GamePlayScreenProps> = ({
   onInputChange,
   score,
   combo,
-  lives,
   gameTime,
-}) => (
-  <View style={styles.gameContainer}>
-    {/* 遊戲頭部信息 */}
-    <GlassContainer
-      variant="secondary"
-      glowEffect={false}
-      style={styles.gameHeader}
-    >
-      <Text style={styles.scoreText}>分數: {score}</Text>
-      <Text style={styles.comboText}>連擊: {combo}</Text>
-      <Text style={styles.livesText}>生命: {'❤️'.repeat(lives)}</Text>
-      <Text style={styles.timeText}>時間: {Math.floor(gameTime / 60)}:{(gameTime % 60).toString().padStart(2, '0')}</Text>
-    </GlassContainer>
+}) => {
+  // 顯示難度（N5~N1）
+  const jlptMap: Record<string, string> = {
+    beginner: 'N5',
+    normal: 'N4',
+    hard: 'N3',
+    expert: 'N2',
+    kanji: 'N1',
+  };
+  const jlpt = currentWord ? jlptMap[currentWord.difficulty] || 'N/A' : '';
+  const displayWord = currentWord?.kana || '';
+  
+  return (
+    <View style={styles.gameContainer}>
+      {/* 提示欄 - 顯示難度、中英文解釋、漢字寫法 */}
+      {currentWord && (
+        <GlassContainer
+          variant="secondary"
+          glowEffect={false}
+          style={styles.hintContainer}
+        >
+          <Text style={styles.hintText}>難度: {jlpt}</Text>
+          <Text style={styles.hintText}>解釋: {currentWord.meaning}</Text>
+          {currentWord.kanji && (
+            <Text style={styles.hintText}>漢字: {currentWord.kanji}</Text>
+          )}
+        </GlassContainer>
+      )}
 
-    {/* 上方遊戲區域 - 題目泡泡和輸入欄 */}
-    <View style={styles.topGameArea}>
-      {/* 題目泡泡 - 飄動效果 */}
-      <View style={styles.bubbleContainer}>
-        <FloatingBubble style={styles.wordBubble} bubbleSize={calculateBubbleSize(currentWord)}>
-          <GlassContainer
-            variant="accent"
-            glowEffect={true}
-            neonBorder={true}
-            borderRadius={60}
-            style={styles.bubbleContent}
-          >
-            <Text 
-              style={[styles.currentWordText, { fontSize: calculateFontSize(currentWord) }]}
-              numberOfLines={1}
-              adjustsFontSizeToFit={true}
-              minimumFontScale={0.7}
+      {/* 上方遊戲區域 - 題目泡泡和輸入欄 */}
+      <View style={styles.topGameArea}>
+        {/* 題目泡泡 - 飄動效果 */}
+        <View style={styles.bubbleContainer}>
+          <FloatingBubble style={styles.wordBubble} bubbleSize={calculateBubbleSize(displayWord)}>
+            <GlassContainer
+              variant="accent"
+              glowEffect={true}
+              neonBorder={true}
+              borderRadius={60}
+              style={styles.bubbleContent}
             >
-              {currentWord}
-            </Text>
-          </GlassContainer>
-        </FloatingBubble>
-      </View>
-      
-      {/* 用戶輸入區域 */}
-      <GlassContainer
-        variant="primary"
-        glowEffect={true}
-        style={styles.inputDisplayContainer}
-      >
-        <Text style={styles.inputDisplayLabel}>你的輸入:</Text>
-        <TextInput
-          style={styles.inputDisplayBox}
-          value={userInput}
-          onChangeText={onInputChange}
-          placeholder="開始輸入..."
-          placeholderTextColor={TechTheme.textSecondary}
-          autoFocus
-        />
-        
-        {/* 輸入提示區域 */}
-        <View style={styles.inputHintContainer}>
-          <InputHints userInput={userInput} targetWord={currentWord} />
+              <Text 
+                style={[styles.currentWordText, { fontSize: calculateFontSize(displayWord) }]}
+                numberOfLines={1}
+                adjustsFontSizeToFit={true}
+                minimumFontScale={0.7}
+              >
+                {displayWord}
+              </Text>
+            </GlassContainer>
+          </FloatingBubble>
         </View>
-      </GlassContainer>
-    </View>
+        
+        {/* 用戶輸入區域 */}
+        <GlassContainer
+          variant="primary"
+          glowEffect={true}
+          style={styles.inputDisplayContainer}
+        >
+          <Text style={styles.inputDisplayLabel}>你的輸入:</Text>
+          <TextInput
+            style={styles.inputDisplayBox}
+            value={userInput}
+            onChangeText={onInputChange}
+            placeholder="開始輸入..."
+            placeholderTextColor={TechTheme.textSecondary}
+            autoFocus
+          />
+        </GlassContainer>
+      </View>
 
-    {/* 下方裝飾區域 */}
-    <View style={styles.bottomDecorationArea}>
-      <FloatingParticles />
+      {/* 下方裝飾區域 */}
+      <View style={styles.bottomDecorationArea}>
+        <FloatingParticles />
+      </View>
     </View>
-  </View>
-);
+  );
+};
 
 /**
  * 飄動粒子效果組件
@@ -652,8 +661,6 @@ interface InputHintsProps {
 }
 
 const InputHints: React.FC<InputHintsProps> = ({ userInput, targetWord }) => {
-  const validation = validateJapaneseInput(userInput, targetWord);
-  
   if (!userInput) {
     return (
       <Text style={styles.inputHint}>
@@ -662,29 +669,25 @@ const InputHints: React.FC<InputHintsProps> = ({ userInput, targetWord }) => {
     );
   }
   
+  // 簡單的輸入提示邏輯
+  const isCorrect = userInput === targetWord;
+  const isPartial = targetWord.startsWith(userInput);
+  
   return (
     <View style={styles.inputHintsContainer}>
-      {validation.hint && (
-        <Text style={[
-          styles.inputHint,
-          validation.isPartialMatch ? styles.inputHintCorrect : styles.inputHintError
-        ]}>
-          💡 {validation.hint}
-        </Text>
-      )}
-      {validation.canContinue && validation.nextPossibleChars && validation.nextPossibleChars.length > 0 && (
-        <Text style={styles.inputHint}>
-          下一個字符: {validation.nextPossibleChars.join(' 或 ')}
-        </Text>
-      )}
-      {!validation.canContinue && !validation.isComplete && userInput.length > 0 && (
-        <Text style={styles.inputHintError}>
-          ❌ 輸入錯誤，請重新輸入
-        </Text>
-      )}
-      {validation.isComplete && (
+      {isCorrect && (
         <Text style={styles.inputHintCorrect}>
           ✅ 完成！
+        </Text>
+      )}
+      {!isCorrect && isPartial && (
+        <Text style={styles.inputHint}>
+          💡 繼續輸入...
+        </Text>
+      )}
+      {!isCorrect && !isPartial && userInput.length > 0 && (
+        <Text style={styles.inputHintError}>
+          ❌ 輸入錯誤，請重新輸入
         </Text>
       )}
     </View>
@@ -748,6 +751,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: TechTheme.background,
   },
+  
   
   // 星空背景
   starfield: {
@@ -824,11 +828,14 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     borderWidth: 1,
     borderColor: TechTheme.primary,
+    alignItems: 'center',
+    marginTop: Spacing.xl,
+    ...Shadows.neon.blue,
   },
   
   startButtonText: {
-    color: TechTheme.background,
-    fontSize: Typography.sizes.ui.body,
+    color: TechTheme.surface,
+    fontSize: Typography.sizes.ui.subtitle,
     fontWeight: Typography.weights.semibold,
     letterSpacing: Typography.letterSpacing.ui,
   },
@@ -843,6 +850,23 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginBottom: Spacing.sm,
+  },
+  
+  hintContainer: {
+    paddingHorizontal: Spacing.md,
+    paddingVertical: Spacing.sm,
+    marginBottom: Spacing.md,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: TechTheme.border,
+    backgroundColor: TechTheme.surface,
+  },
+  
+  hintText: {
+    fontSize: Typography.sizes.ui.caption,
+    color: TechTheme.textSecondary,
+    marginBottom: Spacing.xs,
+    lineHeight: Typography.lineHeights.ui,
   },
   
   scoreText: {
