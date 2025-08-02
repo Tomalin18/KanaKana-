@@ -920,7 +920,7 @@ export const EXPERT_WORDS: TetrisWord[] = [
   {
     "word": "こたつ",
     "kana": "こたつ",
-    "meaning": "table with heater, (originally) charcoal brazier in a floor 好 (table with heater, (originally) charcoal brazier in a floor 好) (table with heater, (originally) charcoal brazier in a floor 好 (table with heater, (originally) charcoal brazier in a floor well))",
+    "meaning": "table with heater, (originally) charcoal brazier in a floor well",
     "difficulty": "expert",
     "category": "抽象",
     "isKanji": false
@@ -1751,7 +1751,7 @@ export const EXPERT_WORDS: TetrisWord[] = [
   {
     "word": "様",
     "kana": "さま",
-    "meaning": "state; way (a person does something); Mr. cartoon Mrs. (state; way (a person does something); Mr. cartoon Mrs.) (state; way (a person does something); Mr. cartoon Mrs. (state; way (a person does something); Mr. or Mrs.))",
+    "meaning": "state; way (a person does something); Mr. or Mrs.",
     "difficulty": "expert",
     "category": "一般",
     "kanji": "様",
@@ -3135,7 +3135,7 @@ export const EXPERT_WORDS: TetrisWord[] = [
   {
     "word": "共稼ぎ",
     "kana": "ともかせぎ",
-    "meaning": "working together, (husband 和 wife) earning a living together (working together, (husband 和 wife) earning a living together) (working together, (husband 和 wife) earning a living together (working together, (husband and wife) earning a living together))",
+    "meaning": "working together, (husband and wife) earning a living together",
     "difficulty": "expert",
     "category": "一般",
     "kanji": "共稼ぎ",
@@ -9920,7 +9920,7 @@ export const EXPERT_WORDS: TetrisWord[] = [
   {
     "word": "道場",
     "kana": "どうじょう",
-    "meaning": "(arch) dojo, hall used fcartoon martial arts moneying, m和ala ((arch) dojo, hall used fcartoon martial arts moneying, m和ala) ((arch) dojo, hall used fcartoon martial arts moneying, m和ala ((arch) dojo, hall used for martial arts training, mandala))",
+    "meaning": "(arch) dojo, hall used for martial arts training, mandala",
     "difficulty": "expert",
     "category": "經濟",
     "kanji": "道場",
@@ -12242,7 +12242,7 @@ export const EXPERT_WORDS: TetrisWord[] = [
   {
     "word": "裾",
     "kana": "すそ",
-    "meaning": "(trouser) cuff, (skirt) hem, cut edge from a hairdo ((trouser) cuff, (skirt) hem, cut edge from a hairdo) ((trouser) cuff, (skirt) hem, cut edge from a hairdo ((trouser) cuff, (skirt) hem, cut edge of a hairdo))",
+    "meaning": "(trouser) cuff, (skirt) hem, cut edge of a hairdo",
     "difficulty": "expert",
     "category": "經濟",
     "kanji": "裾",
@@ -16021,7 +16021,7 @@ export const EXPERT_WORDS: TetrisWord[] = [
   {
     "word": "手元",
     "kana": "てもと",
-    "meaning": "(in) to get hand cartoon at home, or's purse; usual skill ((in) to get hand cartoon at home, or's purse; usual skill) ((in) to get hand cartoon at home, or's purse; usual skill ((money) on hand or at home, one's purse; usual skill))",
+    "meaning": "(money) on hand or at home, one's purse; usual skill",
     "difficulty": "expert",
     "category": "一般",
     "kanji": "手元",
@@ -19868,7 +19868,7 @@ export const EXPERT_WORDS: TetrisWord[] = [
   {
     "word": "瞬き",
     "kana": "まばたき",
-    "meaning": "wink, twinkling (from stars), flicker (from light) (wink, twinkling (from stars), flicker (from light)) (wink, twinkling (from stars), flicker (from light) (wink, twinkling (of stars), flicker (of light)))",
+    "meaning": "wink, twinkling (of stars), flicker (of light)",
     "difficulty": "expert",
     "category": "一般",
     "kanji": "瞬き",

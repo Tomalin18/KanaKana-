@@ -1,0 +1,17 @@
+{
+  "totalIssues": 388851,
+  "totalWords": 14143,
+  "issueSummary": {
+    "semicolon": 828,
+    "braces": 28300,
+    "apostrophe": 192,
+    "dash": 294,
+    "leadingTrailingSpaces": 128136,
+    "multipleSpaces": 128068,
+    "brackets": 26,
+    "quotes": 99691,
+    "parentheses": 3282,
+    "ellipsis": 11,
+    "tilde": 23
+  }
+}

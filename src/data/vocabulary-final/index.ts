@@ -23,6 +23,10 @@ import { HARD_WORDS } from './hard 2';
 import { EXPERT_WORDS } from './expert 2';
 import { JLPT_N3_N2_WORDS } from './jlpt-chunks';
 
+// 導入包含N1詞彙的原始檔案
+import { normal as NORMAL_WORDS_WITH_N1 } from './normal';
+import { expert as EXPERT_WORDS_WITH_N1 } from './expert';
+
 // 導入漢字專用詞彙
 import { KANJI_WORDS_01 } from './kanji-01';
 import { KANJI_WORDS_02 } from './kanji-02';
@@ -74,14 +78,26 @@ export const getRandomWordByCombinedDifficulty = (difficulty: CombinedDifficulty
       wordPool = BEGINNER_WORDS;
       break;
     case 'normal':
-      // 中級：包含初級、中級詞彙 + N3詞彙
+      // 中級：包含初級、中級詞彙 + N3詞彙 + 部分N1詞彙
       const n3Words = JLPT_N3_N2_WORDS.filter(word => word.jlptLevel === 'n3');
-      wordPool = [...BEGINNER_WORDS, ...NORMAL_WORDS, ...n3Words];
+      const n1WordsFromNormal = NORMAL_WORDS_WITH_N1.filter((word: TetrisWord) => word.jlptLevel === 'n1');
+      wordPool = [...BEGINNER_WORDS, ...NORMAL_WORDS, ...n3Words, ...n1WordsFromNormal];
       break;
     case 'hard':
-      // 高級：包含中級、高級詞彙 + N2詞彙
+      // 高級：大幅增加N1和N2詞彙的比例，減少中級詞彙
       const n2Words = JLPT_N3_N2_WORDS.filter(word => word.jlptLevel === 'n2');
-      wordPool = [...NORMAL_WORDS, ...HARD_WORDS, ...n2Words];
+      const n1WordsFromExpert = EXPERT_WORDS_WITH_N1.filter((word: TetrisWord) => word.jlptLevel === 'n1');
+      
+      // 為了增加N1和N2詞彙的權重，我們重複添加這些詞彙
+      const weightedN2Words = [...n2Words, ...n2Words, ...n2Words]; // 3倍權重
+      const weightedN1Words = [...n1WordsFromExpert, ...n1WordsFromExpert, ...n1WordsFromExpert, ...n1WordsFromExpert]; // 4倍權重
+      
+      wordPool = [
+        ...NORMAL_WORDS, // 中級詞彙（基礎）
+        ...HARD_WORDS,   // 高級詞彙
+        ...weightedN2Words, // N2詞彙（3倍權重）
+        ...weightedN1Words  // N1詞彙（4倍權重）
+      ];
       break;
     default:
       // 預設：包含所有詞彙

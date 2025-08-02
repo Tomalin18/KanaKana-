@@ -2706,7 +2706,7 @@ export const HARD_WORDS: TetrisWord[] = [
   {
     "word": "思い切り",
     "kana": "おもいきり",
-    "meaning": "with all or's strength (heart), resignation, resolution (with all or's strength (heart), resignation, resolution) (with all or's strength (heart), resignation, resolution (with all one's strength (heart), resignation, resolution))",
+    "meaning": "with all one's strength (heart), resignation, resolution",
     "difficulty": "hard",
     "category": "一般",
     "kanji": "思い切り",
@@ -3171,7 +3171,7 @@ export const HARD_WORDS: TetrisWord[] = [
   {
     "word": "可決",
     "kana": "かけつ",
-    "meaning": "approval, adoptito get (e.g., motito get, bill), passage (approval, adoptito get (e.g., motito get, bill), passage) (approval, adoptito get (e.g., motito get, bill), passage (approval, adoption (e.g., motion, bill), passage))",
+    "meaning": "approval, adoption (e.g., motion, bill), passage",
     "difficulty": "hard",
     "category": "一般",
     "kanji": "可決",
@@ -6917,7 +6917,7 @@ export const HARD_WORDS: TetrisWord[] = [
     "isKanji": false
   },
   {
-    "word": "アイデア; アイディア",
+    "word": "アイデア",
     "kana": "アイデア",
     "meaning": "idea",
     "difficulty": "hard",
@@ -7483,7 +7483,7 @@ export const HARD_WORDS: TetrisWord[] = [
   {
     "word": "いってまいります",
     "kana": "いってまいります",
-    "meaning": "(Lit.) I'll go 和 come back, 'I'm going, see you later' ((Lit.) I'll go 和 come back, 'I'm going, see you later') ((Lit.) I'll go 和 come back, 'I'm going, see you later' ((Lit.) I'll go and come back, 'I'm going, see you later'))",
+    "meaning": "(Lit.) I'll go and come back, 'I'm going, see you later'",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -7491,7 +7491,7 @@ export const HARD_WORDS: TetrisWord[] = [
   {
     "word": "いってきます",
     "kana": "いってきます",
-    "meaning": "(Lit.) I'll go 和 come back, 'I'm going, see you later' ((Lit.) I'll go 和 come back, 'I'm going, see you later') ((Lit.) I'll go 和 come back, 'I'm going, see you later' ((Lit.) I'll go and come back, 'I'm going, see you later'))",
+    "meaning": "(Lit.) I'll go and come back, 'I'm going, see you later'",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -8896,7 +8896,7 @@ export const HARD_WORDS: TetrisWord[] = [
   {
     "word": "鈍い",
     "kana": "にぶい",
-    "meaning": "dull (e.g., a knife), thickheaded, slow (opposite from fast), stupid (dull (e.g., a knife), thickheaded, slow (opposite from fast), stupid) (dull (e.g., a knife), thickheaded, slow (opposite from fast), stupid (dull (e.g., a knife), thickheaded, slow (opposite of fast), stupid))",
+    "meaning": "dull (e.g., a knife), thickheaded, slow (opposite of fast), stupid",
     "difficulty": "hard",
     "category": "場所",
     "kanji": "鈍い",
@@ -9127,7 +9127,7 @@ export const HARD_WORDS: TetrisWord[] = [
   {
     "word": "鈍い",
     "kana": "のろい",
-    "meaning": "dull (e.g., a knife), slow (opposite from fast), stupid (dull (e.g., a knife), slow (opposite from fast), stupid) (dull (e.g., a knife), slow (opposite from fast), stupid (dull (e.g., a knife), slow (opposite of fast), stupid))",
+    "meaning": "dull (e.g., a knife), slow (opposite of fast), stupid",
     "difficulty": "hard",
     "category": "場所",
     "kanji": "鈍い",
@@ -10675,7 +10675,7 @@ export const HARD_WORDS: TetrisWord[] = [
   {
     "word": "並行",
     "kana": "へいこう",
-    "meaning": "(going) side by side, concurrent, at the same time ((going) side by side, concurrent, at the same time) ((going) side by side, concurrent, at the same time ((going) side by side, concurrent, at the same time))",
+    "meaning": "(going) side by side, concurrent, at the same time",
     "difficulty": "hard",
     "category": "一般",
     "kanji": "並行",

@@ -86,30 +86,44 @@ export const KanjiModeScreen: React.FC<KanjiModeScreenProps> = ({ route, navigat
     const allWords = getVocabularyByJLPT(level);
     const kanjiWords = allWords.filter(word => word.isKanji && word.kanji);
     
+    // 如果當前JLPT等級沒有漢字詞彙，嘗試其他等級
+    let availableKanjiWords = kanjiWords;
     if (kanjiWords.length === 0) {
-      // 如果沒有找到漢字詞彙，使用一般詞彙系統
-      const randomWord = getRandomWordByCombinedDifficulty(selectedDifficulty);
-      const kanjiWord: KanjiWord = {
-        id: randomWord.id || randomWord.word,
-        text: randomWord.word,
-        kanji: randomWord.kanji || randomWord.word,
-        hiragana: randomWord.kana,
-        katakana: randomWord.kana.toUpperCase(),
-        meaning: randomWord.chineseMeaning || randomWord.meaning,
-        difficulty: randomWord.difficulty === 'beginner' ? 1 : 
-                   randomWord.difficulty === 'normal' ? 2 : 
-                   randomWord.difficulty === 'hard' ? 3 : 4,
+      // 嘗試所有JLPT等級的漢字詞彙
+      const allJLPTLevels = ['n5', 'n4', 'n3', 'n2', 'n1'];
+      for (const jlptLevel of allJLPTLevels) {
+        const wordsForLevel = getVocabularyByJLPT(jlptLevel as any);
+        const kanjiWordsForLevel = wordsForLevel.filter(word => word.isKanji && word.kanji);
+        if (kanjiWordsForLevel.length > 0) {
+          availableKanjiWords = kanjiWordsForLevel;
+          break;
+        }
+      }
+    }
+    
+    // 確保有漢字詞彙可用
+    if (availableKanjiWords.length === 0) {
+      console.warn('No kanji words available, using fallback');
+      // 如果還是沒有漢字詞彙，使用一個預設的漢字詞彙
+      const fallbackKanjiWord: KanjiWord = {
+        id: 'fallback_kanji',
+        text: '漢字',
+        kanji: '漢字',
+        hiragana: 'かんじ',
+        katakana: 'カンジ',
+        meaning: 'kanji, Chinese character',
+        difficulty: 1,
         theme: 'jlpt_n5' as any,
-        jlptLevel: randomWord.jlptLevel || 'n5',
+        jlptLevel: 'n5',
         frequency: 50,
-        strokeCount: randomWord.kanji?.length || 0,
+        strokeCount: 2,
         examples: [],
       };
-      setCurrentWord(kanjiWord);
+      setCurrentWord(fallbackKanjiWord);
     } else {
       // 使用漢字詞彙
-      const randomIndex = Math.floor(Math.random() * kanjiWords.length);
-      const randomWord = kanjiWords[randomIndex];
+      const randomIndex = Math.floor(Math.random() * availableKanjiWords.length);
+      const randomWord = availableKanjiWords[randomIndex];
       const kanjiWord: KanjiWord = {
         id: randomWord.id || randomWord.word,
         text: randomWord.word,

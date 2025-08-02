@@ -8327,7 +8327,7 @@ export const KANJI_WORDS_04: TetrisWord[] = [
     "isKanji": true
   },
   {
-    "word": "在る; 有る",
+    "word": "ある",
     "kana": "ある",
     "meaning": "to live, to be, to exist",
     "difficulty": "normal",

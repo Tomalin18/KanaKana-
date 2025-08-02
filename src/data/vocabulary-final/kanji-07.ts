@@ -75,7 +75,7 @@ export const KANJI_WORDS_07: TetrisWord[] = [
   },
   {
     "word": "生活",
-    "kana": "せいかつする",
+    "kana": "せいかつ",
     "meaning": "living, life; living, life; to live",
     "difficulty": "normal",
     "category": "一般",
@@ -138,7 +138,7 @@ export const KANJI_WORDS_07: TetrisWord[] = [
   },
   {
     "word": "輸出",
-    "kana": "ゆしゅつする",
+    "kana": "ゆしゅつ",
     "meaning": "expcartoont (export)",
     "difficulty": "normal",
     "category": "一般",
@@ -335,7 +335,7 @@ export const KANJI_WORDS_07: TetrisWord[] = [
     "isKanji": true
   },
   {
-    "word": "足; 脚",
+    "word": "足",
     "kana": "あし",
     "meaning": "foot; leg",
     "difficulty": "beginner",
@@ -1010,7 +1010,7 @@ export const KANJI_WORDS_07: TetrisWord[] = [
     "isKanji": true
   },
   {
-    "word": "伯父; 叔父さん",
+    "word": "伯父",
     "kana": "おじさん",
     "meaning": "uncle, middle-aged man",
     "difficulty": "beginner",
@@ -1154,7 +1154,7 @@ export const KANJI_WORDS_07: TetrisWord[] = [
     "isKanji": true
   },
   {
-    "word": "伯母さん; 叔母さん",
+    "word": "伯母さん",
     "kana": "おばさん",
     "meaning": "aunt",
     "difficulty": "beginner",
@@ -1532,7 +1532,7 @@ export const KANJI_WORDS_07: TetrisWord[] = [
     "isKanji": true
   },
   {
-    "word": "川; 河",
+    "word": "川",
     "kana": "かわ",
     "meaning": "river",
     "difficulty": "beginner",
@@ -3674,7 +3674,7 @@ export const KANJI_WORDS_07: TetrisWord[] = [
     "isKanji": true
   },
   {
-    "word": "初め; 始め",
+    "word": "初め",
     "kana": "はじめ",
     "meaning": "beginning, start",
     "difficulty": "beginner",
@@ -4358,7 +4358,7 @@ export const KANJI_WORDS_07: TetrisWord[] = [
     "isKanji": true
   },
   {
-    "word": "丸い; 円い",
+    "word": "丸い",
     "kana": "まるい",
     "meaning": "round, circular",
     "difficulty": "beginner",
