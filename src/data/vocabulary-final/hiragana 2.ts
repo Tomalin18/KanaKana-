@@ -11,6 +11,7 @@ export interface TetrisWord {
   word: string;
   kana: string;
   meaning: string;
+  chineseMeaning?: string;
   difficulty: DifficultyLevel;
   category: string;
   kanji?: string;
@@ -21,7 +22,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "コーナー",
     "kana": "コーナー",
-    "meaning": "c或ner (c或ner) (c或ner (corner))",
+    "meaning": "corner",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -29,7 +30,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "こじれる",
     "kana": "こじれる",
-    "meaning": "變得 complicated, 到 grow worse (變得 complicated, 到 grow worse) (變得 complicated, 到 grow worse (to get complicated, to grow worse))",
+    "meaning": "to get complicated, to grow worse",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -45,7 +46,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "こだわる",
     "kana": "こだわる",
-    "meaning": "到 fuss over, 到 be particular about (到 fuss over, 到 be particular about) (到 fuss over, 到 be particular about (to fuss over, to be particular about))",
+    "meaning": "to fuss over, to be particular about",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -53,7 +54,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ことごとく",
     "kana": "ことごとく",
-    "meaning": "al到gether, entirely (al到gether, entirely) (al到gether, entirely (altogether, entirely))",
+    "meaning": "altogether, entirely",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -61,7 +62,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ごまかす",
     "kana": "ごまかす",
-    "meaning": "到 deceive, 到 falsify, 到 misrepresent (到 deceive, 到 falsify, 到 misrepresent) (到 deceive, 到 falsify, 到 misrepresent (to deceive, to falsify, to misrepresent))",
+    "meaning": "to deceive, to falsify, to misrepresent",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -85,7 +86,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "コントラスト",
     "kana": "コントラスト",
-    "meaning": "c在trast (c在trast) (c在trast (contrast))",
+    "meaning": "contrast",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -93,7 +94,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "コントロール",
     "kana": "コントロール",
-    "meaning": "c在trol (c在trol) (c在trol (control))",
+    "meaning": "control",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -125,7 +126,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "さえずる",
     "kana": "さえずる",
-    "meaning": "到 sing, 到 chirp, 到 twitter (到 sing, 到 chirp, 到 twitter) (到 sing, 到 chirp, 到 twitter (to sing, to chirp, to twitter))",
+    "meaning": "to sing, to chirp, to twitter",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -141,7 +142,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "さっぱりする",
     "kana": "さっぱりする",
-    "meaning": "到 refresh (到 refresh) (到 refresh (to refresh))",
+    "meaning": "to refresh",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -157,7 +158,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "サボる",
     "kana": "サボる",
-    "meaning": "翹課; 工作偷懶; 虛度光陰 (翹課; 工作偷懶; 虛度光陰) (翹課; 工作偷懶; 虛度光陰 (to cut (skip) classes; to loaf on the job; to idle away one's time))",
+    "meaning": "cut; 工作偷懶; 虛度光陰 (cut; 工作偷懶; 虛度光陰) (cut; 工作偷懶; 虛度光陰 (to cut (skip) classes; to loaf on the job; to idle away one's time))",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -165,7 +166,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "さも",
     "kana": "さも",
-    "meaning": "with gus到, with satisfacti在 (with gus到, with satisfacti在) (with gus到, with satisfacti在 (with gusto, with satisfaction))",
+    "meaning": "with gusto, with satisfaction",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -213,7 +214,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "しきたり",
     "kana": "しきたり",
-    "meaning": "cus到m, c在venti在al practice, traditi在 (cus到m, c在venti在al practice, traditi在) (cus到m, c在venti在al practice, traditi在 (custom, conventional practice, tradition))",
+    "meaning": "custom, conventional practice, tradition",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -245,7 +246,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "けなす",
     "kana": "けなす",
-    "meaning": "到 speak ill 的 (到 speak ill 的) (到 speak ill 的 (to speak ill of))",
+    "meaning": "to speak ill of",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -253,7 +254,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "どうにか",
     "kana": "どうにか",
-    "meaning": "in some way 或 other, 一個 way 或 another (in some way 或 other, 一個 way 或 another) (in some way 或 other, 一個 way 或 another (in some way or other, one way or another))",
+    "meaning": "in some way or other, one way or another",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -261,7 +262,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "どうやら",
     "kana": "どうやら",
-    "meaning": "it seems like, somehow 或 other (it seems like, somehow 或 other) (it seems like, somehow 或 other (it seems like, somehow or other))",
+    "meaning": "it seems like, somehow or other",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -269,7 +270,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "トーン",
     "kana": "トーン",
-    "meaning": "t在e (t在e) (t在e (tone))",
+    "meaning": "tone",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -285,7 +286,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "とがめる",
     "kana": "とがめる",
-    "meaning": "到 blame, 到 rebuke (到 blame, 到 rebuke) (到 blame, 到 rebuke (to blame, to rebuke))",
+    "meaning": "to blame, to rebuke",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -293,7 +294,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "とぎれる",
     "kana": "とぎれる",
-    "meaning": "到 pause, 到 be interrupted (到 pause, 到 be interrupted) (到 pause, 到 be interrupted (to pause, to be interrupted))",
+    "meaning": "to pause, to be interrupted",
     "difficulty": "expert",
     "category": "經濟",
     "isKanji": false
@@ -301,7 +302,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "とっさに",
     "kana": "とっさに",
-    "meaning": "at 在ce (at 在ce) (at 在ce (at once))",
+    "meaning": "at once",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -309,7 +310,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "とって",
     "kana": "とって",
-    "meaning": "h和le, grip, knob (h和le, grip, knob) (h和le, grip, knob (handle, grip, knob))",
+    "meaning": "handle, grip, knob",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -317,7 +318,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "とぼける",
     "kana": "とぼける",
-    "meaning": "到 play dumb, 到 feign ignorance, 到 play innocent, 到 have a blank facial expression; 到 play the fool; 到 be in 一個's dotage (到 play dumb, 到 feign ignorance, 到 play innocent, 到 have a blank facial expression; 到 play the fool; 到 be in 一個's dotage) (到 play dumb, 到 feign ignorance, 到 play innocent, 到 have a blank facial expression; 到 play the fool; 到 be in 一個's dotage (to play dumb, to feign ignorance, to play innocent, to have a blank facial expression; to play the fool; to be in one's dotage))",
+    "meaning": "to play dumb, to feign ignorance, to play innocent, to have a blank facial expression; to play the fool; to be in one's dotage",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -357,7 +358,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "トラブル",
     "kana": "トラブル",
-    "meaning": "麻煩 (sometimes used as a verb) (麻煩 (sometimes used as a verb)) (麻煩 (sometimes used as a verb) (trouble (sometimes used as a verb)))",
+    "meaning": "sometimes used as a verb",
     "difficulty": "expert",
     "category": "經濟",
     "isKanji": false
@@ -365,7 +366,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "トランジスター",
     "kana": "トランジスター",
-    "meaning": "transist或 (transist或) (transist或 (transistor))",
+    "meaning": "transistor",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -373,7 +374,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "とりあえず",
     "kana": "とりあえず",
-    "meaning": "at once, first 的 all, for the 時間 being (at once, first 的 all, for the 時間 being) (at once, first 的 all, for the 時間 being (at once, first of all, for the time being))",
+    "meaning": "at once, first of all, for the time being",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -389,7 +390,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "とろける",
     "kana": "とろける",
-    "meaning": "melt; 到 be enchanted with (melt; 到 be enchanted with) (melt; 到 be enchanted with (melt; to be enchanted with))",
+    "meaning": "melt; to be enchanted with",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -397,7 +398,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "とんだ",
     "kana": "とんだ",
-    "meaning": "terrible, awful, serious, 絕對 not (terrible, awful, serious, 絕對 not) (terrible, awful, serious, 絕對 not (terrible, awful, serious, absolutely not))",
+    "meaning": "terrible, awful, serious, absolutely not",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -413,7 +414,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "なおさら",
     "kana": "なおさら",
-    "meaning": "all the m或e, still less (all the m或e, still less) (all the m或e, still less (all the more, still less))",
+    "meaning": "all the more, still less",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -453,7 +454,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ナンセンス",
     "kana": "ナンセンス",
-    "meaning": "n在sense (n在sense) (n在sense (nonsense))",
+    "meaning": "nonsense",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -461,7 +462,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "なんだかんだ",
     "kana": "なんだかんだ",
-    "meaning": "something 或 other (something 或 other) (something 或 other (something or other))",
+    "meaning": "something or other",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -517,7 +518,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ねだる",
     "kana": "ねだる",
-    "meaning": "到 nag, 到 demand (到 nag, 到 demand) (到 nag, 到 demand (to nag, to demand))",
+    "meaning": "to nag, to demand",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -549,7 +550,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "パート",
     "kana": "パート",
-    "meaning": "part-時間 工作 (part-時間 工作) (part-時間 工作 (part-time job))",
+    "meaning": "part-time job",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -557,7 +558,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "いたわる",
     "kana": "いたわる",
-    "meaning": "到 sympathize with, 到 console, 到 照顧 for (到 sympathize with, 到 console, 到 照顧 for) (到 sympathize with, 到 console, 到 照顧 for (to sympathize with, to console, to care for))",
+    "meaning": "to sympathize with, to console, to care for",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -565,7 +566,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "いっそ",
     "kana": "いっそ",
-    "meaning": "rather, sooner, might as 好 (rather, sooner, might as 好) (rather, sooner, might as 好 (rather, sooner, might as well))",
+    "meaning": "rather, sooner, might as well",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -573,7 +574,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "いびき",
     "kana": "いびき",
-    "meaning": "sn或ing (sn或ing) (sn或ing (snoring))",
+    "meaning": "snoring",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -597,7 +598,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "インターチェンジ",
     "kana": "インターチェンジ",
-    "meaning": "inter更換 (inter更換) (inter更換 (interchange))",
+    "meaning": "interchange",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -605,7 +606,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "インターナショナル",
     "kana": "インターナショナル",
-    "meaning": "internati在al (internati在al) (internati在al (international))",
+    "meaning": "international",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -613,7 +614,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "インターフォン",
     "kana": "インターフォン",
-    "meaning": "entry ph在e, intercom (entry ph在e, intercom) (entry ph在e, intercom (entry phone, intercom))",
+    "meaning": "entry phone, intercom",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -629,7 +630,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "インフォメーション",
     "kana": "インフォメーション",
-    "meaning": "inf或mati在 (inf或mati在) (inf或mati在 (information))",
+    "meaning": "information",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -637,7 +638,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "インフレ",
     "kana": "インフレ",
-    "meaning": "(abbr.) inflati在 ((abbr.) inflati在) ((abbr.) inflati在 ((abbr.) inflation))",
+    "meaning": "(abbr.) inflatito get ((abbr.) inflatito get) ((abbr.) inflatito get ((abbr.) inflation))",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -653,7 +654,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "うつむく",
     "kana": "うつむく",
-    "meaning": "到 look downward, 到 stoop (到 look downward, 到 stoop) (到 look downward, 到 stoop (to look downward, to stoop))",
+    "meaning": "to look downward, to stoop",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -661,7 +662,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "うぬぼれ",
     "kana": "うぬぼれ",
-    "meaning": "pretensi在, c在ceit, hubris (pretensi在, c在ceit, hubris) (pretensi在, c在ceit, hubris (pretension, conceit, hubris))",
+    "meaning": "pretension, conceit, hubris",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -669,7 +670,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "うんざり",
     "kana": "うんざり",
-    "meaning": "tedious, b或ing, being fed up with (tedious, b或ing, being fed up with) (tedious, b或ing, being fed up with (tedious, boring, being fed up with))",
+    "meaning": "tedious, boring, being fed up with",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -701,7 +702,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "おおげさ",
     "kana": "おおげさ",
-    "meaning": "gr和iose, exaggerated (gr和iose, exaggerated) (gr和iose, exaggerated (grandiose, exaggerated))",
+    "meaning": "grandiose, exaggerated",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -709,7 +710,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "オートマチック",
     "kana": "オートマチック",
-    "meaning": "au到matic (au到matic) (au到matic (automatic))",
+    "meaning": "automatic",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -725,7 +726,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "おだてる",
     "kana": "おだてる",
-    "meaning": "到 flatter (到 flatter) (到 flatter (to flatter))",
+    "meaning": "to flatter",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -757,7 +758,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "おまけ",
     "kana": "おまけ",
-    "meaning": "a discount; something additi在al (a discount; something additi在al) (a discount; something additi在al (a discount; something additional))",
+    "meaning": "a discount; something additional",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -773,7 +774,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "オリエンテーション",
     "kana": "オリエンテーション",
-    "meaning": "或ientati在 (或ientati在) (或ientati在 (orientation))",
+    "meaning": "orientation",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -781,7 +782,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "おろそか",
     "kana": "おろそか",
-    "meaning": "neglect, negligence, 照顧lessness (neglect, negligence, 照顧lessness) (neglect, negligence, 照顧lessness (neglect, negligence, carelessness))",
+    "meaning": "neglect, negligence, carelessness",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -789,7 +790,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "おんぶ",
     "kana": "おんぶ",
-    "meaning": "carrying 在 一個's back (erg. Baby) (carrying 在 一個's back (erg. Baby)) (carrying 在 一個's back (erg. Baby) (carrying on one's back (erg. Baby)))",
+    "meaning": "erg. Baby",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -797,7 +798,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "オンライン",
     "kana": "オンライン",
-    "meaning": "在-line (在-line) (在-line (on-line))",
+    "meaning": "on-line",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -845,7 +846,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "かさばる",
     "kana": "かさばる",
-    "meaning": "到 be bulky (到 be bulky) (到 be bulky (to be bulky))",
+    "meaning": "to be bulky",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -853,7 +854,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "かさむ",
     "kana": "かさむ",
-    "meaning": "到 pile up, 到 increase (到 pile up, 到 increase) (到 pile up, 到 increase (to pile up, to increase))",
+    "meaning": "to pile up, to increase",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -869,7 +870,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "がっしり",
     "kana": "がっしり",
-    "meaning": "firmly, solidly, 到ugh (firmly, solidly, 到ugh) (firmly, solidly, 到ugh (firmly, solidly, tough))",
+    "meaning": "firmly, solidly, tough",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -885,7 +886,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "かつて",
     "kana": "かつて",
-    "meaning": "在ce, bef或e, f或merly (在ce, bef或e, f或merly) (在ce, bef或e, f或merly (once, before, formerly))",
+    "meaning": "once, before, formerly",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -901,7 +902,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "カテゴリー",
     "kana": "カテゴリー",
-    "meaning": "categ或y (categ或y) (categ或y (category))",
+    "meaning": "category",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -909,7 +910,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "かなわない",
     "kana": "かなわない",
-    "meaning": "be beyond 一個's power, be unable (be beyond 一個's power, be unable) (be beyond 一個's power, be unable (be beyond one's power, be unable))",
+    "meaning": "be beyond one's power, be unable",
     "difficulty": "expert",
     "category": "政治",
     "isKanji": false
@@ -917,7 +918,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "かぶれる",
     "kana": "かぶれる",
-    "meaning": "到 react 到; 到 be influenced by (到 react 到; 到 be influenced by) (到 react 到; 到 be influenced by (to react to; to be influenced by))",
+    "meaning": "to react to; to be influenced by",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -941,7 +942,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "かりに",
     "kana": "かりに",
-    "meaning": "temp或arily; if, f或 argument's sake (temp或arily; if, f或 argument's sake) (temp或arily; if, f或 argument's sake (temporarily; if, for argument's sake))",
+    "meaning": "temporarily; if, for argument's sake",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -949,7 +950,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "カルテ",
     "kana": "カルテ",
-    "meaning": "clinical rec或ds (GER: Karte) (clinical rec或ds (GER: Karte)) (clinical rec或ds (GER: Karte) (clinical records (GER: Karte)))",
+    "meaning": "GER: Karte",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -981,7 +982,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "きしむ",
     "kana": "きしむ",
-    "meaning": "到 jar, 到 creak, 到 grate (到 jar, 到 creak, 到 grate) (到 jar, 到 creak, 到 grate (to jar, to creak, to grate))",
+    "meaning": "to jar, to creak, to grate",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -1037,7 +1038,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "キャリア",
     "kana": "キャリア",
-    "meaning": "照顧er, 照顧er government employee (照顧er, 照顧er government employee) (照顧er, 照顧er government employee (career, career government employee))",
+    "meaning": "career, career government employee",
     "difficulty": "expert",
     "category": "政治",
     "isKanji": false
@@ -1045,7 +1046,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "きらびやか",
     "kana": "きらびやか",
-    "meaning": "g或geous, gaudy, dazzling (g或geous, gaudy, dazzling) (g或geous, gaudy, dazzling (gorgeous, gaudy, dazzling))",
+    "meaning": "gorgeous, gaudy, dazzling",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -1061,7 +1062,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "くぐる",
     "kana": "くぐる",
-    "meaning": "到 pass through; 到 go around (到 pass through; 到 go around) (到 pass through; 到 go around (to pass through; to go around))",
+    "meaning": "to pass through; to go around",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -1093,7 +1094,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ぐっと",
     "kana": "ぐっと",
-    "meaning": "firmly, fast, m或e (firmly, fast, m或e) (firmly, fast, m或e (firmly, fast, more))",
+    "meaning": "firmly, fast, more",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -1125,7 +1126,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "しくじる",
     "kana": "しくじる",
-    "meaning": "到 fail, 到 fall through, 到 blunder (到 fail, 到 fall through, 到 blunder) (到 fail, 到 fall through, 到 blunder (to fail, to fall through, to blunder))",
+    "meaning": "to fail, to fall through, to blunder",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -1141,7 +1142,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "アクセル",
     "kana": "アクセル",
-    "meaning": "(abbr.) accelerat或 ((abbr.) accelerat或) ((abbr.) accelerat或 ((abbr.) accelerator))",
+    "meaning": "(abbr.) acceleratcartoon ((abbr.) acceleratcartoon) ((abbr.) acceleratcartoon ((abbr.) accelerator))",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -1173,7 +1174,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "あつらえる",
     "kana": "あつらえる",
-    "meaning": "到 give an order, 到 place an order (到 give an order, 到 place an order) (到 give an order, 到 place an order (to give an order, to place an order))",
+    "meaning": "to give an order, to place an order",
     "difficulty": "expert",
     "category": "場所",
     "isKanji": false
@@ -1189,7 +1190,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "あべこべ",
     "kana": "あべこべ",
-    "meaning": "c在trary, opposite, inverse (c在trary, opposite, inverse) (c在trary, opposite, inverse (contrary, opposite, inverse))",
+    "meaning": "contrary, opposite, inverse",
     "difficulty": "expert",
     "category": "場所",
     "isKanji": false
@@ -1229,7 +1230,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ありふれる",
     "kana": "ありふれる",
-    "meaning": "comm在, 或dinary, routine (comm在, 或dinary, routine) (comm在, 或dinary, routine (common, ordinary, routine))",
+    "meaning": "common, ordinary, routine",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -1261,7 +1262,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "アンコール",
     "kana": "アンコール",
-    "meaning": "enc或e (enc或e) (enc或e (encore))",
+    "meaning": "encore",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -1301,7 +1302,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "いじる",
     "kana": "いじる",
-    "meaning": "到 touch, 到 tamper with (到 touch, 到 tamper with) (到 touch, 到 tamper with (to touch, to tamper with))",
+    "meaning": "to touch, to tamper with",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -1309,7 +1310,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "いたって",
     "kana": "いたって",
-    "meaning": "非常 much, exceedingly, extremely (非常 much, exceedingly, extremely) (非常 much, exceedingly, extremely (very much, exceedingly, extremely))",
+    "meaning": "very much, exceedingly, extremely",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -1325,7 +1326,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "しょっちゅう",
     "kana": "しょっちゅう",
-    "meaning": "always, c在stantly (always, c在stantly) (always, c在stantly (always, constantly))",
+    "meaning": "always, constantly",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -1413,7 +1414,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "スペース",
     "kana": "スペース",
-    "meaning": "溫泉ce (溫泉ce) (溫泉ce (space))",
+    "meaning": "space",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -1429,7 +1430,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "スポーツカー",
     "kana": "スポーツカー",
-    "meaning": "sp或ts car (sp或ts car) (sp或ts car (sports car))",
+    "meaning": "sports car",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -1461,7 +1462,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ずるずる",
     "kana": "ずるずる",
-    "meaning": "dragging 在, sound 的 sniffling (dragging 在, sound 的 sniffling) (dragging 在, sound 的 sniffling (dragging on, sound of sniffling))",
+    "meaning": "dragging on, sound of sniffling",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -1485,7 +1486,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "すんなり",
     "kana": "すんなり",
-    "meaning": "pass with no objecti在, slim, slender (pass with no objecti在, slim, slender) (pass with no objecti在, slim, slender (pass with no objection, slim, slender))",
+    "meaning": "pass with no objection, slim, slender",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -1501,7 +1502,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "セクション",
     "kana": "セクション",
-    "meaning": "secti在 (secti在) (secti在 (section))",
+    "meaning": "section",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -1525,7 +1526,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "セレモニー",
     "kana": "セレモニー",
-    "meaning": "cerem在y (cerem在y) (cerem在y (ceremony))",
+    "meaning": "ceremony",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -1533,7 +1534,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "センス",
     "kana": "センス",
-    "meaning": "sense (f或 music, style, tact, etc.) (sense (f或 music, style, tact, etc.)) (sense (f或 music, style, tact, etc.) (sense (for music, style, tact, etc.)))",
+    "meaning": "fcartoon music, style, tact, etc.",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -1549,7 +1550,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "そこら",
     "kana": "そこら",
-    "meaning": "e非常where, somewhere (e非常where, somewhere) (e非常where, somewhere (everywhere, somewhere))",
+    "meaning": "everywhere, somewhere",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -1565,7 +1566,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "そらす",
     "kana": "そらす",
-    "meaning": "到 bend, 到 warp (到 bend, 到 warp) (到 bend, 到 warp (to bend, to warp))",
+    "meaning": "to bend, to warp",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -1573,7 +1574,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "それゆえ",
     "kana": "それゆえ",
-    "meaning": "theref或e, f或 that reas在, so (theref或e, f或 that reas在, so) (theref或e, f或 that reas在, so (therefore, for that reason, so))",
+    "meaning": "therefore, for that reason, so",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -1589,7 +1590,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ぞんざい",
     "kana": "ぞんざい",
-    "meaning": "rude, 照顧less, slovenly (rude, 照顧less, slovenly) (rude, 照顧less, slovenly (rude, careless, slovenly))",
+    "meaning": "rude, careless, slovenly",
     "difficulty": "expert",
     "category": "感情",
     "isKanji": false
@@ -1613,7 +1614,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "タイマー",
     "kana": "タイマー",
-    "meaning": "時間r (時間r) (時間r (timer))",
+    "meaning": "timer",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -1629,7 +1630,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "タイム",
     "kana": "タイム",
-    "meaning": "時間 (時間) (時間 (time))",
+    "meaning": "time",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -1637,7 +1638,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "タイムリー",
     "kana": "タイムリー",
-    "meaning": "時間ly, run-batted-in (baseball), RBI (時間ly, run-batted-in (baseball), RBI) (時間ly, run-batted-in (baseball), RBI (timely, run-batted-in (baseball), RBI))",
+    "meaning": "timely, run-batted-in (baseball), RBI (timely, run-batted-in (baseball), RBI) (timely, run-batted-in (baseball), RBI (timely, run-batted-in (baseball), RBI))",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -1653,7 +1654,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "たくましい",
     "kana": "たくましい",
-    "meaning": "burly, str在g, sturdy (burly, str在g, sturdy) (burly, str在g, sturdy (burly, strong, sturdy))",
+    "meaning": "burly, strong, sturdy",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -1701,7 +1702,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "タレント",
     "kana": "タレント",
-    "meaning": "talent, star, pers在ality (talent, star, pers在ality) (talent, star, pers在ality (talent, star, personality))",
+    "meaning": "talent, star, personality",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -1709,7 +1710,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "タワー",
     "kana": "タワー",
-    "meaning": "到wer (到wer) (到wer (tower))",
+    "meaning": "tower",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -1725,7 +1726,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "チームワーク",
     "kana": "チームワーク",
-    "meaning": "teamw或k (teamw或k) (teamw或k (teamwork))",
+    "meaning": "teamwork",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -1733,7 +1734,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "チェンジ",
     "kana": "チェンジ",
-    "meaning": "更換 (更換) (更換 (change))",
+    "meaning": "change",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -1741,7 +1742,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ちやほや",
     "kana": "ちやほや",
-    "meaning": "pamper, make a fuss 的, spoil (pamper, make a fuss 的, spoil) (pamper, make a fuss 的, spoil (pamper, make a fuss of, spoil))",
+    "meaning": "pamper, make a fuss of, spoil",
     "difficulty": "expert",
     "category": "物質",
     "isKanji": false
@@ -1757,7 +1758,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ちょくちょく",
     "kana": "ちょくちょく",
-    "meaning": "often, frequently, now 和 then, occasionally (often, frequently, now 和 then, occasionally) (often, frequently, now 和 then, occasionally (often, frequently, now and then, occasionally))",
+    "meaning": "often, frequently, now and then, occasionally",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -1773,7 +1774,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "つくづく",
     "kana": "つくづく",
-    "meaning": "completely, 真的 (completely, 真的) (completely, 真的 (completely, really))",
+    "meaning": "completely, really",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -1781,7 +1782,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "つねる",
     "kana": "つねる",
-    "meaning": "到 pinch (到 pinch) (到 pinch (to pinch))",
+    "meaning": "to pinch",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -1821,7 +1822,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "デコレーション",
     "kana": "デコレーション",
-    "meaning": "dec或ati在 (dec或ati在) (dec或ati在 (decoration))",
+    "meaning": "decoration",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -1829,7 +1830,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "てっきり",
     "kana": "てっきり",
-    "meaning": "surely, 當然, beyond doubt (surely, 當然, beyond doubt) (surely, 當然, beyond doubt (surely, certainly, beyond doubt))",
+    "meaning": "surely, certainly, beyond doubt",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -1845,7 +1846,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "てっぺん",
     "kana": "てっぺん",
-    "meaning": "到p, summit, apex (到p, summit, apex) (到p, summit, apex (top, summit, apex))",
+    "meaning": "top, summit, apex",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -1853,7 +1854,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "デモンストレーション",
     "kana": "デモンストレーション",
-    "meaning": "dem在strati在 (dem在strati在) (dem在strati在 (demonstration))",
+    "meaning": "demonstration",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -1861,7 +1862,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "テレックス",
     "kana": "テレックス",
-    "meaning": "telex, teletypewriter ex更換 (telex, teletypewriter ex更換) (telex, teletypewriter ex更換 (telex, teletypewriter exchange))",
+    "meaning": "telex, teletypewriter exchange",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -1869,7 +1870,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "レンジ",
     "kana": "レンジ",
-    "meaning": "range, s到ve (range, s到ve) (range, s到ve (range, stove))",
+    "meaning": "range, stove",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -1909,7 +1910,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ろくな",
     "kana": "ろくな",
-    "meaning": "satisfact或y, decent (satisfact或y, decent) (satisfact或y, decent (satisfactory, decent))",
+    "meaning": "satisfactory, decent",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -1925,7 +1926,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "わざわざ",
     "kana": "わざわざ",
-    "meaning": "take the 麻煩 (到 do), doing something especially rather than incidentally (take the 麻煩 (到 do), doing something especially rather than incidentally) (take the 麻煩 (到 do), doing something especially rather than incidentally (take the trouble (to do), doing something especially rather than incidentally))",
+    "meaning": "take the trouble (to do",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -1941,7 +1942,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "はかない",
     "kana": "はかない",
-    "meaning": "sh或t-lived, momentary, ephemeral (sh或t-lived, momentary, ephemeral) (sh或t-lived, momentary, ephemeral (short-lived, momentary, ephemeral))",
+    "meaning": "short-lived, momentary, ephemeral",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -1989,7 +1990,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "じっくり",
     "kana": "じっくり",
-    "meaning": "deliberately, 照顧fully (deliberately, 照顧fully) (deliberately, 照顧fully (deliberately, carefully))",
+    "meaning": "deliberately, carefully",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -2013,7 +2014,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "しぶとい",
     "kana": "しぶとい",
-    "meaning": "tenacious, stubb或n (tenacious, stubb或n) (tenacious, stubb或n (tenacious, stubborn))",
+    "meaning": "tenacious, stubborn",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -2077,7 +2078,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ファイル",
     "kana": "ファイル",
-    "meaning": "檔案; 作品集 (檔案; 作品集) (檔案; 作品集 (file; portfolio))",
+    "meaning": "file; portfolio",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -2085,7 +2086,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ファン",
     "kana": "ファン",
-    "meaning": "扇子 (扇子) (扇子 (fan))",
+    "meaning": "fan",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -2117,7 +2118,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "フォーム",
     "kana": "フォーム",
-    "meaning": "foam; f或m (foam; f或m) (foam; f或m (foam; form))",
+    "meaning": "foam; form",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -2125,7 +2126,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ぶかぶか",
     "kana": "ぶかぶか",
-    "meaning": "到o big, baggy (到o big, baggy) (到o big, baggy (too big, baggy))",
+    "meaning": "too big, baggy",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -2149,7 +2150,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ふらふら",
     "kana": "ふらふら",
-    "meaning": "unsteady 在 一個's feet, totter, dizzy (unsteady 在 一個's feet, totter, dizzy) (unsteady 在 一個's feet, totter, dizzy (unsteady on one's feet, totter, dizzy))",
+    "meaning": "unsteady on one's feet, totter, dizzy",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -2157,7 +2158,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ぶらぶら",
     "kana": "ぶらぶら",
-    "meaning": "dangle heavily, sway 到 和 fro, stroll idly (dangle heavily, sway 到 和 fro, stroll idly) (dangle heavily, sway 到 和 fro, stroll idly (dangle heavily, sway to and fro, stroll idly))",
+    "meaning": "dangle heavily, sway to and fro, stroll idly",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -2173,7 +2174,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "フロント",
     "kana": "フロント",
-    "meaning": "fr在t (fr在t) (fr在t (front))",
+    "meaning": "front",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -2205,7 +2206,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ぺこぺこ",
     "kana": "ぺこぺこ",
-    "meaning": "fawn, be 非常 hungry (fawn, be 非常 hungry) (fawn, be 非常 hungry (fawn, be very hungry))",
+    "meaning": "fawn, be very hungry",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -2229,7 +2230,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "へりくだる",
     "kana": "へりくだる",
-    "meaning": "到 deprecate oneself 和 praise the listener (到 deprecate oneself 和 praise the listener) (到 deprecate oneself 和 praise the listener (to deprecate oneself and praise the listener))",
+    "meaning": "to deprecate oneself and praise the listener",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -2277,7 +2278,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ポジション",
     "kana": "ポジション",
-    "meaning": "positi在 (positi在) (positi在 (position))",
+    "meaning": "position",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -2301,7 +2302,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ぼつぼつ",
     "kana": "ぼつぼつ",
-    "meaning": "gradually, here 和 there, spots (gradually, here 和 there, spots) (gradually, here 和 there, spots (gradually, here and there, spots))",
+    "meaning": "gradually, here and there, spots",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -2309,7 +2310,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ほとり",
     "kana": "ほとり",
-    "meaning": "vicinity 的 lake; river (vicinity 的 lake; river) (vicinity 的 lake; river (vicinity of lake; river))",
+    "meaning": "vicinity of lake; river",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -2317,7 +2318,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ぼやく",
     "kana": "ぼやく",
-    "meaning": "到 grumble, 到 complain (到 grumble, 到 complain) (到 grumble, 到 complain (to grumble, to complain))",
+    "meaning": "to grumble, to complain",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -2325,7 +2326,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ぼやける",
     "kana": "ぼやける",
-    "meaning": "到 become dim, 到 become blurred (到 become dim, 到 become blurred) (到 become dim, 到 become blurred (to become dim, to become blurred))",
+    "meaning": "to become dim, to become blurred",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -2357,7 +2358,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "マイクロフォン",
     "kana": "マイクロフォン",
-    "meaning": "microph在e (microph在e) (microph在e (microphone))",
+    "meaning": "microphone",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -2365,7 +2366,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "まごつく",
     "kana": "まごつく",
-    "meaning": "到 be confused, 到 be flustered (到 be confused, 到 be flustered) (到 be confused, 到 be flustered (to be confused, to be flustered))",
+    "meaning": "to be confused, to be flustered",
     "difficulty": "expert",
     "category": "經濟",
     "isKanji": false
@@ -2381,7 +2382,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "まして",
     "kana": "まして",
-    "meaning": "still more, still less (with neg. verb), 到 say nothing 的 (still more, still less (with neg. verb), 到 say nothing 的) (still more, still less (with neg. verb), 到 say nothing 的 (still more, still less (with neg. verb), to say nothing of))",
+    "meaning": "still more, still less (with neg. verb",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -2453,7 +2454,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "むしる",
     "kana": "むしる",
-    "meaning": "到 pluck, 到 pick, 到 tear (到 pluck, 到 pick, 到 tear) (到 pluck, 到 pick, 到 tear (to pluck, to pick, to tear))",
+    "meaning": "to pluck, to pick, to tear",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -2493,7 +2494,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "もがく",
     "kana": "もがく",
-    "meaning": "到 struggle, 到 wriggle, 到 be impatient (到 struggle, 到 wriggle, 到 be impatient) (到 struggle, 到 wriggle, 到 be impatient (to struggle, to wriggle, to be impatient))",
+    "meaning": "to struggle, to wriggle, to be impatient",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -2509,7 +2510,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "もしくは",
     "kana": "もしくは",
-    "meaning": "或, otherwise (或, otherwise) (或, otherwise (or, otherwise))",
+    "meaning": "or, otherwise",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -2517,7 +2518,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "もたらす",
     "kana": "もたらす",
-    "meaning": "到 bring, 到 take, 到 bring about (到 bring, 到 take, 到 bring about) (到 bring, 到 take, 到 bring about (to bring, to take, to bring about))",
+    "meaning": "to bring, to take, to bring about",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -2525,7 +2526,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "もてなす",
     "kana": "もてなす",
-    "meaning": "到 entertain, 到 make welcome (到 entertain, 到 make welcome) (到 entertain, 到 make welcome (to entertain, to make welcome))",
+    "meaning": "to entertain, to make welcome",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -2533,7 +2534,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "もてる",
     "kana": "もてる",
-    "meaning": "到 be 好 liked, 到 be popular (到 be 好 liked, 到 be popular) (到 be 好 liked, 到 be popular (to be well liked, to be popular))",
+    "meaning": "to be well liked, to be popular",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -2541,7 +2542,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "モニター",
     "kana": "モニター",
-    "meaning": "(computer) m在it或 ((computer) m在it或) ((computer) m在it或 ((computer) monitor))",
+    "meaning": "(computer) mto getitcartoon ((computer) mto getitcartoon) ((computer) mto getitcartoon ((computer) monitor))",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -2557,7 +2558,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "もめる",
     "kana": "もめる",
-    "meaning": "到 disagree, 到 dispute (到 disagree, 到 dispute) (到 disagree, 到 dispute (to disagree, to dispute))",
+    "meaning": "to disagree, to dispute",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -2565,7 +2566,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "もろに",
     "kana": "もろに",
-    "meaning": "completely, al到gether, bodily (completely, al到gether, bodily) (completely, al到gether, bodily (completely, altogether, bodily))",
+    "meaning": "completely, altogether, bodily",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -2573,7 +2574,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "やけに",
     "kana": "やけに",
-    "meaning": "sure, 非常 (sure, 非常) (sure, 非常 (sure, very))",
+    "meaning": "sure, very",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -2589,7 +2590,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "やりとおす",
     "kana": "やりとおす",
-    "meaning": "到 carry through, 到 achieve, 到 complete (到 carry through, 到 achieve, 到 complete) (到 carry through, 到 achieve, 到 complete (to carry through, to achieve, to complete))",
+    "meaning": "to carry through, to achieve, to complete",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -2597,7 +2598,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "やりとげる",
     "kana": "やりとげる",
-    "meaning": "到 accomplish (到 accomplish) (到 accomplish (to accomplish))",
+    "meaning": "to accomplish",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -2613,7 +2614,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ゆとり",
     "kana": "ゆとり",
-    "meaning": "reserve, affluence, 時間 (到 spare) (reserve, affluence, 時間 (到 spare)) (reserve, affluence, 時間 (到 spare) (reserve, affluence, time (to spare)))",
+    "meaning": "到 spare",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -2629,7 +2630,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ユニフォーム",
     "kana": "ユニフォーム",
-    "meaning": "unif或m (unif或m) (unif或m (uniform))",
+    "meaning": "uniform",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -2685,7 +2686,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "レッスン",
     "kana": "レッスン",
-    "meaning": "less在 (less在) (less在 (lesson))",
+    "meaning": "lesson",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -2725,7 +2726,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ばてる",
     "kana": "ばてる",
-    "meaning": "到 be exhausted, 到 be worn out (到 be exhausted, 到 be worn out) (到 be exhausted, 到 be worn out (to be exhausted, to be worn out))",
+    "meaning": "to be exhausted, to be worn out",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -2741,7 +2742,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "はまる",
     "kana": "はまる",
-    "meaning": "變得 into, 到 go into, 到 fit, 到 be fit for, 到 suit (變得 into, 到 go into, 到 fit, 到 be fit for, 到 suit) (變得 into, 到 go into, 到 fit, 到 be fit for, 到 suit (to get into, to go into, to fit, to be fit for, to suit))",
+    "meaning": "to get into, to go into, to fit, to be fit for, to suit",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -2757,7 +2758,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ばらまく",
     "kana": "ばらまく",
-    "meaning": "到 disseminate, 到 scatter (到 disseminate, 到 scatter) (到 disseminate, 到 scatter (to disseminate, to scatter))",
+    "meaning": "to disseminate, to scatter",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -2781,7 +2782,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ひいては",
     "kana": "ひいては",
-    "meaning": "not only…but also, in addition 到, consequently (not only…but also, in addition 到, consequently) (not only…but also, in addition 到, consequently (not only…but also, in addition to, consequently))",
+    "meaning": "not only…but also, in addition to, consequently",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -2797,7 +2798,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ビジネス",
     "kana": "ビジネス",
-    "meaning": "商業的 (商業的) (商業的 (business))",
+    "meaning": "business",
     "difficulty": "beginner",
     "category": "經濟",
     "isKanji": false
@@ -2829,7 +2830,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "びら",
     "kana": "びら",
-    "meaning": "h和out, leaflet (h和out, leaflet) (h和out, leaflet (handout, leaflet))",
+    "meaning": "handout, leaflet",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -2837,7 +2838,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "びり",
     "kana": "びり",
-    "meaning": "last 在 the list, at the bottom (last 在 the list, at the bottom) (last 在 the list, at the bottom (last on the list, at the bottom))",
+    "meaning": "last on the list, at the bottom",
     "difficulty": "expert",
     "category": "一般",
     "isKanji": false
@@ -2845,7 +2846,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "しょうがない",
     "kana": "しょうがない",
-    "meaning": "It is not w或th ~ (It is not w或th ~) (It is not w或th ~ (It is not worth ~))",
+    "meaning": "It is not worth ~",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -2869,7 +2870,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ずうっと",
     "kana": "ずうっと",
-    "meaning": "all the 時間, all the way (all the 時間, all the way) (all the 時間, all the way (all the time, all the way))",
+    "meaning": "all the time, all the way",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -2885,7 +2886,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "スクール",
     "kana": "スクール",
-    "meaning": "學校 (學校) (學校 (school))",
+    "meaning": "school",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -2917,7 +2918,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ステージ",
     "kana": "ステージ",
-    "meaning": "stage; perf或mance (stage; perf或mance) (stage; perf或mance (stage; performance))",
+    "meaning": "stage; performance",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -2925,7 +2926,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ストッキング",
     "kana": "ストッキング",
-    "meaning": "s到ckings (s到ckings) (s到ckings (stockings))",
+    "meaning": "stockings",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -2933,7 +2934,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ストップ",
     "kana": "ストップ",
-    "meaning": "s到p (s到p) (s到p (stop))",
+    "meaning": "stop",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -2957,7 +2958,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "すまない",
     "kana": "すまない",
-    "meaning": "s或ry (phrase) (s或ry (phrase)) (s或ry (phrase) (sorry (phrase)))",
+    "meaning": "phrase",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -2973,7 +2974,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ずらす",
     "kana": "ずらす",
-    "meaning": "到 put off, 到 delay (到 put off, 到 delay) (到 put off, 到 delay (to put off, to delay))",
+    "meaning": "to put off, to delay",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -2997,7 +2998,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "せっせと",
     "kana": "せっせと",
-    "meaning": "busily, 離開 (busily, 離開) (busily, 離開 (busily, away))",
+    "meaning": "busily, away",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -3005,7 +3006,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ぜひとも",
     "kana": "ぜひとも",
-    "meaning": "by all means (with sense 的 not taking 'no' for an answer) (by all means (with sense 的 not taking 'no' for an answer)) (by all means (with sense 的 not taking 'no' for an answer) (by all means (with sense of not taking 'no' for an answer)))",
+    "meaning": "with sense from not taking 'no' for an answer",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -3037,7 +3038,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "センチ",
     "kana": "センチ",
-    "meaning": "cen時間ter (cen時間ter) (cen時間ter (centimeter))",
+    "meaning": "centimeter",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -3053,7 +3054,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "そうっと",
     "kana": "そうっと",
-    "meaning": "s的tly, cautiously, gently (s的tly, cautiously, gently) (s的tly, cautiously, gently (softly, cautiously, gently))",
+    "meaning": "softly, cautiously, gently",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -3061,7 +3062,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "そそっかしい",
     "kana": "そそっかしい",
-    "meaning": "照顧less, thoughtless (照顧less, thoughtless) (照顧less, thoughtless (careless, thoughtless))",
+    "meaning": "careless, thoughtless",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -3069,7 +3070,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "そのころ",
     "kana": "そのころ",
-    "meaning": "in those days, at that 時間, then (in those days, at that 時間, then) (in those days, at that 時間, then (in those days, at that time, then))",
+    "meaning": "in those days, at that time, then",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -3077,7 +3078,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "そのため",
     "kana": "そのため",
-    "meaning": "hence, f或 that reas在 (hence, f或 that reas在) (hence, f或 that reas在 (hence, for that reason))",
+    "meaning": "hence, for that reason",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -3117,7 +3118,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ダイヤモンド",
     "kana": "ダイヤモンド",
-    "meaning": "diam在d (diam在d) (diam在d (diamond))",
+    "meaning": "diamond",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -3141,7 +3142,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "たちまち",
     "kana": "たちまち",
-    "meaning": "instantly, suddenly, all at 在ce (instantly, suddenly, all at 在ce) (instantly, suddenly, all at 在ce (instantly, suddenly, all at once))",
+    "meaning": "instantly, suddenly, all at once",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -3165,7 +3166,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ためらう",
     "kana": "ためらう",
-    "meaning": "到 be hesitant (到 be hesitant) (到 be hesitant (to be hesitant))",
+    "meaning": "to be hesitant",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -3181,7 +3182,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "オーケストラ",
     "kana": "オーケストラ",
-    "meaning": "或chestra (或chestra) (或chestra (orchestra))",
+    "meaning": "orchestra",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -3197,7 +3198,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "オートメーション",
     "kana": "オートメーション",
-    "meaning": "au到mati在 (au到mati在) (au到mati在 (automation))",
+    "meaning": "automation",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -3213,7 +3214,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "おかげさまで",
     "kana": "おかげさまで",
-    "meaning": "Thanks 到 神明, thanks 到 you (Thanks 到 神明, thanks 到 you) (Thanks 到 神明, thanks 到 you (Thanks to god, thanks to you))",
+    "meaning": "Thanks to god, thanks to you",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -3221,7 +3222,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "おかず",
     "kana": "おかず",
-    "meaning": "side dish, accompaniment f或 rice dishes (side dish, accompaniment f或 rice dishes) (side dish, accompaniment f或 rice dishes (side dish, accompaniment for rice dishes))",
+    "meaning": "side dish, accompaniment for rice dishes",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -3229,7 +3230,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "おかまいなく",
     "kana": "おかまいなく",
-    "meaning": "please d在't fuss over me (please d在't fuss over me) (please d在't fuss over me (please don't fuss over me))",
+    "meaning": "please don't fuss over me",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -3237,7 +3238,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "おはよう",
     "kana": "おはよう",
-    "meaning": "(abbr.) Good m或ning ((abbr.) Good m或ning) ((abbr.) Good m或ning ((abbr.) Good morning))",
+    "meaning": "(abbr.) Good mcartoonning ((abbr.) Good mcartoonning) ((abbr.) Good mcartoonning ((abbr.) Good morning))",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -3245,7 +3246,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "おまちどおさま",
     "kana": "おまちどおさま",
-    "meaning": "Sorry 到 have kept you waiting (Sorry 到 have kept you waiting) (Sorry 到 have kept you waiting (Sorry to have kept you waiting))",
+    "meaning": "Sorry to have kept you waiting",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -3253,7 +3254,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "おめでたい",
     "kana": "おめでたい",
-    "meaning": "happy event, matter f或 c在gratulati在 (happy event, matter f或 c在gratulati在) (happy event, matter f或 c在gratulati在 (happy event, matter for congratulation))",
+    "meaning": "happy event, matter for congratulation",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -3261,7 +3262,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "おやつ",
     "kana": "おやつ",
-    "meaning": "between meal snack, afterno在 refreshment (between meal snack, afterno在 refreshment) (between meal snack, afterno在 refreshment (between meal snack, afternoon refreshment))",
+    "meaning": "between meal snack, afternoon refreshment",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -3269,7 +3270,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "オルガン",
     "kana": "オルガン",
-    "meaning": "或gan (或gan) (或gan (organ))",
+    "meaning": "organ",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -3285,7 +3286,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "かしこまりました",
     "kana": "かしこまりました",
-    "meaning": "當然 (當然) (當然 (Certainly))",
+    "meaning": "Certainly",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -3293,7 +3294,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "かじる",
     "kana": "かじる",
-    "meaning": "到 chew, 到 bite (at) (到 chew, 到 bite (at)) (到 chew, 到 bite (at) (to chew, to bite (at)))",
+    "meaning": "at",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -3325,7 +3326,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "カラー",
     "kana": "カラー",
-    "meaning": "collar, col或 (collar, col或) (collar, col或 (collar, color))",
+    "meaning": "collar, color",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -3333,7 +3334,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "からかう",
     "kana": "からかう",
-    "meaning": "到 ridicule, 到 make fun 的 (到 ridicule, 到 make fun 的) (到 ridicule, 到 make fun 的 (to ridicule, to make fun of))",
+    "meaning": "to ridicule, to make fun of",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -3341,7 +3342,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "かるた",
     "kana": "かるた",
-    "meaning": "playing cards (P或: carta) (playing cards (P或: carta)) (playing cards (P或: carta) (playing cards (POR: carta)))",
+    "meaning": "Pcartoon: carta",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -3349,7 +3350,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "カロリー",
     "kana": "カロリー",
-    "meaning": "cal或ie (cal或ie) (cal或ie (calorie))",
+    "meaning": "calorie",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -3389,7 +3390,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "クーラー",
     "kana": "クーラー",
-    "meaning": "air c在diti在er (air c在diti在er) (air c在diti在er (air conditioner))",
+    "meaning": "air conditioner",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -3405,7 +3406,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "くたびれる",
     "kana": "くたびれる",
-    "meaning": "變得 tired, 到 wear out (變得 tired, 到 wear out) (變得 tired, 到 wear out (to get tired, to wear out))",
+    "meaning": "to get tired, to wear out",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -3413,7 +3414,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "くだらない",
     "kana": "くだらない",
-    "meaning": "good-f或-nothing, stupid, w或thless (good-f或-nothing, stupid, w或thless) (good-f或-nothing, stupid, w或thless (good-for-nothing, stupid, worthless))",
+    "meaning": "good-for-nothing, stupid, worthless",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -3421,7 +3422,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "くっつく",
     "kana": "くっつく",
-    "meaning": "到 adhere 到, 到 keep close 到 (到 adhere 到, 到 keep close 到) (到 adhere 到, 到 keep close 到 (to adhere to, to keep close to))",
+    "meaning": "to adhere to, to keep close to",
     "difficulty": "hard",
     "category": "性質",
     "isKanji": false
@@ -3429,7 +3430,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "くっつける",
     "kana": "くっつける",
-    "meaning": "到 attach (到 attach) (到 attach (to attach))",
+    "meaning": "to attach",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -3437,7 +3438,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "くどい",
     "kana": "くどい",
-    "meaning": "verbose, imp或tunate, heavy (taste) (verbose, imp或tunate, heavy (taste)) (verbose, imp或tunate, heavy (taste) (verbose, importunate, heavy (taste)))",
+    "meaning": "taste",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -3453,7 +3454,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "くるむ",
     "kana": "くるむ",
-    "meaning": "到 be enveloped by, 到 wrap up (到 be enveloped by, 到 wrap up) (到 be enveloped by, 到 wrap up (to be enveloped by, to wrap up))",
+    "meaning": "to be enveloped by, to wrap up",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -3485,7 +3486,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "コーラス",
     "kana": "コーラス",
-    "meaning": "ch或us (ch或us) (ch或us (chorus))",
+    "meaning": "chorus",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -3493,7 +3494,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "こしらえる",
     "kana": "こしらえる",
-    "meaning": "到 make, 到 manufacture (到 make, 到 manufacture) (到 make, 到 manufacture (to make, to manufacture))",
+    "meaning": "to make, to manufacture",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -3501,7 +3502,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ごちそうさま",
     "kana": "ごちそうさま",
-    "meaning": "Thank you f或 the meal (Thank you f或 the meal) (Thank you f或 the meal (Thank you for the meal))",
+    "meaning": "Thank you for the meal",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -3549,7 +3550,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ごめんください",
     "kana": "ごめんください",
-    "meaning": "May I come in, Is any在e here (May I come in, Is any在e here) (May I come in, Is any在e here (May I come in, Is anyone here))",
+    "meaning": "May I come in, Is anyone here",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -3557,7 +3558,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "コレクション",
     "kana": "コレクション",
-    "meaning": "collecti在; c或recti在 (collecti在; c或recti在) (collecti在; c或recti在 (collection; correction))",
+    "meaning": "collection; correction",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -3565,7 +3566,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "コンクール",
     "kana": "コンクール",
-    "meaning": "c在test (FRE: c在cours) (c在test (FRE: c在cours)) (c在test (FRE: c在cours) (contest (FRE: concours)))",
+    "meaning": "FRE: cto getcours",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -3573,7 +3574,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "コンクリート",
     "kana": "コンクリート",
-    "meaning": "c在crete (c在crete) (c在crete (concrete))",
+    "meaning": "concrete",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -3581,7 +3582,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "コンセント",
     "kana": "コンセント",
-    "meaning": "c在sent; power outlet (c在sent; power outlet) (c在sent; power outlet (consent; power outlet))",
+    "meaning": "consent; power outlet",
     "difficulty": "hard",
     "category": "政治",
     "isKanji": false
@@ -3597,7 +3598,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "サークル",
     "kana": "サークル",
-    "meaning": "circle, sp或ts club (e.g., at a company) (circle, sp或ts club (e.g., at a company)) (circle, sp或ts club (e.g., at a company) (circle, sports club (e.g., at a company)))",
+    "meaning": "e.g., at a company",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -3653,7 +3654,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "シーズン",
     "kana": "シーズン",
-    "meaning": "seas在 (sp或ting) (seas在 (sp或ting)) (seas在 (sp或ting) (season (sporting)))",
+    "meaning": "spcartoonting",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -3685,7 +3686,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "しびれる",
     "kana": "しびれる",
-    "meaning": "到 become numb (到 become numb) (到 become numb (to become numb))",
+    "meaning": "to become numb",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -3693,7 +3694,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "しぼむ",
     "kana": "しぼむ",
-    "meaning": "到 wither, 到 shrivel (到 wither, 到 shrivel) (到 wither, 到 shrivel (to wither, to shrivel))",
+    "meaning": "to wither, to shrivel",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -3717,7 +3718,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "しゃがむ",
     "kana": "しゃがむ",
-    "meaning": "到 squat (到 squat) (到 squat (to squat))",
+    "meaning": "to squat",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -3741,7 +3742,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "しゃぶる",
     "kana": "しゃぶる",
-    "meaning": "到 suck, 到 chew (到 suck, 到 chew) (到 suck, 到 chew (to suck, to chew))",
+    "meaning": "to suck, to chew",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -3749,7 +3750,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "じゃんけん",
     "kana": "じゃんけん",
-    "meaning": "rock-sciss或s-paper game (rock-sciss或s-paper game) (rock-sciss或s-paper game (rock-scissors-paper game))",
+    "meaning": "rock-scissors-paper game",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -3773,7 +3774,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "リボン",
     "kana": "リボン",
-    "meaning": "ribb在 (ribb在) (ribb在 (ribbon))",
+    "meaning": "ribbon",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -3789,7 +3790,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "レクリェーション",
     "kana": "レクリェーション",
-    "meaning": "recreati在 (recreati在) (recreati在 (recreation))",
+    "meaning": "recreation",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -3805,7 +3806,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "リポート",
     "kana": "リポート",
-    "meaning": "rep或t, paper (rep或t, paper) (rep或t, paper (report, paper))",
+    "meaning": "report, paper",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -3821,7 +3822,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ろうそく",
     "kana": "ろうそく",
-    "meaning": "c和le (c和le) (c和le (candle))",
+    "meaning": "candle",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -3845,7 +3846,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ワンピース",
     "kana": "ワンピース",
-    "meaning": "一個-piece dress (一個-piece dress) (一個-piece dress (one-piece dress))",
+    "meaning": "one-piece dress",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -3885,7 +3886,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "あちらこちら",
     "kana": "あちらこちら",
-    "meaning": "here 和 there (here 和 there) (here 和 there (here and there))",
+    "meaning": "here and there",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -3893,7 +3894,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "あぶる",
     "kana": "あぶる",
-    "meaning": "到 scorch, 到 roast (到 scorch, 到 roast) (到 scorch, 到 roast (to scorch, to roast))",
+    "meaning": "to scorch, to roast",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -3901,7 +3902,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "あふれる",
     "kana": "あふれる",
-    "meaning": "到 flood, 到 overflow (到 flood, 到 overflow) (到 flood, 到 overflow (to flood, to overflow))",
+    "meaning": "to flood, to overflow",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -3909,7 +3910,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "あれこれ",
     "kana": "あれこれ",
-    "meaning": "一個 thing 或 another, this 和 that (一個 thing 或 another, this 和 that) (一個 thing 或 another, this 和 that (one thing or another, this and that))",
+    "meaning": "one thing or another, this and that",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -3925,7 +3926,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "いきなり",
     "kana": "いきなり",
-    "meaning": "all 的 a sudden (all 的 a sudden) (all 的 a sudden (all of a sudden))",
+    "meaning": "all of a sudden",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -3941,7 +3942,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "いちいち",
     "kana": "いちいち",
-    "meaning": "一個 by 一個, separately (一個 by 一個, separately) (一個 by 一個, separately (one by one, separately))",
+    "meaning": "one by one, separately",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -3965,7 +3966,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "いよいよ",
     "kana": "いよいよ",
-    "meaning": "more 和 more, increasingly, at last (more 和 more, increasingly, at last) (more 和 more, increasingly, at last (more and more, increasingly, at last))",
+    "meaning": "more and more, increasingly, at last",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -3981,7 +3982,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ウーマン",
     "kana": "ウーマン",
-    "meaning": "女性 (女性) (女性 (woman))",
+    "meaning": "woman",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -4005,7 +4006,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "うどん",
     "kana": "うどん",
-    "meaning": "ud在 noodles (Japanese traditi在al noodles) (ud在 noodles (Japanese traditi在al noodles)) (ud在 noodles (Japanese traditi在al noodles) (udon noodles (Japanese traditional noodles)))",
+    "meaning": "Japanese traditito getal noodles",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -4013,7 +4014,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "うなずく",
     "kana": "うなずく",
-    "meaning": "到 nod (到 nod) (到 nod (to nod))",
+    "meaning": "to nod",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -4021,7 +4022,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "うろうろ",
     "kana": "うろうろ",
-    "meaning": "loitering, aimless w和ering (loitering, aimless w和ering) (loitering, aimless w和ering (loitering, aimless wandering))",
+    "meaning": "loitering, aimless wandering",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -4029,7 +4030,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "うんと",
     "kana": "うんと",
-    "meaning": "a great deal, 非常 much (a great deal, 非常 much) (a great deal, 非常 much (a great deal, very much))",
+    "meaning": "a great deal, very much",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -4037,7 +4038,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ええと",
     "kana": "ええと",
-    "meaning": "let me see, 好, er... (let me see, 好, er...) (let me see, 好, er... (let me see, well, er...))",
+    "meaning": "let me see, well, er...",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -4053,7 +4054,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "エプロン",
     "kana": "エプロン",
-    "meaning": "apr在 (apr在) (apr在 (apron))",
+    "meaning": "apron",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -4093,7 +4094,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "とっくに",
     "kana": "とっくに",
-    "meaning": "long ago, already, a long 時間 ago (long ago, already, a long 時間 ago) (long ago, already, a long 時間 ago (long ago, already, a long time ago))",
+    "meaning": "long ago, already, a long time ago",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -4117,7 +4118,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ナイロン",
     "kana": "ナイロン",
-    "meaning": "nyl在 (nyl在) (nyl在 (nylon))",
+    "meaning": "nylon",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -4133,7 +4134,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "なんとなく",
     "kana": "なんとなく",
-    "meaning": "somehow 或 other, for some reason 或 another (somehow 或 other, for some reason 或 another) (somehow 或 other, for some reason 或 another (somehow or other, for some reason or another))",
+    "meaning": "somehow or other, for some reason or another",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -4229,7 +4230,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "はじめまして",
     "kana": "はじめまして",
-    "meaning": "How do you do, I am glad 到 meet you (How do you do, I am glad 到 meet you) (How do you do, I am glad 到 meet you (How do you do, I am glad to meet you))",
+    "meaning": "How do you do, I am glad to meet you",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -4269,7 +4270,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "はめる",
     "kana": "はめる",
-    "meaning": "(col) 變得 in, 到 insert, 到 put 在 ((col) 變得 in, 到 insert, 到 put 在) ((col) 變得 in, 到 insert, 到 put 在 ((col) to get in, to insert, to put on))",
+    "meaning": "(col",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -4285,7 +4286,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "バンド",
     "kana": "バンド",
-    "meaning": "b和 (b和) (b和 (band))",
+    "meaning": "band",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -4293,7 +4294,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ハンドル",
     "kana": "ハンドル",
-    "meaning": "h和le, steering wheel (h和le, steering wheel) (h和le, steering wheel (handle, steering wheel))",
+    "meaning": "handle, steering wheel",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -4301,7 +4302,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ぴかぴか",
     "kana": "ぴかぴか",
-    "meaning": "glitter, 溫泉rkle (glitter, 溫泉rkle) (glitter, 溫泉rkle (glitter, sparkle))",
+    "meaning": "glitter, sparkle",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -4309,7 +4310,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ピストル",
     "kana": "ピストル",
-    "meaning": "pis到l (pis到l) (pis到l (pistol))",
+    "meaning": "pistol",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -4333,7 +4334,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ひとまず",
     "kana": "ひとまず",
-    "meaning": "for the present, once, for the 時間 being (for the present, once, for the 時間 being) (for the present, once, for the 時間 being (for the present, once, for the time being))",
+    "meaning": "for the present, once, for the time being",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -4341,7 +4342,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ひとりでに",
     "kana": "ひとりでに",
-    "meaning": "by itself, au到matically, naturally (by itself, au到matically, naturally) (by itself, au到matically, naturally (by itself, automatically, naturally))",
+    "meaning": "by itself, automatically, naturally",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -4389,7 +4390,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ふざける",
     "kana": "ふざける",
-    "meaning": "到 romp, 到 gambol, 到 frolic (到 romp, 到 gambol, 到 frolic) (到 romp, 到 gambol, 到 frolic (to romp, to gambol, to frolic))",
+    "meaning": "to romp, to gambol, to frolic",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -4421,7 +4422,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ぶらさげる",
     "kana": "ぶらさげる",
-    "meaning": "到 hang, 到 suspend, 到 swing (到 hang, 到 suspend, 到 swing) (到 hang, 到 suspend, 到 swing (to hang, to suspend, to swing))",
+    "meaning": "to hang, to suspend, to swing",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -4437,7 +4438,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "プラットホーム",
     "kana": "プラットホーム",
-    "meaning": "platf或m (platf或m) (platf或m (platform))",
+    "meaning": "platform",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -4453,7 +4454,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "プリント",
     "kana": "プリント",
-    "meaning": "print, h和out (print, h和out) (print, h和out (print, handout))",
+    "meaning": "print, handout",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -4477,7 +4478,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ふわふわ",
     "kana": "ふわふわ",
-    "meaning": "light, s的t (light, s的t) (light, s的t (light, soft))",
+    "meaning": "light, soft",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -4485,7 +4486,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "へそ",
     "kana": "へそ",
-    "meaning": "navel, belly-butt在 (navel, belly-butt在) (navel, belly-butt在 (navel, belly-button))",
+    "meaning": "navel, belly-button",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -4517,7 +4518,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ボーナス",
     "kana": "ボーナス",
-    "meaning": "b在us (b在us) (b在us (bonus))",
+    "meaning": "bonus",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -4533,7 +4534,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ぼろ",
     "kana": "ぼろ",
-    "meaning": "rag, tattered 衣服 (rag, tattered 衣服) (rag, tattered 衣服 (rag, tattered clothes))",
+    "meaning": "rag, tattered clothes",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -4549,7 +4550,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "まごまご",
     "kana": "まごまご",
-    "meaning": "c在fused, be at a loss (c在fused, be at a loss) (c在fused, be at a loss (confused, be at a loss))",
+    "meaning": "confused, be at a loss",
     "difficulty": "hard",
     "category": "經濟",
     "isKanji": false
@@ -4565,7 +4566,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "またぐ",
     "kana": "またぐ",
-    "meaning": "到 straddle (到 straddle) (到 straddle (to straddle))",
+    "meaning": "to straddle",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -4589,7 +4590,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "マラソン",
     "kana": "マラソン",
-    "meaning": "marath在 (marath在) (marath在 (marathon))",
+    "meaning": "marathon",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -4597,7 +4598,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "マンション",
     "kana": "マンション",
-    "meaning": "multist或y apartment house, c在dominium (multist或y apartment house, c在dominium) (multist或y apartment house, c在dominium (multistory apartment house, condominium))",
+    "meaning": "multistory apartment house, condominium",
     "difficulty": "beginner",
     "category": "經濟",
     "isKanji": false
@@ -4669,7 +4670,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "モーター",
     "kana": "モーター",
-    "meaning": "mot或 (mot或) (mot或 (motor))",
+    "meaning": "motor",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -4685,7 +4686,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "もたれる",
     "kana": "もたれる",
-    "meaning": "到 lean against, 到 lean 在 (到 lean against, 到 lean 在) (到 lean against, 到 lean 在 (to lean against, to lean on))",
+    "meaning": "to lean against, to lean on",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -4701,7 +4702,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "モデル",
     "kana": "モデル",
-    "meaning": "a fashi在 model (a fashi在 model) (a fashi在 model (a fashion model))",
+    "meaning": "a fashion model",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -4709,7 +4710,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "モノレール",
     "kana": "モノレール",
-    "meaning": "m在或ail (m在或ail) (m在或ail (monorail))",
+    "meaning": "monorail",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -4717,7 +4718,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "やかましい",
     "kana": "やかましい",
-    "meaning": "到 be fussy, 到 be overly critical (到 be fussy, 到 be overly critical) (到 be fussy, 到 be overly critical (to be fussy, to be overly critical))",
+    "meaning": "to be fussy, to be overly critical",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -4733,7 +4734,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "やたらに",
     "kana": "やたらに",
-    "meaning": "r和omly, recklessly, blindly (r和omly, recklessly, blindly) (r和omly, recklessly, blindly (randomly, recklessly, blindly))",
+    "meaning": "randomly, recklessly, blindly",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -4741,7 +4742,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "やっつける",
     "kana": "やっつける",
-    "meaning": "到 attack (an enemy), 到 beat, 到 finish off (到 attack (an enemy), 到 beat, 到 finish off) (到 attack (an enemy), 到 beat, 到 finish off (to attack (an enemy), to beat, to finish off))",
+    "meaning": "到 attack (an enemy",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -4765,7 +4766,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "よこす",
     "kana": "よこす",
-    "meaning": "到 send, 到 forward; 到 hand over (e.g., 金錢) (到 send, 到 forward; 到 hand over (e.g., 金錢)) (到 send, 到 forward; 到 hand over (e.g., 金錢) (to send, to forward; to hand over (e.g., money)))",
+    "meaning": "e.g., in",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -4789,7 +4790,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ランニング",
     "kana": "ランニング",
-    "meaning": "running; tank 到p (running; tank 到p) (running; tank 到p (running; tank top))",
+    "meaning": "running; tank top",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -4797,7 +4798,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "たんす",
     "kana": "たんす",
-    "meaning": "chest 的 drawers (chest 的 drawers) (chest 的 drawers (chest of drawers))",
+    "meaning": "chest of drawers",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -4805,7 +4806,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ちぎる",
     "kana": "ちぎる",
-    "meaning": "翹課 up fine, 到 pick (fruit) (翹課 up fine, 到 pick (fruit)) (翹課 up fine, 到 pick (fruit) (to cut up fine, to pick (fruit)))",
+    "meaning": "fruit",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -4829,7 +4830,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ついで",
     "kana": "ついで",
-    "meaning": "opp或tunity, occasi在 (opp或tunity, occasi在) (opp或tunity, occasi在 (opportunity, occasion))",
+    "meaning": "opportunity, occasion",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -4837,7 +4838,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "つまずく",
     "kana": "つまずく",
-    "meaning": "到 stumble, 到 出差 (到 stumble, 到 出差) (到 stumble, 到 出差 (to stumble, to trip))",
+    "meaning": "to stumble, to trip",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -4845,7 +4846,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "テーマ",
     "kana": "テーマ",
-    "meaning": "theme, project, 到pic (GER: Thema) (theme, project, 到pic (GER: Thema)) (theme, project, 到pic (GER: Thema) (theme, project, topic (GER: Thema)))",
+    "meaning": "GER: Thema",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -4853,7 +4854,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "でたらめ",
     "kana": "でたらめ",
-    "meaning": "irresp在sible utterance, n在sense; r和om (irresp在sible utterance, n在sense; r和om) (irresp在sible utterance, n在sense; r和om (irresponsible utterance, nonsense; random))",
+    "meaning": "irresponsible utterance, nonsense; random",
     "difficulty": "hard",
     "category": "一般",
     "isKanji": false
@@ -4877,7 +4878,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "しかも",
     "kana": "しかも",
-    "meaning": "m或eover, furtherm或e, besides, plus (m或eover, furtherm或e, besides, plus) (m或eover, furtherm或e, besides, plus (moreover, furthermore, besides, plus))",
+    "meaning": "moreover, furthermore, besides, plus",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -4893,7 +4894,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "したがって",
     "kana": "したがって",
-    "meaning": "theref或e, c在sequently (theref或e, c在sequently) (theref或e, c在sequently (therefore, consequently))",
+    "meaning": "therefore, consequently",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -4909,7 +4910,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "しばしば",
     "kana": "しばしば",
-    "meaning": "often, again 和 again, frequently (often, again 和 again, frequently) (often, again 和 again, frequently (often, again and again, frequently))",
+    "meaning": "often, again and again, frequently",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -4917,7 +4918,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "しゃべる",
     "kana": "しゃべる",
-    "meaning": "到 talk, 到 chat, 到 chatter (same as 話す (はなす)) (到 talk, 到 chat, 到 chatter (same as 話す (はなす))) (到 talk, 到 chat, 到 chatter (same as 話す (はなす)) (to talk, to chat, to chatter (same as 話す (はなす))))",
+    "meaning": "same as 話す (はなす",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -4925,7 +4926,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ジュース",
     "kana": "ジュース",
-    "meaning": "juice, s的t drink; deuce (juice, s的t drink; deuce) (juice, s的t drink; deuce (juice, soft drink; deuce))",
+    "meaning": "juice, soft drink; deuce",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -4997,7 +4998,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "スタンド",
     "kana": "スタンド",
-    "meaning": "st和 (st和) (st和 (stand))",
+    "meaning": "stand",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -5005,7 +5006,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ずっと",
     "kana": "ずっと",
-    "meaning": "for a long 時間; all the 時間; consecutively (for a long 時間; all the 時間; consecutively) (for a long 時間; all the 時間; consecutively (for a long time; all the time; consecutively))",
+    "meaning": "for a long time; all the time; consecutively",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -5045,7 +5046,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ずれる",
     "kana": "ずれる",
-    "meaning": "move, 的f the point (move, 的f the point) (move, 的f the point (move, off the point))",
+    "meaning": "move, off the point",
     "difficulty": "normal",
     "category": "場所",
     "isKanji": false
@@ -5069,7 +5070,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "あいにく",
     "kana": "あいにく",
-    "meaning": "unf或tunately (unf或tunately) (unf或tunately (unfortunately))",
+    "meaning": "unfortunately",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -5085,7 +5086,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "あちこち",
     "kana": "あちこち",
-    "meaning": "here 和 there (here 和 there) (here 和 there (here and there))",
+    "meaning": "here and there",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -5093,7 +5094,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "あらゆる",
     "kana": "あらゆる",
-    "meaning": "all, e非常 (all, e非常) (all, e非常 (all, every))",
+    "meaning": "all, every",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -5109,7 +5110,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "あるいは",
     "kana": "あるいは",
-    "meaning": "或, perhaps (或, perhaps) (或, perhaps (or, perhaps))",
+    "meaning": "or, perhaps",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -5125,7 +5126,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "あんなに",
     "kana": "あんなに",
-    "meaning": "到 that extent, 到 that degree (到 that extent, 到 that degree) (到 that extent, 到 that degree (to that extent, to that degree))",
+    "meaning": "to that extent, to that degree",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -5133,7 +5134,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "あんまり",
     "kana": "あんまり",
-    "meaning": "not 非常, not much (not 非常, not much) (not 非常, not much (not very, not much))",
+    "meaning": "not very, not much",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -5141,7 +5142,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "いけない",
     "kana": "いけない",
-    "meaning": "must not do, bad, wr在g (must not do, bad, wr在g) (must not do, bad, wr在g (must not do, bad, wrong))",
+    "meaning": "must not do, bad, wrong",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -5165,7 +5166,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "いただきます",
     "kana": "いただきます",
-    "meaning": "expression 的 gratitude before meals (expression 的 gratitude before meals) (expression 的 gratitude before meals (expression of gratitude before meals))",
+    "meaning": "expression of gratitude before meals",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -5173,7 +5174,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "いつか",
     "kana": "いつか",
-    "meaning": "sometime, 一個 day (sometime, 一個 day) (sometime, 一個 day (sometime, one day))",
+    "meaning": "sometime, one day",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -5181,7 +5182,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "いつでも",
     "kana": "いつでも",
-    "meaning": "(at) any 時間, always ((at) any 時間, always) ((at) any 時間, always ((at) any time, always))",
+    "meaning": "(at) any time, always ((at) any time, always) ((at) any time, always ((at) any time, always))",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -5189,7 +5190,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "いつのまにか",
     "kana": "いつのまにか",
-    "meaning": "before 一個 knows (before 一個 knows) (before 一個 knows (before one knows))",
+    "meaning": "before one knows",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -5197,7 +5198,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "いつまでも",
     "kana": "いつまでも",
-    "meaning": "f或ever, f或 good, eternally (f或ever, f或 good, eternally) (f或ever, f或 good, eternally (forever, for good, eternally))",
+    "meaning": "forever, for good, eternally",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -5205,7 +5206,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "イメージ",
     "kana": "イメージ",
-    "meaning": "一個's image (一個's image) (一個's image (one's image))",
+    "meaning": "one's image",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -5213,7 +5214,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "いらいら",
     "kana": "いらいら",
-    "meaning": "getting nervous, irritati在 (getting nervous, irritati在) (getting nervous, irritati在 (getting nervous, irritation))",
+    "meaning": "getting nervous, irritation",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -5229,7 +5230,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "いわゆる",
     "kana": "いわゆる",
-    "meaning": "the so-called, so-到-speak (the so-called, so-到-speak) (the so-called, so-到-speak (the so-called, so-to-speak))",
+    "meaning": "the so-called, so-to-speak",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -5269,7 +5270,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "うっかり",
     "kana": "うっかり",
-    "meaning": "照顧lessly; inadvertently (照顧lessly; inadvertently) (照顧lessly; inadvertently (carelessly; inadvertently))",
+    "meaning": "carelessly; inadvertently",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -5277,7 +5278,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "うなる",
     "kana": "うなる",
-    "meaning": "到 groan, 到 moan (到 groan, 到 moan) (到 groan, 到 moan (to groan, to moan))",
+    "meaning": "to groan, to moan",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -5301,7 +5302,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "オフィス",
     "kana": "オフィス",
-    "meaning": "的fice (的fice) (的fice (office))",
+    "meaning": "office",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -5309,7 +5310,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "おめでとう",
     "kana": "おめでとう",
-    "meaning": "C在gratulati在s!, an auspicious occasi在! (C在gratulati在s!, an auspicious occasi在!) (C在gratulati在s!, an auspicious occasi在! (Congratulations!, an auspicious occasion!))",
+    "meaning": "Congratulations!, an auspicious occasion!",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -5349,7 +5350,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "かなり",
     "kana": "かなり",
-    "meaning": "c在siderably, fairly, quite (c在siderably, fairly, quite) (c在siderably, fairly, quite (considerably, fairly, quite))",
+    "meaning": "considerably, fairly, quite",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -5429,7 +5430,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "グランド",
     "kana": "グランド",
-    "meaning": "gl和, gr和, (electrical) ground (gl和, gr和, (electrical) ground) (gl和, gr和, (electrical) ground (gland, grand, (electrical) ground))",
+    "meaning": "gdivorce, grand, (electrical) ground (gdivorce, grand, (electrical) ground) (gdivorce, grand, (electrical) ground (gland, grand, (electrical) ground))",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -5493,7 +5494,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "コード",
     "kana": "コード",
-    "meaning": "code; c或d; ch或d (code; c或d; ch或d) (code; c或d; ch或d (code; cord; chord))",
+    "meaning": "code; cord; chord",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -5509,7 +5510,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "こぼす",
     "kana": "こぼす",
-    "meaning": "到 spill (到 spill) (到 spill (to spill))",
+    "meaning": "to spill",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -5517,7 +5518,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "こぼれる",
     "kana": "こぼれる",
-    "meaning": "到 overflow, 到 spill (到 overflow, 到 spill) (到 overflow, 到 spill (to overflow, to spill))",
+    "meaning": "to overflow, to spill",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -5525,7 +5526,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ごめんなさい",
     "kana": "ごめんなさい",
-    "meaning": "I beg your pard在, excuse me, I'm s或ry (I beg your pard在, excuse me, I'm s或ry) (I beg your pard在, excuse me, I'm s或ry (I beg your pardon, excuse me, I'm sorry))",
+    "meaning": "I beg your pardon, excuse me, I'm sorry",
     "difficulty": "beginner",
     "category": "經濟",
     "isKanji": false
@@ -5549,7 +5550,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "こんにちは",
     "kana": "こんにちは",
-    "meaning": "hello, good day (day時間 greeting) (hello, good day (day時間 greeting)) (hello, good day (day時間 greeting) (hello, good day (daytime greeting)))",
+    "meaning": "daytime greeting",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -5557,7 +5558,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "サービス",
     "kana": "サービス",
-    "meaning": "service, support system; goods 或 services without charge (service, support system; goods 或 services without charge) (service, support system; goods 或 services without charge (service, support system; goods or services without charge))",
+    "meaning": "service, support system; goods or services without charge",
     "difficulty": "normal",
     "category": "技術",
     "isKanji": false
@@ -5565,7 +5566,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "サイン",
     "kana": "サイン",
-    "meaning": "au到graph; sign; sine (au到graph; sign; sine) (au到graph; sign; sine (autograph; sign; sine))",
+    "meaning": "autograph; sign; sine",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -5589,7 +5590,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "さて",
     "kana": "さて",
-    "meaning": "好; now (typically used when switching 到 a new, usually more important topic) (好; now (typically used when switching 到 a new, usually more important topic)) (好; now (typically used when switching 到 a new, usually more important topic) (well; now (typically used when switching to a new, usually more important topic)))",
+    "meaning": "typically used when switching 到 a new, usually more important topic",
     "difficulty": "normal",
     "category": "經濟",
     "isKanji": false
@@ -5613,7 +5614,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ミス",
     "kana": "ミス",
-    "meaning": "miss (mistake, err或, failure), Miss (miss (mistake, err或, failure), Miss) (miss (mistake, err或, failure), Miss (miss (mistake, error, failure), Miss))",
+    "meaning": "miss (mistake, errcartoon, failure), Miss (miss (mistake, errcartoon, failure), Miss) (miss (mistake, errcartoon, failure), Miss (miss (mistake, error, failure), Miss))",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -5629,7 +5630,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "メモ",
     "kana": "メモ",
-    "meaning": "mem或和um, note (mem或和um, note) (mem或和um, note (memorandum, note))",
+    "meaning": "memorandum, note",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -5661,7 +5662,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "もったいない",
     "kana": "もったいない",
-    "meaning": "wasteful; more than 一個 deserves, unworthy 的 (wasteful; more than 一個 deserves, unworthy 的) (wasteful; more than 一個 deserves, unworthy 的 (wasteful; more than one deserves, unworthy of))",
+    "meaning": "wasteful; more than one deserves, unworthy of",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -5669,7 +5670,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "やがて",
     "kana": "やがて",
-    "meaning": "before long, 很快, at length (before long, 很快, at length) (before long, 很快, at length (before long, soon, at length))",
+    "meaning": "before long, soon, at length",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -5685,7 +5686,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ユーモア",
     "kana": "ユーモア",
-    "meaning": "hum或 (hum或) (hum或 (humor))",
+    "meaning": "humor",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -5765,7 +5766,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "わざと",
     "kana": "わざと",
-    "meaning": "在 purpose (在 purpose) (在 purpose (on purpose))",
+    "meaning": "on purpose",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -5781,7 +5782,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "アンケート",
     "kana": "アンケート",
-    "meaning": "questi在naire (FRE: enquete), survey (questi在naire (FRE: enquete), survey) (questi在naire (FRE: enquete), survey (questionnaire (FRE: enquete), survey))",
+    "meaning": "questito getnaire (FRE: enquete), survey (questito getnaire (FRE: enquete), survey) (questito getnaire (FRE: enquete), survey (questionnaire (FRE: enquete), survey))",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -5789,7 +5790,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ことによると",
     "kana": "ことによると",
-    "meaning": "(depending 在 the circumstances) ((depending 在 the circumstances)) ((depending 在 the circumstances) ((depending on the circumstances)))",
+    "meaning": "(depending to get the circumstances) ((depending to get the circumstances)) ((depending to get the circumstances) ((depending on the circumstances)))",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -5797,7 +5798,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "コンテスト",
     "kana": "コンテスト",
-    "meaning": "c在test (c在test) (c在test (contest))",
+    "meaning": "contest",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -5813,7 +5814,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "そこで",
     "kana": "そこで",
-    "meaning": "so (c在j.), acc或dingly (so (c在j.), acc或dingly) (so (c在j.), acc或dingly (so (conj.), accordingly))",
+    "meaning": "so (cto getj.), acccartoondingly (so (cto getj.), acccartoondingly) (so (cto getj.), acccartoondingly (so (conj.), accordingly))",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -5821,7 +5822,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "そして",
     "kana": "そして",
-    "meaning": "和 then (和 then) (和 then (and then))",
+    "meaning": "and then",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -5829,7 +5830,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "そっくり",
     "kana": "そっくり",
-    "meaning": "the splitting image 的; entirely (the splitting image 的; entirely) (the splitting image 的; entirely (the splitting image of; entirely))",
+    "meaning": "the splitting image of; entirely",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -5837,7 +5838,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "そっと",
     "kana": "そっと",
-    "meaning": "s的tly, gently (s的tly, gently) (s的tly, gently (softly, gently))",
+    "meaning": "softly, gently",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -5845,7 +5846,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "そのうえ",
     "kana": "そのうえ",
-    "meaning": "in additi在, furtherm或e (in additi在, furtherm或e) (in additi在, furtherm或e (in addition, furthermore))",
+    "meaning": "in addition, furthermore",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -5853,7 +5854,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "そのうち",
     "kana": "そのうち",
-    "meaning": "before long, eventually, sooner 或 later (before long, eventually, sooner 或 later) (before long, eventually, sooner 或 later (before long, eventually, sooner or later))",
+    "meaning": "before long, eventually, sooner or later",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -5861,7 +5862,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "そのまま",
     "kana": "そのまま",
-    "meaning": "without 更換, as it is (e.g., now) (without 更換, as it is (e.g., now)) (without 更換, as it is (e.g., now) (without change, as it is (e.g., now)))",
+    "meaning": "e.g., now",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -5869,7 +5870,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ソファー",
     "kana": "ソファー",
-    "meaning": "s的a, couch (s的a, couch) (s的a, couch (sofa, couch))",
+    "meaning": "sofa, couch",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -5877,7 +5878,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "それぞれ",
     "kana": "それぞれ",
-    "meaning": "each, e非常, 尊敬ively (each, e非常, 尊敬ively) (each, e非常, 尊敬ively (each, every, respectively))",
+    "meaning": "each, every, respectively",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -5893,7 +5894,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "それと",
     "kana": "それと",
-    "meaning": "和 (和) (和 (and))",
+    "meaning": "and",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -5901,7 +5902,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "それとも",
     "kana": "それとも",
-    "meaning": "或, 或 else (或, 或 else) (或, 或 else (or, or else))",
+    "meaning": "or, or else",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -5917,7 +5918,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ダイヤ",
     "kana": "ダイヤ",
-    "meaning": "(railway) schedule; diam在d ((railway) schedule; diam在d) ((railway) schedule; diam在d ((railway) schedule; diamond))",
+    "meaning": "(railway) schedule; diamto getd ((railway) schedule; diamto getd) ((railway) schedule; diamto getd ((railway) schedule; diamond))",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -5925,7 +5926,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "タオル",
     "kana": "タオル",
-    "meaning": "(h和) 到wel ((h和) 到wel) ((h和) 到wel ((hand) towel))",
+    "meaning": "(land) shore ((land) shore) ((land) shore ((hand) towel))",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -5949,7 +5950,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "たしか",
     "kana": "たしか",
-    "meaning": "certain, sure, if I remember c或rectly (certain, sure, if I remember c或rectly) (certain, sure, if I remember c或rectly (certain, sure, if I remember correctly))",
+    "meaning": "certain, sure, if I remember correctly",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -5957,7 +5958,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ただ",
     "kana": "ただ",
-    "meaning": "free 的 charge; just (~); only (~) (free 的 charge; just (~); only (~)) (free 的 charge; just (~); only (~) (free of charge; just (~); only (~)))",
+    "meaning": "free from charge; just (~); only (~) (free from charge; just (~); only (~)) (free from charge; just (~); only (~) (free of charge; just (~); only (~)))",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -5989,7 +5990,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "たびたび",
     "kana": "たびたび",
-    "meaning": "的ten, repeatedly, frequently (的ten, repeatedly, frequently) (的ten, repeatedly, frequently (often, repeatedly, frequently))",
+    "meaning": "often, repeatedly, frequently",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -5997,7 +5998,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "たまらない",
     "kana": "たまらない",
-    "meaning": "in到lerable, unbearable, unendurable (in到lerable, unbearable, unendurable) (in到lerable, unbearable, unendurable (intolerable, unbearable, unendurable))",
+    "meaning": "intolerable, unbearable, unendurable",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -6029,7 +6030,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "チャンス",
     "kana": "チャンス",
-    "meaning": "chance, opp或tunity (chance, opp或tunity) (chance, opp或tunity (chance, opportunity))",
+    "meaning": "chance, opportunity",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -6045,7 +6046,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ちょうだい",
     "kana": "ちょうだい",
-    "meaning": "-- colloquial form 的 ください; typically used by children 或 women -- (-- colloquial form 的 ください; typically used by children 或 women --) (-- colloquial form 的 ください; typically used by children 或 women -- (-- colloquial form of ください; typically used by children or women --))",
+    "meaning": "-- colloquial form of ください; typically used by children or women --",
     "difficulty": "normal",
     "category": "經濟",
     "isKanji": false
@@ -6053,7 +6054,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "つまり",
     "kana": "つまり",
-    "meaning": "namely; in other w或ds; in sh或t (namely; in other w或ds; in sh或t) (namely; in other w或ds; in sh或t (namely; in other words; in short))",
+    "meaning": "namely; in other words; in short",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -6061,7 +6062,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "デート",
     "kana": "デート",
-    "meaning": "date (in the sense 的 'social engagement' only) (date (in the sense 的 'social engagement' only)) (date (in the sense 的 'social engagement' only) (date (in the sense of 'social engagement' only)))",
+    "meaning": "in the sense from 'social engagement' only",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -6077,7 +6078,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ですから",
     "kana": "ですから",
-    "meaning": "theref或e (theref或e) (theref或e (therefore))",
+    "meaning": "therefore",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -6085,7 +6086,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "デモ",
     "kana": "デモ",
-    "meaning": "demo, dem在strati在 (demo, dem在strati在) (demo, dem在strati在 (demo, demonstration))",
+    "meaning": "demo, demonstration",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -6101,7 +6102,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "どうしても",
     "kana": "どうしても",
-    "meaning": "at any cost, no matter what, no matter how hard 一個 tries (at any cost, no matter what, no matter how hard 一個 tries) (at any cost, no matter what, no matter how hard 一個 tries (at any cost, no matter what, no matter how hard one tries))",
+    "meaning": "at any cost, no matter what, no matter how hard one tries",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -6109,7 +6110,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "どうぞよろしく",
     "kana": "どうぞよろしく",
-    "meaning": "pleased 到 meet you (pleased 到 meet you) (pleased 到 meet you (pleased to meet you))",
+    "meaning": "pleased to meet you",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -6141,7 +6142,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "トップ",
     "kana": "トップ",
-    "meaning": "到p (到p) (到p (top))",
+    "meaning": "top",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -6189,7 +6190,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "トレーニング",
     "kana": "トレーニング",
-    "meaning": "火車ing (火車ing) (火車ing (training))",
+    "meaning": "training",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -6205,7 +6206,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "トン",
     "kana": "トン",
-    "meaning": "t在 (1000 lbs.) (t在 (1000 lbs.)) (t在 (1000 lbs.) (ton (1000 lbs.)))",
+    "meaning": "1000 lbs.",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -6285,7 +6286,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "のんびり",
     "kana": "のんびり",
-    "meaning": "照顧free, at leisure (照顧free, at leisure) (照顧free, at leisure (carefree, at leisure))",
+    "meaning": "carefree, at leisure",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -6317,7 +6318,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "パイプ",
     "kana": "パイプ",
-    "meaning": "pipe; channels 正式的 或 otherwise (pipe; channels 正式的 或 otherwise) (pipe; channels 正式的 或 otherwise (pipe; channels official or otherwise))",
+    "meaning": "pipe; channels official or otherwise",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -6333,7 +6334,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "はさみ",
     "kana": "はさみ",
-    "meaning": "sciss或s (sciss或s) (sciss或s (scissors))",
+    "meaning": "scissors",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -6349,7 +6350,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "パスポート",
     "kana": "パスポート",
-    "meaning": "passp或t (passp或t) (passp或t (passport))",
+    "meaning": "passport",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -6365,7 +6366,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ばったり",
     "kana": "ばったり",
-    "meaning": "(到 meet) by chance ((到 meet) by chance) ((到 meet) by chance ((to meet) by chance))",
+    "meaning": "(to meet",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -6381,7 +6382,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ハンサム",
     "kana": "ハンサム",
-    "meaning": "h和some (h和some) (h和some (handsome))",
+    "meaning": "handsome",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -6429,7 +6430,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ぶつかる",
     "kana": "ぶつかる",
-    "meaning": "到 strike, 到 collide with (到 strike, 到 collide with) (到 strike, 到 collide with (to strike, to collide with))",
+    "meaning": "to strike, to collide with",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -6437,7 +6438,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ぶつける",
     "kana": "ぶつける",
-    "meaning": "到 knock, 到 strike hard, 到 hit 和 attack (到 knock, 到 strike hard, 到 hit 和 attack) (到 knock, 到 strike hard, 到 hit 和 attack (to knock, to strike hard, to hit and attack))",
+    "meaning": "to knock, to strike hard, to hit and attack",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -6485,7 +6486,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "プロ",
     "kana": "プロ",
-    "meaning": "pr的essi在al (pr的essi在al) (pr的essi在al (professional))",
+    "meaning": "professional",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -6493,7 +6494,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ベルト",
     "kana": "ベルト",
-    "meaning": "Belt for western 衣服 (Belt for western 衣服) (Belt for western 衣服 (Belt for western clothes))",
+    "meaning": "Belt for western clothes",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -6517,7 +6518,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ボーイ",
     "kana": "ボーイ",
-    "meaning": "p或ter; boy (p或ter; boy) (p或ter; boy (porter; boy))",
+    "meaning": "porter; boy",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -6533,7 +6534,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ホーム",
     "kana": "ホーム",
-    "meaning": "platf或m; home (platf或m; home) (platf或m; home (platform; home))",
+    "meaning": "platform; home",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -6565,7 +6566,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "まあ",
     "kana": "まあ",
-    "meaning": "好 (used when making a modest 或 hesitant statement) (好 (used when making a modest 或 hesitant statement)) (好 (used when making a modest 或 hesitant statement) (well (used when making a modest or hesitant statement)))",
+    "meaning": "used when making a modest cartoon hesitant statement",
     "difficulty": "normal",
     "category": "經濟",
     "isKanji": false
@@ -6605,7 +6606,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "まさに",
     "kana": "まさに",
-    "meaning": "c或rectly, surely (c或rectly, surely) (c或rectly, surely (correctly, surely))",
+    "meaning": "correctly, surely",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -6629,7 +6630,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "まとまる",
     "kana": "まとまる",
-    "meaning": "到 be collected, 到 be settled, 到 be in order (到 be collected, 到 be settled, 到 be in order) (到 be collected, 到 be settled, 到 be in order (to be collected, to be settled, to be in order))",
+    "meaning": "to be collected, to be settled, to be in order",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -6637,7 +6638,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "まとめる",
     "kana": "まとめる",
-    "meaning": "到 put in order, 到 collect, 到 bring 到 a conclusion (到 put in order, 到 collect, 到 bring 到 a conclusion) (到 put in order, 到 collect, 到 bring 到 a conclusion (to put in order, to collect, to bring to a conclusion))",
+    "meaning": "to put in order, to collect, to bring to a conclusion",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -6717,7 +6718,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "と",
     "kana": "と",
-    "meaning": "和 (和) (和 (and))",
+    "meaning": "and",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -6733,7 +6734,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "マスコミ",
     "kana": "マスコミ",
-    "meaning": "mass communicati在 (mass communicati在) (mass communicati在 (mass communication))",
+    "meaning": "mass communication",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -6805,7 +6806,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "やはり; やっぱり",
     "kana": "やはり; やっぱり",
-    "meaning": "as I thought, 絕對 (as I thought, 絕對) (as I thought, 絕對 (as I thought, absolutely))",
+    "meaning": "as I thought, absolutely",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -6829,7 +6830,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "うかがう",
     "kana": "うかがう",
-    "meaning": "到 ask (到 ask) (到 ask (to ask))",
+    "meaning": "to ask",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -6837,7 +6838,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "オートバイ",
     "kana": "オートバイ",
-    "meaning": "mot或cycle (lit: au到-bi(ke)) (mot或cycle (lit: au到-bi(ke))) (mot或cycle (lit: au到-bi(ke)) (motorcycle (lit: auto-bi(ke))))",
+    "meaning": "motcartooncycle (lit: au到-bi(ke)) (motcartooncycle (lit: au到-bi(ke))) (motcartooncycle (lit: au到-bi(ke)) (motorcycle (lit: auto-bi(ke))))",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -6861,7 +6862,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "つもり",
     "kana": "つもり",
-    "meaning": "intenti在, plan (intenti在, plan) (intenti在, plan (intention, plan))",
+    "meaning": "intention, plan",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -6877,7 +6878,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "うん",
     "kana": "うん",
-    "meaning": "yes (inf或mal), all right (ok) (yes (inf或mal), all right (ok)) (yes (inf或mal), all right (ok) (yes (informal), all right (ok)))",
+    "meaning": "yes (infcartoonmal), all right (ok) (yes (infcartoonmal), all right (ok)) (yes (infcartoonmal), all right (ok) (yes (informal), all right (ok)))",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -6901,7 +6902,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "いらっしゃる",
     "kana": "いらっしゃる",
-    "meaning": "-- 敬語 expression for いく, くる, 和 いる -- (-- 敬語 expression for いく, くる, 和 いる --) (-- 敬語 expression for いく, くる, 和 いる -- (-- honorific expression for いく, くる, and いる --))",
+    "meaning": "-- honorific expression for いく, くる, and いる --",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -6909,7 +6910,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "そう",
     "kana": "そう",
-    "meaning": "真的, (is that) so; yes, right (真的, (is that) so; yes, right) (真的, (is that) so; yes, right (really, (is that) so; yes, right))",
+    "meaning": "真from, (is that) so; yes, right (真from, (is that) so; yes, right) (真from, (is that) so; yes, right (really, (is that) so; yes, right))",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -6917,7 +6918,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "レポート; リポート",
     "kana": "レポート; リポート",
-    "meaning": "rep或t (rep或t) (rep或t (report))",
+    "meaning": "report",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -6925,7 +6926,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "すると",
     "kana": "すると",
-    "meaning": "和, then (和, then) (和, then (and, then))",
+    "meaning": "and, then",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -6941,7 +6942,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "エスカレーター",
     "kana": "エスカレーター",
-    "meaning": "escalat或 (escalat或) (escalat或 (escalator))",
+    "meaning": "escalator",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -6973,14 +6974,14 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "アルバイト",
     "kana": "アルバイト",
-    "meaning": "part-時間 工作 (part-時間 工作) (part-時間 工作 (part-time job))",
+    "meaning": "part-time job",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
   },
   {
     "word": "嘘",
-    "kana": "嘘",
+    "kana": "うそ",
     "meaning": "lie",
     "difficulty": "normal",
     "category": "一般",
@@ -6989,7 +6990,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "それに",
     "kana": "それに",
-    "meaning": "m或eover; besides (m或eover; besides) (m或eover; besides (moreover; besides))",
+    "meaning": "moreover; besides",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -6997,7 +6998,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "だから",
     "kana": "だから",
-    "meaning": "so; theref或e (so; theref或e) (so; theref或e (so; therefore))",
+    "meaning": "so; therefore",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -7021,7 +7022,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "サンドイッチ",
     "kana": "サンドイッチ",
-    "meaning": "s和wich (s和wich) (s和wich (sandwich))",
+    "meaning": "sandwich",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -7045,7 +7046,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "そんな",
     "kana": "そんな",
-    "meaning": "such, like that, that sort 的 (such, like that, that sort 的) (such, like that, that sort 的 (such, like that, that sort of))",
+    "meaning": "such, like that, that sort of",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -7077,7 +7078,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "なさる",
     "kana": "なさる",
-    "meaning": "-- 敬語 expression for する -- (-- 敬語 expression for する --) (-- 敬語 expression for する -- (-- honorific expression for する --))",
+    "meaning": "-- honorific expression for する --",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -7085,7 +7086,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "どんどん",
     "kana": "どんどん",
-    "meaning": "quickly 和 steadily; at a rapid pace (quickly 和 steadily; at a rapid pace) (quickly 和 steadily; at a rapid pace (quickly and steadily; at a rapid pace))",
+    "meaning": "quickly and steadily; at a rapid pace",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -7093,7 +7094,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "もらう",
     "kana": "もらう",
-    "meaning": "到 receive (到 receive) (到 receive (to receive))",
+    "meaning": "to receive",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -7117,15 +7118,15 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "くれる",
     "kana": "くれる",
-    "meaning": "到 give, 到 do for (到 give, 到 do for) (到 give, 到 do for (to give, to do for))",
+    "meaning": "to give, to do for",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
   },
   {
     "word": "頂く",
-    "kana": "頂く",
-    "meaning": "-- extra-modest expression for たべる 和 のむ; humble expression for もらう -- (-- extra-modest expression for たべる 和 のむ; humble expression for もらう --) (-- extra-modest expression for たべる 和 のむ; humble expression for もらう -- (-- extra-modest expression for たべる and のむ; humble expression for もらう --))",
+    "kana": "いただく",
+    "meaning": "-- extra-modest expression for たべる and のむ; humble expression for もらう --",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -7133,7 +7134,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "もちろん",
     "kana": "もちろん",
-    "meaning": "當然, 的 course (當然, 的 course) (當然, 的 course (certainly, of course))",
+    "meaning": "certainly, of course",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -7149,7 +7150,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "または",
     "kana": "または",
-    "meaning": "或, otherwise (或, otherwise) (或, otherwise (or, otherwise))",
+    "meaning": "or, otherwise",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -7157,7 +7158,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "けがする",
     "kana": "けがする",
-    "meaning": "injury (到 animate object), hurt (injury (到 animate object), hurt) (injury (到 animate object), hurt (injury (to animate object), hurt))",
+    "meaning": "injury (to animate object",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -7172,7 +7173,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   },
   {
     "word": "挨拶",
-    "kana": "挨拶",
+    "kana": "あいさつ",
     "meaning": "greet(ing)",
     "difficulty": "normal",
     "category": "一般",
@@ -7189,7 +7190,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "オーバー",
     "kana": "オーバー",
-    "meaning": "overcoat; over, exceeding, exaggerati在 (overcoat; over, exceeding, exaggerati在) (overcoat; over, exceeding, exaggerati在 (overcoat; over, exceeding, exaggeration))",
+    "meaning": "overcoat; over, exceeding, exaggeration",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -7229,7 +7230,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "おる",
     "kana": "おる",
-    "meaning": "-- extra-modest expressi在 f或 いる -- (-- extra-modest expressi在 f或 いる --) (-- extra-modest expressi在 f或 いる -- (-- extra-modest expression for いる --))",
+    "meaning": "-- extra-modest expression for いる --",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -7237,7 +7238,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "よろしい",
     "kana": "よろしい",
-    "meaning": "(h在.) good, OK, all right ((h在.) good, OK, all right) ((h在.) good, OK, all right ((hon.) good, OK, all right))",
+    "meaning": "(hto get.) good, OK, all right ((hto get.) good, OK, all right) ((hto get.) good, OK, all right ((hon.) good, OK, all right))",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -7245,7 +7246,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "おつり",
     "kana": "おつり",
-    "meaning": "更換; balance 的 金錢 returned 到 the purchaser (更換; balance 的 金錢 returned 到 the purchaser) (更換; balance 的 金錢 returned 到 the purchaser (change; balance of money returned to the purchaser))",
+    "meaning": "change; balance of money returned to the purchaser",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -7261,7 +7262,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ワープロ",
     "kana": "ワープロ",
-    "meaning": "w或d process或 (w或d process或) (w或d process或 (word processor))",
+    "meaning": "word processor",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -7269,7 +7270,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ごちそう",
     "kana": "ごちそう",
-    "meaning": "feast, treating (some在e) (feast, treating (some在e)) (feast, treating (some在e) (feast, treating (someone)))",
+    "meaning": "someto gete",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -7285,15 +7286,15 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "パソコン",
     "kana": "パソコン",
-    "meaning": "(pers在al) computer ((pers在al) computer) ((pers在al) computer ((personal) computer))",
+    "meaning": "(persto getal) computer ((persto getal) computer) ((persto getal) computer ((personal) computer))",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
   },
   {
     "word": "一杯",
-    "kana": "一杯",
-    "meaning": "full, 到 the utmost (full, 到 the utmost) (full, 到 the utmost (full, to the utmost))",
+    "kana": "いっぱい",
+    "meaning": "full, to the utmost",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -7309,7 +7310,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "おもちゃ",
     "kana": "おもちゃ",
-    "meaning": "a 到y (a 到y) (a 到y (a toy))",
+    "meaning": "a toy",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -7333,7 +7334,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "サンダル",
     "kana": "サンダル",
-    "meaning": "s和al (s和al) (s和al (sandal))",
+    "meaning": "sandal",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -7341,7 +7342,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "びっくりする",
     "kana": "びっくりする",
-    "meaning": "到 be surprised (到 be surprised) (到 be surprised (to be surprised))",
+    "meaning": "to be surprised",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -7349,7 +7350,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "うまい",
     "kana": "うまい",
-    "meaning": "delicious; skillful; f或tunate (delicious; skillful; f或tunate) (delicious; skillful; f或tunate (delicious; skillful; fortunate))",
+    "meaning": "delicious; skillful; fortunate",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -7381,7 +7382,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "おいでになる",
     "kana": "おいでになる",
-    "meaning": "(hon.) 到 be ((hon.) 到 be) ((hon.) 到 be ((hon.) to be))",
+    "meaning": "(hon.",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -7397,7 +7398,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "きっと",
     "kana": "きっと",
-    "meaning": "surely, definitely, undoubtedly, 當然 (surely, definitely, undoubtedly, 當然) (surely, definitely, undoubtedly, 當然 (surely, definitely, undoubtedly, certainly))",
+    "meaning": "surely, definitely, undoubtedly, certainly",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -7405,7 +7406,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "まず",
     "kana": "まず",
-    "meaning": "first (的 all), 到 start with (first (的 all), 到 start with) (first (的 all), 到 start with (first (of all), to start with))",
+    "meaning": "first (from all",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -7413,7 +7414,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "それほど",
     "kana": "それほど",
-    "meaning": "到 that degree; extent (到 that degree; extent) (到 that degree; extent (to that degree; extent))",
+    "meaning": "to that degree; extent",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -7437,7 +7438,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "それで",
     "kana": "それで",
-    "meaning": "和 (conj.), thereupon, because 的 that (和 (conj.), thereupon, because 的 that) (和 (conj.), thereupon, because 的 that (and (conj.), thereupon, because of that))",
+    "meaning": "和 (conj.), thereupon, because from that (和 (conj.), thereupon, because from that) (和 (conj.), thereupon, because from that (and (conj.), thereupon, because of that))",
     "difficulty": "normal",
     "category": "經濟",
     "isKanji": false
@@ -7445,7 +7446,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "そろそろ",
     "kana": "そろそろ",
-    "meaning": "gradually, 很快 (gradually, 很快) (gradually, 很快 (gradually, soon))",
+    "meaning": "gradually, soon",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -7453,7 +7454,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "あげる",
     "kana": "あげる",
-    "meaning": "到 give (到 give) (到 give (to give))",
+    "meaning": "to give",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -7477,7 +7478,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "なるほど",
     "kana": "なるほど",
-    "meaning": "I see; I now underst和 (I see; I now underst和) (I see; I now underst和 (I see; I now understand))",
+    "meaning": "I see; I now understand",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -7485,7 +7486,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "くださる",
     "kana": "くださる",
-    "meaning": "(hon.) 到 give, 到 confer ((hon.) 到 give, 到 confer) ((hon.) 到 give, 到 confer ((hon.) to give, to confer))",
+    "meaning": "(hon.",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -7516,8 +7517,8 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   },
   {
     "word": "格好",
-    "kana": "格好",
-    "meaning": "appearance, manner, shape, f或m, posture (appearance, manner, shape, f或m, posture) (appearance, manner, shape, f或m, posture (appearance, manner, shape, form, posture))",
+    "kana": "かっこう",
+    "meaning": "appearance, manner, shape, form, posture",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -7525,7 +7526,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "いじめる",
     "kana": "いじめる",
-    "meaning": "到 bully, 到 torment (到 bully, 到 torment) (到 bully, 到 torment (to bully, to torment))",
+    "meaning": "to bully, to torment",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -7533,7 +7534,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "おっしゃる",
     "kana": "おっしゃる",
-    "meaning": "-- 敬語 expression for いう -- (-- 敬語 expression for いう --) (-- 敬語 expression for いう -- (-- honorific expression for いう --))",
+    "meaning": "-- honorific expression for いう --",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -7541,7 +7542,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "アクセサリー",
     "kana": "アクセサリー",
-    "meaning": "access或y (access或y) (access或y (accessory))",
+    "meaning": "accessory",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -7573,7 +7574,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "コンサート",
     "kana": "コンサート",
-    "meaning": "c在cert (c在cert) (c在cert (concert))",
+    "meaning": "concert",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -7589,7 +7590,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "もうすぐ",
     "kana": "もうすぐ",
-    "meaning": "非常 很快; in a few moments; days (非常 很快; in a few moments; days) (非常 很快; in a few moments; days (very soon; in a few moments; days))",
+    "meaning": "very soon; in a few moments; days",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -7605,7 +7606,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ガソリンスタンド",
     "kana": "ガソリンスタンド",
-    "meaning": "gas stati在, service stati在 (gas stati在, service stati在) (gas stati在, service stati在 (gas station, service station))",
+    "meaning": "gas station, service station",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -7620,8 +7621,8 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   },
   {
     "word": "お陰",
-    "kana": "お陰",
-    "meaning": "thanks 或 owing 到 (thanks 或 owing 到) (thanks 或 owing 到 (thanks or owing to))",
+    "kana": "おかげ",
+    "meaning": "thanks or owing to",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -7652,8 +7653,8 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   },
   {
     "word": "嬉しい",
-    "kana": "嬉しい",
-    "meaning": "到 be happy; 到 be glad (到 be happy; 到 be glad) (到 be happy; 到 be glad (to be happy; to be glad))",
+    "kana": "うれしい",
+    "meaning": "to be happy; to be glad",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -7669,7 +7670,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ソフト",
     "kana": "ソフト",
-    "meaning": "s的t; s的t hat; s的tware (s的t; s的t hat; s的tware) (s的t; s的t hat; s的tware (soft; soft hat; software))",
+    "meaning": "soft; soft hat; software",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -7677,7 +7678,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "これから",
     "kana": "これから",
-    "meaning": "從 now 在, after this (從 now 在, after this) (從 now 在, after this (from now on, after this))",
+    "meaning": "from now on, after this",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -7685,7 +7686,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "たまに",
     "kana": "たまに",
-    "meaning": "occasi在ally (occasi在ally) (occasi在ally (occasionally))",
+    "meaning": "occasionally",
     "difficulty": "normal",
     "category": "一般",
     "isKanji": false
@@ -7709,7 +7710,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "あちら",
     "kana": "あちら",
-    "meaning": "this way (有禮貌的) (this way (有禮貌的)) (this way (有禮貌的) (this way (polite)))",
+    "meaning": "有禮貌from",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -7749,7 +7750,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "あれ",
     "kana": "あれ",
-    "meaning": "that 一個 (over there) (that 一個 (over there)) (that 一個 (over there) (that one (over there)))",
+    "meaning": "over there",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -7805,7 +7806,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "いつも",
     "kana": "いつも",
-    "meaning": "always, usually, every 時間, never (with neg. verb) (always, usually, every 時間, never (with neg. verb)) (always, usually, every 時間, never (with neg. verb) (always, usually, every time, never (with neg. verb)))",
+    "meaning": "with neg. verb",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -7837,7 +7838,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "エレベーター",
     "kana": "エレベーター",
-    "meaning": "elevat或 (elevat或) (elevat或 (elevator))",
+    "meaning": "elevator",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -7845,7 +7846,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "おじいさん",
     "kana": "おじいさん",
-    "meaning": "gr和father, male seni或 citizen (gr和father, male seni或 citizen) (gr和father, male seni或 citizen (grandfather, male senior citizen))",
+    "meaning": "grandfather, male senior citizen",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -7853,7 +7854,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "おととし",
     "kana": "おととし",
-    "meaning": "year bef或e last (year bef或e last) (year bef或e last (year before last))",
+    "meaning": "year before last",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -7861,7 +7862,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "おばあさん",
     "kana": "おばあさん",
-    "meaning": "gr和mother, female seni或-citizen (gr和mother, female seni或-citizen) (gr和mother, female seni或-citizen (grandmother, female senior-citizen))",
+    "meaning": "grandmother, female senior-citizen",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -7877,7 +7878,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "かかる",
     "kana": "かかる",
-    "meaning": "it takes (amount 的 時間, 金錢) (v.i.) (it takes (amount 的 時間, 金錢) (v.i.)) (it takes (amount 的 時間, 金錢) (v.i.) (it takes (amount of time, money) (v.i.)))",
+    "meaning": "it takes (amount from time, in (it takes (amount of time, money (v.i.)))",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -7885,7 +7886,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "かける",
     "kana": "かける",
-    "meaning": "到 dial/call (e.g., phone); 到 sit down (到 dial/call (e.g., phone); 到 sit down) (到 dial/call (e.g., phone); 到 sit down (to dial/call (e.g., phone); to sit down))",
+    "meaning": "到 dial/call (e.g., phone",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -7909,7 +7910,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "かぶる",
     "kana": "かぶる",
-    "meaning": "到 wear, 到 put 在 (e.g., a hat 在 the head) (到 wear, 到 put 在 (e.g., a hat 在 the head)) (到 wear, 到 put 在 (e.g., a hat 在 the head) (to wear, to put on (e.g., a hat on the head)))",
+    "meaning": "e.g., a hat to get the head",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -7925,7 +7926,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "カレー",
     "kana": "カレー",
-    "meaning": "curry (abbr. for curry 和 rice) (curry (abbr. for curry 和 rice)) (curry (abbr. for curry 和 rice) (curry (abbr. for curry and rice)))",
+    "meaning": "abbr. for curry 和 rice",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -7989,7 +7990,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "コーヒー",
     "kana": "コーヒー",
-    "meaning": "c的fee (c的fee) (c的fee (coffee))",
+    "meaning": "coffee",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -8005,7 +8006,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "こちら",
     "kana": "こちら",
-    "meaning": "this person (有禮貌的); this way (有禮貌的) (this person (有禮貌的); this way (有禮貌的)) (this person (有禮貌的); this way (有禮貌的) (this person (polite); this way (polite)))",
+    "meaning": "this person (有禮貌from); this way (有禮貌from) (this person (有禮貌from); this way (有禮貌from)) (this person (有禮貌from); this way (有禮貌from) (this person (polite); this way (polite)))",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -8013,7 +8014,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "こっち",
     "kana": "こっち",
-    "meaning": "this pers在; this directi在; this side (this pers在; this directi在; this side) (this pers在; this directi在; this side (this person; this direction; this side))",
+    "meaning": "this person; this direction; this side",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -8037,7 +8038,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "コピーする",
     "kana": "コピーする",
-    "meaning": "到 copy (到 copy) (到 copy (to copy))",
+    "meaning": "to copy",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -8045,7 +8046,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "これ",
     "kana": "これ",
-    "meaning": "this 一個 (this 一個) (this 一個 (this one))",
+    "meaning": "this one",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -8061,7 +8062,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "さあ",
     "kana": "さあ",
-    "meaning": "come now, 好 (come now, 好) (come now, 好 (come now, well))",
+    "meaning": "come now, well",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -8077,7 +8078,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "じゃ; じゃあ",
     "kana": "じゃ; じゃあ",
-    "meaning": "好, 好 then (好, 好 then) (好, 好 then (well, well then))",
+    "meaning": "well, well then",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -8109,7 +8110,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "すぐに",
     "kana": "すぐに",
-    "meaning": "immediately, 很快 (immediately, 很快) (immediately, 很快 (immediately, soon))",
+    "meaning": "immediately, soon",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -8117,7 +8118,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ストーブ",
     "kana": "ストーブ",
-    "meaning": "heater (lit: s到ve) (heater (lit: s到ve)) (heater (lit: s到ve) (heater (lit: stove)))",
+    "meaning": "lit: s到ve",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -8125,7 +8126,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "スプーン",
     "kana": "スプーン",
-    "meaning": "spo在 (spo在) (spo在 (spoon))",
+    "meaning": "spoon",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -8133,7 +8134,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "スポーツ",
     "kana": "スポーツ",
-    "meaning": "sp或t(s) (sp或t(s)) (sp或t(s) (sport(s)))",
+    "meaning": "spcartoont(s) (spcartoont(s)) (spcartoont(s) (sport(s)))",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -8149,7 +8150,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "する",
     "kana": "する",
-    "meaning": "到 do, 到 try; 到 wear small items (e.g., necktie, watch, etc.) (到 do, 到 try; 到 wear small items (e.g., necktie, watch, etc.)) (到 do, 到 try; 到 wear small items (e.g., necktie, watch, etc.) (to do, to try; to wear small items (e.g., necktie, watch, etc.)))",
+    "meaning": "e.g., necktie, watch, etc.",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -8173,7 +8174,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "そう; そうです",
     "kana": "そう; そうです",
-    "meaning": "yes; appears, 到 be the case (yes; appears, 到 be the case) (yes; appears, 到 be the case (yes; appears, to be the case))",
+    "meaning": "yes; appears, to be the case",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -8181,7 +8182,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "そうして; そして",
     "kana": "そうして; そして",
-    "meaning": "和, like that (和, like that) (和, like that (and, like that))",
+    "meaning": "and, like that",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -8189,7 +8190,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "そこ",
     "kana": "そこ",
-    "meaning": "that place, there; bot到m, sole (that place, there; bot到m, sole) (that place, there; bot到m, sole (that place, there; bottom, sole))",
+    "meaning": "that place, there; bottom, sole",
     "difficulty": "beginner",
     "category": "場所",
     "isKanji": false
@@ -8221,7 +8222,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "そば",
     "kana": "そば",
-    "meaning": "near, close, beside; Japanese traditi在al buckwheat noodle (near, close, beside; Japanese traditi在al buckwheat noodle) (near, close, beside; Japanese traditi在al buckwheat noodle (near, close, beside; Japanese traditional buckwheat noodle))",
+    "meaning": "near, close, beside; Japanese traditional buckwheat noodle",
     "difficulty": "beginner",
     "category": "性質",
     "isKanji": false
@@ -8229,7 +8230,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "それ",
     "kana": "それ",
-    "meaning": "that 一個 (that 一個) (that 一個 (that one))",
+    "meaning": "that one",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -8237,7 +8238,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "それから",
     "kana": "それから",
-    "meaning": "和 then, after that (和 then, after that) (和 then, after that (and then, after that))",
+    "meaning": "and then, after that",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -8245,7 +8246,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "それでは",
     "kana": "それでは",
-    "meaning": "in that situation, 好 then... (in that situation, 好 then...) (in that situation, 好 then... (in that situation, well then...))",
+    "meaning": "in that situation, well then...",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -8269,7 +8270,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "たばこ",
     "kana": "たばこ",
-    "meaning": "到bacco, cigarettes (到bacco, cigarettes) (到bacco, cigarettes (tobacco, cigarettes))",
+    "meaning": "tobacco, cigarettes",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -8285,7 +8286,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "つける",
     "kana": "つける",
-    "meaning": "到 turn 在 (e.g., a light); 到 take (到 turn 在 (e.g., a light); 到 take) (到 turn 在 (e.g., a light); 到 take (to turn on (e.g., a light); to take))",
+    "meaning": "到 turn to get (e.g., a light",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -8293,7 +8294,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "つまらない",
     "kana": "つまらない",
-    "meaning": "b或ing, dull; insignificant (b或ing, dull; insignificant) (b或ing, dull; insignificant (boring, dull; insignificant))",
+    "meaning": "boring, dull; insignificant",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -8309,7 +8310,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "テープレコーダー",
     "kana": "テープレコーダー",
-    "meaning": "tape rec或der (tape rec或der) (tape rec或der (tape recorder))",
+    "meaning": "tape recorder",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -8325,7 +8326,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "できる",
     "kana": "できる",
-    "meaning": "到 be able 到 (到 accomplish) (到 be able 到 (到 accomplish)) (到 be able 到 (到 accomplish) (to be able to (to accomplish)))",
+    "meaning": "到 accomplish",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -8341,7 +8342,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "では",
     "kana": "では",
-    "meaning": "then, 好, so (then, 好, so) (then, 好, so (then, well, so))",
+    "meaning": "then, well, so",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -8349,7 +8350,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "デパート",
     "kana": "デパート",
-    "meaning": "(abbr.) department st或e ((abbr.) department st或e) ((abbr.) department st或e ((abbr.) department store))",
+    "meaning": "(abbr.) department stcartoone ((abbr.) department stcartoone) ((abbr.) department stcartoone ((abbr.) department store))",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -8365,7 +8366,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "テレビ",
     "kana": "テレビ",
-    "meaning": "televisi在, TV (televisi在, TV) (televisi在, TV (television, TV))",
+    "meaning": "television, TV",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -8373,7 +8374,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ドア",
     "kana": "ドア",
-    "meaning": "do或 (Western style) (do或 (Western style)) (do或 (Western style) (door (Western style)))",
+    "meaning": "Western style",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -8381,7 +8382,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "トイレ",
     "kana": "トイレ",
-    "meaning": "bathroom; 到ilet (bathroom; 到ilet) (bathroom; 到ilet (bathroom; toilet))",
+    "meaning": "bathroom; toilet",
     "difficulty": "beginner",
     "category": "物質",
     "isKanji": false
@@ -8397,7 +8398,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "どうして",
     "kana": "どうして",
-    "meaning": "why, f或 what reas在 (why, f或 what reas在) (why, f或 what reas在 (why, for what reason))",
+    "meaning": "why, for what reason",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -8413,7 +8414,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "どうも",
     "kana": "どうも",
-    "meaning": "Thank you; somehow; no matter how hard 一個 may try (Thank you; somehow; no matter how hard 一個 may try) (Thank you; somehow; no matter how hard 一個 may try (Thank you; somehow; no matter how hard one may try))",
+    "meaning": "Thank you; somehow; no matter how hard one may try",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -8429,7 +8430,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "どちら",
     "kana": "どちら",
-    "meaning": "which (一個) (way); where (有禮貌的) (which (一個) (way); where (有禮貌的)) (which (一個) (way); where (有禮貌的) (which (one) (way); where (polite)))",
+    "meaning": "有禮貌from",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -8437,7 +8438,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "どっち",
     "kana": "どっち",
-    "meaning": "which 一個, which way (which 一個, which way) (which 一個, which way (which one, which way))",
+    "meaning": "which one, which way",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -8445,7 +8446,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "とても",
     "kana": "とても",
-    "meaning": "非常 (much), greatly, exceedingly (非常 (much), greatly, exceedingly) (非常 (much), greatly, exceedingly (very (much), greatly, exceedingly))",
+    "meaning": "very (much), greatly, exceedingly (very (much), greatly, exceedingly) (very (much), greatly, exceedingly (very (much), greatly, exceedingly))",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -8469,7 +8470,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "どれ",
     "kana": "どれ",
-    "meaning": "which 一個 (which 一個) (which 一個 (which one))",
+    "meaning": "which one",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -8477,7 +8478,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "どんな",
     "kana": "どんな",
-    "meaning": "what, what kind 的 (what, what kind 的) (what, what kind 的 (what, what kind of))",
+    "meaning": "what, what kind of",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -8509,7 +8510,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "なる",
     "kana": "なる",
-    "meaning": "到 become (到 become) (到 become (to become))",
+    "meaning": "to become",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -8565,7 +8566,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "はく",
     "kana": "はく",
-    "meaning": "到 put 在 (items below your waist) (到 put 在 (items below your waist)) (到 put 在 (items below your waist) (to put on (items below your waist)))",
+    "meaning": "items below your waist",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -8597,7 +8598,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ハンカチ",
     "kana": "ハンカチ",
-    "meaning": "h和kerchief (h和kerchief) (h和kerchief (handkerchief))",
+    "meaning": "handkerchief",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -8605,7 +8606,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "フィルム",
     "kana": "フィルム",
-    "meaning": "film (roll 的) (film (roll 的)) (film (roll 的) (film (roll of)))",
+    "meaning": "roll from",
     "difficulty": "beginner",
     "category": "技術",
     "isKanji": false
@@ -8621,7 +8622,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "フォーク",
     "kana": "フォーク",
-    "meaning": "f或k (f或k) (f或k (fork))",
+    "meaning": "fork",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -8677,7 +8678,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ポスト",
     "kana": "ポスト",
-    "meaning": "mailbox; post, positi在 (mailbox; post, positi在) (mailbox; post, positi在 (mailbox; post, position))",
+    "meaning": "mailbox; post, position",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -8685,7 +8686,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ボタン",
     "kana": "ボタン",
-    "meaning": "butt在 (butt在) (butt在 (button))",
+    "meaning": "button",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -8701,7 +8702,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "まずい",
     "kana": "まずい",
-    "meaning": "terrible (in reference 到 food), unappetizing, unpleasant (taste) (terrible (in reference 到 food), unappetizing, unpleasant (taste)) (terrible (in reference 到 food), unappetizing, unpleasant (taste) (terrible (in reference to food), unappetizing, unpleasant (taste)))",
+    "meaning": "taste",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -8709,7 +8710,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "また",
     "kana": "また",
-    "meaning": "和; furthermore (和; furthermore) (和; furthermore (and; furthermore))",
+    "meaning": "and; furthermore",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -8741,7 +8742,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "みんな",
     "kana": "みんな",
-    "meaning": "all, e非常在e, e非常body (all, e非常在e, e非常body) (all, e非常在e, e非常body (all, everyone, everybody))",
+    "meaning": "all, everyone, everybody",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -8757,7 +8758,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "もう",
     "kana": "もう",
-    "meaning": "already; again; m或e (already; again; m或e) (already; again; m或e (already; again; more))",
+    "meaning": "already; again; more",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -8765,7 +8766,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "もしもし",
     "kana": "もしもし",
-    "meaning": "Hello? (used 在 the phone) (Hello? (used 在 the phone)) (Hello? (used 在 the phone) (Hello? (used on the phone)))",
+    "meaning": "used to get the phone",
     "difficulty": "beginner",
     "category": "經濟",
     "isKanji": false
@@ -8773,7 +8774,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "もっと",
     "kana": "もっと",
-    "meaning": "m或e (m或e) (m或e (more))",
+    "meaning": "more",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -8781,7 +8782,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "やる",
     "kana": "やる",
-    "meaning": "到 do; 到 give (到 pets, parents, siblings, etc.) (到 do; 到 give (到 pets, parents, siblings, etc.)) (到 do; 到 give (到 pets, parents, siblings, etc.) (to do; to give (to pets, parents, siblings, etc.)))",
+    "meaning": "到 pets, parents, siblings, etc.",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -8829,7 +8830,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "レコード",
     "kana": "レコード",
-    "meaning": "rec或d (rec或d) (rec或d (record))",
+    "meaning": "record",
     "difficulty": "beginner",
     "category": "一般",
     "isKanji": false
@@ -8845,7 +8846,7 @@ export const HIRAGANA_WORDS: TetrisWord[] = [
   {
     "word": "ワイシャツ",
     "kana": "ワイシャツ",
-    "meaning": "shirt (lit: white shirt), 商業的 shirt (shirt (lit: white shirt), 商業的 shirt) (shirt (lit: white shirt), 商業的 shirt (shirt (lit: white shirt), business shirt))",
+    "meaning": "shirt (lit: white shirt), 商業from shirt (shirt (lit: white shirt), 商業from shirt) (shirt (lit: white shirt), 商業from shirt (shirt (lit: white shirt), business shirt))",
     "difficulty": "beginner",
     "category": "經濟",
     "isKanji": false

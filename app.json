@@ -16,13 +16,17 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.kanakana.app",
+      "buildNumber": "1",
       "infoPlist": {
-        "ITSAppUsesNonExemptEncryption": false
+        "ITSAppUsesNonExemptEncryption": false,
+        "CFBundleDisplayName": "KanaKana",
+        "CFBundleShortVersionString": "1.0.0"
       }
     },
     "android": {
       "package": "com.kanakana.app",
-      "versionCode": 1
+      "versionCode": 1,
+      "versionName": "1.0.0"
     },
     "web": {
       "bundler": "metro"
@@ -34,6 +38,11 @@
     "extra": {
       "eas": {
         "projectId": "78bd67aa-751a-4ea7-91f3-c017131ffeef"
+      },
+      "versionCheck": {
+        "enabled": true,
+        "apiUrl": "https://neobase.app/v1/workflows/run",
+        "checkInterval": 3600000
       }
     },
     "owner": "tomalin"

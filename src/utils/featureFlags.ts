@@ -10,7 +10,7 @@ export const FEATURE_FLAGS = {
   TETRIS_MODE: true,       // 啟用俄羅斯方塊模式
   
   // 其他功能
-  BETA_FEATURES: __DEV__,
+  BETA_FEATURES: false, // 禁用測試功能
   ADVANCED_ANALYTICS: false,
   MULTIPLAYER: false,
 } as const;

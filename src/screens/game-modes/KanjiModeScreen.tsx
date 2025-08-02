@@ -11,8 +11,10 @@ import {
   Easing,
 } from 'react-native';
 import { TechTheme, Typography, Spacing, Shadows, TechColors } from '@/constants/theme';
-import { validateJapaneseInput } from '@/utils/japaneseInput';
-import { getRandomKanjiWord } from '@/data/kanjiWords';
+import { getRandomWordByCombinedDifficulty, getVocabularyByJLPT } from '@/data/vocabulary-final';
+import { useTypingDetection } from '@/hooks/useTypingDetection';
+import { DifficultySelector } from '@/components/common/DifficultySelector';
+import type { CombinedDifficultyLevel } from '@/types';
 import { GlassNavBar } from '@/components/common/GlassNavBar';
 import { GlassContainer } from '@/components/common/GlassContainer';
 import { PauseOverlay } from '@/components/common/PauseOverlay';
@@ -43,96 +45,137 @@ export const KanjiModeScreen: React.FC<KanjiModeScreenProps> = ({ route, navigat
     showStrokeCount: false,
   };
 
-  // 根據難度設定初始生命值
-  const getInitialLives = () => {
-    switch (settings.difficulty) {
-      case 'easy': return 5;
-      case 'normal': return 3;
-      case 'hard': return 1;
-      default: return 3;
-    }
-  };
+  // 新增難度選擇狀態
+  const [selectedDifficulty, setSelectedDifficulty] = useState<CombinedDifficultyLevel>('elementary');
+  const [showDifficultySelector, setShowDifficultySelector] = useState(true);
 
   // 遊戲狀態
   const [gameState, setGameState] = useState<'idle' | 'playing' | 'paused' | 'finished'>('idle');
-  const [score, setScore] = useState(0);
-  const [combo, setCombo] = useState(0);
-  const [lives, setLives] = useState(getInitialLives());
   const [currentWord, setCurrentWord] = useState<KanjiWord | null>(null);
-  const [userInput, setUserInput] = useState('');
   const [gameTime, setGameTime] = useState(0);
   const [showMeaning, setShowMeaning] = useState(false);
   const [showHint, setShowHint] = useState(false);
 
+  // 使用統一的打字偵測 hook
+  const {
+    userInput,
+    combo,
+    score,
+    isTyping,
+    handleInputChange: typingHandleInputChange,
+    resetState,
+    setScore
+  } = useTypingDetection(currentWord?.hiragana || '', {
+    onCorrect: (word, points) => {
+      // 生成新漢字詞彙
+      generateNewWord();
+    },
+    onError: () => {
+      // 錯誤處理（只重置連擊，不扣生命）
+    },
+    baseScoreMultiplier: 15,
+    comboMultiplier: 1,
+  });
+
   // 生成新漢字詞彙
   const generateNewWord = useCallback(() => {
-    // 轉換 difficultyLevel 格式 (jlpt_n5 -> n5)
-    const level = settings.difficultyLevel.replace('jlpt_', '') as 'n5' | 'n4' | 'n3' | 'n2' | 'n1';
-    const newWord = getRandomKanjiWord(level);
-    setCurrentWord(newWord);
+    // 根據選擇的難度過濾詞彙
+    const level = getJLPTLevelByDifficulty(selectedDifficulty);
+    
+    // 使用新的詞彙系統，只選擇漢字詞彙
+    const allWords = getVocabularyByJLPT(level);
+    const kanjiWords = allWords.filter(word => word.isKanji && word.kanji);
+    
+    // 如果當前JLPT等級沒有漢字詞彙，嘗試其他等級
+    let availableKanjiWords = kanjiWords;
+    if (kanjiWords.length === 0) {
+      // 嘗試所有JLPT等級的漢字詞彙
+      const allJLPTLevels = ['n5', 'n4', 'n3', 'n2', 'n1'];
+      for (const jlptLevel of allJLPTLevels) {
+        const wordsForLevel = getVocabularyByJLPT(jlptLevel as any);
+        const kanjiWordsForLevel = wordsForLevel.filter(word => word.isKanji && word.kanji);
+        if (kanjiWordsForLevel.length > 0) {
+          availableKanjiWords = kanjiWordsForLevel;
+          break;
+        }
+      }
+    }
+    
+    // 確保有漢字詞彙可用
+    if (availableKanjiWords.length === 0) {
+      console.warn('No kanji words available, using fallback');
+      // 如果還是沒有漢字詞彙，使用一個預設的漢字詞彙
+      const fallbackKanjiWord: KanjiWord = {
+        id: 'fallback_kanji',
+        text: '漢字',
+        kanji: '漢字',
+        hiragana: 'かんじ',
+        katakana: 'カンジ',
+        meaning: 'kanji, Chinese character',
+        difficulty: 1,
+        theme: 'jlpt_n5' as any,
+        jlptLevel: 'n5',
+        frequency: 50,
+        strokeCount: 2,
+        examples: [],
+      };
+      setCurrentWord(fallbackKanjiWord);
+    } else {
+      // 使用漢字詞彙
+      const randomIndex = Math.floor(Math.random() * availableKanjiWords.length);
+      const randomWord = availableKanjiWords[randomIndex];
+      const kanjiWord: KanjiWord = {
+        id: randomWord.id || randomWord.word,
+        text: randomWord.word,
+        kanji: randomWord.kanji || randomWord.word,
+        hiragana: randomWord.kana, // 使用 kana 作為 hiragana
+        katakana: randomWord.kana.toUpperCase(),
+        meaning: randomWord.chineseMeaning || randomWord.meaning,
+        difficulty: randomWord.difficulty === 'beginner' ? 1 : 
+                   randomWord.difficulty === 'normal' ? 2 : 
+                   randomWord.difficulty === 'hard' ? 3 : 4,
+        theme: 'jlpt_n5' as any,
+        jlptLevel: randomWord.jlptLevel || 'n5',
+        frequency: 50,
+        strokeCount: randomWord.kanji?.length || 0,
+        examples: [],
+      };
+      setCurrentWord(kanjiWord);
+    }
+    
     setShowHint(false);
-  }, [settings]);
+  }, [selectedDifficulty]);
+
+  // 根據組合難度獲取JLPT等級
+  const getJLPTLevelByDifficulty = (difficulty: CombinedDifficultyLevel): 'n5' | 'n4' | 'n3' | 'n2' | 'n1' => {
+    switch (difficulty) {
+      case 'elementary':
+        return Math.random() < 0.5 ? 'n5' : 'n4';
+      case 'intermediate':
+        const levels = ['n5', 'n4', 'n3', 'n2'];
+        return levels[Math.floor(Math.random() * levels.length)] as 'n5' | 'n4' | 'n3' | 'n2';
+      case 'advanced':
+        const allLevels = ['n5', 'n4', 'n3', 'n2', 'n1'];
+        return allLevels[Math.floor(Math.random() * allLevels.length)] as 'n5' | 'n4' | 'n3' | 'n2' | 'n1';
+      default:
+        return 'n5';
+    }
+  };
 
   // 遊戲開始
   const startGame = useCallback(() => {
     setGameState('playing');
-    setScore(0);
-    setCombo(0);
-    setLives(getInitialLives());
-    setUserInput('');
+    resetState();
     setGameTime(0);
     generateNewWord();
-  }, [generateNewWord, getInitialLives]);
+    setShowDifficultySelector(false);
+  }, [generateNewWord, resetState]);
 
   // 處理輸入
   const handleInputChange = useCallback((text: string) => {
-    setUserInput(text);
-    
-    if (!currentWord) return;
-
-    // 根據設定決定驗證的目標讀音
-    let targetReading = '';
-    if (settings.readingType === 'hiragana') {
-      targetReading = currentWord.hiragana;
-    } else if (settings.readingType === 'katakana' && currentWord.katakana) {
-      targetReading = currentWord.katakana;
-    } else {
-      // both 模式，接受任一種讀音
-      targetReading = currentWord.hiragana;
-    }
-
-    const validation = validateJapaneseInput(text, targetReading);
-    
-    if (validation.isComplete) {
-      // 完全正確
-      const points = currentWord.kanji.length * 15 * (combo + 1);
-      setScore(prev => prev + points);
-      setCombo(prev => prev + 1);
-      setUserInput('');
-      generateNewWord();
-    } else if (!validation.canContinue && validation.errorType === 'wrong_character') {
-      // 錯誤輸入
-      setCombo(0);
-      setLives(prev => Math.max(0, prev - 1));
-      setUserInput('');
-      
-      if (lives <= 1) {
-        endGame();
-      }
-    } else if (settings.readingType === 'both' && !validation.canContinue) {
-      // 在 both 模式下，如果平假名不匹配，嘗試片假名
-      if (currentWord.katakana) {
-        const katakanaValidation = validateJapaneseInput(text, currentWord.katakana);
-        if (katakanaValidation.isComplete) {
-          const points = currentWord.kanji.length * 15 * (combo + 1);
-          setScore(prev => prev + points);
-          setCombo(prev => prev + 1);
-          setUserInput('');
-          generateNewWord();
-        }
-      }
-    }
-  }, [currentWord, combo, lives, settings, generateNewWord]);
+    if (gameState !== 'playing') return;
+    typingHandleInputChange(text);
+  }, [gameState, typingHandleInputChange]);
 
   // 結束遊戲
   const endGame = useCallback(() => {
@@ -160,7 +203,14 @@ export const KanjiModeScreen: React.FC<KanjiModeScreenProps> = ({ route, navigat
     
     if (gameState === 'playing') {
       interval = setInterval(() => {
-        setGameTime(prev => prev + 1);
+        setGameTime(prev => {
+          const newTime = prev + 1;
+          // 遊戲結束條件：達到5分鐘或10000分
+          if (newTime >= 300 || score >= 10000) {
+            endGame();
+          }
+          return newTime;
+        });
       }, 1000);
     }
     
@@ -169,10 +219,28 @@ export const KanjiModeScreen: React.FC<KanjiModeScreenProps> = ({ route, navigat
         clearInterval(interval);
       }
     };
-  }, [gameState]);
+  }, [gameState, score, endGame]);
 
   // 渲染遊戲界面
   const renderGameContent = () => {
+    // 顯示難度選擇器
+    if (showDifficultySelector) {
+      return (
+        <View style={styles.container}>
+          <DifficultySelector
+            selectedDifficulty={selectedDifficulty}
+            onSelectDifficulty={setSelectedDifficulty}
+          />
+          <Pressable
+            style={styles.startButton}
+            onPress={startGame}
+          >
+            <Text style={styles.startButtonText}>開始遊戲</Text>
+          </Pressable>
+        </View>
+      );
+    }
+
     switch (gameState) {
       case 'idle':
         return <KanjiGameStartScreen onStart={startGame} settings={settings} />;
@@ -187,7 +255,7 @@ export const KanjiModeScreen: React.FC<KanjiModeScreenProps> = ({ route, navigat
               onShowHint={showHintHandler}
               isPaused={gameState === 'paused'}
               score={score}
-              lives={lives}
+              combo={combo}
               gameTime={gameTime}
               showMeaning={showMeaning}
               showHint={showHint}
@@ -351,7 +419,7 @@ interface KanjiGamePlayScreenProps {
   onShowHint: () => void;
   isPaused: boolean;
   score: number;
-  lives: number;
+  combo: number;
   gameTime: number;
   showMeaning: boolean;
   showHint: boolean;
@@ -365,7 +433,7 @@ const KanjiGamePlayScreen: React.FC<KanjiGamePlayScreenProps> = ({
   onShowHint,
   isPaused,
   score,
-  lives,
+  combo,
   gameTime,
   showMeaning,
   showHint,
@@ -378,7 +446,7 @@ const KanjiGamePlayScreen: React.FC<KanjiGamePlayScreenProps> = ({
         <Text style={styles.infoText}>🏆 分數: {score}</Text>
       </View>
       <View style={styles.infoItem}>
-        <Text style={styles.infoText}>❤️ 生命: {lives}</Text>
+        <Text style={styles.infoText}>🔥 連擊: {combo}</Text>
       </View>
       <View style={styles.infoItem}>
         <Text style={styles.infoText}>⏰ 時間: {Math.floor(gameTime / 60)}:{(gameTime % 60).toString().padStart(2, '0')}</Text>
@@ -503,6 +571,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: TechTheme.background,
   },
+  
   
   // 星空背景
   starfield: {
@@ -709,10 +778,13 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     paddingVertical: Spacing.md,
     paddingHorizontal: Spacing.xl,
+    alignItems: 'center',
+    marginTop: Spacing.xl,
+    ...Shadows.neon.blue,
   },
   startButtonText: {
-    color: 'white',
-    fontSize: Typography.sizes.ui.body,
+    color: TechTheme.surface,
+    fontSize: Typography.sizes.ui.subtitle,
     fontWeight: '600',
     textAlign: 'center',
   },

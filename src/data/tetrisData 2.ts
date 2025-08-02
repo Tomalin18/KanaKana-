@@ -30,7 +30,7 @@ import {
   getWordByLength as getVocabWordByLength,
   getWordByLevelAndLength as getVocabWordByLevelAndLength,
   getWordsByType as getVocabWordsByType
-} from './vocabulary-final';
+} from './vocabulary-final/index 2';
 
 // 為了向後兼容，保留舊的導出名稱
 export const BEGINNER_WORDS = VOCAB_BEGINNER;
