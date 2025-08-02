@@ -5673,7 +5673,7 @@ export const KANJI_WORDS_01: TetrisWord[] = [
   },
   {
     "word": "我",
-    "kana": "が～",
+    "kana": "が",
     "meaning": "ego",
     "difficulty": "expert",
     "category": "一般",

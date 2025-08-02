@@ -6431,7 +6431,7 @@ export const EXPERT_WORDS: TetrisWord[] = [
   },
   {
     "word": "我",
-    "kana": "が～",
+    "kana": "が",
     "meaning": "ego",
     "difficulty": "expert",
     "category": "一般",

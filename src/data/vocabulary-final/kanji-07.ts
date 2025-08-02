@@ -552,7 +552,7 @@ export const KANJI_WORDS_07: TetrisWord[] = [
   },
   {
     "word": "行く",
-    "kana": "いく; ゆく",
+    "kana": "いく",
     "meaning": "to go",
     "difficulty": "beginner",
     "category": "一般",
@@ -1947,7 +1947,7 @@ export const KANJI_WORDS_07: TetrisWord[] = [
   },
   {
     "word": "結婚",
-    "kana": "けっこん (する)",
+    "kana": "けっこん",
     "meaning": "marriage (get married)",
     "difficulty": "beginner",
     "category": "一般",
@@ -2253,7 +2253,7 @@ export const KANJI_WORDS_07: TetrisWord[] = [
   },
   {
     "word": "散歩",
-    "kana": "さんぽ (する)",
+    "kana": "さんぽ",
     "meaning": "walk, stroll",
     "difficulty": "beginner",
     "category": "一般",
@@ -2694,7 +2694,7 @@ export const KANJI_WORDS_07: TetrisWord[] = [
   },
   {
     "word": "掃除",
-    "kana": "そうじ (する)",
+    "kana": "そうじ",
     "meaning": "cleaning, sweeping",
     "difficulty": "beginner",
     "category": "一般",
@@ -3207,7 +3207,7 @@ export const KANJI_WORDS_07: TetrisWord[] = [
   },
   {
     "word": "十",
-    "kana": "(〜を) とお",
+    "kana": "とお",
     "meaning": "ten (~)",
     "difficulty": "beginner",
     "category": "一般",
@@ -3423,7 +3423,7 @@ export const KANJI_WORDS_07: TetrisWord[] = [
   },
   {
     "word": "何",
-    "kana": "なん; なに",
+    "kana": "なん",
     "meaning": "what",
     "difficulty": "beginner",
     "category": "一般",
@@ -4179,7 +4179,7 @@ export const KANJI_WORDS_07: TetrisWord[] = [
   },
   {
     "word": "勉強",
-    "kana": "べんきょう (する)",
+    "kana": "べんきょう",
     "meaning": "study",
     "difficulty": "beginner",
     "category": "學術",
@@ -4269,7 +4269,7 @@ export const KANJI_WORDS_07: TetrisWord[] = [
   },
   {
     "word": "毎月",
-    "kana": "まいげつ; まいつき",
+    "kana": "まいげつ",
     "meaning": "every mto getth, mto getthly (every month, monthly)",
     "difficulty": "beginner",
     "category": "一般",
@@ -4296,7 +4296,7 @@ export const KANJI_WORDS_07: TetrisWord[] = [
   },
   {
     "word": "毎年",
-    "kana": "まいねん; まいとし",
+    "kana": "まいねん",
     "meaning": "every year, yearly, annually (every year, yearly, annually)",
     "difficulty": "beginner",
     "category": "一般",
@@ -4908,7 +4908,7 @@ export const KANJI_WORDS_07: TetrisWord[] = [
   },
   {
     "word": "練習",
-    "kana": "れんしゅう (する)",
+    "kana": "れんしゅう",
     "meaning": "(到) practice ((to) practice)",
     "difficulty": "beginner",
     "category": "一般",

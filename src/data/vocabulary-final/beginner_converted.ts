@@ -620,7 +620,7 @@ export const BEGINNER_WORDS: TetrisWord[] = [
   },
   {
     "word": "いい; よい",
-    "kana": "いい; よい",
+    "kana": "いい",
     "meaning": "good",
     "chineseMeaning": "好的",
     "difficulty": "beginner",
@@ -641,7 +641,7 @@ export const BEGINNER_WORDS: TetrisWord[] = [
   },
   {
     "word": "行く",
-    "kana": "いく; ゆく",
+    "kana": "いく",
     "meaning": "to go",
     "chineseMeaning": "去",
     "difficulty": "beginner",
@@ -1807,7 +1807,7 @@ export const BEGINNER_WORDS: TetrisWord[] = [
   },
   {
     "word": "キロ; キログラム",
-    "kana": "キロ; キログラム",
+    "kana": "キロ",
     "meaning": "(abbr.) kilo (kilogram)",
     "chineseMeaning": "(abbr.) kilo (kilogram)",
     "difficulty": "beginner",
@@ -1971,7 +1971,7 @@ export const BEGINNER_WORDS: TetrisWord[] = [
   },
   {
     "word": "結婚",
-    "kana": "けっこん (する)",
+    "kana": "けっこん",
     "meaning": "marriage (get married)",
     "chineseMeaning": "結婚",
     "difficulty": "beginner",
@@ -2290,7 +2290,7 @@ export const BEGINNER_WORDS: TetrisWord[] = [
   },
   {
     "word": "散歩",
-    "kana": "さんぽ (する)",
+    "kana": "さんぽ",
     "meaning": "walk, stroll",
     "chineseMeaning": "散步",
     "difficulty": "beginner",
@@ -2718,7 +2718,7 @@ export const BEGINNER_WORDS: TetrisWord[] = [
   },
   {
     "word": "そう; そうです",
-    "kana": "そう; そうです",
+    "kana": "そうです",
     "meaning": "yes; appears, to be the case",
     "chineseMeaning": "是的、似乎是這樣",
     "difficulty": "beginner",
@@ -2728,7 +2728,7 @@ export const BEGINNER_WORDS: TetrisWord[] = [
   },
   {
     "word": "掃除",
-    "kana": "そうじ (する)",
+    "kana": "そうじ",
     "meaning": "cleaning, sweeping",
     "chineseMeaning": "清掃",
     "difficulty": "beginner",
@@ -2739,7 +2739,7 @@ export const BEGINNER_WORDS: TetrisWord[] = [
   },
   {
     "word": "そうして; そして",
-    "kana": "そうして; そして",
+    "kana": "そして",
     "meaning": "and, like that",
     "chineseMeaning": "等等",
     "difficulty": "beginner",
@@ -3948,7 +3948,7 @@ export const BEGINNER_WORDS: TetrisWord[] = [
   },
   {
     "word": "勉強",
-    "kana": "べんきょう (する)",
+    "kana": "べんきょう",
     "meaning": "study",
     "chineseMeaning": "學習",
     "difficulty": "beginner",
@@ -4036,7 +4036,7 @@ export const BEGINNER_WORDS: TetrisWord[] = [
   },
   {
     "word": "毎月",
-    "kana": "まいげつ; まいつき",
+    "kana": "まいげつ",
     "meaning": "every month, monthly",
     "chineseMeaning": "每月",
     "difficulty": "beginner",
@@ -4069,7 +4069,7 @@ export const BEGINNER_WORDS: TetrisWord[] = [
   },
   {
     "word": "毎年",
-    "kana": "まいねん; まいとし",
+    "kana": "まいねん",
     "meaning": "every year, yearly, annually",
     "chineseMeaning": "每年",
     "difficulty": "beginner",
@@ -4597,7 +4597,7 @@ export const BEGINNER_WORDS: TetrisWord[] = [
   },
   {
     "word": "練習",
-    "kana": "れんしゅう (する)",
+    "kana": "れんしゅう",
     "meaning": "(to) practice",
     "chineseMeaning": "練習",
     "difficulty": "beginner",
@@ -4773,7 +4773,7 @@ export const BEGINNER_WORDS: TetrisWord[] = [
   },
   {
     "word": "やはり; やっぱり",
-    "kana": "やはり; やっぱり",
+    "kana": "やはり",
     "meaning": "as I thought, absolutely",
     "chineseMeaning": "正如我所想的、絕對",
     "difficulty": "beginner",
@@ -5520,7 +5520,7 @@ export const BEGINNER_WORDS: TetrisWord[] = [
   },
   {
     "word": "建て",
-    "kana": "～だて",
+    "kana": "だて",
     "meaning": "~ storied, separate housing",
     "chineseMeaning": "~ storied, separate housing",
     "difficulty": "beginner",
@@ -7720,7 +7720,7 @@ export const BEGINNER_WORDS: TetrisWord[] = [
   },
   {
     "word": "お金持ち",
-    "kana": "かねもち; おかねもち",
+    "kana": "かねもち",
     "meaning": "rich person",
     "chineseMeaning": "富人",
     "difficulty": "beginner",
@@ -8071,7 +8071,7 @@ export const BEGINNER_WORDS: TetrisWord[] = [
   },
   {
     "word": "高校; 高等学校",
-    "kana": "こうこう; こうとうがっこう",
+    "kana": "こうこう",
     "meaning": "high school; senior high school",
     "chineseMeaning": "高中",
     "difficulty": "beginner",
@@ -8841,7 +8841,7 @@ export const BEGINNER_WORDS: TetrisWord[] = [
   },
   {
     "word": "けれど; けれども",
-    "kana": "けれど; けれども",
+    "kana": "けれど",
     "meaning": "but, although",
     "chineseMeaning": "但是、雖然",
     "difficulty": "beginner",

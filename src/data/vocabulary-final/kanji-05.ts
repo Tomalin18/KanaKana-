@@ -5907,7 +5907,7 @@ export const KANJI_WORDS_05: TetrisWord[] = [
   },
   {
     "word": "来",
-    "kana": "らい～",
+    "kana": "らい",
     "meaning": "next ~",
     "difficulty": "normal",
     "category": "一般",

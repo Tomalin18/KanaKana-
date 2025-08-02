@@ -6918,7 +6918,7 @@ export const HARD_WORDS: TetrisWord[] = [
   },
   {
     "word": "アイデア; アイディア",
-    "kana": "アイデア; アイディア",
+    "kana": "アイデア",
     "meaning": "idea",
     "difficulty": "hard",
     "category": "抽象",

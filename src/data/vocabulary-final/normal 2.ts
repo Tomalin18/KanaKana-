@@ -9842,7 +9842,7 @@ export const NORMAL_WORDS: TetrisWord[] = [
   },
   {
     "word": "来",
-    "kana": "らい～",
+    "kana": "らい",
     "meaning": "next ~",
     "difficulty": "normal",
     "category": "一般",
@@ -18340,7 +18340,7 @@ export const NORMAL_WORDS: TetrisWord[] = [
   },
   {
     "word": "やはり; やっぱり",
-    "kana": "やはり; やっぱり",
+    "kana": "やはり",
     "meaning": "as I thought, absolutely",
     "difficulty": "normal",
     "category": "一般",
@@ -18725,7 +18725,7 @@ export const NORMAL_WORDS: TetrisWord[] = [
   },
   {
     "word": "レポート; リポート",
-    "kana": "レポート; リポート",
+    "kana": "レポート",
     "meaning": "report",
     "difficulty": "normal",
     "category": "一般",
@@ -18986,7 +18986,7 @@ export const NORMAL_WORDS: TetrisWord[] = [
   },
   {
     "word": "建て",
-    "kana": "～だて",
+    "kana": "だて",
     "meaning": "~ storied, separate housing",
     "difficulty": "normal",
     "category": "一般",
@@ -21060,7 +21060,7 @@ export const NORMAL_WORDS: TetrisWord[] = [
   },
   {
     "word": "お金持ち",
-    "kana": "かねもち; おかねもち",
+    "kana": "かねもち",
     "meaning": "rich person",
     "difficulty": "normal",
     "category": "一般",
@@ -21377,7 +21377,7 @@ export const NORMAL_WORDS: TetrisWord[] = [
   },
   {
     "word": "高校; 高等学校",
-    "kana": "こうこう; こうとうがっこう",
+    "kana": "こうこう",
     "meaning": "high school; senior high school",
     "difficulty": "normal",
     "category": "一般",
@@ -21973,7 +21973,7 @@ export const NORMAL_WORDS: TetrisWord[] = [
   },
   {
     "word": "けれど; けれども",
-    "kana": "けれど; けれども",
+    "kana": "けれど",
     "meaning": "but, although",
     "difficulty": "normal",
     "category": "一般",
@@ -22008,7 +22008,7 @@ export const NORMAL_WORDS: TetrisWord[] = [
   },
   {
     "word": "コンピュータ; コンピューター",
-    "kana": "コンピュータ; コンピューター",
+    "kana": "コンピューター",
     "meaning": "computer",
     "difficulty": "normal",
     "category": "一般",
