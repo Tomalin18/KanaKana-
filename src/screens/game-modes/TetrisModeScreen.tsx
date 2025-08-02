@@ -12,7 +12,7 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from 'react-native';
-import { getRandomWordImproved, getWordByLength, getWordByLevelAndLength, type TetrisWord } from '@/data/tetrisData';
+import { getRandomWordImproved, getWordByLength, getWordByLevelAndLength, type TetrisWord } from '@/data/vocabulary-final/index 2';
 import { GlassNavBar } from '@/components/common/GlassNavBar';
 import { GlassContainer } from '@/components/common/GlassContainer';
 import { PauseOverlay } from '@/components/common/PauseOverlay';
@@ -409,24 +409,35 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
     const charCount = getShapeCharCount(shape);
     
     // 調試信息
-    console.log(`生成方塊 - 形狀: ${shapeKey}, 格數: ${charCount}, 等級: ${level}`);
+    console.log(`🎲 生成方塊 - 形狀: ${shapeKey}, 格數: ${charCount}, 等級: ${level}`);
+    console.log(`⚙️ 設定 - 難度: ${settings.difficulty}, 詞彙類型: ${settings.wordType}`);
     
     // 使用改進的隨機選擇函數
-    const word = getWordByLevelAndLength(charCount, level, settings.difficulty, settings.wordType);
+    let word;
+    try {
+      word = getWordByLevelAndLength(charCount, level, settings.difficulty, settings.wordType);
+    } catch (error) {
+      console.error('❌ getWordByLevelAndLength 錯誤:', error);
+      // 使用備用方法
+      word = getRandomWordImproved(settings.difficulty, settings.wordType);
+    }
     
     // 調試信息
-    console.log(`選擇單字:`, word);
+    console.log(`📝 選擇單字:`, word);
+    console.log(`  單字: ${word?.word}`);
+    console.log(`  假名: ${word?.kana}`);
+    console.log(`  意思: ${word?.meaning}`);
     
     // 安全檢查：確保 word 對象有效
     if (!word || typeof word !== 'object' || !word.word || !word.kana || !word.meaning) {
       console.error('Invalid word object:', word);
       // 使用備用單字
       const fallbackWord = {
-        word: 'ともだち',
-        kana: 'ともだち',
-        meaning: '朋友',
+        word: 'あめ',
+        kana: 'あめ',
+        meaning: '雨',
         difficulty: 'beginner' as const,
-        category: '人物'
+        category: '天氣'
       };
       const color = PIECE_COLORS[Math.floor(Math.random() * PIECE_COLORS.length)];
       const maxX = BOARD_WIDTH - shape[0].length;
