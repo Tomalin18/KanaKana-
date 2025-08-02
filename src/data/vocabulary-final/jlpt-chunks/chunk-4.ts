@@ -4447,7 +4447,7 @@ export const JLPT_CHUNK_4: TetrisWord[] = [
     "word": "婦人",
     "kana": "ふじん",
     "meaning": "woman (same as 女性 (じょせい)、女の人 (おんなのひと))",
-    "chineseMeaning": "woman (same as 女性 (じょせい)、女の人 (おんなのひと))",
+    "chineseMeaning": "",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "婦人",

@@ -476,7 +476,7 @@ export const BEGINNER_WORDS: TetrisWord[] = [
     "id": "jlpt_N5_14"
   },
   {
-    "word": "足; 脚",
+    "word": "足",
     "kana": "あし",
     "meaning": "foot; leg",
     "chineseMeaning": "腳、腿",
@@ -619,7 +619,7 @@ export const BEGINNER_WORDS: TetrisWord[] = [
     "id": "jlpt_N5_42"
   },
   {
-    "word": "いい; よい",
+    "word": "いい",
     "kana": "いい",
     "meaning": "good",
     "chineseMeaning": "好的",
@@ -1058,7 +1058,7 @@ export const BEGINNER_WORDS: TetrisWord[] = [
     "id": "jlpt_N5_109"
   },
   {
-    "word": "伯父; 叔父さん",
+    "word": "伯父",
     "kana": "おじさん",
     "meaning": "uncle, middle-aged man",
     "chineseMeaning": "叔叔、中年男子",
@@ -1212,7 +1212,7 @@ export const BEGINNER_WORDS: TetrisWord[] = [
     "id": "jlpt_N5_127"
   },
   {
-    "word": "伯母さん; 叔母さん",
+    "word": "伯母さん",
     "kana": "おばさん",
     "meaning": "aunt",
     "chineseMeaning": "阿姨",
@@ -1575,7 +1575,7 @@ export const BEGINNER_WORDS: TetrisWord[] = [
     "id": "jlpt_N5_182"
   },
   {
-    "word": "川; 河",
+    "word": "川",
     "kana": "かわ",
     "meaning": "river",
     "chineseMeaning": "河流",
@@ -1806,7 +1806,7 @@ export const BEGINNER_WORDS: TetrisWord[] = [
     "id": "jlpt_N5_211"
   },
   {
-    "word": "キロ; キログラム",
+    "word": "キロ",
     "kana": "キロ",
     "meaning": "(abbr.) kilo (kilogram)",
     "chineseMeaning": "(abbr.) kilo (kilogram)",
@@ -2717,7 +2717,7 @@ export const BEGINNER_WORDS: TetrisWord[] = [
     "id": "jlpt_N5_357"
   },
   {
-    "word": "そう; そうです",
+    "word": "そうです",
     "kana": "そうです",
     "meaning": "yes; appears, to be the case",
     "chineseMeaning": "是的、似乎是這樣",
@@ -2738,7 +2738,7 @@ export const BEGINNER_WORDS: TetrisWord[] = [
     "id": "jlpt_N5_359"
   },
   {
-    "word": "そうして; そして",
+    "word": "そして",
     "kana": "そして",
     "meaning": "and, like that",
     "chineseMeaning": "等等",
@@ -3573,7 +3573,7 @@ export const BEGINNER_WORDS: TetrisWord[] = [
     "id": "jlpt_N5_528"
   },
   {
-    "word": "初め; 始め",
+    "word": "初め",
     "kana": "はじめ",
     "meaning": "beginning, start",
     "chineseMeaning": "開始",
@@ -4112,7 +4112,7 @@ export const BEGINNER_WORDS: TetrisWord[] = [
     "id": "jlpt_N5_628"
   },
   {
-    "word": "丸い; 円い",
+    "word": "丸い",
     "kana": "まるい",
     "meaning": "round, circular",
     "chineseMeaning": "圓的",
@@ -4772,7 +4772,7 @@ export const BEGINNER_WORDS: TetrisWord[] = [
     "id": "jlpt_N4_13"
   },
   {
-    "word": "やはり; やっぱり",
+    "word": "やはり",
     "kana": "やはり",
     "meaning": "as I thought, absolutely",
     "chineseMeaning": "正如我所想的、絕對",
@@ -4871,7 +4871,7 @@ export const BEGINNER_WORDS: TetrisWord[] = [
   },
   {
     "word": "運動",
-    "kana": "うんどうする",
+    "kana": "うんどう",
     "meaning": "exercise",
     "chineseMeaning": "運動",
     "difficulty": "beginner",
@@ -4926,7 +4926,7 @@ export const BEGINNER_WORDS: TetrisWord[] = [
   },
   {
     "word": "心配",
-    "kana": "しんぱいする",
+    "kana": "しんぱい",
     "meaning": "worry, concern",
     "chineseMeaning": "擔心、憂慮",
     "difficulty": "beginner",
@@ -5487,7 +5487,7 @@ export const BEGINNER_WORDS: TetrisWord[] = [
   },
   {
     "word": "出席",
-    "kana": "しゅっせきする",
+    "kana": "しゅっせき",
     "meaning": "attendance",
     "chineseMeaning": "出席",
     "difficulty": "beginner",
@@ -5762,7 +5762,7 @@ export const BEGINNER_WORDS: TetrisWord[] = [
   },
   {
     "word": "故障",
-    "kana": "こしょうする",
+    "kana": "こしょう",
     "meaning": "breakdown",
     "chineseMeaning": "故障",
     "difficulty": "beginner",
@@ -5850,7 +5850,7 @@ export const BEGINNER_WORDS: TetrisWord[] = [
   },
   {
     "word": "準備",
-    "kana": "じゅんびする",
+    "kana": "じゅんび",
     "meaning": "prepare",
     "chineseMeaning": "準備",
     "difficulty": "beginner",
@@ -6389,7 +6389,7 @@ export const BEGINNER_WORDS: TetrisWord[] = [
   },
   {
     "word": "挨拶",
-    "kana": "あいさつする",
+    "kana": "あいさつ",
     "meaning": "greet(ing)",
     "chineseMeaning": "問候",
     "difficulty": "beginner",
@@ -6576,7 +6576,7 @@ export const BEGINNER_WORDS: TetrisWord[] = [
   },
   {
     "word": "運転",
-    "kana": "うんてんする",
+    "kana": "うんてん",
     "meaning": "driving",
     "chineseMeaning": "開車",
     "difficulty": "beginner",
@@ -6686,7 +6686,7 @@ export const BEGINNER_WORDS: TetrisWord[] = [
   },
   {
     "word": "案内",
-    "kana": "あんないする",
+    "kana": "あんない",
     "meaning": "information, guidance",
     "chineseMeaning": "資訊、指導",
     "difficulty": "beginner",
@@ -6752,7 +6752,7 @@ export const BEGINNER_WORDS: TetrisWord[] = [
   },
   {
     "word": "招待",
-    "kana": "しょうたいする",
+    "kana": "しょうたい",
     "meaning": "invitation",
     "chineseMeaning": "邀請",
     "difficulty": "beginner",
@@ -7016,7 +7016,7 @@ export const BEGINNER_WORDS: TetrisWord[] = [
   },
   {
     "word": "遠慮",
-    "kana": "えんりょする",
+    "kana": "えんりょ",
     "meaning": "restraint, reserve, hesitate",
     "chineseMeaning": "克制、猶豫",
     "difficulty": "beginner",
@@ -7093,7 +7093,7 @@ export const BEGINNER_WORDS: TetrisWord[] = [
   },
   {
     "word": "入学",
-    "kana": "にゅうがくする",
+    "kana": "にゅうがく",
     "meaning": "entry to school or university",
     "chineseMeaning": "入學",
     "difficulty": "beginner",
@@ -7214,7 +7214,7 @@ export const BEGINNER_WORDS: TetrisWord[] = [
   },
   {
     "word": "生産",
-    "kana": "せいさんする",
+    "kana": "せいさん",
     "meaning": "production; to produce",
     "chineseMeaning": "生產",
     "difficulty": "beginner",
@@ -7500,7 +7500,7 @@ export const BEGINNER_WORDS: TetrisWord[] = [
   },
   {
     "word": "計画",
-    "kana": "けいかくする",
+    "kana": "けいかく",
     "meaning": "plan, project, schedule",
     "chineseMeaning": "計劃、項目、時間表",
     "difficulty": "beginner",
@@ -7599,7 +7599,7 @@ export const BEGINNER_WORDS: TetrisWord[] = [
   },
   {
     "word": "支度",
-    "kana": "したくする",
+    "kana": "したく",
     "meaning": "preparation",
     "chineseMeaning": "準備",
     "difficulty": "beginner",
@@ -7807,7 +7807,7 @@ export const BEGINNER_WORDS: TetrisWord[] = [
     "id": "jlpt_N4_447"
   },
   {
-    "word": "堅; 硬; 固い",
+    "word": "固い",
     "kana": "かたい",
     "meaning": "solid, hard, firm",
     "chineseMeaning": "堅固的、硬的",
@@ -7918,7 +7918,7 @@ export const BEGINNER_WORDS: TetrisWord[] = [
   },
   {
     "word": "放送",
-    "kana": "ほうそうする",
+    "kana": "ほうそう",
     "meaning": "broadcasting",
     "chineseMeaning": "廣播",
     "difficulty": "beginner",
@@ -8049,7 +8049,7 @@ export const BEGINNER_WORDS: TetrisWord[] = [
   },
   {
     "word": "承知",
-    "kana": "しょうちする",
+    "kana": "しょうち",
     "meaning": "consent, acceptance",
     "chineseMeaning": "同意、接受",
     "difficulty": "beginner",
@@ -8070,7 +8070,7 @@ export const BEGINNER_WORDS: TetrisWord[] = [
     "id": "jlpt_N4_482"
   },
   {
-    "word": "高校; 高等学校",
+    "word": "高校",
     "kana": "こうこう",
     "meaning": "high school; senior high school",
     "chineseMeaning": "高中",
@@ -8313,7 +8313,7 @@ export const BEGINNER_WORDS: TetrisWord[] = [
   },
   {
     "word": "退院",
-    "kana": "たいいんする",
+    "kana": "たいいん",
     "meaning": "leaving hospital",
     "chineseMeaning": "出院",
     "difficulty": "beginner",
@@ -8489,7 +8489,7 @@ export const BEGINNER_WORDS: TetrisWord[] = [
   },
   {
     "word": "世話",
-    "kana": "せわする",
+    "kana": "せわ",
     "meaning": "looking after; to look after",
     "chineseMeaning": "照顧",
     "difficulty": "beginner",
@@ -8632,7 +8632,7 @@ export const BEGINNER_WORDS: TetrisWord[] = [
   },
   {
     "word": "出発",
-    "kana": "しゅっぱつする",
+    "kana": "しゅっぱつ",
     "meaning": "departure",
     "chineseMeaning": "出發",
     "difficulty": "beginner",
@@ -8643,7 +8643,7 @@ export const BEGINNER_WORDS: TetrisWord[] = [
   },
   {
     "word": "拝見",
-    "kana": "はいけんする",
+    "kana": "はいけん",
     "meaning": "(humble) (polite) seeing, look at",
     "chineseMeaning": "（謙遜語）看",
     "difficulty": "beginner",
@@ -8840,7 +8840,7 @@ export const BEGINNER_WORDS: TetrisWord[] = [
     "id": "jlpt_N4_584"
   },
   {
-    "word": "けれど; けれども",
+    "word": "けれど",
     "kana": "けれど",
     "meaning": "but, although",
     "chineseMeaning": "但是、雖然",
@@ -8906,7 +8906,7 @@ export const BEGINNER_WORDS: TetrisWord[] = [
   },
   {
     "word": "経験",
-    "kana": "けいけんする",
+    "kana": "けいけん",
     "meaning": "experience",
     "chineseMeaning": "經驗",
     "difficulty": "beginner",
@@ -9126,7 +9126,7 @@ export const BEGINNER_WORDS: TetrisWord[] = [
   },
   {
     "word": "入院",
-    "kana": "にゅういんする",
+    "kana": "にゅういん",
     "meaning": "hospitalization",
     "chineseMeaning": "住院",
     "difficulty": "beginner",
@@ -9192,7 +9192,7 @@ export const BEGINNER_WORDS: TetrisWord[] = [
   },
   {
     "word": "相談",
-    "kana": "そうだんする",
+    "kana": "そうだん",
     "meaning": "consultation",
     "chineseMeaning": "諮詢",
     "difficulty": "beginner",
@@ -9236,7 +9236,7 @@ export const BEGINNER_WORDS: TetrisWord[] = [
   },
   {
     "word": "食事",
-    "kana": "しょくじする",
+    "kana": "しょくじ",
     "meaning": "meal",
     "chineseMeaning": "餐",
     "difficulty": "beginner",
@@ -9291,7 +9291,7 @@ export const BEGINNER_WORDS: TetrisWord[] = [
   },
   {
     "word": "生活",
-    "kana": "せいかつする",
+    "kana": "せいかつ",
     "meaning": "living, life; to live",
     "chineseMeaning": "生活、生命",
     "difficulty": "beginner",
@@ -9335,7 +9335,7 @@ export const BEGINNER_WORDS: TetrisWord[] = [
   },
   {
     "word": "輸出",
-    "kana": "ゆしゅつする",
+    "kana": "ゆしゅつ",
     "meaning": "export",
     "chineseMeaning": "出口",
     "difficulty": "beginner",

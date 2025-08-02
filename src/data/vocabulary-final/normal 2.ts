@@ -478,7 +478,7 @@ export const NORMAL_WORDS: TetrisWord[] = [
   {
     "word": "実行",
     "kana": "じっこう",
-    "meaning": "practice, executito get (e.g., program), realizatito get (practice, executito get (e.g., program), realizatito get) (practice, executito get (e.g., program), realizatito get (practice, execution (e.g., program), realization))",
+    "meaning": "practice, execution (e.g., program), realization",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "実行",
@@ -2903,7 +2903,7 @@ export const NORMAL_WORDS: TetrisWord[] = [
     "isKanji": false
   },
   {
-    "word": "在る; 有る",
+    "word": "ある",
     "kana": "ある",
     "meaning": "to live, to be, to exist",
     "difficulty": "normal",
@@ -4784,7 +4784,7 @@ export const NORMAL_WORDS: TetrisWord[] = [
   {
     "word": "回復",
     "kana": "かいふく",
-    "meaning": "recovery (towel illness), rehabilitation, restoration (recovery (towel illness), rehabilitation, restoration) (recovery (towel illness), rehabilitation, restoration (recovery (from illness), rehabilitation, restoration))",
+    "meaning": "recovery (from illness), rehabilitation, restoration",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "回復",
@@ -11602,7 +11602,7 @@ export const NORMAL_WORDS: TetrisWord[] = [
   {
     "word": "大会",
     "kana": "たいかい",
-    "meaning": "cto getventito get, (big) tournament, mass meeting (cto getventito get, (big) tournament, mass meeting) (cto getventito get, (big) tournament, mass meeting (convention, (big) tournament, mass meeting))",
+    "meaning": "convention, (big) tournament, mass meeting",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "大会",
@@ -11674,7 +11674,7 @@ export const NORMAL_WORDS: TetrisWord[] = [
   {
     "word": "対象",
     "kana": "たいしょう",
-    "meaning": "target; object (from worship, study, etc.); subject (i.e., from taxation) (target; object (from worship, study, etc.); subject (i.e., from taxation)) (target; object (from worship, study, etc.); subject (i.e., from taxation) (target; object (of worship, study, etc.); subject (i.e., of taxation)))",
+    "meaning": "target; object (of worship, study, etc.); subject (i.e., of taxation)",
     "difficulty": "normal",
     "category": "學術",
     "kanji": "対象",
@@ -12294,7 +12294,7 @@ export const NORMAL_WORDS: TetrisWord[] = [
   {
     "word": "単位",
     "kana": "たんい",
-    "meaning": "credit (for a course in 學校); unit, denomination (credit (for a course in 學校); unit, denomination) (credit (for a course in 學校); unit, denomination (credit (for a course in school); unit, denomination))",
+    "meaning": "credit (for a course in school); unit, denomination",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "単位",
@@ -17837,7 +17837,7 @@ export const NORMAL_WORDS: TetrisWord[] = [
   {
     "word": "並",
     "kana": "なみ",
-    "meaning": "medium (e.g., food serving size, quality, price, etc.), cartoondinary (medium (e.g., food serving size, quality, price, etc.), cartoondinary) (medium (e.g., food serving size, quality, price, etc.), cartoondinary (medium (e.g., food serving size, quality, price, etc.), ordinary))",
+    "meaning": "medium (e.g., food serving size, quality, price, etc.), ordinary",
     "difficulty": "normal",
     "category": "一般",
     "kanji": "並",
@@ -18339,7 +18339,7 @@ export const NORMAL_WORDS: TetrisWord[] = [
     "isKanji": true
   },
   {
-    "word": "やはり; やっぱり",
+    "word": "やはり",
     "kana": "やはり",
     "meaning": "as I thought, absolutely",
     "difficulty": "normal",
@@ -18425,7 +18425,7 @@ export const NORMAL_WORDS: TetrisWord[] = [
   },
   {
     "word": "運動",
-    "kana": "うんどうする",
+    "kana": "うんどう",
     "meaning": "exercise",
     "difficulty": "normal",
     "category": "一般",
@@ -18469,7 +18469,7 @@ export const NORMAL_WORDS: TetrisWord[] = [
   },
   {
     "word": "心配",
-    "kana": "しんぱいする",
+    "kana": "しんぱい",
     "meaning": "worry, concern",
     "difficulty": "normal",
     "category": "一般",
@@ -18724,7 +18724,7 @@ export const NORMAL_WORDS: TetrisWord[] = [
     "isKanji": true
   },
   {
-    "word": "レポート; リポート",
+    "word": "レポート",
     "kana": "レポート",
     "meaning": "report",
     "difficulty": "normal",
@@ -18959,7 +18959,7 @@ export const NORMAL_WORDS: TetrisWord[] = [
   },
   {
     "word": "出席",
-    "kana": "しゅっせきする",
+    "kana": "しゅっせき",
     "meaning": "attendance",
     "difficulty": "normal",
     "category": "一般",
@@ -19180,7 +19180,7 @@ export const NORMAL_WORDS: TetrisWord[] = [
   },
   {
     "word": "故障",
-    "kana": "こしょうする",
+    "kana": "こしょう",
     "meaning": "breakdown",
     "difficulty": "normal",
     "category": "一般",
@@ -19276,7 +19276,7 @@ export const NORMAL_WORDS: TetrisWord[] = [
   },
   {
     "word": "準備",
-    "kana": "じゅんびする",
+    "kana": "じゅんび",
     "meaning": "prepare",
     "difficulty": "normal",
     "category": "一般",
@@ -19965,7 +19965,7 @@ export const NORMAL_WORDS: TetrisWord[] = [
   },
   {
     "word": "運転",
-    "kana": "うんてんする",
+    "kana": "うんてん",
     "meaning": "driving",
     "difficulty": "normal",
     "category": "一般",
@@ -20044,7 +20044,7 @@ export const NORMAL_WORDS: TetrisWord[] = [
   },
   {
     "word": "案内",
-    "kana": "あんないする",
+    "kana": "あんない",
     "meaning": "information, guidance",
     "difficulty": "normal",
     "category": "一般",
@@ -20106,7 +20106,7 @@ export const NORMAL_WORDS: TetrisWord[] = [
   },
   {
     "word": "招待",
-    "kana": "しょうたいする",
+    "kana": "しょうたい",
     "meaning": "invitation",
     "difficulty": "normal",
     "category": "一般",
@@ -20361,7 +20361,7 @@ export const NORMAL_WORDS: TetrisWord[] = [
   },
   {
     "word": "遠慮",
-    "kana": "えんりょする",
+    "kana": "えんりょ",
     "meaning": "restraint, reserve, hesitate",
     "difficulty": "normal",
     "category": "一般",
@@ -20423,7 +20423,7 @@ export const NORMAL_WORDS: TetrisWord[] = [
   },
   {
     "word": "入学",
-    "kana": "にゅうがくする",
+    "kana": "にゅうがく",
     "meaning": "entry to school or university",
     "difficulty": "normal",
     "category": "一般",
@@ -20520,7 +20520,7 @@ export const NORMAL_WORDS: TetrisWord[] = [
   },
   {
     "word": "生産",
-    "kana": "せいさんする",
+    "kana": "せいさん",
     "meaning": "production; to produce",
     "difficulty": "normal",
     "category": "一般",
@@ -20830,7 +20830,7 @@ export const NORMAL_WORDS: TetrisWord[] = [
   },
   {
     "word": "計画",
-    "kana": "けいかくする",
+    "kana": "けいかく",
     "meaning": "plan, project, schedule",
     "difficulty": "normal",
     "category": "一般",
@@ -20962,7 +20962,7 @@ export const NORMAL_WORDS: TetrisWord[] = [
   },
   {
     "word": "支度",
-    "kana": "したくする",
+    "kana": "したく",
     "meaning": "preparation",
     "difficulty": "normal",
     "category": "一般",
@@ -21157,7 +21157,7 @@ export const NORMAL_WORDS: TetrisWord[] = [
     "isKanji": true
   },
   {
-    "word": "堅; 硬; 固い",
+    "word": "固い",
     "kana": "かたい",
     "meaning": "solid, hard, firm",
     "difficulty": "normal",
@@ -21262,7 +21262,7 @@ export const NORMAL_WORDS: TetrisWord[] = [
   },
   {
     "word": "放送",
-    "kana": "ほうそうする",
+    "kana": "ほうそう",
     "meaning": "broadcasting",
     "difficulty": "normal",
     "category": "一般",
@@ -21368,7 +21368,7 @@ export const NORMAL_WORDS: TetrisWord[] = [
   },
   {
     "word": "承知",
-    "kana": "しょうちする",
+    "kana": "しょうち",
     "meaning": "consent, acceptance",
     "difficulty": "normal",
     "category": "一般",
@@ -21376,7 +21376,7 @@ export const NORMAL_WORDS: TetrisWord[] = [
     "isKanji": true
   },
   {
-    "word": "高校; 高等学校",
+    "word": "高校",
     "kana": "こうこう",
     "meaning": "high school; senior high school",
     "difficulty": "normal",
@@ -21598,7 +21598,7 @@ export const NORMAL_WORDS: TetrisWord[] = [
   },
   {
     "word": "退院",
-    "kana": "たいいんする",
+    "kana": "たいいん",
     "meaning": "leaving hospital",
     "difficulty": "normal",
     "category": "一般",
@@ -21688,7 +21688,7 @@ export const NORMAL_WORDS: TetrisWord[] = [
   },
   {
     "word": "世話",
-    "kana": "せわする",
+    "kana": "せわ",
     "meaning": "looking after; to look after",
     "difficulty": "normal",
     "category": "一般",
@@ -21795,7 +21795,7 @@ export const NORMAL_WORDS: TetrisWord[] = [
   },
   {
     "word": "出発",
-    "kana": "しゅっぱつする",
+    "kana": "しゅっぱつ",
     "meaning": "departure",
     "difficulty": "normal",
     "category": "一般",
@@ -21804,7 +21804,7 @@ export const NORMAL_WORDS: TetrisWord[] = [
   },
   {
     "word": "拝見",
-    "kana": "はいけんする",
+    "kana": "はいけん",
     "meaning": "(humble) (有禮貌from) seeing, look at ((humble) (有禮貌from) seeing, look at) ((humble) (有禮貌from) seeing, look at ((humble) (polite) seeing, look at))",
     "difficulty": "normal",
     "category": "一般",
@@ -21840,7 +21840,7 @@ export const NORMAL_WORDS: TetrisWord[] = [
   },
   {
     "word": "回る、回す",
-    "kana": "まわる、まわす",
+    "kana": "まわる",
     "meaning": "to go around, to revolve",
     "difficulty": "normal",
     "category": "一般",
@@ -21972,7 +21972,7 @@ export const NORMAL_WORDS: TetrisWord[] = [
     "isKanji": true
   },
   {
-    "word": "けれど; けれども",
+    "word": "けれど",
     "kana": "けれど",
     "meaning": "but, although",
     "difficulty": "normal",
@@ -22007,7 +22007,7 @@ export const NORMAL_WORDS: TetrisWord[] = [
     "isKanji": true
   },
   {
-    "word": "コンピュータ; コンピューター",
+    "word": "コンピューター",
     "kana": "コンピューター",
     "meaning": "computer",
     "difficulty": "normal",
@@ -22052,7 +22052,7 @@ export const NORMAL_WORDS: TetrisWord[] = [
   },
   {
     "word": "経験",
-    "kana": "けいけんする",
+    "kana": "けいけん",
     "meaning": "experience",
     "difficulty": "normal",
     "category": "一般",
@@ -22214,7 +22214,7 @@ export const NORMAL_WORDS: TetrisWord[] = [
   },
   {
     "word": "入院",
-    "kana": "にゅういんする",
+    "kana": "にゅういん",
     "meaning": "hospitalization",
     "difficulty": "normal",
     "category": "一般",
@@ -22268,7 +22268,7 @@ export const NORMAL_WORDS: TetrisWord[] = [
   },
   {
     "word": "相談",
-    "kana": "そうだんする",
+    "kana": "そうだん",
     "meaning": "consultation",
     "difficulty": "normal",
     "category": "一般",
@@ -22312,7 +22312,7 @@ export const NORMAL_WORDS: TetrisWord[] = [
   },
   {
     "word": "食事",
-    "kana": "しょくじする",
+    "kana": "しょくじ",
     "meaning": "meal",
     "difficulty": "normal",
     "category": "一般",
@@ -22365,7 +22365,7 @@ export const NORMAL_WORDS: TetrisWord[] = [
   },
   {
     "word": "生活",
-    "kana": "せいかつする",
+    "kana": "せいかつ",
     "meaning": "living, life; to live",
     "difficulty": "normal",
     "category": "一般",
@@ -22419,7 +22419,7 @@ export const NORMAL_WORDS: TetrisWord[] = [
   },
   {
     "word": "輸出",
-    "kana": "ゆしゅつする",
+    "kana": "ゆしゅつ",
     "meaning": "export",
     "difficulty": "normal",
     "category": "一般",

@@ -4701,7 +4701,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   },
   {
     "word": "運動",
-    "kana": "うんどうする",
+    "kana": "うんどう",
     "meaning": "exercise",
     "difficulty": "normal",
     "category": "一般",
@@ -4755,7 +4755,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   },
   {
     "word": "心配",
-    "kana": "しんぱいする",
+    "kana": "しんぱい",
     "meaning": "one, concern (worry, concern)",
     "difficulty": "normal",
     "category": "一般",
@@ -5295,7 +5295,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   },
   {
     "word": "出席",
-    "kana": "しゅっせきする",
+    "kana": "しゅっせき",
     "meaning": "attendance",
     "difficulty": "normal",
     "category": "一般",
@@ -5556,7 +5556,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   },
   {
     "word": "故障",
-    "kana": "こしょうする",
+    "kana": "こしょう",
     "meaning": "breakdown",
     "difficulty": "normal",
     "category": "一般",
@@ -5646,7 +5646,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   },
   {
     "word": "準備",
-    "kana": "じゅんびする",
+    "kana": "じゅんび",
     "meaning": "prepare",
     "difficulty": "normal",
     "category": "一般",
@@ -6420,7 +6420,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   },
   {
     "word": "運転",
-    "kana": "うんてんする",
+    "kana": "うんてん",
     "meaning": "driving",
     "difficulty": "normal",
     "category": "一般",
@@ -6519,7 +6519,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   },
   {
     "word": "案内",
-    "kana": "あんないする",
+    "kana": "あんない",
     "meaning": "infcartoonmatito get, guidance (information, guidance)",
     "difficulty": "normal",
     "category": "一般",
@@ -6573,7 +6573,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   },
   {
     "word": "招待",
-    "kana": "しょうたいする",
+    "kana": "しょうたい",
     "meaning": "invitatito get (invitation)",
     "difficulty": "normal",
     "category": "一般",
@@ -6825,7 +6825,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   },
   {
     "word": "遠慮",
-    "kana": "えんりょする",
+    "kana": "えんりょ",
     "meaning": "resmoneyt, reserve, hesitate (restraint, reserve, hesitate)",
     "difficulty": "normal",
     "category": "一般",
@@ -6906,7 +6906,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   },
   {
     "word": "入学",
-    "kana": "にゅうがくする",
+    "kana": "にゅうがく",
     "meaning": "entry entry to school or university",
     "difficulty": "normal",
     "category": "一般",
@@ -6996,7 +6996,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   },
   {
     "word": "生産",
-    "kana": "せいさんする",
+    "kana": "せいさん",
     "meaning": "production; production; to produce",
     "difficulty": "normal",
     "category": "一般",
@@ -7311,7 +7311,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   },
   {
     "word": "計画",
-    "kana": "けいかくする",
+    "kana": "けいかく",
     "meaning": "plan, project, schedule",
     "difficulty": "normal",
     "category": "一般",
@@ -7428,7 +7428,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   },
   {
     "word": "支度",
-    "kana": "したくする",
+    "kana": "したく",
     "meaning": "preparatito get (preparation)",
     "difficulty": "normal",
     "category": "一般",
@@ -7634,7 +7634,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
     "isKanji": true
   },
   {
-    "word": "堅; 硬; 固い",
+    "word": "固い",
     "kana": "かたい",
     "meaning": "solid, hard, firm",
     "difficulty": "normal",
@@ -7752,7 +7752,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   },
   {
     "word": "放送",
-    "kana": "ほうそうする",
+    "kana": "ほうそう",
     "meaning": "broadcasting",
     "difficulty": "normal",
     "category": "一般",
@@ -7878,7 +7878,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   },
   {
     "word": "承知",
-    "kana": "しょうちする",
+    "kana": "しょうち",
     "meaning": "cto getsent, acceptance (consent, acceptance)",
     "difficulty": "normal",
     "category": "一般",
@@ -7895,7 +7895,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
     "isKanji": true
   },
   {
-    "word": "高校; 高等学校",
+    "word": "高校",
     "kana": "こうこう",
     "meaning": "high 學校; senior high 學校 (high school; senior high school)",
     "difficulty": "normal",
@@ -8139,7 +8139,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   },
   {
     "word": "退院",
-    "kana": "たいいんする",
+    "kana": "たいいん",
     "meaning": "leaving hospital",
     "difficulty": "normal",
     "category": "一般",
@@ -8301,7 +8301,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   },
   {
     "word": "世話",
-    "kana": "せわする",
+    "kana": "せわ",
     "meaning": "looking after; looking after; to look after",
     "difficulty": "normal",
     "category": "一般",
@@ -8445,7 +8445,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   },
   {
     "word": "出発",
-    "kana": "しゅっぱつする",
+    "kana": "しゅっぱつ",
     "meaning": "departure",
     "difficulty": "normal",
     "category": "一般",
@@ -8454,7 +8454,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   },
   {
     "word": "拝見",
-    "kana": "はいけんする",
+    "kana": "はいけん",
     "meaning": "(humble) (有禮貌from) seeing, look at ((humble) (polite) seeing, look at)",
     "difficulty": "normal",
     "category": "一般",
@@ -8490,7 +8490,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   },
   {
     "word": "回る、回す",
-    "kana": "まわる、まわす",
+    "kana": "まわる",
     "meaning": "to go around, to revolve",
     "difficulty": "normal",
     "category": "一般",
@@ -8715,7 +8715,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   },
   {
     "word": "経験",
-    "kana": "けいけんする",
+    "kana": "けいけん",
     "meaning": "experience",
     "difficulty": "normal",
     "category": "一般",
@@ -8922,7 +8922,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   },
   {
     "word": "入院",
-    "kana": "にゅういんする",
+    "kana": "にゅういん",
     "meaning": "hospitalizatito get (hospitalization)",
     "difficulty": "normal",
     "category": "一般",
@@ -8976,7 +8976,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   },
   {
     "word": "相談",
-    "kana": "そうだんする",
+    "kana": "そうだん",
     "meaning": "cto getsultatito get (consultation)",
     "difficulty": "normal",
     "category": "一般",
@@ -9012,7 +9012,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   },
   {
     "word": "食事",
-    "kana": "しょくじする",
+    "kana": "しょくじ",
     "meaning": "meal",
     "difficulty": "normal",
     "category": "一般",
