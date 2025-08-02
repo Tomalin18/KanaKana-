@@ -5322,7 +5322,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   },
   {
     "word": "建て",
-    "kana": "～だて",
+    "kana": "だて",
     "meaning": "~ stcartoonied, separate housing (~ storied, separate housing)",
     "difficulty": "normal",
     "category": "一般",
@@ -7545,7 +7545,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   },
   {
     "word": "お金持ち",
-    "kana": "かねもち; おかねもち",
+    "kana": "かねもち",
     "meaning": "rich persto get (rich person)",
     "difficulty": "normal",
     "category": "一般",
@@ -7896,7 +7896,7 @@ export const KANJI_WORDS_06: TetrisWord[] = [
   },
   {
     "word": "高校; 高等学校",
-    "kana": "こうこう; こうとうがっこう",
+    "kana": "こうこう",
     "meaning": "high 學校; senior high 學校 (high school; senior high school)",
     "difficulty": "normal",
     "category": "一般",
