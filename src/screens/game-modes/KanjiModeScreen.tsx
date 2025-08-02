@@ -11,7 +11,7 @@ import {
   Easing,
 } from 'react-native';
 import { TechTheme, Typography, Spacing, Shadows, TechColors } from '@/constants/theme';
-import { getRandomKanjiWord } from '@/data/kanjiWords';
+import { getRandomWordByCombinedDifficulty, getVocabularyByJLPT } from '@/data/vocabulary-final';
 import { useTypingDetection } from '@/hooks/useTypingDetection';
 import { DifficultySelector } from '@/components/common/DifficultySelector';
 import type { CombinedDifficultyLevel } from '@/types';
@@ -81,8 +81,54 @@ export const KanjiModeScreen: React.FC<KanjiModeScreenProps> = ({ route, navigat
   const generateNewWord = useCallback(() => {
     // 根據選擇的難度過濾詞彙
     const level = getJLPTLevelByDifficulty(selectedDifficulty);
-    const newWord = getRandomKanjiWord(level);
-    setCurrentWord(newWord);
+    
+    // 使用新的詞彙系統，只選擇漢字詞彙
+    const allWords = getVocabularyByJLPT(level);
+    const kanjiWords = allWords.filter(word => word.isKanji && word.kanji);
+    
+    if (kanjiWords.length === 0) {
+      // 如果沒有找到漢字詞彙，使用一般詞彙系統
+      const randomWord = getRandomWordByCombinedDifficulty(selectedDifficulty);
+      const kanjiWord: KanjiWord = {
+        id: randomWord.id || randomWord.word,
+        text: randomWord.word,
+        kanji: randomWord.kanji || randomWord.word,
+        hiragana: randomWord.kana,
+        katakana: randomWord.kana.toUpperCase(),
+        meaning: randomWord.chineseMeaning || randomWord.meaning,
+        difficulty: randomWord.difficulty === 'beginner' ? 1 : 
+                   randomWord.difficulty === 'normal' ? 2 : 
+                   randomWord.difficulty === 'hard' ? 3 : 4,
+        theme: 'jlpt_n5' as any,
+        jlptLevel: randomWord.jlptLevel || 'n5',
+        frequency: 50,
+        strokeCount: randomWord.kanji?.length || 0,
+        examples: [],
+      };
+      setCurrentWord(kanjiWord);
+    } else {
+      // 使用漢字詞彙
+      const randomIndex = Math.floor(Math.random() * kanjiWords.length);
+      const randomWord = kanjiWords[randomIndex];
+      const kanjiWord: KanjiWord = {
+        id: randomWord.id || randomWord.word,
+        text: randomWord.word,
+        kanji: randomWord.kanji || randomWord.word,
+        hiragana: randomWord.kana, // 使用 kana 作為 hiragana
+        katakana: randomWord.kana.toUpperCase(),
+        meaning: randomWord.chineseMeaning || randomWord.meaning,
+        difficulty: randomWord.difficulty === 'beginner' ? 1 : 
+                   randomWord.difficulty === 'normal' ? 2 : 
+                   randomWord.difficulty === 'hard' ? 3 : 4,
+        theme: 'jlpt_n5' as any,
+        jlptLevel: randomWord.jlptLevel || 'n5',
+        frequency: 50,
+        strokeCount: randomWord.kanji?.length || 0,
+        examples: [],
+      };
+      setCurrentWord(kanjiWord);
+    }
+    
     setShowHint(false);
   }, [selectedDifficulty]);
 
@@ -143,7 +189,14 @@ export const KanjiModeScreen: React.FC<KanjiModeScreenProps> = ({ route, navigat
     
     if (gameState === 'playing') {
       interval = setInterval(() => {
-        setGameTime(prev => prev + 1);
+        setGameTime(prev => {
+          const newTime = prev + 1;
+          // 遊戲結束條件：達到5分鐘或10000分
+          if (newTime >= 300 || score >= 10000) {
+            endGame();
+          }
+          return newTime;
+        });
       }, 1000);
     }
     
@@ -152,7 +205,7 @@ export const KanjiModeScreen: React.FC<KanjiModeScreenProps> = ({ route, navigat
         clearInterval(interval);
       }
     };
-  }, [gameState]);
+  }, [gameState, score, endGame]);
 
   // 渲染遊戲界面
   const renderGameContent = () => {
@@ -419,9 +472,6 @@ const KanjiGamePlayScreen: React.FC<KanjiGamePlayScreenProps> = ({
           </Text>
           {showHint && (
             <Text style={styles.bubbleMeaning}>{currentWord?.meaning}</Text>
-          )}
-          {showHint && currentWord?.chineseMeaning && (
-            <Text style={[styles.bubbleMeaning, { fontSize: 12, opacity: 0.8 }]}>{currentWord.chineseMeaning}</Text>
           )}
           {showHint && (
             <Text style={styles.bubbleHint}>
