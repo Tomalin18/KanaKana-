@@ -1707,7 +1707,7 @@ export const expert: TetrisWord[] = [
   {
     id: "expert_132",
     word: "掃除",
-    kana: "そうじ (する)",
+    kana: "そうじ",
     meaning: "cleaning, sweeping",
     chineseMeaning: "cleaning, sweeping",
     difficulty: "expert",
