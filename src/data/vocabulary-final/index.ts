@@ -39,6 +39,16 @@ const KANJI_WORDS = [
   KANJI_WORDS_01, KANJI_WORDS_02, KANJI_WORDS_03, KANJI_WORDS_04, KANJI_WORDS_05, KANJI_WORDS_06, KANJI_WORDS_07
 ].flat();
 
+// 合併所有詞彙為完整題庫
+export const allVocabulary: TetrisWord[] = [
+  ...BEGINNER_WORDS,
+  ...NORMAL_WORDS,
+  ...HARD_WORDS,
+  ...EXPERT_WORDS,
+  ...HIRAGANA_WORDS,
+  ...KANJI_WORDS
+];
+
 // 重新導出所有數據
 export {
   BEGINNER_WORDS,
