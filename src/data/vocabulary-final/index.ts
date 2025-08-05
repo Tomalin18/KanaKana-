@@ -19,7 +19,7 @@ export type { DifficultyLevel };
 // 使用完整的詞彙系統（使用最佳品質的檔案）
 import { BEGINNER_WORDS } from './beginner_converted';
 import { NORMAL_WORDS } from './normal-split';
-import { HARD_WORDS } from './hard 2';
+import { HARD_WORDS } from './hard-split';
 import { expert as EXPERT_WORDS } from './expert-split';
 import { JLPT_N3_N2_WORDS } from './jlpt-chunks';
 
