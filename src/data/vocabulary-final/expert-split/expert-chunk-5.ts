@@ -1,8 +1,29 @@
-import { TetrisWord } from '../index';
+import type { DifficultyLevel } from '../../../types';
 
-// Expert Chunk 3 - Words 4001 to 5525
-export const EXPERT_CHUNK_3: TetrisWord[] = [
-  {
+/**
+ * EXPERT_CHUNK_5 - Expert Vocabulary Chunk 5
+ * 
+ * 🔄 生成時間: 2025-08-05T10:03:39.432Z
+ * 📊 單字數量: 1000 個
+ * 📈 範圍: 4001 - 5000
+ */
+
+export interface TetrisWord {
+  id?: string;
+  word: string;
+  kana: string;
+  meaning: string;
+  chineseMeaning?: string;
+  difficulty: DifficultyLevel;
+  category: string;
+  jlptLevel?: 'n1' | 'n2' | 'n3' | 'n4' | 'n5';
+  kanji?: string;
+  isKanji?: boolean;
+  complexity?: number;
+}
+
+export const EXPERT_CHUNK_5: TetrisWord[] = [
+{
     id: "expert_4001",
     word: "構造",
     kana: "こうぞう",
@@ -14,8 +35,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "構造",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4002",
     word: "交替",
     kana: "こうたい",
@@ -27,8 +48,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "交替",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4003",
     word: "耕地",
     kana: "こうち",
@@ -40,8 +61,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "耕地",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4004",
     word: "交通機関",
     kana: "こうつうきかん",
@@ -53,8 +74,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "交通機関",
     isKanji: true,
     complexity: 16
-  },,
-  {
+  },
+{
     id: "expert_4005",
     word: "肯定",
     kana: "こうてい",
@@ -66,8 +87,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "肯定",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4006",
     word: "高度",
     kana: "こうど",
@@ -79,8 +100,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "高度",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4007",
     word: "合同",
     kana: "ごうどう",
@@ -92,8 +113,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "合同",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4008",
     word: "高等学校",
     kana: "こうとうがっこう",
@@ -105,8 +126,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "高等学校",
     isKanji: true,
     complexity: 14
-  },,
-  {
+  },
+{
     id: "expert_4009",
     word: "公表",
     kana: "こうひょう",
@@ -118,8 +139,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "公表",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4010",
     word: "公務",
     kana: "こうむ",
@@ -131,8 +152,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "公務",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4011",
     word: "交流",
     kana: "こうりゅう",
@@ -144,8 +165,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "交流",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4012",
     word: "合流",
     kana: "ごうりゅう",
@@ -157,8 +178,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "合流",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4013",
     word: "国立",
     kana: "こくりつ",
@@ -170,8 +191,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "国立",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4014",
     word: "ご苦労様",
     kana: "ごくろうさま",
@@ -183,8 +204,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "ご苦労様",
     isKanji: true,
     complexity: 15
-  },,
-  {
+  },
+{
     id: "expert_4015",
     word: "凍える",
     kana: "こごえる",
@@ -196,8 +217,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "凍える",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4016",
     word: "心当たり",
     kana: "こころあたり",
@@ -209,8 +230,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "心当たり",
     isKanji: true,
     complexity: 15
-  },,
-  {
+  },
+{
     id: "expert_4017",
     word: "心得る",
     kana: "こころえる",
@@ -222,8 +243,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "心得る",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4018",
     word: "五十音",
     kana: "ごじゅうおん",
@@ -235,8 +256,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "五十音",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4019",
     word: "小遣い",
     kana: "こづかい",
@@ -248,8 +269,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "小遣い",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4020",
     word: "言付ける",
     kana: "ことづける",
@@ -261,8 +282,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "言付ける",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4021",
     word: "言葉遣い",
     kana: "ことばづかい",
@@ -274,8 +295,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "言葉遣い",
     isKanji: true,
     complexity: 15
-  },,
-  {
+  },
+{
     id: "expert_4022",
     word: "御無沙汰",
     kana: "ごぶさた",
@@ -287,8 +308,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "御無沙汰",
     isKanji: true,
     complexity: 17
-  },,
-  {
+  },
+{
     id: "expert_4023",
     word: "御免",
     kana: "ごめん",
@@ -300,8 +321,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "御免",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4024",
     word: "堪える",
     kana: "こらえる",
@@ -313,8 +334,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "堪える",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4025",
     word: "娯楽",
     kana: "ごらく",
@@ -326,8 +347,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "娯楽",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4026",
     word: "御覧",
     kana: "ごらん",
@@ -339,8 +360,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "御覧",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4027",
     word: "在学",
     kana: "ざいがく",
@@ -352,8 +373,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "在学",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4028",
     word: "再三",
     kana: "さいさん",
@@ -365,8 +386,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "再三",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4029",
     word: "祭日",
     kana: "さいじつ",
@@ -378,8 +399,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "祭日",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4030",
     word: "催促",
     kana: "さいそく",
@@ -391,8 +412,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "催促",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4031",
     word: "災難",
     kana: "さいなん",
@@ -404,8 +425,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "災難",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4032",
     word: "一昨昨日",
     kana: "さきおととい",
@@ -417,8 +438,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "一昨昨日",
     isKanji: true,
     complexity: 19
-  },,
-  {
+  },
+{
     id: "expert_4033",
     word: "作者",
     kana: "さくしゃ",
@@ -430,8 +451,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "作者",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4034",
     word: "削除",
     kana: "さくじょ",
@@ -443,8 +464,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "削除",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4035",
     word: "作成",
     kana: "さくせい",
@@ -456,8 +477,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "作成",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4036",
     word: "作製",
     kana: "さくせい",
@@ -469,8 +490,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "作製",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4037",
     word: "差し支え",
     kana: "さしつかえ",
@@ -482,8 +503,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "差し支え",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4038",
     word: "差し引き",
     kana: "さしひき",
@@ -495,8 +516,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "差し引き",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4039",
     word: "流石",
     kana: "さすが",
@@ -508,8 +529,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "流石",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4040",
     word: "撮影",
     kana: "さつえい",
@@ -521,8 +542,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "撮影",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4041",
     word: "雑音",
     kana: "ざつおん",
@@ -534,8 +555,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "雑音",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4042",
     word: "早速",
     kana: "さっそく",
@@ -547,8 +568,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "早速",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4043",
     word: "座布団",
     kana: "ざぶとん",
@@ -560,8 +581,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "座布団",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4044",
     word: "山林",
     kana: "さんりん",
@@ -573,8 +594,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "山林",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4045",
     word: "仕上がる",
     kana: "しあがる",
@@ -586,8 +607,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "仕上がる",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4046",
     word: "明明後日",
     kana: "しあさって",
@@ -599,8 +620,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "明明後日",
     isKanji: true,
     complexity: 15
-  },,
-  {
+  },
+{
     id: "expert_4047",
     word: "司会",
     kana: "しかい",
@@ -612,8 +633,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "司会",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4048",
     word: "仕方がない",
     kana: "しかたがない",
@@ -625,8 +646,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "仕方がない",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4049",
     word: "時間割",
     kana: "じかんわり",
@@ -638,8 +659,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "時間割",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4050",
     word: "持参",
     kana: "じさん",
@@ -651,8 +672,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "持参",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4051",
     word: "四捨五入",
     kana: "ししゃごにゅう",
@@ -664,8 +685,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "四捨五入",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4052",
     word: "始終",
     kana: "しじゅう",
@@ -677,8 +698,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "始終",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4053",
     word: "自然科学",
     kana: "しぜんかがく",
@@ -690,8 +711,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "自然科学",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4054",
     word: "子孫",
     kana: "しそん",
@@ -703,8 +724,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "子孫",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4055",
     word: "下町",
     kana: "したまち",
@@ -716,8 +737,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "下町",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4056",
     word: "自治",
     kana: "じち",
@@ -729,8 +750,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "自治",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4057",
     word: "実感",
     kana: "じっかん",
@@ -742,8 +763,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "実感",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4058",
     word: "湿気",
     kana: "しっき",
@@ -755,8 +776,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "湿気",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4059",
     word: "実習",
     kana: "じっしゅう",
@@ -768,8 +789,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "実習",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4060",
     word: "実績",
     kana: "じっせき",
@@ -781,8 +802,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "実績",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4061",
     word: "失恋",
     kana: "しつれん",
@@ -794,8 +815,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "失恋",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4062",
     word: "指定",
     kana: "してい",
@@ -807,8 +828,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "指定",
     isKanji: true,
     complexity: 14
-  },,
-  {
+  },
+{
     id: "expert_4063",
     word: "紙幣",
     kana: "しへい",
@@ -820,8 +841,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "紙幣",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4064",
     word: "締め切る",
     kana: "しめきる",
@@ -833,8 +854,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "締め切る",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4065",
     word: "社会科学",
     kana: "しゃかいかがく",
@@ -846,8 +867,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "社会科学",
     isKanji: true,
     complexity: 14
-  },,
-  {
+  },
+{
     id: "expert_4066",
     word: "弱点",
     kana: "じゃくてん",
@@ -859,8 +880,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "弱点",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4067",
     word: "車掌",
     kana: "しゃしょう",
@@ -872,8 +893,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "車掌",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4068",
     word: "写生",
     kana: "しゃせい",
@@ -885,8 +906,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "写生",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4069",
     word: "社説",
     kana: "しゃせつ",
@@ -898,8 +919,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "社説",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4070",
     word: "集会",
     kana: "しゅうかい",
@@ -911,8 +932,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "集会",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4071",
     word: "集金",
     kana: "しゅうきん",
@@ -924,8 +945,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "集金",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4072",
     word: "重点",
     kana: "じゅうてん",
@@ -937,8 +958,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "重点",
     isKanji: true,
     complexity: 14
-  },,
-  {
+  },
+{
     id: "expert_4073",
     word: "臨時",
     kana: "りんじ",
@@ -950,8 +971,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "臨時",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4074",
     word: "留守番",
     kana: "るすばん",
@@ -963,8 +984,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "留守番",
     isKanji: true,
     complexity: 15
-  },,
-  {
+  },
+{
     id: "expert_4075",
     word: "冷凍",
     kana: "れいとう",
@@ -976,8 +997,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "冷凍",
     isKanji: true,
     complexity: 14
-  },,
-  {
+  },
+{
     id: "expert_4076",
     word: "列島",
     kana: "れっとう",
@@ -989,8 +1010,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "列島",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4077",
     word: "連合",
     kana: "れんごう",
@@ -1002,8 +1023,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "連合",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4078",
     word: "録音",
     kana: "ろくおん",
@@ -1015,8 +1036,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "録音",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4079",
     word: "和服",
     kana: "わふく",
@@ -1028,8 +1049,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "和服",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4080",
     word: "割合に",
     kana: "わりあいに",
@@ -1041,8 +1062,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "割合に",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4081",
     word: "飽くまで",
     kana: "あくまで",
@@ -1054,8 +1075,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "飽くまで",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4082",
     word: "朝寝坊",
     kana: "あさねぼう",
@@ -1067,8 +1088,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "朝寝坊",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4083",
     word: "足元",
     kana: "あしもと",
@@ -1080,8 +1101,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "足元",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4084",
     word: "厚かましい",
     kana: "あつかましい",
@@ -1093,8 +1114,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "厚かましい",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4085",
     word: "圧縮",
     kana: "あっしゅく",
@@ -1106,8 +1127,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "圧縮",
     isKanji: true,
     complexity: 14
-  },,
-  {
+  },
+{
     id: "expert_4086",
     word: "宛名",
     kana: "あてな",
@@ -1119,8 +1140,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "宛名",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4087",
     word: "雨戸",
     kana: "あまど",
@@ -1132,8 +1153,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "雨戸",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4088",
     word: "改めて",
     kana: "あらためて",
@@ -1145,8 +1166,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "改めて",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4089",
     word: "改める",
     kana: "あらためる",
@@ -1158,8 +1179,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "改める",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4090",
     word: "有難い",
     kana: "ありがたい",
@@ -1171,8 +1192,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "有難い",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4091",
     word: "荒れる",
     kana: "あれる",
@@ -1184,8 +1205,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "荒れる",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4092",
     word: "言い出す",
     kana: "いいだす",
@@ -1197,8 +1218,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "言い出す",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4093",
     word: "言い付ける",
     kana: "いいつける",
@@ -1210,8 +1231,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "言い付ける",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4094",
     word: "生き生き",
     kana: "いきいき",
@@ -1223,8 +1244,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "生き生き",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4095",
     word: "育児",
     kana: "いくじ",
@@ -1236,8 +1257,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "育児",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4096",
     word: "生け花",
     kana: "いけばな",
@@ -1249,8 +1270,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "生け花",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4097",
     word: "以後",
     kana: "いご",
@@ -1262,8 +1283,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "以後",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4098",
     word: "以降",
     kana: "いこう",
@@ -1275,8 +1296,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "以降",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4099",
     word: "衣食住",
     kana: "いしょくじゅう",
@@ -1288,8 +1309,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "衣食住",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4100",
     word: "一応",
     kana: "いちおう",
@@ -1301,8 +1322,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "一応",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4101",
     word: "一段と",
     kana: "いちだんと",
@@ -1314,8 +1335,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "一段と",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4102",
     word: "一流",
     kana: "いちりゅう",
@@ -1327,8 +1348,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "一流",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4103",
     word: "一昨日",
     kana: "いっさくじつ",
@@ -1340,8 +1361,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "一昨日",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4104",
     word: "一昨年",
     kana: "いっさくねん",
@@ -1353,8 +1374,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "一昨年",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4105",
     word: "一斉",
     kana: "いっせい",
@@ -1366,8 +1387,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "一斉",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4106",
     word: "一旦",
     kana: "いったん",
@@ -1379,8 +1400,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "一旦",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4107",
     word: "一定",
     kana: "いってい",
@@ -1392,8 +1413,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "一定",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4108",
     word: "行っていらっしゃい",
     kana: "いっていらっしゃい",
@@ -1405,8 +1426,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "行っていらっしゃい",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4109",
     word: "行ってらっしゃい",
     kana: "いってらっしゃい",
@@ -1418,8 +1439,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "行ってらっしゃい",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4110",
     word: "威張る",
     kana: "いばる",
@@ -1431,8 +1452,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "威張る",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4111",
     word: "入れ物",
     kana: "いれもの",
@@ -1444,8 +1465,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "入れ物",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4112",
     word: "植木",
     kana: "うえき",
@@ -1457,8 +1478,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "植木",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4113",
     word: "浮ぶ",
     kana: "うかぶ",
@@ -1470,8 +1491,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "浮ぶ",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4114",
     word: "承る",
     kana: "うけたまわる",
@@ -1483,8 +1504,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "承る",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4115",
     word: "受け持つ",
     kana: "うけもつ",
@@ -1496,8 +1517,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "受け持つ",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4116",
     word: "打合せ",
     kana: "うちあわせ",
@@ -1509,8 +1530,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "打合せ",
     isKanji: true,
     complexity: 14
-  },,
-  {
+  },
+{
     id: "expert_4117",
     word: "打ち消す",
     kana: "うちけす",
@@ -1522,8 +1543,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "打ち消す",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4118",
     word: "裏返す",
     kana: "うらがえす",
@@ -1535,8 +1556,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "裏返す",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4119",
     word: "裏口",
     kana: "うらぐち",
@@ -1548,8 +1569,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "裏口",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4120",
     word: "売り切れる",
     kana: "うりきれる",
@@ -1561,8 +1582,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "売り切れる",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4121",
     word: "絵の具",
     kana: "えのぐ",
@@ -1574,8 +1595,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "絵の具",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4122",
     word: "宴会",
     kana: "えんかい",
@@ -1587,8 +1608,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "宴会",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4123",
     word: "園芸",
     kana: "えんげい",
@@ -1600,8 +1621,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "園芸",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4124",
     word: "遠足",
     kana: "えんそく",
@@ -1613,8 +1634,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "遠足",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4125",
     word: "延長",
     kana: "えんちょう",
@@ -1626,8 +1647,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "延長",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4126",
     word: "追いかける",
     kana: "おいかける",
@@ -1639,8 +1660,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "追いかける",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4127",
     word: "追い越す",
     kana: "おいこす",
@@ -1652,8 +1673,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "追い越す",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4128",
     word: "応接",
     kana: "おうせつ",
@@ -1665,8 +1686,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "応接",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4129",
     word: "応対",
     kana: "おうたい",
@@ -1678,8 +1699,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "応対",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4130",
     word: "往復",
     kana: "おうふく",
@@ -1691,8 +1712,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "往復",
     isKanji: true,
     complexity: 15
-  },,
-  {
+  },
+{
     id: "expert_4131",
     word: "欧米",
     kana: "おうべい",
@@ -1704,8 +1725,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "欧米",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4132",
     word: "応用",
     kana: "おうよう",
@@ -1717,8 +1738,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "応用",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4133",
     word: "問い合わせ",
     kana: "といあわせ",
@@ -1730,8 +1751,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "問い合わせ",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4134",
     word: "統一",
     kana: "とういつ",
@@ -1743,8 +1764,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "統一",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4135",
     word: "同格",
     kana: "どうかく",
@@ -1756,8 +1777,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "同格",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4136",
     word: "統計",
     kana: "とうけい",
@@ -1769,8 +1790,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "統計",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4137",
     word: "動作",
     kana: "どうさ",
@@ -1782,8 +1803,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "動作",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4138",
     word: "東西",
     kana: "とうざい",
@@ -1795,8 +1816,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "東西",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4139",
     word: "当日",
     kana: "とうじつ",
@@ -1808,8 +1829,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "当日",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4140",
     word: "投書",
     kana: "とうしょ",
@@ -1821,8 +1842,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "投書",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4141",
     word: "当番",
     kana: "とうばん",
@@ -1834,8 +1855,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "当番",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4142",
     word: "等分",
     kana: "とうぶん",
@@ -1847,8 +1868,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "等分",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4143",
     word: "透明",
     kana: "とうめい",
@@ -1860,8 +1881,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "透明",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4144",
     word: "通り掛かる",
     kana: "とおりかかる",
@@ -1873,8 +1894,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "通り掛かる",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4145",
     word: "特色",
     kana: "とくしょく",
@@ -1886,8 +1907,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "特色",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4146",
     word: "特定",
     kana: "とくてい",
@@ -1899,8 +1920,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "特定",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4147",
     word: "溶け込む",
     kana: "とけこむ",
@@ -1912,8 +1933,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "溶け込む",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4148",
     word: "退ける",
     kana: "どける",
@@ -1925,8 +1946,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "退ける",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4149",
     word: "整う",
     kana: "ととのう",
@@ -1938,8 +1959,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "整う",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4150",
     word: "飛び込む",
     kana: "とびこむ",
@@ -1951,8 +1972,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "飛び込む",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4151",
     word: "取り入れる",
     kana: "とりいれる",
@@ -1964,8 +1985,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "取り入れる",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4152",
     word: "取り出す",
     kana: "とりだす",
@@ -1977,8 +1998,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "取り出す",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4153",
     word: "丼",
     kana: "どんぶり",
@@ -1990,8 +2011,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "丼",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4154",
     word: "内科",
     kana: "ないか",
@@ -2003,8 +2024,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "内科",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4155",
     word: "内線",
     kana: "ないせん",
@@ -2016,8 +2037,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "内線",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4156",
     word: "仲直り",
     kana: "なかなおり",
@@ -2029,8 +2050,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "仲直り",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4157",
     word: "長引く",
     kana: "ながびく",
@@ -2042,8 +2063,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "長引く",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4158",
     word: "仲良し",
     kana: "なかよし",
@@ -2055,8 +2076,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "仲良し",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4159",
     word: "斜め",
     kana: "ななめ",
@@ -2068,8 +2089,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "斜め",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4160",
     word: "何々",
     kana: "なになに",
@@ -2081,8 +2102,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "何々",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4161",
     word: "生意気",
     kana: "なまいき",
@@ -2094,8 +2115,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "生意気",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4162",
     word: "並木",
     kana: "なみき",
@@ -2107,8 +2128,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "並木",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4163",
     word: "南極",
     kana: "なんきょく",
@@ -2120,8 +2141,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "南極",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4164",
     word: "南北",
     kana: "なんぼく",
@@ -2133,8 +2154,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "南北",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4165",
     word: "逃がす",
     kana: "にがす",
@@ -2146,8 +2167,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "逃がす",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4166",
     word: "日時",
     kana: "にちじ",
@@ -2159,8 +2180,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "日時",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4167",
     word: "日用品",
     kana: "にちようひん",
@@ -2172,8 +2193,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "日用品",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4168",
     word: "日課",
     kana: "にっか",
@@ -2185,8 +2206,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "日課",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4169",
     word: "鈍い",
     kana: "にぶい",
@@ -2198,8 +2219,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "鈍い",
     isKanji: true,
     complexity: 17
-  },,
-  {
+  },
+{
     id: "expert_4170",
     word: "入社",
     kana: "にゅうしゃ",
@@ -2211,8 +2232,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "入社",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4171",
     word: "寝間着",
     kana: "ねまき",
@@ -2224,8 +2245,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "寝間着",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4172",
     word: "農産物",
     kana: "のうさんぶつ",
@@ -2237,8 +2258,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "農産物",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4173",
     word: "濃度",
     kana: "のうど",
@@ -2250,8 +2271,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "濃度",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4174",
     word: "残らず",
     kana: "のこらず",
@@ -2263,8 +2284,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "残らず",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4175",
     word: "上り",
     kana: "のぼり",
@@ -2276,8 +2297,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "上り",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4176",
     word: "乗り越し",
     kana: "のりこし",
@@ -2289,8 +2310,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "乗り越し",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4177",
     word: "鈍い",
     kana: "のろい",
@@ -2302,8 +2323,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "鈍い",
     isKanji: true,
     complexity: 15
-  },,
-  {
+  },
+{
     id: "expert_4178",
     word: "呑気",
     kana: "のんき",
@@ -2315,8 +2336,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "呑気",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4179",
     word: "売店",
     kana: "ばいてん",
@@ -2328,8 +2349,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "売店",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4180",
     word: "売買",
     kana: "ばいばい",
@@ -2341,8 +2362,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "売買",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4181",
     word: "吐き気",
     kana: "はきけ",
@@ -2354,8 +2375,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "吐き気",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4182",
     word: "挟まる",
     kana: "はさまる",
@@ -2367,8 +2388,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "挟まる",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4183",
     word: "果して",
     kana: "はたして",
@@ -2380,8 +2401,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "果して",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4184",
     word: "発揮",
     kana: "はっき",
@@ -2393,8 +2414,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "発揮",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4185",
     word: "話合い",
     kana: "はなしあい",
@@ -2406,8 +2427,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "話合い",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4186",
     word: "話し掛ける",
     kana: "はなしかける",
@@ -2419,8 +2440,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "話し掛ける",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4187",
     word: "話中",
     kana: "はなしちゅう",
@@ -2432,8 +2453,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "話中",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4188",
     word: "甚だしい",
     kana: "はなはだしい",
@@ -2445,8 +2466,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "甚だしい",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4189",
     word: "花火",
     kana: "はなび",
@@ -2458,8 +2479,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "花火",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4190",
     word: "歯磨き",
     kana: "はみがき",
@@ -2471,8 +2492,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "歯磨き",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4191",
     word: "払い込む",
     kana: "はらいこむ",
@@ -2484,8 +2505,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "払い込む",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4192",
     word: "払い戻す",
     kana: "はらいもどす",
@@ -2497,8 +2518,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "払い戻す",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4193",
     word: "張り切る",
     kana: "はりきる",
@@ -2510,8 +2531,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "張り切る",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4194",
     word: "反映",
     kana: "はんえい",
@@ -2523,8 +2544,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "反映",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4195",
     word: "万歳",
     kana: "ばんざい",
@@ -2536,8 +2557,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "万歳",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4196",
     word: "日当たり",
     kana: "ひあたり",
@@ -2549,8 +2570,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "日当たり",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4197",
     word: "比較的",
     kana: "ひかくてき",
@@ -2562,8 +2583,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "比較的",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4198",
     word: "引受る",
     kana: "ひきうける",
@@ -2575,8 +2596,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "引受る",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4199",
     word: "引き返す",
     kana: "ひきかえす",
@@ -2588,8 +2609,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "引き返す",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4200",
     word: "引算",
     kana: "ひきざん",
@@ -2601,8 +2622,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "引算",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4201",
     word: "引き出す",
     kana: "ひきだす",
@@ -2614,8 +2635,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "引き出す",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4202",
     word: "引き止める",
     kana: "ひきとめる",
@@ -2627,8 +2648,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "引き止める",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4203",
     word: "卑怯",
     kana: "ひきょう",
@@ -2640,8 +2661,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "卑怯",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4204",
     word: "引分け",
     kana: "ひきわけ",
@@ -2653,8 +2674,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "引分け",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4205",
     word: "陽射",
     kana: "ひざし",
@@ -2666,8 +2687,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "陽射",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4206",
     word: "引っ掛かる",
     kana: "ひっかかる",
@@ -2679,8 +2700,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "引っ掛かる",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4207",
     word: "引っ繰り返す",
     kana: "ひっくりかえす",
@@ -2692,8 +2713,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "引っ繰り返す",
     isKanji: true,
     complexity: 14
-  },,
-  {
+  },
+{
     id: "expert_4208",
     word: "引っ繰り返る",
     kana: "ひっくりかえる",
@@ -2705,8 +2726,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "引っ繰り返る",
     isKanji: true,
     complexity: 16
-  },,
-  {
+  },
+{
     id: "expert_4209",
     word: "引っ込む",
     kana: "ひっこむ",
@@ -2718,8 +2739,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "引っ込む",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4210",
     word: "筆者",
     kana: "ひっしゃ",
@@ -2731,8 +2752,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "筆者",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4211",
     word: "必需品",
     kana: "ひつじゅひん",
@@ -2744,8 +2765,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "必需品",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4212",
     word: "人差指",
     kana: "ひとさしゆび",
@@ -2757,8 +2778,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "人差指",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4213",
     word: "一通り",
     kana: "ひととおり",
@@ -2770,8 +2791,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "一通り",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4214",
     word: "人通り",
     kana: "ひとどおり",
@@ -2783,8 +2804,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "人通り",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4215",
     word: "独り言",
     kana: "ひとりごと",
@@ -2796,8 +2817,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "独り言",
     isKanji: true,
     complexity: 14
-  },,
-  {
+  },
+{
     id: "expert_4216",
     word: "美容",
     kana: "びよう",
@@ -2809,8 +2830,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "美容",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4217",
     word: "表紙",
     kana: "ひょうし",
@@ -2822,8 +2843,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "表紙",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4218",
     word: "標準",
     kana: "ひょうじゅん",
@@ -2835,8 +2856,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "標準",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4219",
     word: "広々",
     kana: "ひろびろ",
@@ -2848,8 +2869,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "広々",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4220",
     word: "便箋",
     kana: "びんせん",
@@ -2861,8 +2882,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "便箋",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4221",
     word: "不運",
     kana: "ふうん",
@@ -2874,8 +2895,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "不運",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4222",
     word: "不規則",
     kana: "ふきそく",
@@ -2887,8 +2908,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "不規則",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4223",
     word: "普及",
     kana: "ふきゅう",
@@ -2900,8 +2921,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "普及",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4224",
     word: "付近",
     kana: "ふきん",
@@ -2913,8 +2934,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "付近",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4225",
     word: "膨らます",
     kana: "ふくらます",
@@ -2926,8 +2947,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "膨らます",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4226",
     word: "夫妻",
     kana: "ふさい",
@@ -2939,8 +2960,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "夫妻",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4227",
     word: "無沙汰",
     kana: "ぶさた",
@@ -2952,8 +2973,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "無沙汰",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4228",
     word: "武士",
     kana: "ぶし",
@@ -2965,8 +2986,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "武士",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4229",
     word: "附属",
     kana: "ふぞく",
@@ -2978,8 +2999,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "附属",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4230",
     word: "物騒",
     kana: "ぶっそう",
@@ -2991,8 +3012,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "物騒",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4231",
     word: "部品",
     kana: "ぶひん",
@@ -3004,8 +3025,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "部品",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4232",
     word: "吹雪",
     kana: "ふぶき",
@@ -3017,8 +3038,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "吹雪",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4233",
     word: "父母",
     kana: "ふぼ",
@@ -3030,8 +3051,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "父母",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4234",
     word: "踏切",
     kana: "ふみきり",
@@ -3043,8 +3064,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "踏切",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4235",
     word: "振り仮名",
     kana: "ふりがな",
@@ -3056,8 +3077,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "振り仮名",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4236",
     word: "振り向く",
     kana: "ふりむく",
@@ -3069,8 +3090,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "振り向く",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4237",
     word: "故郷",
     kana: "ふるさと",
@@ -3082,8 +3103,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "故郷",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4238",
     word: "古里",
     kana: "ふるさと",
@@ -3095,8 +3116,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "古里",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4239",
     word: "振舞う",
     kana: "ふるまう",
@@ -3108,8 +3129,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "振舞う",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4240",
     word: "風呂敷",
     kana: "ふろしき",
@@ -3121,8 +3142,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "風呂敷",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4241",
     word: "文芸",
     kana: "ぶんげい",
@@ -3134,8 +3155,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "文芸",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4242",
     word: "文献",
     kana: "ぶんけん",
@@ -3147,8 +3168,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "文献",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4243",
     word: "分布",
     kana: "ぶんぷ",
@@ -3160,8 +3181,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "分布",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4244",
     word: "文房具",
     kana: "ぶんぼうぐ",
@@ -3173,8 +3194,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "文房具",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4245",
     word: "文脈",
     kana: "ぶんみゃく",
@@ -3186,8 +3207,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "文脈",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4246",
     word: "分類",
     kana: "ぶんるい",
@@ -3199,8 +3220,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "分類",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4247",
     word: "平気",
     kana: "へいき",
@@ -3212,8 +3233,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "平気",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4248",
     word: "並行",
     kana: "へいこう",
@@ -3225,8 +3246,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "並行",
     isKanji: true,
     complexity: 16
-  },,
-  {
+  },
+{
     id: "expert_4249",
     word: "平凡",
     kana: "へいぼん",
@@ -3238,8 +3259,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "平凡",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4250",
     word: "別荘",
     kana: "べっそう",
@@ -3251,8 +3272,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "別荘",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4251",
     word: "便所",
     kana: "べんじょ",
@@ -3264,8 +3285,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "便所",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4252",
     word: "望遠鏡",
     kana: "ぼうえんきょう",
@@ -3277,8 +3298,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "望遠鏡",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4253",
     word: "方角",
     kana: "ほうがく",
@@ -3290,8 +3311,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "方角",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4254",
     word: "坊さん",
     kana: "ぼうさん",
@@ -3303,8 +3324,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "坊さん",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4255",
     word: "防止",
     kana: "ぼうし",
@@ -3316,8 +3337,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "防止",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4256",
     word: "方針",
     kana: "ほうしん",
@@ -3329,8 +3350,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "方針",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4257",
     word: "膨大",
     kana: "ぼうだい",
@@ -3342,8 +3363,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "膨大",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4258",
     word: "包丁",
     kana: "ほうちょう",
@@ -3355,8 +3376,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "包丁",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4259",
     word: "方程式",
     kana: "ほうていしき",
@@ -3368,8 +3389,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "方程式",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4260",
     word: "防犯",
     kana: "ぼうはん",
@@ -3381,8 +3402,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "防犯",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4261",
     word: "方面",
     kana: "ほうめん",
@@ -3394,8 +3415,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "方面",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4262",
     word: "牧場",
     kana: "ぼくじょう",
@@ -3407,8 +3428,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "牧場",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4263",
     word: "牧畜",
     kana: "ぼくちく",
@@ -3420,8 +3441,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "牧畜",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4264",
     word: "保健",
     kana: "ほけん",
@@ -3433,8 +3454,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "保健",
     isKanji: true,
     complexity: 14
-  },,
-  {
+  },
+{
     id: "expert_4265",
     word: "北極",
     kana: "ほっきょく",
@@ -3446,8 +3467,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "北極",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4266",
     word: "盆",
     kana: "ぼん",
@@ -3459,8 +3480,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "盆",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4267",
     word: "盆地",
     kana: "ぼんち",
@@ -3472,8 +3493,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "盆地",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4268",
     word: "本来",
     kana: "ほんらい",
@@ -3485,8 +3506,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "本来",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4269",
     word: "枚数",
     kana: "まいすう",
@@ -3498,8 +3519,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "枚数",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4270",
     word: "毎度",
     kana: "まいど",
@@ -3511,8 +3532,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "毎度",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4271",
     word: "摩擦",
     kana: "まさつ",
@@ -3524,8 +3545,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "摩擦",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4272",
     word: "待合室",
     kana: "まちあいしつ",
@@ -3537,8 +3558,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "待合室",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4273",
     word: "待ち合わせる",
     kana: "まちあわせる",
@@ -3550,8 +3571,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "待ち合わせる",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4274",
     word: "街角",
     kana: "まちかど",
@@ -3563,8 +3584,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "街角",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4275",
     word: "真っ暗",
     kana: "まっくら",
@@ -3576,8 +3597,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "真っ暗",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4276",
     word: "真っ青",
     kana: "まっさお",
@@ -3589,8 +3610,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "真っ青",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4277",
     word: "真っ先",
     kana: "まっさき",
@@ -3602,8 +3623,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "真っ先",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4278",
     word: "間も無く",
     kana: "まもなく",
@@ -3615,8 +3636,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "間も無く",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4279",
     word: "満員",
     kana: "まんいん",
@@ -3628,8 +3649,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "満員",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4280",
     word: "満点",
     kana: "まんてん",
@@ -3641,8 +3662,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "満点",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4281",
     word: "見上げる",
     kana: "みあげる",
@@ -3654,8 +3675,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "見上げる",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4282",
     word: "見送る",
     kana: "みおくる",
@@ -3667,8 +3688,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "見送る",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4283",
     word: "見下ろす",
     kana: "みおろす",
@@ -3680,8 +3701,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "見下ろす",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4284",
     word: "三日月",
     kana: "みかづき",
@@ -3693,8 +3714,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "三日月",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4285",
     word: "自ら",
     kana: "みずから",
@@ -3706,8 +3727,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "自ら",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4286",
     word: "店屋",
     kana: "みせや",
@@ -3719,8 +3740,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "店屋",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4287",
     word: "見詰める",
     kana: "みつめる",
@@ -3732,8 +3753,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "見詰める",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4288",
     word: "見直す",
     kana: "みなおす",
@@ -3745,8 +3766,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "見直す",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4289",
     word: "見慣れる",
     kana: "みなれる",
@@ -3758,8 +3779,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "見慣れる",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4290",
     word: "身分",
     kana: "みぶん",
@@ -3771,8 +3792,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "身分",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4291",
     word: "民謡",
     kana: "みんよう",
@@ -3784,8 +3805,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "民謡",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4292",
     word: "矛盾",
     kana: "むじゅん",
@@ -3797,8 +3818,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "矛盾",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4293",
     word: "無数",
     kana: "むすう",
@@ -3810,8 +3831,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "無数",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4294",
     word: "紫",
     kana: "むらさき",
@@ -3823,8 +3844,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "紫",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4295",
     word: "迷信",
     kana: "めいしん",
@@ -3836,8 +3857,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "迷信",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4296",
     word: "名物",
     kana: "めいぶつ",
@@ -3849,8 +3870,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "名物",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4297",
     word: "恵まれる",
     kana: "めぐまれる",
@@ -3862,8 +3883,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "恵まれる",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4298",
     word: "目指す",
     kana: "めざす",
@@ -3875,8 +3896,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "目指す",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4299",
     word: "目印",
     kana: "めじるし",
@@ -3888,8 +3909,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "目印",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4300",
     word: "目立つ",
     kana: "めだつ",
@@ -3901,8 +3922,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "目立つ",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4301",
     word: "目安",
     kana: "めやす",
@@ -3914,8 +3935,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "目安",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4302",
     word: "免税",
     kana: "めんぜい",
@@ -3927,8 +3948,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "免税",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4303",
     word: "面倒臭い",
     kana: "めんどうくさい",
@@ -3940,8 +3961,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "面倒臭い",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4304",
     word: "儲かる",
     kana: "もうかる",
@@ -3953,8 +3974,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "儲かる",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4305",
     word: "儲ける",
     kana: "もうける",
@@ -3966,8 +3987,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "儲ける",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4306",
     word: "申し訳ない",
     kana: "もうしわけない",
@@ -3979,8 +4000,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "申し訳ない",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4307",
     word: "目次",
     kana: "もくじ",
@@ -3992,8 +4013,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "目次",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4308",
     word: "潜る",
     kana: "もぐる",
@@ -4005,8 +4026,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "潜る",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4309",
     word: "元々",
     kana: "もともと",
@@ -4018,8 +4039,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "元々",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4310",
     word: "物置",
     kana: "ものおき",
@@ -4031,8 +4052,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "物置",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4311",
     word: "物語る",
     kana: "ものがたる",
@@ -4044,8 +4065,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "物語る",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4312",
     word: "物凄い",
     kana: "ものすごい",
@@ -4057,8 +4078,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "物凄い",
     isKanji: true,
     complexity: 14
-  },,
-  {
+  },
+{
     id: "expert_4313",
     word: "催し",
     kana: "もよおし",
@@ -4070,8 +4091,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "催し",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4314",
     word: "問答",
     kana: "もんどう",
@@ -4083,8 +4104,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "問答",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4315",
     word: "夜間",
     kana: "やかん",
@@ -4096,8 +4117,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "夜間",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4316",
     word: "役者",
     kana: "やくしゃ",
@@ -4109,8 +4130,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "役者",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4317",
     word: "役所",
     kana: "やくしょ",
@@ -4122,8 +4143,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "役所",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4318",
     word: "役人",
     kana: "やくにん",
@@ -4135,8 +4156,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "役人",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4319",
     word: "薬品",
     kana: "やくひん",
@@ -4148,8 +4169,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "薬品",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4320",
     word: "役目",
     kana: "やくめ",
@@ -4161,8 +4182,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "役目",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4321",
     word: "夜行",
     kana: "やこう",
@@ -4174,8 +4195,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "夜行",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4322",
     word: "薬局",
     kana: "やっきょく",
@@ -4187,8 +4208,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "薬局",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4323",
     word: "家主",
     kana: "やぬし",
@@ -4200,8 +4221,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "家主",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4324",
     word: "軟らかい",
     kana: "やわらかい",
@@ -4213,8 +4234,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "軟らかい",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4325",
     word: "遊園地",
     kana: "ゆうえんち",
@@ -4226,8 +4247,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "遊園地",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4326",
     word: "夕立",
     kana: "ゆうだち",
@@ -4239,8 +4260,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "夕立",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4327",
     word: "夕日",
     kana: "ゆうひ",
@@ -4252,8 +4273,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "夕日",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4328",
     word: "有料",
     kana: "ゆうりょう",
@@ -4265,8 +4286,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "有料",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4329",
     word: "浴衣",
     kana: "ゆかた",
@@ -4278,8 +4299,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "浴衣",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4330",
     word: "行方",
     kana: "ゆくえ",
@@ -4291,8 +4312,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "行方",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4331",
     word: "輸血",
     kana: "ゆけつ",
@@ -4304,8 +4325,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "輸血",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4332",
     word: "輸送",
     kana: "ゆそう",
@@ -4317,8 +4338,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "輸送",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4333",
     word: "油断",
     kana: "ゆだん",
@@ -4330,8 +4351,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "油断",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4334",
     word: "幼児",
     kana: "ようじ",
@@ -4343,8 +4364,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "幼児",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4335",
     word: "幼稚",
     kana: "ようち",
@@ -4356,8 +4377,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "幼稚",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4336",
     word: "幼稚園",
     kana: "ようちえん",
@@ -4369,8 +4390,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "幼稚園",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4337",
     word: "洋品店",
     kana: "ようひんてん",
@@ -4382,8 +4403,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "洋品店",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4338",
     word: "要領",
     kana: "ようりょう",
@@ -4395,8 +4416,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "要領",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4339",
     word: "余計",
     kana: "よけい",
@@ -4408,8 +4429,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "余計",
     isKanji: true,
     complexity: 18
-  },,
-  {
+  },
+{
     id: "expert_4340",
     word: "余所",
     kana: "よそ",
@@ -4421,8 +4442,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "余所",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4341",
     word: "四つ角",
     kana: "よつかど",
@@ -4434,8 +4455,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "四つ角",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4342",
     word: "予備",
     kana: "よび",
@@ -4447,8 +4468,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "予備",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4343",
     word: "呼び掛ける",
     kana: "よびかける",
@@ -4460,8 +4481,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "呼び掛ける",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4344",
     word: "来日",
     kana: "らいにち",
@@ -4473,8 +4494,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "来日",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4345",
     word: "落第",
     kana: "らくだい",
@@ -4486,8 +4507,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "落第",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4346",
     word: "利害",
     kana: "りがい",
@@ -4499,8 +4520,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "利害",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4347",
     word: "段階",
     kana: "だんかい",
@@ -4512,8 +4533,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "段階",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4348",
     word: "短期",
     kana: "たんき",
@@ -4525,8 +4546,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "短期",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4349",
     word: "短所",
     kana: "たんしょ",
@@ -4538,8 +4559,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "短所",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4350",
     word: "断定",
     kana: "だんてい",
@@ -4551,8 +4572,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "断定",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4351",
     word: "地下水",
     kana: "ちかすい",
@@ -4564,8 +4585,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "地下水",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4352",
     word: "近付ける",
     kana: "ちかづける",
@@ -4577,8 +4598,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "近付ける",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4353",
     word: "近寄る",
     kana: "ちかよる",
@@ -4590,8 +4611,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "近寄る",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4354",
     word: "力強い",
     kana: "ちからづよい",
@@ -4603,8 +4624,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "力強い",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4355",
     word: "地帯",
     kana: "ちたい",
@@ -4616,8 +4637,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "地帯",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4356",
     word: "地点",
     kana: "ちてん",
@@ -4629,8 +4650,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "地点",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4357",
     word: "中間",
     kana: "ちゅうかん",
@@ -4642,8 +4663,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "中間",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4358",
     word: "中旬",
     kana: "ちゅうじゅん",
@@ -4655,8 +4676,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "中旬",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4359",
     word: "中世",
     kana: "ちゅうせい",
@@ -4668,8 +4689,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "中世",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4360",
     word: "中性",
     kana: "ちゅうせい",
@@ -4681,8 +4702,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "中性",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4361",
     word: "中途",
     kana: "ちゅうと",
@@ -4694,8 +4715,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "中途",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4362",
     word: "超過",
     kana: "ちょうか",
@@ -4707,8 +4728,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "超過",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4363",
     word: "彫刻",
     kana: "ちょうこく",
@@ -4720,8 +4741,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "彫刻",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4364",
     word: "長所",
     kana: "ちょうしょ",
@@ -4733,8 +4754,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "長所",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4365",
     word: "調整",
     kana: "ちょうせい",
@@ -4746,8 +4767,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "調整",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4366",
     word: "調節",
     kana: "ちょうせつ",
@@ -4759,8 +4780,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "調節",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4367",
     word: "長短",
     kana: "ちょうたん",
@@ -4772,8 +4793,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "長短",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4368",
     word: "頂点",
     kana: "ちょうてん",
@@ -4785,8 +4806,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "頂点",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4369",
     word: "長男",
     kana: "ちょうなん",
@@ -4798,8 +4819,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "長男",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4370",
     word: "長方形",
     kana: "ちょうほうけい",
@@ -4811,8 +4832,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "長方形",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4371",
     word: "調味料",
     kana: "ちょうみりょう",
@@ -4824,8 +4845,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "調味料",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4372",
     word: "直前",
     kana: "ちょくぜん",
@@ -4837,8 +4858,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "直前",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4373",
     word: "直通",
     kana: "ちょくつう",
@@ -4850,8 +4871,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "直通",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4374",
     word: "貯蔵",
     kana: "ちょぞう",
@@ -4863,8 +4884,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "貯蔵",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4375",
     word: "散らかす",
     kana: "ちらかす",
@@ -4876,8 +4897,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "散らかす",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4376",
     word: "塵紙",
     kana: "ちりがみ",
@@ -4889,8 +4910,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "塵紙",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4377",
     word: "追加",
     kana: "ついか",
@@ -4902,8 +4923,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "追加",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4378",
     word: "通知",
     kana: "つうち",
@@ -4915,8 +4936,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "通知",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4379",
     word: "通用",
     kana: "つうよう",
@@ -4928,8 +4949,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "通用",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4380",
     word: "突き当たり",
     kana: "つきあたり",
@@ -4941,8 +4962,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "突き当たり",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4381",
     word: "突き当たる",
     kana: "つきあたる",
@@ -4954,8 +4975,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "突き当たる",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4382",
     word: "月日",
     kana: "つきひ",
@@ -4967,8 +4988,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "月日",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4383",
     word: "突っ込む",
     kana: "つっこむ",
@@ -4980,8 +5001,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "突っ込む",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4384",
     word: "繋がり",
     kana: "つながり",
@@ -4993,8 +5014,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "繋がり",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4385",
     word: "爪",
     kana: "つめ",
@@ -5006,8 +5027,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "爪",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4386",
     word: "強気",
     kana: "つよき",
@@ -5019,8 +5040,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "強気",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4387",
     word: "釣り合う",
     kana: "つりあう",
@@ -5032,8 +5053,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "釣り合う",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4388",
     word: "手洗い",
     kana: "てあらい",
@@ -5045,8 +5066,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "手洗い",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4389",
     word: "定員",
     kana: "ていいん",
@@ -5058,8 +5079,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "定員",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4390",
     word: "定期券",
     kana: "ていきけん",
@@ -5071,8 +5092,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "定期券",
     isKanji: true,
     complexity: 14
-  },,
-  {
+  },
+{
     id: "expert_4391",
     word: "定休日",
     kana: "ていきゅうび",
@@ -5084,8 +5105,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "定休日",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4392",
     word: "停止",
     kana: "ていし",
@@ -5097,8 +5118,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "停止",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4393",
     word: "出入り",
     kana: "でいり",
@@ -5110,8 +5131,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "出入り",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4394",
     word: "出入口",
     kana: "でいりぐち",
@@ -5123,8 +5144,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "出入口",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4395",
     word: "出来上がり",
     kana: "できあがり",
@@ -5136,8 +5157,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "出来上がり",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4396",
     word: "出来上がる",
     kana: "できあがる",
@@ -5149,8 +5170,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "出来上がる",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4397",
     word: "的確",
     kana: "てきかく",
@@ -5162,8 +5183,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "的確",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4398",
     word: "凸凹",
     kana: "でこぼこ",
@@ -5175,8 +5196,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "凸凹",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4399",
     word: "手頃",
     kana: "てごろ",
@@ -5188,8 +5209,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "手頃",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4400",
     word: "鉄橋",
     kana: "てっきょう",
@@ -5201,8 +5222,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "鉄橋",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4401",
     word: "手続き",
     kana: "てつづき",
@@ -5214,8 +5235,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "手続き",
     isKanji: true,
     complexity: 14
-  },,
-  {
+  },
+{
     id: "expert_4402",
     word: "手拭い",
     kana: "てぬぐい",
@@ -5227,8 +5248,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "手拭い",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4403",
     word: "手前",
     kana: "てまえ",
@@ -5240,8 +5261,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "手前",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4404",
     word: "出迎え",
     kana: "でむかえ",
@@ -5253,8 +5274,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "出迎え",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4405",
     word: "展開",
     kana: "てんかい",
@@ -5266,8 +5287,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "展開",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4406",
     word: "伝記",
     kana: "でんき",
@@ -5279,8 +5300,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "伝記",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4407",
     word: "点数",
     kana: "てんすう",
@@ -5292,8 +5313,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "点数",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4408",
     word: "伝染",
     kana: "でんせん",
@@ -5305,8 +5326,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "伝染",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4409",
     word: "点々",
     kana: "てんてん",
@@ -5318,8 +5339,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "点々",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4410",
     word: "電柱",
     kana: "でんちゅう",
@@ -5331,8 +5352,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "電柱",
     isKanji: true,
     complexity: 15
-  },,
-  {
+  },
+{
     id: "expert_4411",
     word: "天皇",
     kana: "てんのう",
@@ -5344,8 +5365,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "天皇",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4412",
     word: "作法",
     kana: "さほう",
@@ -5357,8 +5378,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "作法",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4413",
     word: "左右",
     kana: "さゆう",
@@ -5370,8 +5391,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "左右",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4414",
     word: "更に",
     kana: "さらに",
@@ -5383,8 +5404,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "更に",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4415",
     word: "参加",
     kana: "さんか",
@@ -5396,8 +5417,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "参加",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4416",
     word: "参考",
     kana: "さんこう",
@@ -5409,8 +5430,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "参考",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4417",
     word: "四季",
     kana: "しき",
@@ -5422,8 +5443,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "四季",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4418",
     word: "直",
     kana: "じき",
@@ -5435,8 +5456,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "直",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4419",
     word: "時期",
     kana: "じき",
@@ -5448,8 +5469,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "時期",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4420",
     word: "刺激",
     kana: "しげき",
@@ -5461,8 +5482,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "刺激",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4421",
     word: "事情",
     kana: "じじょう",
@@ -5474,8 +5495,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "事情",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4422",
     word: "自然",
     kana: "しぜん",
@@ -5487,8 +5508,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "自然",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4423",
     word: "次第",
     kana: "しだい",
@@ -5500,8 +5521,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "次第",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4424",
     word: "湿気",
     kana: "しっけ",
@@ -5513,8 +5534,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "湿気",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4425",
     word: "実験",
     kana: "じっけん",
@@ -5526,8 +5547,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "実験",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4426",
     word: "実現",
     kana: "じつげん",
@@ -5539,8 +5560,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "実現",
     isKanji: true,
     complexity: 16
-  },,
-  {
+  },
+{
     id: "expert_4427",
     word: "実行",
     kana: "じっこう",
@@ -5552,8 +5573,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "実行",
     isKanji: true,
     complexity: 16
-  },,
-  {
+  },
+{
     id: "expert_4428",
     word: "実施",
     kana: "じっし",
@@ -5565,8 +5586,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "実施",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4429",
     word: "実に",
     kana: "じつに",
@@ -5578,8 +5599,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "実に",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4430",
     word: "失望",
     kana: "しつぼう",
@@ -5591,8 +5612,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "失望",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4431",
     word: "実力",
     kana: "じつりょく",
@@ -5604,8 +5625,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "実力",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4432",
     word: "指導",
     kana: "しどう",
@@ -5617,8 +5638,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "指導",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4433",
     word: "自動",
     kana: "じどう",
@@ -5630,8 +5651,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "自動",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4434",
     word: "支配",
     kana: "しはい",
@@ -5643,8 +5664,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "支配",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4435",
     word: "地味",
     kana: "じみ",
@@ -5656,8 +5677,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "地味",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4436",
     word: "借金",
     kana: "しゃっきん",
@@ -5669,8 +5690,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "借金",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4437",
     word: "周囲",
     kana: "しゅうい",
@@ -5682,8 +5703,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "周囲",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4438",
     word: "収穫",
     kana: "しゅうかく",
@@ -5695,8 +5716,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "収穫",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4439",
     word: "宗教",
     kana: "しゅうきょう",
@@ -5708,8 +5729,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "宗教",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4440",
     word: "重視",
     kana: "じゅうし",
@@ -5721,8 +5742,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "重視",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4441",
     word: "就職",
     kana: "しゅうしょく",
@@ -5734,8 +5755,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "就職",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4442",
     word: "修正",
     kana: "しゅうせい",
@@ -5747,8 +5768,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "修正",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4443",
     word: "重体",
     kana: "じゅうたい",
@@ -5760,8 +5781,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "重体",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4444",
     word: "渋滞",
     kana: "じゅうたい",
@@ -5773,8 +5794,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "渋滞",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4445",
     word: "重大",
     kana: "じゅうだい",
@@ -5786,8 +5807,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "重大",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4446",
     word: "集中",
     kana: "しゅうちゅう",
@@ -5799,8 +5820,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "集中",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4447",
     word: "住民",
     kana: "じゅうみん",
@@ -5812,8 +5833,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "住民",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4448",
     word: "重要",
     kana: "じゅうよう",
@@ -5825,8 +5846,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "重要",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4449",
     word: "主義",
     kana: "しゅぎ",
@@ -5838,8 +5859,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "主義",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4450",
     word: "手術",
     kana: "しゅじゅつ",
@@ -5851,8 +5872,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "手術",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4451",
     word: "主張",
     kana: "しゅちょう",
@@ -5864,8 +5885,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "主張",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4452",
     word: "出場",
     kana: "しゅつじょう",
@@ -5877,8 +5898,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "出場",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4453",
     word: "出身",
     kana: "しゅっしん",
@@ -5890,8 +5911,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "出身",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4454",
     word: "出版",
     kana: "しゅっぱん",
@@ -5903,8 +5924,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "出版",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4455",
     word: "瞬間",
     kana: "しゅんかん",
@@ -5916,8 +5937,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "瞬間",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4456",
     word: "順調",
     kana: "じゅんちょう",
@@ -5929,8 +5950,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "順調",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4457",
     word: "順番",
     kana: "じゅんばん",
@@ -5942,8 +5963,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "順番",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4458",
     word: "使用",
     kana: "しよう",
@@ -5955,8 +5976,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "使用",
     isKanji: true,
     complexity: 19
-  },,
-  {
+  },
+{
     id: "expert_4459",
     word: "章",
     kana: "しょう",
@@ -5968,8 +5989,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "章",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4460",
     word: "上",
     kana: "じょう",
@@ -5981,8 +6002,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "上",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4461",
     word: "障害",
     kana: "しょうがい",
@@ -5994,8 +6015,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "障害",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4462",
     word: "奨学金",
     kana: "しょうがくきん",
@@ -6007,8 +6028,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "奨学金",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4463",
     word: "状況",
     kana: "じょうきょう",
@@ -6020,8 +6041,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "状況",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4464",
     word: "条件",
     kana: "じょうけん",
@@ -6033,8 +6054,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "条件",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4465",
     word: "正午",
     kana: "しょうご",
@@ -6046,8 +6067,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "正午",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4466",
     word: "正直",
     kana: "しょうじき",
@@ -6059,8 +6080,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "正直",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4467",
     word: "常識",
     kana: "じょうしき",
@@ -6072,8 +6093,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "常識",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4468",
     word: "症状",
     kana: "しょうじょう",
@@ -6085,8 +6106,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "症状",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4469",
     word: "生じる",
     kana: "しょうじる",
@@ -6098,8 +6119,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "生じる",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4470",
     word: "状態",
     kana: "じょうたい",
@@ -6111,8 +6132,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "状態",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4471",
     word: "上達",
     kana: "じょうたつ",
@@ -6124,8 +6145,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "上達",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4472",
     word: "上等",
     kana: "じょうとう",
@@ -6137,8 +6158,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "上等",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4473",
     word: "衝突",
     kana: "しょうとつ",
@@ -6150,8 +6171,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "衝突",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4474",
     word: "商人",
     kana: "しょうにん",
@@ -6163,8 +6184,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "商人",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4475",
     word: "承認",
     kana: "しょうにん",
@@ -6176,8 +6197,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "承認",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4476",
     word: "商売",
     kana: "しょうばい",
@@ -6189,8 +6210,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "商売",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4477",
     word: "消費",
     kana: "しょうひ",
@@ -6202,8 +6223,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "消費",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4478",
     word: "商品",
     kana: "しょうひん",
@@ -6215,8 +6236,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "商品",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4479",
     word: "消防",
     kana: "しょうぼう",
@@ -6228,8 +6249,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "消防",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4480",
     word: "情報",
     kana: "じょうほう",
@@ -6241,8 +6262,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "情報",
     isKanji: true,
     complexity: 14
-  },,
-  {
+  },
+{
     id: "expert_4481",
     word: "証明",
     kana: "しょうめい",
@@ -6254,8 +6275,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "証明",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4482",
     word: "省略",
     kana: "しょうりゃく",
@@ -6267,8 +6288,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "省略",
     isKanji: true,
     complexity: 14
-  },,
-  {
+  },
+{
     id: "expert_4483",
     word: "職業",
     kana: "しょくぎょう",
@@ -6280,8 +6301,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "職業",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4484",
     word: "植物",
     kana: "しょくぶつ",
@@ -6293,8 +6314,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "植物",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4485",
     word: "食糧",
     kana: "しょくりょう",
@@ -6306,8 +6327,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "食糧",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4486",
     word: "処理",
     kana: "しょり",
@@ -6319,8 +6340,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "処理",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4487",
     word: "書類",
     kana: "しょるい",
@@ -6332,8 +6353,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "書類",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4488",
     word: "進学",
     kana: "しんがく",
@@ -6345,8 +6366,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "進学",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4489",
     word: "真剣",
     kana: "しんけん",
@@ -6358,8 +6379,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "真剣",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4490",
     word: "信仰",
     kana: "しんこう",
@@ -6371,8 +6392,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "信仰",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4491",
     word: "信号",
     kana: "しんごう",
@@ -6384,8 +6405,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "信号",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4492",
     word: "人工",
     kana: "じんこう",
@@ -6397,8 +6418,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "人工",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4493",
     word: "人生",
     kana: "じんせい",
@@ -6410,8 +6431,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "人生",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4494",
     word: "身長",
     kana: "しんちょう",
@@ -6423,8 +6444,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "身長",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4495",
     word: "慎重",
     kana: "しんちょう",
@@ -6436,8 +6457,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "慎重",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4496",
     word: "審判",
     kana: "しんぱん",
@@ -6449,8 +6470,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "審判",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4497",
     word: "人物",
     kana: "じんぶつ",
@@ -6462,8 +6483,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "人物",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4498",
     word: "進歩",
     kana: "しんぽ",
@@ -6475,8 +6496,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "進歩",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4499",
     word: "信用",
     kana: "しんよう",
@@ -6488,8 +6509,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "信用",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4500",
     word: "信頼",
     kana: "しんらい",
@@ -6501,8 +6522,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "信頼",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4501",
     word: "図",
     kana: "ず",
@@ -6514,8 +6535,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "図",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4502",
     word: "水準",
     kana: "すいじゅん",
@@ -6527,8 +6548,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "水準",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4503",
     word: "推薦",
     kana: "すいせん",
@@ -6540,8 +6561,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "推薦",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4504",
     word: "優れる",
     kana: "すぐれる",
@@ -6553,8 +6574,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "優れる",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4505",
     word: "少しも",
     kana: "すこしも",
@@ -6566,8 +6587,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "少しも",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4506",
     word: "進める",
     kana: "すすめる",
@@ -6579,8 +6600,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "進める",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4507",
     word: "所為",
     kana: "せい",
@@ -6592,8 +6613,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "所為",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4508",
     word: "性格",
     kana: "せいかく",
@@ -6605,8 +6626,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "性格",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4509",
     word: "正確",
     kana: "せいかく",
@@ -6618,8 +6639,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "正確",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4510",
     word: "請求",
     kana: "せいきゅう",
@@ -6631,8 +6652,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "請求",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4511",
     word: "制限",
     kana: "せいげん",
@@ -6644,8 +6665,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "制限",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4512",
     word: "正式",
     kana: "せいしき",
@@ -6657,8 +6678,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "正式",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4513",
     word: "性質",
     kana: "せいしつ",
@@ -6670,8 +6691,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "性質",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4514",
     word: "成績",
     kana: "せいせき",
@@ -6683,8 +6704,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "成績",
     isKanji: true,
     complexity: 14
-  },,
-  {
+  },
+{
     id: "expert_4515",
     word: "製造",
     kana: "せいぞう",
@@ -6696,8 +6717,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "製造",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4516",
     word: "制度",
     kana: "せいど",
@@ -6709,8 +6730,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "制度",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4517",
     word: "生年月日",
     kana: "せいねんがっぴ",
@@ -6722,8 +6743,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "生年月日",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4518",
     word: "製品",
     kana: "せいひん",
@@ -6735,8 +6756,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "製品",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4519",
     word: "政府",
     kana: "せいふ",
@@ -6748,8 +6769,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "政府",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4520",
     word: "生物",
     kana: "せいぶつ",
@@ -6761,8 +6782,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "生物",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4521",
     word: "整理",
     kana: "せいり",
@@ -6774,8 +6795,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "整理",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4522",
     word: "責任",
     kana: "せきにん",
@@ -6787,8 +6808,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "責任",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4523",
     word: "世間",
     kana: "せけん",
@@ -6800,8 +6821,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "世間",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4524",
     word: "積極的",
     kana: "せっきょくてき",
@@ -6813,8 +6834,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "積極的",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4525",
     word: "絶対",
     kana: "ぜったい",
@@ -6826,8 +6847,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "絶対",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4526",
     word: "相変わらず",
     kana: "あいかわらず",
@@ -6839,8 +6860,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "相変わらず",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4527",
     word: "愛情",
     kana: "あいじょう",
@@ -6852,8 +6873,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "愛情",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4528",
     word: "相手",
     kana: "あいて",
@@ -6865,8 +6886,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "相手",
     isKanji: true,
     complexity: 15
-  },,
-  {
+  },
+{
     id: "expert_4529",
     word: "空き",
     kana: "あき",
@@ -6878,8 +6899,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "空き",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4530",
     word: "飽きる",
     kana: "あきる",
@@ -6891,8 +6912,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "飽きる",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4531",
     word: "悪魔",
     kana: "あくま",
@@ -6904,8 +6925,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "悪魔",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4532",
     word: "預かる",
     kana: "あずかる",
@@ -6917,8 +6938,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "預かる",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4533",
     word: "当たり前",
     kana: "あたりまえ",
@@ -6930,8 +6951,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "当たり前",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4534",
     word: "集まり",
     kana: "あつまり",
@@ -6943,8 +6964,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "集まり",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4535",
     word: "現れ",
     kana: "あらわれ",
@@ -6956,8 +6977,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "現れ",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4536",
     word: "在る; 有る",
     kana: "ある",
@@ -6969,8 +6990,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "在る; 有る",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4537",
     word: "暗記",
     kana: "あんき",
@@ -6982,8 +7003,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "暗記",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4538",
     word: "委員",
     kana: "いいん",
@@ -6995,8 +7016,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "委員",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4539",
     word: "勢い",
     kana: "いきおい",
@@ -7008,8 +7029,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "勢い",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4540",
     word: "生き物",
     kana: "いきもの",
@@ -7021,8 +7042,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "生き物",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4541",
     word: "医師",
     kana: "いし",
@@ -7034,8 +7055,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "医師",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4542",
     word: "意思",
     kana: "いし",
@@ -7047,8 +7068,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "意思",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4543",
     word: "意志",
     kana: "いし",
@@ -7060,8 +7081,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "意志",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4544",
     word: "維持",
     kana: "いじ",
@@ -7073,8 +7094,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "維持",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4545",
     word: "意識",
     kana: "いしき",
@@ -7086,8 +7107,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "意識",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4546",
     word: "異常",
     kana: "いじょう",
@@ -7099,8 +7120,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "異常",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4547",
     word: "意地悪",
     kana: "いじわる",
@@ -7112,8 +7133,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "意地悪",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4548",
     word: "以前",
     kana: "いぜん",
@@ -7125,8 +7146,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "以前",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4549",
     word: "位置",
     kana: "いち",
@@ -7138,8 +7159,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "位置",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4550",
     word: "一時",
     kana: "いちじ",
@@ -7151,8 +7172,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "一時",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4551",
     word: "一度に",
     kana: "いちどに",
@@ -7164,8 +7185,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "一度に",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4552",
     word: "一種",
     kana: "いっしゅ",
@@ -7177,8 +7198,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "一種",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4553",
     word: "一瞬",
     kana: "いっしゅん",
@@ -7190,8 +7211,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "一瞬",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4554",
     word: "一生",
     kana: "いっしょう",
@@ -7203,8 +7224,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "一生",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4555",
     word: "一層",
     kana: "いっそう",
@@ -7216,8 +7237,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "一層",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4556",
     word: "一体",
     kana: "いったい",
@@ -7229,8 +7250,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "一体",
     isKanji: true,
     complexity: 14
-  },,
-  {
+  },
+{
     id: "expert_4557",
     word: "一致",
     kana: "いっち",
@@ -7242,8 +7263,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "一致",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4558",
     word: "一方",
     kana: "いっぽう",
@@ -7255,8 +7276,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "一方",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4559",
     word: "移動",
     kana: "いどう",
@@ -7268,8 +7289,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "移動",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4560",
     word: "従兄弟",
     kana: "いとこ",
@@ -7281,8 +7302,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "従兄弟",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4561",
     word: "従姉妹",
     kana: "いとこ",
@@ -7294,8 +7315,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "従姉妹",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4562",
     word: "居眠り",
     kana: "いねむり",
@@ -7307,8 +7328,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "居眠り",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4563",
     word: "違反",
     kana: "いはん",
@@ -7320,8 +7341,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "違反",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4564",
     word: "今にも",
     kana: "いまにも",
@@ -7333,8 +7354,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "今にも",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4565",
     word: "以来",
     kana: "いらい",
@@ -7346,8 +7367,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "以来",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4566",
     word: "医療",
     kana: "いりょう",
@@ -7359,8 +7380,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "医療",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4567",
     word: "祝い",
     kana: "いわい",
@@ -7372,8 +7393,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "祝い",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4568",
     word: "印象",
     kana: "いんしょう",
@@ -7385,8 +7406,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "印象",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4569",
     word: "引用",
     kana: "いんよう",
@@ -7398,8 +7419,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "引用",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4570",
     word: "受け取る",
     kana: "うけとる",
@@ -7411,8 +7432,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "受け取る",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4571",
     word: "宇宙",
     kana: "うちゅう",
@@ -7424,8 +7445,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "宇宙",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4572",
     word: "有無",
     kana: "うむ",
@@ -7437,8 +7458,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "有無",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4573",
     word: "裏切る",
     kana: "うらぎる",
@@ -7450,8 +7471,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "裏切る",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4574",
     word: "運転",
     kana: "うんてん",
@@ -7463,8 +7484,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "運転",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4575",
     word: "柄",
     kana: "え",
@@ -7476,8 +7497,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "柄",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4576",
     word: "永遠",
     kana: "えいえん",
@@ -7489,8 +7510,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "永遠",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4577",
     word: "永久",
     kana: "えいきゅう",
@@ -7502,8 +7523,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "永久",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4578",
     word: "営業",
     kana: "えいぎょう",
@@ -7515,8 +7536,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "営業",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4579",
     word: "栄養",
     kana: "えいよう",
@@ -7528,8 +7549,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "栄養",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4580",
     word: "延期",
     kana: "えんき",
@@ -7541,8 +7562,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "延期",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4581",
     word: "演技",
     kana: "えんぎ",
@@ -7554,8 +7575,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "演技",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4582",
     word: "援助",
     kana: "えんじょ",
@@ -7567,8 +7588,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "援助",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4583",
     word: "演奏",
     kana: "えんそう",
@@ -7580,8 +7601,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "演奏",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4584",
     word: "応じる",
     kana: "おうじる",
@@ -7593,8 +7614,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "応じる",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4585",
     word: "大いに",
     kana: "おおいに",
@@ -7606,8 +7627,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "大いに",
     isKanji: true,
     complexity: 14
-  },,
-  {
+  },
+{
     id: "expert_4586",
     word: "大家",
     kana: "おおや",
@@ -7619,8 +7640,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "大家",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4587",
     word: "押える",
     kana: "おさえる",
@@ -7632,8 +7653,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "押える",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4588",
     word: "幼い",
     kana: "おさない",
@@ -7645,8 +7666,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "幼い",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4589",
     word: "お洒落",
     kana: "おしゃれ",
@@ -7658,8 +7679,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "お洒落",
     isKanji: true,
     complexity: 14
-  },,
-  {
+  },
+{
     id: "expert_4590",
     word: "汚染",
     kana: "おせん",
@@ -7671,8 +7692,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "汚染",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4591",
     word: "大人しい",
     kana: "おとなしい",
@@ -7684,8 +7705,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "大人しい",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4592",
     word: "お前",
     kana: "おまえ",
@@ -7697,8 +7718,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "お前",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4593",
     word: "お目に掛かる",
     kana: "おめにかかる",
@@ -7710,8 +7731,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "お目に掛かる",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4594",
     word: "思い付く",
     kana: "おもいつく",
@@ -7723,8 +7744,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "思い付く",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4595",
     word: "思い出",
     kana: "おもいで",
@@ -7736,8 +7757,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "思い出",
     isKanji: true,
     complexity: 14
-  },,
-  {
+  },
+{
     id: "expert_4596",
     word: "思わず",
     kana: "おもわず",
@@ -7749,8 +7770,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "思わず",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4597",
     word: "恩",
     kana: "おん",
@@ -7762,8 +7783,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "恩",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4598",
     word: "会員",
     kana: "かいいん",
@@ -7775,8 +7796,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "会員",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4599",
     word: "海外",
     kana: "かいがい",
@@ -7788,8 +7809,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "海外",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4600",
     word: "会計",
     kana: "かいけい",
@@ -7801,8 +7822,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "会計",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4601",
     word: "解決",
     kana: "かいけつ",
@@ -7814,8 +7835,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "解決",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4602",
     word: "会合",
     kana: "かいごう",
@@ -7827,8 +7848,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "会合",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4603",
     word: "開始",
     kana: "かいし",
@@ -7840,8 +7861,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "開始",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4604",
     word: "解釈",
     kana: "かいしゃく",
@@ -7853,8 +7874,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "解釈",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4605",
     word: "改善",
     kana: "かいぜん",
@@ -7866,8 +7887,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "改善",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4606",
     word: "回復",
     kana: "かいふく",
@@ -7879,8 +7900,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "回復",
     isKanji: true,
     complexity: 16
-  },,
-  {
+  },
+{
     id: "expert_4607",
     word: "代える",
     kana: "かえる",
@@ -7892,8 +7913,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "代える",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4608",
     word: "替える",
     kana: "かえる",
@@ -7905,8 +7926,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "替える",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4609",
     word: "換える",
     kana: "かえる",
@@ -7918,8 +7939,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "換える",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4610",
     word: "抱える",
     kana: "かかえる",
@@ -7931,8 +7952,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "抱える",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4611",
     word: "覚悟",
     kana: "かくご",
@@ -7944,8 +7965,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "覚悟",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4612",
     word: "確実",
     kana: "かくじつ",
@@ -7957,8 +7978,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "確実",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4613",
     word: "拡大",
     kana: "かくだい",
@@ -7970,8 +7991,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "拡大",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4614",
     word: "確認",
     kana: "かくにん",
@@ -7983,8 +8004,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "確認",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4615",
     word: "学問",
     kana: "がくもん",
@@ -7996,8 +8017,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "学問",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4616",
     word: "加減",
     kana: "かげん",
@@ -8009,8 +8030,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "加減",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4617",
     word: "火災",
     kana: "かさい",
@@ -8022,8 +8043,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "火災",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4618",
     word: "重なる",
     kana: "かさなる",
@@ -8035,8 +8056,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "重なる",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4619",
     word: "重ねる",
     kana: "かさねる",
@@ -8048,8 +8069,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "重ねる",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4620",
     word: "菓子",
     kana: "かし",
@@ -8061,8 +8082,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "菓子",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4621",
     word: "家事",
     kana: "かじ",
@@ -8074,8 +8095,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "家事",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4622",
     word: "片付く",
     kana: "かたづく",
@@ -8087,8 +8108,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "片付く",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4623",
     word: "価値",
     kana: "かち",
@@ -8100,8 +8121,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "価値",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4624",
     word: "活気",
     kana: "かっき",
@@ -8113,8 +8134,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "活気",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4625",
     word: "活動",
     kana: "かつどう",
@@ -8126,8 +8147,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "活動",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4626",
     word: "活用",
     kana: "かつよう",
@@ -8139,8 +8160,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "活用",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4627",
     word: "仮定",
     kana: "かてい",
@@ -8152,8 +8173,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "仮定",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4628",
     word: "悲しむ",
     kana: "かなしむ",
@@ -8165,8 +8186,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "悲しむ",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4629",
     word: "必ずしも",
     kana: "かならずしも",
@@ -8178,8 +8199,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "必ずしも",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4630",
     word: "可能",
     kana: "かのう",
@@ -8191,8 +8212,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "可能",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4631",
     word: "我慢",
     kana: "がまん",
@@ -8204,8 +8225,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "我慢",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4632",
     word: "上",
     kana: "かみ",
@@ -8217,8 +8238,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "上",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4633",
     word: "科目",
     kana: "かもく",
@@ -8230,8 +8251,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "科目",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4634",
     word: "歌謡",
     kana: "かよう",
@@ -8243,8 +8264,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "歌謡",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4635",
     word: "可愛そう",
     kana: "かわいそう",
@@ -8256,8 +8277,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "可愛そう",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4636",
     word: "可愛らしい",
     kana: "かわいらしい",
@@ -8269,8 +8290,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "可愛らしい",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4637",
     word: "代る",
     kana: "かわる",
@@ -8282,8 +8303,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "代る",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4638",
     word: "勘",
     kana: "かん",
@@ -8295,8 +8316,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "勘",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4639",
     word: "感覚",
     kana: "かんかく",
@@ -8308,8 +8329,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "感覚",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4640",
     word: "間隔",
     kana: "かんかく",
@@ -8321,8 +8342,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "間隔",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4641",
     word: "観客",
     kana: "かんきゃく",
@@ -8334,8 +8355,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "観客",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4642",
     word: "環境",
     kana: "かんきょう",
@@ -8347,8 +8368,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "環境",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4643",
     word: "歓迎",
     kana: "かんげい",
@@ -8360,8 +8381,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "歓迎",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4644",
     word: "観察",
     kana: "かんさつ",
@@ -8373,8 +8394,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "観察",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4645",
     word: "感じ",
     kana: "かんじ",
@@ -8386,8 +8407,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "感じ",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4646",
     word: "勘定",
     kana: "かんじょう",
@@ -8399,8 +8420,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "勘定",
     isKanji: true,
     complexity: 14
-  },,
-  {
+  },
+{
     id: "expert_4647",
     word: "感情",
     kana: "かんじょう",
@@ -8412,8 +8433,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "感情",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4648",
     word: "感心",
     kana: "かんしん",
@@ -8425,8 +8446,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "感心",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4649",
     word: "関心",
     kana: "かんしん",
@@ -8438,8 +8459,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "関心",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4650",
     word: "関する",
     kana: "かんする",
@@ -8451,8 +8472,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "関する",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4651",
     word: "完成",
     kana: "かんせい",
@@ -8464,8 +8485,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "完成",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4652",
     word: "完全",
     kana: "かんぜん",
@@ -8477,8 +8498,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "完全",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4653",
     word: "感想",
     kana: "かんそう",
@@ -8490,8 +8511,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "感想",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4654",
     word: "感動",
     kana: "かんどう",
@@ -8503,8 +8524,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "感動",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4655",
     word: "監督",
     kana: "かんとく",
@@ -8516,8 +8537,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "監督",
     isKanji: true,
     complexity: 14
-  },,
-  {
+  },
+{
     id: "expert_4656",
     word: "完了",
     kana: "かんりょう",
@@ -8529,8 +8550,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "完了",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4657",
     word: "関連",
     kana: "かんれん",
@@ -8542,8 +8563,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "関連",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4658",
     word: "議員",
     kana: "ぎいん",
@@ -8555,8 +8576,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "議員",
     isKanji: true,
     complexity: 16
-  },,
-  {
+  },
+{
     id: "expert_4659",
     word: "記憶",
     kana: "きおく",
@@ -8568,8 +8589,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "記憶",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4660",
     word: "気温",
     kana: "きおん",
@@ -8581,8 +8602,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "気温",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4661",
     word: "議会",
     kana: "ぎかい",
@@ -8594,8 +8615,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "議会",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4662",
     word: "機関",
     kana: "きかん",
@@ -8607,8 +8628,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "機関",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4663",
     word: "企業",
     kana: "きぎょう",
@@ -8620,8 +8641,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "企業",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4664",
     word: "機嫌",
     kana: "きげん",
@@ -8633,8 +8654,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "機嫌",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4665",
     word: "岸",
     kana: "きし",
@@ -8646,8 +8667,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "岸",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4666",
     word: "記事",
     kana: "きじ",
@@ -8659,8 +8680,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "記事",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4667",
     word: "記者",
     kana: "きしゃ",
@@ -8672,8 +8693,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "記者",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4668",
     word: "期待",
     kana: "きたい",
@@ -8685,8 +8706,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "期待",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4669",
     word: "気体",
     kana: "きたい",
@@ -8698,8 +8719,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "気体",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4670",
     word: "気付く",
     kana: "きづく",
@@ -8711,8 +8732,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "気付く",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4671",
     word: "気に入る",
     kana: "きにいる",
@@ -8724,8 +8745,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "気に入る",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4672",
     word: "記入",
     kana: "きにゅう",
@@ -8737,8 +8758,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "記入",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4673",
     word: "記念",
     kana: "きねん",
@@ -8750,8 +8771,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "記念",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4674",
     word: "機能",
     kana: "きのう",
@@ -8763,8 +8784,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "機能",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4675",
     word: "寄付",
     kana: "きふ",
@@ -8776,8 +8797,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "寄付",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4676",
     word: "希望",
     kana: "きぼう",
@@ -8789,8 +8810,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "希望",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4677",
     word: "決まり",
     kana: "きまり",
@@ -8802,8 +8823,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "決まり",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4678",
     word: "奇妙",
     kana: "きみょう",
@@ -8815,8 +8836,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "奇妙",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4679",
     word: "義務",
     kana: "ぎむ",
@@ -8828,8 +8849,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "義務",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4680",
     word: "疑問",
     kana: "ぎもん",
@@ -8841,8 +8862,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "疑問",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4681",
     word: "休暇",
     kana: "きゅうか",
@@ -8854,8 +8875,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "休暇",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4682",
     word: "休憩",
     kana: "きゅうけい",
@@ -8867,8 +8888,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "休憩",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4683",
     word: "急激",
     kana: "きゅうげき",
@@ -8880,8 +8901,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "急激",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4684",
     word: "吸収",
     kana: "きゅうしゅう",
@@ -8893,8 +8914,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "吸収",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4685",
     word: "急速",
     kana: "きゅうそく",
@@ -8906,8 +8927,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "急速",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4686",
     word: "休息",
     kana: "きゅうそく",
@@ -8919,8 +8940,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "休息",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4687",
     word: "器用",
     kana: "きよう",
@@ -8932,8 +8953,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "器用",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4688",
     word: "教科書",
     kana: "きょうかしょ",
@@ -8945,8 +8966,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "教科書",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4689",
     word: "競技",
     kana: "きょうぎ",
@@ -8958,8 +8979,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "競技",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4690",
     word: "供給",
     kana: "きょうきゅう",
@@ -8971,8 +8992,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "供給",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4691",
     word: "教授",
     kana: "きょうじゅ",
@@ -8984,8 +9005,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "教授",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4692",
     word: "強調",
     kana: "きょうちょう",
@@ -8997,8 +9018,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "強調",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4693",
     word: "共通",
     kana: "きょうつう",
@@ -9010,8 +9031,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "共通",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4694",
     word: "共同",
     kana: "きょうどう",
@@ -9023,8 +9044,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "共同",
     isKanji: true,
     complexity: 15
-  },,
-  {
+  },
+{
     id: "expert_4695",
     word: "恐怖",
     kana: "きょうふ",
@@ -9036,8 +9057,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "恐怖",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4696",
     word: "協力",
     kana: "きょうりょく",
@@ -9049,8 +9070,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "協力",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4697",
     word: "強力",
     kana: "きょうりょく",
@@ -9062,8 +9083,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "強力",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4698",
     word: "許可",
     kana: "きょか",
@@ -9075,8 +9096,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "許可",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4699",
     word: "局",
     kana: "きょく",
@@ -9088,8 +9109,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "局",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4700",
     word: "巨大",
     kana: "きょだい",
@@ -9101,8 +9122,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "巨大",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4701",
     word: "記録",
     kana: "きろく",
@@ -9114,8 +9135,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "記録",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4702",
     word: "議論",
     kana: "ぎろん",
@@ -9127,8 +9148,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "議論",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4703",
     word: "金額",
     kana: "きんがく",
@@ -9140,8 +9161,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "金額",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4704",
     word: "禁止",
     kana: "きんし",
@@ -9153,8 +9174,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "禁止",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4705",
     word: "近代",
     kana: "きんだい",
@@ -9166,8 +9187,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "近代",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4706",
     word: "緊張",
     kana: "きんちょう",
@@ -9179,8 +9200,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "緊張",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4707",
     word: "金融",
     kana: "きんゆう",
@@ -9192,8 +9213,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "金融",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4708",
     word: "偶然",
     kana: "ぐうぜん",
@@ -9205,8 +9226,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "偶然",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4709",
     word: "癖",
     kana: "くせ",
@@ -9218,8 +9239,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "癖",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4710",
     word: "具体",
     kana: "ぐたい",
@@ -9231,8 +9252,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "具体",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4711",
     word: "苦痛",
     kana: "くつう",
@@ -9244,8 +9265,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "苦痛",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4712",
     word: "区別",
     kana: "くべつ",
@@ -9257,8 +9278,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "区別",
     isKanji: true,
     complexity: 15
-  },,
-  {
+  },
+{
     id: "expert_4713",
     word: "組合",
     kana: "くみあい",
@@ -9270,8 +9291,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "組合",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4714",
     word: "悔しい",
     kana: "くやしい",
@@ -9283,8 +9304,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "悔しい",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4715",
     word: "繰り返す",
     kana: "くりかえす",
@@ -9296,8 +9317,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "繰り返す",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4716",
     word: "苦しい",
     kana: "くるしい",
@@ -9309,8 +9330,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "苦しい",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4717",
     word: "苦しむ",
     kana: "くるしむ",
@@ -9322,8 +9343,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "苦しむ",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4718",
     word: "訓",
     kana: "くん",
@@ -9335,8 +9356,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "訓",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4719",
     word: "訓練",
     kana: "くんれん",
@@ -9348,8 +9369,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "訓練",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4720",
     word: "敬意",
     kana: "けいい",
@@ -9361,8 +9382,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "敬意",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4721",
     word: "経営",
     kana: "けいえい",
@@ -9374,8 +9395,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "経営",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4722",
     word: "傾向",
     kana: "けいこう",
@@ -9387,8 +9408,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "傾向",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4723",
     word: "計算",
     kana: "けいさん",
@@ -9400,8 +9421,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "計算",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4724",
     word: "刑事",
     kana: "けいじ",
@@ -9413,8 +9434,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "刑事",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4725",
     word: "芸術",
     kana: "げいじゅつ",
@@ -9426,8 +9447,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "芸術",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4726",
     word: "契約",
     kana: "けいやく",
@@ -9439,8 +9460,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "契約",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4727",
     word: "化粧",
     kana: "けしょう",
@@ -9452,8 +9473,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "化粧",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4728",
     word: "結果",
     kana: "けっか",
@@ -9465,8 +9486,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "結果",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4729",
     word: "欠陥",
     kana: "けっかん",
@@ -9478,8 +9499,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "欠陥",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4730",
     word: "結局",
     kana: "けっきょく",
@@ -9491,8 +9512,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "結局",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4731",
     word: "決心",
     kana: "けっしん",
@@ -9504,8 +9525,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "決心",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4732",
     word: "欠席",
     kana: "けっせき",
@@ -9517,8 +9538,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "欠席",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4733",
     word: "決定",
     kana: "けってい",
@@ -9530,8 +9551,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "決定",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4734",
     word: "欠点",
     kana: "けってん",
@@ -9543,8 +9564,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "欠点",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4735",
     word: "結論",
     kana: "けつろん",
@@ -9556,8 +9577,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "結論",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4736",
     word: "見解",
     kana: "けんかい",
@@ -9569,8 +9590,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "見解",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4737",
     word: "検査",
     kana: "けんさ",
@@ -9582,8 +9603,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "検査",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4738",
     word: "現在",
     kana: "げんざい",
@@ -9595,8 +9616,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "現在",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4739",
     word: "現象",
     kana: "げんしょう",
@@ -9608,8 +9629,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "現象",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4740",
     word: "現状",
     kana: "げんじょう",
@@ -9621,8 +9642,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "現状",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4741",
     word: "建設",
     kana: "けんせつ",
@@ -9634,8 +9655,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "建設",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4742",
     word: "現代",
     kana: "げんだい",
@@ -9647,8 +9668,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "現代",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4743",
     word: "建築",
     kana: "けんちく",
@@ -9660,8 +9681,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "建築",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4744",
     word: "検討",
     kana: "けんとう",
@@ -9673,8 +9694,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "検討",
     isKanji: true,
     complexity: 15
-  },,
-  {
+  },
+{
     id: "expert_4745",
     word: "憲法",
     kana: "けんぽう",
@@ -9686,8 +9707,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "憲法",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4746",
     word: "濃い",
     kana: "こい",
@@ -9699,8 +9720,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "濃い",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4747",
     word: "恋人",
     kana: "こいびと",
@@ -9712,8 +9733,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "恋人",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4748",
     word: "幸運",
     kana: "こううん",
@@ -9725,8 +9746,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "幸運",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4749",
     word: "豪華",
     kana: "ごうか",
@@ -9738,8 +9759,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "豪華",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4750",
     word: "合格",
     kana: "ごうかく",
@@ -9751,8 +9772,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "合格",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4751",
     word: "交換",
     kana: "こうかん",
@@ -9764,8 +9785,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "交換",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4752",
     word: "航空",
     kana: "こうくう",
@@ -9777,8 +9798,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "航空",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4753",
     word: "合計",
     kana: "ごうけい",
@@ -9790,8 +9811,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "合計",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4754",
     word: "攻撃",
     kana: "こうげき",
@@ -9803,8 +9824,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "攻撃",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4755",
     word: "貢献",
     kana: "こうけん",
@@ -9816,8 +9837,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "貢献",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4756",
     word: "交際",
     kana: "こうさい",
@@ -9829,8 +9850,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "交際",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4757",
     word: "校舎",
     kana: "こうしゃ",
@@ -9842,8 +9863,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "校舎",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4758",
     word: "工場",
     kana: "こうば",
@@ -9855,8 +9876,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "工場",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4759",
     word: "公正",
     kana: "こうせい",
@@ -9868,8 +9889,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "公正",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4760",
     word: "構成",
     kana: "こうせい",
@@ -9881,8 +9902,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "構成",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4761",
     word: "行動",
     kana: "こうどう",
@@ -9894,8 +9915,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "行動",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4762",
     word: "後輩",
     kana: "こうはい",
@@ -9907,8 +9928,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "後輩",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4763",
     word: "公平",
     kana: "こうへい",
@@ -9920,8 +9941,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "公平",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4764",
     word: "考慮",
     kana: "こうりょ",
@@ -9933,8 +9954,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "考慮",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4765",
     word: "誤解",
     kana: "ごかい",
@@ -9946,8 +9967,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "誤解",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4766",
     word: "呼吸",
     kana: "こきゅう",
@@ -9959,8 +9980,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "呼吸",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4767",
     word: "国語",
     kana: "こくご",
@@ -9972,8 +9993,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "国語",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4768",
     word: "国籍",
     kana: "こくせき",
@@ -9985,8 +10006,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "国籍",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4769",
     word: "克服",
     kana: "こくふく",
@@ -9998,8 +10019,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "克服",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4770",
     word: "国民",
     kana: "こくみん",
@@ -10011,8 +10032,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "国民",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4771",
     word: "穀物",
     kana: "こくもつ",
@@ -10024,8 +10045,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "穀物",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4772",
     word: "個人",
     kana: "こじん",
@@ -10037,8 +10058,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "個人",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4773",
     word: "国家",
     kana: "こっか",
@@ -10050,8 +10071,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "国家",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4774",
     word: "国会",
     kana: "こっかい",
@@ -10063,8 +10084,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "国会",
     isKanji: true,
     complexity: 14
-  },,
-  {
+  },
+{
     id: "expert_4775",
     word: "国境",
     kana: "こっきょう",
@@ -10076,8 +10097,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "国境",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4776",
     word: "骨折",
     kana: "こっせつ",
@@ -10089,8 +10110,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "骨折",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4777",
     word: "今回",
     kana: "こんかい",
@@ -10102,8 +10123,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "今回",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4778",
     word: "今後",
     kana: "こんご",
@@ -10115,8 +10136,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "今後",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4779",
     word: "混雑",
     kana: "こんざつ",
@@ -10128,8 +10149,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "混雑",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4780",
     word: "困難",
     kana: "こんなん",
@@ -10141,8 +10162,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "困難",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4781",
     word: "今日",
     kana: "こんにち",
@@ -10154,8 +10175,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "今日",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4782",
     word: "混乱",
     kana: "こんらん",
@@ -10167,8 +10188,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "混乱",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4783",
     word: "際",
     kana: "さい",
@@ -10180,8 +10201,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "際",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4784",
     word: "最高",
     kana: "さいこう",
@@ -10193,8 +10214,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "最高",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4785",
     word: "財産",
     kana: "ざいさん",
@@ -10206,8 +10227,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "財産",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4786",
     word: "最中",
     kana: "さいちゅう",
@@ -10219,8 +10240,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "最中",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4787",
     word: "最低",
     kana: "さいてい",
@@ -10232,8 +10253,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "最低",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4788",
     word: "材料",
     kana: "ざいりょう",
@@ -10245,8 +10266,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "材料",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4789",
     word: "幸い",
     kana: "さいわい",
@@ -10258,8 +10279,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "幸い",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4790",
     word: "境",
     kana: "さかい",
@@ -10271,8 +10292,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "境",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4791",
     word: "逆らう",
     kana: "さからう",
@@ -10284,8 +10305,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "逆らう",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4792",
     word: "作業",
     kana: "さぎょう",
@@ -10297,8 +10318,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "作業",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4793",
     word: "作品",
     kana: "さくひん",
@@ -10310,8 +10331,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "作品",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4794",
     word: "作物",
     kana: "さくもつ",
@@ -10323,8 +10344,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "作物",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4795",
     word: "支える",
     kana: "ささえる",
@@ -10336,8 +10357,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "支える",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4796",
     word: "誘う",
     kana: "さそう",
@@ -10349,8 +10370,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "誘う",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4797",
     word: "作家",
     kana: "さっか",
@@ -10362,8 +10383,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "作家",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4798",
     word: "差別",
     kana: "さべつ",
@@ -10375,8 +10396,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "差別",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4799",
     word: "迷う",
     kana: "まよう",
@@ -10388,8 +10409,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "迷う",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4800",
     word: "万一",
     kana: "まんいち",
@@ -10401,8 +10422,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "万一",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4801",
     word: "満足",
     kana: "まんぞく",
@@ -10414,8 +10435,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "満足",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4802",
     word: "見送り",
     kana: "みおくり",
@@ -10427,8 +10448,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "見送り",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4803",
     word: "味方",
     kana: "みかた",
@@ -10440,8 +10461,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "味方",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4804",
     word: "認める",
     kana: "みとめる",
@@ -10453,8 +10474,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "認める",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4805",
     word: "見舞い",
     kana: "みまい",
@@ -10466,8 +10487,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "見舞い",
     isKanji: true,
     complexity: 15
-  },,
-  {
+  },
+{
     id: "expert_4806",
     word: "明後日",
     kana: "みょうごにち",
@@ -10479,8 +10500,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "明後日",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4807",
     word: "魅力",
     kana: "みりょく",
@@ -10492,8 +10513,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "魅力",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4808",
     word: "迎え",
     kana: "むかえ",
@@ -10505,8 +10526,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "迎え",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4809",
     word: "無視",
     kana: "むし",
@@ -10518,8 +10539,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "無視",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4810",
     word: "蒸し暑い",
     kana: "むしあつい",
@@ -10531,8 +10552,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "蒸し暑い",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4811",
     word: "虫歯",
     kana: "むしば",
@@ -10544,8 +10565,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "虫歯",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4812",
     word: "夢中",
     kana: "むちゅう",
@@ -10557,8 +10578,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "夢中",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4813",
     word: "名刺",
     kana: "めいし",
@@ -10570,8 +10591,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "名刺",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4814",
     word: "命令",
     kana: "めいれい",
@@ -10583,8 +10604,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "命令",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4815",
     word: "迷惑",
     kana: "めいわく",
@@ -10596,8 +10617,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "迷惑",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4816",
     word: "目上",
     kana: "めうえ",
@@ -10609,8 +10630,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "目上",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4817",
     word: "滅多に",
     kana: "めったに",
@@ -10622,8 +10643,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "滅多に",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4818",
     word: "面",
     kana: "めん",
@@ -10635,8 +10656,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "面",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4819",
     word: "免許",
     kana: "めんきょ",
@@ -10648,8 +10669,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "免許",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4820",
     word: "面倒",
     kana: "めんどう",
@@ -10661,8 +10682,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "面倒",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4821",
     word: "申し込む",
     kana: "もうしこむ",
@@ -10674,8 +10695,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "申し込む",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4822",
     word: "申し訳",
     kana: "もうしわけ",
@@ -10687,8 +10708,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "申し訳",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4823",
     word: "目的",
     kana: "もくてき",
@@ -10700,8 +10721,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "目的",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4824",
     word: "目標",
     kana: "もくひょう",
@@ -10713,8 +10734,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "目標",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4825",
     word: "文字",
     kana: "もじ",
@@ -10726,8 +10747,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "文字",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4826",
     word: "文字",
     kana: "もんじ",
@@ -10739,8 +10760,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "文字",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4827",
     word: "持ち上げる",
     kana: "もちあげる",
@@ -10752,8 +10773,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "持ち上げる",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4828",
     word: "元",
     kana: "もと",
@@ -10765,8 +10786,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "元",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4829",
     word: "基づく",
     kana: "もとづく",
@@ -10778,8 +10799,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "基づく",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4830",
     word: "求める",
     kana: "もとめる",
@@ -10791,8 +10812,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "求める",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4831",
     word: "物語",
     kana: "ものがたり",
@@ -10804,8 +10825,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "物語",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4832",
     word: "物事",
     kana: "ものごと",
@@ -10817,8 +10838,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "物事",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4833",
     word: "役割",
     kana: "やくわり",
@@ -10830,8 +10851,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "役割",
     isKanji: true,
     complexity: 15
-  },,
-  {
+  },
+{
     id: "expert_4834",
     word: "厄介",
     kana: "やっかい",
@@ -10843,8 +10864,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "厄介",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4835",
     word: "破れる",
     kana: "やぶれる",
@@ -10856,8 +10877,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "破れる",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4836",
     word: "唯一",
     kana: "ゆいいつ",
@@ -10869,8 +10890,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "唯一",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4837",
     word: "勇気",
     kana: "ゆうき",
@@ -10882,8 +10903,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "勇気",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4838",
     word: "優秀",
     kana: "ゆうしゅう",
@@ -10895,8 +10916,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "優秀",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4839",
     word: "優勝",
     kana: "ゆうしょう",
@@ -10908,8 +10929,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "優勝",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4840",
     word: "友情",
     kana: "ゆうじょう",
@@ -10921,8 +10942,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "友情",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4841",
     word: "有能",
     kana: "ゆうのう",
@@ -10934,8 +10955,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "有能",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4842",
     word: "容器",
     kana: "ようき",
@@ -10947,8 +10968,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "容器",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4843",
     word: "陽気",
     kana: "ようき",
@@ -10960,8 +10981,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "陽気",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4844",
     word: "要求",
     kana: "ようきゅう",
@@ -10973,8 +10994,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "要求",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4845",
     word: "用心",
     kana: "ようじん",
@@ -10986,8 +11007,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "用心",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4846",
     word: "要するに",
     kana: "ようするに",
@@ -10999,8 +11020,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "要するに",
     isKanji: true,
     complexity: 14
-  },,
-  {
+  },
+{
     id: "expert_4847",
     word: "曜日",
     kana: "ようび",
@@ -11012,8 +11033,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "曜日",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4848",
     word: "予期",
     kana: "よき",
@@ -11025,8 +11046,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "予期",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4849",
     word: "横切る",
     kana: "よこぎる",
@@ -11038,8 +11059,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "横切る",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4850",
     word: "予測",
     kana: "よそく",
@@ -11051,8 +11072,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "予測",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4851",
     word: "夜中",
     kana: "よなか",
@@ -11064,8 +11085,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "夜中",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4852",
     word: "世の中",
     kana: "よのなか",
@@ -11077,8 +11098,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "世の中",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4853",
     word: "予報",
     kana: "よほう",
@@ -11090,8 +11111,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "予報",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4854",
     word: "予防",
     kana: "よぼう",
@@ -11103,8 +11124,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "予防",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4855",
     word: "利益",
     kana: "りえき",
@@ -11116,8 +11137,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "利益",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4856",
     word: "理解",
     kana: "りかい",
@@ -11129,8 +11150,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "理解",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4857",
     word: "流行",
     kana: "りゅうこう",
@@ -11142,8 +11163,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "流行",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4858",
     word: "寮",
     kana: "りょう",
@@ -11155,8 +11176,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "寮",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4859",
     word: "両替",
     kana: "りょうがえ",
@@ -11168,8 +11189,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "両替",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4860",
     word: "礼",
     kana: "れい",
@@ -11181,8 +11202,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "礼",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4861",
     word: "例外",
     kana: "れいがい",
@@ -11194,8 +11215,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "例外",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4862",
     word: "礼儀",
     kana: "れいぎ",
@@ -11207,8 +11228,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "礼儀",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4863",
     word: "連想",
     kana: "れんそう",
@@ -11220,8 +11241,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "連想",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4864",
     word: "連続",
     kana: "れんぞく",
@@ -11233,8 +11254,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "連続",
     isKanji: true,
     complexity: 14
-  },,
-  {
+  },
+{
     id: "expert_4865",
     word: "老人",
     kana: "ろうじん",
@@ -11246,8 +11267,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "老人",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4866",
     word: "労働",
     kana: "ろうどう",
@@ -11259,8 +11280,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "労働",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4867",
     word: "論争",
     kana: "ろんそう",
@@ -11272,8 +11293,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "論争",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4868",
     word: "別れ",
     kana: "わかれ",
@@ -11285,8 +11306,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "別れ",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4869",
     word: "分かれる",
     kana: "わかれる",
@@ -11298,8 +11319,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "分かれる",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4870",
     word: "僅か",
     kana: "わずか",
@@ -11311,8 +11332,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "僅か",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4871",
     word: "話題",
     kana: "わだい",
@@ -11324,8 +11345,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "話題",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4872",
     word: "医院",
     kana: "いいん",
@@ -11337,8 +11358,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "医院",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4873",
     word: "意地",
     kana: "いじ",
@@ -11350,8 +11371,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "意地",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4874",
     word: "一帯",
     kana: "いったい",
@@ -11363,8 +11384,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "一帯",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4875",
     word: "異動",
     kana: "いどう",
@@ -11376,8 +11397,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "異動",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4876",
     word: "縁",
     kana: "えん",
@@ -11389,8 +11410,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "縁",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4877",
     word: "驚き",
     kana: "おどろき",
@@ -11402,8 +11423,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "驚き",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4878",
     word: "片付け",
     kana: "かたづけ",
@@ -11415,8 +11436,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "片付け",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4879",
     word: "加味",
     kana: "かみ",
@@ -11428,8 +11449,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "加味",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4880",
     word: "借り",
     kana: "かり",
@@ -11441,8 +11462,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "借り",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4881",
     word: "刊行",
     kana: "かんこう",
@@ -11454,8 +11475,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "刊行",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4882",
     word: "慣行",
     kana: "かんこう",
@@ -11467,8 +11488,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "慣行",
     isKanji: true,
     complexity: 15
-  },,
-  {
+  },
+{
     id: "expert_4883",
     word: "歓声",
     kana: "かんせい",
@@ -11480,8 +11501,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "歓声",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4884",
     word: "官僚",
     kana: "かんりょう",
@@ -11493,8 +11514,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "官僚",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4885",
     word: "季刊",
     kana: "きかん",
@@ -11506,8 +11527,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "季刊",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4886",
     word: "起源",
     kana: "きげん",
@@ -11519,8 +11540,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "起源",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4887",
     word: "機構",
     kana: "きこう",
@@ -11532,8 +11553,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "機構",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4888",
     word: "規制",
     kana: "きせい",
@@ -11545,8 +11566,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "規制",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4889",
     word: "協議",
     kana: "きょうぎ",
@@ -11558,8 +11579,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "協議",
     isKanji: true,
     complexity: 14
-  },,
-  {
+  },
+{
     id: "expert_4890",
     word: "享受",
     kana: "きょうじゅ",
@@ -11571,8 +11592,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "享受",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4891",
     word: "協調",
     kana: "きょうちょう",
@@ -11584,8 +11605,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "協調",
     isKanji: true,
     complexity: 15
-  },,
-  {
+  },
+{
     id: "expert_4892",
     word: "経緯",
     kana: "けいい",
@@ -11597,8 +11618,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "経緯",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4893",
     word: "契機",
     kana: "けいき",
@@ -11610,8 +11631,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "契機",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4894",
     word: "携帯",
     kana: "けいたい",
@@ -11623,8 +11644,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "携帯",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4895",
     word: "形態",
     kana: "けいたい",
@@ -11636,8 +11657,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "形態",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4896",
     word: "決行",
     kana: "けっこう",
@@ -11649,8 +11670,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "決行",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4897",
     word: "減少",
     kana: "げんしょう",
@@ -11662,8 +11683,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "減少",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4898",
     word: "公演",
     kana: "こうえん",
@@ -11675,8 +11696,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "公演",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4899",
     word: "拘束",
     kana: "こうそく",
@@ -11688,8 +11709,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "拘束",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4900",
     word: "降伏",
     kana: "こうふく",
@@ -11701,8 +11722,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "降伏",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4901",
     word: "興奮",
     kana: "こうふん",
@@ -11714,8 +11735,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "興奮",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4902",
     word: "語句",
     kana: "ごく",
@@ -11727,8 +11748,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "語句",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4903",
     word: "個々",
     kana: "ここ",
@@ -11740,8 +11761,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "個々",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4904",
     word: "小銭",
     kana: "こぜに",
@@ -11753,8 +11774,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "小銭",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4905",
     word: "採集",
     kana: "さいしゅう",
@@ -11766,8 +11787,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "採集",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4906",
     word: "設備",
     kana: "せつび",
@@ -11779,8 +11800,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "設備",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4907",
     word: "絶滅",
     kana: "ぜつめつ",
@@ -11792,8 +11813,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "絶滅",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4908",
     word: "節約",
     kana: "せつやく",
@@ -11805,8 +11826,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "節約",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4909",
     word: "専攻",
     kana: "せんこう",
@@ -11818,8 +11839,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "専攻",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4910",
     word: "全国",
     kana: "ぜんこく",
@@ -11831,8 +11852,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "全国",
     isKanji: true,
     complexity: 15
-  },,
-  {
+  },
+{
     id: "expert_4911",
     word: "先日",
     kana: "せんじつ",
@@ -11844,8 +11865,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "先日",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4912",
     word: "前者",
     kana: "ぜんしゃ",
@@ -11857,8 +11878,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "前者",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4913",
     word: "前進",
     kana: "ぜんしん",
@@ -11870,8 +11891,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "前進",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4914",
     word: "全体",
     kana: "ぜんたい",
@@ -11883,8 +11904,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "全体",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4915",
     word: "選択",
     kana: "せんたく",
@@ -11896,8 +11917,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "選択",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4916",
     word: "宣伝",
     kana: "せんでん",
@@ -11909,8 +11930,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "宣伝",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4917",
     word: "増加",
     kana: "ぞうか",
@@ -11922,8 +11943,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "増加",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4918",
     word: "操作",
     kana: "そうさ",
@@ -11935,8 +11956,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "操作",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4919",
     word: "想像",
     kana: "そうぞう",
@@ -11948,8 +11969,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "想像",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4920",
     word: "相続",
     kana: "そうぞく",
@@ -11961,8 +11982,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "相続",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4921",
     word: "装置",
     kana: "そうち",
@@ -11974,8 +11995,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "装置",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4922",
     word: "相当",
     kana: "そうとう",
@@ -11987,8 +12008,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "相当",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4923",
     word: "組織",
     kana: "そしき",
@@ -12000,8 +12021,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "組織",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4924",
     word: "揃える",
     kana: "そろえる",
@@ -12013,8 +12034,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "揃える",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4925",
     word: "尊敬",
     kana: "そんけい",
@@ -12026,8 +12047,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "尊敬",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4926",
     word: "尊重",
     kana: "そんちょう",
@@ -12039,8 +12060,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "尊重",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4927",
     word: "体育",
     kana: "たいいく",
@@ -12052,8 +12073,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "体育",
     isKanji: true,
     complexity: 14
-  },,
-  {
+  },
+{
     id: "expert_4928",
     word: "大会",
     kana: "たいかい",
@@ -12065,8 +12086,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "大会",
     isKanji: true,
     complexity: 16
-  },,
-  {
+  },
+{
     id: "expert_4929",
     word: "退屈",
     kana: "たいくつ",
@@ -12078,8 +12099,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "退屈",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4930",
     word: "大使",
     kana: "たいし",
@@ -12091,8 +12112,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "大使",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4931",
     word: "大した",
     kana: "たいした",
@@ -12104,8 +12125,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "大した",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4932",
     word: "対象",
     kana: "たいしょう",
@@ -12117,8 +12138,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "対象",
     isKanji: true,
     complexity: 20
-  },,
-  {
+  },
+{
     id: "expert_4933",
     word: "対照",
     kana: "たいしょう",
@@ -12130,8 +12151,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "対照",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4934",
     word: "対する",
     kana: "たいする",
@@ -12143,8 +12164,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "対する",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4935",
     word: "大戦",
     kana: "たいせん",
@@ -12156,8 +12177,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "大戦",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4936",
     word: "大統領",
     kana: "だいとうりょう",
@@ -12169,8 +12190,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "大統領",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4937",
     word: "大半",
     kana: "たいはん",
@@ -12182,8 +12203,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "大半",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4938",
     word: "代表",
     kana: "だいひょう",
@@ -12195,8 +12216,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "代表",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4939",
     word: "大部分",
     kana: "だいぶぶん",
@@ -12208,8 +12229,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "大部分",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4940",
     word: "逮捕",
     kana: "たいほ",
@@ -12221,8 +12242,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "逮捕",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4941",
     word: "代理",
     kana: "だいり",
@@ -12234,8 +12255,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "代理",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4942",
     word: "大陸",
     kana: "たいりく",
@@ -12247,8 +12268,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "大陸",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4943",
     word: "確かめる",
     kana: "たしかめる",
@@ -12260,8 +12281,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "確かめる",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4944",
     word: "多少",
     kana: "たしょう",
@@ -12273,8 +12294,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "多少",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4945",
     word: "助かる",
     kana: "たすかる",
@@ -12286,8 +12307,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "助かる",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4946",
     word: "只",
     kana: "ただ",
@@ -12299,8 +12320,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "只",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4947",
     word: "直ちに",
     kana: "ただちに",
@@ -12312,8 +12333,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "直ちに",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4948",
     word: "立ち上がる",
     kana: "たちあがる",
@@ -12325,8 +12346,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "立ち上がる",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4949",
     word: "立場",
     kana: "たちば",
@@ -12338,8 +12359,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "立場",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4950",
     word: "他人",
     kana: "たにん",
@@ -12351,8 +12372,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "他人",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4951",
     word: "度",
     kana: "たび",
@@ -12364,8 +12385,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "度",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4952",
     word: "溜まる",
     kana: "たまる",
@@ -12377,8 +12398,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "溜まる",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4953",
     word: "便り",
     kana: "たより",
@@ -12390,8 +12411,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "便り",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4954",
     word: "頼る",
     kana: "たよる",
@@ -12403,8 +12424,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "頼る",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4955",
     word: "単位",
     kana: "たんい",
@@ -12416,8 +12437,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "単位",
     isKanji: true,
     complexity: 15
-  },,
-  {
+  },
+{
     id: "expert_4956",
     word: "単語",
     kana: "たんご",
@@ -12429,8 +12450,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "単語",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4957",
     word: "団体",
     kana: "だんたい",
@@ -12442,8 +12463,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "団体",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4958",
     word: "地位",
     kana: "ちい",
@@ -12455,8 +12476,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "地位",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4959",
     word: "地域",
     kana: "ちいき",
@@ -12468,8 +12489,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "地域",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4960",
     word: "違いない",
     kana: "ちがいない",
@@ -12481,8 +12502,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "違いない",
     isKanji: true,
     complexity: 14
-  },,
-  {
+  },
+{
     id: "expert_4961",
     word: "近頃",
     kana: "ちかごろ",
@@ -12494,8 +12515,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "近頃",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4962",
     word: "地区",
     kana: "ちく",
@@ -12507,8 +12528,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "地区",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4963",
     word: "知事",
     kana: "ちじ",
@@ -12520,8 +12541,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "知事",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4964",
     word: "知識",
     kana: "ちしき",
@@ -12533,8 +12554,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "知識",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4965",
     word: "地平線",
     kana: "ちへいせん",
@@ -12546,8 +12567,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "地平線",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4966",
     word: "地方",
     kana: "ちほう",
@@ -12559,8 +12580,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "地方",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4967",
     word: "中",
     kana: "ちゅう",
@@ -12572,8 +12593,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "中",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4968",
     word: "注",
     kana: "ちゅう",
@@ -12585,8 +12606,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "注",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4969",
     word: "中央",
     kana: "ちゅうおう",
@@ -12598,8 +12619,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "中央",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4970",
     word: "中学",
     kana: "ちゅうがく",
@@ -12611,8 +12632,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "中学",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4971",
     word: "中古",
     kana: "ちゅうこ",
@@ -12624,8 +12645,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "中古",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4972",
     word: "中止",
     kana: "ちゅうし",
@@ -12637,8 +12658,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "中止",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4973",
     word: "昼食",
     kana: "ちゅうしょく",
@@ -12650,8 +12671,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "昼食",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4974",
     word: "中心",
     kana: "ちゅうしん",
@@ -12663,8 +12684,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "中心",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4975",
     word: "注目",
     kana: "ちゅうもく",
@@ -12676,8 +12697,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "注目",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4976",
     word: "注文",
     kana: "ちゅうもん",
@@ -12689,8 +12710,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "注文",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4977",
     word: "長期",
     kana: "ちょうき",
@@ -12702,8 +12723,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "長期",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4978",
     word: "調査",
     kana: "ちょうさ",
@@ -12715,8 +12736,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "調査",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4979",
     word: "調子",
     kana: "ちょうし",
@@ -12728,8 +12749,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "調子",
     isKanji: true,
     complexity: 12
-  },,
-  {
+  },
+{
     id: "expert_4980",
     word: "頂上",
     kana: "ちょうじょう",
@@ -12741,8 +12762,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "頂上",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4981",
     word: "直接",
     kana: "ちょくせつ",
@@ -12754,8 +12775,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "直接",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4982",
     word: "著者",
     kana: "ちょしゃ",
@@ -12767,8 +12788,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "著者",
     isKanji: true,
     complexity: 10
-  },,
-  {
+  },
+{
     id: "expert_4983",
     word: "散らす",
     kana: "ちらす",
@@ -12780,8 +12801,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "散らす",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4984",
     word: "通学",
     kana: "つうがく",
@@ -12793,8 +12814,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "通学",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4985",
     word: "通勤",
     kana: "つうきん",
@@ -12806,8 +12827,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "通勤",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4986",
     word: "通じる",
     kana: "つうじる",
@@ -12819,8 +12840,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "通じる",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4987",
     word: "通信",
     kana: "つうしん",
@@ -12832,8 +12853,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "通信",
     isKanji: true,
     complexity: 13
-  },,
-  {
+  },
+{
     id: "expert_4988",
     word: "通訳",
     kana: "つうやく",
@@ -12845,8 +12866,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "通訳",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4989",
     word: "付き合い",
     kana: "つきあい",
@@ -12858,8 +12879,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "付き合い",
     isKanji: true,
     complexity: 15
-  },,
-  {
+  },
+{
     id: "expert_4990",
     word: "付合う",
     kana: "つきあう",
@@ -12871,8 +12892,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "付合う",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4991",
     word: "次々",
     kana: "つぎつぎ",
@@ -12884,8 +12905,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "次々",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4992",
     word: "伝わる",
     kana: "つたわる",
@@ -12897,8 +12918,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "伝わる",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4993",
     word: "続き",
     kana: "つづき",
@@ -12910,8 +12931,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "続き",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4994",
     word: "繋がる",
     kana: "つながる",
@@ -12923,8 +12944,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "繋がる",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4995",
     word: "常に",
     kana: "つねに",
@@ -12936,8 +12957,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "常に",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4996",
     word: "罪",
     kana: "つみ",
@@ -12949,8 +12970,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "罪",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_4997",
     word: "梅雨",
     kana: "つゆ",
@@ -12962,8 +12983,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "梅雨",
     isKanji: true,
     complexity: 8
-  },,
-  {
+  },
+{
     id: "expert_4998",
     word: "出",
     kana: "で",
@@ -12975,8 +12996,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "出",
     isKanji: true,
     complexity: 11
-  },,
-  {
+  },
+{
     id: "expert_4999",
     word: "出会い",
     kana: "であい",
@@ -12988,8 +13009,8 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "出会い",
     isKanji: true,
     complexity: 9
-  },,
-  {
+  },
+{
     id: "expert_5000",
     word: "出会う",
     kana: "であう",
@@ -13001,6830 +13022,5 @@ export const EXPERT_CHUNK_3: TetrisWord[] = [
     kanji: "出会う",
     isKanji: true,
     complexity: 12
-  },,
-  {
-    id: "expert_5001",
-    word: "提案",
-    kana: "ていあん",
-    meaning: "proposal, propositito get, suggestito get (proposal, proposition, suggestion)",
-    chineseMeaning: "proposal, propositito get, suggestito get (proposal, proposition, suggestion)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "提案",
-    isKanji: true,
-    complexity: 13
-  },,
-  {
-    id: "expert_5002",
-    word: "抵抗",
-    kana: "ていこう",
-    meaning: "resistance, oppositito get (resistance, opposition)",
-    chineseMeaning: "resistance, oppositito get (resistance, opposition)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "抵抗",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5003",
-    word: "提出",
-    kana: "ていしゅつ",
-    meaning: "presentatito get, submissito get, filing (presentation, submission, filing)",
-    chineseMeaning: "presentatito get, submissito get, filing (presentation, submission, filing)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "提出",
-    isKanji: true,
-    complexity: 13
-  },,
-  {
-    id: "expert_5004",
-    word: "停電",
-    kana: "ていでん",
-    meaning: "failure from electricity (failure of electricity)",
-    chineseMeaning: "failure from electricity (failure of electricity)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "停電",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5005",
-    word: "停留所",
-    kana: "ていりゅうじょ",
-    meaning: "bus cartoon tram stop (bus or tram stop)",
-    chineseMeaning: "bus cartoon tram stop (bus or tram stop)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "停留所",
-    isKanji: true,
-    complexity: 13
-  },,
-  {
-    id: "expert_5006",
-    word: "出来事",
-    kana: "できごと",
-    meaning: "incident happening, event",
-    chineseMeaning: "incident happening, event",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "出来事",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5007",
-    word: "適切",
-    kana: "てきせつ",
-    meaning: "appropriate, adequate, relevance",
-    chineseMeaning: "appropriate, adequate, relevance",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "適切",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5008",
-    word: "手品",
-    kana: "てじな",
-    meaning: "cto getjuring trick, magic (conjuring trick, magic)",
-    chineseMeaning: "cto getjuring trick, magic (conjuring trick, magic)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "手品",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5009",
-    word: "手伝い",
-    kana: "てつだい",
-    meaning: "help, helper, assistant",
-    chineseMeaning: "help, helper, assistant",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "手伝い",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5010",
-    word: "徹底",
-    kana: "てってい",
-    meaning: "thcartoonoughness, completeness (thoroughness, completeness)",
-    chineseMeaning: "thcartoonoughness, completeness (thoroughness, completeness)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "徹底",
-    isKanji: true,
-    complexity: 11
-  },,
-  {
-    id: "expert_5011",
-    word: "徹夜",
-    kana: "てつや",
-    meaning: "staying up all night, sleepless night",
-    chineseMeaning: "staying up all night, sleepless night",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "徹夜",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5012",
-    word: "典型",
-    kana: "てんけい",
-    meaning: "type, pattern, archetypal",
-    chineseMeaning: "type, pattern, archetypal",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "典型",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5013",
-    word: "電子",
-    kana: "でんし",
-    meaning: "electrto get; electrto getic (electron; electronic)",
-    chineseMeaning: "electrto get; electrto getic (electron; electronic)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "電子",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5014",
-    word: "伝統",
-    kana: "でんとう",
-    meaning: "traditito get, cto getventito get (tradition, convention)",
-    chineseMeaning: "traditito get, cto getventito get (tradition, convention)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "伝統",
-    isKanji: true,
-    complexity: 11
-  },,
-  {
-    id: "expert_5015",
-    word: "天然",
-    kana: "てんねん",
-    meaning: "nature, spto gettaneity (nature, spontaneity)",
-    chineseMeaning: "nature, spto gettaneity (nature, spontaneity)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "天然",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5016",
-    word: "答案",
-    kana: "とうあん",
-    meaning: "examinatito get paper, examinatito get script (examination paper, examination script)",
-    chineseMeaning: "examinatito get paper, examinatito get script (examination paper, examination script)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "答案",
-    isKanji: true,
-    complexity: 14
-  },,
-  {
-    id: "expert_5017",
-    word: "同一",
-    kana: "どういつ",
-    meaning: "identity, sameness, similarity",
-    chineseMeaning: "identity, sameness, similarity",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "同一",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5018",
-    word: "同時",
-    kana: "どうじ",
-    meaning: "simultaneous(ly), same time (simultaneous(ly), same time)",
-    chineseMeaning: "simultaneous(ly), same time (simultaneous(ly), same time)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "同時",
-    isKanji: true,
-    complexity: 11
-  },,
-  {
-    id: "expert_5019",
-    word: "同様",
-    kana: "どうよう",
-    meaning: "identical, same (kind), like",
-    chineseMeaning: "identical, same (kind), like",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "同様",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5020",
-    word: "童謡",
-    kana: "どうよう",
-    meaning: "children's sto getg, nursery rhyme (children's song, nursery rhyme)",
-    chineseMeaning: "children's sto getg, nursery rhyme (children's song, nursery rhyme)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "童謡",
-    isKanji: true,
-    complexity: 12
-  },,
-  {
-    id: "expert_5021",
-    word: "同僚",
-    kana: "どうりょう",
-    meaning: "colleague; co-wcartoonker (colleague; co-worker)",
-    chineseMeaning: "colleague; co-wcartoonker (colleague; co-worker)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "同僚",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5022",
-    word: "通り過ぎる",
-    kana: "とおりすぎる",
-    meaning: "to pass, to pass through",
-    chineseMeaning: "to pass, to pass through",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "通り過ぎる",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5023",
-    word: "得意",
-    kana: "とくい",
-    meaning: "pride, triumph, prosperity",
-    chineseMeaning: "pride, triumph, prosperity",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "得意",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5024",
-    word: "特徴",
-    kana: "とくちょう",
-    meaning: "characteristic(s); feature(s); trait(s)",
-    chineseMeaning: "characteristic(s); feature(s); trait(s)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "特徴",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5025",
-    word: "特長",
-    kana: "とくちょう",
-    meaning: "fcartoonte, merit (forte, merit)",
-    chineseMeaning: "fcartoonte, merit (forte, merit)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "特長",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5026",
-    word: "独特",
-    kana: "どくとく",
-    meaning: "peculiarity, uniqueness, characteristic",
-    chineseMeaning: "peculiarity, uniqueness, characteristic",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "独特",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5027",
-    word: "独立",
-    kana: "どくりつ",
-    meaning: "independence (e.g., Ind. Day), self-suppcartoont (independence (e.g., Ind. Day), self-support)",
-    chineseMeaning: "independence (e.g., Ind. Day), self-suppcartoont (independence (e.g., Ind. Day), self-support)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "独立",
-    isKanji: true,
-    complexity: 15
-  },,
-  {
-    id: "expert_5028",
-    word: "都市",
-    kana: "とし",
-    meaning: "到wn, city, urban (town, city, urban)",
-    chineseMeaning: "到wn, city, urban (town, city, urban)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "都市",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5029",
-    word: "年月",
-    kana: "としつき",
-    meaning: "months 和 years (months and years)",
-    chineseMeaning: "months 和 years (months and years)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "年月",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5030",
-    word: "途端",
-    kana: "とたん",
-    meaning: "just (now, at the moment, etc.)",
-    chineseMeaning: "just (now, at the moment, etc.)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "途端",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5031",
-    word: "土地",
-    kana: "とち",
-    meaning: "plot from land, lot, soil (plot of land, lot, soil)",
-    chineseMeaning: "plot from land, lot, soil (plot of land, lot, soil)",
-    difficulty: "expert",
-    category: "物質",
-    jlptLevel: "n1",
-    kanji: "土地",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5032",
-    word: "突然",
-    kana: "とつぜん",
-    meaning: "abruptly, suddenly, unexpectedly",
-    chineseMeaning: "abruptly, suddenly, unexpectedly",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "突然",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5033",
-    word: "飛び出す",
-    kana: "とびだす",
-    meaning: "to jump out, to rush out, to fly out",
-    chineseMeaning: "to jump out, to rush out, to fly out",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "飛び出す",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5034",
-    word: "泊める",
-    kana: "とめる",
-    meaning: "to have someone stay (over night (v.t.))",
-    chineseMeaning: "to have someone stay (over night (v.t.))",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "泊める",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5035",
-    word: "友",
-    kana: "とも",
-    meaning: "friend, companito get, pal (friend, companion, pal)",
-    chineseMeaning: "friend, companito get, pal (friend, companion, pal)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "友",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5036",
-    word: "取り上げる",
-    kana: "とりあげる",
-    meaning: "to take up, to pick up; to confiscate",
-    chineseMeaning: "to take up, to pick up; to confiscate",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "取り上げる",
-    isKanji: true,
-    complexity: 11
-  },,
-  {
-    id: "expert_5037",
-    word: "努力",
-    kana: "どりょく",
-    meaning: "great effcartoont, exertito get, endeavcartoon (great effort, exertion, endeavor)",
-    chineseMeaning: "great effcartoont, exertito get, endeavcartoon (great effort, exertion, endeavor)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "努力",
-    isKanji: true,
-    complexity: 13
-  },,
-  {
-    id: "expert_5038",
-    word: "内容",
-    kana: "ないよう",
-    meaning: "subject, cto gettents, detail (subject, contents, detail)",
-    chineseMeaning: "subject, cto gettents, detail (subject, contents, detail)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "内容",
-    isKanji: true,
-    complexity: 11
-  },,
-  {
-    id: "expert_5039",
-    word: "仲",
-    kana: "なか",
-    meaning: "relatito get, relatito getship (relation, relationship)",
-    chineseMeaning: "relatito get, relatito getship (relation, relationship)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "仲",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5040",
-    word: "仲間",
-    kana: "なかま",
-    meaning: "company, fellow, colleague, associate",
-    chineseMeaning: "company, fellow, colleague, associate",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "仲間",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5041",
-    word: "中身",
-    kana: "なかみ",
-    meaning: "cto gettent(s); substance (content(s); substance)",
-    chineseMeaning: "cto gettent(s); substance (content(s); substance)",
-    difficulty: "expert",
-    category: "物質",
-    jlptLevel: "n1",
-    kanji: "中身",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5042",
-    word: "中味",
-    kana: "なかみ",
-    meaning: "cto gettents, intericartoon, filling (contents, interior, filling)",
-    chineseMeaning: "cto gettents, intericartoon, filling (contents, interior, filling)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "中味",
-    isKanji: true,
-    complexity: 12
-  },,
-  {
-    id: "expert_5043",
-    word: "納得",
-    kana: "なっとく",
-    meaning: "cto getsent, assent, underst和ing (consent, assent, understanding)",
-    chineseMeaning: "cto getsent, assent, underst和ing (consent, assent, understanding)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "納得",
-    isKanji: true,
-    complexity: 12
-  },,
-  {
-    id: "expert_5044",
-    word: "馴れる",
-    kana: "なれる",
-    meaning: "to become domesticated, to become tame",
-    chineseMeaning: "to become domesticated, to become tame",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "馴れる",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5045",
-    word: "何でも",
-    kana: "なんでも",
-    meaning: "by all means, everything (by all means, everything)",
-    chineseMeaning: "by all means, everything (by all means, everything)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "何でも",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5046",
-    word: "何とか",
-    kana: "なんとか",
-    meaning: "somehow, anyhow, or way cartoon another (somehow, anyhow, one way or another)",
-    chineseMeaning: "somehow, anyhow, or way cartoon another (somehow, anyhow, one way or another)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "何とか",
-    isKanji: true,
-    complexity: 12
-  },,
-  {
-    id: "expert_5047",
-    word: "苦手",
-    kana: "にがて",
-    meaning: "poor (at), weak (in), dislike (from) (poor (at), weak (in), dislike (of))",
-    chineseMeaning: "poor (at), weak (in), dislike (from) (poor (at), weak (in), dislike (of))",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "苦手",
-    isKanji: true,
-    complexity: 12
-  },,
-  {
-    id: "expert_5048",
-    word: "日常",
-    kana: "にちじょう",
-    meaning: "cartoondinary, regular, everyday (ordinary, regular, everyday)",
-    chineseMeaning: "cartoondinary, regular, everyday (ordinary, regular, everyday)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "日常",
-    isKanji: true,
-    complexity: 12
-  },,
-  {
-    id: "expert_5049",
-    word: "日中",
-    kana: "にっちゅう",
-    meaning: "daytime, broad daylight (daytime, broad daylight)",
-    chineseMeaning: "daytime, broad daylight (daytime, broad daylight)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "日中",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5050",
-    word: "入場",
-    kana: "にゅうじょう",
-    meaning: "entrance, admissito get, entering (entrance, admission, entering)",
-    chineseMeaning: "entrance, admissito get, entering (entrance, admission, entering)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "入場",
-    isKanji: true,
-    complexity: 12
-  },,
-  {
-    id: "expert_5051",
-    word: "人間",
-    kana: "にんげん",
-    meaning: "human being, persto get (human being, person)",
-    chineseMeaning: "human being, persto get (human being, person)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "人間",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5052",
-    word: "抜ける",
-    kana: "ぬける",
-    meaning: "to come out, to fall out, to be omitted",
-    chineseMeaning: "to come out, to fall out, to be omitted",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "抜ける",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5053",
-    word: "熱中",
-    kana: "ねっちゅう",
-    meaning: "enthusiasm, zeal, mania",
-    chineseMeaning: "enthusiasm, zeal, mania",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "熱中",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5054",
-    word: "年月",
-    kana: "ねんげつ",
-    meaning: "months 和 years (months and years)",
-    chineseMeaning: "months 和 years (months and years)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "年月",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5055",
-    word: "年中",
-    kana: "ねんじゅう",
-    meaning: "whole year, always, everyday (whole year, always, everyday)",
-    chineseMeaning: "whole year, always, everyday (whole year, always, everyday)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "年中",
-    isKanji: true,
-    complexity: 11
-  },,
-  {
-    id: "expert_5056",
-    word: "農家",
-    kana: "のうか",
-    meaning: "farmer, farm family",
-    chineseMeaning: "farmer, farm family",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "農家",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5057",
-    word: "伸びる",
-    kana: "のびる",
-    meaning: "to extend, to make progress, to grow",
-    chineseMeaning: "to extend, to make progress, to grow",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "伸びる",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5058",
-    word: "梅雨",
-    kana: "ばいう",
-    meaning: "rainy seasto get (rainy season)",
-    chineseMeaning: "rainy seasto get (rainy season)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "梅雨",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5059",
-    word: "配達",
-    kana: "はいたつ",
-    meaning: "delivery, distributito get (delivery, distribution)",
-    chineseMeaning: "delivery, distributito get (delivery, distribution)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "配達",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5060",
-    word: "俳優",
-    kana: "はいゆう",
-    meaning: "actcartoon, actress, perfcartoonmer (actor, actress, performer)",
-    chineseMeaning: "actcartoon, actress, perfcartoonmer (actor, actress, performer)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "俳優",
-    isKanji: true,
-    complexity: 12
-  },,
-  {
-    id: "expert_5061",
-    word: "博士",
-    kana: "はかせ",
-    meaning: "doctcartoonate, PhD., doctcartoon (doctorate, PhD., doctor)",
-    chineseMeaning: "doctcartoonate, PhD., doctcartoon (doctorate, PhD., doctor)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "博士",
-    isKanji: true,
-    complexity: 11
-  },,
-  {
-    id: "expert_5062",
-    word: "拍手",
-    kana: "はくしゅ",
-    meaning: "clapping lands, applause (clapping hands, applause)",
-    chineseMeaning: "clapping lands, applause (clapping hands, applause)",
-    difficulty: "expert",
-    category: "經濟",
-    jlptLevel: "n1",
-    kanji: "拍手",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5063",
-    word: "莫大",
-    kana: "ばくだい",
-    meaning: "encartoonmous, vast (enormous, vast)",
-    chineseMeaning: "encartoonmous, vast (enormous, vast)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "莫大",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5064",
-    word: "爆発",
-    kana: "ばくはつ",
-    meaning: "explosito get, detto getatito get, eruptito get (explosion, detonation, eruption)",
-    chineseMeaning: "explosito get, detto getatito get, eruptito get (explosion, detonation, eruption)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "爆発",
-    isKanji: true,
-    complexity: 13
-  },,
-  {
-    id: "expert_5065",
-    word: "博物館",
-    kana: "はくぶつかん",
-    meaning: "museum",
-    chineseMeaning: "museum",
-    difficulty: "expert",
-    category: "經濟",
-    jlptLevel: "n1",
-    kanji: "博物館",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5066",
-    word: "破産",
-    kana: "はさん",
-    meaning: "(persto getal) bankruptcy ((personal) bankruptcy)",
-    chineseMeaning: "(persto getal) bankruptcy ((personal) bankruptcy)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "破産",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5067",
-    word: "端",
-    kana: "はし",
-    meaning: "end (e.g., from street), edge, margin (end (e.g., of street), edge, margin)",
-    chineseMeaning: "end (e.g., from street), edge, margin (end (e.g., of street), edge, margin)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "端",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5068",
-    word: "始まり",
-    kana: "はじまり",
-    meaning: "cartoonigin, beginning (origin, beginning)",
-    chineseMeaning: "cartoonigin, beginning (origin, beginning)",
-    difficulty: "expert",
-    category: "抽象",
-    jlptLevel: "n1",
-    kanji: "始まり",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5069",
-    word: "発見",
-    kana: "はっけん",
-    meaning: "discovery, detectito get, finding (discovery, detection, finding)",
-    chineseMeaning: "discovery, detectito get, finding (discovery, detection, finding)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "発見",
-    isKanji: true,
-    complexity: 12
-  },,
-  {
-    id: "expert_5070",
-    word: "発車",
-    kana: "はっしゃ",
-    meaning: "departure from a vehicle (departure of a vehicle)",
-    chineseMeaning: "departure from a vehicle (departure of a vehicle)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "発車",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5071",
-    word: "発射",
-    kana: "はっしゃ",
-    meaning: "firing, shooting, discharge",
-    chineseMeaning: "firing, shooting, discharge",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "発射",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5072",
-    word: "発展",
-    kana: "はってん",
-    meaning: "development, growth, progress",
-    chineseMeaning: "development, growth, progress",
-    difficulty: "expert",
-    category: "技術",
-    jlptLevel: "n1",
-    kanji: "発展",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5073",
-    word: "発表",
-    kana: "はっぴょう",
-    meaning: "announcement; publicatito get; presentatito get (announcement; publication; presentation)",
-    chineseMeaning: "announcement; publicatito get; presentatito get (announcement; publication; presentation)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "発表",
-    isKanji: true,
-    complexity: 14
-  },,
-  {
-    id: "expert_5074",
-    word: "発明",
-    kana: "はつめい",
-    meaning: "inventito get (invention)",
-    chineseMeaning: "inventito get (invention)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "発明",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5075",
-    word: "話し合う",
-    kana: "はなしあう",
-    meaning: "to discuss, to talk together",
-    chineseMeaning: "to discuss, to talk together",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "話し合う",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5076",
-    word: "離れる",
-    kana: "はなれる",
-    meaning: "(something, someone) separates; parts towel; (something, someone separates; parts from; to be apart)",
-    chineseMeaning: "(something, someone) separates; parts towel; (something, someone separates; parts from; to be apart)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "離れる",
-    isKanji: true,
-    complexity: 14
-  },,
-  {
-    id: "expert_5077",
-    word: "放れる",
-    kana: "はなれる",
-    meaning: "to leave, to get free, to cut oneself off",
-    chineseMeaning: "to leave, to get free, to cut oneself off",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "放れる",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5078",
-    word: "流行る",
-    kana: "はやる",
-    meaning: "to be popular, to come into fashion",
-    chineseMeaning: "to be popular, to come into fashion",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "流行る",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5079",
-    word: "反抗",
-    kana: "はんこう",
-    meaning: "oppositito get, resistance (opposition, resistance)",
-    chineseMeaning: "oppositito get, resistance (opposition, resistance)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "反抗",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5080",
-    word: "反省",
-    kana: "はんせい",
-    meaning: "reflectito get, recto getsideratito get, regret (reflection, reconsideration, regret)",
-    chineseMeaning: "reflectito get, recto getsideratito get, regret (reflection, reconsideration, regret)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "反省",
-    isKanji: true,
-    complexity: 14
-  },,
-  {
-    id: "expert_5081",
-    word: "判断",
-    kana: "はんだん",
-    meaning: "judgment, decisito get (judgment, decision)",
-    chineseMeaning: "judgment, decisito get (judgment, decision)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "判断",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5082",
-    word: "犯人",
-    kana: "はんにん",
-    meaning: "fromfender, criminal (offender, criminal)",
-    chineseMeaning: "fromfender, criminal (offender, criminal)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "犯人",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5083",
-    word: "販売",
-    kana: "はんばい",
-    meaning: "sale, selling, marketing",
-    chineseMeaning: "sale, selling, marketing",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "販売",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5084",
-    word: "比較",
-    kana: "ひかく",
-    meaning: "comparisto get (comparison)",
-    chineseMeaning: "comparisto get (comparison)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "比較",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5085",
-    word: "飛行",
-    kana: "ひこう",
-    meaning: "aviatito get, flight (aviation, flight)",
-    chineseMeaning: "aviatito get, flight (aviation, flight)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "飛行",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5086",
-    word: "非常",
-    kana: "ひじょう",
-    meaning: "emergency, extracartoondinary, unusual (emergency, extraordinary, unusual)",
-    chineseMeaning: "emergency, extracartoondinary, unusual (emergency, extraordinary, unusual)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "非常",
-    isKanji: true,
-    complexity: 13
-  },,
-  {
-    id: "expert_5087",
-    word: "引越し",
-    kana: "ひっこし",
-    meaning: "moving, changing residence",
-    chineseMeaning: "moving, changing residence",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "引越し",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5088",
-    word: "必死",
-    kana: "ひっし",
-    meaning: "desperatito get, frantic, inevitable result (desperation, frantic, inevitable result)",
-    chineseMeaning: "desperatito get, frantic, inevitable result (desperation, frantic, inevitable result)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "必死",
-    isKanji: true,
-    complexity: 13
-  },,
-  {
-    id: "expert_5089",
-    word: "引っ張る",
-    kana: "ひっぱる",
-    meaning: "to pull, to stretch, to drag",
-    chineseMeaning: "to pull, to stretch, to drag",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "引っ張る",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5090",
-    word: "否定",
-    kana: "ひてい",
-    meaning: "negatito get, denial (negation, denial)",
-    chineseMeaning: "negatito get, denial (negation, denial)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "否定",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5091",
-    word: "人込み",
-    kana: "ひとごみ",
-    meaning: "crowd from people (crowd of people)",
-    chineseMeaning: "crowd from people (crowd of people)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "人込み",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5092",
-    word: "一人一人",
-    kana: "ひとりひとり",
-    meaning: "or by or, each (one by one, each)",
-    chineseMeaning: "or by or, each (one by one, each)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "一人一人",
-    isKanji: true,
-    complexity: 13
-  },,
-  {
-    id: "expert_5093",
-    word: "批評",
-    kana: "ひひょう",
-    meaning: "criticism, review, commentary",
-    chineseMeaning: "criticism, review, commentary",
-    difficulty: "expert",
-    category: "抽象",
-    jlptLevel: "n1",
-    kanji: "批評",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5094",
-    word: "評価",
-    kana: "ひょうか",
-    meaning: "assessment, evaluatito get (assessment, evaluation)",
-    chineseMeaning: "assessment, evaluatito get (assessment, evaluation)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "評価",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5095",
-    word: "表現",
-    kana: "ひょうげん",
-    meaning: "expressito get, presentatito get (expression, presentation)",
-    chineseMeaning: "expressito get, presentatito get (expression, presentation)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "表現",
-    isKanji: true,
-    complexity: 11
-  },,
-  {
-    id: "expert_5096",
-    word: "表情",
-    kana: "ひょうじょう",
-    meaning: "facial expressito get (facial expression)",
-    chineseMeaning: "facial expressito get (facial expression)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "表情",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5097",
-    word: "平等",
-    kana: "びょうどう",
-    meaning: "equality, impartiality, evenness",
-    chineseMeaning: "equality, impartiality, evenness",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "平等",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5098",
-    word: "評判",
-    kana: "ひょうばん",
-    meaning: "fame, reputatito get (fame, reputation)",
-    chineseMeaning: "fame, reputatito get (fame, reputation)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "評判",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5099",
-    word: "表面",
-    kana: "ひょうめん",
-    meaning: "surface, outside, face",
-    chineseMeaning: "surface, outside, face",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "表面",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5100",
-    word: "広げる",
-    kana: "ひろげる",
-    meaning: "to spread, to extend, to expand, to enlarge",
-    chineseMeaning: "to spread, to extend, to expand, to enlarge",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "広げる",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5101",
-    word: "不",
-    kana: "ふ",
-    meaning: "un(~), nto get(~), negative prefix (un(~), non(~), negative prefix)",
-    chineseMeaning: "un(~), nto get(~), negative prefix (un(~), non(~), negative prefix)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "不",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5102",
-    word: "不",
-    kana: "ぶ",
-    meaning: "un(~), nto get(~), negative prefix (un(~), non(~), negative prefix)",
-    chineseMeaning: "un(~), nto get(~), negative prefix (un(~), non(~), negative prefix)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "不",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5103",
-    word: "夫婦",
-    kana: "ふうふ",
-    meaning: "married couple, husband 和 wife (married couple, husband and wife)",
-    chineseMeaning: "married couple, husband 和 wife (married couple, husband and wife)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "夫婦",
-    isKanji: true,
-    complexity: 11
-  },,
-  {
-    id: "expert_5104",
-    word: "不可",
-    kana: "ふか",
-    meaning: "wrto getg, bad, impossible (wrong, bad, impossible)",
-    chineseMeaning: "wrto getg, bad, impossible (wrong, bad, impossible)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "不可",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5105",
-    word: "武器",
-    kana: "ぶき",
-    meaning: "weapto get, arms (weapon, arms)",
-    chineseMeaning: "weapto get, arms (weapon, arms)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "武器",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5106",
-    word: "服装",
-    kana: "ふくそう",
-    meaning: "atom, attire (clothes, attire)",
-    chineseMeaning: "atom, attire (clothes, attire)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "服装",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5107",
-    word: "不幸",
-    kana: "ふこう",
-    meaning: "unhappiness, scartoonrow, misfcartoontune (unhappiness, sorrow, misfortune)",
-    chineseMeaning: "unhappiness, scartoonrow, misfcartoontune (unhappiness, sorrow, misfortune)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "不幸",
-    isKanji: true,
-    complexity: 12
-  },,
-  {
-    id: "expert_5108",
-    word: "不思議",
-    kana: "ふしぎ",
-    meaning: "mystery, curiosity",
-    chineseMeaning: "mystery, curiosity",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "不思議",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5109",
-    word: "不自由",
-    kana: "ふじゆう",
-    meaning: "discomfcartoont, disability, incto getvenience (discomfort, disability, inconvenience)",
-    chineseMeaning: "discomfcartoont, disability, incto getvenience (discomfort, disability, inconvenience)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "不自由",
-    isKanji: true,
-    complexity: 16
-  },,
-  {
-    id: "expert_5110",
-    word: "婦人",
-    kana: "ふじん",
-    meaning: "女性 (same as 女性 (じょせい)、女の人 (おんなのひと)) (woman (same as 女性 (じょせい)、女の人 (おんなのひと)))",
-    chineseMeaning: "女性 (same as 女性 (じょせい)、女の人 (おんなのひと)) (woman (same as 女性 (じょせい)、女の人 (おんなのひと)))",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "婦人",
-    isKanji: true,
-    complexity: 13
-  },,
-  {
-    id: "expert_5111",
-    word: "不足",
-    kana: "ふそく",
-    meaning: "insufficiency, shcartoontage (insufficiency, shortage)",
-    chineseMeaning: "insufficiency, shcartoontage (insufficiency, shortage)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "不足",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5112",
-    word: "再び",
-    kana: "ふたたび",
-    meaning: "again, once more, a second time (again, once more, a second time)",
-    chineseMeaning: "again, once more, a second time (again, once more, a second time)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "再び",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5113",
-    word: "普段",
-    kana: "ふだん",
-    meaning: "in everyday situatito gets, usually, cartoondinarily (in everyday situations, usually, ordinarily)",
-    chineseMeaning: "in everyday situatito gets, usually, cartoondinarily (in everyday situations, usually, ordinarily)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "普段",
-    isKanji: true,
-    complexity: 15
-  },,
-  {
-    id: "expert_5114",
-    word: "不通",
-    kana: "ふつう",
-    meaning: "blockade, interruptito get, s到ppage (blockade, interruption, stoppage)",
-    chineseMeaning: "blockade, interruptito get, s到ppage (blockade, interruption, stoppage)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "不通",
-    isKanji: true,
-    complexity: 12
-  },,
-  {
-    id: "expert_5115",
-    word: "物価",
-    kana: "ぶっか",
-    meaning: "(commodity/cto getsumer) prices ((commodity/consumer) prices)",
-    chineseMeaning: "(commodity/cto getsumer) prices ((commodity/consumer) prices)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "物価",
-    isKanji: true,
-    complexity: 11
-  },,
-  {
-    id: "expert_5116",
-    word: "部分",
-    kana: "ぶぶん",
-    meaning: "pcartoontito get, sectito get, part (portion, section, part)",
-    chineseMeaning: "pcartoontito get, sectito get, part (portion, section, part)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "部分",
-    isKanji: true,
-    complexity: 11
-  },,
-  {
-    id: "expert_5117",
-    word: "不平",
-    kana: "ふへい",
-    meaning: "complaint, discto gettent, dissatisfactito get (complaint, discontent, dissatisfaction)",
-    chineseMeaning: "complaint, discto gettent, dissatisfactito get (complaint, discontent, dissatisfaction)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "不平",
-    isKanji: true,
-    complexity: 14
-  },,
-  {
-    id: "expert_5118",
-    word: "不満",
-    kana: "ふまん",
-    meaning: "dissatisfactito get, discto gettent, complaints (dissatisfaction, discontent, complaints)",
-    chineseMeaning: "dissatisfactito get, discto gettent, complaints (dissatisfaction, discontent, complaints)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "不満",
-    isKanji: true,
-    complexity: 14
-  },,
-  {
-    id: "expert_5119",
-    word: "雰囲気",
-    kana: "ふんいき",
-    meaning: "atmosphere (e.g., musical), mood, ambiance",
-    chineseMeaning: "atmosphere (e.g., musical), mood, ambiance",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "雰囲気",
-    isKanji: true,
-    complexity: 11
-  },,
-  {
-    id: "expert_5120",
-    word: "文明",
-    kana: "ぶんめい",
-    meaning: "civilizatito get (civilization)",
-    chineseMeaning: "civilizatito get (civilization)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "文明",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5121",
-    word: "平均",
-    kana: "へいきん",
-    meaning: "equilibrium, balance, average",
-    chineseMeaning: "equilibrium, balance, average",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "平均",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5122",
-    word: "変化",
-    kana: "へんか",
-    meaning: "change, variation, shift (change, variation, shift)",
-    chineseMeaning: "change, variation, shift (change, variation, shift)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "変化",
-    isKanji: true,
-    complexity: 11
-  },,
-  {
-    id: "expert_5123",
-    word: "変更",
-    kana: "へんこう",
-    meaning: "change, modification, alteration (change, modification, alteration)",
-    chineseMeaning: "change, modification, alteration (change, modification, alteration)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "変更",
-    isKanji: true,
-    complexity: 12
-  },,
-  {
-    id: "expert_5124",
-    word: "冒険",
-    kana: "ぼうけん",
-    meaning: "risk, venture, adventure",
-    chineseMeaning: "risk, venture, adventure",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "冒険",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5125",
-    word: "方向",
-    kana: "ほうこう",
-    meaning: "directito get, course, way (direction, course, way)",
-    chineseMeaning: "directito get, course, way (direction, course, way)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "方向",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5126",
-    word: "報告",
-    kana: "ほうこく",
-    meaning: "repcartoont, infcartoonmatito get (report, information)",
-    chineseMeaning: "repcartoont, infcartoonmatito get (report, information)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "報告",
-    isKanji: true,
-    complexity: 11
-  },,
-  {
-    id: "expert_5127",
-    word: "方法",
-    kana: "ほうほう",
-    meaning: "method, means, technique",
-    chineseMeaning: "method, means, technique",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "方法",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5128",
-    word: "方々",
-    kana: "ほうぼう",
-    meaning: "here 和 there, everywhere (here and there, everywhere)",
-    chineseMeaning: "here 和 there, everywhere (here and there, everywhere)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "方々",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5129",
-    word: "保証",
-    kana: "ほしょう",
-    meaning: "guarantee, assurance, warranty",
-    chineseMeaning: "guarantee, assurance, warranty",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "保証",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5130",
-    word: "保存",
-    kana: "ほぞん",
-    meaning: "preservatito get, cto getservatito get (preservation, conservation)",
-    chineseMeaning: "preservatito get, cto getservatito get (preservation, conservation)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "保存",
-    isKanji: true,
-    complexity: 12
-  },,
-  {
-    id: "expert_5131",
-    word: "本人",
-    kana: "ほんにん",
-    meaning: "the persto get himself (the person himself)",
-    chineseMeaning: "the persto get himself (the person himself)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "本人",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5132",
-    word: "任せる",
-    kana: "まかせる",
-    meaning: "to entrust to another, to leave to",
-    chineseMeaning: "to entrust to another, to leave to",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "任せる",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5133",
-    word: "全く",
-    kana: "まったく",
-    meaning: "真from, completely (really, completely)",
-    chineseMeaning: "真from, completely (really, completely)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "全く",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5134",
-    word: "真似",
-    kana: "まね",
-    meaning: "mimicry, imitatito get, behavicartoon (mimicry, imitation, behavior)",
-    chineseMeaning: "mimicry, imitatito get, behavicartoon (mimicry, imitation, behavior)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "真似",
-    isKanji: true,
-    complexity: 11
-  },,
-  {
-    id: "expert_5135",
-    word: "酸化",
-    kana: "さんか",
-    meaning: "oxidatito get (oxidation)",
-    chineseMeaning: "oxidatito get (oxidation)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "酸化",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5136",
-    word: "資格",
-    kana: "しかく",
-    meaning: "qualificatito gets, requirements, capabilities (qualifications, requirements, capabilities)",
-    chineseMeaning: "qualificatito gets, requirements, capabilities (qualifications, requirements, capabilities)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "資格",
-    isKanji: true,
-    complexity: 14
-  },,
-  {
-    id: "expert_5137",
-    word: "視覚",
-    kana: "しかく",
-    meaning: "sense from sight, vision (sense of sight, vision)",
-    chineseMeaning: "sense from sight, vision (sense of sight, vision)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "視覚",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5138",
-    word: "指揮",
-    kana: "しき",
-    meaning: "comm和, directito get (command, direction)",
-    chineseMeaning: "comm和, directito get (command, direction)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "指揮",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5139",
-    word: "磁器",
-    kana: "じき",
-    meaning: "pcartooncelain, china (porcelain, china)",
-    chineseMeaning: "pcartooncelain, china (porcelain, china)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "磁器",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5140",
-    word: "自己",
-    kana: "じこ",
-    meaning: "self, to geteself (self, oneself)",
-    chineseMeaning: "self, to geteself (self, oneself)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "自己",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5141",
-    word: "字体",
-    kana: "じたい",
-    meaning: "fto gett, lettering (font, lettering)",
-    chineseMeaning: "fto gett, lettering (font, lettering)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "字体",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5142",
-    word: "視点",
-    kana: "してん",
-    meaning: "opinion, point from view, visual point (opinion, point of view, visual point)",
-    chineseMeaning: "opinion, point from view, visual point (opinion, point of view, visual point)",
-    difficulty: "expert",
-    category: "場所",
-    jlptLevel: "n1",
-    kanji: "視点",
-    isKanji: true,
-    complexity: 13
-  },,
-  {
-    id: "expert_5143",
-    word: "志望",
-    kana: "しぼう",
-    meaning: "wish, desire, ambitito get (wish, desire, ambition)",
-    chineseMeaning: "wish, desire, ambitito get (wish, desire, ambition)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "志望",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5144",
-    word: "私用",
-    kana: "しよう",
-    meaning: "personal use, private 商業from (personal use, private business)",
-    chineseMeaning: "personal use, private 商業from (personal use, private business)",
-    difficulty: "expert",
-    category: "經濟",
-    jlptLevel: "n1",
-    kanji: "私用",
-    isKanji: true,
-    complexity: 11
-  },,
-  {
-    id: "expert_5145",
-    word: "仕様",
-    kana: "しよう",
-    meaning: "way, method, specificatito get (way, method, specification)",
-    chineseMeaning: "way, method, specificatito get (way, method, specification)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "仕様",
-    isKanji: true,
-    complexity: 11
-  },,
-  {
-    id: "expert_5146",
-    word: "情",
-    kana: "じょう",
-    meaning: "feelings, emotito get, passito get (feelings, emotion, passion)",
-    chineseMeaning: "feelings, emotito get, passito get (feelings, emotion, passion)",
-    difficulty: "expert",
-    category: "感情",
-    jlptLevel: "n1",
-    kanji: "情",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5147",
-    word: "生涯",
-    kana: "しょうがい",
-    meaning: "or's lifetime (one's lifetime)",
-    chineseMeaning: "or's lifetime (one's lifetime)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "生涯",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5148",
-    word: "上司",
-    kana: "じょうし",
-    meaning: "or's superior (one's superior)",
-    chineseMeaning: "or's superior (one's superior)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "上司",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5149",
-    word: "正体",
-    kana: "しょうたい",
-    meaning: "natural shape, or's true colors, true character (natural shape, one's true colors, true character)",
-    chineseMeaning: "natural shape, or's true colors, true character (natural shape, one's true colors, true character)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "正体",
-    isKanji: true,
-    complexity: 15
-  },,
-  {
-    id: "expert_5150",
-    word: "照明",
-    kana: "しょうめい",
-    meaning: "illuminatito get (illumination)",
-    chineseMeaning: "illuminatito get (illumination)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "照明",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5151",
-    word: "助詞",
-    kana: "じょし",
-    meaning: "(gram) particle(s), postpositito get ((gram) particle(s), postposition)",
-    chineseMeaning: "(gram) particle(s), postpositito get ((gram) particle(s), postposition)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "助詞",
-    isKanji: true,
-    complexity: 12
-  },,
-  {
-    id: "expert_5152",
-    word: "新興",
-    kana: "しんこう",
-    meaning: "rising, developing, emergent",
-    chineseMeaning: "rising, developing, emergent",
-    difficulty: "expert",
-    category: "技術",
-    jlptLevel: "n1",
-    kanji: "新興",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5153",
-    word: "振興",
-    kana: "しんこう",
-    meaning: "promotito get, encouragement (promotion, encouragement)",
-    chineseMeaning: "promotito get, encouragement (promotion, encouragement)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "振興",
-    isKanji: true,
-    complexity: 11
-  },,
-  {
-    id: "expert_5154",
-    word: "申告",
-    kana: "しんこく",
-    meaning: "repcartoont, statement (report, statement)",
-    chineseMeaning: "repcartoont, statement (report, statement)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "申告",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5155",
-    word: "精巧",
-    kana: "せいこう",
-    meaning: "elabcartoonate, delicate, exquisite (elaborate, delicate, exquisite)",
-    chineseMeaning: "elabcartoonate, delicate, exquisite (elaborate, delicate, exquisite)",
-    difficulty: "expert",
-    category: "場所",
-    jlptLevel: "n1",
-    kanji: "精巧",
-    isKanji: true,
-    complexity: 12
-  },,
-  {
-    id: "expert_5156",
-    word: "精算",
-    kana: "せいさん",
-    meaning: "exact calculatito get, adjustment (exact calculation, adjustment)",
-    chineseMeaning: "exact calculatito get, adjustment (exact calculation, adjustment)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "精算",
-    isKanji: true,
-    complexity: 12
-  },,
-  {
-    id: "expert_5157",
-    word: "成年",
-    kana: "せいねん",
-    meaning: "majcartoonity, adult age (majority, adult age)",
-    chineseMeaning: "majcartoonity, adult age (majority, adult age)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "成年",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5158",
-    word: "声明",
-    kana: "せいめい",
-    meaning: "declaratito get, statement, proclamatito get (declaration, statement, proclamation)",
-    chineseMeaning: "declaratito get, statement, proclamatito get (declaration, statement, proclamation)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "声明",
-    isKanji: true,
-    complexity: 14
-  },,
-  {
-    id: "expert_5159",
-    word: "節",
-    kana: "せつ",
-    meaning: "when, if; sectito get; clause (when, if; section; clause)",
-    chineseMeaning: "when, if; sectito get; clause (when, if; section; clause)",
-    difficulty: "expert",
-    category: "經濟",
-    jlptLevel: "n1",
-    kanji: "節",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5160",
-    word: "選挙",
-    kana: "せんきょ",
-    meaning: "electito get (election)",
-    chineseMeaning: "electito get (election)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "選挙",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5161",
-    word: "選考",
-    kana: "せんこう",
-    meaning: "selectito get, screening (selection, screening)",
-    chineseMeaning: "selectito get, screening (selection, screening)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "選考",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5162",
-    word: "捜査",
-    kana: "そうさ",
-    meaning: "esp. in criminal investigations, investigation",
-    chineseMeaning: "esp. in criminal investigations, investigation",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "捜査",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5163",
-    word: "操縦",
-    kana: "そうじゅう",
-    meaning: "management, cto gettrol, manipulatito get (management, control, manipulation)",
-    chineseMeaning: "management, cto gettrol, manipulatito get (management, control, manipulation)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "操縦",
-    isKanji: true,
-    complexity: 13
-  },,
-  {
-    id: "expert_5164",
-    word: "創造",
-    kana: "そうぞう",
-    meaning: "creatito get (creation)",
-    chineseMeaning: "creatito get (creation)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "創造",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5165",
-    word: "退学",
-    kana: "たいがく",
-    meaning: "dropping out from 學校 (dropping out of school)",
-    chineseMeaning: "dropping out from 學校 (dropping out of school)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "退学",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5166",
-    word: "継ぐ",
-    kana: "つぐ",
-    meaning: "someone in a 商業from cartoon inheritance (to succeed (someone in a business or inheritance",
-    chineseMeaning: "someone in a 商業from cartoon inheritance (to succeed (someone in a business or inheritance",
-    difficulty: "expert",
-    category: "經濟",
-    jlptLevel: "n1",
-    kanji: "継ぐ",
-    isKanji: true,
-    complexity: 12
-  },,
-  {
-    id: "expert_5167",
-    word: "強まる",
-    kana: "つよまる",
-    meaning: "hand strong, to get strong, to gain strength",
-    chineseMeaning: "hand strong, to get strong, to gain strength",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "強まる",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5168",
-    word: "転校",
-    kana: "てんこう",
-    meaning: "change schools (change schools)",
-    chineseMeaning: "change schools (change schools)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "転校",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5169",
-    word: "倒産",
-    kana: "とうさん",
-    meaning: "(ccartoonpcartoonate) bankruptcy, insolvency ((corporate) bankruptcy, insolvency)",
-    chineseMeaning: "(ccartoonpcartoonate) bankruptcy, insolvency ((corporate) bankruptcy, insolvency)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "倒産",
-    isKanji: true,
-    complexity: 13
-  },,
-  {
-    id: "expert_5170",
-    word: "同士",
-    kana: "どうし",
-    meaning: "or another, companion, comrade (one another, companion, comrade)",
-    chineseMeaning: "or another, companion, comrade (one another, companion, comrade)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "同士",
-    isKanji: true,
-    complexity: 11
-  },,
-  {
-    id: "expert_5171",
-    word: "同志",
-    kana: "どうし",
-    meaning: "same mind, comrade, kindred soul",
-    chineseMeaning: "same mind, comrade, kindred soul",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "同志",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5172",
-    word: "動揺",
-    kana: "どうよう",
-    meaning: "disturbance, flutter shock",
-    chineseMeaning: "disturbance, flutter shock",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "動揺",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5173",
-    word: "供",
-    kana: "とも",
-    meaning: "accompanying, attendant, companito get, retinue (accompanying, attendant, companion, retinue)",
-    chineseMeaning: "accompanying, attendant, companito get, retinue (accompanying, attendant, companion, retinue)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "供",
-    isKanji: true,
-    complexity: 12
-  },,
-  {
-    id: "expert_5174",
-    word: "並",
-    kana: "なみ",
-    meaning: "medium (e.g., food serving size, quality, price, etc.), cartoondinary (medium (e.g., food serving size, quality, price, etc.), ordinary)",
-    chineseMeaning: "medium (e.g., food serving size, quality, price, etc.), cartoondinary (medium (e.g., food serving size, quality, price, etc.), ordinary)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "並",
-    isKanji: true,
-    complexity: 16
-  },,
-  {
-    id: "expert_5175",
-    word: "映える",
-    kana: "はえる",
-    meaning: "to shine, to look attractive, to look pretty",
-    chineseMeaning: "to shine, to look attractive, to look pretty",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "映える",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5176",
-    word: "図る",
-    kana: "はかる",
-    meaning: "to plot, to attempt, to devise, to design, to refer A to B",
-    chineseMeaning: "to plot, to attempt, to devise, to design, to refer A to B",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "図る",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5177",
-    word: "生やす",
-    kana: "はやす",
-    meaning: "to grow, to cultivate, to wear beard",
-    chineseMeaning: "to grow, to cultivate, to wear beard",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "生やす",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5178",
-    word: "碑",
-    kana: "ひ",
-    meaning: "stto gete mto getument bearing an inscriptito get (stone monument bearing an inscription)",
-    chineseMeaning: "stto gete mto getument bearing an inscriptito get (stone monument bearing an inscription)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "碑",
-    isKanji: true,
-    complexity: 11
-  },,
-  {
-    id: "expert_5179",
-    word: "非行",
-    kana: "ひこう",
-    meaning: "delinquency, miscto getduct (delinquency, misconduct)",
-    chineseMeaning: "delinquency, miscto getduct (delinquency, misconduct)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "非行",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5180",
-    word: "深める",
-    kana: "ふかめる",
-    meaning: "to deepen, to heighten, to intensify",
-    chineseMeaning: "to deepen, to heighten, to intensify",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "深める",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5181",
-    word: "保護",
-    kana: "ほご",
-    meaning: "care, protection, shelter (care, protection, shelter)",
-    chineseMeaning: "care, protection, shelter (care, protection, shelter)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "保護",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5182",
-    word: "保障",
-    kana: "ほしょう",
-    meaning: "guarantee, security, warranty",
-    chineseMeaning: "guarantee, security, warranty",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "保障",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5183",
-    word: "補償",
-    kana: "ほしょう",
-    meaning: "compensatito get, reparatito get (compensation, reparation)",
-    chineseMeaning: "compensatito get, reparatito get (compensation, reparation)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "補償",
-    isKanji: true,
-    complexity: 11
-  },,
-  {
-    id: "expert_5184",
-    word: "前もって",
-    kana: "まえもって",
-    meaning: "in advance, befcartooneland, previously (in advance, beforehand, previously)",
-    chineseMeaning: "in advance, befcartooneland, previously (in advance, beforehand, previously)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "前もって",
-    isKanji: true,
-    complexity: 13
-  },,
-  {
-    id: "expert_5185",
-    word: "見掛ける",
-    kana: "みかける",
-    meaning: "到 (happen to (happen to see, to notice, to catch sight of)",
-    chineseMeaning: "到 (happen to (happen to see, to notice, to catch sight of)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "見掛ける",
-    isKanji: true,
-    complexity: 12
-  },,
-  {
-    id: "expert_5186",
-    word: "野党",
-    kana: "やとう",
-    meaning: "oppositito get party (opposition party)",
-    chineseMeaning: "oppositito get party (opposition party)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "野党",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5187",
-    word: "優",
-    kana: "ゆう",
-    meaning: "supericartoonity, high grade (superiority, high grade)",
-    chineseMeaning: "supericartoonity, high grade (superiority, high grade)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "優",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5188",
-    word: "世",
-    kana: "よ",
-    meaning: "wcartoonld, society, generatito get (world, society, generation)",
-    chineseMeaning: "wcartoonld, society, generatito get (world, society, generation)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "世",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5189",
-    word: "予想",
-    kana: "よそう",
-    meaning: "expectatito get, anticipatito get, predictito get (expectation, anticipation, prediction)",
-    chineseMeaning: "expectatito get, anticipatito get, predictito get (expectation, anticipation, prediction)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "予想",
-    isKanji: true,
-    complexity: 14
-  },,
-  {
-    id: "expert_5190",
-    word: "弱まる",
-    kana: "よわまる",
-    meaning: "to weaken, to be emaciated, to be dejected",
-    chineseMeaning: "to weaken, to be emaciated, to be dejected",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "弱まる",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5191",
-    word: "意見",
-    kana: "いけん",
-    meaning: "opinito get, view, idea (opinion, view, idea)",
-    chineseMeaning: "opinito get, view, idea (opinion, view, idea)",
-    difficulty: "expert",
-    category: "抽象",
-    jlptLevel: "n1",
-    kanji: "意見",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5192",
-    word: "漫画",
-    kana: "まんが",
-    meaning: "comic (book), divorce (comic (book), cartoon)",
-    chineseMeaning: "comic (book), divorce (comic (book), cartoon)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "漫画",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5193",
-    word: "僕",
-    kana: "ぼく",
-    meaning: "used by men towards those of equal or lower status",
-    chineseMeaning: "used by men towards those of equal or lower status",
-    difficulty: "expert",
-    category: "經濟",
-    jlptLevel: "n1",
-    kanji: "僕",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5194",
-    word: "怒る",
-    kana: "おこる",
-    meaning: "hand angry; to get angry; to scold angrily",
-    chineseMeaning: "hand angry; to get angry; to scold angrily",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "怒る",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5195",
-    word: "表",
-    kana: "おもて",
-    meaning: "surface; frto gett; outside (surface; front; outside)",
-    chineseMeaning: "surface; frto gett; outside (surface; front; outside)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "表",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5196",
-    word: "大学生",
-    kana: "だいがくせい",
-    meaning: "college student, university student",
-    chineseMeaning: "college student, university student",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "大学生",
-    isKanji: true,
-    complexity: 11
-  },,
-  {
-    id: "expert_5197",
-    word: "運転手",
-    kana: "うんてんしゅ",
-    meaning: "by occupation",
-    chineseMeaning: "by occupation",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "運転手",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5198",
-    word: "心配",
-    kana: "しんぱいする",
-    meaning: "one, concern (worry, concern)",
-    chineseMeaning: "one, concern (worry, concern)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "心配",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5199",
-    word: "別",
-    kana: "べつ",
-    meaning: "distinctito get, different (distinction, different)",
-    chineseMeaning: "distinctito get, different (distinction, different)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "別",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5200",
-    word: "非常に",
-    kana: "ひじょうに",
-    meaning: "extremely; very (extremely; very)",
-    chineseMeaning: "extremely; very (extremely; very)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "非常に",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5201",
-    word: "お宅",
-    kana: "おたく",
-    meaning: "(someone else's) house; home -- 有禮貌from word for 家 (いえ) -- ((someone else's) house; home -- polite word for 家 (いえ) --)",
-    chineseMeaning: "(someone else's) house; home -- 有禮貌from word for 家 (いえ) -- ((someone else's) house; home -- polite word for 家 (いえ) --)",
-    difficulty: "expert",
-    category: "經濟",
-    jlptLevel: "n1",
-    kanji: "お宅",
-    isKanji: true,
-    complexity: 15
-  },,
-  {
-    id: "expert_5202",
-    word: "柔らかい",
-    kana: "やわらかい",
-    meaning: "soft (in reference soft (in reference to texture, tender)",
-    chineseMeaning: "soft (in reference soft (in reference to texture, tender)",
-    difficulty: "expert",
-    category: "文獻",
-    jlptLevel: "n1",
-    kanji: "柔らかい",
-    isKanji: true,
-    complexity: 11
-  },,
-  {
-    id: "expert_5203",
-    word: "売り場",
-    kana: "うりば",
-    meaning: "place where things are sold",
-    chineseMeaning: "place where things are sold",
-    difficulty: "expert",
-    category: "場所",
-    jlptLevel: "n1",
-    kanji: "売り場",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5204",
-    word: "正月",
-    kana: "しょうがつ",
-    meaning: "New Year, New Year's Day",
-    chineseMeaning: "New Year, New Year's Day",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "正月",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5205",
-    word: "規則",
-    kana: "きそく",
-    meaning: "rule, regulatito get (rule, regulation)",
-    chineseMeaning: "rule, regulatito get (rule, regulation)",
-    difficulty: "expert",
-    category: "政治",
-    jlptLevel: "n1",
-    kanji: "規則",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5206",
-    word: "発音",
-    kana: "はつおん",
-    meaning: "prto getunciatito get (pronunciation)",
-    chineseMeaning: "prto getunciatito get (pronunciation)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "発音",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5207",
-    word: "失礼",
-    kana: "しつれい",
-    meaning: "discourtesy, im有禮貌fromness; Excuse me (discourtesy, impoliteness; Excuse me)",
-    chineseMeaning: "discourtesy, im有禮貌fromness; Excuse me (discourtesy, impoliteness; Excuse me)",
-    difficulty: "expert",
-    category: "經濟",
-    jlptLevel: "n1",
-    kanji: "失礼",
-    isKanji: true,
-    complexity: 13
-  },,
-  {
-    id: "expert_5208",
-    word: "点",
-    kana: "てん",
-    meaning: "mark, sccartoone, grade; point, dot (mark, score, grade; point, dot)",
-    chineseMeaning: "mark, sccartoone, grade; point, dot (mark, score, grade; point, dot)",
-    difficulty: "expert",
-    category: "場所",
-    jlptLevel: "n1",
-    kanji: "点",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5209",
-    word: "一生懸命",
-    kana: "いっしょうけんめい",
-    meaning: "very hard (as in)",
-    chineseMeaning: "very hard (as in)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "一生懸命",
-    isKanji: true,
-    complexity: 13
-  },,
-  {
-    id: "expert_5210",
-    word: "今度",
-    kana: "こんど",
-    meaning: "now, this time, near future, or from these days, next time (now, this time, near future, one of these days, next time)",
-    chineseMeaning: "now, this time, near future, or from these days, next time (now, this time, near future, one of these days, next time)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "今度",
-    isKanji: true,
-    complexity: 17
-  },,
-  {
-    id: "expert_5211",
-    word: "機会",
-    kana: "きかい",
-    meaning: "chance, oppcartoontunity (chance, opportunity)",
-    chineseMeaning: "chance, oppcartoontunity (chance, opportunity)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "機会",
-    isKanji: true,
-    complexity: 11
-  },,
-  {
-    id: "expert_5212",
-    word: "複雑",
-    kana: "ふくざつ",
-    meaning: "complexity, complicatito get (complexity, complication)",
-    chineseMeaning: "complexity, complicatito get (complexity, complication)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "複雑",
-    isKanji: true,
-    complexity: 11
-  },,
-  {
-    id: "expert_5213",
-    word: "大事",
-    kana: "だいじ",
-    meaning: "impcartoontant, valuable, serious matter (important, valuable, serious matter)",
-    chineseMeaning: "impcartoontant, valuable, serious matter (important, valuable, serious matter)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "大事",
-    isKanji: true,
-    complexity: 13
-  },,
-  {
-    id: "expert_5214",
-    word: "贈り物",
-    kana: "おくりもの",
-    meaning: "a gift; a present",
-    chineseMeaning: "a gift; a present",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "贈り物",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5215",
-    word: "注意",
-    kana: "ちゅうい",
-    meaning: "cautito get, attentito get (caution, attention)",
-    chineseMeaning: "cautito get, attentito get (caution, attention)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "注意",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5216",
-    word: "課長",
-    kana: "かちょう",
-    meaning: "sectito get manager (section manager)",
-    chineseMeaning: "sectito get manager (section manager)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "課長",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5217",
-    word: "厳しい",
-    kana: "きびしい",
-    meaning: "hard; rigcartoonous; strict (hard; rigorous; strict)",
-    chineseMeaning: "hard; rigcartoonous; strict (hard; rigorous; strict)",
-    difficulty: "expert",
-    category: "性質",
-    jlptLevel: "n1",
-    kanji: "厳しい",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5218",
-    word: "人口",
-    kana: "じんこう",
-    meaning: "populatito get (population)",
-    chineseMeaning: "populatito get (population)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "人口",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5219",
-    word: "悲しい",
-    kana: "かなしい",
-    meaning: "sad, scartoonrowful (sad, sorrowful)",
-    chineseMeaning: "sad, scartoonrowful (sad, sorrowful)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "悲しい",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5220",
-    word: "中学校",
-    kana: "ちゅうがっこう",
-    meaning: "junior high 學校 pupil (junior high school pupil)",
-    chineseMeaning: "junior high 學校 pupil (junior high school pupil)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "中学校",
-    isKanji: true,
-    complexity: 13
-  },,
-  {
-    id: "expert_5221",
-    word: "致す",
-    kana: "いたす",
-    meaning: "-- extra-modest expressito get fcartoon する -- (-- extra-modest expression for する --)",
-    chineseMeaning: "-- extra-modest expressito get fcartoon する -- (-- extra-modest expression for する --)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "致す",
-    isKanji: true,
-    complexity: 12
-  },,
-  {
-    id: "expert_5222",
-    word: "赤ちゃん",
-    kana: "あかちゃん",
-    meaning: "baby, in扇子t (baby, infant)",
-    chineseMeaning: "baby, in扇子t (baby, infant)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "赤ちゃん",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5223",
-    word: "西洋",
-    kana: "せいよう",
-    meaning: "the West, Western countries",
-    chineseMeaning: "the West, Western countries",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "西洋",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5224",
-    word: "申し上げる",
-    kana: "もうしあげる",
-    meaning: "(humble)(humbleto say, to tell)",
-    chineseMeaning: "(humble)(humbleto say, to tell)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "申し上げる",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5225",
-    word: "建て",
-    kana: "～だて",
-    meaning: "~ stcartoonied, separate housing (~ storied, separate housing)",
-    chineseMeaning: "~ stcartoonied, separate housing (~ storied, separate housing)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "建て",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5226",
-    word: "社長",
-    kana: "しゃちょう",
-    meaning: "president from a company (president of a company)",
-    chineseMeaning: "president from a company (president of a company)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "社長",
-    isKanji: true,
-    complexity: 11
-  },,
-  {
-    id: "expert_5227",
-    word: "動物園",
-    kana: "どうぶつえん",
-    meaning: "zoo",
-    chineseMeaning: "zoo",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "動物園",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5228",
-    word: "丁寧",
-    kana: "ていねい",
-    meaning: "有禮貌from, courteous, careful (polite, courteous, careful)",
-    chineseMeaning: "有禮貌from, courteous, careful (polite, courteous, careful)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "丁寧",
-    isKanji: true,
-    complexity: 11
-  },,
-  {
-    id: "expert_5229",
-    word: "無理",
-    kana: "むり",
-    meaning: "unreasto getable, impossible (unreasonable, impossible)",
-    chineseMeaning: "unreasto getable, impossible (unreasonable, impossible)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "無理",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5230",
-    word: "会議室",
-    kana: "かいぎしつ",
-    meaning: "cto getference room (conference room)",
-    chineseMeaning: "cto getference room (conference room)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "会議室",
-    isKanji: true,
-    complexity: 12
-  },,
-  {
-    id: "expert_5231",
-    word: "利用",
-    kana: "りよう",
-    meaning: "use, utilizatito get (use, utilization)",
-    chineseMeaning: "use, utilizatito get (use, utilization)",
-    difficulty: "expert",
-    category: "經濟",
-    jlptLevel: "n1",
-    kanji: "利用",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5232",
-    word: "恥ずかしい",
-    kana: "はずかしい",
-    meaning: "ashamed, embarrassed",
-    chineseMeaning: "ashamed, embarrassed",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "恥ずかしい",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5233",
-    word: "用事",
-    kana: "ようじ",
-    meaning: "商業from business to take care of; tasks; errands",
-    chineseMeaning: "商業from business to take care of; tasks; errands",
-    difficulty: "expert",
-    category: "經濟",
-    jlptLevel: "n1",
-    kanji: "用事",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5234",
-    word: "頑張る",
-    kana: "がんばる",
-    meaning: "to try one's best, to try hard, to persist",
-    chineseMeaning: "to try one's best, to try hard, to persist",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "頑張る",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5235",
-    word: "受ける",
-    kana: "うける",
-    meaning: "to take (an examination, interview, etc.",
-    chineseMeaning: "to take (an examination, interview, etc.",
-    difficulty: "expert",
-    category: "抽象",
-    jlptLevel: "n1",
-    kanji: "受ける",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5236",
-    word: "間違える",
-    kana: "まちがえる",
-    meaning: "to make a mistake",
-    chineseMeaning: "to make a mistake",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "間違える",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5237",
-    word: "場合",
-    kana: "ばあい",
-    meaning: "case, situatito get (case, situation)",
-    chineseMeaning: "case, situatito get (case, situation)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "場合",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5238",
-    word: "住所",
-    kana: "じゅうしょ",
-    meaning: "address; place from residence (address; place of residence)",
-    chineseMeaning: "address; place from residence (address; place of residence)",
-    difficulty: "expert",
-    category: "場所",
-    jlptLevel: "n1",
-    kanji: "住所",
-    isKanji: true,
-    complexity: 12
-  },,
-  {
-    id: "expert_5239",
-    word: "再来月",
-    kana: "さらいげつ",
-    meaning: "the mto getth after next (the month after next)",
-    chineseMeaning: "the mto getth after next (the month after next)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "再来月",
-    isKanji: true,
-    complexity: 12
-  },,
-  {
-    id: "expert_5240",
-    word: "調べる",
-    kana: "しらべる",
-    meaning: "to check; to look up; to inquire; to search",
-    chineseMeaning: "to check; to look up; to inquire; to search",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "調べる",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5241",
-    word: "飛行場",
-    kana: "ひこうじょう",
-    meaning: "airpcartoont (airport)",
-    chineseMeaning: "airpcartoont (airport)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "飛行場",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5242",
-    word: "事務所",
-    kana: "じむしょ",
-    meaning: "fromfice (office)",
-    chineseMeaning: "fromfice (office)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "事務所",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5243",
-    word: "連絡",
-    kana: "れんらく",
-    meaning: "communicatito get, cto gettact, cto getnectito get (communication, contact, connection)",
-    chineseMeaning: "communicatito get, cto gettact, cto getnectito get (communication, contact, connection)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "連絡",
-    isKanji: true,
-    complexity: 14
-  },,
-  {
-    id: "expert_5244",
-    word: "小学校",
-    kana: "しょうがっこう",
-    meaning: "elementary 學校 (elementary school)",
-    chineseMeaning: "elementary 學校 (elementary school)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "小学校",
-    isKanji: true,
-    complexity: 11
-  },,
-  {
-    id: "expert_5245",
-    word: "捨てる",
-    kana: "すてる",
-    meaning: "throw of (trash), dump, discard (throw away (trash), dump, discard)",
-    chineseMeaning: "throw of (trash), dump, discard (throw away (trash), dump, discard)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "捨てる",
-    isKanji: true,
-    complexity: 11
-  },,
-  {
-    id: "expert_5246",
-    word: "試合",
-    kana: "しあい",
-    meaning: "match, game, competitito get (match, game, competition)",
-    chineseMeaning: "match, game, competitito get (match, game, competition)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "試合",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5247",
-    word: "素晴らしい",
-    kana: "すばらしい",
-    meaning: "wto getderful; terrific (wonderful; terrific)",
-    chineseMeaning: "wto getderful; terrific (wonderful; terrific)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "素晴らしい",
-    isKanji: true,
-    complexity: 12
-  },,
-  {
-    id: "expert_5248",
-    word: "美術館",
-    kana: "びじゅつかん",
-    meaning: "art gallery, art museum",
-    chineseMeaning: "art gallery, art museum",
-    difficulty: "expert",
-    category: "經濟",
-    jlptLevel: "n1",
-    kanji: "美術館",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5249",
-    word: "一度",
-    kana: "いちど",
-    meaning: "once, or time (once, one time)",
-    chineseMeaning: "once, or time (once, one time)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "一度",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5250",
-    word: "お礼",
-    kana: "おれい",
-    meaning: "expression of gratitude; thanking; gift from appreciation; bow (expression of gratitude; thanking; gift of appreciation; bow)",
-    chineseMeaning: "expression of gratitude; thanking; gift from appreciation; bow (expression of gratitude; thanking; gift of appreciation; bow)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "お礼",
-    isKanji: true,
-    complexity: 16
-  },,
-  {
-    id: "expert_5251",
-    word: "歯医者",
-    kana: "はいしゃ",
-    meaning: "dentist",
-    chineseMeaning: "dentist",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "歯医者",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5252",
-    word: "水道",
-    kana: "すいどう",
-    meaning: "water service, water line",
-    chineseMeaning: "water service, water line",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "水道",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5253",
-    word: "辞典",
-    kana: "じてん",
-    meaning: "encyclopedia, reference book",
-    chineseMeaning: "encyclopedia, reference book",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "辞典",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5254",
-    word: "原因",
-    kana: "げんいん",
-    meaning: "cause, cartoonigin, source (cause, origin, source)",
-    chineseMeaning: "cause, cartoonigin, source (cause, origin, source)",
-    difficulty: "expert",
-    category: "抽象",
-    jlptLevel: "n1",
-    kanji: "原因",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5255",
-    word: "場所",
-    kana: "ばしょ",
-    meaning: "place, locatito get (place, location)",
-    chineseMeaning: "place, locatito get (place, location)",
-    difficulty: "expert",
-    category: "場所",
-    jlptLevel: "n1",
-    kanji: "場所",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5256",
-    word: "受付",
-    kana: "うけつけ",
-    meaning: "receptito get(ist) desk (reception(ist) desk)",
-    chineseMeaning: "receptito get(ist) desk (reception(ist) desk)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "受付",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5257",
-    word: "景色",
-    kana: "けしき",
-    meaning: "scenery, divorcescape (scenery, landscape)",
-    chineseMeaning: "scenery, divorcescape (scenery, landscape)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "景色",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5258",
-    word: "確か",
-    kana: "たしか",
-    meaning: "if I remember ccartoonrectly; certain, definite (if I remember correctly; certain, definite)",
-    chineseMeaning: "if I remember ccartoonrectly; certain, definite (if I remember correctly; certain, definite)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "確か",
-    isKanji: true,
-    complexity: 13
-  },,
-  {
-    id: "expert_5259",
-    word: "食料品",
-    kana: "しょくりょうひん",
-    meaning: "foodstuff, groceries",
-    chineseMeaning: "foodstuff, groceries",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "食料品",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5260",
-    word: "以内",
-    kana: "いない",
-    meaning: "within, less (no mcartoone) than (within, less (no more) than)",
-    chineseMeaning: "within, less (no mcartoone) than (within, less (no more) than)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "以内",
-    isKanji: true,
-    complexity: 11
-  },,
-  {
-    id: "expert_5261",
-    word: "予定",
-    kana: "よてい",
-    meaning: "plans, arrangement, schedule",
-    chineseMeaning: "plans, arrangement, schedule",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "予定",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5262",
-    word: "思い出す",
-    kana: "おもいだす",
-    meaning: "to recall, to remember",
-    chineseMeaning: "to recall, to remember",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "思い出す",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5263",
-    word: "ご主人",
-    kana: "ごしゅじん",
-    meaning: "(your, her) husb和 ((your, her) husband)",
-    chineseMeaning: "(your, her) husb和 ((your, her) husband)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "ご主人",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5264",
-    word: "公務員",
-    kana: "こうむいん",
-    meaning: "government wcartoonker, public servant (government worker, public servant)",
-    chineseMeaning: "government wcartoonker, public servant (government worker, public servant)",
-    difficulty: "expert",
-    category: "政治",
-    jlptLevel: "n1",
-    kanji: "公務員",
-    isKanji: true,
-    complexity: 16
-  },,
-  {
-    id: "expert_5265",
-    word: "お嬢さん",
-    kana: "おじょうさん",
-    meaning: "(someone's) daughter (有禮貌from) ((someone's) daughter (polite))",
-    chineseMeaning: "(someone's) daughter (有禮貌from) ((someone's) daughter (polite))",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "お嬢さん",
-    isKanji: true,
-    complexity: 12
-  },,
-  {
-    id: "expert_5266",
-    word: "用意",
-    kana: "ようい",
-    meaning: "preparatito get (preparation)",
-    chineseMeaning: "preparatito get (preparation)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "用意",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5267",
-    word: "海岸",
-    kana: "かいがん",
-    meaning: "coast, seafashionable, fad, prevailing (coast, seashore)",
-    chineseMeaning: "coast, seafashionable, fad, prevailing (coast, seashore)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "海岸",
-    isKanji: true,
-    complexity: 11
-  },,
-  {
-    id: "expert_5268",
-    word: "寂しい",
-    kana: "さびしい",
-    meaning: "lto getely, lto getesome (lonely, lonesome)",
-    chineseMeaning: "lto getely, lto getesome (lonely, lonesome)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "寂しい",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5269",
-    word: "お祝い",
-    kana: "おいわい",
-    meaning: "cto getgratulatito get, celebratito get (congratulation, celebration)",
-    chineseMeaning: "cto getgratulatito get, celebratito get (congratulation, celebration)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "お祝い",
-    isKanji: true,
-    complexity: 11
-  },,
-  {
-    id: "expert_5270",
-    word: "案内",
-    kana: "あんないする",
-    meaning: "infcartoonmatito get, guidance (information, guidance)",
-    chineseMeaning: "infcartoonmatito get, guidance (information, guidance)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "案内",
-    isKanji: true,
-    complexity: 11
-  },,
-  {
-    id: "expert_5271",
-    word: "技術",
-    kana: "ぎじゅつ",
-    meaning: "technique, technology, skill",
-    chineseMeaning: "滑雪",
-    difficulty: "expert",
-    category: "技術",
-    jlptLevel: "n1",
-    kanji: "技術",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5272",
-    word: "下宿",
-    kana: "げしゅく",
-    meaning: "lodging, boarding house",
-    chineseMeaning: "lodging, boarding house",
-    difficulty: "expert",
-    category: "經濟",
-    jlptLevel: "n1",
-    kanji: "下宿",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5273",
-    word: "招待",
-    kana: "しょうたいする",
-    meaning: "invitatito get (invitation)",
-    chineseMeaning: "invitatito get (invitation)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "招待",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5274",
-    word: "反対",
-    kana: "はんたい",
-    meaning: "oppose, oppositito get, resistance (oppose, opposition, resistance)",
-    chineseMeaning: "oppose, oppositito get, resistance (oppose, opposition, resistance)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "反対",
-    isKanji: true,
-    complexity: 12
-  },,
-  {
-    id: "expert_5275",
-    word: "申す",
-    kana: "もうす",
-    meaning: "-- extra-modest (humble) expressito get fcartoon 言う (いう) -- (-- extra-modest (humble) expression for 言う (いう) --)",
-    chineseMeaning: "-- extra-modest (humble) expressito get fcartoon 言う (いう) -- (-- extra-modest (humble) expression for 言う (いう) --)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "申す",
-    isKanji: true,
-    complexity: 15
-  },,
-  {
-    id: "expert_5276",
-    word: "真面目",
-    kana: "まじめ",
-    meaning: "diligent, serious",
-    chineseMeaning: "diligent, serious",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "真面目",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5277",
-    word: "店員",
-    kana: "てんいん",
-    meaning: "clerk; shop-employee",
-    chineseMeaning: "clerk; shop-employee",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "店員",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5278",
-    word: "今夜",
-    kana: "こんや",
-    meaning: "this evening, tto getight (this evening, tonight)",
-    chineseMeaning: "this evening, tto getight (this evening, tonight)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "今夜",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5279",
-    word: "会話",
-    kana: "かいわ",
-    meaning: "cto getversatito get (conversation)",
-    chineseMeaning: "cto getversatito get (conversation)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "会話",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5280",
-    word: "交通",
-    kana: "こうつう",
-    meaning: "traffic, transpcartoontatito get (traffic, transportation)",
-    chineseMeaning: "traffic, transpcartoontatito get (traffic, transportation)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "交通",
-    isKanji: true,
-    complexity: 11
-  },,
-  {
-    id: "expert_5281",
-    word: "喜ぶ",
-    kana: "よろこぶ",
-    meaning: "to rejoice, to be delighted, to be glad",
-    chineseMeaning: "to rejoice, to be delighted, to be glad",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "喜ぶ",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5282",
-    word: "急行",
-    kana: "きゅうこう",
-    meaning: "express money cartoon bus (express train or bus)",
-    chineseMeaning: "express money cartoon bus (express train or bus)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "急行",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5283",
-    word: "校長",
-    kana: "こうちょう",
-    meaning: "principal, headmaster",
-    chineseMeaning: "principal, headmaster",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "校長",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5284",
-    word: "興味",
-    kana: "きょうみ",
-    meaning: "interest (in something)",
-    chineseMeaning: "interest (in something)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "興味",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5285",
-    word: "引っ越す",
-    kana: "ひっこす",
-    meaning: "to move to a new place of residence",
-    chineseMeaning: "to move to a new place of residence",
-    difficulty: "expert",
-    category: "場所",
-    jlptLevel: "n1",
-    kanji: "引っ越す",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5286",
-    word: "冷房",
-    kana: "れいぼう",
-    meaning: "cooling, air cto getditito geting (cooling, air conditioning)",
-    chineseMeaning: "cooling, air cto getditito geting (cooling, air conditioning)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "冷房",
-    isKanji: true,
-    complexity: 11
-  },,
-  {
-    id: "expert_5287",
-    word: "都合",
-    kana: "つごう",
-    meaning: "circumstances, cto getvenience (circumstances, convenience)",
-    chineseMeaning: "circumstances, cto getvenience (circumstances, convenience)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "都合",
-    isKanji: true,
-    complexity: 11
-  },,
-  {
-    id: "expert_5288",
-    word: "遠慮",
-    kana: "えんりょする",
-    meaning: "resmoneyt, reserve, hesitate (restraint, reserve, hesitate)",
-    chineseMeaning: "resmoneyt, reserve, hesitate (restraint, reserve, hesitate)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "遠慮",
-    isKanji: true,
-    complexity: 12
-  },,
-  {
-    id: "expert_5289",
-    word: "差し上げる",
-    kana: "さしあげる",
-    meaning: "-- humble expressito get fcartoon あげる -- (-- humble expression for あげる --)",
-    chineseMeaning: "-- humble expressito get fcartoon あげる -- (-- humble expression for あげる --)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "差し上げる",
-    isKanji: true,
-    complexity: 14
-  },,
-  {
-    id: "expert_5290",
-    word: "気持ち",
-    kana: "きもち",
-    meaning: "feeling, sensatito get, mood (feeling, sensation, mood)",
-    chineseMeaning: "feeling, sensatito get, mood (feeling, sensation, mood)",
-    difficulty: "expert",
-    category: "感情",
-    jlptLevel: "n1",
-    kanji: "気持ち",
-    isKanji: true,
-    complexity: 11
-  },,
-  {
-    id: "expert_5291",
-    word: "予約",
-    kana: "よやく",
-    meaning: "reservatito get (reservation)",
-    chineseMeaning: "reservatito get (reservation)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "予約",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5292",
-    word: "入学",
-    kana: "にゅうがくする",
-    meaning: "entry entry to school or university",
-    chineseMeaning: "entry entry to school or university",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "入学",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5293",
-    word: "片付ける",
-    kana: "かたづける",
-    meaning: "到 (clean) tidy up (v.t.), to (clean tidy up (v.t.), to put away)",
-    chineseMeaning: "到 (clean) tidy up (v.t.), to (clean tidy up (v.t.), to put away)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "片付ける",
-    isKanji: true,
-    complexity: 13
-  },,
-  {
-    id: "expert_5294",
-    word: "部長",
-    kana: "ぶちょう",
-    meaning: "department (divisito get) manager (department (division) manager)",
-    chineseMeaning: "department (divisito get) manager (department (division) manager)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "部長",
-    isKanji: true,
-    complexity: 12
-  },,
-  {
-    id: "expert_5295",
-    word: "生産",
-    kana: "せいさんする",
-    meaning: "production; production; to produce",
-    chineseMeaning: "production; production; to produce",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "生産",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5296",
-    word: "着物",
-    kana: "きもの",
-    meaning: "kimto geto; Japanese traditito getal dress (kimono; Japanese traditional dress)",
-    chineseMeaning: "kimto geto; Japanese traditito getal dress (kimono; Japanese traditional dress)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "着物",
-    isKanji: true,
-    complexity: 13
-  },,
-  {
-    id: "expert_5297",
-    word: "暮れる",
-    kana: "くれる",
-    meaning: "hand dark, to get dark, to come to an end",
-    chineseMeaning: "hand dark, to get dark, to come to an end",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "暮れる",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5298",
-    word: "昼間",
-    kana: "ひるま",
-    meaning: "daytime, during the day (daytime, during the day)",
-    chineseMeaning: "daytime, during the day (daytime, during the day)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "昼間",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5299",
-    word: "教育",
-    kana: "きょういく",
-    meaning: "educatito get (education)",
-    chineseMeaning: "educatito get (education)",
-    difficulty: "expert",
-    category: "學術",
-    jlptLevel: "n1",
-    kanji: "教育",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5300",
-    word: "邪魔",
-    kana: "じゃま",
-    meaning: "hindrance, intrusito get (hindrance, intrusion)",
-    chineseMeaning: "hindrance, intrusito get (hindrance, intrusion)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "邪魔",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5301",
-    word: "国際",
-    kana: "こくさい",
-    meaning: "internatito getal (international)",
-    chineseMeaning: "internatito getal (international)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "国際",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5302",
-    word: "伺う",
-    kana: "うかがう",
-    meaning: "humble form from 行く (いく), 聞く (きく) 和 来る (くる) (humble form of 行く (いく), 聞く (きく) and 来る (くる))",
-    chineseMeaning: "humble form from 行く (いく), 聞く (きく) 和 来る (くる) (humble form of 行く (いく), 聞く (きく) and 来る (くる))",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "伺う",
-    isKanji: true,
-    complexity: 13
-  },,
-  {
-    id: "expert_5303",
-    word: "再来週",
-    kana: "さらいしゅう",
-    meaning: "the week after next",
-    chineseMeaning: "the week after next",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "再来週",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5304",
-    word: "最近",
-    kana: "さいきん",
-    meaning: "recently, nowadays, in recent years, most recent, latest",
-    chineseMeaning: "recently, nowadays, in recent years, most recent, latest",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "最近",
-    isKanji: true,
-    complexity: 11
-  },,
-  {
-    id: "expert_5305",
-    word: "不便",
-    kana: "ふべん",
-    meaning: "incto getvenience (inconvenience)",
-    chineseMeaning: "incto getvenience (inconvenience)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "不便",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5306",
-    word: "例えば",
-    kana: "たとえば",
-    meaning: "fcartoon example, e.g. (for example, e.g.)",
-    chineseMeaning: "fcartoon example, e.g. (for example, e.g.)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "例えば",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5307",
-    word: "中々",
-    kana: "なかなか",
-    meaning: "very, considerably, quite (very, considerably, quite)",
-    chineseMeaning: "very, considerably, quite (very, considerably, quite)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "中々",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5308",
-    word: "講堂",
-    kana: "こうどう",
-    meaning: "auditcartoonium (auditorium)",
-    chineseMeaning: "auditcartoonium (auditorium)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "講堂",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5309",
-    word: "計画",
-    kana: "けいかくする",
-    meaning: "plan, project, schedule",
-    chineseMeaning: "plan, project, schedule",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "計画",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5310",
-    word: "経済",
-    kana: "けいざい",
-    meaning: "ecto getomics, finance, ecto getomy (economics, finance, economy)",
-    chineseMeaning: "ecto getomics, finance, ecto getomy (economics, finance, economy)",
-    difficulty: "expert",
-    category: "經濟",
-    jlptLevel: "n1",
-    kanji: "経済",
-    isKanji: true,
-    complexity: 12
-  },,
-  {
-    id: "expert_5311",
-    word: "是非",
-    kana: "ぜひ",
-    meaning: "當然, by all means; without fail (certainly, by all means; without fail)",
-    chineseMeaning: "當然, by all means; without fail (certainly, by all means; without fail)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "是非",
-    isKanji: true,
-    complexity: 12
-  },,
-  {
-    id: "expert_5312",
-    word: "為",
-    kana: "ため",
-    meaning: "good, advantage, in order 到 (good, advantage, in order to)",
-    chineseMeaning: "good, advantage, in order 到 (good, advantage, in order to)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "為",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5313",
-    word: "以外",
-    kana: "いがい",
-    meaning: "other than, with the exception from, excepting (other than, with the exception of, excepting)",
-    chineseMeaning: "other than, with the exception from, excepting (other than, with the exception of, excepting)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "以外",
-    isKanji: true,
-    complexity: 14
-  },,
-  {
-    id: "expert_5314",
-    word: "支度",
-    kana: "したくする",
-    meaning: "preparatito get (preparation)",
-    chineseMeaning: "preparatito get (preparation)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "支度",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5315",
-    word: "見える",
-    kana: "みえる",
-    meaning: "くる -- (to be visible; -- polite verb meaning 来る (くる) --)",
-    chineseMeaning: "くる -- (to be visible; -- polite verb meaning 来る (くる) --)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "見える",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5316",
-    word: "お金持ち",
-    kana: "かねもち; おかねもち",
-    meaning: "rich persto get (rich person)",
-    chineseMeaning: "rich persto get (rich person)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "お金持ち",
-    isKanji: true,
-    complexity: 11
-  },,
-  {
-    id: "expert_5317",
-    word: "説明",
-    kana: "せつめい",
-    meaning: "explanatito get (explanation)",
-    chineseMeaning: "explanatito get (explanation)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "説明",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5318",
-    word: "以上",
-    kana: "いじょう",
-    meaning: "mcartoone than; this is all (more than; this is all)",
-    chineseMeaning: "mcartoone than; this is all (more than; this is all)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "以上",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5319",
-    word: "特急",
-    kana: "とっきゅう",
-    meaning: "train faster than an express",
-    chineseMeaning: "train faster than an express",
-    difficulty: "expert",
-    category: "抽象",
-    jlptLevel: "n1",
-    kanji: "特急",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5320",
-    word: "具合",
-    kana: "ぐあい",
-    meaning: "cto getditito get, state, health (condition, state, health)",
-    chineseMeaning: "cto getditito get, state, health (condition, state, health)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "具合",
-    isKanji: true,
-    complexity: 11
-  },,
-  {
-    id: "expert_5321",
-    word: "堅; 硬; 固い",
-    kana: "かたい",
-    meaning: "solid, hard, firm",
-    chineseMeaning: "solid, hard, firm",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "堅; 硬; 固い",
-    isKanji: true,
-    complexity: 11
-  },,
-  {
-    id: "expert_5322",
-    word: "駐車場",
-    kana: "ちゅうしゃじょう",
-    meaning: "parking lot",
-    chineseMeaning: "parking lot",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "駐車場",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5323",
-    word: "天気予報",
-    kana: "てんきよほう",
-    meaning: "weather fcartoonecast (weather forecast)",
-    chineseMeaning: "weather fcartoonecast (weather forecast)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "天気予報",
-    isKanji: true,
-    complexity: 14
-  },,
-  {
-    id: "expert_5324",
-    word: "卒業",
-    kana: "そつぎょう",
-    meaning: "graduatito get (graduation)",
-    chineseMeaning: "graduatito get (graduation)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "卒業",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5325",
-    word: "専門",
-    kana: "せんもん",
-    meaning: "majcartoon; speciality (major; speciality)",
-    chineseMeaning: "majcartoon; speciality (major; speciality)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "専門",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5326",
-    word: "高校生",
-    kana: "こうこうせい",
-    meaning: "high 學校 student (high school student)",
-    chineseMeaning: "high 學校 student (high school student)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "高校生",
-    isKanji: true,
-    complexity: 12
-  },,
-  {
-    id: "expert_5327",
-    word: "昼休み",
-    kana: "ひるやすみ",
-    meaning: "lunch break, noto get recess (lunch break, noon recess)",
-    chineseMeaning: "lunch break, noto get recess (lunch break, noon recess)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "昼休み",
-    isKanji: true,
-    complexity: 12
-  },,
-  {
-    id: "expert_5328",
-    word: "忘れ物",
-    kana: "わすれもの",
-    meaning: "lost article, something fcartoongotten (lost article, something forgotten)",
-    chineseMeaning: "lost article, something fcartoongotten (lost article, something forgotten)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "忘れ物",
-    isKanji: true,
-    complexity: 13
-  },,
-  {
-    id: "expert_5329",
-    word: "下りる",
-    kana: "おりる",
-    meaning: "hand down, to get down, to go; come down",
-    chineseMeaning: "hand down, to get down, to go; come down",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "下りる",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5330",
-    word: "訳",
-    kana: "わけ",
-    meaning: "reasto get; explanatito get (reason; explanation)",
-    chineseMeaning: "reasto get; explanatito get (reason; explanation)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "訳",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5331",
-    word: "承知",
-    kana: "しょうちする",
-    meaning: "cto getsent, acceptance (consent, acceptance)",
-    chineseMeaning: "cto getsent, acceptance (consent, acceptance)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "承知",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5332",
-    word: "高校; 高等学校",
-    kana: "こうこう; こうとうがっこう",
-    meaning: "high 學校; senior high 學校 (high school; senior high school)",
-    chineseMeaning: "high 學校; senior high 學校 (high school; senior high school)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "高校; 高等学校",
-    isKanji: true,
-    complexity: 23
-  },,
-  {
-    id: "expert_5333",
-    word: "割合",
-    kana: "わりあい",
-    meaning: "rate, ratio, percentage",
-    chineseMeaning: "rate, ratio, percentage",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "割合",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5334",
-    word: "普通",
-    kana: "ふつう",
-    meaning: "commto get; usual (common; usual)",
-    chineseMeaning: "commto get; usual (common; usual)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "普通",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5335",
-    word: "息子",
-    kana: "むすこ",
-    meaning: "(humble) sto get ((humble) son)",
-    chineseMeaning: "(humble) sto get ((humble) son)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "息子",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5336",
-    word: "お子さん",
-    kana: "おこさん",
-    meaning: "(someone else's) child (有禮貌from) ((someone else's) child (polite))",
-    chineseMeaning: "(someone else's) child (有禮貌from) ((someone else's) child (polite))",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "お子さん",
-    isKanji: true,
-    complexity: 11
-  },,
-  {
-    id: "expert_5337",
-    word: "会場",
-    kana: "かいじょう",
-    meaning: "venue, meeting place",
-    chineseMeaning: "venue, meeting place",
-    difficulty: "expert",
-    category: "場所",
-    jlptLevel: "n1",
-    kanji: "会場",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5338",
-    word: "お見舞い",
-    kana: "おみまい",
-    meaning: "calling to get someone who is ill, visit (calling on someone who is ill, visit)",
-    chineseMeaning: "calling to get someone who is ill, visit (calling on someone who is ill, visit)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "お見舞い",
-    isKanji: true,
-    complexity: 14
-  },,
-  {
-    id: "expert_5339",
-    word: "展覧会",
-    kana: "てんらんかい",
-    meaning: "exhibitito get (exhibition)",
-    chineseMeaning: "exhibitito get (exhibition)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "展覧会",
-    isKanji: true,
-    complexity: 12
-  },,
-  {
-    id: "expert_5340",
-    word: "久しぶり",
-    kana: "ひさしぶり",
-    meaning: "it has been a long time; for the first time in a long time (it has been a long time; for the first time in a long time)",
-    chineseMeaning: "it has been a long time; for the first time in a long time (it has been a long time; for the first time in a long time)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "久しぶり",
-    isKanji: true,
-    complexity: 17
-  },,
-  {
-    id: "expert_5341",
-    word: "遅れる",
-    kana: "おくれる",
-    meaning: "到 (be) become late (to (be) become late)",
-    chineseMeaning: "到 (be) become late (to (be) become late)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "遅れる",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5342",
-    word: "召し上がる",
-    kana: "めしあがる",
-    meaning: "-- 敬語 form from 食べる (たべる) 和 飲む (のむ) -- (-- honorific form of 食べる (たべる) and 飲む (のむ) --)",
-    chineseMeaning: "-- 敬語 form from 食べる (たべる) 和 飲む (のむ) -- (-- honorific form of 食べる (たべる) and 飲む (のむ) --)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "召し上がる",
-    isKanji: true,
-    complexity: 16
-  },,
-  {
-    id: "expert_5343",
-    word: "注射",
-    kana: "ちゅうしゃ",
-    meaning: "injectito get (injection)",
-    chineseMeaning: "injectito get (injection)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "注射",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5344",
-    word: "安心",
-    kana: "あんしん",
-    meaning: "peace from mind, relief (peace of mind, relief)",
-    chineseMeaning: "peace from mind, relief (peace of mind, relief)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "安心",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5345",
-    word: "先輩",
-    kana: "せんぱい",
-    meaning: "senior members from a group (senior members of a group)",
-    chineseMeaning: "senior members from a group (senior members of a group)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "先輩",
-    isKanji: true,
-    complexity: 11
-  },,
-  {
-    id: "expert_5346",
-    word: "約束",
-    kana: "やくそく",
-    meaning: "arrangement, appointment, promise",
-    chineseMeaning: "arrangement, appointment, promise",
-    difficulty: "expert",
-    category: "場所",
-    jlptLevel: "n1",
-    kanji: "約束",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5347",
-    word: "世話",
-    kana: "せわする",
-    meaning: "looking after; looking after; to look after",
-    chineseMeaning: "looking after; looking after; to look after",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "世話",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5348",
-    word: "近所",
-    kana: "きんじょ",
-    meaning: "neighbcartoonhood (neighborhood)",
-    chineseMeaning: "neighbcartoonhood (neighborhood)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "近所",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5349",
-    word: "将来",
-    kana: "しょうらい",
-    meaning: "(in the) future; prospects",
-    chineseMeaning: "(in the) future; prospects",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "将来",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5350",
-    word: "習慣",
-    kana: "しゅうかん",
-    meaning: "in reference to culture",
-    chineseMeaning: "in reference to culture",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "習慣",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5351",
-    word: "拝見",
-    kana: "はいけんする",
-    meaning: "(humble) (有禮貌from) seeing, look at ((humble) (polite) seeing, look at)",
-    chineseMeaning: "(humble) (有禮貌from) seeing, look at ((humble) (polite) seeing, look at)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "拝見",
-    isKanji: true,
-    complexity: 13
-  },,
-  {
-    id: "expert_5352",
-    word: "新聞社",
-    kana: "しんぶんしゃ",
-    meaning: "new溫泉per company (newspaper company)",
-    chineseMeaning: "new溫泉per company (newspaper company)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "新聞社",
-    isKanji: true,
-    complexity: 12
-  },,
-  {
-    id: "expert_5353",
-    word: "回る、回す",
-    kana: "まわる、まわす",
-    meaning: "to go around, to revolve",
-    chineseMeaning: "to go around, to revolve",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "回る、回す",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5354",
-    word: "工業",
-    kana: "こうぎょう",
-    meaning: "(manufacturing) industry",
-    chineseMeaning: "(manufacturing) industry",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "工業",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5355",
-    word: "研究室",
-    kana: "けんきゅうしつ",
-    meaning: "the prfromesscartoon's fromfice; labcartoonatcartoony (the professor's office; laboratory)",
-    chineseMeaning: "the prfromesscartoon's fromfice; labcartoonatcartoony (the professor's office; laboratory)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "研究室",
-    isKanji: true,
-    complexity: 17
-  },,
-  {
-    id: "expert_5356",
-    word: "工場",
-    kana: "こうじょう",
-    meaning: "factcartoony (factory)",
-    chineseMeaning: "factcartoony (factory)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "工場",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5357",
-    word: "紹介",
-    kana: "しょうかい",
-    meaning: "an introductito get (an introduction)",
-    chineseMeaning: "an introductito get (an introduction)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "紹介",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5358",
-    word: "優しい",
-    kana: "やさしい",
-    meaning: "kind (persto get), gentle (persto get), easy (problem) (kind (person), gentle (person), easy (problem))",
-    chineseMeaning: "kind (persto get), gentle (persto get), easy (problem) (kind (person), gentle (person), easy (problem))",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "優しい",
-    isKanji: true,
-    complexity: 15
-  },,
-  {
-    id: "expert_5359",
-    word: "両方",
-    kana: "りょうほう",
-    meaning: "both sides, both parties",
-    chineseMeaning: "both sides, both parties",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "両方",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5360",
-    word: "警察",
-    kana: "けいさつ",
-    meaning: "police; police statito get (police; police station)",
-    chineseMeaning: "police; police statito get (police; police station)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "警察",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5361",
-    word: "取り替える",
-    kana: "とりかえる",
-    meaning: "to exchange, to replace",
-    chineseMeaning: "to exchange, to replace",
-    difficulty: "expert",
-    category: "場所",
-    jlptLevel: "n1",
-    kanji: "取り替える",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5362",
-    word: "参る",
-    kana: "まいる",
-    meaning: "humble expression for 行く 和 来る (humble expression for 行く and 来る)",
-    chineseMeaning: "humble expression for 行く 和 来る (humble expression for 行く and 来る)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "参る",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5363",
-    word: "全然",
-    kana: "ぜんぜん",
-    meaning: "not at all; wholly, entirely",
-    chineseMeaning: "not at all; wholly, entirely",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "全然",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5364",
-    word: "復習",
-    kana: "ふくしゅう",
-    meaning: "review (from lessons), revision (review (of lessons), revision)",
-    chineseMeaning: "review (from lessons), revision (review (of lessons), revision)",
-    difficulty: "expert",
-    category: "抽象",
-    jlptLevel: "n1",
-    kanji: "復習",
-    isKanji: true,
-    complexity: 12
-  },,
-  {
-    id: "expert_5365",
-    word: "間に合う",
-    kana: "まにあう",
-    meaning: "to be in time for",
-    chineseMeaning: "to be in time for",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "間に合う",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5366",
-    word: "役に立つ",
-    kana: "やくにたつ",
-    meaning: "to be helpful, to be useful",
-    chineseMeaning: "to be helpful, to be useful",
-    difficulty: "expert",
-    category: "經濟",
-    jlptLevel: "n1",
-    kanji: "役に立つ",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5367",
-    word: "研究",
-    kana: "けんきゅう",
-    meaning: "study, research, investigatito get (study, research, investigation)",
-    chineseMeaning: "study, research, investigatito get (study, research, investigation)",
-    difficulty: "expert",
-    category: "學術",
-    jlptLevel: "n1",
-    kanji: "研究",
-    isKanji: true,
-    complexity: 12
-  },,
-  {
-    id: "expert_5368",
-    word: "途中",
-    kana: "とちゅう",
-    meaning: "to get the way, midway (on the way, midway)",
-    chineseMeaning: "to get the way, midway (on the way, midway)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "途中",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5369",
-    word: "入院",
-    kana: "にゅういんする",
-    meaning: "hospitalizatito get (hospitalization)",
-    chineseMeaning: "hospitalizatito get (hospitalization)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "入院",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5370",
-    word: "乗り換える",
-    kana: "のりかえる",
-    meaning: "bus, money, etc.",
-    chineseMeaning: "bus, money, etc.",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "乗り換える",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5371",
-    word: "看護婦",
-    kana: "かんごふ",
-    meaning: "(female) nurse",
-    chineseMeaning: "(female) nurse",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "看護婦",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5372",
-    word: "相談",
-    kana: "そうだんする",
-    meaning: "cto getsultatito get (consultation)",
-    chineseMeaning: "cto getsultatito get (consultation)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "相談",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5373",
-    word: "翻訳",
-    kana: "ほんやく",
-    meaning: "translatito get (translation)",
-    chineseMeaning: "translatito get (translation)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "翻訳",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5374",
-    word: "競争",
-    kana: "きょうそう",
-    meaning: "competitito get, cto gettest (competition, contest)",
-    chineseMeaning: "competitito get, cto gettest (competition, contest)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "競争",
-    isKanji: true,
-    complexity: 11
-  },,
-  {
-    id: "expert_5375",
-    word: "会議",
-    kana: "かいぎ",
-    meaning: "商業from meeting; conference (business meeting; conference)",
-    chineseMeaning: "商業from meeting; conference (business meeting; conference)",
-    difficulty: "expert",
-    category: "經濟",
-    jlptLevel: "n1",
-    kanji: "会議",
-    isKanji: true,
-    complexity: 12
-  },,
-  {
-    id: "expert_5376",
-    word: "生活",
-    kana: "せいかつする",
-    meaning: "living, life; living, life; to live",
-    chineseMeaning: "living, life; living, life; to live",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "生活",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5377",
-    word: "関係",
-    kana: "かんけい",
-    meaning: "relatito get(ship), cto getnectito get (relation(ship), connection)",
-    chineseMeaning: "relatito get(ship), cto getnectito get (relation(ship), connection)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "関係",
-    isKanji: true,
-    complexity: 12
-  },,
-  {
-    id: "expert_5378",
-    word: "輸出",
-    kana: "ゆしゅつする",
-    meaning: "expcartoont (export)",
-    chineseMeaning: "expcartoont (export)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "輸出",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5379",
-    word: "神社",
-    kana: "じんじゃ",
-    meaning: "ShinShinto shrine",
-    chineseMeaning: "ShinShinto shrine",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "神社",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5380",
-    word: "大分",
-    kana: "だいぶ",
-    meaning: "fairly 好, fairly well, to a large extent, considerably, pretty much",
-    chineseMeaning: "fairly 好, fairly well, to a large extent, considerably, pretty much",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "大分",
-    isKanji: true,
-    complexity: 12
-  },,
-  {
-    id: "expert_5381",
-    word: "趣味",
-    kana: "しゅみ",
-    meaning: "hobby; pastime (hobby; pastime)",
-    chineseMeaning: "hobby; pastime (hobby; pastime)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "趣味",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5382",
-    word: "家内",
-    kana: "かない",
-    meaning: "(or's own) wife ((one's own) wife)",
-    chineseMeaning: "(or's own) wife ((one's own) wife)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "家内",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5383",
-    word: "社会",
-    kana: "しゃかい",
-    meaning: "society",
-    chineseMeaning: "society",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "社会",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5384",
-    word: "明るい",
-    kana: "あかるい",
-    meaning: "bright (in reference bright (in reference to personality or weather; cheerful)",
-    chineseMeaning: "bright (in reference bright (in reference to personality or weather; cheerful)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "明るい",
-    isKanji: true,
-    complexity: 12
-  },,
-  {
-    id: "expert_5385",
-    word: "朝御飯",
-    kana: "あさごはん",
-    meaning: "breakfast",
-    chineseMeaning: "breakfast",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "朝御飯",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5386",
-    word: "明後日",
-    kana: "あさって",
-    meaning: "day after 到mcartoonrow (day after tomorrow)",
-    chineseMeaning: "day after 到mcartoonrow (day after tomorrow)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "明後日",
-    isKanji: true,
-    complexity: 12
-  },,
-  {
-    id: "expert_5387",
-    word: "遊ぶ",
-    kana: "あそぶ",
-    meaning: "to play; to spend time pleasantly; to hang out",
-    chineseMeaning: "to play; to spend time pleasantly; to hang out",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "遊ぶ",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5388",
-    word: "暑い",
-    kana: "あつい",
-    meaning: "hot (in reference hot (in reference to weather, warm)",
-    chineseMeaning: "hot (in reference hot (in reference to weather, warm)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "暑い",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5389",
-    word: "後",
-    kana: "あと",
-    meaning: "afterwards (later); in the future; the rest; since then",
-    chineseMeaning: "afterwards (later); in the future; the rest; since then",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "後",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5390",
-    word: "医者",
-    kana: "いしゃ",
-    meaning: "doctcartoon; physician (doctor; physician)",
-    chineseMeaning: "doctcartoon; physician (doctor; physician)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "医者",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5391",
-    word: "痛い",
-    kana: "いたい",
-    meaning: "hurt; painful; scartoone (hurt; painful; sore)",
-    chineseMeaning: "hurt; painful; scartoone (hurt; painful; sore)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "痛い",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5392",
-    word: "一番",
-    kana: "いちばん",
-    meaning: "best (most), first, number or (best (most), first, number one)",
-    chineseMeaning: "best (most), first, number or (best (most), first, number one)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "一番",
-    isKanji: true,
-    complexity: 11
-  },,
-  {
-    id: "expert_5393",
-    word: "五日",
-    kana: "いつか",
-    meaning: "five days; fifth day from the month (five days; fifth day of the month)",
-    chineseMeaning: "five days; fifth day from the month (five days; fifth day of the month)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "五日",
-    isKanji: true,
-    complexity: 12
-  },,
-  {
-    id: "expert_5394",
-    word: "上",
-    kana: "うえ",
-    meaning: "above (up, top, etc.), over, to get top from (above (up, top, etc.), over, on top of)",
-    chineseMeaning: "above (up, top, etc.), over, to get top from (above (up, top, etc.), over, on top of)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "上",
-    isKanji: true,
-    complexity: 11
-  },,
-  {
-    id: "expert_5395",
-    word: "映画館",
-    kana: "えいがかん",
-    meaning: "movie theater, cinema",
-    chineseMeaning: "movie theater, cinema",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "映画館",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5396",
-    word: "美味しい",
-    kana: "おいしい",
-    meaning: "delicious, tasty",
-    chineseMeaning: "delicious, tasty",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "美味しい",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5397",
-    word: "大勢",
-    kana: "おおぜい",
-    meaning: "great number from people (great number of people)",
-    chineseMeaning: "great number from people (great number of people)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "大勢",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5398",
-    word: "お菓子",
-    kana: "おかし",
-    meaning: "cto getfectito gets, sweets, snack (confections, sweets, snack)",
-    chineseMeaning: "cto getfectito gets, sweets, snack (confections, sweets, snack)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "お菓子",
-    isKanji: true,
-    complexity: 12
-  },,
-  {
-    id: "expert_5399",
-    word: "起きる",
-    kana: "おきる",
-    meaning: "hand up (e.g., towel sleeping); to get up (e.g., from sleeping; to happen)",
-    chineseMeaning: "hand up (e.g., towel sleeping); to get up (e.g., from sleeping; to happen)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "起きる",
-    isKanji: true,
-    complexity: 11
-  },,
-  {
-    id: "expert_5400",
-    word: "奥さん",
-    kana: "おくさん",
-    meaning: "(someto gete else's) wife (hto get.) ((someone else's) wife (hon.))",
-    chineseMeaning: "(someto gete else's) wife (hto get.) ((someone else's) wife (hon.))",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "奥さん",
-    isKanji: true,
-    complexity: 11
-  },,
-  {
-    id: "expert_5401",
-    word: "伯父; 叔父さん",
-    kana: "おじさん",
-    meaning: "uncle, middle-aged man",
-    chineseMeaning: "uncle, middle-aged man",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "伯父; 叔父さん",
-    isKanji: true,
-    complexity: 13
-  },,
-  {
-    id: "expert_5402",
-    word: "お手洗い",
-    kana: "おてあらい",
-    meaning: "lit., a place to wash one's hands",
-    chineseMeaning: "lit., a place to wash one's hands",
-    difficulty: "expert",
-    category: "場所",
-    jlptLevel: "n1",
-    kanji: "お手洗い",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5403",
-    word: "一昨日",
-    kana: "おととい",
-    meaning: "the day befcartoone yesterday (the day before yesterday)",
-    chineseMeaning: "the day befcartoone yesterday (the day before yesterday)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "一昨日",
-    isKanji: true,
-    complexity: 13
-  },,
-  {
-    id: "expert_5404",
-    word: "お兄さん",
-    kana: "おにいさん",
-    meaning: "(someto gete else's) older brother (fcartoonmal) ((someone else's) older brother (formal))",
-    chineseMeaning: "(someto gete else's) older brother (fcartoonmal) ((someone else's) older brother (formal))",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "お兄さん",
-    isKanji: true,
-    complexity: 14
-  },,
-  {
-    id: "expert_5405",
-    word: "伯母さん; 叔母さん",
-    kana: "おばさん",
-    meaning: "aunt",
-    chineseMeaning: "aunt",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "伯母さん; 叔母さん",
-    isKanji: true,
-    complexity: 13
-  },,
-  {
-    id: "expert_5406",
-    word: "覚える",
-    kana: "おぼえる",
-    meaning: "to learn, to commit to memory, to remember, to memorize",
-    chineseMeaning: "to learn, to commit to memory, to remember, to memorize",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "覚える",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5407",
-    word: "面白い",
-    kana: "おもしろい",
-    meaning: "interesting, amusing",
-    chineseMeaning: "interesting, amusing",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "面白い",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5408",
-    word: "外国",
-    kana: "がいこく",
-    meaning: "fcartooneign country; abroad (foreign country; abroad)",
-    chineseMeaning: "fcartooneign country; abroad (foreign country; abroad)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "外国",
-    isKanji: true,
-    complexity: 11
-  },,
-  {
-    id: "expert_5409",
-    word: "外国人",
-    kana: "がいこくじん",
-    meaning: "fcartooneigner (foreigner)",
-    chineseMeaning: "fcartooneigner (foreigner)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "外国人",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5410",
-    word: "会社",
-    kana: "かいしゃ",
-    meaning: "company, ccartoonpcartoonatito get (company, corporation)",
-    chineseMeaning: "company, ccartoonpcartoonatito get (company, corporation)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "会社",
-    isKanji: true,
-    complexity: 13
-  },,
-  {
-    id: "expert_5411",
-    word: "方",
-    kana: "かた",
-    meaning: "-- 敬語 form for 人 (ひと) --; way from doing (-- honorific form for 人 (ひと) --; way of doing)",
-    chineseMeaning: "-- 敬語 form for 人 (ひと) --; way from doing (-- honorific form for 人 (ひと) --; way of doing)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "方",
-    isKanji: true,
-    complexity: 11
-  },,
-  {
-    id: "expert_5412",
-    word: "家族",
-    kana: "かぞく",
-    meaning: "family, members from a family (family, members of a family)",
-    chineseMeaning: "family, members from a family (family, members of a family)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "家族",
-    isKanji: true,
-    complexity: 12
-  },,
-  {
-    id: "expert_5413",
-    word: "片仮名",
-    kana: "かたかな",
-    meaning: "katakana",
-    chineseMeaning: "katakana",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "片仮名",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5414",
-    word: "火曜日",
-    kana: "かようび",
-    meaning: "Tuesday",
-    chineseMeaning: "Tuesday",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "火曜日",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5415",
-    word: "辛い",
-    kana: "からい",
-    meaning: "hot 和 spicy; salty (hot and spicy; salty)",
-    chineseMeaning: "hot 和 spicy; salty (hot and spicy; salty)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "辛い",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5416",
-    word: "軽い",
-    kana: "かるい",
-    meaning: "light, nto get-serious, mincartoon (light, non-serious, minor)",
-    chineseMeaning: "light, nto get-serious, mincartoon (light, non-serious, minor)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "軽い",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5417",
-    word: "可愛い",
-    kana: "かわいい",
-    meaning: "cute, adcartoonable (cute, adorable)",
-    chineseMeaning: "cute, adcartoonable (cute, adorable)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "可愛い",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5418",
-    word: "喫茶店",
-    kana: "きっさてん",
-    meaning: "café",
-    chineseMeaning: "café",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "喫茶店",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5419",
-    word: "今日",
-    kana: "きょう",
-    meaning: "到day, this day (today, this day)",
-    chineseMeaning: "到day, this day (today, this day)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "今日",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5420",
-    word: "兄弟",
-    kana: "きょうだい",
-    meaning: "siblings (humble), brothers 和 sisters (siblings (humble), brothers and sisters)",
-    chineseMeaning: "siblings (humble), brothers 和 sisters (siblings (humble), brothers and sisters)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "兄弟",
-    isKanji: true,
-    complexity: 13
-  },,
-  {
-    id: "expert_5421",
-    word: "金曜日",
-    kana: "きんようび",
-    meaning: "Friday",
-    chineseMeaning: "Friday",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "金曜日",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5422",
-    word: "下さい",
-    kana: "ください",
-    meaning: "(with te-fcartoonm verb) please do fcartoon me ((with te-form verb) please do for me)",
-    chineseMeaning: "(with te-fcartoonm verb) please do fcartoon me ((with te-form verb) please do for me)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "下さい",
-    isKanji: true,
-    complexity: 13
-  },,
-  {
-    id: "expert_5423",
-    word: "国",
-    kana: "くに",
-    meaning: "country; place from origin (country; place of origin)",
-    chineseMeaning: "country; place from origin (country; place of origin)",
-    difficulty: "expert",
-    category: "場所",
-    jlptLevel: "n1",
-    kanji: "国",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5424",
-    word: "警官",
-    kana: "けいかん",
-    meaning: "police fromficer (police officer)",
-    chineseMeaning: "police fromficer (police officer)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "警官",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5425",
-    word: "今朝",
-    kana: "けさ",
-    meaning: "this mcartoonning (this morning)",
-    chineseMeaning: "this mcartoonning (this morning)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "今朝",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5426",
-    word: "結構",
-    kana: "けっこう",
-    meaning: "splendid; enough, 到lerably (splendid; enough, tolerably)",
-    chineseMeaning: "splendid; enough, 到lerably (splendid; enough, tolerably)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "結構",
-    isKanji: true,
-    complexity: 11
-  },,
-  {
-    id: "expert_5427",
-    word: "結婚",
-    kana: "けっこん (する)",
-    meaning: "marriage (get married)",
-    chineseMeaning: "marriage (get married)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "結婚",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5428",
-    word: "月曜日",
-    kana: "げつようび",
-    meaning: "Mto getday (Monday)",
-    chineseMeaning: "Mto getday (Monday)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "月曜日",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5429",
-    word: "玄関",
-    kana: "げんかん",
-    meaning: "to a house or a building",
-    chineseMeaning: "to a house or a building",
-    difficulty: "expert",
-    category: "經濟",
-    jlptLevel: "n1",
-    kanji: "玄関",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5430",
-    word: "交差点",
-    kana: "こうさてん",
-    meaning: "intersectito get (intersection)",
-    chineseMeaning: "intersectito get (intersection)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "交差点",
-    isKanji: true,
-    complexity: 11
-  },,
-  {
-    id: "expert_5431",
-    word: "午後",
-    kana: "ごご",
-    meaning: "afternoto get, P.M. (afternoon, P.M.)",
-    chineseMeaning: "afternoto get, P.M. (afternoon, P.M.)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "午後",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5432",
-    word: "九日",
-    kana: "ここのか",
-    meaning: "nine days; ninth day from the month (nine days; ninth day of the month)",
-    chineseMeaning: "nine days; ninth day from the month (nine days; ninth day of the month)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "九日",
-    isKanji: true,
-    complexity: 12
-  },,
-  {
-    id: "expert_5433",
-    word: "午前",
-    kana: "ごぜん",
-    meaning: "mcartoonning, A.M. (morning, A.M.)",
-    chineseMeaning: "mcartoonning, A.M. (morning, A.M.)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "午前",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5434",
-    word: "言葉",
-    kana: "ことば",
-    meaning: "語言; word(s); expression(s) (language; word(s); expression(s))",
-    chineseMeaning: "語言; word(s); expression(s) (language; word(s); expression(s))",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "言葉",
-    isKanji: true,
-    complexity: 11
-  },,
-  {
-    id: "expert_5435",
-    word: "今月",
-    kana: "こんげつ",
-    meaning: "this mto getth (this month)",
-    chineseMeaning: "this mto getth (this month)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "今月",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5436",
-    word: "今晩",
-    kana: "こんばん",
-    meaning: "tto getight, this evening (tonight, this evening)",
-    chineseMeaning: "tto getight, this evening (tonight, this evening)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "今晩",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5437",
-    word: "作文",
-    kana: "さくぶん",
-    meaning: "essay; compositito get (essay; composition)",
-    chineseMeaning: "essay; compositito get (essay; composition)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "作文",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5438",
-    word: "さ来年",
-    kana: "さらいねん",
-    meaning: "year after next",
-    chineseMeaning: "year after next",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "さ来年",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5439",
-    word: "散歩",
-    kana: "さんぽ (する)",
-    meaning: "walk, stroll",
-    chineseMeaning: "walk, stroll",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "散歩",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5440",
-    word: "仕事",
-    kana: "しごと",
-    meaning: "work, 工作, occupation, employment (work, job, occupation, employment)",
-    chineseMeaning: "work, 工作, occupation, employment (work, job, occupation, employment)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "仕事",
-    isKanji: true,
-    complexity: 12
-  },,
-  {
-    id: "expert_5441",
-    word: "辞書",
-    kana: "じしょ",
-    meaning: "dictito getary (dictionary)",
-    chineseMeaning: "dictito getary (dictionary)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "辞書",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5442",
-    word: "質問",
-    kana: "しつもん",
-    meaning: "questito get, inquiry (question, inquiry)",
-    chineseMeaning: "questito get, inquiry (question, inquiry)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "質問",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5443",
-    word: "自転車",
-    kana: "じてんしゃ",
-    meaning: "bicycle",
-    chineseMeaning: "bicycle",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "自転車",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5444",
-    word: "自動車",
-    kana: "じどうしゃ",
-    meaning: "au到mobile (automobile)",
-    chineseMeaning: "au到mobile (automobile)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "自動車",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5445",
-    word: "字引",
-    kana: "じびき",
-    meaning: "dictito getary (dictionary)",
-    chineseMeaning: "dictito getary (dictionary)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "字引",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5446",
-    word: "自分",
-    kana: "じぶん",
-    meaning: "myself, to geteself (myself, oneself)",
-    chineseMeaning: "myself, to geteself (myself, oneself)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "自分",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5447",
-    word: "写真",
-    kana: "しゃしん",
-    meaning: "a picture; a pho到graph (a picture; a photograph)",
-    chineseMeaning: "a picture; a pho到graph (a picture; a photograph)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "写真",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5448",
-    word: "宿題",
-    kana: "しゅくだい",
-    meaning: "homewcartoonk (homework)",
-    chineseMeaning: "homewcartoonk (homework)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "宿題",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5449",
-    word: "丈夫",
-    kana: "じょうぶ",
-    meaning: "strto getg, solid, durable (strong, solid, durable)",
-    chineseMeaning: "strto getg, solid, durable (strong, solid, durable)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "丈夫",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5450",
-    word: "食堂",
-    kana: "しょくどう",
-    meaning: "cafeteria, dining hall",
-    chineseMeaning: "cafeteria, dining hall",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "食堂",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5451",
-    word: "水曜日",
-    kana: "すいようび",
-    meaning: "Wednesday",
-    chineseMeaning: "Wednesday",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "水曜日",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5452",
-    word: "好き",
-    kana: "すき",
-    meaning: "liking, fto getdness, love (liking, fondness, love)",
-    chineseMeaning: "liking, fto getdness, love (liking, fondness, love)",
-    difficulty: "expert",
-    category: "感情",
-    jlptLevel: "n1",
-    kanji: "好き",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5453",
-    word: "狭い",
-    kana: "せまい",
-    meaning: "narrow; not 溫泉cious (narrow; not spacious)",
-    chineseMeaning: "narrow; not 溫泉cious (narrow; not spacious)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "狭い",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5454",
-    word: "先月",
-    kana: "せんげつ",
-    meaning: "last mto getth (last month)",
-    chineseMeaning: "last mto getth (last month)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "先月",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5455",
-    word: "先生",
-    kana: "せんせい",
-    meaning: "teacher, prfromesscartoon; master; doctcartoon (teacher, professor; master; doctor)",
-    chineseMeaning: "teacher, prfromesscartoon; master; doctcartoon (teacher, professor; master; doctor)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "先生",
-    isKanji: true,
-    complexity: 14
-  },,
-  {
-    id: "expert_5456",
-    word: "掃除",
-    kana: "そうじ (する)",
-    meaning: "cleaning, sweeping",
-    chineseMeaning: "cleaning, sweeping",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "掃除",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5457",
-    word: "大使館",
-    kana: "たいしかん",
-    meaning: "embassy",
-    chineseMeaning: "embassy",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "大使館",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5458",
-    word: "大丈夫",
-    kana: "だいじょうぶ",
-    meaning: "It's ok (all right); No need It's ok (all right; No need to worry; Everything is under control)",
-    chineseMeaning: "It's ok (all right); No need It's ok (all right; No need to worry; Everything is under control)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "大丈夫",
-    isKanji: true,
-    complexity: 17
-  },,
-  {
-    id: "expert_5459",
-    word: "大好き",
-    kana: "だいすき",
-    meaning: "very like-able, like very much (very like-able, like very much)",
-    chineseMeaning: "very like-able, like very much (very like-able, like very much)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "大好き",
-    isKanji: true,
-    complexity: 12
-  },,
-  {
-    id: "expert_5460",
-    word: "大切",
-    kana: "たいせつ",
-    meaning: "impcartoontant (important)",
-    chineseMeaning: "impcartoontant (important)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "大切",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5461",
-    word: "大変",
-    kana: "たいへん",
-    meaning: "very; difficult, hard (very; difficult, hard)",
-    chineseMeaning: "very; difficult, hard (very; difficult, hard)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "大変",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5462",
-    word: "誕生日",
-    kana: "たんじょうび",
-    meaning: "birthday",
-    chineseMeaning: "birthday",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "誕生日",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5463",
-    word: "近い",
-    kana: "ちかい",
-    meaning: "near, close by, shcartoont (near, close by, short)",
-    chineseMeaning: "near, close by, shcartoont (near, close by, short)",
-    difficulty: "expert",
-    category: "性質",
-    jlptLevel: "n1",
-    kanji: "近い",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5464",
-    word: "近く",
-    kana: "ちかく",
-    meaning: "nearby; in the neighbcartoonhood (nearby; in the neighborhood)",
-    chineseMeaning: "nearby; in the neighbcartoonhood (nearby; in the neighborhood)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "近く",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5465",
-    word: "地下鉄",
-    kana: "ちかてつ",
-    meaning: "underground money, subway (underground train, subway)",
-    chineseMeaning: "underground money, subway (underground train, subway)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "地下鉄",
-    isKanji: true,
-    complexity: 13
-  },,
-  {
-    id: "expert_5466",
-    word: "一日",
-    kana: "ついたち",
-    meaning: "or day; first day from the month (one day; first day of the month)",
-    chineseMeaning: "or day; first day from the month (one day; first day of the month)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "一日",
-    isKanji: true,
-    complexity: 12
-  },,
-  {
-    id: "expert_5467",
-    word: "疲れる",
-    kana: "つかれる",
-    meaning: "hand (become) tired; to get (become tired; to become fatigued)",
-    chineseMeaning: "hand (become) tired; to get (become tired; to become fatigued)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "疲れる",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5468",
-    word: "電気",
-    kana: "でんき",
-    meaning: "electricity, (electric) light",
-    chineseMeaning: "electricity, (electric) light",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "電気",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5469",
-    word: "電車",
-    kana: "でんしゃ",
-    meaning: "electric money (electric train)",
-    chineseMeaning: "electric money (electric train)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "電車",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5470",
-    word: "電話",
-    kana: "でんわ",
-    meaning: "a telephto gete (a telephone)",
-    chineseMeaning: "a telephto gete (a telephone)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "電話",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5471",
-    word: "十日",
-    kana: "とおか",
-    meaning: "ten days; tenth day from the month (ten days; tenth day of the month)",
-    chineseMeaning: "ten days; tenth day from the month (ten days; tenth day of the month)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "十日",
-    isKanji: true,
-    complexity: 12
-  },,
-  {
-    id: "expert_5472",
-    word: "図書館",
-    kana: "としょかん",
-    meaning: "library",
-    chineseMeaning: "library",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "図書館",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5473",
-    word: "土曜日",
-    kana: "どようび",
-    meaning: "Saturday",
-    chineseMeaning: "Saturday",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "土曜日",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5474",
-    word: "取る",
-    kana: "とる",
-    meaning: "a class; hand (a grade) (to take (a class); to get (a grade))",
-    chineseMeaning: "a class; hand (a grade) (to take (a class); to get (a grade))",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "取る",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5475",
-    word: "中",
-    kana: "なか",
-    meaning: "inside, middle, amto getg (inside, middle, among)",
-    chineseMeaning: "inside, middle, amto getg (inside, middle, among)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "中",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5476",
-    word: "夏休み",
-    kana: "なつやすみ",
-    meaning: "summer vacatito get (summer vacation)",
-    chineseMeaning: "summer vacatito get (summer vacation)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "夏休み",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5477",
-    word: "日曜日",
-    kana: "にちようび",
-    meaning: "Sunday",
-    chineseMeaning: "Sunday",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "日曜日",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5478",
-    word: "乗る",
-    kana: "のる",
-    meaning: "hand to get, to get on, to ride in, to board",
-    chineseMeaning: "hand to get, to get on, to ride in, to board",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "乗る",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5479",
-    word: "初め; 始め",
-    kana: "はじめ",
-    meaning: "beginning, start",
-    chineseMeaning: "beginning, start",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "初め; 始め",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5480",
-    word: "初めて",
-    kana: "はじめて",
-    meaning: "for the first time (for the first time)",
-    chineseMeaning: "for the first time (for the first time)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "初めて",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5481",
-    word: "二十歳",
-    kana: "はたち",
-    meaning: "20 years old",
-    chineseMeaning: "20 years old",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "二十歳",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5482",
-    word: "二十日",
-    kana: "はつか",
-    meaning: "day of the month",
-    chineseMeaning: "day of the month",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "二十日",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5483",
-    word: "番号",
-    kana: "ばんごう",
-    meaning: "number, series from digits (number, series of digits)",
-    chineseMeaning: "number, series from digits (number, series of digits)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "番号",
-    isKanji: true,
-    complexity: 11
-  },,
-  {
-    id: "expert_5484",
-    word: "晩御飯",
-    kana: "ばんごはん",
-    meaning: "dinner, evening meal",
-    chineseMeaning: "dinner, evening meal",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "晩御飯",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5485",
-    word: "飛行機",
-    kana: "ひこうき",
-    meaning: "airplane",
-    chineseMeaning: "airplane",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "飛行機",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5486",
-    word: "平仮名",
-    kana: "ひらがな",
-    meaning: "hiragana",
-    chineseMeaning: "hiragana",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "平仮名",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5487",
-    word: "昼御飯",
-    kana: "ひるごはん",
-    meaning: "lunch, midday meal",
-    chineseMeaning: "lunch, midday meal",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "昼御飯",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5488",
-    word: "広い",
-    kana: "ひろい",
-    meaning: "溫泉cious; wide; broad (spacious; wide; broad)",
-    chineseMeaning: "溫泉cious; wide; broad (spacious; wide; broad)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "広い",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5489",
-    word: "二日",
-    kana: "ふつか",
-    meaning: "two days; second day from the month (two days; second day of the month)",
-    chineseMeaning: "two days; second day from the month (two days; second day of the month)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "二日",
-    isKanji: true,
-    complexity: 12
-  },,
-  {
-    id: "expert_5490",
-    word: "古い",
-    kana: "ふるい",
-    meaning: "old (in reference old (in reference to objects, not people, aged, ancient)",
-    chineseMeaning: "old (in reference old (in reference to objects, not people, aged, ancient)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "古い",
-    isKanji: true,
-    complexity: 11
-  },,
-  {
-    id: "expert_5491",
-    word: "下手",
-    kana: "へた",
-    meaning: "unskillful, pocartoon (unskillful, poor)",
-    chineseMeaning: "滑雪",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "下手",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5492",
-    word: "勉強",
-    kana: "べんきょう (する)",
-    meaning: "study",
-    chineseMeaning: "study",
-    difficulty: "expert",
-    category: "學術",
-    jlptLevel: "n1",
-    kanji: "勉強",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5493",
-    word: "便利",
-    kana: "べんり",
-    meaning: "cto getvenient, landy (convenient, handy)",
-    chineseMeaning: "cto getvenient, landy (convenient, handy)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "便利",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5494",
-    word: "毎朝",
-    kana: "まいあさ",
-    meaning: "every mcartoonning (every morning)",
-    chineseMeaning: "every mcartoonning (every morning)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "毎朝",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5495",
-    word: "毎月",
-    kana: "まいげつ; まいつき",
-    meaning: "every mto getth, mto getthly (every month, monthly)",
-    chineseMeaning: "every mto getth, mto getthly (every month, monthly)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "毎月",
-    isKanji: true,
-    complexity: 12
-  },,
-  {
-    id: "expert_5496",
-    word: "毎週",
-    kana: "まいしゅう",
-    meaning: "every week (every week)",
-    chineseMeaning: "every week (every week)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "毎週",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5497",
-    word: "毎年",
-    kana: "まいねん; まいとし",
-    meaning: "every year, yearly, annually (every year, yearly, annually)",
-    chineseMeaning: "every year, yearly, annually (every year, yearly, annually)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "毎年",
-    isKanji: true,
-    complexity: 13
-  },,
-  {
-    id: "expert_5498",
-    word: "毎晩",
-    kana: "まいばん",
-    meaning: "every night (every night)",
-    chineseMeaning: "every night (every night)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "毎晩",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5499",
-    word: "丸い; 円い",
-    kana: "まるい",
-    meaning: "round, circular",
-    chineseMeaning: "round, circular",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "丸い; 円い",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5500",
-    word: "万年筆",
-    kana: "まんねんひつ",
-    meaning: "fountain pen",
-    chineseMeaning: "fountain pen",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "万年筆",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5501",
-    word: "道",
-    kana: "みち",
-    meaning: "road, street; way, directito gets (road, street; way, directions)",
-    chineseMeaning: "road, street; way, directito gets (road, street; way, directions)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "道",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5502",
-    word: "三日",
-    kana: "みっか",
-    meaning: "three days, third day from the month (three days, third day of the month)",
-    chineseMeaning: "three days, third day from the month (three days, third day of the month)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "三日",
-    isKanji: true,
-    complexity: 12
-  },,
-  {
-    id: "expert_5503",
-    word: "皆さん",
-    kana: "みなさん",
-    meaning: "all from you, everyone (all of you, everyone)",
-    chineseMeaning: "all from you, everyone (all of you, everyone)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "皆さん",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5504",
-    word: "六日",
-    kana: "むいか",
-    meaning: "six days; sixth day from month (six days; sixth day of month)",
-    chineseMeaning: "six days; sixth day from month (six days; sixth day of month)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "六日",
-    isKanji: true,
-    complexity: 11
-  },,
-  {
-    id: "expert_5505",
-    word: "向こう",
-    kana: "むこう",
-    meaning: "beyto getd, over there (beyond, over there)",
-    chineseMeaning: "beyto getd, over there (beyond, over there)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "向こう",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5506",
-    word: "木曜日",
-    kana: "もくようび",
-    meaning: "Thursday",
-    chineseMeaning: "Thursday",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "木曜日",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5507",
-    word: "八百屋",
-    kana: "やおや",
-    meaning: "greengrocer",
-    chineseMeaning: "greengrocer",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "八百屋",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5508",
-    word: "休み",
-    kana: "やすみ",
-    meaning: "holiday; day fromf; absence (holiday; day off; absence)",
-    chineseMeaning: "holiday; day fromf; absence (holiday; day off; absence)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "休み",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5509",
-    word: "休む",
-    kana: "やすむ",
-    meaning: "to rest, to have a break, to get time off",
-    chineseMeaning: "to rest, to have a break, to get time off",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "休む",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5510",
-    word: "夕方",
-    kana: "ゆうがた",
-    meaning: "late afternoon (typically just before dinner time), evening (late afternoon (typically just before dinner time), evening)",
-    chineseMeaning: "late afternoon (typically just before dinner time), evening (late afternoon (typically just before dinner time), evening)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "夕方",
-    isKanji: true,
-    complexity: 17
-  },,
-  {
-    id: "expert_5511",
-    word: "夕飯",
-    kana: "ゆうはん",
-    meaning: "dinner, supper, evening meal",
-    chineseMeaning: "dinner, supper, evening meal",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "夕飯",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5512",
-    word: "郵便局",
-    kana: "ゆうびんきょく",
-    meaning: "post fromfice (post office)",
-    chineseMeaning: "post fromfice (post office)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "郵便局",
-    isKanji: true,
-    complexity: 11
-  },,
-  {
-    id: "expert_5513",
-    word: "八日",
-    kana: "ようか",
-    meaning: "eight days; eighth day from the month (eight days; eighth day of the month)",
-    chineseMeaning: "eight days; eighth day from the month (eight days; eighth day of the month)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "八日",
-    isKanji: true,
-    complexity: 12
-  },,
-  {
-    id: "expert_5514",
-    word: "洋服",
-    kana: "ようふく",
-    meaning: "Western-style atom (Western-style clothes)",
-    chineseMeaning: "Western-style atom (Western-style clothes)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "洋服",
-    isKanji: true,
-    complexity: 9
-  },,
-  {
-    id: "expert_5515",
-    word: "四日",
-    kana: "よっか",
-    meaning: "four days; fourth day from the month (four days; fourth day of the month)",
-    chineseMeaning: "four days; fourth day from the month (four days; fourth day of the month)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "四日",
-    isKanji: true,
-    complexity: 12
-  },,
-  {
-    id: "expert_5516",
-    word: "来月",
-    kana: "らいげつ",
-    meaning: "next mto getth (next month)",
-    chineseMeaning: "next mto getth (next month)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "来月",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5517",
-    word: "留学生",
-    kana: "りゅうがくせい",
-    meaning: "internatito getal student (international student)",
-    chineseMeaning: "internatito getal student (international student)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "留学生",
-    isKanji: true,
-    complexity: 13
-  },,
-  {
-    id: "expert_5518",
-    word: "両親",
-    kana: "りょうしん",
-    meaning: "parents (lit., both parents)",
-    chineseMeaning: "parents (lit., both parents)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "両親",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5519",
-    word: "旅行",
-    kana: "りょこう",
-    meaning: "travel, 出差 (travel, trip)",
-    chineseMeaning: "travel, 出差 (travel, trip)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "旅行",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5520",
-    word: "冷蔵庫",
-    kana: "れいぞうこ",
-    meaning: "refrigeratcartoon (refrigerator)",
-    chineseMeaning: "refrigeratcartoon (refrigerator)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "冷蔵庫",
-    isKanji: true,
-    complexity: 11
-  },,
-  {
-    id: "expert_5521",
-    word: "練習",
-    kana: "れんしゅう (する)",
-    meaning: "(到) practice ((to) practice)",
-    chineseMeaning: "(到) practice ((to) practice)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "練習",
-    isKanji: true,
-    complexity: 10
-  },,
-  {
-    id: "expert_5522",
-    word: "廊下",
-    kana: "ろうか",
-    meaning: "ccartoonridcartoon (corridor)",
-    chineseMeaning: "ccartoonridcartoon (corridor)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "廊下",
-    isKanji: true,
-    complexity: 8
-  },,
-  {
-    id: "expert_5523",
-    word: "私",
-    kana: "わたくし",
-    meaning: "I (fcartoonmal), myself, private affairs (I (formal), myself, private affairs)",
-    chineseMeaning: "I (fcartoonmal), myself, private affairs (I (formal), myself, private affairs)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "私",
-    isKanji: true,
-    complexity: 11
-  },,
-  {
-    id: "expert_5524",
-    word: "渡す",
-    kana: "わたす",
-    meaning: "something over (v.t.); hand across (to hand (something) over (v.t.); to get across)",
-    chineseMeaning: "something over (v.t.); hand across (to hand (something) over (v.t.); to get across)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "渡す",
-    isKanji: true,
-    complexity: 12
-  },,
-  {
-    id: "expert_5525",
-    word: "悪い",
-    kana: "わるい",
-    meaning: "bad, sinful; infericartoon (bad, sinful; inferior)",
-    chineseMeaning: "bad, sinful; infericartoon (bad, sinful; inferior)",
-    difficulty: "expert",
-    category: "一般",
-    jlptLevel: "n1",
-    kanji: "悪い",
-    isKanji: true,
-    complexity: 8
   }
 ];
