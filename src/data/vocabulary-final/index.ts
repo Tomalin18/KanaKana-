@@ -18,13 +18,13 @@ export type { DifficultyLevel };
 
 // 使用完整的詞彙系統（使用最佳品質的檔案）
 import { BEGINNER_WORDS } from './beginner_converted';
-import { NORMAL_WORDS } from './normal 2';
+import { NORMAL_WORDS } from './normal-split';
 import { HARD_WORDS } from './hard 2';
 import { expert as EXPERT_WORDS } from './expert-split';
 import { JLPT_N3_N2_WORDS } from './jlpt-chunks';
 
 // 導入包含N1詞彙的原始檔案
-import { NORMAL_WORDS as NORMAL_WORDS_WITH_N1 } from './normal 2';
+import { NORMAL_WORDS as NORMAL_WORDS_WITH_N1 } from './normal-split';
 import { expert as EXPERT_WORDS_WITH_N1 } from './expert-split';
 
 // 導入漢字專用詞彙

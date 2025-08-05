@@ -21,7 +21,7 @@ export interface TetrisWord {
 
 // 導入基本檔案
 import { BEGINNER_WORDS } from './beginner_converted';
-import { NORMAL_WORDS } from './normal 2';
+import { NORMAL_WORDS } from './normal-split';
 import { HARD_WORDS } from './hard 2';
 import { expert as EXPERT_WORDS } from './expert-split';
 import { HIRAGANA_WORDS } from './hiragana 2';
