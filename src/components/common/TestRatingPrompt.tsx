@@ -25,27 +25,27 @@ export const TestRatingPrompt: React.FC = () => {
     },
     {
       title: '🎯 測試遊戲完成 (高分)',
-      onPress: () => triggerOnGameCompleted(800, 0.85, 'classic'),
+      onPress: () => triggerOnGameCompleted(1500, 0.95, 'classic'),
     },
     {
-      title: '🔥 測試連續使用 (5天)',
-      onPress: () => triggerOnStreakMilestone(5),
+      title: '🔥 測試連續使用 (10天)',
+      onPress: () => triggerOnStreakMilestone(10),
     },
     {
-      title: '🌟 測試功能探索 (3個)',
-      onPress: () => triggerOnFeatureExplored(3),
+      title: '🌟 測試功能探索 (5個)',
+      onPress: () => triggerOnFeatureExplored(5),
     },
     {
-      title: '📚 測試會話數量 (5次)',
-      onPress: () => triggerOnSessionCount(5),
+      title: '📚 測試會話數量 (10次)',
+      onPress: () => triggerOnSessionCount(10),
     },
     {
       title: '🎯 測試遊戲完成 (低分但高準確)',
-      onPress: () => triggerOnGameCompleted(300, 0.95, 'classic'),
+      onPress: () => triggerOnGameCompleted(800, 0.95, 'classic'),
     },
     {
-      title: '🔥 測試連續使用 (3天)',
-      onPress: () => triggerOnStreakMilestone(3),
+      title: '🔥 測試連續使用 (7天)',
+      onPress: () => triggerOnStreakMilestone(7),
     },
   ];
 
