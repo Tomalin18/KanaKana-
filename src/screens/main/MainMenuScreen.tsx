@@ -90,9 +90,9 @@ export const MainMenuScreen: React.FC<Props> = ({ navigation }) => {
       
       // 為了測試，我們在每次進入主選單時都檢查
       setTimeout(async () => {
-        // 模擬會話數量檢查 - 修改為更容易觸發的條件
-        const sessionCount = Math.floor(Math.random() * 10) + 1; // 1-10 的隨機數
-        if (sessionCount % 5 === 0) { // 每5次觸發一次
+        // 模擬會話數量檢查 - 生產環境條件
+        const sessionCount = Math.floor(Math.random() * 20) + 1; // 1-20 的隨機數
+        if (sessionCount % 10 === 0) { // 每10次觸發一次
           console.log('🔄 主選單觸發會話數量評分提示:', sessionCount);
           await triggerOnSessionCount(sessionCount);
         }

@@ -12,20 +12,20 @@ const RATING_CONFIG = {
     SESSION_COUNT: 'session_count',
   },
   
-  // 頻率控制 - 簡化為測試模式
-  MIN_DAYS_BETWEEN_PROMPTS: 0, // 測試時設為0，允許立即觸發
-  MAX_PROMPTS_PER_MONTH: 10,   // 測試時增加限制
-  MIN_SESSIONS_BEFORE_FIRST: 1, // 測試時設為1，允許立即觸發
+  // 頻率控制 - 生產環境設定
+  MIN_DAYS_BETWEEN_PROMPTS: 7, // 最少間隔7天
+  MAX_PROMPTS_PER_MONTH: 3,    // 每月最多3次
+  MIN_SESSIONS_BEFORE_FIRST: 5, // 至少使用5次才提示
   
-  // 評分 URL (需要替換為實際的 App ID)
+  // 評分 URL - 使用實際的 KanaKana App Store 連結
   APP_STORE_URL: Platform.select({
-    ios: 'https://apps.apple.com/app/id1234567890?action=write-review',
+    ios: 'https://apps.apple.com/tw/app/kanakana-%E3%81%8B%E3%81%AA%E3%82%AB%E3%83%8A/id6748865873?action=write-review',
     android: 'market://details?id=com.kanakana.app&showAllReviews=true',
   }),
   
   // 備用 URL
   FALLBACK_URL: Platform.select({
-    ios: 'https://apps.apple.com/app/id1234567890',
+    ios: 'https://apps.apple.com/tw/app/kanakana-%E3%81%8B%E3%81%AA%E3%82%AB%E3%83%8A/id6748865873',
     android: 'https://play.google.com/store/apps/details?id=com.kanakana.app',
   }),
 } as const;
@@ -122,26 +122,26 @@ export const shouldShowRatingPrompt = async (
       return isImportantAchievement;
       
     case RATING_CONFIG.TRIGGERS.GAME_COMPLETED:
-      // 遊戲完成時，檢查表現是否良好 - 降低門檻
-      const hasGoodPerformance = additionalData?.score > 500 || additionalData?.accuracy > 0.7;
+      // 遊戲完成時，檢查表現是否良好
+      const hasGoodPerformance = additionalData?.score > 1000 || additionalData?.accuracy > 0.9;
       console.log('🎯 遊戲完成檢查:', { score: additionalData?.score, accuracy: additionalData?.accuracy, hasGoodPerformance });
       return hasGoodPerformance;
       
     case RATING_CONFIG.TRIGGERS.STREAK_MILESTONE:
-      // 連續使用里程碑 - 降低門檻
-      const isMilestone = additionalData?.streak >= 3 || additionalData?.streak % 5 === 0;
+      // 連續使用里程碑
+      const isMilestone = additionalData?.streak >= 7 || additionalData?.streak % 10 === 0;
       console.log('🔥 連續使用檢查:', { streak: additionalData?.streak, isMilestone });
       return isMilestone;
       
     case RATING_CONFIG.TRIGGERS.FEATURE_EXPLORED:
-      // 功能探索完成 - 降低門檻
-      const hasExplored = additionalData?.exploredFeatures >= 2;
+      // 功能探索完成
+      const hasExplored = additionalData?.exploredFeatures >= 3;
       console.log('🌟 功能探索檢查:', { exploredFeatures: additionalData?.exploredFeatures, hasExplored });
       return hasExplored;
       
     case RATING_CONFIG.TRIGGERS.SESSION_COUNT:
-      // 會話數量里程碑 - 降低門檻
-      const isSessionMilestone = additionalData?.sessionCount % 5 === 0;
+      // 會話數量里程碑
+      const isSessionMilestone = additionalData?.sessionCount % 10 === 0;
       console.log('📚 會話數量檢查:', { sessionCount: additionalData?.sessionCount, isSessionMilestone });
       return isSessionMilestone;
       
@@ -232,43 +232,45 @@ export const showRatingPrompt = async (
   // 更新狀態
   await updateRatingState('prompted');
   
-  // 根據觸發條件選擇不同的提示文案
+  // 根據觸發條件選擇不同的標題，但統一使用相同的訊息
   const getPromptContent = () => {
+    const unifiedMessage = '感謝您下載KanaKana！如果覺得這個App對您有幫助，歡迎給我們一個評分。您的評論是我們前進的動力！';
+    
     switch (trigger) {
       case RATING_CONFIG.TRIGGERS.ACHIEVEMENT_UNLOCKED:
         return {
           title: '🎉 恭喜獲得成就！',
-          message: '您剛剛解鎖了一個重要成就！如果 KanaKana 對您的日語學習有幫助，請給我們一個評價吧！',
+          message: unifiedMessage,
         };
         
       case RATING_CONFIG.TRIGGERS.GAME_COMPLETED:
         return {
           title: '🎯 精彩表現！',
-          message: '您剛才的表現太棒了！如果喜歡這個遊戲，請在 App Store 給我們一個評價，這對我們很重要！',
+          message: unifiedMessage,
         };
         
       case RATING_CONFIG.TRIGGERS.STREAK_MILESTONE:
         return {
           title: '🔥 堅持學習！',
-          message: `您已經連續使用 KanaKana ${additionalData?.streak} 天了！如果這個應用對您有幫助，請給我們一個評價！`,
+          message: unifiedMessage,
         };
         
       case RATING_CONFIG.TRIGGERS.FEATURE_EXPLORED:
         return {
           title: '🌟 探索完成！',
-          message: '您已經體驗了 KanaKana 的主要功能！如果喜歡這個應用，請給我們一個評價，幫助更多學習者！',
+          message: unifiedMessage,
         };
         
       case RATING_CONFIG.TRIGGERS.SESSION_COUNT:
         return {
           title: '📚 學習夥伴！',
-          message: `您已經使用 KanaKana ${additionalData?.sessionCount} 次了！如果這個應用對您的日語學習有幫助，請給我們一個評價！`,
+          message: unifiedMessage,
         };
         
       default:
         return {
           title: '⭐ 喜歡 KanaKana 嗎？',
-          message: '如果 KanaKana 對您的日語學習有幫助，請給我們一個評價！您的反饋對我們很重要！',
+          message: unifiedMessage,
         };
     }
   };
@@ -308,7 +310,7 @@ export const testRatingPrompt = async (): Promise<void> => {
   
   const { title, message } = {
     title: '🧪 測試評分提示',
-    message: '這是一個測試評分提示，用於驗證功能是否正常工作！',
+    message: '感謝您下載KanaKana！如果覺得這個App對您有幫助，歡迎給我們一個評分。您的評論是我們前進的動力！',
   };
   
   console.log('📱 顯示測試評分提示對話框:', { title, message });
