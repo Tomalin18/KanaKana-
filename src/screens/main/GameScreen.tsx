@@ -1132,18 +1132,4 @@ const styles = StyleSheet.create({
     fontWeight: Typography.weights.semibold,
     letterSpacing: Typography.letterSpacing.ui,
   },
-    paddingVertical: Spacing.md,
-    borderRadius: 12,
-    borderWidth: 1,
-    borderColor: TechTheme.border,
-    width: '100%',
-    alignItems: 'center',
-  },
-  
-  menuButtonText: {
-    color: TechTheme.text,
-    fontSize: Typography.sizes.ui.body,
-    fontWeight: Typography.weights.semibold,
-    letterSpacing: Typography.letterSpacing.ui,
-  },
 }); 
