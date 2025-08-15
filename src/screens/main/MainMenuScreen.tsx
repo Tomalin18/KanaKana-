@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   View, 
   Text, 
@@ -8,11 +8,13 @@ import {
   ScrollView,
   StatusBar,
 } from 'react-native';
+import { useRatingPrompt } from '@/hooks/useRatingPrompt';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import type { RootStackParamList } from '@/navigation/AppNavigator';
 import type { GameMode, ClassicModeSettings, KanjiModeSettings } from '@/types';
 import { TechTheme, Typography, Spacing, Shadows, TechColors } from '@/constants/theme';
 import { GlassContainer, GameSettingsModal } from '@/components/common';
+import { TestRatingPrompt } from '@/components/common/TestRatingPrompt';
 import { isFeatureEnabled } from '@/utils/featureFlags';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'MainMenu'>;
@@ -24,6 +26,10 @@ type Props = NativeStackScreenProps<RootStackParamList, 'MainMenu'>;
 export const MainMenuScreen: React.FC<Props> = ({ navigation }) => {
   const [settingsModalVisible, setSettingsModalVisible] = useState(false);
   const [selectedMode, setSelectedMode] = useState<'classic' | 'kanji' | null>(null);
+  const [showTestRating, setShowTestRating] = useState(false);
+
+  // 評分提示 Hook
+  const { recordSession, triggerOnSessionCount } = useRatingPrompt();
 
   // 預設設定
   const defaultClassicSettings: ClassicModeSettings = {
@@ -76,6 +82,26 @@ export const MainMenuScreen: React.FC<Props> = ({ navigation }) => {
     setSettingsModalVisible(false);
     setSelectedMode(null);
   };
+
+  // 記錄會話並檢查是否需要觸發評分提示
+  useEffect(() => {
+    const checkAndRecordSession = async () => {
+      await recordSession();
+      
+      // 獲取當前會話數量並檢查是否需要觸發評分提示
+      // 這裡我們簡化處理，實際應該從 AsyncStorage 獲取
+      // 為了測試，我們在每次進入主選單時都檢查
+      setTimeout(async () => {
+        // 模擬會話數量檢查
+        const sessionCount = Math.floor(Math.random() * 20) + 1; // 1-20 的隨機數
+        if (sessionCount % 10 === 0) { // 每10次觸發一次
+          await triggerOnSessionCount(sessionCount);
+        }
+      }, 1000);
+    };
+
+    checkAndRecordSession();
+  }, [recordSession, triggerOnSessionCount]);
 
   return (
     <View style={styles.container}>
@@ -151,6 +177,16 @@ export const MainMenuScreen: React.FC<Props> = ({ navigation }) => {
                 isNew
               />
             )}
+
+            {/* 測試評分提示按鈕 */}
+            <GameModeButton
+              title="🧪 測試評分提示"
+              subtitle="TEST RATING PROMPT"
+              description="測試各種評分提示觸發條件"
+              emoji="⭐"
+              onPress={() => setShowTestRating(true)}
+              isNew
+            />
           </View>
 
           {/* 底部信息 - 改為贊助按鈕 */}
@@ -166,6 +202,11 @@ export const MainMenuScreen: React.FC<Props> = ({ navigation }) => {
           onClose={handleSettingsClose}
           onStart={handleSettingsStart}
         />
+      )}
+
+      {/* 測試評分提示模態框 */}
+      {showTestRating && (
+        <TestRatingPrompt />
       )}
     </View>
   );
