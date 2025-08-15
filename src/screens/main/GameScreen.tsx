@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import {
   View,
   Text,
@@ -8,6 +8,7 @@ import {
   Animated,
   Easing,
 } from 'react-native';
+import { useRatingPrompt } from '@/hooks/useRatingPrompt';
 import { TechTheme, Typography, Spacing, Shadows, TechColors } from '@/constants/theme';
 import { getRandomWordByCombinedDifficulty, type TetrisWord } from '@/data/vocabulary-final';
 import { useTypingDetection } from '@/hooks/useTypingDetection';
@@ -66,6 +67,13 @@ export const GameScreen: React.FC<GameScreenProps> = ({ route, navigation }) => 
   
   const gameTimerRef = useRef<NodeJS.Timeout | null>(null);
 
+  // 評分提示 Hook
+  const { 
+    triggerOnGameCompleted, 
+    triggerOnAchievement, 
+    recordSession 
+  } = useRatingPrompt();
+
   // 使用統一的打字偵測 hook
   const {
     userInput,
@@ -94,7 +102,25 @@ export const GameScreen: React.FC<GameScreenProps> = ({ route, navigation }) => 
   useEffect(() => {
     if (gameState === 'playing') {
       gameTimerRef.current = setInterval(() => {
-        setGameTime(prev => prev + 1);
+        setGameTime(prev => {
+          const newTime = prev + 1;
+          
+          // 遊戲結束條件：3分鐘或達到5000分
+          if (newTime >= 180 || score >= 5000) {
+            setGameState('ended');
+            // 計算準確率（這裡簡化為基於連擊數）
+            const accuracy = combo > 0 ? Math.min(0.95, 0.7 + (combo * 0.02)) : 0.7;
+            
+            // 觸發評分提示（如果表現良好）
+            if (score > 1000 || accuracy > 0.8) {
+              setTimeout(() => {
+                triggerOnGameCompleted(score, accuracy, mode);
+              }, 2000); // 延遲2秒，讓用戶先看到遊戲結果
+            }
+          }
+          
+          return newTime;
+        });
       }, 1000);
     } else {
       if (gameTimerRef.current) {
@@ -108,7 +134,7 @@ export const GameScreen: React.FC<GameScreenProps> = ({ route, navigation }) => 
         clearInterval(gameTimerRef.current);
       }
     };
-  }, [gameState]);
+  }, [gameState, score, combo, triggerOnGameCompleted, mode]);
 
   // 開始遊戲
   const startGame = () => {
@@ -118,6 +144,9 @@ export const GameScreen: React.FC<GameScreenProps> = ({ route, navigation }) => 
     const newWord = getRandomWordByCombinedDifficulty(selectedDifficulty);
     setCurrentWord(newWord);
     setShowDifficultySelector(false);
+    
+    // 記錄會話
+    recordSession();
   };
 
   // 暫停/繼續遊戲
