@@ -14,7 +14,6 @@ import type { RootStackParamList } from '@/navigation/AppNavigator';
 import type { GameMode, ClassicModeSettings, KanjiModeSettings } from '@/types';
 import { TechTheme, Typography, Spacing, Shadows, TechColors } from '@/constants/theme';
 import { GlassContainer, GameSettingsModal } from '@/components/common';
-import { TestRatingPrompt } from '@/components/common/TestRatingPrompt';
 import { isFeatureEnabled } from '@/utils/featureFlags';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'MainMenu'>;
@@ -26,7 +25,6 @@ type Props = NativeStackScreenProps<RootStackParamList, 'MainMenu'>;
 export const MainMenuScreen: React.FC<Props> = ({ navigation }) => {
   const [settingsModalVisible, setSettingsModalVisible] = useState(false);
   const [selectedMode, setSelectedMode] = useState<'classic' | 'kanji' | null>(null);
-  const [showTestRating, setShowTestRating] = useState(false);
 
   // 評分提示 Hook
   const { recordSession, triggerOnSessionCount } = useRatingPrompt();
@@ -176,16 +174,6 @@ export const MainMenuScreen: React.FC<Props> = ({ navigation }) => {
                 isNew
               />
             )}
-
-            {/* 測試評分提示按鈕 */}
-            <GameModeButton
-              title="🧪 測試評分提示"
-              subtitle="TEST RATING PROMPT"
-              description="測試各種評分提示觸發條件"
-              emoji="⭐"
-              onPress={() => setShowTestRating(true)}
-              isNew
-            />
           </View>
 
           {/* 底部信息 - 改為贊助按鈕 */}
@@ -203,10 +191,7 @@ export const MainMenuScreen: React.FC<Props> = ({ navigation }) => {
         />
       )}
 
-      {/* 測試評分提示模態框 */}
-      {showTestRating && (
-        <TestRatingPrompt />
-      )}
+
     </View>
   );
 };

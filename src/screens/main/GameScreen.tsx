@@ -108,15 +108,6 @@ export const GameScreen: React.FC<GameScreenProps> = ({ route, navigation }) => 
           // 遊戲結束條件：3分鐘或達到5000分
           if (newTime >= 180 || score >= 5000) {
             setGameState('ended');
-            // 計算準確率（這裡簡化為基於連擊數）
-            const accuracy = combo > 0 ? Math.min(0.95, 0.7 + (combo * 0.02)) : 0.7;
-            
-            // 觸發評分提示（如果表現良好）
-            if (score > 1000 || accuracy > 0.8) {
-              setTimeout(() => {
-                triggerOnGameCompleted(score, accuracy, mode);
-              }, 2000); // 延遲2秒，讓用戶先看到遊戲結果
-            }
           }
           
           return newTime;
@@ -220,6 +211,11 @@ export const GameScreen: React.FC<GameScreenProps> = ({ route, navigation }) => 
             gameTime={gameTime}
             onRestart={restartGame}
             onBackToMenu={backToMenu}
+            onRatingPrompt={() => {
+              // 計算準確率
+              const accuracy = combo > 0 ? Math.min(0.95, 0.7 + (combo * 0.02)) : 0.7;
+              triggerOnGameCompleted(score, accuracy, mode);
+            }}
           />
         );
       default:
@@ -729,6 +725,7 @@ interface GameEndScreenProps {
   gameTime: number;
   onRestart: () => void;
   onBackToMenu: () => void;
+  onRatingPrompt?: () => void;
 }
 
 const GameEndScreen: React.FC<GameEndScreenProps> = ({
@@ -736,6 +733,7 @@ const GameEndScreen: React.FC<GameEndScreenProps> = ({
   gameTime,
   onRestart,
   onBackToMenu,
+  onRatingPrompt,
 }) => (
   <View style={styles.centerContainer}>
     <GlassContainer
@@ -770,6 +768,19 @@ const GameEndScreen: React.FC<GameEndScreenProps> = ({
         >
           <Text style={styles.menuButtonText}>🏠 回到主選單</Text>
         </Pressable>
+        {/* 評分按鈕 - 只在表現良好時顯示 */}
+        {onRatingPrompt && (score > 1000 || gameTime > 60) && (
+          <Pressable
+            style={({ pressed }) => [
+              styles.ratingButton,
+              pressed && styles.buttonPressed,
+              Shadows.neon.green,
+            ]}
+            onPress={onRatingPrompt}
+          >
+            <Text style={styles.ratingButtonText}>⭐ 給我們評分</Text>
+          </Pressable>
+        )}
       </View>
     </GlassContainer>
   </View>
@@ -1089,6 +1100,38 @@ const styles = StyleSheet.create({
   menuButton: {
     backgroundColor: 'transparent',
     paddingHorizontal: Spacing.xl,
+    paddingVertical: Spacing.md,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: TechTheme.textSecondary,
+    width: '100%',
+    alignItems: 'center',
+  },
+  
+  menuButtonText: {
+    color: TechTheme.text,
+    fontSize: Typography.sizes.ui.body,
+    fontWeight: Typography.weights.semibold,
+    letterSpacing: Typography.letterSpacing.ui,
+  },
+  
+  ratingButton: {
+    backgroundColor: TechColors.neonGreen,
+    paddingHorizontal: Spacing.xl,
+    paddingVertical: Spacing.md,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: TechColors.neonGreen,
+    width: '100%',
+    alignItems: 'center',
+  },
+  
+  ratingButtonText: {
+    color: TechTheme.background,
+    fontSize: Typography.sizes.ui.body,
+    fontWeight: Typography.weights.semibold,
+    letterSpacing: Typography.letterSpacing.ui,
+  },
     paddingVertical: Spacing.md,
     borderRadius: 12,
     borderWidth: 1,
