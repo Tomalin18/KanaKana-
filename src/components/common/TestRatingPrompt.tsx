@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, Pressable, StyleSheet } from 'react-native';
 import { useRatingPrompt } from '@/hooks/useRatingPrompt';
+import { testRatingPrompt } from '@/utils/ratingPrompt';
 import { TechTheme, Typography, Spacing, TechColors } from '@/constants/theme';
 import { GlassContainer } from './GlassContainer';
 
@@ -15,24 +16,36 @@ export const TestRatingPrompt: React.FC = () => {
 
   const testTriggers = [
     {
-      title: '🎉 測試成就解鎖',
+      title: '🧪 直接測試評分提示',
+      onPress: () => testRatingPrompt(),
+    },
+    {
+      title: '🎉 測試成就解鎖 (Epic)',
       onPress: () => triggerOnAchievement('epic', '速度大師'),
     },
     {
-      title: '🎯 測試遊戲完成',
-      onPress: () => triggerOnGameCompleted(2500, 0.95, 'classic'),
+      title: '🎯 測試遊戲完成 (高分)',
+      onPress: () => triggerOnGameCompleted(800, 0.85, 'classic'),
     },
     {
-      title: '🔥 測試連續使用',
-      onPress: () => triggerOnStreakMilestone(10),
+      title: '🔥 測試連續使用 (5天)',
+      onPress: () => triggerOnStreakMilestone(5),
     },
     {
-      title: '🌟 測試功能探索',
-      onPress: () => triggerOnFeatureExplored(5),
+      title: '🌟 測試功能探索 (3個)',
+      onPress: () => triggerOnFeatureExplored(3),
     },
     {
-      title: '📚 測試會話數量',
-      onPress: () => triggerOnSessionCount(20),
+      title: '📚 測試會話數量 (5次)',
+      onPress: () => triggerOnSessionCount(5),
+    },
+    {
+      title: '🎯 測試遊戲完成 (低分但高準確)',
+      onPress: () => triggerOnGameCompleted(300, 0.95, 'classic'),
+    },
+    {
+      title: '🔥 測試連續使用 (3天)',
+      onPress: () => triggerOnStreakMilestone(3),
     },
   ];
 

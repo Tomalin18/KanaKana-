@@ -88,16 +88,15 @@ export const MainMenuScreen: React.FC<Props> = ({ navigation }) => {
     const checkAndRecordSession = async () => {
       await recordSession();
       
-      // 獲取當前會話數量並檢查是否需要觸發評分提示
-      // 這裡我們簡化處理，實際應該從 AsyncStorage 獲取
       // 為了測試，我們在每次進入主選單時都檢查
       setTimeout(async () => {
-        // 模擬會話數量檢查
-        const sessionCount = Math.floor(Math.random() * 20) + 1; // 1-20 的隨機數
-        if (sessionCount % 10 === 0) { // 每10次觸發一次
+        // 模擬會話數量檢查 - 修改為更容易觸發的條件
+        const sessionCount = Math.floor(Math.random() * 10) + 1; // 1-10 的隨機數
+        if (sessionCount % 5 === 0) { // 每5次觸發一次
+          console.log('🔄 主選單觸發會話數量評分提示:', sessionCount);
           await triggerOnSessionCount(sessionCount);
         }
-      }, 1000);
+      }, 2000); // 延遲2秒，讓用戶先看到主選單
     };
 
     checkAndRecordSession();
