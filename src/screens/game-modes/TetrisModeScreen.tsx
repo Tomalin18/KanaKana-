@@ -124,7 +124,7 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
   // 設定
   const settings: TetrisSettings = route?.params?.settings || {
     difficulty: 'elementary',
-    wordType: 'hiragana'
+    wordType: 'mixed'  // 改為 'mixed' 以包含漢字詞彙
   };
 
   // 新增最高紀錄狀態
