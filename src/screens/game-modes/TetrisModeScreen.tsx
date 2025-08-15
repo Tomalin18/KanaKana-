@@ -20,6 +20,7 @@ import type { DifficultyLevel, CombinedDifficultyLevel } from '@/types';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { bossQuestions, BossQuestion } from '@/data/bossData';
 import { BlurView } from 'expo-blur';
+import { useRatingPrompt } from '@/hooks/useRatingPrompt';
 
 // 類型定義
 interface TetrisPiece {
@@ -148,6 +149,9 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
 
   // 主遊戲輸入框 ref
   const mainInputRef = useRef<TextInput>(null);
+
+  // 評分提示 Hook
+  const { triggerOnGameCompleted, recordSession } = useRatingPrompt();
 
   // 讀取本地最高紀錄
   useEffect(() => {
@@ -604,7 +608,10 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
     
     const newPiece = generateRandomPiece();
     setCurrentPiece(newPiece);
-  }, [generateRandomPiece]);
+    
+    // 記錄會話
+    recordSession();
+  }, [generateRandomPiece, recordSession]);
 
   // 暫停/恢復遊戲
   const togglePause = useCallback(() => {
@@ -1052,6 +1059,19 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
                 <TouchableOpacity style={styles.backButton} onPress={goBackToMenu}>
                   <Text style={styles.backButtonText}>🏠 返回主選單 🏠</Text>
                 </TouchableOpacity>
+                {/* 評分按鈕 - 只在表現良好時顯示 */}
+                {(score > 1000 || piecesCleared > 10) && (
+                  <TouchableOpacity 
+                    style={[styles.ratingButton, { borderColor: currentThemeColor }]} 
+                    onPress={() => {
+                      // 計算準確率（基於消除方塊數和等級）
+                      const accuracy = Math.min(0.95, 0.7 + (piecesCleared * 0.02) + (level * 0.01));
+                      triggerOnGameCompleted(score, accuracy, 'tetris_typing');
+                    }}
+                  >
+                    <Text style={styles.ratingButtonText}>⭐ 給我們評分 ⭐</Text>
+                  </TouchableOpacity>
+                )}
               </View>
             </View>
           );
@@ -1489,6 +1509,29 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textAlign: 'center',
     fontWeight: '600',
+  },
+  ratingButton: {
+    backgroundColor: 'rgba(0, 255, 0, 0.1)',
+    paddingHorizontal: 35,
+    paddingVertical: 18,
+    borderRadius: 30,
+    borderWidth: 2,
+    borderColor: '#00ff00',
+    shadowColor: '#00ff00',
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.6,
+    shadowRadius: 15,
+    elevation: 8,
+    minWidth: 200,
+  },
+  ratingButtonText: {
+    color: '#00ff00',
+    fontSize: 18,
+    fontWeight: '800',
+    textAlign: 'center',
+    textShadowColor: '#00ff00',
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 8,
   },
   fallingPiece: {
     position: 'absolute',
