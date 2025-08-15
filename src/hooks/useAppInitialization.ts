@@ -1,18 +1,23 @@
 import { useState, useEffect } from 'react';
 import * as Font from 'expo-font';
+import { useVersionCheck } from './useVersionCheck';
 
 interface AppInitializationState {
   isReady: boolean;
   error: Error | null;
+  isUpdateRequired: boolean;
 }
 
 /**
  * 應用初始化Hook
- * 處理字體加載、資源準備和初始設定
+ * 處理字體加載、資源準備、版本檢查和初始設定
  */
 export const useAppInitialization = (): AppInitializationState => {
   const [isReady, setIsReady] = useState(false);
   const [error, setError] = useState<Error | null>(null);
+  
+  // 版本檢查
+  const { isLoading: isVersionChecking, isUpdateRequired, updateInfo, retry } = useVersionCheck();
 
   useEffect(() => {
     const initializeApp = async () => {
@@ -43,5 +48,9 @@ export const useAppInitialization = (): AppInitializationState => {
     initializeApp();
   }, []);
 
-  return { isReady, error };
+  return { 
+    isReady: isReady && !isVersionChecking, 
+    error, 
+    isUpdateRequired 
+  };
 }; 

@@ -134,7 +134,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ navigation }) =>
           style={styles.aboutContainer}
         >
           <Text style={styles.aboutTitle}>🌟 KanaKana</Text>
-          <Text style={styles.aboutVersion}>版本 2.0.0</Text>
+          <Text style={styles.aboutVersion}>版本 1.0.1</Text>
           <Text style={styles.aboutDescription}>
             採用最新科技感毛玻璃設計的日語學習應用
           </Text>

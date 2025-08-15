@@ -12,6 +12,7 @@ export interface TetrisWord {
   word: string;
   kana: string;
   meaning: string;
+  chineseMeaning?: string;
   difficulty: DifficultyLevel;
   category: string;
   kanji?: string;
@@ -19,11 +20,12 @@ export interface TetrisWord {
 }
 
 // 導入基本檔案
-import { BEGINNER_WORDS } from './beginner';
-import { NORMAL_WORDS } from './normal';
-import { HARD_WORDS } from './hard';
-import { EXPERT_WORDS } from './expert';
-import { HIRAGANA_WORDS } from './hiragana';
+import { BEGINNER_WORDS } from './beginner_converted';
+import { NORMAL_WORDS } from './normal-split';
+import { HARD_WORDS } from './hard-split';
+import { expert as EXPERT_WORDS } from './expert-split';
+import { HIRAGANA_WORDS } from './hiragana 2';
+import { JLPT_N3_N2_WORDS } from './jlpt-chunks';
 
 // 導入漢字檔案
 import { KANJI_WORDS_01 } from './kanji-01';
@@ -46,22 +48,30 @@ export {
   HARD_WORDS,
   EXPERT_WORDS,
   HIRAGANA_WORDS,
-  KANJI_WORDS
+  KANJI_WORDS,
+  JLPT_N3_N2_WORDS
 };
 
 /**
  * 根據難度獲取單字
  */
 export const getWordsByDifficulty = (difficulty: DifficultyLevel): TetrisWord[] => {
+  // 根據難度等級選擇詞彙池，並包含相應的JLPT詞彙
   switch (difficulty) {
     case 'beginner':
+      // 初級：只包含初級詞彙
       return BEGINNER_WORDS;
     case 'normal':
-      return [...BEGINNER_WORDS, ...NORMAL_WORDS];
+      // 中級：包含初級、中級詞彙 + N3詞彙
+      const n3Words = JLPT_N3_N2_WORDS.filter(word => word.jlptLevel === 'n3');
+      return [...BEGINNER_WORDS, ...NORMAL_WORDS, ...n3Words];
     case 'hard':
-      return [...BEGINNER_WORDS, ...NORMAL_WORDS, ...HARD_WORDS];
+      // 高級：包含中級、高級詞彙 + N2詞彙
+      const n2Words = JLPT_N3_N2_WORDS.filter(word => word.jlptLevel === 'n2');
+      return [...NORMAL_WORDS, ...HARD_WORDS, ...n2Words];
     case 'expert':
-      return [...BEGINNER_WORDS, ...NORMAL_WORDS, ...HARD_WORDS, ...EXPERT_WORDS];
+      // 專家級：包含所有詞彙
+      return [...BEGINNER_WORDS, ...NORMAL_WORDS, ...HARD_WORDS, ...EXPERT_WORDS, ...JLPT_N3_N2_WORDS];
     default:
       return BEGINNER_WORDS.length > 0 ? BEGINNER_WORDS : EXPERT_WORDS;
   }
@@ -71,9 +81,16 @@ export const getWordsByDifficulty = (difficulty: DifficultyLevel): TetrisWord[] 
  * 根據單字類型過濾
  */
 export const getWordsByType = (words: TetrisWord[], wordType: 'hiragana' | 'katakana' | 'mixed'): TetrisWord[] => {
+  // 檢查 words 是否為 undefined 或 null
+  if (!words || !Array.isArray(words)) {
+    console.warn('getWordsByType: words is undefined or not an array, returning empty array');
+    return [];
+  }
+  
   switch (wordType) {
     case 'hiragana':
-      return words.filter(word => !word.isKanji);
+      // 簡化邏輯：如果沒有 isKanji 屬性或 isKanji 為 false，則包含
+      return words.filter(word => word.isKanji !== true);
     case 'katakana':
       return words.filter(word => {
         for (let i = 0; i < word.kana.length; i++) {
@@ -138,8 +155,25 @@ export const getWordByLength = (
   const matchingWords = filteredWords.filter(word => word.kana.length === targetLength);
   
   if (matchingWords.length > 0) {
-    const randomIndex = Math.floor(Math.random() * matchingWords.length);
-    return matchingWords[randomIndex];
+    // 過濾掉最近使用過的詞彙
+    const nonRecentWords = matchingWords.filter(word => 
+      !recentWords.includes(word.word)
+    );
+    
+    // 選擇最終詞彙池
+    const finalWords = nonRecentWords.length >= 3 ? nonRecentWords : matchingWords;
+    
+    // 隨機選擇
+    const randomIndex = Math.floor(Math.random() * finalWords.length);
+    const selectedWord = finalWords[randomIndex];
+    
+    // 更新最近使用詞彙列表
+    recentWords.push(selectedWord.word);
+    if (recentWords.length > MAX_RECENT_WORDS) {
+      recentWords.shift();
+    }
+    
+    return selectedWord;
   }
   
   return getRandomWordImproved(difficulty, wordType);
@@ -170,8 +204,10 @@ export const getWordByLevelAndLength = (
   difficulty: DifficultyLevel,
   wordType: 'hiragana' | 'katakana' | 'mixed' = 'mixed'
 ): TetrisWord => {
+  // 簡化版本，更接近原本的實現
   let availableWords: TetrisWord[] = [];
   
+  // 根據等級添加漢字詞彙
   if (level >= 5) {
     const levelKanjiWords = KANJI_WORDS.filter(word => 
       word.kana.length === targetLength
@@ -179,24 +215,30 @@ export const getWordByLevelAndLength = (
     availableWords = [...availableWords, ...levelKanjiWords];
   }
   
+  // 獲取常規詞彙
   const regularWords = getWordsByDifficulty(difficulty);
   const filteredRegularWords = getWordsByType(regularWords, wordType)
     .filter(word => word.kana.length === targetLength && !word.isKanji);
   availableWords = [...availableWords, ...filteredRegularWords];
   
+  // 如果沒有找到匹配長度的詞彙，直接使用隨機詞彙
+  if (availableWords.length === 0) {
+    return getRandomWordImproved(difficulty, wordType);
+  }
+  
+  // 過濾掉最近使用過的詞彙
   const nonRecentWords = availableWords.filter(word => 
     !recentWords.includes(word.word)
   );
   
+  // 選擇最終詞彙池
   const finalWords = nonRecentWords.length >= 3 ? nonRecentWords : availableWords;
   
-  if (finalWords.length === 0) {
-    return getRandomWordImproved(difficulty, wordType);
-  }
-  
+  // 隨機選擇
   const randomIndex = Math.floor(Math.random() * finalWords.length);
   const selectedWord = finalWords[randomIndex];
   
+  // 更新最近使用詞彙列表
   recentWords.push(selectedWord.word);
   if (recentWords.length > MAX_RECENT_WORDS) {
     recentWords.shift();
