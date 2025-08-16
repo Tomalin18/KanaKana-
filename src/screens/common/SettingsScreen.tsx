@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -6,8 +6,10 @@ import {
   ScrollView,
   Pressable,
 } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { TechTheme, Typography, Spacing, Shadows, TechColors } from '@/constants/theme';
-import { GlassNavBar, GlassContainer } from '@/components/common';
+import { GlassNavBar, GlassContainer, LanguageSelector } from '@/components/common';
+import { getCurrentLanguage, getSupportedLanguages } from '@/i18n';
 
 interface SettingsScreenProps {
   navigation?: {
@@ -16,8 +18,21 @@ interface SettingsScreenProps {
 }
 
 export const SettingsScreen: React.FC<SettingsScreenProps> = ({ navigation }) => {
+  const { t } = useTranslation();
+  const [languageSelectorVisible, setLanguageSelectorVisible] = useState(false);
+  
   const handleBack = () => {
     navigation?.goBack();
+  };
+
+  const handleLanguagePress = () => {
+    setLanguageSelectorVisible(true);
+  };
+
+  const getCurrentLanguageName = () => {
+    const currentLang = getCurrentLanguage();
+    const supportedLanguages = getSupportedLanguages();
+    return supportedLanguages.find(lang => lang.code === currentLang)?.nativeName || '繁體中文';
   };
 
   return (
@@ -27,9 +42,9 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ navigation }) =>
       
       {/* 統一導航欄 */}
       <GlassNavBar
-        title="設定"
+        title={t('settings.title')}
         leftButton={{
-          text: '← 返回',
+          text: `← ${t('common.back')}`,
           onPress: handleBack,
           style: 'secondary',
         }}
@@ -42,26 +57,26 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ navigation }) =>
           glowEffect={true}
           style={styles.sectionContainer}
         >
-          <Text style={styles.sectionTitle}>🎮 遊戲設定</Text>
+          <Text style={styles.sectionTitle}>🎮 {t('gameSettings.title')}</Text>
           
           <SettingItem
-            title="音效"
-            subtitle="開啟/關閉遊戲音效"
+            title={t('audio.title')}
+            subtitle={t('audio.masterVolume')}
             value="開啟"
             onPress={() => {}}
           />
           
           <SettingItem
-            title="震動回饋"
-            subtitle="觸覺反饋設定"
+            title={t('audio.enableHaptics')}
+            subtitle={t('audio.enableHaptics')}
             value="開啟"
             onPress={() => {}}
           />
           
           <SettingItem
-            title="難度"
-            subtitle="調整遊戲難度"
-            value="普通"
+            title={t('gameSettings.difficulty')}
+            subtitle={t('gameSettings.difficultyNormal')}
+            value={t('gameSettings.difficultyNormal')}
             onPress={() => {}}
           />
         </GlassContainer>
@@ -72,25 +87,25 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ navigation }) =>
           glowEffect={true}
           style={styles.sectionContainer}
         >
-          <Text style={styles.sectionTitle}>🎨 顯示設定</Text>
+          <Text style={styles.sectionTitle}>🎨 {t('visual.title')}</Text>
           
           <SettingItem
-            title="主題"
-            subtitle="選擇應用主題"
-            value="科技風"
+            title={t('visual.theme')}
+            subtitle={t('visual.themeAuto')}
+            value={t('visual.themeAuto')}
             onPress={() => {}}
           />
           
           <SettingItem
-            title="字體大小"
-            subtitle="調整文字大小"
-            value="中等"
+            title={t('visual.fontSize')}
+            subtitle={t('visual.fontSizeMedium')}
+            value={t('visual.fontSizeMedium')}
             onPress={() => {}}
           />
           
           <SettingItem
-            title="動畫效果"
-            subtitle="開啟/關閉動畫"
+            title={t('visual.reducedMotion')}
+            subtitle={t('visual.reducedMotion')}
             value="開啟"
             onPress={() => {}}
           />
@@ -103,27 +118,43 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ navigation }) =>
           neonBorder={true}
           style={styles.sectionContainer}
         >
-          <Text style={styles.sectionTitle}>📚 學習設定</Text>
+          <Text style={styles.sectionTitle}>📚 {t('gameSettings.vocabularyLevel')}</Text>
           
           <SettingItem
-            title="詞彙主題"
-            subtitle="選擇練習詞彙類型"
+            title={t('gameSettings.vocabularyLevel')}
+            subtitle="JLPT N5"
             value="JLPT N5"
             onPress={() => {}}
           />
           
           <SettingItem
-            title="輸入模式"
-            subtitle="平假名/片假名/混合"
-            value="混合"
+            title={t('gameSettings.readingType')}
+            subtitle={t('gameSettings.readingTypeMixed')}
+            value={t('gameSettings.readingTypeMixed')}
             onPress={() => {}}
           />
           
           <SettingItem
-            title="提示設定"
-            subtitle="調整提示顯示方式"
-            value="智能提示"
+            title={t('gameSettings.showHints')}
+            subtitle={t('gameSettings.showHints')}
+            value="開啟"
             onPress={() => {}}
+          />
+        </GlassContainer>
+
+        {/* 語言設定 */}
+        <GlassContainer
+          variant="surface"
+          glowEffect={true}
+          style={styles.sectionContainer}
+        >
+          <Text style={styles.sectionTitle}>🌐 {t('language.title')}</Text>
+          
+          <SettingItem
+            title={t('language.uiLanguage')}
+            subtitle={t('language.selectLanguage')}
+            value={getCurrentLanguageName()}
+            onPress={handleLanguagePress}
           />
         </GlassContainer>
         
@@ -134,15 +165,21 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ navigation }) =>
           style={styles.aboutContainer}
         >
           <Text style={styles.aboutTitle}>🌟 KanaKana</Text>
-          <Text style={styles.aboutVersion}>版本 1.0.1</Text>
+          <Text style={styles.aboutVersion}>{t('about.version')} 1.0.1</Text>
           <Text style={styles.aboutDescription}>
-            採用最新科技感毛玻璃設計的日語學習應用
+            {t('about.description')}
           </Text>
           <Text style={styles.aboutCopyright}>
             © 2024 Neural Learning Systems
           </Text>
         </GlassContainer>
       </ScrollView>
+
+      {/* 語言選擇器 */}
+      <LanguageSelector
+        visible={languageSelectorVisible}
+        onClose={() => setLanguageSelectorVisible(false)}
+      />
     </View>
   );
 };
