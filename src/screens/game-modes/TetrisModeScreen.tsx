@@ -306,12 +306,12 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
       const successAnimation = Animated.sequence([
         Animated.timing(bossLineAnim, {
           toValue: 1.1,
-          duration: 200,
+          duration: 450,
           useNativeDriver: false,
         }),
         Animated.timing(bossLineAnim, {
           toValue: 1,
-          duration: 200,
+          duration: 450,
           useNativeDriver: false,
         }),
       ]);
@@ -342,12 +342,12 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
       const failAnimation = Animated.sequence([
         Animated.timing(bossLineAnim, {
           toValue: 0.9,
-          duration: 200,
+          duration: 450,
           useNativeDriver: false,
         }),
         Animated.timing(bossLineAnim, {
           toValue: 1,
-          duration: 200,
+          duration: 450,
           useNativeDriver: false,
         }),
       ]);
