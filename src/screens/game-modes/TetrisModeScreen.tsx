@@ -979,7 +979,7 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
               }}
               value={bossInput}
               onChangeText={handleBossInput}
-              placeholder="請輸入全文..."
+              placeholder={t('tetris.pleaseInputFull')}
               placeholderTextColor="#b8c6db"
               editable={bossResult===null}
               autoFocus
@@ -1006,16 +1006,16 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
               </Animated.Text>
               <View style={{marginBottom: 30}}>
                 <Text style={styles.description}>
-                  {'1. 每個方塊上會顯示日文單字或漢字，請在方塊落地前輸入正確的假名或羅馬拼音消除方塊。\n'}
-                  {'2. 方塊會自動下落，輸入正確即可消除。\n'}
-                  {'3. 每消除 5 個方塊會提升等級，等級越高方塊下落速度越快。\n'}
-                  {'4. 遊戲結束時會記錄你的最高分、最高等級與最高消除數。'}
+                  {t('tetris.instruction1')}{'\n'}
+                  {t('tetris.instruction2')}{'\n'}
+                  {t('tetris.instruction3')}{'\n'}
+                  {t('tetris.instruction4')}
                 </Text>
               </View>
               <View style={styles.settingsInfo}>
-                <Text style={{color: currentThemeColor, fontWeight: 'bold', fontSize: 16}}>🏅 最高分：{bestScore}</Text>
-                <Text style={{color: currentThemeColor, fontWeight: 'bold', fontSize: 16}}>📈 最高等級：{bestLevel}</Text>
-                <Text style={{color: currentThemeColor, fontWeight: 'bold', fontSize: 16}}>🧩 最高消除數：{bestCleared}</Text>
+                <Text style={{color: currentThemeColor, fontWeight: 'bold', fontSize: 16}}>🏅 {t('tetris.bestScore')}：{bestScore}</Text>
+                <Text style={{color: currentThemeColor, fontWeight: 'bold', fontSize: 16}}>📈 {t('tetris.bestLevel')}：{bestLevel}</Text>
+                <Text style={{color: currentThemeColor, fontWeight: 'bold', fontSize: 16}}>🧩 {t('tetris.bestCleared')}：{bestCleared}</Text>
               </View>
               <TouchableOpacity 
                 style={styles.startButton} 
@@ -1058,7 +1058,7 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
                       {currentPiece.isKanji ? (
                         <>
                           <Text style={[styles.wordText, { fontSize: 20, color: currentThemeColor, textShadowColor: currentThemeColor }]}>{currentPiece.kanji}</Text>
-                          <Text style={[styles.kanaText, { fontSize: 14, color: currentThemeColor }]}>{'讀音: ' + currentPiece.kana}</Text>
+                          <Text style={[styles.kanaText, { fontSize: 14, color: currentThemeColor }]}>{t('tetris.reading')}: {currentPiece.kana}</Text>
                           <Text style={[styles.meaningText, { fontSize: 13, color: currentThemeColor }]}>{currentPiece.meaning}</Text>
                           {currentPiece.chineseMeaning && (
                             <Text style={[styles.meaningText, { fontSize: 12, color: currentThemeColor, opacity: 0.8 }]}>{currentPiece.chineseMeaning}</Text>
@@ -1078,9 +1078,9 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
                   )}
                   {/* 分數等級消除數 */}
                   <View style={{ backgroundColor: currentThemeColor + '22', borderRadius: 14, borderWidth: 1.5, borderColor: currentThemeColor, marginTop: 18, padding: 10, alignItems: 'center', shadowColor: currentThemeColor, shadowOpacity: 0.3, shadowRadius: 8 }}>
-                    <Text style={{ color: currentThemeColor, fontSize: 15, fontWeight: '700', marginBottom: 4 }}>🏆 分數: {score}</Text>
-                    <Text style={{ color: currentThemeColor, fontSize: 15, fontWeight: '700', marginBottom: 4 }}>📈 等級: {level}</Text>
-                    <Text style={{ color: currentThemeColor, fontSize: 15, fontWeight: '700' }}>🧩 消除數: {piecesCleared}</Text>
+                    <Text style={{ color: currentThemeColor, fontSize: 15, fontWeight: '700', marginBottom: 4 }}>🏆 {t('tetris.score')}: {score}</Text>
+                    <Text style={{ color: currentThemeColor, fontSize: 15, fontWeight: '700', marginBottom: 4 }}>📈 {t('tetris.level')}: {level}</Text>
+                    <Text style={{ color: currentThemeColor, fontSize: 15, fontWeight: '700' }}>🧩 {t('tetris.cleared')}: {piecesCleared}</Text>
                   </View>
                   {/* 輸入匡 */}
                   <TextInput
@@ -1100,7 +1100,7 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
                     ]}
                     value={userInput}
                     onChangeText={handleInputChange}
-                    placeholder="請輸入"
+                    placeholder={t('tetris.pleaseInput')}
                     placeholderTextColor={currentThemeColor + '88'}
                     autoFocus={gameState === 'playing' && !bossMode}
                     editable={gameState === 'playing' && !bossMode}
@@ -1123,7 +1123,7 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
                   }
                 ]}
               >
-                💀 遊戲結束 💀
+                💀 {t('tetris.gameOver')} 💀
               </Animated.Text>
               <Animated.Text 
                 style={[
@@ -1136,22 +1136,22 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
                   }
                 ]}
               >
-                🏆 最終分數: {score} 🏆
+                🏆 {t('tetris.finalScore')}: {score} 🏆
               </Animated.Text>
               <Text style={styles.finalStats}>
-                📊 等級: {level} | 🧩 消除方塊: {piecesCleared} 📊
+                📊 {t('tetris.level')}: {level} | 🧩 {t('tetris.clearedBlocks')}: {piecesCleared} 📊
               </Text>
               {/* 新增最高紀錄顯示 */}
               <View style={{marginBottom: 20, backgroundColor: 'rgba(0,255,255,0.07)', borderRadius: 10, padding: 10, borderWidth: 1, borderColor: '#00ffff33'}}>
-                <Text style={{color: currentThemeColor, fontWeight: 'bold', fontSize: 15, marginBottom: 2}}>🏅 最高紀錄</Text>
-                <Text style={{color: currentThemeColor, fontSize: 14}}>分數：{bestScore}　等級：{bestLevel}　消除數：{bestCleared}</Text>
+                <Text style={{color: currentThemeColor, fontWeight: 'bold', fontSize: 15, marginBottom: 2}}>🏅 {t('tetris.bestRecord')}</Text>
+                <Text style={{color: currentThemeColor, fontSize: 14}}>{t('tetris.score')}：{bestScore}　{t('tetris.level')}：{bestLevel}　{t('tetris.cleared')}：{bestCleared}</Text>
               </View>
               <View style={styles.gameOverButtons}>
                 <TouchableOpacity style={styles.restartButton} onPress={restartGame}>
-                  <Text style={styles.restartButtonText}>🔄 重新開始 🔄</Text>
+                  <Text style={styles.restartButtonText}>🔄 {t('tetris.restart')} 🔄</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.backButton} onPress={goBackToMenu}>
-                  <Text style={styles.backButtonText}>🏠 返回主選單 🏠</Text>
+                  <Text style={styles.backButtonText}>🏠 {t('tetris.backToMenu')} 🏠</Text>
                 </TouchableOpacity>
                 {/* 評分按鈕 - 只在表現良好時顯示 */}
                 {(() => {
@@ -1177,7 +1177,7 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
                       triggerOnGameCompleted(score, accuracy, 'tetris_typing');
                     }}
                   >
-                    <Text style={styles.ratingButtonText}>⭐ 給我們評分 ⭐</Text>
+                    <Text style={styles.ratingButtonText}>⭐ {t('tetris.rateUs')} ⭐</Text>
                   </TouchableOpacity>
                 )}
               </View>
@@ -1222,14 +1222,14 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
       <GlassNavBar
         title={t('mainMenu.tetrisMode')}
         leftButton={{
-          text: '← 返回',
+          text: `← ${t('common.back')}`,
           onPress: () => navigation?.goBack(),
           style: 'secondary',
         }}
         rightButton={
           gameState === 'playing' || gameState === 'paused'
             ? {
-                text: gameState === 'paused' ? '繼續' : '暫停',
+                text: gameState === 'paused' ? t('common.resume') : t('common.pause'),
                 onPress: togglePause,
                 style: 'primary',
               }
