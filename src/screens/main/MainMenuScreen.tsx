@@ -8,6 +8,7 @@ import {
   ScrollView,
   StatusBar,
 } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { useRatingPrompt } from '@/hooks/useRatingPrompt';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import type { RootStackParamList } from '@/navigation/AppNavigator';
@@ -23,6 +24,7 @@ type Props = NativeStackScreenProps<RootStackParamList, 'MainMenu'>;
  * 提供遊戲模式選擇和現代科技美學界面
  */
 export const MainMenuScreen: React.FC<Props> = ({ navigation }) => {
+  const { t } = useTranslation();
   const [settingsModalVisible, setSettingsModalVisible] = useState(false);
   const [selectedMode, setSelectedMode] = useState<'classic' | 'kanji' | null>(null);
 
@@ -133,9 +135,9 @@ export const MainMenuScreen: React.FC<Props> = ({ navigation }) => {
           <View style={styles.modesContainer}>
             {/* 經典模式按鈕 */}
             <GameModeButton
-              title="練習模式-假名"
-              subtitle="PRACTICE - KANA"
-              description="挑戰你的極限，看看能打多少字！"
+              title={t('mainMenu.practiceKana')}
+              subtitle={t('mainMenu.practiceKanaSubtitle')}
+              description={t('mainMenu.practiceKanaDescription')}
               emoji="🎯"
               onPress={() => handleGameModePress('classic')}
               isPrimary
@@ -144,9 +146,9 @@ export const MainMenuScreen: React.FC<Props> = ({ navigation }) => {
             {/* 新遊戲模式 */}
             {isFeatureEnabled('KANJI_MODE') && (
               <GameModeButton
-                title="練習模式-漢字"
-                subtitle="PRACTICE - KANJI"
-                description="看漢字輸入假名，提升漢字讀音能力！"
+                title={t('mainMenu.practiceKanji')}
+                subtitle={t('mainMenu.practiceKanjiSubtitle')}
+                description={t('mainMenu.practiceKanjiDescription')}
                 emoji="🈯"
                 onPress={() => handleGameModePress('kanji_to_kana')}
                 isNew
@@ -155,9 +157,9 @@ export const MainMenuScreen: React.FC<Props> = ({ navigation }) => {
 
             {isFeatureEnabled('LONG_TEXT_MODE') && (
               <GameModeButton
-                title="長文模式"
-                subtitle="LONG TEXT MODE"
-                description="挑戰長篇文章，練習流暢輸入！"
+                title={t('mainMenu.longTextMode')}
+                subtitle={t('mainMenu.longTextModeSubtitle')}
+                description={t('mainMenu.longTextModeDescription')}
                 emoji="📜"
                 onPress={() => handleGameModePress('long_text')}
                 isNew
@@ -166,9 +168,9 @@ export const MainMenuScreen: React.FC<Props> = ({ navigation }) => {
 
             {isFeatureEnabled('TETRIS_MODE') && (
               <GameModeButton
-                title="俄羅斯方塊"
-                subtitle="TETRIS TYPING"
-                description="在方塊掉落前輸入完成，刺激有趣！"
+                title={t('mainMenu.tetrisMode')}
+                subtitle={t('mainMenu.tetrisModeSubtitle')}
+                description={t('mainMenu.tetrisModeDescription')}
                 emoji="🧩"
                 onPress={() => handleGameModePress('tetris_typing')}
                 isNew
