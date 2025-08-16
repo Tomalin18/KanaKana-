@@ -93,12 +93,20 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
     );
   };
 
+  console.log('LanguageSelector render:', { 
+    visible, 
+    selectedLanguage, 
+    supportedLanguagesCount: supportedLanguages.length,
+    supportedLanguages 
+  });
+  
   return (
     <Modal
       visible={visible}
       transparent
       animationType="fade"
       onRequestClose={onClose}
+      statusBarTranslucent={true}
     >
       <View style={styles.modalOverlay}>
         <GlassContainer
@@ -123,15 +131,20 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
 
           <ScrollView
             style={styles.languageList}
+            contentContainerStyle={styles.languageListContent}
             showsVerticalScrollIndicator={false}
           >
-            {supportedLanguages.map(renderLanguageOption)}
+            {supportedLanguages.length > 0 ? (
+              supportedLanguages.map(renderLanguageOption)
+            ) : (
+              <Text style={styles.noLanguagesText}>沒有可用的語言選項</Text>
+            )}
           </ScrollView>
 
           <View style={styles.footer}>
             <Text style={styles.currentLanguageText}>
               {t('language.currentLanguage')}: {
-                supportedLanguages.find(lang => lang.code === selectedLanguage)?.nativeName
+                supportedLanguages.find(lang => lang.code === selectedLanguage)?.nativeName || '未知'
               }
             </Text>
           </View>
@@ -148,6 +161,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
+    zIndex: 9999,
   },
   modalContainer: {
     width: '100%',
@@ -188,6 +202,16 @@ const styles = StyleSheet.create({
   },
   languageList: {
     flex: 1,
+    minHeight: 200,
+  },
+  languageListContent: {
+    paddingVertical: 10,
+  },
+  noLanguagesText: {
+    fontSize: 16,
+    color: TechTheme.textSecondary,
+    textAlign: 'center',
+    paddingVertical: 20,
   },
   languageOption: {
     marginBottom: 10,
