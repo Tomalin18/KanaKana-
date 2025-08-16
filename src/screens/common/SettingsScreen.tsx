@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { TechTheme, Typography, Spacing, Shadows, TechColors } from '@/constants/theme';
-import { GlassNavBar, GlassContainer, LanguageSelector } from '@/components/common';
+import { GlassNavBar, GlassContainer, LanguageDropdown } from '@/components/common';
 import { getCurrentLanguage, getSupportedLanguages } from '@/i18n';
 
 interface SettingsScreenProps {
@@ -19,21 +19,13 @@ interface SettingsScreenProps {
 
 export const SettingsScreen: React.FC<SettingsScreenProps> = ({ navigation }) => {
   const { t } = useTranslation();
-  const [languageSelectorVisible, setLanguageSelectorVisible] = useState(false);
   
   const handleBack = () => {
     navigation?.goBack();
   };
 
-  const handleLanguagePress = () => {
-    console.log('Language button pressed, setting visible to true');
-    setLanguageSelectorVisible(true);
-  };
-
-  const getCurrentLanguageName = () => {
-    const currentLang = getCurrentLanguage();
-    const supportedLanguages = getSupportedLanguages();
-    return supportedLanguages.find(lang => lang.code === currentLang)?.nativeName || '繁體中文';
+  const handleLanguageChange = (languageCode: string) => {
+    console.log('Language changed to:', languageCode);
   };
 
 
@@ -54,111 +46,16 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ navigation }) =>
       />
       
       <ScrollView style={styles.scrollView} contentContainerStyle={styles.scrollContent}>
-        {/* 遊戲設定 */}
+        {/* 語言設定 */}
         <GlassContainer
           variant="primary"
-          glowEffect={true}
-          style={styles.sectionContainer}
-        >
-          <Text style={styles.sectionTitle}>🎮 {t('gameSettings.title')}</Text>
-          
-          <SettingItem
-            title={t('audio.title')}
-            subtitle={t('audio.masterVolume')}
-            value="開啟"
-            onPress={() => {}}
-          />
-          
-          <SettingItem
-            title={t('audio.enableHaptics')}
-            subtitle={t('audio.enableHaptics')}
-            value="開啟"
-            onPress={() => {}}
-          />
-          
-          <SettingItem
-            title={t('gameSettings.difficulty')}
-            subtitle={t('gameSettings.difficultyNormal')}
-            value={t('gameSettings.difficultyNormal')}
-            onPress={() => {}}
-          />
-        </GlassContainer>
-        
-        {/* 顯示設定 */}
-        <GlassContainer
-          variant="secondary"
-          glowEffect={true}
-          style={styles.sectionContainer}
-        >
-          <Text style={styles.sectionTitle}>🎨 {t('visual.title')}</Text>
-          
-          <SettingItem
-            title={t('visual.theme')}
-            subtitle={t('visual.themeAuto')}
-            value={t('visual.themeAuto')}
-            onPress={() => {}}
-          />
-          
-          <SettingItem
-            title={t('visual.fontSize')}
-            subtitle={t('visual.fontSizeMedium')}
-            value={t('visual.fontSizeMedium')}
-            onPress={() => {}}
-          />
-          
-          <SettingItem
-            title={t('visual.reducedMotion')}
-            subtitle={t('visual.reducedMotion')}
-            value="開啟"
-            onPress={() => {}}
-          />
-        </GlassContainer>
-        
-        {/* 學習設定 */}
-        <GlassContainer
-          variant="accent"
           glowEffect={true}
           neonBorder={true}
           style={styles.sectionContainer}
         >
-          <Text style={styles.sectionTitle}>📚 {t('gameSettings.vocabularyLevel')}</Text>
-          
-          <SettingItem
-            title={t('gameSettings.vocabularyLevel')}
-            subtitle="JLPT N5"
-            value="JLPT N5"
-            onPress={() => {}}
-          />
-          
-          <SettingItem
-            title={t('gameSettings.readingType')}
-            subtitle={t('gameSettings.readingTypeMixed')}
-            value={t('gameSettings.readingTypeMixed')}
-            onPress={() => {}}
-          />
-          
-          <SettingItem
-            title={t('gameSettings.showHints')}
-            subtitle={t('gameSettings.showHints')}
-            value="開啟"
-            onPress={() => {}}
-          />
-        </GlassContainer>
-
-        {/* 語言設定 */}
-        <GlassContainer
-          variant="surface"
-          glowEffect={true}
-          style={styles.sectionContainer}
-        >
           <Text style={styles.sectionTitle}>🌐 {t('language.title')}</Text>
           
-          <SettingItem
-            title={t('language.uiLanguage')}
-            subtitle={t('language.selectLanguage')}
-            value={getCurrentLanguageName()}
-            onPress={handleLanguagePress}
-          />
+          <LanguageDropdown onLanguageChange={handleLanguageChange} />
         </GlassContainer>
         
         {/* 關於 */}
@@ -177,15 +74,6 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ navigation }) =>
           </Text>
         </GlassContainer>
             </ScrollView>
-
-      {/* 語言選擇器 */}
-      <LanguageSelector
-        visible={languageSelectorVisible}
-        onClose={() => {
-          console.log('LanguageSelector onClose called');
-          setLanguageSelectorVisible(false);
-        }}
-      />
     </View>
   );
 };
