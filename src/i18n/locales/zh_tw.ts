@@ -115,6 +115,7 @@ export default {
 
   // Tetris 模式
   tetris: {
+    title: '俄羅斯方塊模式',
     instruction1: '1. 每個方塊上會顯示日文單字或漢字，請在方塊落地前輸入正確的假名或羅馬拼音消除方塊。',
     instruction2: '2. 方塊會自動下落，輸入正確即可消除。',
     instruction3: '3. 每消除 5 個方塊會提升等級，等級越高方塊下落速度越快。',
