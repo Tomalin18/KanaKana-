@@ -2,7 +2,7 @@
   "expo": {
     "name": "KanaKana",
     "slug": "kana-tower",
-    "version": "1.0.1",
+    "version": "1.1.0",
     "orientation": "portrait",
     "userInterfaceStyle": "automatic",
     "splash": {
@@ -16,17 +16,17 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.kanakana.app",
-      "buildNumber": "2",
+      "buildNumber": "3",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false,
         "CFBundleDisplayName": "KanaKana",
-        "CFBundleShortVersionString": "1.0.1"
+        "CFBundleShortVersionString": "1.1.0"
       }
     },
     "android": {
       "package": "com.kanakana.app",
-      "versionCode": 2,
-      "versionName": "1.0.1"
+      "versionCode": 3,
+      "versionName": "1.1.0"
     },
     "web": {
       "bundler": "metro"
