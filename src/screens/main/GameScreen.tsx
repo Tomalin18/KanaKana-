@@ -9,6 +9,7 @@ import {
   Easing,
 } from 'react-native';
 import { useRatingPrompt } from '@/hooks/useRatingPrompt';
+import { getRatingState } from '@/utils/ratingPrompt';
 import { TechTheme, Typography, Spacing, Shadows, TechColors } from '@/constants/theme';
 import { getRandomWordByCombinedDifficulty, type TetrisWord } from '@/data/vocabulary-final';
 import { useTypingDetection } from '@/hooks/useTypingDetection';
@@ -73,6 +74,9 @@ export const GameScreen: React.FC<GameScreenProps> = ({ route, navigation }) => 
     triggerOnAchievement, 
     recordSession 
   } = useRatingPrompt();
+  
+  // 評分狀態
+  const [hasRated, setHasRated] = useState(false);
 
   // 使用統一的打字偵測 hook
   const {
@@ -139,6 +143,17 @@ export const GameScreen: React.FC<GameScreenProps> = ({ route, navigation }) => 
     // 記錄會話
     recordSession();
   };
+
+  // 檢查評分狀態
+  const checkRatingStatus = useCallback(async () => {
+    try {
+      const ratingState = await getRatingState();
+      setHasRated(ratingState.hasRated);
+      console.log('📊 經典模式評分狀態檢查:', { hasRated: ratingState.hasRated });
+    } catch (error) {
+      console.error('❌ 檢查評分狀態失敗:', error);
+    }
+  }, []);
 
   // 暫停/繼續遊戲
   const togglePause = () => {
@@ -216,6 +231,8 @@ export const GameScreen: React.FC<GameScreenProps> = ({ route, navigation }) => 
               const accuracy = combo > 0 ? Math.min(0.95, 0.7 + (combo * 0.02)) : 0.7;
               triggerOnGameCompleted(score, accuracy, mode);
             }}
+            hasRated={hasRated}
+            onCheckRatingStatus={checkRatingStatus}
           />
         );
       default:
@@ -726,6 +743,8 @@ interface GameEndScreenProps {
   onRestart: () => void;
   onBackToMenu: () => void;
   onRatingPrompt?: () => void;
+  hasRated?: boolean;
+  onCheckRatingStatus?: () => void;
 }
 
 const GameEndScreen: React.FC<GameEndScreenProps> = ({
@@ -734,7 +753,17 @@ const GameEndScreen: React.FC<GameEndScreenProps> = ({
   onRestart,
   onBackToMenu,
   onRatingPrompt,
-}) => (
+  hasRated = false,
+  onCheckRatingStatus,
+}) => {
+  // 組件掛載時檢查評分狀態
+  React.useEffect(() => {
+    if (onCheckRatingStatus) {
+      onCheckRatingStatus();
+    }
+  }, [onCheckRatingStatus]);
+
+  return (
   <View style={styles.centerContainer}>
     <GlassContainer
       variant="surface"
@@ -768,8 +797,8 @@ const GameEndScreen: React.FC<GameEndScreenProps> = ({
         >
           <Text style={styles.menuButtonText}>🏠 回到主選單</Text>
         </Pressable>
-        {/* 評分按鈕 - 只在表現良好時顯示 */}
-        {onRatingPrompt && (score > 1000 || gameTime > 60) && (
+        {/* 評分按鈕 - 只在表現良好且未評分時顯示 */}
+        {onRatingPrompt && (score > 1000 || gameTime > 60) && !hasRated && (
           <Pressable
             style={({ pressed }) => [
               styles.ratingButton,
@@ -784,7 +813,8 @@ const GameEndScreen: React.FC<GameEndScreenProps> = ({
       </View>
     </GlassContainer>
   </View>
-);
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
