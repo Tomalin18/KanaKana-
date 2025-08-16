@@ -287,14 +287,14 @@ export const KanjiModeScreen: React.FC<KanjiModeScreenProps> = ({ route, navigat
       <GlassNavBar
         title={t('mainMenu.practiceKanji')}
         leftButton={{
-          text: '← 返回',
+          text: `← ${t('common.back')}`,
           onPress: goBackToMenu,
           style: 'secondary',
         }}
         rightButton={
           gameState === 'playing' || gameState === 'paused'
             ? {
-                text: gameState === 'paused' ? '繼續' : '暫停',
+                text: gameState === 'paused' ? t('common.resume') : t('common.pause'),
                 onPress: togglePause,
                 style: 'primary',
               }
@@ -533,7 +533,7 @@ const KanjiGameEndScreen: React.FC<KanjiGameEndScreenProps> = ({
       neonBorder={true}
       style={styles.endGameContainer}
     >
-      <Text style={styles.gameOverTitle}>🎮 遊戲結束！</Text>
+                      <Text style={styles.gameOverTitle}>🎮 {t('gamePlay.gameOver')}！</Text>
       <View style={styles.finalScoreContainer}>
         <Text style={styles.finalScoreLabel}>最終分數</Text>
         <Text style={styles.finalScoreValue}>{score}</Text>

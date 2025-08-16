@@ -303,14 +303,14 @@ export const LongTextModeScreen: React.FC<LongTextModeScreenProps> = ({ route, n
       <GlassNavBar
         title={t('mainMenu.longTextMode')}
         leftButton={{
-          text: '← 返回',
+          text: `← ${t('common.back')}`,
           onPress: goBackToMenu,
           style: 'secondary',
         }}
         rightButton={
           gameState === 'playing' || gameState === 'paused'
             ? {
-                text: gameState === 'paused' ? '繼續' : '暫停',
+                text: gameState === 'paused' ? t('common.resume') : t('common.pause'),
                 onPress: togglePause,
                 style: 'primary',
               }
@@ -370,11 +370,11 @@ const LongTextGameStartScreen: React.FC<LongTextGameStartScreenProps> = ({ onSta
   <View style={styles.centerContainer}>
             <Text style={styles.gameModeTitle}>{t('mainMenu.longTextMode')}</Text>
     <Text style={styles.instructions}>
-      完整輸入日文長文來練習打字技巧！
+      {t('gamePlay.inputArticleContent')}
     </Text>
     <View style={styles.settingsInfo}>
-      <Text style={styles.settingText}>文章長度：{settings.textLength === 'short' ? '短篇' : '中篇'}</Text>
-      <Text style={styles.settingText}>顯示進度：{settings.showProgress ? '是' : '否'}</Text>
+      <Text style={styles.settingText}>{t('gameSettings.textLength')}：{settings.textLength === 'short' ? t('gameSettings.textLengthShort') : t('gameSettings.textLengthMedium')}</Text>
+      <Text style={styles.settingText}>{t('gameSettings.showProgress')}：{settings.showProgress ? t('common.confirm') : t('common.cancel')}</Text>
     </View>
     <Pressable style={styles.startButton} onPress={onStart}>
               <Text style={styles.startButtonText}>{t('gameSettings.startGame')}</Text>
@@ -550,7 +550,7 @@ const LongTextGameEndScreen: React.FC<LongTextGameEndScreenProps> = ({
   onBackToMenu,
 }) => (
   <View style={styles.centerContainer}>
-    <Text style={styles.gameOverTitle}>遊戲結束</Text>
+                    <Text style={styles.gameOverTitle}>{t('gamePlay.gameOver')}</Text>
     <View style={styles.finalScoreContainer}>
       <Text style={styles.finalScoreLabel}>最終分數</Text>
       <Text style={styles.finalScoreValue}>{score}</Text>

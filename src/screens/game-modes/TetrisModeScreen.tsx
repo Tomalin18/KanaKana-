@@ -109,12 +109,17 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
   
   // 調試信息
   console.log('TetrisModeScreen - Current language:', i18n.language);
+  console.log('TetrisModeScreen - Available languages:', i18n.languages);
+  console.log('TetrisModeScreen - Is initialized:', i18n.isInitialized);
   console.log('TetrisModeScreen - Translation test:', {
     instruction1: t('tetris.instruction1'),
     score: t('tetris.score'),
     level: t('tetris.level'),
     cleared: t('tetris.cleared'),
     pleaseInput: t('tetris.pleaseInput'),
+    bestScore: t('tetris.bestScore'),
+    bestLevel: t('tetris.bestLevel'),
+    bestCleared: t('tetris.bestCleared'),
   });
   // 遊戲狀態
   const [gameState, setGameState] = useState<'idle' | 'playing' | 'paused' | 'finished'>('idle');

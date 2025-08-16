@@ -242,14 +242,14 @@ export const GameScreen: React.FC<GameScreenProps> = ({ route, navigation }) => 
       <GlassNavBar
         title={mode === 'classic' ? t('mainMenu.practiceKana') : t('mainMenu.practiceKana')}
         leftButton={{
-          text: '← 返回',
+          text: `← ${t('common.back')}`,
           onPress: backToMenu,
           style: 'secondary',
         }}
         rightButton={
           gameState === 'playing' || gameState === 'paused'
             ? {
-                text: gameState === 'paused' ? '繼續' : '暫停',
+                text: gameState === 'paused' ? t('common.resume') : t('common.pause'),
                 onPress: togglePause,
                 style: 'primary',
               }
@@ -752,6 +752,7 @@ const GameEndScreen: React.FC<GameEndScreenProps> = ({
   hasRated = false,
   onCheckRatingStatus,
 }) => {
+  const { t } = useTranslation();
   // 組件掛載時檢查評分狀態
   React.useEffect(() => {
     if (onCheckRatingStatus) {
@@ -767,10 +768,10 @@ const GameEndScreen: React.FC<GameEndScreenProps> = ({
       neonBorder={true}
       style={styles.endGameContainer}
     >
-      <Text style={styles.gameOverText}>🎮 遊戲結束！</Text>
-      <Text style={styles.finalScoreText}>最終分數: {score}</Text>
+                      <Text style={styles.gameOverText}>🎮 {t('gamePlay.gameOver')}！</Text>
+      <Text style={styles.finalScoreText}>{t('gameEnd.finalScore')}: {score}</Text>
       <Text style={styles.gameTimeText}>
-        遊戲時間: {Math.floor(gameTime / 60)}:{(gameTime % 60).toString().padStart(2, '0')}
+        {t('gamePlay.time')}: {Math.floor(gameTime / 60)}:{(gameTime % 60).toString().padStart(2, '0')}
       </Text>
       
       <View style={styles.endGameButtons}>
@@ -782,7 +783,7 @@ const GameEndScreen: React.FC<GameEndScreenProps> = ({
           ]}
           onPress={onRestart}
         >
-          <Text style={styles.restartButtonText}>🔄 再試一次</Text>
+          <Text style={styles.restartButtonText}>🔄 {t('gamePlay.tryAgain')}</Text>
         </Pressable>
         <Pressable
           style={({ pressed }) => [
@@ -791,7 +792,7 @@ const GameEndScreen: React.FC<GameEndScreenProps> = ({
           ]}
           onPress={onBackToMenu}
         >
-          <Text style={styles.menuButtonText}>🏠 回到主選單</Text>
+          <Text style={styles.menuButtonText}>🏠 {t('gameEnd.backToMenu')}</Text>
         </Pressable>
         {/* 評分按鈕 - 只在表現良好且未評分時顯示 */}
         {onRatingPrompt && (score > 1000 || gameTime > 60) && !hasRated && (
@@ -803,7 +804,7 @@ const GameEndScreen: React.FC<GameEndScreenProps> = ({
             ]}
             onPress={onRatingPrompt}
           >
-            <Text style={styles.ratingButtonText}>⭐ 給我們評分</Text>
+            <Text style={styles.ratingButtonText}>⭐ {t('about.rateUs')}</Text>
           </Pressable>
         )}
       </View>
