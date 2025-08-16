@@ -1060,12 +1060,24 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
                   <Text style={styles.backButtonText}>🏠 返回主選單 🏠</Text>
                 </TouchableOpacity>
                 {/* 評分按鈕 - 只在表現良好時顯示 */}
-                {(score > 1000 || piecesCleared > 10) && (
+                {(() => {
+                  const shouldShowRating = score > 1000 || piecesCleared > 10;
+                  console.log('🔍 Tetris 評分按鈕顯示條件檢查:', { 
+                    score, 
+                    piecesCleared, 
+                    shouldShowRating,
+                    condition1: score > 1000,
+                    condition2: piecesCleared > 10
+                  });
+                  return shouldShowRating;
+                })() && (
                   <TouchableOpacity 
                     style={[styles.ratingButton, { borderColor: currentThemeColor }]} 
                     onPress={() => {
+                      console.log('🎯 Tetris 評分按鈕被點擊:', { score, piecesCleared, level });
                       // 計算準確率（基於消除方塊數和等級）
                       const accuracy = Math.min(0.95, 0.7 + (piecesCleared * 0.02) + (level * 0.01));
+                      console.log('📊 計算的準確率:', accuracy);
                       triggerOnGameCompleted(score, accuracy, 'tetris_typing');
                     }}
                   >

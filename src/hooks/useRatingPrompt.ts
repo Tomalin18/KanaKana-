@@ -12,11 +12,17 @@ export const useRatingPrompt = () => {
 
   // 遊戲完成時觸發
   const triggerOnGameCompleted = useCallback(async (score: number, accuracy: number, mode: string) => {
-    await showRatingPrompt('game_completed', {
-      score,
-      accuracy,
-      mode,
-    });
+    console.log('🚀 useRatingPrompt: triggerOnGameCompleted 被調用:', { score, accuracy, mode });
+    try {
+      await showRatingPrompt('game_completed', {
+        score,
+        accuracy,
+        mode,
+      });
+      console.log('✅ useRatingPrompt: showRatingPrompt 調用成功');
+    } catch (error) {
+      console.error('❌ useRatingPrompt: showRatingPrompt 調用失敗:', error);
+    }
   }, []);
 
   // 連續使用里程碑觸發
