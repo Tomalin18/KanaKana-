@@ -89,6 +89,10 @@ export default {
     tryAgain: 'Try Again',
     continue: 'Continue',
     exit: 'Exit',
+    practiceComplete: 'Practice Complete',
+    practiceTime: 'Practice Time',
+    minutes: 'min',
+    seconds: 'sec',
   },
 
   // Game End

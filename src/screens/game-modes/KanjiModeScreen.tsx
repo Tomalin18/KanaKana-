@@ -439,19 +439,7 @@ const KanjiGamePlayScreen: React.FC<KanjiGamePlayScreenProps> = ({
   
   return (
   <View style={styles.gameContainer}>
-    {/* 統計資訊（最上方，經典模式風格） */}
-    <View style={styles.gameInfo}>
-      <View style={styles.infoItem}>
-        <Text style={styles.infoText}>🏆 分數: {score}</Text>
-      </View>
-      <View style={styles.infoItem}>
-        <Text style={styles.infoText}>🔥 連擊: {combo}</Text>
-      </View>
-      <View style={styles.infoItem}>
-        <Text style={styles.infoText}>⏰ 時間: {Math.floor(gameTime / 60)}:{(gameTime % 60).toString().padStart(2, '0')}</Text>
-      </View>
-    </View>
-    {/* 提示按鈕（統計資訊下方靠右，避免被鍵盤擋住） */}
+    {/* 提示按鈕（右上角） */}
     <View style={styles.hintButtonRow}>
       <View style={{flex:1}} />
       <Pressable 
@@ -461,7 +449,7 @@ const KanjiGamePlayScreen: React.FC<KanjiGamePlayScreenProps> = ({
         ]} 
         onPress={onShowHint}
       >
-        <Text style={styles.hintButtonText}>💡 提示</Text>
+        <Text style={styles.hintButtonText}>💡 {t('gamePlay.hint')}</Text>
       </Pressable>
     </View>
     {/* 題目泡泡（中間） */}
@@ -535,10 +523,9 @@ const KanjiGameEndScreen: React.FC<KanjiGameEndScreenProps> = ({
     >
                       <Text style={styles.gameOverTitle}>🎮 {t('gamePlay.gameOver')}！</Text>
       <View style={styles.finalScoreContainer}>
-        <Text style={styles.finalScoreLabel}>最終分數</Text>
-        <Text style={styles.finalScoreValue}>{score}</Text>
+        <Text style={styles.finalScoreLabel}>{t('gamePlay.practiceComplete')}</Text>
         <Text style={styles.finalTimeText}>
-          用時：{Math.floor(gameTime / 60)}分{gameTime % 60}秒
+          {t('gamePlay.practiceTime')}：{Math.floor(gameTime / 60)}{t('gamePlay.minutes')}{gameTime % 60}{t('gamePlay.seconds')}
         </Text>
       </View>
       <View style={styles.endButtonsContainer}>
@@ -550,7 +537,7 @@ const KanjiGameEndScreen: React.FC<KanjiGameEndScreenProps> = ({
           ]} 
           onPress={onRestart}
         >
-          <Text style={styles.restartButtonText}>🔄 再玩一次</Text>
+          <Text style={styles.restartButtonText}>🔄 {t('gamePlay.playAgain')}</Text>
         </Pressable>
         <Pressable 
           style={({ pressed }) => [
@@ -559,7 +546,7 @@ const KanjiGameEndScreen: React.FC<KanjiGameEndScreenProps> = ({
           ]} 
           onPress={onBackToMenu}
         >
-          <Text style={styles.menuButtonText}>🏠 回到主選單</Text>
+          <Text style={styles.menuButtonText}>🏠 {t('gamePlay.backToMenu')}</Text>
         </Pressable>
       </View>
     </GlassContainer>
