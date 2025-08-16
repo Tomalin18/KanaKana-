@@ -102,7 +102,6 @@ export default {
     totalWords: '總單字數',
     accuracy: '準確率',
     averageSpeed: '平均速度',
-  },
 
   // 難度選擇
   difficulty: {

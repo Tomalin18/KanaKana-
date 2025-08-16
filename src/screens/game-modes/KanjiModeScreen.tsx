@@ -513,7 +513,9 @@ const KanjiGameEndScreen: React.FC<KanjiGameEndScreenProps> = ({
   gameTime,
   onRestart,
   onBackToMenu,
-}) => (
+}) => {
+  const { t } = useTranslation();
+  return (
   <View style={styles.centerContainer}>
     <GlassContainer
       variant="surface"
@@ -551,7 +553,8 @@ const KanjiGameEndScreen: React.FC<KanjiGameEndScreenProps> = ({
       </View>
     </GlassContainer>
   </View>
-);
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
