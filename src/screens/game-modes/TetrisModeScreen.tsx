@@ -1017,7 +1017,7 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
                   }
                 ]}
               >
-🎯 Tetris Mode
+🎯 {t('tetris.title')}
               </Animated.Text>
               <View style={{marginBottom: 30}}>
                 <Text style={styles.description}>
