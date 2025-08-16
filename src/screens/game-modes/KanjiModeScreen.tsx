@@ -348,16 +348,18 @@ interface KanjiGameStartScreenProps {
 }
 
 const KanjiGameStartScreen: React.FC<KanjiGameStartScreenProps> = ({ onStart, settings }) => {
+  const { t } = useTranslation();
+  
   const getDifficultyInfo = (difficulty: string) => {
     switch (difficulty) {
       case 'easy':
-        return { name: '簡單', color: TechColors.neonGreen, lives: 5 };
+        return { name: t('gameSettings.difficultyEasy'), color: TechColors.neonGreen, lives: 5 };
       case 'normal':
-        return { name: '普通', color: TechColors.neonBlue, lives: 3 };
+        return { name: t('gameSettings.difficultyNormal'), color: TechColors.neonBlue, lives: 3 };
       case 'hard':
-        return { name: '困難', color: TechColors.neonPink, lives: 1 };
+        return { name: t('gameSettings.difficultyHard'), color: TechColors.neonPink, lives: 1 };
       default:
-        return { name: '普通', color: TechColors.neonBlue, lives: 3 };
+        return { name: t('gameSettings.difficultyNormal'), color: TechColors.neonBlue, lives: 3 };
     }
   };
 
@@ -373,22 +375,21 @@ const KanjiGameStartScreen: React.FC<KanjiGameStartScreenProps> = ({ onStart, se
       >
         <Text style={styles.gameModeTitle}>🈯 {t('mainMenu.practiceKanji')}</Text>
         <Text style={styles.instructions}>
-          看漢字，輸入對應的{settings.readingType === 'hiragana' ? '平假名' : 
-                            settings.readingType === 'katakana' ? '片假名' : '假名'}讀音！
+          {t('gamePlay.inputKanaReading')}
         </Text>
         <View style={styles.settingsInfo}>
           <Text style={[styles.settingText, { color: difficultyInfo.color }]}>
-            難度：{difficultyInfo.name} (❤️ {difficultyInfo.lives} 生命)
+            {t('gameSettings.difficulty')}：{difficultyInfo.name} (❤️ {difficultyInfo.lives} {t('gameSettings.lives')})
           </Text>
           <Text style={styles.settingText}>
-            JLPT等級：{settings.difficultyLevel.toUpperCase()}
+            JLPT{t('gameSettings.vocabularyLevel')}：{settings.difficultyLevel.toUpperCase()}
           </Text>
           <Text style={styles.settingText}>
-            顯示意思：{settings.showMeaning ? '是' : '否'}
+            {t('gameSettings.showMeaning')}：{settings.showMeaning ? t('common.confirm') : t('common.cancel')}
           </Text>
           <Text style={styles.settingText}>
-            讀音類型：{settings.readingType === 'hiragana' ? '平假名' : 
-                      settings.readingType === 'katakana' ? '片假名' : '混合'}
+            {t('gameSettings.readingType')}：{settings.readingType === 'hiragana' ? t('gameSettings.readingTypeHiragana') : 
+                      settings.readingType === 'katakana' ? t('gameSettings.readingTypeKatakana') : t('gameSettings.readingTypeMixed')}
           </Text>
         </View>
         <Pressable 
@@ -433,7 +434,10 @@ const KanjiGamePlayScreen: React.FC<KanjiGamePlayScreenProps> = ({
   showMeaning,
   showHint,
   settings,
-}) => (
+}) => {
+  const { t } = useTranslation();
+  
+  return (
   <View style={styles.gameContainer}>
     {/* 統計資訊（最上方，經典模式風格） */}
     <View style={styles.gameInfo}>
@@ -505,7 +509,8 @@ const KanjiGamePlayScreen: React.FC<KanjiGamePlayScreenProps> = ({
       numberOfLines={1}
     />
   </View>
-);
+  );
+};
 
 // 遊戲結束畫面
 interface KanjiGameEndScreenProps {

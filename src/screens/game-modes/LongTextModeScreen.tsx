@@ -363,7 +363,10 @@ interface LongTextGameStartScreenProps {
   settings: LongTextSettings;
 }
 
-const LongTextGameStartScreen: React.FC<LongTextGameStartScreenProps> = ({ onStart, settings }) => (
+const LongTextGameStartScreen: React.FC<LongTextGameStartScreenProps> = ({ onStart, settings }) => {
+  const { t } = useTranslation();
+  
+  return (
   <View style={styles.centerContainer}>
             <Text style={styles.gameModeTitle}>{t('mainMenu.longTextMode')}</Text>
     <Text style={styles.instructions}>
@@ -377,7 +380,8 @@ const LongTextGameStartScreen: React.FC<LongTextGameStartScreenProps> = ({ onSta
               <Text style={styles.startButtonText}>{t('gameSettings.startGame')}</Text>
     </Pressable>
   </View>
-);
+  );
+};
 
 // 遊戲進行畫面
 interface LongTextGamePlayScreenProps {
@@ -408,7 +412,10 @@ const LongTextGamePlayScreen: React.FC<LongTextGamePlayScreenProps> = ({
   currentText,
   currentPosition,
   textMapping,
-}) => (
+}) => {
+  const { t } = useTranslation();
+  
+  return (
   <View style={styles.gameContainer}>
     {/* 遊戲狀態顯示 */}
     <View style={styles.gameStats}>
@@ -450,7 +457,8 @@ const LongTextGamePlayScreen: React.FC<LongTextGamePlayScreenProps> = ({
 
     {/* 控制按鈕區域 - 現在由統一導航欄處理暫停功能 */}
   </View>
-);
+  );
+};
 
 // 輸入進度顯示組件
 interface LongTextInputProgressProps {
