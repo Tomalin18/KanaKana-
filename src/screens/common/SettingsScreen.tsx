@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { TechTheme, Typography, Spacing, Shadows, TechColors } from '@/constants/theme';
-import { GlassNavBar, GlassContainer, LanguageSelector } from '@/components/common';
+import { GlassNavBar, GlassContainer, LanguageDropdown } from '@/components/common';
 import { getCurrentLanguage, getSupportedLanguages } from '@/i18n';
 
 interface SettingsScreenProps {
@@ -19,22 +19,16 @@ interface SettingsScreenProps {
 
 export const SettingsScreen: React.FC<SettingsScreenProps> = ({ navigation }) => {
   const { t } = useTranslation();
-  const [languageSelectorVisible, setLanguageSelectorVisible] = useState(false);
   
   const handleBack = () => {
     navigation?.goBack();
   };
 
-  const handleLanguagePress = () => {
-    console.log('Language button pressed, setting visible to true');
-    setLanguageSelectorVisible(true);
+  const handleLanguageChange = (languageCode: string) => {
+    console.log('Language changed to:', languageCode);
   };
 
-  const getCurrentLanguageName = () => {
-    const currentLang = getCurrentLanguage();
-    const supportedLanguages = getSupportedLanguages();
-    return supportedLanguages.find(lang => lang.code === currentLang)?.nativeName || '繁體中文';
-  };
+
 
   return (
     <View style={styles.container}>
@@ -151,12 +145,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ navigation }) =>
         >
           <Text style={styles.sectionTitle}>🌐 {t('language.title')}</Text>
           
-          <SettingItem
-            title={t('language.uiLanguage')}
-            subtitle={t('language.selectLanguage')}
-            value={getCurrentLanguageName()}
-            onPress={handleLanguagePress}
-          />
+          <LanguageDropdown onLanguageChange={handleLanguageChange} />
         </GlassContainer>
         
         {/* 關於 */}
@@ -176,14 +165,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ navigation }) =>
         </GlassContainer>
       </ScrollView>
 
-      {/* 語言選擇器 */}
-      <LanguageSelector
-        visible={languageSelectorVisible}
-        onClose={() => {
-          console.log('LanguageSelector onClose called');
-          setLanguageSelectorVisible(false);
-        }}
-      />
+
     </View>
   );
 };
