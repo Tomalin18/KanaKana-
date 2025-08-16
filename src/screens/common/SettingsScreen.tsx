@@ -78,12 +78,12 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ navigation }) =>
           style={styles.aboutContainer}
         >
           <Text style={styles.aboutTitle}>🌟 KanaKana</Text>
-          <Text style={styles.aboutVersion}>{t('about.version')} 1.0.1</Text>
+          <Text style={styles.aboutVersion}>{t('about.version')} 1.1.0</Text>
           <Text style={styles.aboutDescription}>
             {t('about.description')}
           </Text>
           <Text style={styles.aboutCopyright}>
-            © 2024 Neural Learning Systems
+            © 2025 Neobase
           </Text>
         </GlassContainer>
             </ScrollView>
