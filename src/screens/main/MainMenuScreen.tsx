@@ -131,27 +131,6 @@ export const MainMenuScreen: React.FC<Props> = ({ navigation }) => {
             </GlassContainer>
           </View>
 
-          {/* 設定按鈕 - 移到遊戲模式上方 */}
-          <View style={styles.settingsContainer}>
-            <Pressable
-              style={({ pressed }) => [
-                styles.settingsButton,
-                pressed && styles.settingsButtonPressed,
-              ]}
-              onPress={() => navigation.navigate('Settings')}
-            >
-              <GlassContainer
-                variant="accent"
-                glowEffect={true}
-                neonBorder={true}
-                style={styles.settingsButtonContent}
-              >
-                <Text style={styles.settingsButtonEmoji}>⚙️</Text>
-                <Text style={styles.settingsButtonText}>{t('mainMenu.settings')}</Text>
-              </GlassContainer>
-            </Pressable>
-          </View>
-
           {/* 遊戲模式選擇 - 科技卡片設計 */}
           <View style={styles.modesContainer}>
             {/* 經典模式按鈕 */}
@@ -197,6 +176,15 @@ export const MainMenuScreen: React.FC<Props> = ({ navigation }) => {
                 isNew
               />
             )}
+
+            {/* 設定按鈕 - 使用與遊戲模式相同的樣式 */}
+            <GameModeButton
+              title={t('mainMenu.settings')}
+              subtitle="SETTINGS"
+              description={t('language.selectLanguage')}
+              emoji="⚙️"
+              onPress={() => navigation.navigate('Settings')}
+            />
           </View>
         </ScrollView>
       </SafeAreaView>
@@ -574,38 +562,5 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
   },
 
-  // 設定按鈕樣式
-  settingsContainer: {
-    alignItems: 'center',
-    marginTop: Spacing.lg,
-    marginBottom: Spacing.xl,
-  },
 
-  settingsButton: {
-    minWidth: 250,
-  },
-
-  settingsButtonPressed: {
-    opacity: 0.8,
-  },
-
-  settingsButtonContent: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: Spacing.lg,
-    paddingHorizontal: Spacing.xl,
-    borderRadius: 15,
-  },
-
-  settingsButtonEmoji: {
-    fontSize: 24,
-    marginRight: Spacing.md,
-  },
-
-  settingsButtonText: {
-    fontSize: Typography.sizes.ui.subtitle,
-    color: TechTheme.text,
-    fontWeight: Typography.weights.bold,
-  },
 }); 
