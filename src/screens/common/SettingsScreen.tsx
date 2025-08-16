@@ -26,6 +26,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ navigation }) =>
   };
 
   const handleLanguagePress = () => {
+    console.log('Language button pressed, setting visible to true');
     setLanguageSelectorVisible(true);
   };
 
@@ -178,7 +179,10 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ navigation }) =>
       {/* 語言選擇器 */}
       <LanguageSelector
         visible={languageSelectorVisible}
-        onClose={() => setLanguageSelectorVisible(false)}
+        onClose={() => {
+          console.log('LanguageSelector onClose called');
+          setLanguageSelectorVisible(false);
+        }}
       />
     </View>
   );
