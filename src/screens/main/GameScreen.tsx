@@ -8,6 +8,7 @@ import {
   Animated,
   Easing,
 } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { useRatingPrompt } from '@/hooks/useRatingPrompt';
 import { getRatingState } from '@/utils/ratingPrompt';
 import { TechTheme, Typography, Spacing, Shadows, TechColors } from '@/constants/theme';
@@ -39,6 +40,7 @@ interface GameScreenProps {
  * 核心的日文打字遊戲界面
  */
 export const GameScreen: React.FC<GameScreenProps> = ({ route, navigation }) => {
+  const { t } = useTranslation();
   const mode = route?.params?.mode || 'classic';
   const settings = route?.params?.settings;
   
@@ -181,7 +183,7 @@ export const GameScreen: React.FC<GameScreenProps> = ({ route, navigation }) => 
             style={styles.startButton}
             onPress={startGame}
           >
-            <Text style={styles.startButtonText}>開始遊戲</Text>
+            <Text style={styles.startButtonText}>{t('gameSettings.startGame')}</Text>
           </Pressable>
         </View>
       );
@@ -238,7 +240,7 @@ export const GameScreen: React.FC<GameScreenProps> = ({ route, navigation }) => 
       
       {/* 統一導航欄 */}
       <GlassNavBar
-        title={mode === 'classic' ? '練習模式-假名' : '其他模式'}
+        title={mode === 'classic' ? t('mainMenu.practiceKana') : t('mainMenu.practiceKana')}
         leftButton={{
           text: '← 返回',
           onPress: backToMenu,
@@ -434,16 +436,18 @@ interface GameStartScreenProps {
 }
 
 const GameStartScreen: React.FC<GameStartScreenProps> = ({ onStart, mode, settings }) => {
+  const { t } = useTranslation();
+  
   const getDifficultyInfo = (difficulty: string) => {
     switch (difficulty) {
       case 'easy':
-        return { name: '簡單', color: TechColors.neonGreen, lives: 5 };
+        return { name: t('gameSettings.difficultyEasy'), color: TechColors.neonGreen, lives: 5 };
       case 'normal':
-        return { name: '普通', color: TechColors.neonBlue, lives: 3 };
+        return { name: t('gameSettings.difficultyNormal'), color: TechColors.neonBlue, lives: 3 };
       case 'hard':
-        return { name: '困難', color: TechColors.neonPink, lives: 1 };
+        return { name: t('gameSettings.difficultyHard'), color: TechColors.neonPink, lives: 1 };
       default:
-        return { name: '普通', color: TechColors.neonBlue, lives: 3 };
+        return { name: t('gameSettings.difficultyNormal'), color: TechColors.neonBlue, lives: 3 };
     }
   };
 
@@ -458,24 +462,24 @@ const GameStartScreen: React.FC<GameStartScreenProps> = ({ onStart, mode, settin
         style={styles.startContainer}
       >
         <Text style={styles.gameModeTitle}>
-          {mode === 'classic' ? '🎯 練習模式-假名' : '其他模式'}
+          {mode === 'classic' ? `🎯 ${t('mainMenu.practiceKana')}` : t('mainMenu.practiceKana')}
         </Text>
         <Text style={styles.instructions}>
-          輸入日文假名來完成單詞！{'\n'}
-          正確輸入可獲得分數和連擊獎勵。
+          {t('gamePlay.startTyping')}{'\n'}
+          {t('gamePlay.startTyping')}
         </Text>
         
         {/* 難度信息 */}
         {settings && (
           <View style={styles.settingsInfo}>
             <Text style={[styles.settingText, { color: difficultyInfo.color }]}>
-              難度：{difficultyInfo.name} (❤️ {difficultyInfo.lives} 生命)
+              {t('gameSettings.difficulty')}：{difficultyInfo.name} (❤️ {difficultyInfo.lives} {t('gameSettings.lives')})
             </Text>
             <Text style={styles.settingText}>
-              提示：{settings.showHints ? '開啟' : '關閉'}
+              {t('gameSettings.showHints')}：{settings.showHints ? t('common.start') : t('common.close')}
             </Text>
             <Text style={styles.settingText}>
-              詞彙等級：{settings.vocabularyLevel?.toUpperCase() || 'N5'}
+              {t('gameSettings.vocabularyLevel')}：{settings.vocabularyLevel?.toUpperCase() || 'N5'}
             </Text>
           </View>
         )}
@@ -488,7 +492,7 @@ const GameStartScreen: React.FC<GameStartScreenProps> = ({ onStart, mode, settin
           ]}
           onPress={onStart}
         >
-          <Text style={styles.startButtonText}>🚀 開始遊戲</Text>
+          <Text style={styles.startButtonText}>🚀 {t('gameSettings.startGame')}</Text>
         </Pressable>
       </GlassContainer>
     </View>
@@ -513,6 +517,7 @@ const GamePlayScreen: React.FC<GamePlayScreenProps> = ({
   combo,
   gameTime,
 }) => {
+  const { t } = useTranslation();
   // 顯示難度（N5~N1）
   const jlptMap: Record<string, string> = {
     beginner: 'N5',
@@ -533,10 +538,10 @@ const GamePlayScreen: React.FC<GamePlayScreenProps> = ({
           glowEffect={false}
           style={styles.hintContainer}
         >
-          <Text style={styles.hintText}>難度: {jlpt}</Text>
-          <Text style={styles.hintText}>解釋: {currentWord.meaning}</Text>
+          <Text style={styles.hintText}>{t('gamePlay.difficulty')}: {jlpt}</Text>
+          <Text style={styles.hintText}>{t('gamePlay.meaning')}: {currentWord.meaning}</Text>
           {currentWord.kanji && (
-            <Text style={styles.hintText}>漢字: {currentWord.kanji}</Text>
+            <Text style={styles.hintText}>{t('gamePlay.kanji')}: {currentWord.kanji}</Text>
           )}
         </GlassContainer>
       )}
@@ -571,12 +576,12 @@ const GamePlayScreen: React.FC<GamePlayScreenProps> = ({
           glowEffect={true}
           style={styles.inputDisplayContainer}
         >
-          <Text style={styles.inputDisplayLabel}>你的輸入:</Text>
+          <Text style={styles.inputDisplayLabel}>{t('gamePlay.yourInput')}:</Text>
           <TextInput
             style={styles.inputDisplayBox}
             value={userInput}
             onChangeText={onInputChange}
-            placeholder="開始輸入..."
+            placeholder={t('gamePlay.startTyping')}
             placeholderTextColor={TechTheme.textSecondary}
             autoFocus
           />

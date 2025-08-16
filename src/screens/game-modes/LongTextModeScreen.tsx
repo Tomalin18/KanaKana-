@@ -9,6 +9,7 @@ import {
   StatusBar,
   ScrollView,
 } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { TechTheme, Typography, Spacing, Shadows, TechColors } from '@/constants/theme';
 import { validateJapaneseInput } from '@/utils/japaneseInput';
 import { getRandomLongText } from '@/data/longTexts';
@@ -35,6 +36,7 @@ interface LongTextModeScreenProps {
  * 類似一般模式的介面，但用於打字長篇日文文章
  */
 export const LongTextModeScreen: React.FC<LongTextModeScreenProps> = ({ route, navigation }) => {
+  const { t } = useTranslation();
   const settings: LongTextSettings = route?.params?.settings || {
     includeSpaces: true,
     includePunctuation: true,
@@ -299,7 +301,7 @@ export const LongTextModeScreen: React.FC<LongTextModeScreenProps> = ({ route, n
       
       {/* 統一導航欄 */}
       <GlassNavBar
-        title="長文模式"
+        title={t('mainMenu.longTextMode')}
         leftButton={{
           text: '← 返回',
           onPress: goBackToMenu,
@@ -363,7 +365,7 @@ interface LongTextGameStartScreenProps {
 
 const LongTextGameStartScreen: React.FC<LongTextGameStartScreenProps> = ({ onStart, settings }) => (
   <View style={styles.centerContainer}>
-    <Text style={styles.gameModeTitle}>長文模式</Text>
+            <Text style={styles.gameModeTitle}>{t('mainMenu.longTextMode')}</Text>
     <Text style={styles.instructions}>
       完整輸入日文長文來練習打字技巧！
     </Text>
@@ -372,7 +374,7 @@ const LongTextGameStartScreen: React.FC<LongTextGameStartScreenProps> = ({ onSta
       <Text style={styles.settingText}>顯示進度：{settings.showProgress ? '是' : '否'}</Text>
     </View>
     <Pressable style={styles.startButton} onPress={onStart}>
-      <Text style={styles.startButtonText}>開始遊戲</Text>
+              <Text style={styles.startButtonText}>{t('gameSettings.startGame')}</Text>
     </Pressable>
   </View>
 );
@@ -431,7 +433,7 @@ const LongTextGamePlayScreen: React.FC<LongTextGamePlayScreenProps> = ({
         style={styles.textInput}
         value={userInput}
         onChangeText={onInputChange}
-        placeholder="在這裡輸入文章內容..."
+        placeholder={t('gamePlay.inputArticleContent')}
         placeholderTextColor={TechTheme.textSecondary}
         multiline
         autoFocus
