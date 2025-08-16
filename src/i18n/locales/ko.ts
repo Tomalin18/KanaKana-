@@ -250,4 +250,28 @@ export default {
     website: '공식 웹사이트',
     github: 'GitHub',
   },
+
+  // 테트리스 모드
+  tetris: {
+    instruction1: '1. 각 블록에는 일본어 단어나 한자가 표시됩니다. 블록이 착지하기 전에 올바른 가나나 로마자를 입력하여 블록을 제거하세요.',
+    instruction2: '2. 블록은 자동으로 떨어집니다. 올바르게 입력하면 제거됩니다.',
+    instruction3: '3. 5개의 블록을 제거할 때마다 레벨이 올라갑니다. 레벨이 높을수록 블록이 더 빨리 떨어집니다.',
+    instruction4: '4. 게임 종료 시 최고 점수, 최고 레벨, 최고 제거 수가 기록됩니다.',
+    bestScore: '최고 점수',
+    bestLevel: '최고 레벨',
+    bestCleared: '최고 제거 수',
+    score: '점수',
+    level: '레벨',
+    cleared: '제거 수',
+    clearedBlocks: '제거된 블록',
+    reading: '읽기',
+    pleaseInput: '입력하세요',
+    pleaseInputFull: '전체 텍스트를 입력하세요...',
+    gameOver: '게임 오버',
+    finalScore: '최종 점수',
+    bestRecord: '최고 기록',
+    restart: '다시 시작',
+    backToMenu: '메뉴로 돌아가기',
+    rateUs: '평가하기',
+  },
 };

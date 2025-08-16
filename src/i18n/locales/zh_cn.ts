@@ -250,4 +250,28 @@ export default {
     website: '官方网站',
     github: 'GitHub',
   },
+
+  // 俄罗斯方块模式
+  tetris: {
+    instruction1: '1. 每个方块上会显示日语单词或汉字，请在方块落地前输入正确的假名或罗马拼音消除方块。',
+    instruction2: '2. 方块会自动下落，输入正确即可消除。',
+    instruction3: '3. 每消除 5 个方块会提升等级，等级越高方块下落速度越快。',
+    instruction4: '4. 游戏结束时会记录你的最高分、最高等级与最高消除数。',
+    bestScore: '最高分',
+    bestLevel: '最高等级',
+    bestCleared: '最高消除数',
+    score: '分数',
+    level: '等级',
+    cleared: '消除数',
+    clearedBlocks: '消除方块',
+    reading: '读音',
+    pleaseInput: '请输入',
+    pleaseInputFull: '请输入全文...',
+    gameOver: '游戏结束',
+    finalScore: '最终分数',
+    bestRecord: '最高纪录',
+    restart: '重新开始',
+    backToMenu: '返回主菜单',
+    rateUs: '给我们评分',
+  },
 };
