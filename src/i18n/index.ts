@@ -31,7 +31,7 @@ const getLanguageFromStorage = async (): Promise<string> => {
   }
   
   // 如果沒有儲存的語言設定，使用系統語言
-  const systemLanguage = Localization.locale;
+  const systemLanguage = Localization.getLocales()[0]?.languageCode || 'zh';
   const languageCode = systemLanguage.split('-')[0];
   
   // 映射系統語言到支援的語言

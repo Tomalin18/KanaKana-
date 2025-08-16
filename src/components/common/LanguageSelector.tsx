@@ -171,13 +171,13 @@ const styles = StyleSheet.create({
     width: 30,
     height: 30,
     borderRadius: 15,
-    backgroundColor: TechColors.neonRed + '20',
+    backgroundColor: TechColors.neonPink + '20',
     justifyContent: 'center',
     alignItems: 'center',
   },
   closeButtonText: {
     fontSize: 18,
-    color: TechColors.neonRed,
+    color: TechColors.neonPink,
     fontWeight: 'bold',
   },
   subtitle: {
