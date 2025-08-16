@@ -70,8 +70,10 @@ const initI18n = async () => {
 // 語言切換函數
 export const changeLanguage = async (language: string) => {
   try {
+    console.log('Changing language to:', language);
     await AsyncStorage.setItem('app_language', language);
     await i18n.changeLanguage(language);
+    console.log('Language changed successfully to:', i18n.language);
   } catch (error) {
     console.error('切換語言時發生錯誤:', error);
   }
@@ -99,5 +101,11 @@ initI18n();
 // 調試：檢查初始化狀態
 console.log('i18n initialized with language:', i18n.language);
 console.log('i18n available languages:', Object.keys(resources));
+console.log('i18n resources keys:', Object.keys(resources).map(lang => ({
+  lang,
+  hasTetris: !!resources[lang as keyof typeof resources]?.translation?.tetris,
+  tetrisKeys: resources[lang as keyof typeof resources]?.translation?.tetris ? 
+    Object.keys(resources[lang as keyof typeof resources].translation.tetris) : []
+})));
 
 export default i18n;
