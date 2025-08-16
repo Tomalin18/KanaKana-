@@ -287,5 +287,13 @@ export default {
     restart: '重新开始',
     backToMenu: '返回主菜单',
     rateUs: '给我们评分',
+    bossDefeated: 'BOSS 击败！',
+    bossFailed: 'BOSS 失败！',
+    bossChallenge: 'BOSS 挑战',
+    congratulationsChallengeSuccess: '恭喜！挑战成功！',
+    timeUpChallengeFailed: '时间到！挑战失败！',
+    returningToGame: '即将返回游戏...',
+    remainingTime: '剩余时间',
+    seconds: '秒',
   },
 };

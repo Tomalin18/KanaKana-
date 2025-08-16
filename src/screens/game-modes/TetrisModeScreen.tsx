@@ -925,8 +925,8 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
             textShadowOffset: { width: 0, height: 0 },
             textShadowRadius: 12,
           }}>
-            {bossResult === 'success' ? '✅ BOSS 擊敗！' : 
-             bossResult === 'fail' ? '❌ BOSS 失敗！' : 'BOSS 挑戰'}
+            {bossResult === 'success' ? `✅ ${t('tetris.bossDefeated')}` : 
+             bossResult === 'fail' ? `❌ ${t('tetris.bossFailed')}` : t('tetris.bossChallenge')}
           </Text>
           <Text style={{
             fontSize: 20,
@@ -939,8 +939,8 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
             textShadowOffset: { width: 0, height: 0 },
             textShadowRadius: 8,
           }}>
-            {bossResult === 'success' ? '恭喜！挑戰成功！' : 
-             bossResult === 'fail' ? '時間到！挑戰失敗！' : bossQuestion.displayContent}
+            {bossResult === 'success' ? t('tetris.congratulationsChallengeSuccess') : 
+             bossResult === 'fail' ? t('tetris.timeUpChallengeFailed') : bossQuestion.displayContent}
           </Text>
           {/* 倒數引線動畫 - 成功時變為綠色進度條，失敗時變為紅色 */}
           <View style={{width: '100%', height: 8, backgroundColor: '#003a4d', borderRadius: 4, marginBottom: 14, overflow: 'hidden'}}>
@@ -969,8 +969,8 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
             textShadowOffset: { width: 0, height: 0 },
             textShadowRadius: 6,
           }}>
-            {bossResult === 'success' ? '🎉 即將返回遊戲...' : 
-             bossResult === 'fail' ? '😔 即將返回遊戲...' : `剩餘時間：${bossTimer} 秒`}
+            {bossResult === 'success' ? `🎉 ${t('tetris.returningToGame')}` : 
+             bossResult === 'fail' ? `😔 ${t('tetris.returningToGame')}` : `${t('tetris.remainingTime')}：${bossTimer} ${t('tetris.seconds')}`}
           </Text>
           {!bossResult && (
             <TextInput
