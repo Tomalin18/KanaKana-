@@ -107,6 +107,16 @@ export default {
     reviewMistakes: 'Review Mistakes',
   },
 
+  // Difficulty Selection
+  difficulty: {
+    selectDifficulty: 'Select Difficulty',
+    selectSuitableLevel: 'Choose your suitable learning level',
+    elementaryDescription: 'Suitable for beginners',
+    intermediateDescription: 'Suitable for learners with some foundation',
+    advancedDescription: 'Suitable for advanced learners',
+    words: 'words',
+  },
+
   // Tetris Mode
   tetris: {
     instruction1: '1. Each block will display a Japanese word or kanji. Please input the correct kana or romaji before the block lands to eliminate it.',

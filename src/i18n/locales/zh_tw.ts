@@ -99,6 +99,16 @@ export default {
     accuracy: '準確率',
     averageSpeed: '平均速度',
 
+  // 難度選擇
+  difficulty: {
+    selectDifficulty: '選擇難度',
+    selectSuitableLevel: '選擇適合你的學習等級',
+    elementaryDescription: '適合初學者',
+    intermediateDescription: '適合有一定基礎的學習者',
+    advancedDescription: '適合進階學習者',
+    words: '個單字',
+  },
+
   // Tetris 模式
   tetris: {
     instruction1: '1. 每個方塊上會顯示日文單字或漢字，請在方塊落地前輸入正確的假名或羅馬拼音消除方塊。',

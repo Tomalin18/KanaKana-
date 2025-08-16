@@ -251,6 +251,16 @@ export default {
     github: 'GitHub',
   },
 
+  // 난이도 선택
+  difficulty: {
+    selectDifficulty: '난이도 선택',
+    selectSuitableLevel: '당신에게 적합한 학습 레벨을 선택하세요',
+    elementaryDescription: '초보자에게 적합합니다',
+    intermediateDescription: '어느 정도 기초가 있는 학습자에게 적합합니다',
+    advancedDescription: '고급 학습자에게 적합합니다',
+    words: '개의 단어',
+  },
+
   // 테트리스 모드
   tetris: {
     instruction1: '1. 각 블록에는 일본어 단어나 한자가 표시됩니다. 블록이 착지하기 전에 올바른 가나나 로마자를 입력하여 블록을 제거하세요.',
