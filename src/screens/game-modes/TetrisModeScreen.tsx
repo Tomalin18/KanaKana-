@@ -21,6 +21,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { bossQuestions, BossQuestion } from '@/data/bossData';
 import { BlurView } from 'expo-blur';
 import { useRatingPrompt } from '@/hooks/useRatingPrompt';
+import { getRatingState } from '@/utils/ratingPrompt';
 
 // 類型定義
 interface TetrisPiece {
@@ -152,6 +153,9 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
 
   // 評分提示 Hook
   const { triggerOnGameCompleted, recordSession } = useRatingPrompt();
+  
+  // 評分狀態
+  const [hasRated, setHasRated] = useState(false);
 
   // 讀取本地最高紀錄
   useEffect(() => {
@@ -170,7 +174,7 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
     loadBestRecords();
   }, []);
 
-  // 遊戲結束時自動更新最高紀錄
+  // 遊戲結束時自動更新最高紀錄並檢查評分狀態
   useEffect(() => {
     if (gameState === 'finished') {
       let updated = false;
@@ -189,6 +193,19 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
         AsyncStorage.setItem('tetris_best_cleared', String(piecesCleared));
         updated = true;
       }
+      
+      // 檢查用戶是否已經評分過
+      const checkRatingStatus = async () => {
+        try {
+          const ratingState = await getRatingState();
+          setHasRated(ratingState.hasRated);
+          console.log('📊 Tetris 評分狀態檢查:', { hasRated: ratingState.hasRated });
+        } catch (error) {
+          console.error('❌ 檢查評分狀態失敗:', error);
+        }
+      };
+      
+      checkRatingStatus();
     }
   }, [gameState]);
 
@@ -1061,13 +1078,15 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
                 </TouchableOpacity>
                 {/* 評分按鈕 - 只在表現良好時顯示 */}
                 {(() => {
-                  const shouldShowRating = score > 1000 || piecesCleared > 10;
+                  const shouldShowRating = (score > 1000 || piecesCleared > 10) && !hasRated;
                   console.log('🔍 Tetris 評分按鈕顯示條件檢查:', { 
                     score, 
                     piecesCleared, 
+                    hasRated,
                     shouldShowRating,
                     condition1: score > 1000,
-                    condition2: piecesCleared > 10
+                    condition2: piecesCleared > 10,
+                    condition3: !hasRated
                   });
                   return shouldShowRating;
                 })() && (
