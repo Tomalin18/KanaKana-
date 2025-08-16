@@ -6,6 +6,7 @@ import {
   Pressable,
   Animated,
 } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { TechTheme, Typography, Spacing, Shadows, TechColors } from '@/constants/theme';
 import type { CombinedDifficultyLevel } from '@/types';
 
@@ -24,38 +25,39 @@ interface DifficultySelectorProps {
   disabled?: boolean;
 }
 
-const DIFFICULTY_OPTIONS: DifficultyOption[] = [
-  {
-    id: 'elementary',
-    name: '初級',
-    description: '適合初學者',
-    jlptRange: 'N5-N4',
-    wordCount: 3480, // BEGINNER_WORDS + NORMAL_WORDS
-    color: TechTheme.success,
-  },
-  {
-    id: 'intermediate',
-    name: '中級',
-    description: '適合有一定基礎的學習者',
-    jlptRange: 'N5-N2',
-    wordCount: 7558, // BEGINNER_WORDS + NORMAL_WORDS + HARD_WORDS + EXPERT_WORDS
-    color: TechTheme.warning,
-  },
-  {
-    id: 'advanced',
-    name: '高級',
-    description: '適合進階學習者',
-    jlptRange: 'N5-N1',
-    wordCount: 14112, // 所有詞彙
-    color: TechTheme.error,
-  },
-];
-
 export const DifficultySelector: React.FC<DifficultySelectorProps> = ({
   selectedDifficulty,
   onSelectDifficulty,
   disabled = false,
 }) => {
+  const { t } = useTranslation();
+
+  const DIFFICULTY_OPTIONS: DifficultyOption[] = [
+    {
+      id: 'elementary',
+      name: t('gameSettings.difficultyEasy'),
+      description: t('difficulty.elementaryDescription'),
+      jlptRange: 'N5-N4',
+      wordCount: 3480, // BEGINNER_WORDS + NORMAL_WORDS
+      color: TechTheme.success,
+    },
+    {
+      id: 'intermediate',
+      name: t('gameSettings.difficultyNormal'),
+      description: t('difficulty.intermediateDescription'),
+      jlptRange: 'N5-N2',
+      wordCount: 7558, // BEGINNER_WORDS + NORMAL_WORDS + HARD_WORDS + EXPERT_WORDS
+      color: TechTheme.warning,
+    },
+    {
+      id: 'advanced',
+      name: t('gameSettings.difficultyHard'),
+      description: t('difficulty.advancedDescription'),
+      jlptRange: 'N5-N1',
+      wordCount: 14112, // 所有詞彙
+      color: TechTheme.error,
+    },
+  ];
   const renderDifficultyOption = (option: DifficultyOption) => {
     const isSelected = selectedDifficulty === option.id;
     const scaleAnim = React.useRef(new Animated.Value(isSelected ? 1.05 : 1)).current;
@@ -142,7 +144,7 @@ export const DifficultySelector: React.FC<DifficultySelectorProps> = ({
               },
             ]}
           >
-            {option.wordCount.toLocaleString()} 個單字
+            {option.wordCount.toLocaleString()} {t('difficulty.words')}
           </Text>
         </Pressable>
       </Animated.View>
@@ -151,8 +153,8 @@ export const DifficultySelector: React.FC<DifficultySelectorProps> = ({
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>選擇難度</Text>
-      <Text style={styles.subtitle}>選擇適合你的學習等級</Text>
+      <Text style={styles.title}>{t('difficulty.selectDifficulty')}</Text>
+      <Text style={styles.subtitle}>{t('difficulty.selectSuitableLevel')}</Text>
       
       <View style={styles.optionsContainer}>
         {DIFFICULTY_OPTIONS.map(renderDifficultyOption)}

@@ -251,6 +251,16 @@ export default {
     github: 'GitHub',
   },
 
+  // 難度選択
+  difficulty: {
+    selectDifficulty: '難度選択',
+    selectSuitableLevel: 'あなたに適した学習レベルを選択してください',
+    elementaryDescription: '初心者に適しています',
+    intermediateDescription: 'ある程度の基礎がある学習者に適しています',
+    advancedDescription: '上級学習者に適しています',
+    words: '個の単語',
+  },
+
   // Tetris 模式
   tetris: {
     instruction1: '1. 各ブロックに日本語の単語や漢字が表示されます。ブロックが着地する前に正しい仮名やローマ字を入力してブロックを消去してください。',

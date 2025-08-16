@@ -251,6 +251,16 @@ export default {
     github: 'GitHub',
   },
 
+  // 难度选择
+  difficulty: {
+    selectDifficulty: '选择难度',
+    selectSuitableLevel: '选择适合你的学习等级',
+    elementaryDescription: '适合初学者',
+    intermediateDescription: '适合有一定基础的学习者',
+    advancedDescription: '适合进阶学习者',
+    words: '个单词',
+  },
+
   // 俄罗斯方块模式
   tetris: {
     instruction1: '1. 每个方块上会显示日语单词或汉字，请在方块落地前输入正确的假名或罗马拼音消除方块。',
