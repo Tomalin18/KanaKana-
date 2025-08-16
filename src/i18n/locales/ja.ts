@@ -250,4 +250,28 @@ export default {
     website: '公式ウェブサイト',
     github: 'GitHub',
   },
+
+  // Tetris 模式
+  tetris: {
+    instruction1: '1. 各ブロックに日本語の単語や漢字が表示されます。ブロックが着地する前に正しい仮名やローマ字を入力してブロックを消去してください。',
+    instruction2: '2. ブロックは自動的に落下します。正しく入力すると消去されます。',
+    instruction3: '3. 5個のブロックを消去するごとにレベルが上がります。レベルが高いほどブロックの落下速度が速くなります。',
+    instruction4: '4. ゲーム終了時に最高スコア、最高レベル、最高消去数が記録されます。',
+    bestScore: '最高スコア',
+    bestLevel: '最高レベル',
+    bestCleared: '最高消去数',
+    score: 'スコア',
+    level: 'レベル',
+    cleared: '消去数',
+    clearedBlocks: '消去ブロック',
+    reading: '読み方',
+    pleaseInput: '入力してください',
+    pleaseInputFull: '全文を入力してください...',
+    gameOver: 'ゲームオーバー',
+    finalScore: '最終スコア',
+    bestRecord: '最高記録',
+    restart: '再開',
+    backToMenu: 'メニューに戻る',
+    rateUs: '評価する',
+  },
 };

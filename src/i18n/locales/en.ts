@@ -107,6 +107,30 @@ export default {
     reviewMistakes: 'Review Mistakes',
   },
 
+  // Tetris Mode
+  tetris: {
+    instruction1: '1. Each block will display a Japanese word or kanji. Please input the correct kana or romaji before the block lands to eliminate it.',
+    instruction2: '2. Blocks will fall automatically. Input correctly to eliminate them.',
+    instruction3: '3. Every 5 blocks eliminated will increase your level. The higher the level, the faster the blocks fall.',
+    instruction4: '4. At the end of the game, your highest score, highest level, and highest number of eliminations will be recorded.',
+    bestScore: 'Best Score',
+    bestLevel: 'Best Level',
+    bestCleared: 'Best Cleared',
+    score: 'Score',
+    level: 'Level',
+    cleared: 'Cleared',
+    clearedBlocks: 'Cleared Blocks',
+    reading: 'Reading',
+    pleaseInput: 'Please input',
+    pleaseInputFull: 'Please input full text...',
+    gameOver: 'Game Over',
+    finalScore: 'Final Score',
+    bestRecord: 'Best Record',
+    restart: 'Restart',
+    backToMenu: 'Back to Menu',
+    rateUs: 'Rate Us',
+  },
+
   // Settings
   settings: {
     title: 'Settings',
