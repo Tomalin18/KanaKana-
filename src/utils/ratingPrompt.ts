@@ -1,5 +1,6 @@
 import { Alert, Linking, Platform } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import i18next from 'i18next';
 
 // 評分提示配置
 const RATING_CONFIG = {
@@ -234,48 +235,50 @@ export const showRatingPrompt = async (
   
   // 根據觸發條件選擇不同的標題，但統一使用相同的訊息
   const getPromptContent = () => {
-    const unifiedMessage = '感謝您下載KanaKana！如果覺得這個App對您有幫助，歡迎給我們一個評分。您的評論是我們前進的動力！';
+    const t = i18next.t;
+    const unifiedMessage = t('ratingPrompt.unifiedMessage');
     
     switch (trigger) {
       case RATING_CONFIG.TRIGGERS.ACHIEVEMENT_UNLOCKED:
         return {
-          title: '🎉 恭喜獲得成就！',
+          title: t('ratingPrompt.achievementUnlocked'),
           message: unifiedMessage,
         };
         
       case RATING_CONFIG.TRIGGERS.GAME_COMPLETED:
         return {
-          title: '🎯 精彩表現！',
+          title: t('ratingPrompt.gameCompleted'),
           message: unifiedMessage,
         };
         
       case RATING_CONFIG.TRIGGERS.STREAK_MILESTONE:
         return {
-          title: '🔥 堅持學習！',
+          title: t('ratingPrompt.streakMilestone'),
           message: unifiedMessage,
         };
         
       case RATING_CONFIG.TRIGGERS.FEATURE_EXPLORED:
         return {
-          title: '🌟 探索完成！',
+          title: t('ratingPrompt.featureExplored'),
           message: unifiedMessage,
         };
         
       case RATING_CONFIG.TRIGGERS.SESSION_COUNT:
         return {
-          title: '📚 學習夥伴！',
+          title: t('ratingPrompt.sessionCount'),
           message: unifiedMessage,
         };
         
       default:
         return {
-          title: '⭐ 喜歡 KanaKana 嗎？',
+          title: t('ratingPrompt.defaultTitle'),
           message: unifiedMessage,
         };
     }
   };
   
   const { title, message } = getPromptContent();
+  const t = i18next.t;
   
   console.log('📱 顯示評分提示對話框:', { title, message });
   
@@ -285,7 +288,7 @@ export const showRatingPrompt = async (
     message,
     [
       {
-        text: '稍後再說',
+        text: t('ratingPrompt.later'),
         style: 'cancel',
         onPress: async () => {
           console.log('👤 用戶選擇稍後再說');
@@ -293,7 +296,7 @@ export const showRatingPrompt = async (
         },
       },
       {
-        text: '立即評價',
+        text: t('ratingPrompt.rateNow'),
         onPress: async () => {
           console.log('👤 用戶選擇立即評價');
           await openAppStoreRating();
@@ -308,9 +311,10 @@ export const showRatingPrompt = async (
 export const testRatingPrompt = async (): Promise<void> => {
   console.log('🧪 執行測試評分提示');
   
+  const t = i18next.t;
   const { title, message } = {
-    title: '🧪 測試評分提示',
-    message: '感謝您下載KanaKana！如果覺得這個App對您有幫助，歡迎給我們一個評分。您的評論是我們前進的動力！',
+    title: t('ratingPrompt.testTitle'),
+    message: t('ratingPrompt.unifiedMessage'),
   };
   
   console.log('📱 顯示測試評分提示對話框:', { title, message });
@@ -321,14 +325,14 @@ export const testRatingPrompt = async (): Promise<void> => {
     message,
     [
       {
-        text: '稍後再說',
+        text: t('ratingPrompt.later'),
         style: 'cancel',
         onPress: async () => {
           console.log('👤 測試：用戶選擇稍後再說');
         },
       },
       {
-        text: '立即評價',
+        text: t('ratingPrompt.rateNow'),
         onPress: async () => {
           console.log('👤 測試：用戶選擇立即評價');
           await openAppStoreRating();

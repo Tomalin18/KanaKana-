@@ -245,6 +245,32 @@ export default {
   },
 
   // 정보
+  // 강제 업데이트
+  forceUpdate: {
+    updateRequired: '업데이트 필요',
+    newVersionAvailable: '새 버전 {{version}}이(가) 사용 가능합니다. App Store에서 업데이트하여 최고의 경험을 즐기세요.',
+    later: '나중에',
+    updateNow: '지금 업데이트',
+    cannotOpenStore: 'App Store를 열 수 없습니다',
+    pleaseUpdateManually: 'App Store로 수동으로 이동하여 앱을 업데이트하세요.',
+    updateFailed: '업데이트 실패',
+    cannotOpenStorePleaseUpdate: 'App Store를 열 수 없습니다. 수동으로 업데이트하세요.',
+  },
+
+  // 평가 프롬프트
+  ratingPrompt: {
+    achievementUnlocked: '🎉 업적 해금!',
+    gameCompleted: '🎯 훌륭한 성과!',
+    streakMilestone: '🔥 계속 학습하세요!',
+    featureExplored: '🌟 탐험 완료!',
+    sessionCount: '📚 학습 파트너!',
+    defaultTitle: '⭐ KanaKana가 마음에 드시나요?',
+    testTitle: '🧪 테스트 평가 프롬프트',
+    unifiedMessage: 'KanaKana를 다운로드해 주셔서 감사합니다! 이 앱이 도움이 된다고 생각하시면 평가를 부탁드립니다. 여러분의 리뷰는 우리가 개선하는 동력입니다!',
+    later: '나중에',
+    rateNow: '지금 평가',
+  },
+
   about: {
     title: 'KanaKana 정보',
     description: 'KanaKana는 일본어 타이핑 학습을 위해 특별히 설계된 게임 애플리케이션입니다.',

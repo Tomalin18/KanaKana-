@@ -286,6 +286,32 @@ export default {
     finish: 'Finish',
   },
 
+  // Force Update
+  forceUpdate: {
+    updateRequired: 'Update Required',
+    newVersionAvailable: 'A new version {{version}} is available. Please update from the App Store for the best experience.',
+    later: 'Later',
+    updateNow: 'Update Now',
+    cannotOpenStore: 'Cannot Open App Store',
+    pleaseUpdateManually: 'Please manually go to the App Store to update the app.',
+    updateFailed: 'Update Failed',
+    cannotOpenStorePleaseUpdate: 'Cannot open App Store, please update manually.',
+  },
+
+  // Rating Prompt
+  ratingPrompt: {
+    achievementUnlocked: '🎉 Achievement Unlocked!',
+    gameCompleted: '🎯 Great Performance!',
+    streakMilestone: '🔥 Keep Learning!',
+    featureExplored: '🌟 Exploration Complete!',
+    sessionCount: '📚 Learning Partner!',
+    defaultTitle: '⭐ Like KanaKana?',
+    testTitle: '🧪 Test Rating Prompt',
+    unifiedMessage: 'Thank you for downloading KanaKana! If you find this app helpful, please give us a rating. Your review is our motivation to improve!',
+    later: 'Later',
+    rateNow: 'Rate Now',
+  },
+
   // About
   about: {
     title: 'About KanaKana',

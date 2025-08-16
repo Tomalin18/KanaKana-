@@ -286,6 +286,32 @@ export default {
     finish: '完成',
   },
 
+  // 強制更新
+  forceUpdate: {
+    updateRequired: '需要更新',
+    newVersionAvailable: '目前應用程式有最新版本 {{version}}，請至 App Store 更新以獲得最佳體驗。',
+    later: '稍後再說',
+    updateNow: '立即更新',
+    cannotOpenStore: '無法打開應用商店',
+    pleaseUpdateManually: '請手動前往應用商店更新應用',
+    updateFailed: '更新失敗',
+    cannotOpenStorePleaseUpdate: '無法打開應用商店，請手動前往更新',
+  },
+
+  // 評分提示
+  ratingPrompt: {
+    achievementUnlocked: '🎉 恭喜獲得成就！',
+    gameCompleted: '🎯 精彩表現！',
+    streakMilestone: '🔥 堅持學習！',
+    featureExplored: '🌟 探索完成！',
+    sessionCount: '📚 學習夥伴！',
+    defaultTitle: '⭐ 喜歡 KanaKana 嗎？',
+    testTitle: '🧪 測試評分提示',
+    unifiedMessage: '感謝您下載KanaKana！如果覺得這個App對您有幫助，歡迎給我們一個評分。您的評論是我們前進的動力！',
+    later: '稍後再說',
+    rateNow: '立即評價',
+  },
+
   // 關於
   about: {
     title: '關於 KanaKana',
