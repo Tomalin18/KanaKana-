@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Alert, Linking } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { UpdateInfo } from '@/utils/versionCheck';
 
 interface ForceUpdateModalProps {
@@ -11,6 +12,7 @@ export const ForceUpdateModal: React.FC<ForceUpdateModalProps> = ({
   updateInfo,
   onRetry,
 }) => {
+  const { t } = useTranslation();
   const handleUpdate = async () => {
     try {
       const supported = await Linking.canOpenURL(updateInfo.updateUrl);
@@ -19,22 +21,22 @@ export const ForceUpdateModal: React.FC<ForceUpdateModalProps> = ({
         await Linking.openURL(updateInfo.updateUrl);
       } else {
         Alert.alert(
-          '無法打開應用商店',
-          '請手動前往應用商店更新應用',
+          t('forceUpdate.cannotOpenStore'),
+          t('forceUpdate.pleaseUpdateManually'),
           [
-            { text: '取消', style: 'cancel' },
-            { text: '重試', onPress: onRetry },
+            { text: t('common.cancel'), style: 'cancel' },
+            { text: t('common.retry'), onPress: onRetry },
           ]
         );
       }
     } catch (error) {
       console.error('Failed to open update URL:', error);
       Alert.alert(
-        '更新失敗',
-        '無法打開應用商店，請手動前往更新',
+        t('forceUpdate.updateFailed'),
+        t('forceUpdate.cannotOpenStorePleaseUpdate'),
         [
-          { text: '取消', style: 'cancel' },
-          { text: '重試', onPress: onRetry },
+          { text: t('common.cancel'), style: 'cancel' },
+          { text: t('common.retry'), onPress: onRetry },
         ]
       );
     }
@@ -43,16 +45,16 @@ export const ForceUpdateModal: React.FC<ForceUpdateModalProps> = ({
   useEffect(() => {
     // 顯示 iOS 原生更新對話框
     Alert.alert(
-      '需要更新',
-      `目前應用程式有最新版本 ${updateInfo.latestVersion}，請至 App Store 更新以獲得最佳體驗。`,
+      t('forceUpdate.updateRequired'),
+      t('forceUpdate.newVersionAvailable', { version: updateInfo.latestVersion }),
       [
         {
-          text: '稍後再說',
+          text: t('forceUpdate.later'),
           style: 'cancel',
           onPress: onRetry, // 重試檢查
         },
         {
-          text: '立即更新',
+          text: t('forceUpdate.updateNow'),
           onPress: handleUpdate,
         },
       ],

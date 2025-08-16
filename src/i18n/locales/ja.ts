@@ -245,6 +245,31 @@ export default {
   },
 
   // について
+  // 強制更新
+  forceUpdate: {
+    updateRequired: '更新が必要です',
+    newVersionAvailable: '新しいバージョン {{version}} が利用可能です。App Storeから更新して最高の体験をお楽しみください。',
+    later: '後で',
+    updateNow: '今すぐ更新',
+    cannotOpenStore: 'App Storeを開けません',
+    pleaseUpdateManually: 'App Storeに手動で移動してアプリを更新してください。',
+    updateFailed: '更新に失敗しました',
+    cannotOpenStorePleaseUpdate: 'App Storeを開けません。手動で更新してください。',
+  },
+
+  // 評分提示
+  ratingPrompt: {
+    achievementUnlocked: '🎉 実績解除！',
+    gameCompleted: '🎯 素晴らしいパフォーマンス！',
+    streakMilestone: '🔥 学習を続けましょう！',
+    featureExplored: '🌟 探索完了！',
+    sessionCount: '📚 学習パートナー！',
+    defaultTitle: '⭐ KanaKanaが気に入りましたか？',
+    unifiedMessage: 'KanaKanaをダウンロードしていただき、ありがとうございます！このアプリが役立つと思われる場合は、評価をお願いします。あなたのレビューは私たちの改善の原動力です！',
+    later: '後で',
+    rateNow: '今すぐ評価',
+  },
+
   about: {
     title: 'KanaKanaについて',
     description: 'KanaKanaは日本語タイピング学習のために特別に設計されたゲームアプリケーションです。',
