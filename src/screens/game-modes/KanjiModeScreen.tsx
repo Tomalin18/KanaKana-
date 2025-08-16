@@ -10,6 +10,7 @@ import {
   Animated,
   Easing,
 } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { TechTheme, Typography, Spacing, Shadows, TechColors } from '@/constants/theme';
 import { getRandomWordByCombinedDifficulty, getVocabularyByJLPT } from '@/data/vocabulary-final';
 import { useTypingDetection } from '@/hooks/useTypingDetection';
@@ -36,6 +37,7 @@ interface KanjiModeScreenProps {
  * 顯示漢字，讓用戶輸入對應的假名讀音
  */
 export const KanjiModeScreen: React.FC<KanjiModeScreenProps> = ({ route, navigation }) => {
+  const { t } = useTranslation();
   const settings: KanjiModeSettings = route?.params?.settings || {
     difficulty: 'normal',
     showMeaning: true,
@@ -228,7 +230,7 @@ export const KanjiModeScreen: React.FC<KanjiModeScreenProps> = ({ route, navigat
             style={styles.startButton}
             onPress={startGame}
           >
-            <Text style={styles.startButtonText}>開始遊戲</Text>
+            <Text style={styles.startButtonText}>{t('gameSettings.startGame')}</Text>
           </Pressable>
         </View>
       );
@@ -283,7 +285,7 @@ export const KanjiModeScreen: React.FC<KanjiModeScreenProps> = ({ route, navigat
       
       {/* 統一導航欄 */}
       <GlassNavBar
-        title="練習模式-漢字"
+        title={t('mainMenu.practiceKanji')}
         leftButton={{
           text: '← 返回',
           onPress: goBackToMenu,
@@ -369,7 +371,7 @@ const KanjiGameStartScreen: React.FC<KanjiGameStartScreenProps> = ({ onStart, se
         neonBorder={true}
         style={styles.startContainer}
       >
-        <Text style={styles.gameModeTitle}>🈯 練習模式-漢字</Text>
+        <Text style={styles.gameModeTitle}>🈯 {t('mainMenu.practiceKanji')}</Text>
         <Text style={styles.instructions}>
           看漢字，輸入對應的{settings.readingType === 'hiragana' ? '平假名' : 
                             settings.readingType === 'katakana' ? '片假名' : '假名'}讀音！
@@ -397,7 +399,7 @@ const KanjiGameStartScreen: React.FC<KanjiGameStartScreenProps> = ({ onStart, se
           ]} 
           onPress={onStart}
         >
-          <Text style={styles.startButtonText}>🚀 開始遊戲</Text>
+          <Text style={styles.startButtonText}>🚀 {t('gameSettings.startGame')}</Text>
         </Pressable>
       </GlassContainer>
     </View>
@@ -495,7 +497,7 @@ const KanjiGamePlayScreen: React.FC<KanjiGamePlayScreenProps> = ({
       style={styles.input}
       value={userInput}
       onChangeText={onInputChange}
-      placeholder="輸入假名讀音..."
+      placeholder={t('gamePlay.inputKanaReading')}
       placeholderTextColor={TechColors.neonBlue + '60'}
       autoFocus
       editable={!isPaused}

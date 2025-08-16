@@ -12,6 +12,7 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { getRandomWordImproved, getWordByLength, getWordByLevelAndLength, type TetrisWord } from '@/data/tetrisData';
 import { GlassNavBar } from '@/components/common/GlassNavBar';
 import { GlassContainer } from '@/components/common/GlassContainer';
@@ -104,6 +105,7 @@ const INITIAL_FALL_SPEED = 1000; // 1秒 (原本是2秒)
 const SPEED_INCREASE_FACTOR = 0.85; // 每次加速15% (原本是10%)
 
 export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navigation }) => {
+  const { t } = useTranslation();
   // 遊戲狀態
   const [gameState, setGameState] = useState<'idle' | 'playing' | 'paused' | 'finished'>('idle');
   const [board, setBoard] = useState<number[][]>(() => 
@@ -1032,7 +1034,7 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
                 }}
               >
                 <Animated.View style={{ transform: [{ scale: buttonScale }] }}>
-                  <Text style={styles.startButtonText}>🚀 開始遊戲 🚀</Text>
+                  <Text style={styles.startButtonText}>🚀 {t('gameSettings.startGame')} 🚀</Text>
                 </Animated.View>
               </TouchableOpacity>
             </View>
@@ -1218,7 +1220,7 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
       
       {/* 統一導航欄 */}
       <GlassNavBar
-        title="Tetris Mode"
+        title={t('mainMenu.tetrisMode')}
         leftButton={{
           text: '← 返回',
           onPress: () => navigation?.goBack(),

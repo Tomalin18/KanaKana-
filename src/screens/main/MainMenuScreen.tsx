@@ -178,7 +178,25 @@ export const MainMenuScreen: React.FC<Props> = ({ navigation }) => {
             )}
           </View>
 
-          {/* 底部信息 - 改為贊助按鈕 */}
+          {/* 設定按鈕 */}
+          <View style={styles.settingsContainer}>
+            <Pressable
+              style={({ pressed }) => [
+                styles.settingsButton,
+                pressed && styles.settingsButtonPressed,
+              ]}
+              onPress={() => navigation.navigate('Settings')}
+            >
+              <GlassContainer
+                variant="surface"
+                glowEffect={true}
+                style={styles.settingsButtonContent}
+              >
+                <Text style={styles.settingsButtonEmoji}>⚙️</Text>
+                <Text style={styles.settingsButtonText}>{t('mainMenu.settings')}</Text>
+              </GlassContainer>
+            </Pressable>
+          </View>
         </ScrollView>
       </SafeAreaView>
 
@@ -553,5 +571,40 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: Typography.weights.bold,
     letterSpacing: 1,
+  },
+
+  // 設定按鈕樣式
+  settingsContainer: {
+    alignItems: 'center',
+    marginTop: Spacing.xl,
+    marginBottom: Spacing.lg,
+  },
+
+  settingsButton: {
+    minWidth: 200,
+  },
+
+  settingsButtonPressed: {
+    opacity: 0.8,
+  },
+
+  settingsButtonContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: Spacing.md,
+    paddingHorizontal: Spacing.lg,
+    borderRadius: 12,
+  },
+
+  settingsButtonEmoji: {
+    fontSize: 20,
+    marginRight: Spacing.sm,
+  },
+
+  settingsButtonText: {
+    fontSize: Typography.sizes.ui.body,
+    color: TechTheme.text,
+    fontWeight: Typography.weights.semibold,
   },
 }); 
