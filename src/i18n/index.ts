@@ -24,6 +24,7 @@ const getLanguageFromStorage = async (): Promise<string> => {
   try {
     const storedLanguage = await AsyncStorage.getItem('app_language');
     if (storedLanguage && resources[storedLanguage as keyof typeof resources]) {
+      console.log('🌍 使用儲存的語言設定:', storedLanguage);
       return storedLanguage;
     }
   } catch (error) {
@@ -32,17 +33,23 @@ const getLanguageFromStorage = async (): Promise<string> => {
   
   // 如果沒有儲存的語言設定，使用系統語言
   const systemLanguage = Localization.getLocales()[0]?.languageCode || 'zh';
-  const languageCode = systemLanguage.split('-')[0];
+  console.log('🌍 系統語言:', systemLanguage);
   
   // 映射系統語言到支援的語言
   const languageMap: Record<string, string> = {
-    'zh': 'zh_tw', // 預設使用繁體中文
+    'zh': 'zh_tw',     // 一般中文 → 繁體中文
+    'zh-TW': 'zh_tw',  // 繁體中文系統 → 繁體中文
+    'zh-CN': 'zh_cn',  // 簡體中文系統 → 簡體中文
     'en': 'en',
     'ko': 'ko',
     'ja': 'ja',
   };
   
-  return languageMap[languageCode] || 'zh_tw';
+  // 先嘗試完整語言代碼，再嘗試基礎語言代碼
+  const selectedLanguage = languageMap[systemLanguage] || languageMap[systemLanguage.split('-')[0]] || 'zh_tw';
+  console.log('🌍 自動選擇語言:', selectedLanguage);
+  
+  return selectedLanguage;
 };
 
 // 初始化 i18n
