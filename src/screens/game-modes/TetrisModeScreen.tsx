@@ -22,6 +22,7 @@ import { bossQuestions, BossQuestion } from '@/data/bossData';
 import { BlurView } from 'expo-blur';
 import { useRatingPrompt } from '@/hooks/useRatingPrompt';
 import { getRatingState } from '@/utils/ratingPrompt';
+import { Audio } from 'expo-av';
 
 // 類型定義
 interface TetrisPiece {
@@ -263,41 +264,96 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
   useEffect(() => {
     if (!bossMode || bossResult === null) return;
     if (bossResult === 'success') {
-      setBoard(prev => {
-        const newBoard = prev.slice(0, -1);
-        newBoard.unshift(Array(BOARD_WIDTH).fill(0));
-        return newBoard;
+      // 播放成功音效
+      const playSuccessSound = async () => {
+        try {
+          const { sound } = await Audio.Sound.createAsync(
+            require('@/assets/audio/sfx/achievement.wav')
+          );
+          await sound.playAsync();
+          // 音效播放完成後自動卸載
+          sound.setOnPlaybackStatusUpdate((status) => {
+            if (status.isLoaded && status.didJustFinish) {
+              sound.unloadAsync();
+            }
+          });
+        } catch (error) {
+          console.log('音效播放失敗:', error);
+        }
+      };
+
+      // 立即播放音效
+      playSuccessSound();
+
+      // 成功特效：簡化的動畫效果
+      const successAnimation = Animated.sequence([
+        Animated.timing(bossLineAnim, {
+          toValue: 1.1,
+          duration: 200,
+          useNativeDriver: false,
+        }),
+        Animated.timing(bossLineAnim, {
+          toValue: 1,
+          duration: 200,
+          useNativeDriver: false,
+        }),
+      ]);
+
+      successAnimation.start(() => {
+        // 動畫完成後處理遊戲邏輯
+        setBoard(prev => {
+          const newBoard = prev.slice(0, -1);
+          newBoard.unshift(Array(BOARD_WIDTH).fill(0));
+          return newBoard;
+        });
+        setLevel(Math.floor(piecesCleared / 10) + 1);
+        setFallSpeed(prev => Math.max(100, prev * SPEED_INCREASE_FACTOR));
+        // 新增：切換主題色
+        setThemeColorIndex(idx => (idx + 1) % NEON_THEME_COLORS.length);
+        setBossMode(false);
+        setBossQuestion(null);
+        setBossInput('');
+        setBossTimer(0);
+        setBossResult(null);
+        setGameState('playing');
+        setTimeout(() => {
+          mainInputRef.current?.focus();
+        }, 100);
       });
-      setLevel(Math.floor(piecesCleared / 10) + 1);
-      setFallSpeed(prev => Math.max(100, prev * SPEED_INCREASE_FACTOR));
-      // 新增：切換主題色
-      setThemeColorIndex(idx => (idx + 1) % NEON_THEME_COLORS.length);
-      setBossMode(false);
-      setBossQuestion(null);
-      setBossInput('');
-      setBossTimer(0);
-      setBossResult(null);
-      setGameState('playing');
-      setTimeout(() => {
-        mainInputRef.current?.focus();
-      }, 100);
     } else if (bossResult === 'fail') {
-      setBoard(prev => {
-        const newBoard = prev.slice(1);
-        newBoard.push(Array(BOARD_WIDTH).fill(1));
-        return newBoard;
+      // 失敗特效：簡化的動畫效果
+      const failAnimation = Animated.sequence([
+        Animated.timing(bossLineAnim, {
+          toValue: 0.9,
+          duration: 200,
+          useNativeDriver: false,
+        }),
+        Animated.timing(bossLineAnim, {
+          toValue: 1,
+          duration: 200,
+          useNativeDriver: false,
+        }),
+      ]);
+
+      failAnimation.start(() => {
+        // 動畫完成後處理遊戲邏輯
+        setBoard(prev => {
+          const newBoard = prev.slice(1);
+          newBoard.push(Array(BOARD_WIDTH).fill(1));
+          return newBoard;
+        });
+        // 新增：切換主題色
+        setThemeColorIndex(idx => (idx + 1) % NEON_THEME_COLORS.length);
+        setBossMode(false);
+        setBossQuestion(null);
+        setBossInput('');
+        setBossTimer(0);
+        setBossResult(null);
+        setGameState('playing');
+        setTimeout(() => {
+          mainInputRef.current?.focus();
+        }, 100);
       });
-      // 新增：切換主題色
-      setThemeColorIndex(idx => (idx + 1) % NEON_THEME_COLORS.length);
-      setBossMode(false);
-      setBossQuestion(null);
-      setBossInput('');
-      setBossTimer(0);
-      setBossResult(null);
-      setGameState('playing');
-      setTimeout(() => {
-        mainInputRef.current?.focus();
-      }, 100);
     }
   }, [bossResult, bossMode, piecesCleared]);
 
@@ -817,32 +873,43 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
           alignItems: 'center',
           zIndex: 21,
         }}>
-        <View style={{
+        <Animated.View style={{
           width: '100%',
-          backgroundColor: 'rgba(10, 30, 40, 0.92)',
+          backgroundColor: bossResult === 'success' ? 'rgba(0, 40, 20, 0.95)' : 
+                           bossResult === 'fail' ? 'rgba(40, 10, 10, 0.95)' : 'rgba(10, 30, 40, 0.92)',
           borderRadius: 20,
           paddingVertical: 28,
           paddingHorizontal: 20,
           alignItems: 'center',
           borderWidth: 2.5,
-          borderColor: currentThemeColor,
-          shadowColor: currentThemeColor,
+          borderColor: bossResult === 'success' ? '#00ff00' : 
+                      bossResult === 'fail' ? '#ff0000' : currentThemeColor,
+          shadowColor: bossResult === 'success' ? '#00ff00' : 
+                      bossResult === 'fail' ? '#ff0000' : currentThemeColor,
           shadowOffset: { width: 0, height: 0 },
-          shadowOpacity: 0.4,
-          shadowRadius: 18,
+          shadowOpacity: bossResult === 'success' ? 0.8 : 
+                        bossResult === 'fail' ? 0.8 : 0.4,
+          shadowRadius: bossResult === 'success' ? 25 : 
+                       bossResult === 'fail' ? 25 : 18,
           elevation: 16,
+          transform: [{
+            scale: bossResult ? bossLineAnim : 1
+          }]
         }}>
           <Text style={{
             fontSize: 22,
             fontWeight: '900',
-            color: currentThemeColor,
+            color: bossResult === 'success' ? '#00ff00' : 
+                   bossResult === 'fail' ? '#ff0000' : currentThemeColor,
             marginBottom: 12,
             letterSpacing: 2,
-            textShadowColor: currentThemeColor,
+            textShadowColor: bossResult === 'success' ? '#00ff00' : 
+                            bossResult === 'fail' ? '#ff0000' : currentThemeColor,
             textShadowOffset: { width: 0, height: 0 },
             textShadowRadius: 12,
           }}>
-            BOSS 挑戰
+            {bossResult === 'success' ? '✅ BOSS 擊敗！' : 
+             bossResult === 'fail' ? '❌ BOSS 失敗！' : 'BOSS 挑戰'}
           </Text>
           <Text style={{
             fontSize: 20,
@@ -855,16 +922,19 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
             textShadowOffset: { width: 0, height: 0 },
             textShadowRadius: 8,
           }}>
-            {bossQuestion.displayContent}
+            {bossResult === 'success' ? '恭喜！挑戰成功！' : 
+             bossResult === 'fail' ? '時間到！挑戰失敗！' : bossQuestion.displayContent}
           </Text>
-          {/* 倒數引線動畫 */}
+          {/* 倒數引線動畫 - 成功時變為綠色進度條，失敗時變為紅色 */}
           <View style={{width: '100%', height: 8, backgroundColor: '#003a4d', borderRadius: 4, marginBottom: 14, overflow: 'hidden'}}>
             <Animated.View style={{
               height: 8,
-              backgroundColor: currentThemeColor,
+              backgroundColor: bossResult === 'success' ? '#00ff00' : 
+                              bossResult === 'fail' ? '#ff0000' : currentThemeColor,
               borderRadius: 4,
-              width: bossLineAnim.interpolate({inputRange: [0,1], outputRange: ['0%','100%']}),
-              shadowColor: currentThemeColor,
+              width: bossResult ? '100%' : bossLineAnim.interpolate({inputRange: [0,1], outputRange: ['0%','100%']}),
+              shadowColor: bossResult === 'success' ? '#00ff00' : 
+                          bossResult === 'fail' ? '#ff0000' : currentThemeColor,
               shadowOffset: { width: 0, height: 0 },
               shadowOpacity: 0.7,
               shadowRadius: 8,
@@ -872,43 +942,48 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
           </View>
           <Text style={{
             fontSize: 15,
-            color: currentThemeColor,
+            color: bossResult === 'success' ? '#00ff00' : 
+                   bossResult === 'fail' ? '#ff0000' : currentThemeColor,
             marginBottom: 12,
             fontWeight: '700',
             letterSpacing: 1,
-            textShadowColor: currentThemeColor,
+            textShadowColor: bossResult === 'success' ? '#00ff00' : 
+                            bossResult === 'fail' ? '#ff0000' : currentThemeColor,
             textShadowOffset: { width: 0, height: 0 },
             textShadowRadius: 6,
           }}>
-            剩餘時間：{bossTimer} 秒
+            {bossResult === 'success' ? '🎉 即將返回遊戲...' : 
+             bossResult === 'fail' ? '😔 即將返回遊戲...' : `剩餘時間：${bossTimer} 秒`}
           </Text>
-          <TextInput
-            style={{
-              backgroundColor: 'rgba(255,255,255,0.13)',
-              borderRadius: 12,
-              borderWidth: 2,
-              borderColor: currentThemeColor,
-              padding: 14,
-              fontSize: 18,
-              minWidth: 200,
-              textAlign: 'center',
-              marginBottom: 6,
-              color: '#fff',
-              fontWeight: '700',
-              shadowColor: currentThemeColor,
-              shadowOffset: { width: 0, height: 0 },
-              shadowOpacity: 0.3,
-              shadowRadius: 8,
-              elevation: 4,
-            }}
-            value={bossInput}
-            onChangeText={handleBossInput}
-            placeholder="請輸入全文..."
-            placeholderTextColor="#b8c6db"
-            editable={bossResult===null}
-            autoFocus
-          />
-        </View>
+          {!bossResult && (
+            <TextInput
+              style={{
+                backgroundColor: 'rgba(255,255,255,0.13)',
+                borderRadius: 12,
+                borderWidth: 2,
+                borderColor: currentThemeColor,
+                padding: 14,
+                fontSize: 18,
+                minWidth: 200,
+                textAlign: 'center',
+                marginBottom: 6,
+                color: '#fff',
+                fontWeight: '700',
+                shadowColor: currentThemeColor,
+                shadowOffset: { width: 0, height: 0 },
+                shadowOpacity: 0.3,
+                shadowRadius: 8,
+                elevation: 4,
+              }}
+              value={bossInput}
+              onChangeText={handleBossInput}
+              placeholder="請輸入全文..."
+              placeholderTextColor="#b8c6db"
+              editable={bossResult===null}
+              autoFocus
+            />
+          )}
+        </Animated.View>
       </View>
     );
     // 主內容：左右分佈，固定在上方
