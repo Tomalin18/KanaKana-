@@ -46,7 +46,7 @@ const getLanguageFromStorage = async (): Promise<string> => {
   };
   
   // 先嘗試完整語言代碼，再嘗試基礎語言代碼
-  const selectedLanguage = languageMap[systemLanguage] || languageMap[systemLanguage.split('-')[0]] || 'zh_tw';
+  const selectedLanguage = languageMap[systemLanguage] || languageMap[systemLanguage.split('-')[0]] || 'en';
   console.log('🌍 自動選擇語言:', selectedLanguage);
   
   return selectedLanguage;
@@ -61,7 +61,7 @@ const initI18n = async () => {
     .init({
       resources,
       lng: language,
-      fallbackLng: 'zh_tw',
+      fallbackLng: 'en',
       debug: __DEV__,
       
       interpolation: {
