@@ -548,7 +548,9 @@ const LongTextGameEndScreen: React.FC<LongTextGameEndScreenProps> = ({
   currentText,
   onRestart,
   onBackToMenu,
-}) => (
+}) => {
+  const { t } = useTranslation();
+  return (
   <View style={styles.centerContainer}>
                     <Text style={styles.gameOverTitle}>{t('gamePlay.gameOver')}</Text>
     <View style={styles.finalScoreContainer}>
@@ -575,7 +577,8 @@ const LongTextGameEndScreen: React.FC<LongTextGameEndScreenProps> = ({
       </Pressable>
     </View>
   </View>
-);
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
