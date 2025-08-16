@@ -287,5 +287,13 @@ export default {
     restart: '再開',
     backToMenu: 'メニューに戻る',
     rateUs: '評価する',
+    bossDefeated: 'BOSS 撃破！',
+    bossFailed: 'BOSS 失敗！',
+    bossChallenge: 'BOSS チャレンジ',
+    congratulationsChallengeSuccess: 'おめでとう！チャレンジ成功！',
+    timeUpChallengeFailed: '時間切れ！チャレンジ失敗！',
+    returningToGame: 'ゲームに戻ります...',
+    remainingTime: '残り時間',
+    seconds: '秒',
   },
 };

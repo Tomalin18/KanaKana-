@@ -287,5 +287,13 @@ export default {
     restart: '다시 시작',
     backToMenu: '메뉴로 돌아가기',
     rateUs: '평가하기',
+    bossDefeated: 'BOSS 격파!',
+    bossFailed: 'BOSS 실패!',
+    bossChallenge: 'BOSS 도전',
+    congratulationsChallengeSuccess: '축하합니다! 도전 성공!',
+    timeUpChallengeFailed: '시간 초과! 도전 실패!',
+    returningToGame: '게임으로 돌아갑니다...',
+    remainingTime: '남은 시간',
+    seconds: '초',
   },
 };

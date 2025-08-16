@@ -143,6 +143,14 @@ export default {
     restart: 'Restart',
     backToMenu: 'Back to Menu',
     rateUs: 'Rate Us',
+    bossDefeated: 'BOSS Defeated!',
+    bossFailed: 'BOSS Failed!',
+    bossChallenge: 'BOSS Challenge',
+    congratulationsChallengeSuccess: 'Congratulations! Challenge Success!',
+    timeUpChallengeFailed: 'Time\'s up! Challenge Failed!',
+    returningToGame: 'Returning to game...',
+    remainingTime: 'Remaining Time',
+    seconds: 'sec',
   },
 
   // Settings
