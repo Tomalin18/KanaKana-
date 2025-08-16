@@ -89,6 +89,10 @@ export default {
     tryAgain: '다시 시도',
     continue: '계속',
     exit: '종료',
+    practiceComplete: '연습 완료',
+    practiceTime: '연습 시간',
+    minutes: '분',
+    seconds: '초',
   },
 
   // 게임 종료

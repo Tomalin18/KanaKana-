@@ -89,6 +89,10 @@ export default {
     tryAgain: '再試行',
     continue: '続行',
     exit: '終了',
+    practiceComplete: '練習完了',
+    practiceTime: '練習時間',
+    minutes: '分',
+    seconds: '秒',
   },
 
   // ゲーム終了
