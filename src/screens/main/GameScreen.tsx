@@ -106,16 +106,7 @@ export const GameScreen: React.FC<GameScreenProps> = ({ route, navigation }) => 
   useEffect(() => {
     if (gameState === 'playing') {
       gameTimerRef.current = setInterval(() => {
-        setGameTime(prev => {
-          const newTime = prev + 1;
-          
-          // 遊戲結束條件：3分鐘或達到5000分
-          if (newTime >= 180 || score >= 5000) {
-            setGameState('ended');
-          }
-          
-          return newTime;
-        });
+        setGameTime(prev => prev + 1);
       }, 1000);
     } else {
       if (gameTimerRef.current) {
@@ -129,7 +120,7 @@ export const GameScreen: React.FC<GameScreenProps> = ({ route, navigation }) => 
         clearInterval(gameTimerRef.current);
       }
     };
-  }, [gameState, score, combo, triggerOnGameCompleted, mode]);
+  }, [gameState]);
 
   // 開始遊戲
   const startGame = () => {

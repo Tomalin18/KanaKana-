@@ -203,14 +203,7 @@ export const KanjiModeScreen: React.FC<KanjiModeScreenProps> = ({ route, navigat
     
     if (gameState === 'playing') {
       interval = setInterval(() => {
-        setGameTime(prev => {
-          const newTime = prev + 1;
-          // 遊戲結束條件：達到5分鐘或10000分
-          if (newTime >= 300 || score >= 10000) {
-            endGame();
-          }
-          return newTime;
-        });
+        setGameTime(prev => prev + 1);
       }, 1000);
     }
     
@@ -219,7 +212,7 @@ export const KanjiModeScreen: React.FC<KanjiModeScreenProps> = ({ route, navigat
         clearInterval(interval);
       }
     };
-  }, [gameState, score, endGame]);
+  }, [gameState]);
 
   // 渲染遊戲界面
   const renderGameContent = () => {
