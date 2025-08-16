@@ -105,7 +105,17 @@ const INITIAL_FALL_SPEED = 1000; // 1秒 (原本是2秒)
 const SPEED_INCREASE_FACTOR = 0.85; // 每次加速15% (原本是10%)
 
 export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navigation }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  
+  // 調試信息
+  console.log('TetrisModeScreen - Current language:', i18n.language);
+  console.log('TetrisModeScreen - Translation test:', {
+    instruction1: t('tetris.instruction1'),
+    score: t('tetris.score'),
+    level: t('tetris.level'),
+    cleared: t('tetris.cleared'),
+    pleaseInput: t('tetris.pleaseInput'),
+  });
   // 遊戲狀態
   const [gameState, setGameState] = useState<'idle' | 'playing' | 'paused' | 'finished'>('idle');
   const [board, setBoard] = useState<number[][]>(() => 
@@ -1058,7 +1068,7 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
                       {currentPiece.isKanji ? (
                         <>
                           <Text style={[styles.wordText, { fontSize: 20, color: currentThemeColor, textShadowColor: currentThemeColor }]}>{currentPiece.kanji}</Text>
-                          <Text style={[styles.kanaText, { fontSize: 14, color: currentThemeColor }]}>{t('tetris.reading')}: {currentPiece.kana}</Text>
+                          <Text style={[styles.kanaText, { fontSize: 14, color: currentThemeColor }]}>讀音: {currentPiece.kana}</Text>
                           <Text style={[styles.meaningText, { fontSize: 13, color: currentThemeColor }]}>{currentPiece.meaning}</Text>
                           {currentPiece.chineseMeaning && (
                             <Text style={[styles.meaningText, { fontSize: 12, color: currentThemeColor, opacity: 0.8 }]}>{currentPiece.chineseMeaning}</Text>

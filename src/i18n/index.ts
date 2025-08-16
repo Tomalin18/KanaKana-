@@ -96,4 +96,8 @@ export const getSupportedLanguages = () => {
 // 初始化
 initI18n();
 
+// 調試：檢查初始化狀態
+console.log('i18n initialized with language:', i18n.language);
+console.log('i18n available languages:', Object.keys(resources));
+
 export default i18n;
