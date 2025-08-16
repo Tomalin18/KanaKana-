@@ -58,4 +58,10 @@ ios/Pods/
 
 # Temporary files
 tmp/
-temp/ 
+temp/
+
+# Backup files
+* 2.*
+* 3.*
+*_backup.*
+*_old.* 

@@ -6,6 +6,7 @@ import { ForceUpdateModal } from '@/components/common/ForceUpdateModal';
 import { useAppInitialization } from '@/hooks/useAppInitialization';
 import { useVersionCheck } from '@/hooks/useVersionCheck';
 import { AppNavigator } from '@/navigation/AppNavigator';
+import '@/i18n'; // 初始化國際化
 
 /**
  * 主應用程式組件 - KanaKana的入口點

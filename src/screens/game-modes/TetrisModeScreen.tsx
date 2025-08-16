@@ -12,14 +12,18 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { getRandomWordImproved, getWordByLength, getWordByLevelAndLength, type TetrisWord } from '@/data/tetrisData';
 import { GlassNavBar } from '@/components/common/GlassNavBar';
 import { GlassContainer } from '@/components/common/GlassContainer';
 import { PauseOverlay } from '@/components/common/PauseOverlay';
-import type { DifficultyLevel } from '@/types';
+import type { DifficultyLevel, CombinedDifficultyLevel } from '@/types';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { bossQuestions, BossQuestion } from '@/data/bossData';
 import { BlurView } from 'expo-blur';
+import { useRatingPrompt } from '@/hooks/useRatingPrompt';
+import { getRatingState } from '@/utils/ratingPrompt';
+import { Audio } from 'expo-av';
 
 // 類型定義
 interface TetrisPiece {
@@ -31,12 +35,13 @@ interface TetrisPiece {
   y: number;
   color: string;
   meaning: string;
+  chineseMeaning?: string; // 中文解釋（可選）
   kanji?: string; // 漢字版本（可選）
   isKanji?: boolean; // 是否為漢字方塊
 }
 
 interface TetrisSettings {
-  difficulty: DifficultyLevel;
+  difficulty: CombinedDifficultyLevel;
   wordType: 'hiragana' | 'katakana' | 'mixed';
 }
 
@@ -100,6 +105,22 @@ const INITIAL_FALL_SPEED = 1000; // 1秒 (原本是2秒)
 const SPEED_INCREASE_FACTOR = 0.85; // 每次加速15% (原本是10%)
 
 export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navigation }) => {
+  const { t, i18n } = useTranslation();
+  
+  // 調試信息
+  console.log('TetrisModeScreen - Current language:', i18n.language);
+  console.log('TetrisModeScreen - Available languages:', i18n.languages);
+  console.log('TetrisModeScreen - Is initialized:', i18n.isInitialized);
+  console.log('TetrisModeScreen - Translation test:', {
+    instruction1: t('tetris.instruction1'),
+    score: t('tetris.score'),
+    level: t('tetris.level'),
+    cleared: t('tetris.cleared'),
+    pleaseInput: t('tetris.pleaseInput'),
+    bestScore: t('tetris.bestScore'),
+    bestLevel: t('tetris.bestLevel'),
+    bestCleared: t('tetris.bestCleared'),
+  });
   // 遊戲狀態
   const [gameState, setGameState] = useState<'idle' | 'playing' | 'paused' | 'finished'>('idle');
   const [board, setBoard] = useState<number[][]>(() => 
@@ -122,8 +143,8 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
   
   // 設定
   const settings: TetrisSettings = route?.params?.settings || {
-    difficulty: 'beginner',
-    wordType: 'hiragana'
+    difficulty: 'elementary',
+    wordType: 'mixed'  // 改為 'mixed' 以包含漢字詞彙
   };
 
   // 新增最高紀錄狀態
@@ -148,6 +169,12 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
   // 主遊戲輸入框 ref
   const mainInputRef = useRef<TextInput>(null);
 
+  // 評分提示 Hook
+  const { triggerOnGameCompleted, recordSession } = useRatingPrompt();
+  
+  // 評分狀態
+  const [hasRated, setHasRated] = useState(false);
+
   // 讀取本地最高紀錄
   useEffect(() => {
     const loadBestRecords = async () => {
@@ -165,7 +192,7 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
     loadBestRecords();
   }, []);
 
-  // 遊戲結束時自動更新最高紀錄
+  // 遊戲結束時自動更新最高紀錄並檢查評分狀態
   useEffect(() => {
     if (gameState === 'finished') {
       let updated = false;
@@ -184,6 +211,19 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
         AsyncStorage.setItem('tetris_best_cleared', String(piecesCleared));
         updated = true;
       }
+      
+      // 檢查用戶是否已經評分過
+      const checkRatingStatus = async () => {
+        try {
+          const ratingState = await getRatingState();
+          setHasRated(ratingState.hasRated);
+          console.log('📊 Tetris 評分狀態檢查:', { hasRated: ratingState.hasRated });
+        } catch (error) {
+          console.error('❌ 檢查評分狀態失敗:', error);
+        }
+      };
+      
+      checkRatingStatus();
     }
   }, [gameState]);
 
@@ -241,41 +281,96 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
   useEffect(() => {
     if (!bossMode || bossResult === null) return;
     if (bossResult === 'success') {
-      setBoard(prev => {
-        const newBoard = prev.slice(0, -1);
-        newBoard.unshift(Array(BOARD_WIDTH).fill(0));
-        return newBoard;
+      // 播放成功音效
+      const playSuccessSound = async () => {
+        try {
+          const { sound } = await Audio.Sound.createAsync(
+            require('@/assets/audio/sfx/achievement.wav')
+          );
+          await sound.playAsync();
+          // 音效播放完成後自動卸載
+          sound.setOnPlaybackStatusUpdate((status) => {
+            if (status.isLoaded && status.didJustFinish) {
+              sound.unloadAsync();
+            }
+          });
+        } catch (error) {
+          console.log('音效播放失敗:', error);
+        }
+      };
+
+      // 立即播放音效
+      playSuccessSound();
+
+      // 成功特效：簡化的動畫效果
+      const successAnimation = Animated.sequence([
+        Animated.timing(bossLineAnim, {
+          toValue: 1.1,
+          duration: 200,
+          useNativeDriver: false,
+        }),
+        Animated.timing(bossLineAnim, {
+          toValue: 1,
+          duration: 200,
+          useNativeDriver: false,
+        }),
+      ]);
+
+      successAnimation.start(() => {
+        // 動畫完成後處理遊戲邏輯
+        setBoard(prev => {
+          const newBoard = prev.slice(0, -1);
+          newBoard.unshift(Array(BOARD_WIDTH).fill(0));
+          return newBoard;
+        });
+        setLevel(Math.floor(piecesCleared / 10) + 1);
+        setFallSpeed(prev => Math.max(100, prev * SPEED_INCREASE_FACTOR));
+        // 新增：切換主題色
+        setThemeColorIndex(idx => (idx + 1) % NEON_THEME_COLORS.length);
+        setBossMode(false);
+        setBossQuestion(null);
+        setBossInput('');
+        setBossTimer(0);
+        setBossResult(null);
+        setGameState('playing');
+        setTimeout(() => {
+          mainInputRef.current?.focus();
+        }, 100);
       });
-      setLevel(Math.floor(piecesCleared / 10) + 1);
-      setFallSpeed(prev => Math.max(100, prev * SPEED_INCREASE_FACTOR));
-      // 新增：切換主題色
-      setThemeColorIndex(idx => (idx + 1) % NEON_THEME_COLORS.length);
-      setBossMode(false);
-      setBossQuestion(null);
-      setBossInput('');
-      setBossTimer(0);
-      setBossResult(null);
-      setGameState('playing');
-      setTimeout(() => {
-        mainInputRef.current?.focus();
-      }, 100);
     } else if (bossResult === 'fail') {
-      setBoard(prev => {
-        const newBoard = prev.slice(1);
-        newBoard.push(Array(BOARD_WIDTH).fill(1));
-        return newBoard;
+      // 失敗特效：簡化的動畫效果
+      const failAnimation = Animated.sequence([
+        Animated.timing(bossLineAnim, {
+          toValue: 0.9,
+          duration: 200,
+          useNativeDriver: false,
+        }),
+        Animated.timing(bossLineAnim, {
+          toValue: 1,
+          duration: 200,
+          useNativeDriver: false,
+        }),
+      ]);
+
+      failAnimation.start(() => {
+        // 動畫完成後處理遊戲邏輯
+        setBoard(prev => {
+          const newBoard = prev.slice(1);
+          newBoard.push(Array(BOARD_WIDTH).fill(1));
+          return newBoard;
+        });
+        // 新增：切換主題色
+        setThemeColorIndex(idx => (idx + 1) % NEON_THEME_COLORS.length);
+        setBossMode(false);
+        setBossQuestion(null);
+        setBossInput('');
+        setBossTimer(0);
+        setBossResult(null);
+        setGameState('playing');
+        setTimeout(() => {
+          mainInputRef.current?.focus();
+        }, 100);
       });
-      // 新增：切換主題色
-      setThemeColorIndex(idx => (idx + 1) % NEON_THEME_COLORS.length);
-      setBossMode(false);
-      setBossQuestion(null);
-      setBossInput('');
-      setBossTimer(0);
-      setBossResult(null);
-      setGameState('playing');
-      setTimeout(() => {
-        mainInputRef.current?.focus();
-      }, 100);
     }
   }, [bossResult, bossMode, piecesCleared]);
 
@@ -408,24 +503,36 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
     const charCount = getShapeCharCount(shape);
     
     // 調試信息
-    console.log(`生成方塊 - 形狀: ${shapeKey}, 格數: ${charCount}, 等級: ${level}`);
+    console.log(`🎲 生成方塊 - 形狀: ${shapeKey}, 格數: ${charCount}, 等級: ${level}`);
+    console.log(`⚙️ 設定 - 難度: ${settings.difficulty}, 詞彙類型: ${settings.wordType}`);
     
-    // 使用改進的隨機選擇函數
-    const word = getWordByLevelAndLength(charCount, level, settings.difficulty, settings.wordType);
+    // 使用簡單的隨機選擇函數，更接近原本的實現
+    let word;
+    try {
+      // 先嘗試根據長度選擇
+      word = getWordByLength(charCount, settings.difficulty, settings.wordType);
+    } catch (error) {
+      console.error('❌ getWordByLength 錯誤:', error);
+      // 使用備用方法
+      word = getRandomWordImproved(settings.difficulty, settings.wordType);
+    }
     
     // 調試信息
-    console.log(`選擇單字:`, word);
+    console.log(`📝 選擇單字:`, word);
+    console.log(`  單字: ${word?.word}`);
+    console.log(`  假名: ${word?.kana}`);
+    console.log(`  意思: ${word?.meaning}`);
     
     // 安全檢查：確保 word 對象有效
     if (!word || typeof word !== 'object' || !word.word || !word.kana || !word.meaning) {
       console.error('Invalid word object:', word);
       // 使用備用單字
       const fallbackWord = {
-        word: 'ともだち',
-        kana: 'ともだち',
-        meaning: '朋友',
+        word: 'あめ',
+        kana: 'あめ',
+        meaning: '雨',
         difficulty: 'beginner' as const,
-        category: '人物'
+        category: '天氣'
       };
       const color = PIECE_COLORS[Math.floor(Math.random() * PIECE_COLORS.length)];
       const maxX = BOARD_WIDTH - shape[0].length;
@@ -591,7 +698,10 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
     
     const newPiece = generateRandomPiece();
     setCurrentPiece(newPiece);
-  }, [generateRandomPiece]);
+    
+    // 記錄會話
+    recordSession();
+  }, [generateRandomPiece, recordSession]);
 
   // 暫停/恢復遊戲
   const togglePause = useCallback(() => {
@@ -780,32 +890,43 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
           alignItems: 'center',
           zIndex: 21,
         }}>
-        <View style={{
+        <Animated.View style={{
           width: '100%',
-          backgroundColor: 'rgba(10, 30, 40, 0.92)',
+          backgroundColor: bossResult === 'success' ? 'rgba(0, 40, 20, 0.95)' : 
+                           bossResult === 'fail' ? 'rgba(40, 10, 10, 0.95)' : 'rgba(10, 30, 40, 0.92)',
           borderRadius: 20,
           paddingVertical: 28,
           paddingHorizontal: 20,
           alignItems: 'center',
           borderWidth: 2.5,
-          borderColor: currentThemeColor,
-          shadowColor: currentThemeColor,
+          borderColor: bossResult === 'success' ? '#00ff00' : 
+                      bossResult === 'fail' ? '#ff0000' : currentThemeColor,
+          shadowColor: bossResult === 'success' ? '#00ff00' : 
+                      bossResult === 'fail' ? '#ff0000' : currentThemeColor,
           shadowOffset: { width: 0, height: 0 },
-          shadowOpacity: 0.4,
-          shadowRadius: 18,
+          shadowOpacity: bossResult === 'success' ? 0.8 : 
+                        bossResult === 'fail' ? 0.8 : 0.4,
+          shadowRadius: bossResult === 'success' ? 25 : 
+                       bossResult === 'fail' ? 25 : 18,
           elevation: 16,
+          transform: [{
+            scale: bossResult ? bossLineAnim : 1
+          }]
         }}>
           <Text style={{
             fontSize: 22,
             fontWeight: '900',
-            color: currentThemeColor,
+            color: bossResult === 'success' ? '#00ff00' : 
+                   bossResult === 'fail' ? '#ff0000' : currentThemeColor,
             marginBottom: 12,
             letterSpacing: 2,
-            textShadowColor: currentThemeColor,
+            textShadowColor: bossResult === 'success' ? '#00ff00' : 
+                            bossResult === 'fail' ? '#ff0000' : currentThemeColor,
             textShadowOffset: { width: 0, height: 0 },
             textShadowRadius: 12,
           }}>
-            BOSS 挑戰
+            {bossResult === 'success' ? `✅ ${t('tetris.bossDefeated')}` : 
+             bossResult === 'fail' ? `❌ ${t('tetris.bossFailed')}` : t('tetris.bossChallenge')}
           </Text>
           <Text style={{
             fontSize: 20,
@@ -818,16 +939,19 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
             textShadowOffset: { width: 0, height: 0 },
             textShadowRadius: 8,
           }}>
-            {bossQuestion.displayContent}
+            {bossResult === 'success' ? t('tetris.congratulationsChallengeSuccess') : 
+             bossResult === 'fail' ? t('tetris.timeUpChallengeFailed') : bossQuestion.displayContent}
           </Text>
-          {/* 倒數引線動畫 */}
+          {/* 倒數引線動畫 - 成功時變為綠色進度條，失敗時變為紅色 */}
           <View style={{width: '100%', height: 8, backgroundColor: '#003a4d', borderRadius: 4, marginBottom: 14, overflow: 'hidden'}}>
             <Animated.View style={{
               height: 8,
-              backgroundColor: currentThemeColor,
+              backgroundColor: bossResult === 'success' ? '#00ff00' : 
+                              bossResult === 'fail' ? '#ff0000' : currentThemeColor,
               borderRadius: 4,
-              width: bossLineAnim.interpolate({inputRange: [0,1], outputRange: ['0%','100%']}),
-              shadowColor: currentThemeColor,
+              width: bossResult ? '100%' : bossLineAnim.interpolate({inputRange: [0,1], outputRange: ['0%','100%']}),
+              shadowColor: bossResult === 'success' ? '#00ff00' : 
+                          bossResult === 'fail' ? '#ff0000' : currentThemeColor,
               shadowOffset: { width: 0, height: 0 },
               shadowOpacity: 0.7,
               shadowRadius: 8,
@@ -835,43 +959,48 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
           </View>
           <Text style={{
             fontSize: 15,
-            color: currentThemeColor,
+            color: bossResult === 'success' ? '#00ff00' : 
+                   bossResult === 'fail' ? '#ff0000' : currentThemeColor,
             marginBottom: 12,
             fontWeight: '700',
             letterSpacing: 1,
-            textShadowColor: currentThemeColor,
+            textShadowColor: bossResult === 'success' ? '#00ff00' : 
+                            bossResult === 'fail' ? '#ff0000' : currentThemeColor,
             textShadowOffset: { width: 0, height: 0 },
             textShadowRadius: 6,
           }}>
-            剩餘時間：{bossTimer} 秒
+            {bossResult === 'success' ? `🎉 ${t('tetris.returningToGame')}` : 
+             bossResult === 'fail' ? `😔 ${t('tetris.returningToGame')}` : `${t('tetris.remainingTime')}：${bossTimer} ${t('tetris.seconds')}`}
           </Text>
-          <TextInput
-            style={{
-              backgroundColor: 'rgba(255,255,255,0.13)',
-              borderRadius: 12,
-              borderWidth: 2,
-              borderColor: currentThemeColor,
-              padding: 14,
-              fontSize: 18,
-              minWidth: 200,
-              textAlign: 'center',
-              marginBottom: 6,
-              color: '#fff',
-              fontWeight: '700',
-              shadowColor: currentThemeColor,
-              shadowOffset: { width: 0, height: 0 },
-              shadowOpacity: 0.3,
-              shadowRadius: 8,
-              elevation: 4,
-            }}
-            value={bossInput}
-            onChangeText={handleBossInput}
-            placeholder="請輸入全文..."
-            placeholderTextColor="#b8c6db"
-            editable={bossResult===null}
-            autoFocus
-          />
-        </View>
+          {!bossResult && (
+            <TextInput
+              style={{
+                backgroundColor: 'rgba(255,255,255,0.13)',
+                borderRadius: 12,
+                borderWidth: 2,
+                borderColor: currentThemeColor,
+                padding: 14,
+                fontSize: 18,
+                minWidth: 200,
+                textAlign: 'center',
+                marginBottom: 6,
+                color: '#fff',
+                fontWeight: '700',
+                shadowColor: currentThemeColor,
+                shadowOffset: { width: 0, height: 0 },
+                shadowOpacity: 0.3,
+                shadowRadius: 8,
+                elevation: 4,
+              }}
+              value={bossInput}
+              onChangeText={handleBossInput}
+              placeholder={t('tetris.pleaseInputFull')}
+              placeholderTextColor="#b8c6db"
+              editable={bossResult===null}
+              autoFocus
+            />
+          )}
+        </Animated.View>
       </View>
     );
     // 主內容：左右分佈，固定在上方
@@ -892,16 +1021,16 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
               </Animated.Text>
               <View style={{marginBottom: 30}}>
                 <Text style={styles.description}>
-                  {'1. 每個方塊上會顯示日文單字或漢字，請在方塊落地前輸入正確的假名或羅馬拼音消除方塊。\n'}
-                  {'2. 方塊會自動下落，輸入正確即可消除。\n'}
-                  {'3. 每消除 5 個方塊會提升等級，等級越高方塊下落速度越快。\n'}
-                  {'4. 遊戲結束時會記錄你的最高分、最高等級與最高消除數。'}
+                  {t('tetris.instruction1')}{'\n'}
+                  {t('tetris.instruction2')}{'\n'}
+                  {t('tetris.instruction3')}{'\n'}
+                  {t('tetris.instruction4')}
                 </Text>
               </View>
               <View style={styles.settingsInfo}>
-                <Text style={{color: currentThemeColor, fontWeight: 'bold', fontSize: 16}}>🏅 最高分：{bestScore}</Text>
-                <Text style={{color: currentThemeColor, fontWeight: 'bold', fontSize: 16}}>📈 最高等級：{bestLevel}</Text>
-                <Text style={{color: currentThemeColor, fontWeight: 'bold', fontSize: 16}}>🧩 最高消除數：{bestCleared}</Text>
+                <Text style={{color: currentThemeColor, fontWeight: 'bold', fontSize: 16}}>🏅 {t('tetris.bestScore')}：{bestScore}</Text>
+                <Text style={{color: currentThemeColor, fontWeight: 'bold', fontSize: 16}}>📈 {t('tetris.bestLevel')}：{bestLevel}</Text>
+                <Text style={{color: currentThemeColor, fontWeight: 'bold', fontSize: 16}}>🧩 {t('tetris.bestCleared')}：{bestCleared}</Text>
               </View>
               <TouchableOpacity 
                 style={styles.startButton} 
@@ -920,7 +1049,7 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
                 }}
               >
                 <Animated.View style={{ transform: [{ scale: buttonScale }] }}>
-                  <Text style={styles.startButtonText}>🚀 開始遊戲 🚀</Text>
+                  <Text style={styles.startButtonText}>🚀 {t('gameSettings.startGame')} 🚀</Text>
                 </Animated.View>
               </TouchableOpacity>
             </View>
@@ -944,23 +1073,29 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
                       {currentPiece.isKanji ? (
                         <>
                           <Text style={[styles.wordText, { fontSize: 20, color: currentThemeColor, textShadowColor: currentThemeColor }]}>{currentPiece.kanji}</Text>
-                          <Text style={[styles.kanaText, { fontSize: 14, color: currentThemeColor }]}>{'讀音: ' + currentPiece.kana}</Text>
+                          <Text style={[styles.kanaText, { fontSize: 14, color: currentThemeColor }]}>讀音: {currentPiece.kana}</Text>
                           <Text style={[styles.meaningText, { fontSize: 13, color: currentThemeColor }]}>{currentPiece.meaning}</Text>
+                          {currentPiece.chineseMeaning && (
+                            <Text style={[styles.meaningText, { fontSize: 12, color: currentThemeColor, opacity: 0.8 }]}>{currentPiece.chineseMeaning}</Text>
+                          )}
                         </>
                       ) : (
                         <>
                           <Text style={[styles.wordText, { fontSize: 20, color: currentThemeColor, textShadowColor: currentThemeColor }]}>{currentPiece.word}</Text>
                           <Text style={[styles.kanaText, { fontSize: 14, color: currentThemeColor }]}>{'(' + currentPiece.kana + ')'}</Text>
                           <Text style={[styles.meaningText, { fontSize: 13, color: currentThemeColor }]}>{currentPiece.meaning}</Text>
+                          {currentPiece.chineseMeaning && (
+                            <Text style={[styles.meaningText, { fontSize: 12, color: currentThemeColor, opacity: 0.8 }]}>{currentPiece.chineseMeaning}</Text>
+                          )}
                         </>
                       )}
                     </View>
                   )}
                   {/* 分數等級消除數 */}
                   <View style={{ backgroundColor: currentThemeColor + '22', borderRadius: 14, borderWidth: 1.5, borderColor: currentThemeColor, marginTop: 18, padding: 10, alignItems: 'center', shadowColor: currentThemeColor, shadowOpacity: 0.3, shadowRadius: 8 }}>
-                    <Text style={{ color: currentThemeColor, fontSize: 15, fontWeight: '700', marginBottom: 4 }}>🏆 分數: {score}</Text>
-                    <Text style={{ color: currentThemeColor, fontSize: 15, fontWeight: '700', marginBottom: 4 }}>📈 等級: {level}</Text>
-                    <Text style={{ color: currentThemeColor, fontSize: 15, fontWeight: '700' }}>🧩 消除數: {piecesCleared}</Text>
+                    <Text style={{ color: currentThemeColor, fontSize: 15, fontWeight: '700', marginBottom: 4 }}>🏆 {t('tetris.score')}: {score}</Text>
+                    <Text style={{ color: currentThemeColor, fontSize: 15, fontWeight: '700', marginBottom: 4 }}>📈 {t('tetris.level')}: {level}</Text>
+                    <Text style={{ color: currentThemeColor, fontSize: 15, fontWeight: '700' }}>🧩 {t('tetris.cleared')}: {piecesCleared}</Text>
                   </View>
                   {/* 輸入匡 */}
                   <TextInput
@@ -980,7 +1115,7 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
                     ]}
                     value={userInput}
                     onChangeText={handleInputChange}
-                    placeholder="請輸入"
+                    placeholder={t('tetris.pleaseInput')}
                     placeholderTextColor={currentThemeColor + '88'}
                     autoFocus={gameState === 'playing' && !bossMode}
                     editable={gameState === 'playing' && !bossMode}
@@ -1003,7 +1138,7 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
                   }
                 ]}
               >
-                💀 遊戲結束 💀
+                💀 {t('tetris.gameOver')} 💀
               </Animated.Text>
               <Animated.Text 
                 style={[
@@ -1016,23 +1151,50 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
                   }
                 ]}
               >
-                🏆 最終分數: {score} 🏆
+                🏆 {t('tetris.finalScore')}: {score} 🏆
               </Animated.Text>
               <Text style={styles.finalStats}>
-                📊 等級: {level} | 🧩 消除方塊: {piecesCleared} 📊
+                📊 {t('tetris.level')}: {level} | 🧩 {t('tetris.clearedBlocks')}: {piecesCleared} 📊
               </Text>
               {/* 新增最高紀錄顯示 */}
               <View style={{marginBottom: 20, backgroundColor: 'rgba(0,255,255,0.07)', borderRadius: 10, padding: 10, borderWidth: 1, borderColor: '#00ffff33'}}>
-                <Text style={{color: currentThemeColor, fontWeight: 'bold', fontSize: 15, marginBottom: 2}}>🏅 最高紀錄</Text>
-                <Text style={{color: currentThemeColor, fontSize: 14}}>分數：{bestScore}　等級：{bestLevel}　消除數：{bestCleared}</Text>
+                <Text style={{color: currentThemeColor, fontWeight: 'bold', fontSize: 15, marginBottom: 2}}>🏅 {t('tetris.bestRecord')}</Text>
+                <Text style={{color: currentThemeColor, fontSize: 14}}>{t('tetris.score')}：{bestScore}　{t('tetris.level')}：{bestLevel}　{t('tetris.cleared')}：{bestCleared}</Text>
               </View>
               <View style={styles.gameOverButtons}>
                 <TouchableOpacity style={styles.restartButton} onPress={restartGame}>
-                  <Text style={styles.restartButtonText}>🔄 重新開始 🔄</Text>
+                  <Text style={styles.restartButtonText}>🔄 {t('tetris.restart')} 🔄</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.backButton} onPress={goBackToMenu}>
-                  <Text style={styles.backButtonText}>🏠 返回主選單 🏠</Text>
+                  <Text style={styles.backButtonText}>🏠 {t('tetris.backToMenu')} 🏠</Text>
                 </TouchableOpacity>
+                {/* 評分按鈕 - 只在表現良好時顯示 */}
+                {(() => {
+                  const shouldShowRating = (score > 1000 || piecesCleared > 10) && !hasRated;
+                  console.log('🔍 Tetris 評分按鈕顯示條件檢查:', { 
+                    score, 
+                    piecesCleared, 
+                    hasRated,
+                    shouldShowRating,
+                    condition1: score > 1000,
+                    condition2: piecesCleared > 10,
+                    condition3: !hasRated
+                  });
+                  return shouldShowRating;
+                })() && (
+                  <TouchableOpacity 
+                    style={[styles.ratingButton, { borderColor: currentThemeColor }]} 
+                    onPress={() => {
+                      console.log('🎯 Tetris 評分按鈕被點擊:', { score, piecesCleared, level });
+                      // 計算準確率（基於消除方塊數和等級）
+                      const accuracy = Math.min(0.95, 0.7 + (piecesCleared * 0.02) + (level * 0.01));
+                      console.log('📊 計算的準確率:', accuracy);
+                      triggerOnGameCompleted(score, accuracy, 'tetris_typing');
+                    }}
+                  >
+                    <Text style={styles.ratingButtonText}>⭐ {t('tetris.rateUs')} ⭐</Text>
+                  </TouchableOpacity>
+                )}
               </View>
             </View>
           );
@@ -1073,16 +1235,16 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
       
       {/* 統一導航欄 */}
       <GlassNavBar
-        title="Tetris Mode"
+        title={t('mainMenu.tetrisMode')}
         leftButton={{
-          text: '← 返回',
+          text: `← ${t('common.back')}`,
           onPress: () => navigation?.goBack(),
           style: 'secondary',
         }}
         rightButton={
           gameState === 'playing' || gameState === 'paused'
             ? {
-                text: gameState === 'paused' ? '繼續' : '暫停',
+                text: gameState === 'paused' ? t('common.resume') : t('common.pause'),
                 onPress: togglePause,
                 style: 'primary',
               }
@@ -1470,6 +1632,29 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textAlign: 'center',
     fontWeight: '600',
+  },
+  ratingButton: {
+    backgroundColor: 'rgba(0, 255, 0, 0.1)',
+    paddingHorizontal: 35,
+    paddingVertical: 18,
+    borderRadius: 30,
+    borderWidth: 2,
+    borderColor: '#00ff00',
+    shadowColor: '#00ff00',
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.6,
+    shadowRadius: 15,
+    elevation: 8,
+    minWidth: 200,
+  },
+  ratingButtonText: {
+    color: '#00ff00',
+    fontSize: 18,
+    fontWeight: '800',
+    textAlign: 'center',
+    textShadowColor: '#00ff00',
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 8,
   },
   fallingPiece: {
     position: 'absolute',

@@ -7,6 +7,7 @@ import {
   StyleSheet,
   ScrollView,
 } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { TechTheme, Typography, Spacing, Shadows, TechColors } from '@/constants/theme';
 import { GlassContainer } from './GlassContainer';
 import type { ClassicModeSettings, KanjiModeSettings } from '@/types';
@@ -26,6 +27,7 @@ export const GameSettingsModal: React.FC<GameSettingsModalProps> = ({
   onClose,
   onStart,
 }) => {
+  const { t } = useTranslation();
   const [currentSettings, setCurrentSettings] = React.useState(settings);
 
   const handleDifficultyChange = (difficulty: 'easy' | 'normal' | 'hard') => {
@@ -41,24 +43,24 @@ export const GameSettingsModal: React.FC<GameSettingsModalProps> = ({
     switch (difficulty) {
       case 'easy':
         return {
-          name: '簡單',
-          description: '更多生命值，較慢節奏',
+          name: t('gameSettings.difficultyEasy'),
+          description: t('gameSettings.difficultyEasy'),
           lives: 5,
           timeBonus: '+50%',
           color: TechColors.neonGreen,
         };
       case 'normal':
         return {
-          name: '普通',
-          description: '標準遊戲體驗',
+          name: t('gameSettings.difficultyNormal'),
+          description: t('gameSettings.difficultyNormal'),
           lives: 3,
           timeBonus: '標準',
           color: TechColors.neonBlue,
         };
       case 'hard':
         return {
-          name: '困難',
-          description: '挑戰你的極限',
+          name: t('gameSettings.difficultyHard'),
+          description: t('gameSettings.difficultyHard'),
           lives: 1,
           timeBonus: '-25%',
           color: TechColors.neonPink,
@@ -98,12 +100,12 @@ export const GameSettingsModal: React.FC<GameSettingsModalProps> = ({
             showsVerticalScrollIndicator={false}
           >
             <Text style={styles.modalTitle}>
-              {mode === 'classic' ? '🎯 經典模式設定' : '🈯 漢字模式設定'}
+              {mode === 'classic' ? `🎯 ${t('gameSettings.title')}` : `🈯 ${t('gameSettings.title')}`}
             </Text>
 
             {/* 難度選擇 */}
             <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>難度選擇</Text>
+              <Text style={styles.sectionTitle}>{t('gameSettings.difficulty')}</Text>
               <View style={styles.difficultyContainer}>
                 {(['easy', 'normal', 'hard'] as const).map((difficulty) => {
                   const info = getDifficultyInfo(difficulty);
@@ -136,7 +138,7 @@ export const GameSettingsModal: React.FC<GameSettingsModalProps> = ({
                       </Text>
                       <View style={styles.difficultyStats}>
                         <Text style={styles.difficultyStatText}>
-                          ❤️ {info.lives} 生命
+                          ❤️ {info.lives} {t('gameSettings.lives')}
                         </Text>
                         <Text style={styles.difficultyStatText}>
                           ⏱️ {info.timeBonus}
@@ -151,10 +153,10 @@ export const GameSettingsModal: React.FC<GameSettingsModalProps> = ({
             {/* 模式特定設定 */}
             {mode === 'kanji' && (
               <View style={styles.sectionContainer}>
-                <Text style={styles.sectionTitle}>漢字模式設定</Text>
+                <Text style={styles.sectionTitle}>{t('gameSettings.title')}</Text>
                 
                 <View style={styles.settingRow}>
-                  <Text style={styles.settingLabel}>顯示意思</Text>
+                  <Text style={styles.settingLabel}>{t('gameSettings.showMeaning')}</Text>
                   <Pressable
                     style={[
                       styles.toggleButton,
@@ -166,17 +168,21 @@ export const GameSettingsModal: React.FC<GameSettingsModalProps> = ({
                       styles.toggleButtonText,
                       (currentSettings as KanjiModeSettings).showMeaning && styles.toggleButtonTextActive,
                     ]}>
-                      {(currentSettings as KanjiModeSettings).showMeaning ? '開啟' : '關閉'}
+                      {(currentSettings as KanjiModeSettings).showMeaning ? t('common.start') : t('common.close')}
                     </Text>
                   </Pressable>
                 </View>
 
                 <View style={styles.settingRow}>
-                  <Text style={styles.settingLabel}>讀音類型</Text>
+                  <Text style={styles.settingLabel}>{t('gameSettings.readingType')}</Text>
                   <View style={styles.segmentedControl}>
                     {(['hiragana', 'katakana', 'both'] as const).map((type) => {
                       const isSelected = (currentSettings as KanjiModeSettings).readingType === type;
-                      const labels = { hiragana: '平假名', katakana: '片假名', both: '混合' };
+                      const labels = { 
+                        hiragana: t('gameSettings.readingTypeHiragana'), 
+                        katakana: t('gameSettings.readingTypeKatakana'), 
+                        both: t('gameSettings.readingTypeMixed') 
+                      };
                       
                       return (
                         <Pressable
@@ -262,7 +268,7 @@ export const GameSettingsModal: React.FC<GameSettingsModalProps> = ({
               ]}
               onPress={onClose}
             >
-              <Text style={styles.cancelButtonText}>取消</Text>
+              <Text style={styles.cancelButtonText}>{t('common.cancel')}</Text>
             </Pressable>
             
             <Pressable
@@ -273,7 +279,7 @@ export const GameSettingsModal: React.FC<GameSettingsModalProps> = ({
               ]}
               onPress={handleStart}
             >
-              <Text style={styles.startButtonText}>🚀 開始遊戲</Text>
+              <Text style={styles.startButtonText}>🚀 {t('gameSettings.startGame')}</Text>
             </Pressable>
           </View>
         </GlassContainer>

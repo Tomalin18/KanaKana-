@@ -20,9 +20,10 @@ export interface UpdateInfo {
   releaseNotes?: string;
 }
 
-// 測試模式配置
-const TEST_MODE = __DEV__ && false; // 在開發環境中啟用測試模式
-const TEST_SCENARIO: 'force_update' | 'optional_update' | 'no_update' | 'normal' = 'force_update'; // 可選值: 'force_update', 'optional_update', 'no_update', 'normal'
+// 測試模式配置 - 已禁用
+const TEST_MODE = false; // 完全禁用測試模式
+type TestScenario = 'force_update' | 'optional_update' | 'no_update' | 'normal';
+const TEST_SCENARIO = 'normal' as TestScenario; // 使用正常模式
 
 /**
  * 獲取當前應用版本信息
