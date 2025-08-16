@@ -166,7 +166,8 @@ const styles = StyleSheet.create({
   modalContainer: {
     width: '100%',
     maxWidth: 400,
-    maxHeight: '80%',
+    maxHeight: '90%',
+    minHeight: 400,
     borderRadius: 20,
     padding: 20,
   },
@@ -202,7 +203,7 @@ const styles = StyleSheet.create({
   },
   languageList: {
     flex: 1,
-    minHeight: 200,
+    minHeight: 300,
   },
   languageListContent: {
     paddingVertical: 10,
