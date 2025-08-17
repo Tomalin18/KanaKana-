@@ -19,10 +19,41 @@ const NATIVE_RATING_CONFIG = {
   MAX_PROMPTS_PER_MONTH: 5,    // 每月最多5次
   MIN_SESSIONS_BEFORE_FIRST: 3, // 至少使用3次才提示
   
-  // 評分條件
-  MIN_SCORE_FOR_RATING: 500,   // 最低分數要求
-  MIN_ACCURACY_FOR_RATING: 0.6, // 最低準確率要求
-  MIN_GAME_TIME_FOR_RATING: 30, // 最低遊戲時間要求（秒）
+  // 各遊戲模式的評分條件
+  GAME_MODE_CONDITIONS: {
+    // 經典模式條件
+    classic: {
+      MIN_SCORE: 800,           // 最低分數要求
+      MIN_ACCURACY: 0.7,        // 最低準確率要求
+      MIN_GAME_TIME: 45,        // 最低遊戲時間要求（秒）
+      MIN_COMBO: 10,            // 最低連擊數要求
+    },
+    
+    // 漢字模式條件
+    kanji_to_kana: {
+      MIN_SCORE: 600,           // 最低分數要求
+      MIN_ACCURACY: 0.65,       // 最低準確率要求
+      MIN_GAME_TIME: 60,        // 最低遊戲時間要求（秒）
+      MIN_WORDS_COMPLETED: 15,  // 最低完成單字數
+    },
+    
+    // 長文模式條件
+    long_text: {
+      MIN_SCORE: 1000,          // 最低分數要求
+      MIN_ACCURACY: 0.75,       // 最低準確率要求
+      MIN_GAME_TIME: 120,       // 最低遊戲時間要求（秒）
+      MIN_TEXT_COMPLETED: 0.8,  // 最低文章完成度
+    },
+    
+    // 俄羅斯方塊模式條件
+    tetris_typing: {
+      MIN_SCORE: 1500,          // 最低分數要求
+      MIN_LEVEL: 8,             // 最低等級要求
+      MIN_PIECES_CLEARED: 25,   // 最低消除方塊數
+      MIN_COMBO: 5,             // 最低連擊數
+      NEW_RECORD: true,         // 是否為新紀錄
+    },
+  },
 } as const;
 
 // 評分狀態介面
@@ -127,25 +158,85 @@ export const shouldShowNativeRating = async (
       return isImportantAchievement;
       
     case NATIVE_RATING_CONFIG.TRIGGERS.GAME_COMPLETED:
-      // 遊戲完成時，檢查表現是否良好
+      // 遊戲完成時，根據遊戲模式檢查表現
+      const mode = additionalData?.mode || 'classic';
       const score = additionalData?.score || 0;
       const accuracy = additionalData?.accuracy || 0;
       const gameTime = additionalData?.gameTime || 0;
       
-      const hasGoodPerformance = 
-        score >= NATIVE_RATING_CONFIG.MIN_SCORE_FOR_RATING ||
-        accuracy >= NATIVE_RATING_CONFIG.MIN_ACCURACY_FOR_RATING ||
-        gameTime >= NATIVE_RATING_CONFIG.MIN_GAME_TIME_FOR_RATING;
+      // 獲取對應遊戲模式的條件
+      const modeConditions = NATIVE_RATING_CONFIG.GAME_MODE_CONDITIONS[mode as keyof typeof NATIVE_RATING_CONFIG.GAME_MODE_CONDITIONS];
       
-      console.log('🎯 遊戲完成檢查:', { 
-        score, 
-        accuracy, 
-        gameTime, 
-        hasGoodPerformance,
-        minScore: NATIVE_RATING_CONFIG.MIN_SCORE_FOR_RATING,
-        minAccuracy: NATIVE_RATING_CONFIG.MIN_ACCURACY_FOR_RATING,
-        minGameTime: NATIVE_RATING_CONFIG.MIN_GAME_TIME_FOR_RATING
-      });
+      if (!modeConditions) {
+        console.log('❌ 未知遊戲模式:', mode);
+        return false;
+      }
+      
+      let hasGoodPerformance = false;
+      
+      switch (mode) {
+        case 'classic':
+          const combo = additionalData?.combo || 0;
+          hasGoodPerformance = 
+            score >= modeConditions.MIN_SCORE ||
+            accuracy >= modeConditions.MIN_ACCURACY ||
+            gameTime >= modeConditions.MIN_GAME_TIME ||
+            combo >= modeConditions.MIN_COMBO;
+          console.log('🎯 經典模式檢查:', { 
+            score, accuracy, gameTime, combo, hasGoodPerformance,
+            conditions: modeConditions
+          });
+          break;
+          
+        case 'kanji_to_kana':
+          const wordsCompleted = additionalData?.wordsCompleted || 0;
+          hasGoodPerformance = 
+            score >= modeConditions.MIN_SCORE ||
+            accuracy >= modeConditions.MIN_ACCURACY ||
+            gameTime >= modeConditions.MIN_GAME_TIME ||
+            wordsCompleted >= modeConditions.MIN_WORDS_COMPLETED;
+          console.log('🎯 漢字模式檢查:', { 
+            score, accuracy, gameTime, wordsCompleted, hasGoodPerformance,
+            conditions: modeConditions
+          });
+          break;
+          
+        case 'long_text':
+          const textCompleted = additionalData?.textCompleted || 0;
+          hasGoodPerformance = 
+            score >= modeConditions.MIN_SCORE ||
+            accuracy >= modeConditions.MIN_ACCURACY ||
+            gameTime >= modeConditions.MIN_GAME_TIME ||
+            textCompleted >= modeConditions.MIN_TEXT_COMPLETED;
+          console.log('🎯 長文模式檢查:', { 
+            score, accuracy, gameTime, textCompleted, hasGoodPerformance,
+            conditions: modeConditions
+          });
+          break;
+          
+        case 'tetris_typing':
+          const level = additionalData?.level || 0;
+          const piecesCleared = additionalData?.piecesCleared || 0;
+          const tetrisCombo = additionalData?.combo || 0;
+          const isNewRecord = additionalData?.isNewRecord || false;
+          
+          hasGoodPerformance = 
+            score >= modeConditions.MIN_SCORE ||
+            level >= modeConditions.MIN_LEVEL ||
+            piecesCleared >= modeConditions.MIN_PIECES_CLEARED ||
+            tetrisCombo >= modeConditions.MIN_COMBO ||
+            isNewRecord;
+          console.log('🎯 俄羅斯方塊模式檢查:', { 
+            score, level, piecesCleared, combo: tetrisCombo, isNewRecord, hasGoodPerformance,
+            conditions: modeConditions
+          });
+          break;
+          
+        default:
+          console.log('❌ 未處理的遊戲模式:', mode);
+          return false;
+      }
+      
       return hasGoodPerformance;
       
     case NATIVE_RATING_CONFIG.TRIGGERS.STREAK_MILESTONE:
