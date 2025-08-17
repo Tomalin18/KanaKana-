@@ -116,6 +116,7 @@ export const GameScreen: React.FC<GameScreenProps> = ({ route, navigation }) => 
             accuracy,
             mode,
             gameTime,
+            combo, // 傳遞連擊數
           });
         }
       }, 3000); // 3秒後自動觸發，讓用戶先看到遊戲結果
@@ -248,7 +249,7 @@ export const GameScreen: React.FC<GameScreenProps> = ({ route, navigation }) => 
               console.log('📊 計算的準確率:', accuracy);
               
               // 使用原生評分系統
-              triggerOnGameCompleted(score, accuracy, mode, gameTime);
+              triggerOnGameCompleted(score, accuracy, mode, gameTime, { combo });
             }}
             hasRated={hasRated}
             onCheckRatingStatus={checkRatingStatus}

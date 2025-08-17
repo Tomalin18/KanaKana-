@@ -1197,11 +1197,30 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
                       if (nativeAvailable) {
                         // 使用原生評分系統
                         const { showNativeRating } = await import('@/utils/nativeRating');
+                        // 檢查是否為新紀錄
+                        const isNewScoreRecord = score > bestScore;
+                        const isNewLevelRecord = level > bestLevel;
+                        const isNewClearedRecord = piecesCleared > bestCleared;
+                        const isNewRecord = isNewScoreRecord || isNewLevelRecord || isNewClearedRecord;
+                        
+                        console.log('🏆 Tetris 紀錄檢查:', {
+                          current: { score, level, piecesCleared },
+                          best: { bestScore, bestLevel, bestCleared },
+                          isNewRecord,
+                          isNewScoreRecord,
+                          isNewLevelRecord,
+                          isNewClearedRecord
+                        });
+                        
                         await showNativeRating('game_completed', {
                           score,
                           accuracy,
                           mode: 'tetris_typing',
                           gameTime: 0, // Tetris 模式沒有遊戲時間
+                          level,
+                          piecesCleared,
+                          combo: 0, // Tetris 模式的連擊數
+                          isNewRecord,
                         });
                       } else {
                         // 回退到原有系統

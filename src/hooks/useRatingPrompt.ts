@@ -12,8 +12,8 @@ export const useRatingPrompt = () => {
   }, []);
 
   // 遊戲完成時觸發
-  const triggerOnGameCompleted = useCallback(async (score: number, accuracy: number, mode: string, gameTime?: number) => {
-    console.log('🚀 useRatingPrompt: triggerOnGameCompleted 被調用:', { score, accuracy, mode, gameTime });
+  const triggerOnGameCompleted = useCallback(async (score: number, accuracy: number, mode: string, gameTime?: number, additionalData?: any) => {
+    console.log('🚀 useRatingPrompt: triggerOnGameCompleted 被調用:', { score, accuracy, mode, gameTime, additionalData });
     
     // 檢查原生評分是否可用
     const nativeAvailable = checkNativeRatingAvailability();
@@ -28,6 +28,7 @@ export const useRatingPrompt = () => {
           accuracy,
           mode,
           gameTime: gameTime || 0,
+          ...additionalData, // 傳遞額外的遊戲數據
         });
       } else {
         // 回退到自定義評分提示
