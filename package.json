@@ -1,6 +1,6 @@
 {
   "name": "kanakana",
-  "version": "1.0.1",
+  "version": "1.1.1",
   "description": "かなカナ - The definitive Japanese typing practice game",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
