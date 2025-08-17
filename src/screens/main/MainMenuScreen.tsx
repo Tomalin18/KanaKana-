@@ -14,7 +14,7 @@ import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import type { RootStackParamList } from '@/navigation/AppNavigator';
 import type { GameMode, ClassicModeSettings, KanjiModeSettings } from '@/types';
 import { TechTheme, Typography, Spacing, Shadows, TechColors } from '@/constants/theme';
-import { GlassContainer, GameSettingsModal } from '@/components/common';
+import { GlassContainer } from '@/components/common';
 import { isFeatureEnabled } from '@/utils/featureFlags';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'MainMenu'>;
@@ -25,8 +25,6 @@ type Props = NativeStackScreenProps<RootStackParamList, 'MainMenu'>;
  */
 export const MainMenuScreen: React.FC<Props> = ({ navigation }) => {
   const { t } = useTranslation();
-  const [settingsModalVisible, setSettingsModalVisible] = useState(false);
-  const [selectedMode, setSelectedMode] = useState<'classic' | 'kanji' | null>(null);
 
   // 評分提示 Hook
   const { recordSession, triggerOnSessionCount } = useRatingPrompt();
@@ -48,40 +46,24 @@ export const MainMenuScreen: React.FC<Props> = ({ navigation }) => {
   };
 
   const handleGameModePress = (mode: GameMode) => {
-    if (mode === 'classic' || mode === 'kanji_to_kana') {
-      setSelectedMode(mode === 'classic' ? 'classic' : 'kanji');
-      setSettingsModalVisible(true);
+    // 所有模式都直接導航，移除確認視窗
+    if (mode === 'classic') {
+      navigation.navigate('Game', { 
+        mode: 'classic',
+        settings: defaultClassicSettings,
+      });
+    } else if (mode === 'kanji_to_kana') {
+      navigation.navigate('Game', { 
+        mode: 'kanji_to_kana',
+        settings: defaultKanjiSettings,
+      });
     } else {
       // 其他模式直接導航
       navigation.navigate('Game', { mode });
     }
   };
 
-  const handleSettingsStart = (settings: ClassicModeSettings | KanjiModeSettings) => {
-    console.log('MainMenuScreen: handleSettingsStart called with mode:', selectedMode, 'settings:', settings);
-    setSettingsModalVisible(false);
-    
-    if (selectedMode === 'classic') {
-      console.log('MainMenuScreen: Navigating to classic mode');
-      navigation.navigate('Game', { 
-        mode: 'classic',
-        settings: settings as ClassicModeSettings,
-      });
-    } else if (selectedMode === 'kanji') {
-      console.log('MainMenuScreen: Navigating to kanji mode');
-      navigation.navigate('Game', { 
-        mode: 'kanji_to_kana',
-        settings: settings as KanjiModeSettings,
-      });
-    }
-    
-    setSelectedMode(null);
-  };
 
-  const handleSettingsClose = () => {
-    setSettingsModalVisible(false);
-    setSelectedMode(null);
-  };
 
   // 記錄會話並檢查是否需要觸發評分提示
   useEffect(() => {
@@ -189,16 +171,7 @@ export const MainMenuScreen: React.FC<Props> = ({ navigation }) => {
         </ScrollView>
       </SafeAreaView>
 
-      {/* 設定模態框 */}
-      {selectedMode && (
-        <GameSettingsModal
-          visible={settingsModalVisible}
-          mode={selectedMode}
-          settings={selectedMode === 'classic' ? defaultClassicSettings : defaultKanjiSettings}
-          onClose={handleSettingsClose}
-          onStart={handleSettingsStart}
-        />
-      )}
+
 
 
     </View>
