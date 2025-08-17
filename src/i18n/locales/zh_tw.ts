@@ -298,6 +298,14 @@ export default {
     cannotOpenStorePleaseUpdate: '無法打開應用商店，請手動前往更新',
   },
 
+  // 評分
+  rating: {
+    title: '評分',
+    rateUs: '給我們評分',
+    rateUsDescription: '如果您喜歡這個應用，請給我們一個評分',
+    rateUsButton: '評分',
+  },
+
   // 評分提示
   ratingPrompt: {
     achievementUnlocked: '🎉 恭喜獲得成就！',

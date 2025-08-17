@@ -257,6 +257,14 @@ export default {
     cannotOpenStorePleaseUpdate: 'App Storeを開けません。手動で更新してください。',
   },
 
+  // 評価
+  rating: {
+    title: '評価',
+    rateUs: '評価する',
+    rateUsDescription: 'このアプリが気に入ったら、評価をお願いします',
+    rateUsButton: '評価',
+  },
+
   // 評分提示
   ratingPrompt: {
     achievementUnlocked: '🎉 実績解除！',

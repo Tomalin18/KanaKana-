@@ -5,6 +5,8 @@ import {
   StyleSheet,
   ScrollView,
   Pressable,
+  Platform,
+  Linking,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { TechTheme, Typography, Spacing, Shadows, TechColors } from '@/constants/theme';
@@ -28,6 +30,30 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ navigation }) =>
   const handleLanguagePress = () => {
     console.log('Language button pressed, setting visible to true');
     setLanguageSelectorVisible(true);
+  };
+
+  const handleRatingPress = async () => {
+    console.log('Rating button pressed');
+    
+    try {
+      // 直接打開 App Store 評分頁面
+      const appStoreUrl = Platform.select({
+        ios: 'https://apps.apple.com/tw/app/kanakana-%E3%81%8B%E3%81%AA%E3%82%AB%E3%83%8A/id6748865873?action=write-review',
+        android: 'market://details?id=com.kanakana.app&showAllReviews=true',
+      });
+      
+      if (appStoreUrl) {
+        const canOpen = await Linking.canOpenURL(appStoreUrl);
+        if (canOpen) {
+          await Linking.openURL(appStoreUrl);
+          console.log('✅ 成功打開 App Store 評分頁面');
+        } else {
+          console.log('❌ 無法打開 App Store 連結');
+        }
+      }
+    } catch (error) {
+      console.error('❌ 打開 App Store 失敗:', error);
+    }
   };
 
   const getCurrentLanguageName = () => {
@@ -68,6 +94,23 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ navigation }) =>
             subtitle={t('language.selectLanguage')}
             value={getCurrentLanguageName()}
             onPress={handleLanguagePress}
+          />
+        </GlassContainer>
+
+        {/* 評分設定 */}
+        <GlassContainer
+          variant="primary"
+          glowEffect={true}
+          neonBorder={true}
+          style={styles.sectionContainer}
+        >
+          <Text style={styles.sectionTitle}>⭐ {t('rating.title')}</Text>
+          
+          <SettingItem
+            title={t('rating.rateUs')}
+            subtitle={t('rating.rateUsDescription')}
+            value={t('rating.rateUsButton')}
+            onPress={handleRatingPress}
           />
         </GlassContainer>
         

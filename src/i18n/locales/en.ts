@@ -298,6 +298,14 @@ export default {
     cannotOpenStorePleaseUpdate: 'Cannot open App Store, please update manually.',
   },
 
+  // Rating
+  rating: {
+    title: 'Rating',
+    rateUs: 'Rate Us',
+    rateUsDescription: 'If you like this app, please give us a rating',
+    rateUsButton: 'Rate',
+  },
+
   // Rating Prompt
   ratingPrompt: {
     achievementUnlocked: '🎉 Achievement Unlocked!',
