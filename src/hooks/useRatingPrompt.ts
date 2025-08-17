@@ -1,5 +1,6 @@
 import { useCallback } from 'react';
 import { showRatingPrompt, updateRatingState } from '@/utils/ratingPrompt';
+import { showNativeRating, updateNativeRatingState, checkNativeRatingAvailability } from '@/utils/nativeRating';
 
 export const useRatingPrompt = () => {
   // 成就解鎖時觸發
@@ -11,17 +12,35 @@ export const useRatingPrompt = () => {
   }, []);
 
   // 遊戲完成時觸發
-  const triggerOnGameCompleted = useCallback(async (score: number, accuracy: number, mode: string) => {
-    console.log('🚀 useRatingPrompt: triggerOnGameCompleted 被調用:', { score, accuracy, mode });
+  const triggerOnGameCompleted = useCallback(async (score: number, accuracy: number, mode: string, gameTime?: number) => {
+    console.log('🚀 useRatingPrompt: triggerOnGameCompleted 被調用:', { score, accuracy, mode, gameTime });
+    
+    // 檢查原生評分是否可用
+    const nativeAvailable = checkNativeRatingAvailability();
+    console.log('🔍 原生評分可用性:', nativeAvailable);
+    
     try {
-      await showRatingPrompt('game_completed', {
-        score,
-        accuracy,
-        mode,
-      });
-      console.log('✅ useRatingPrompt: showRatingPrompt 調用成功');
+      if (nativeAvailable) {
+        // 優先使用原生評分
+        console.log('📱 使用原生評分對話框');
+        await showNativeRating('game_completed', {
+          score,
+          accuracy,
+          mode,
+          gameTime: gameTime || 0,
+        });
+      } else {
+        // 回退到自定義評分提示
+        console.log('📱 使用自定義評分提示');
+        await showRatingPrompt('game_completed', {
+          score,
+          accuracy,
+          mode,
+        });
+      }
+      console.log('✅ useRatingPrompt: 評分提示調用成功');
     } catch (error) {
-      console.error('❌ useRatingPrompt: showRatingPrompt 調用失敗:', error);
+      console.error('❌ useRatingPrompt: 評分提示調用失敗:', error);
     }
   }, []);
 
@@ -49,6 +68,7 @@ export const useRatingPrompt = () => {
   // 記錄會話
   const recordSession = useCallback(async () => {
     await updateRatingState('session');
+    await updateNativeRatingState('session');
   }, []);
 
   return {
