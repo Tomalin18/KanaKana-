@@ -108,10 +108,16 @@ export const shouldShowRatingPrompt = async (
     return false;
   }
   
-  // 檢查會話數量
+  // 檢查會話數量 - 暫時放寬條件用於測試
   if (state.sessionCount < RATING_CONFIG.MIN_SESSIONS_BEFORE_FIRST) {
-    console.log('❌ 會話數量不足:', state.sessionCount);
-    return false;
+    console.log('❌ 會話數量不足:', state.sessionCount, '需要:', RATING_CONFIG.MIN_SESSIONS_BEFORE_FIRST);
+    // 暫時放寬條件，允許測試
+    if (process.env.NODE_ENV === 'development') {
+      console.log('🔧 開發模式：放寬會話數量限制');
+      // 在開發模式下，即使會話數量不足也允許顯示
+    } else {
+      return false;
+    }
   }
   
   // 根據觸發條件進行額外檢查 - 簡化條件

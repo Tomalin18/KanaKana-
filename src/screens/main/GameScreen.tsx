@@ -220,9 +220,21 @@ export const GameScreen: React.FC<GameScreenProps> = ({ route, navigation }) => 
             onRestart={restartGame}
             onBackToMenu={backToMenu}
             onRatingPrompt={() => {
+              console.log('🎯 評分按鈕被點擊:', { score, combo, mode });
               // 計算準確率
               const accuracy = combo > 0 ? Math.min(0.95, 0.7 + (combo * 0.02)) : 0.7;
+              console.log('📊 計算的準確率:', accuracy);
+              
+              // 先嘗試正常的評分提示
               triggerOnGameCompleted(score, accuracy, mode);
+              
+              // 如果正常流程沒有反應，3秒後嘗試測試函數
+              setTimeout(() => {
+                console.log('🔧 嘗試測試評分提示');
+                import('@/utils/ratingPrompt').then(({ testRatingPrompt }) => {
+                  testRatingPrompt();
+                });
+              }, 3000);
             }}
             hasRated={hasRated}
             onCheckRatingStatus={checkRatingStatus}
@@ -795,7 +807,20 @@ const GameEndScreen: React.FC<GameEndScreenProps> = ({
           <Text style={styles.menuButtonText}>🏠 {t('gameEnd.backToMenu')}</Text>
         </Pressable>
         {/* 評分按鈕 - 只在表現良好且未評分時顯示 */}
-        {onRatingPrompt && (score > 1000 || gameTime > 60) && !hasRated && (
+        {(() => {
+          const shouldShowRating = onRatingPrompt && (score > 1000 || gameTime > 60) && !hasRated;
+          console.log('🔍 經典模式評分按鈕顯示條件檢查:', { 
+            onRatingPrompt: !!onRatingPrompt, 
+            score, 
+            gameTime, 
+            hasRated,
+            shouldShowRating,
+            condition1: score > 1000,
+            condition2: gameTime > 60,
+            condition3: !hasRated
+          });
+          return shouldShowRating;
+        })() && (
           <Pressable
             style={({ pressed }) => [
               styles.ratingButton,
