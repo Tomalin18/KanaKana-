@@ -5,10 +5,19 @@ import { showNativeRating, updateNativeRatingState, checkNativeRatingAvailabilit
 export const useRatingPrompt = () => {
   // 成就解鎖時觸發
   const triggerOnAchievement = useCallback(async (achievementType: string, achievementName: string) => {
-    await showRatingPrompt('achievement_unlocked', {
-      achievementType,
-      achievementName,
-    });
+    const nativeAvailable = checkNativeRatingAvailability();
+    
+    if (nativeAvailable) {
+      await showNativeRating('achievement_unlocked', {
+        achievementType,
+        achievementName,
+      });
+    } else {
+      await showRatingPrompt('achievement_unlocked', {
+        achievementType,
+        achievementName,
+      });
+    }
   }, []);
 
   // 遊戲完成時觸發
@@ -47,23 +56,47 @@ export const useRatingPrompt = () => {
 
   // 連續使用里程碑觸發
   const triggerOnStreakMilestone = useCallback(async (streak: number) => {
-    await showRatingPrompt('streak_milestone', {
-      streak,
-    });
+    const nativeAvailable = checkNativeRatingAvailability();
+    
+    if (nativeAvailable) {
+      await showNativeRating('streak_milestone', {
+        streak,
+      });
+    } else {
+      await showRatingPrompt('streak_milestone', {
+        streak,
+      });
+    }
   }, []);
 
   // 功能探索完成觸發
   const triggerOnFeatureExplored = useCallback(async (exploredFeatures: number) => {
-    await showRatingPrompt('feature_explored', {
-      exploredFeatures,
-    });
+    const nativeAvailable = checkNativeRatingAvailability();
+    
+    if (nativeAvailable) {
+      await showNativeRating('feature_explored', {
+        exploredFeatures,
+      });
+    } else {
+      await showRatingPrompt('feature_explored', {
+        exploredFeatures,
+      });
+    }
   }, []);
 
   // 會話數量里程碑觸發
   const triggerOnSessionCount = useCallback(async (sessionCount: number) => {
-    await showRatingPrompt('session_count', {
-      sessionCount,
-    });
+    const nativeAvailable = checkNativeRatingAvailability();
+    
+    if (nativeAvailable) {
+      await showNativeRating('session_count', {
+        sessionCount,
+      });
+    } else {
+      await showRatingPrompt('session_count', {
+        sessionCount,
+      });
+    }
   }, []);
 
   // 記錄會話
