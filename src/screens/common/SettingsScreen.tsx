@@ -78,7 +78,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ navigation }) =>
           style={styles.aboutContainer}
         >
           <Text style={styles.aboutTitle}>🌟 KanaKana</Text>
-          <Text style={styles.aboutVersion}>{t('about.version')} 1.1.0</Text>
+          <Text style={styles.aboutVersion}>{t('about.version')} 1.1.1</Text>
           <Text style={styles.aboutDescription}>
             {t('about.description')}
           </Text>
