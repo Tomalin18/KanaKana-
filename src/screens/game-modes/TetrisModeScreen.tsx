@@ -1197,58 +1197,30 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
                   <TouchableOpacity 
                     style={[styles.ratingButton, { borderColor: currentThemeColor }]} 
                     onPress={async () => {
-                      console.log('🎯 Tetris 評分按鈕被點擊:', { score, piecesCleared, level });
-                      // 計算準確率（基於消除方塊數和等級）
-                      const accuracy = Math.min(0.95, 0.7 + (piecesCleared * 0.02) + (level * 0.01));
-                      console.log('📊 計算的準確率:', accuracy);
+                      console.log('🎯 Tetris 評分按鈕被點擊');
                       
                       try {
-                      
-                      // 檢查原生評分是否可用
-                      const { checkNativeRatingAvailability } = await import('@/utils/nativeRating');
-                      const nativeAvailable = checkNativeRatingAvailability();
-                      
-                      // 檢查是否為新紀錄
-                      const isNewScoreRecord = score > bestScore;
-                      const isNewLevelRecord = level > bestLevel;
-                      const isNewClearedRecord = piecesCleared > bestCleared;
-                      const isNewRecord = isNewScoreRecord || isNewLevelRecord || isNewClearedRecord;
-                      
-                      console.log('🏆 Tetris 紀錄檢查:', {
-                        current: { score, level, piecesCleared },
-                        best: { bestScore, bestLevel, bestCleared },
-                        isNewRecord,
-                        isNewScoreRecord,
-                        isNewLevelRecord,
-                        isNewClearedRecord
-                      });
-                      
-                      if (nativeAvailable) {
-                        // 使用原生評分系統
-                        const { showNativeRating } = await import('@/utils/nativeRating');
+                        const { Linking } = await import('react-native');
+                        const { Platform } = await import('react-native');
                         
-                        await showNativeRating('game_completed', {
-                          score,
-                          accuracy,
-                          mode: 'tetris_typing',
-                          gameTime: 0, // Tetris 模式沒有遊戲時間
-                          level,
-                          piecesCleared,
-                          combo: 0, // Tetris 模式的連擊數
-                          isNewRecord,
+                        // 直接打開 App Store 評分頁面
+                        const appStoreUrl = Platform.select({
+                          ios: 'https://apps.apple.com/tw/app/kanakana-%E3%81%8B%E3%81%AA%E3%82%AB%E3%83%8A/id6748865873?action=write-review',
+                          android: 'market://details?id=com.kanakana.app&showAllReviews=true',
                         });
-                                              } else {
-                        // 回退到原有系統
-                        console.log('📱 使用自定義評分提示（回退）');
-                        triggerOnGameCompleted(score, accuracy, 'tetris_typing', 0, {
-                          level,
-                          piecesCleared,
-                          isNewRecord,
-                        });
+                        
+                        if (appStoreUrl) {
+                          const canOpen = await Linking.canOpenURL(appStoreUrl);
+                          if (canOpen) {
+                            await Linking.openURL(appStoreUrl);
+                            console.log('✅ 成功打開 App Store 評分頁面');
+                          } else {
+                            console.log('❌ 無法打開 App Store 連結');
+                          }
+                        }
+                      } catch (error) {
+                        console.error('❌ 打開 App Store 失敗:', error);
                       }
-                    } catch (error) {
-                      console.error('❌ Tetris 評分按鈕錯誤:', error);
-                    }
                     }}
                   >
                     <Text style={styles.ratingButtonText}>⭐ {t('tetris.rateUs')} ⭐</Text>
