@@ -312,6 +312,12 @@ export const updateNativeRatingState = async (
 };
 
 // 顯示原生評分對話框
+// 使用 Apple 官方的 SKStoreReviewController
+// 優點：
+// 1. 用戶不會離開應用
+// 2. 評分會真實反映在 App Store
+// 3. 使用系統原生的評分對話框
+// 4. 更好的用戶體驗
 export const showNativeRating = async (
   trigger: string,
   additionalData?: any
