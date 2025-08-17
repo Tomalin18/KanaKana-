@@ -1184,12 +1184,29 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
                 })() && (
                   <TouchableOpacity 
                     style={[styles.ratingButton, { borderColor: currentThemeColor }]} 
-                    onPress={() => {
+                    onPress={async () => {
                       console.log('🎯 Tetris 評分按鈕被點擊:', { score, piecesCleared, level });
                       // 計算準確率（基於消除方塊數和等級）
                       const accuracy = Math.min(0.95, 0.7 + (piecesCleared * 0.02) + (level * 0.01));
                       console.log('📊 計算的準確率:', accuracy);
-                      triggerOnGameCompleted(score, accuracy, 'tetris_typing');
+                      
+                      // 檢查原生評分是否可用
+                      const { checkNativeRatingAvailability } = await import('@/utils/nativeRating');
+                      const nativeAvailable = checkNativeRatingAvailability();
+                      
+                      if (nativeAvailable) {
+                        // 使用原生評分系統
+                        const { showNativeRating } = await import('@/utils/nativeRating');
+                        await showNativeRating('game_completed', {
+                          score,
+                          accuracy,
+                          mode: 'tetris_typing',
+                          gameTime: 0, // Tetris 模式沒有遊戲時間
+                        });
+                      } else {
+                        // 回退到原有系統
+                        triggerOnGameCompleted(score, accuracy, 'tetris_typing');
+                      }
                     }}
                   >
                     <Text style={styles.ratingButtonText}>⭐ {t('tetris.rateUs')} ⭐</Text>

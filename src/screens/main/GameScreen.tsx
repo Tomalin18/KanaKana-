@@ -98,6 +98,28 @@ export const GameScreen: React.FC<GameScreenProps> = ({ route, navigation }) => 
     onError: () => {
       // 錯誤處理（只重置連擊，不扣生命）
     },
+    onComplete: () => {
+      // 遊戲完成時自動觸發評分檢查
+      setTimeout(async () => {
+        const accuracy = combo > 0 ? Math.min(0.95, 0.7 + (combo * 0.02)) : 0.7;
+        console.log('🎯 遊戲完成，自動檢查評分:', { score, accuracy, mode, gameTime });
+        
+        // 檢查原生評分是否可用
+        const { checkNativeRatingAvailability } = await import('@/utils/nativeRating');
+        const nativeAvailable = checkNativeRatingAvailability();
+        
+        if (nativeAvailable) {
+          // 使用原生評分系統
+          const { showNativeRating } = await import('@/utils/nativeRating');
+          await showNativeRating('game_completed', {
+            score,
+            accuracy,
+            mode,
+            gameTime,
+          });
+        }
+      }, 3000); // 3秒後自動觸發，讓用戶先看到遊戲結果
+    },
     baseScoreMultiplier: 10,
     comboMultiplier: 5,
   });
@@ -220,21 +242,13 @@ export const GameScreen: React.FC<GameScreenProps> = ({ route, navigation }) => 
             onRestart={restartGame}
             onBackToMenu={backToMenu}
             onRatingPrompt={() => {
-              console.log('🎯 評分按鈕被點擊:', { score, combo, mode });
+              console.log('🎯 評分按鈕被點擊:', { score, combo, mode, gameTime });
               // 計算準確率
               const accuracy = combo > 0 ? Math.min(0.95, 0.7 + (combo * 0.02)) : 0.7;
               console.log('📊 計算的準確率:', accuracy);
               
-              // 先嘗試正常的評分提示
-              triggerOnGameCompleted(score, accuracy, mode);
-              
-              // 如果正常流程沒有反應，3秒後嘗試測試函數
-              setTimeout(() => {
-                console.log('🔧 嘗試測試評分提示');
-                import('@/utils/ratingPrompt').then(({ testRatingPrompt }) => {
-                  testRatingPrompt();
-                });
-              }, 3000);
+              // 使用原生評分系統
+              triggerOnGameCompleted(score, accuracy, mode, gameTime);
             }}
             hasRated={hasRated}
             onCheckRatingStatus={checkRatingStatus}
