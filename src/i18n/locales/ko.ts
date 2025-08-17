@@ -257,6 +257,14 @@ export default {
     cannotOpenStorePleaseUpdate: 'App Store를 열 수 없습니다. 수동으로 업데이트하세요.',
   },
 
+  // 평가
+  rating: {
+    title: '평가',
+    rateUs: '평가하기',
+    rateUsDescription: '이 앱이 마음에 드시면 평가를 부탁드립니다',
+    rateUsButton: '평가',
+  },
+
   // 평가 프롬프트
   ratingPrompt: {
     achievementUnlocked: '🎉 업적 해금!',

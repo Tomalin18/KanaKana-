@@ -256,6 +256,14 @@ export default {
     cannotOpenStorePleaseUpdate: '无法打开应用商店，请手动前往更新',
   },
 
+  // 评分
+  rating: {
+    title: '评分',
+    rateUs: '给我们评分',
+    rateUsDescription: '如果您喜欢这个应用，请给我们一个评分',
+    rateUsButton: '评分',
+  },
+
   // 评分提示
   ratingPrompt: {
     achievementUnlocked: '🎉 恭喜获得成就！',
