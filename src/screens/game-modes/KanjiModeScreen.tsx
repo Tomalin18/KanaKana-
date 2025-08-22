@@ -9,7 +9,9 @@ import {
   StatusBar,
   Animated,
   Easing,
+  ScrollView,
 } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { TechTheme, Typography, Spacing, Shadows, TechColors } from '@/constants/theme';
 import { getRandomWordByCombinedDifficulty, getVocabularyByJLPT } from '@/data/vocabulary-final';
 import { useTypingDetection } from '@/hooks/useTypingDetection';
@@ -36,6 +38,7 @@ interface KanjiModeScreenProps {
  * 顯示漢字，讓用戶輸入對應的假名讀音
  */
 export const KanjiModeScreen: React.FC<KanjiModeScreenProps> = ({ route, navigation }) => {
+  const { t } = useTranslation();
   const settings: KanjiModeSettings = route?.params?.settings || {
     difficulty: 'normal',
     showMeaning: true,
@@ -203,14 +206,7 @@ export const KanjiModeScreen: React.FC<KanjiModeScreenProps> = ({ route, navigat
     
     if (gameState === 'playing') {
       interval = setInterval(() => {
-        setGameTime(prev => {
-          const newTime = prev + 1;
-          // 遊戲結束條件：達到5分鐘或10000分
-          if (newTime >= 300 || score >= 10000) {
-            endGame();
-          }
-          return newTime;
-        });
+        setGameTime(prev => prev + 1);
       }, 1000);
     }
     
@@ -219,7 +215,7 @@ export const KanjiModeScreen: React.FC<KanjiModeScreenProps> = ({ route, navigat
         clearInterval(interval);
       }
     };
-  }, [gameState, score, endGame]);
+  }, [gameState]);
 
   // 渲染遊戲界面
   const renderGameContent = () => {
@@ -227,16 +223,24 @@ export const KanjiModeScreen: React.FC<KanjiModeScreenProps> = ({ route, navigat
     if (showDifficultySelector) {
       return (
         <View style={styles.container}>
-          <DifficultySelector
-            selectedDifficulty={selectedDifficulty}
-            onSelectDifficulty={setSelectedDifficulty}
-          />
-          <Pressable
-            style={styles.startButton}
-            onPress={startGame}
+          <ScrollView 
+            contentContainerStyle={styles.scrollContent}
+            showsVerticalScrollIndicator={false}
+            keyboardShouldPersistTaps="handled"
           >
-            <Text style={styles.startButtonText}>開始遊戲</Text>
-          </Pressable>
+            <DifficultySelector
+              selectedDifficulty={selectedDifficulty}
+              onSelectDifficulty={setSelectedDifficulty}
+            />
+            <View style={styles.startButtonContainer}>
+              <Pressable
+                style={styles.startButton}
+                onPress={startGame}
+              >
+                <Text style={styles.startButtonText}>{t('gameSettings.startGame')}</Text>
+              </Pressable>
+            </View>
+          </ScrollView>
         </View>
       );
     }
@@ -290,16 +294,16 @@ export const KanjiModeScreen: React.FC<KanjiModeScreenProps> = ({ route, navigat
       
       {/* 統一導航欄 */}
       <GlassNavBar
-        title="練習模式-漢字"
+        title={t('mainMenu.practiceKanji')}
         leftButton={{
-          text: '← 返回',
+          text: `← ${t('common.back')}`,
           onPress: goBackToMenu,
           style: 'secondary',
         }}
         rightButton={
           gameState === 'playing' || gameState === 'paused'
             ? {
-                text: gameState === 'paused' ? '繼續' : '暫停',
+                text: gameState === 'paused' ? t('common.resume') : t('common.pause'),
                 onPress: togglePause,
                 style: 'primary',
               }
@@ -353,16 +357,18 @@ interface KanjiGameStartScreenProps {
 }
 
 const KanjiGameStartScreen: React.FC<KanjiGameStartScreenProps> = ({ onStart, settings }) => {
+  const { t } = useTranslation();
+  
   const getDifficultyInfo = (difficulty: string) => {
     switch (difficulty) {
       case 'easy':
-        return { name: '簡單', color: TechColors.neonGreen, lives: 5 };
+        return { name: t('gameSettings.difficultyEasy'), color: TechColors.neonGreen, lives: 5 };
       case 'normal':
-        return { name: '普通', color: TechColors.neonBlue, lives: 3 };
+        return { name: t('gameSettings.difficultyNormal'), color: TechColors.neonBlue, lives: 3 };
       case 'hard':
-        return { name: '困難', color: TechColors.neonPink, lives: 1 };
+        return { name: t('gameSettings.difficultyHard'), color: TechColors.neonPink, lives: 1 };
       default:
-        return { name: '普通', color: TechColors.neonBlue, lives: 3 };
+        return { name: t('gameSettings.difficultyNormal'), color: TechColors.neonBlue, lives: 3 };
     }
   };
 
@@ -376,24 +382,23 @@ const KanjiGameStartScreen: React.FC<KanjiGameStartScreenProps> = ({ onStart, se
         neonBorder={true}
         style={styles.startContainer}
       >
-        <Text style={styles.gameModeTitle}>🈯 練習模式-漢字</Text>
+        <Text style={styles.gameModeTitle}>🈯 {t('mainMenu.practiceKanji')}</Text>
         <Text style={styles.instructions}>
-          看漢字，輸入對應的{settings.readingType === 'hiragana' ? '平假名' : 
-                            settings.readingType === 'katakana' ? '片假名' : '假名'}讀音！
+          {t('gamePlay.inputKanaReading')}
         </Text>
         <View style={styles.settingsInfo}>
           <Text style={[styles.settingText, { color: difficultyInfo.color }]}>
-            難度：{difficultyInfo.name} (❤️ {difficultyInfo.lives} 生命)
+            {t('gameSettings.difficulty')}：{difficultyInfo.name} (❤️ {difficultyInfo.lives} {t('gameSettings.lives')})
           </Text>
           <Text style={styles.settingText}>
-            JLPT等級：{settings.difficultyLevel.toUpperCase()}
+            JLPT{t('gameSettings.vocabularyLevel')}：{settings.difficultyLevel.toUpperCase()}
           </Text>
           <Text style={styles.settingText}>
-            顯示意思：{settings.showMeaning ? '是' : '否'}
+            {t('gameSettings.showMeaning')}：{settings.showMeaning ? t('common.confirm') : t('common.cancel')}
           </Text>
           <Text style={styles.settingText}>
-            讀音類型：{settings.readingType === 'hiragana' ? '平假名' : 
-                      settings.readingType === 'katakana' ? '片假名' : '混合'}
+            {t('gameSettings.readingType')}：{settings.readingType === 'hiragana' ? t('gameSettings.readingTypeHiragana') : 
+                      settings.readingType === 'katakana' ? t('gameSettings.readingTypeKatakana') : t('gameSettings.readingTypeMixed')}
           </Text>
         </View>
         <Pressable 
@@ -404,7 +409,7 @@ const KanjiGameStartScreen: React.FC<KanjiGameStartScreenProps> = ({ onStart, se
           ]} 
           onPress={onStart}
         >
-          <Text style={styles.startButtonText}>🚀 開始遊戲</Text>
+          <Text style={styles.startButtonText}>🚀 {t('gameSettings.startGame')}</Text>
         </Pressable>
       </GlassContainer>
     </View>
@@ -438,21 +443,12 @@ const KanjiGamePlayScreen: React.FC<KanjiGamePlayScreenProps> = ({
   showMeaning,
   showHint,
   settings,
-}) => (
+}) => {
+  const { t } = useTranslation();
+  
+  return (
   <View style={styles.gameContainer}>
-    {/* 統計資訊（最上方，經典模式風格） */}
-    <View style={styles.gameInfo}>
-      <View style={styles.infoItem}>
-        <Text style={styles.infoText}>🏆 分數: {score}</Text>
-      </View>
-      <View style={styles.infoItem}>
-        <Text style={styles.infoText}>🔥 連擊: {combo}</Text>
-      </View>
-      <View style={styles.infoItem}>
-        <Text style={styles.infoText}>⏰ 時間: {Math.floor(gameTime / 60)}:{(gameTime % 60).toString().padStart(2, '0')}</Text>
-      </View>
-    </View>
-    {/* 提示按鈕（統計資訊下方靠右，避免被鍵盤擋住） */}
+    {/* 提示按鈕（右上角） */}
     <View style={styles.hintButtonRow}>
       <View style={{flex:1}} />
       <Pressable 
@@ -462,7 +458,7 @@ const KanjiGamePlayScreen: React.FC<KanjiGamePlayScreenProps> = ({
         ]} 
         onPress={onShowHint}
       >
-        <Text style={styles.hintButtonText}>💡 提示</Text>
+        <Text style={styles.hintButtonText}>💡 {t('gamePlay.hint')}</Text>
       </Pressable>
     </View>
     {/* 題目泡泡（中間） */}
@@ -502,7 +498,7 @@ const KanjiGamePlayScreen: React.FC<KanjiGamePlayScreenProps> = ({
       style={styles.input}
       value={userInput}
       onChangeText={onInputChange}
-      placeholder="輸入假名讀音..."
+      placeholder={t('gamePlay.inputKanaReading')}
       placeholderTextColor={TechColors.neonBlue + '60'}
       autoFocus
       editable={!isPaused}
@@ -510,7 +506,8 @@ const KanjiGamePlayScreen: React.FC<KanjiGamePlayScreenProps> = ({
       numberOfLines={1}
     />
   </View>
-);
+  );
+};
 
 // 遊戲結束畫面
 interface KanjiGameEndScreenProps {
@@ -525,7 +522,9 @@ const KanjiGameEndScreen: React.FC<KanjiGameEndScreenProps> = ({
   gameTime,
   onRestart,
   onBackToMenu,
-}) => (
+}) => {
+  const { t } = useTranslation();
+  return (
   <View style={styles.centerContainer}>
     <GlassContainer
       variant="surface"
@@ -533,12 +532,11 @@ const KanjiGameEndScreen: React.FC<KanjiGameEndScreenProps> = ({
       neonBorder={true}
       style={styles.endGameContainer}
     >
-      <Text style={styles.gameOverTitle}>🎮 遊戲結束！</Text>
+                      <Text style={styles.gameOverTitle}>🎮 {t('gamePlay.gameOver')}！</Text>
       <View style={styles.finalScoreContainer}>
-        <Text style={styles.finalScoreLabel}>最終分數</Text>
-        <Text style={styles.finalScoreValue}>{score}</Text>
+        <Text style={styles.finalScoreLabel}>{t('gamePlay.practiceComplete')}</Text>
         <Text style={styles.finalTimeText}>
-          用時：{Math.floor(gameTime / 60)}分{gameTime % 60}秒
+          {t('gamePlay.practiceTime')}：{Math.floor(gameTime / 60)}{t('gamePlay.minutes')}{gameTime % 60}{t('gamePlay.seconds')}
         </Text>
       </View>
       <View style={styles.endButtonsContainer}>
@@ -550,7 +548,7 @@ const KanjiGameEndScreen: React.FC<KanjiGameEndScreenProps> = ({
           ]} 
           onPress={onRestart}
         >
-          <Text style={styles.restartButtonText}>🔄 再玩一次</Text>
+          <Text style={styles.restartButtonText}>🔄 {t('gamePlay.playAgain')}</Text>
         </Pressable>
         <Pressable 
           style={({ pressed }) => [
@@ -559,12 +557,13 @@ const KanjiGameEndScreen: React.FC<KanjiGameEndScreenProps> = ({
           ]} 
           onPress={onBackToMenu}
         >
-          <Text style={styles.menuButtonText}>🏠 回到主選單</Text>
+          <Text style={styles.menuButtonText}>🏠 {t('gamePlay.backToMenu')}</Text>
         </Pressable>
       </View>
     </GlassContainer>
   </View>
-);
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -773,13 +772,27 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginBottom: Spacing.xs,
   },
+  // 滾動容器樣式
+  scrollContent: {
+    flexGrow: 1,
+    paddingBottom: Spacing.xl,
+  },
+  
+  startButtonContainer: {
+    paddingHorizontal: Spacing.lg,
+    paddingTop: Spacing.xl,
+    paddingBottom: Spacing.lg,
+    alignItems: 'center',
+  },
+  
   startButton: {
     backgroundColor: TechTheme.primary,
     borderRadius: 12,
     paddingVertical: Spacing.md,
     paddingHorizontal: Spacing.xl,
     alignItems: 'center',
-    marginTop: Spacing.xl,
+    width: '100%',
+    maxWidth: 300,
     ...Shadows.neon.blue,
   },
   startButtonText: {

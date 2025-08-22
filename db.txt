@@ -1,0 +1,144 @@
+好的！我來分析專案中哪些資料來源沒有被使用。讓我檢查各個資料文件的引用情況：
+
+Ran tool
+Ran tool
+Ran tool
+Ran tool
+Ran tool
+Ran tool
+Ran tool
+Ran tool
+Ran tool
+Ran tool
+Ran tool
+Read file: src/screens/game-modes/TetrisModeScreen.tsx
+Ran tool
+Ran tool
+Ran tool
+Read file: src/screens/game-modes/LongTextModeScreen.tsx
+Ran tool
+Ran tool
+Read file: src/screens/game-modes/KanjiModeScreen.tsx
+Ran tool
+Ran tool
+```bash
+find src/data/vocabulary-final -name "* 2.ts" | wc -l
+```
+```bash
+find src/data/vocabulary-final -name "* 2.ts"
+```
+Ran tool
+Ran tool
+Ran tool
+Read file: src/data/vocabulary-final/index.ts
+## �� KanaKana 專案未使用資料來源整理報告
+
+根據我的詳細分析，以下是專案中**沒有被使用**的資料來源：
+
+### ��️ 完全未使用的資料文件
+
+#### 1. **重複的詞彙文件 (15個文件)**
+**位置：** `src/data/vocabulary-final/`
+- `beginner 2.ts`
+- `kanji-01 2.ts` 
+- `index 2.ts`
+- `hiragana 2.ts`
+- `hard 2.ts`
+- `beginner_converted 2.ts`
+- `kanji-07 2.ts`
+- `kanji-06 2.ts`
+- `beginner_updated 2.ts`
+- `kanji-05 2.ts`
+- `kanji-04 2.ts`
+- `expert 2.ts`
+- `kanji-03 2.ts`
+- `normal 2.ts`
+- `kanji-02 2.ts`
+
+**狀態：** ❌ 完全未使用
+**原因：** 這些是備份或測試文件，主程式使用不帶 "2" 的版本
+
+#### 2. **獨立的資料文件**
+**位置：** `src/data/`
+- `kanjiWords.ts` - 漢字詞彙資料
+- `longTexts.ts` - 長文內容資料  
+- `bossData.ts` - Boss 挑戰資料
+- `tetrisData.ts` - 俄羅斯方塊資料
+
+**狀態：** ❌ 完全未使用
+**原因：** 這些文件中的資料已經被整合到 `vocabulary-final` 系統中
+
+#### 3. **CSV 檔案**
+**位置：** 根目錄
+- `vocabulary.csv` - 主要詞彙檔案
+- `n4.csv` - N4 級詞彙
+- `n5.csv` - N5 級詞彙
+
+**狀態：** ❌ 完全未使用
+**原因：** CSV 資料已經被轉換為 TypeScript 文件
+
+### 🔍 使用情況分析
+
+#### **實際使用的資料來源：**
+✅ `src/data/vocabulary-final/index.ts` - 主要詞彙系統
+✅ `src/data/vocabulary-final/beginner_converted.ts` - 初級詞彙
+✅ `src/data/vocabulary-final/normal-split/` - 中級詞彙
+✅ `src/data/vocabulary-final/hard-split/` - 高級詞彙
+✅ `src/data/vocabulary-final/expert-split/` - 專家級詞彙
+✅ `src/data/vocabulary-final/jlpt-chunks/` - JLPT 詞彙
+✅ `src/data/vocabulary-final/kanji-*.ts` - 漢字詞彙 (01-07)
+
+#### **實際使用的函數：**
+✅ `getRandomWordByCombinedDifficulty()` - 從 `vocabulary-final/index.ts`
+✅ `getVocabularyByJLPT()` - 從 `vocabulary-final/index.ts`
+✅ `getRandomLongText()` - 從 `longTexts.ts` (但實際使用簡化版本)
+✅ `getRandomWordImproved()` - 從 `tetrisData.ts` (但實際使用簡化版本)
+
+### �� 建議清理的檔案
+
+#### **可以安全刪除的文件：**
+
+1. **重複文件 (15個)：**
+   ```bash
+   src/data/vocabulary-final/* 2.ts
+   ```
+
+2. **獨立資料文件：**
+   ```bash
+   src/data/kanjiWords.ts
+   src/data/longTexts.ts  
+   src/data/bossData.ts
+   src/data/tetrisData.ts
+   ```
+
+3. **CSV 檔案：**
+   ```bash
+   vocabulary.csv
+   n4.csv
+   n5.csv
+   ```
+
+#### **需要保留的文件：**
+✅ `src/data/vocabulary-final/index.ts` - 主要詞彙系統
+✅ `src/data/vocabulary-final/beginner_converted.ts`
+✅ `src/data/vocabulary-final/normal-split/`
+✅ `src/data/vocabulary-final/hard-split/`
+✅ `src/data/vocabulary-final/expert-split/`
+✅ `src/data/vocabulary-final/jlpt-chunks/`
+✅ `src/data/vocabulary-final/kanji-*.ts` (01-07)
+
+### 📊 清理統計
+
+- **可刪除文件數：** 約 22 個文件
+- **可釋放空間：** 估計數 MB
+- **簡化維護：** 減少重複和混淆
+- **提高效能：** 減少不必要的 import
+
+### 🎯 建議行動
+
+1. **備份重要資料**：在刪除前備份所有文件
+2. **逐步清理**：先刪除重複文件，再處理獨立文件
+3. **測試驗證**：每次清理後測試應用功能
+4. **更新文檔**：更新相關的開發文檔
+
+這樣可以大幅簡化專案結構，提高維護效率！

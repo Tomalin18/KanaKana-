@@ -9,6 +9,7 @@ import {
   StatusBar,
   ScrollView,
 } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { TechTheme, Typography, Spacing, Shadows, TechColors } from '@/constants/theme';
 import { validateJapaneseInput } from '@/utils/japaneseInput';
 import { getRandomLongText } from '@/data/longTexts';
@@ -35,6 +36,7 @@ interface LongTextModeScreenProps {
  * 類似一般模式的介面，但用於打字長篇日文文章
  */
 export const LongTextModeScreen: React.FC<LongTextModeScreenProps> = ({ route, navigation }) => {
+  const { t } = useTranslation();
   const settings: LongTextSettings = route?.params?.settings || {
     includeSpaces: true,
     includePunctuation: true,
@@ -299,16 +301,16 @@ export const LongTextModeScreen: React.FC<LongTextModeScreenProps> = ({ route, n
       
       {/* 統一導航欄 */}
       <GlassNavBar
-        title="長文模式"
+        title={t('mainMenu.longTextMode')}
         leftButton={{
-          text: '← 返回',
+          text: `← ${t('common.back')}`,
           onPress: goBackToMenu,
           style: 'secondary',
         }}
         rightButton={
           gameState === 'playing' || gameState === 'paused'
             ? {
-                text: gameState === 'paused' ? '繼續' : '暫停',
+                text: gameState === 'paused' ? t('common.resume') : t('common.pause'),
                 onPress: togglePause,
                 style: 'primary',
               }
@@ -361,21 +363,32 @@ interface LongTextGameStartScreenProps {
   settings: LongTextSettings;
 }
 
-const LongTextGameStartScreen: React.FC<LongTextGameStartScreenProps> = ({ onStart, settings }) => (
-  <View style={styles.centerContainer}>
-    <Text style={styles.gameModeTitle}>長文模式</Text>
-    <Text style={styles.instructions}>
-      完整輸入日文長文來練習打字技巧！
-    </Text>
-    <View style={styles.settingsInfo}>
-      <Text style={styles.settingText}>文章長度：{settings.textLength === 'short' ? '短篇' : '中篇'}</Text>
-      <Text style={styles.settingText}>顯示進度：{settings.showProgress ? '是' : '否'}</Text>
-    </View>
-    <Pressable style={styles.startButton} onPress={onStart}>
-      <Text style={styles.startButtonText}>開始遊戲</Text>
-    </Pressable>
-  </View>
-);
+const LongTextGameStartScreen: React.FC<LongTextGameStartScreenProps> = ({ onStart, settings }) => {
+  const { t } = useTranslation();
+  
+  return (
+    <ScrollView 
+      style={styles.scrollView}
+      contentContainerStyle={styles.centerContainer}
+      showsVerticalScrollIndicator={false}
+      keyboardShouldPersistTaps="handled"
+    >
+      <Text style={styles.gameModeTitle}>{t('mainMenu.longTextMode')}</Text>
+      <Text style={styles.instructions}>
+        {t('gamePlay.inputArticleContent')}
+      </Text>
+      <View style={styles.settingsInfo}>
+        <Text style={styles.settingText}>{t('gameSettings.textLength')}：{settings.textLength === 'short' ? t('gameSettings.textLengthShort') : t('gameSettings.textLengthMedium')}</Text>
+        <Text style={styles.settingText}>{t('gameSettings.showProgress')}：{settings.showProgress ? t('common.confirm') : t('common.cancel')}</Text>
+      </View>
+      <View style={styles.startButtonContainer}>
+        <Pressable style={styles.startButton} onPress={onStart}>
+          <Text style={styles.startButtonText}>{t('gameSettings.startGame')}</Text>
+        </Pressable>
+      </View>
+    </ScrollView>
+  );
+};
 
 // 遊戲進行畫面
 interface LongTextGamePlayScreenProps {
@@ -406,7 +419,10 @@ const LongTextGamePlayScreen: React.FC<LongTextGamePlayScreenProps> = ({
   currentText,
   currentPosition,
   textMapping,
-}) => (
+}) => {
+  const { t } = useTranslation();
+  
+  return (
   <View style={styles.gameContainer}>
     {/* 遊戲狀態顯示 */}
     <View style={styles.gameStats}>
@@ -431,7 +447,7 @@ const LongTextGamePlayScreen: React.FC<LongTextGamePlayScreenProps> = ({
         style={styles.textInput}
         value={userInput}
         onChangeText={onInputChange}
-        placeholder="在這裡輸入文章內容..."
+        placeholder={t('gamePlay.inputArticleContent')}
         placeholderTextColor={TechTheme.textSecondary}
         multiline
         autoFocus
@@ -448,7 +464,8 @@ const LongTextGamePlayScreen: React.FC<LongTextGamePlayScreenProps> = ({
 
     {/* 控制按鈕區域 - 現在由統一導航欄處理暫停功能 */}
   </View>
-);
+  );
+};
 
 // 輸入進度顯示組件
 interface LongTextInputProgressProps {
@@ -538,9 +555,11 @@ const LongTextGameEndScreen: React.FC<LongTextGameEndScreenProps> = ({
   currentText,
   onRestart,
   onBackToMenu,
-}) => (
+}) => {
+  const { t } = useTranslation();
+  return (
   <View style={styles.centerContainer}>
-    <Text style={styles.gameOverTitle}>遊戲結束</Text>
+                    <Text style={styles.gameOverTitle}>{t('gamePlay.gameOver')}</Text>
     <View style={styles.finalScoreContainer}>
       <Text style={styles.finalScoreLabel}>最終分數</Text>
       <Text style={styles.finalScoreValue}>{score}</Text>
@@ -565,7 +584,8 @@ const LongTextGameEndScreen: React.FC<LongTextGameEndScreenProps> = ({
       </Pressable>
     </View>
   </View>
-);
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -587,11 +607,20 @@ const styles = StyleSheet.create({
     backgroundColor: TechColors.neonBlue,
     borderRadius: 50,
   },
-  centerContainer: {
+  scrollView: {
     flex: 1,
+  },
+  centerContainer: {
+    flexGrow: 1,
     justifyContent: 'center',
     alignItems: 'center',
     padding: Spacing.lg,
+    paddingBottom: Spacing.xl, // 增加底部間距
+  },
+  startButtonContainer: {
+    marginTop: Spacing.lg,
+    alignItems: 'center',
+    width: '100%',
   },
   gameContainer: {
     flex: 1,
@@ -625,6 +654,9 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     paddingVertical: Spacing.md,
     paddingHorizontal: Spacing.xl,
+    alignItems: 'center',
+    width: '100%',
+    maxWidth: 300,
   },
   startButtonText: {
     color: 'white',

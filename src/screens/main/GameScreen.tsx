@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import {
   View,
   Text,
@@ -7,7 +7,11 @@ import {
   StyleSheet,
   Animated,
   Easing,
+  ScrollView,
 } from 'react-native';
+import { useTranslation } from 'react-i18next';
+import { useRatingPrompt } from '@/hooks/useRatingPrompt';
+import { getRatingState } from '@/utils/ratingPrompt';
 import { TechTheme, Typography, Spacing, Shadows, TechColors } from '@/constants/theme';
 import { getRandomWordByCombinedDifficulty, type TetrisWord } from '@/data/vocabulary-final';
 import { useTypingDetection } from '@/hooks/useTypingDetection';
@@ -37,6 +41,7 @@ interface GameScreenProps {
  * 核心的日文打字遊戲界面
  */
 export const GameScreen: React.FC<GameScreenProps> = ({ route, navigation }) => {
+  const { t } = useTranslation();
   const mode = route?.params?.mode || 'classic';
   const settings = route?.params?.settings;
   
@@ -66,6 +71,16 @@ export const GameScreen: React.FC<GameScreenProps> = ({ route, navigation }) => 
   
   const gameTimerRef = useRef<NodeJS.Timeout | null>(null);
 
+  // 評分提示 Hook
+  const { 
+    triggerOnGameCompleted, 
+    triggerOnAchievement, 
+    recordSession 
+  } = useRatingPrompt();
+  
+  // 評分狀態
+  const [hasRated, setHasRated] = useState(false);
+
   // 使用統一的打字偵測 hook
   const {
     userInput,
@@ -83,6 +98,29 @@ export const GameScreen: React.FC<GameScreenProps> = ({ route, navigation }) => 
     },
     onError: () => {
       // 錯誤處理（只重置連擊，不扣生命）
+    },
+    onComplete: () => {
+      // 遊戲完成時自動觸發評分檢查
+      setTimeout(async () => {
+        const accuracy = combo > 0 ? Math.min(0.95, 0.7 + (combo * 0.02)) : 0.7;
+        console.log('🎯 遊戲完成，自動檢查評分:', { score, accuracy, mode, gameTime });
+        
+        // 檢查原生評分是否可用
+        const { checkNativeRatingAvailability } = await import('@/utils/nativeRating');
+        const nativeAvailable = checkNativeRatingAvailability();
+        
+        if (nativeAvailable) {
+          // 使用原生評分系統
+          const { showNativeRating } = await import('@/utils/nativeRating');
+          await showNativeRating('game_completed', {
+            score,
+            accuracy,
+            mode,
+            gameTime,
+            combo, // 傳遞連擊數
+          });
+        }
+      }, 3000); // 3秒後自動觸發，讓用戶先看到遊戲結果
     },
     baseScoreMultiplier: 10,
     comboMultiplier: 5,
@@ -118,7 +156,21 @@ export const GameScreen: React.FC<GameScreenProps> = ({ route, navigation }) => 
     const newWord = getRandomWordByCombinedDifficulty(selectedDifficulty);
     setCurrentWord(newWord);
     setShowDifficultySelector(false);
+    
+    // 記錄會話
+    recordSession();
   };
+
+  // 檢查評分狀態
+  const checkRatingStatus = useCallback(async () => {
+    try {
+      const ratingState = await getRatingState();
+      setHasRated(ratingState.hasRated);
+      console.log('📊 經典模式評分狀態檢查:', { hasRated: ratingState.hasRated });
+    } catch (error) {
+      console.error('❌ 檢查評分狀態失敗:', error);
+    }
+  }, []);
 
   // 暫停/繼續遊戲
   const togglePause = () => {
@@ -147,16 +199,24 @@ export const GameScreen: React.FC<GameScreenProps> = ({ route, navigation }) => 
     if (showDifficultySelector) {
       return (
         <View style={styles.container}>
-          <DifficultySelector
-            selectedDifficulty={selectedDifficulty}
-            onSelectDifficulty={setSelectedDifficulty}
-          />
-          <Pressable
-            style={styles.startButton}
-            onPress={startGame}
+          <ScrollView 
+            contentContainerStyle={styles.scrollContent}
+            showsVerticalScrollIndicator={false}
+            keyboardShouldPersistTaps="handled"
           >
-            <Text style={styles.startButtonText}>開始遊戲</Text>
-          </Pressable>
+            <DifficultySelector
+              selectedDifficulty={selectedDifficulty}
+              onSelectDifficulty={setSelectedDifficulty}
+            />
+            <View style={styles.startButtonContainer}>
+              <Pressable
+                style={styles.startButton}
+                onPress={startGame}
+              >
+                <Text style={styles.startButtonText}>{t('gameSettings.startGame')}</Text>
+              </Pressable>
+            </View>
+          </ScrollView>
         </View>
       );
     }
@@ -191,6 +251,17 @@ export const GameScreen: React.FC<GameScreenProps> = ({ route, navigation }) => 
             gameTime={gameTime}
             onRestart={restartGame}
             onBackToMenu={backToMenu}
+            onRatingPrompt={() => {
+              console.log('🎯 評分按鈕被點擊:', { score, combo, mode, gameTime });
+              // 計算準確率
+              const accuracy = combo > 0 ? Math.min(0.95, 0.7 + (combo * 0.02)) : 0.7;
+              console.log('📊 計算的準確率:', accuracy);
+              
+              // 使用原生評分系統
+              triggerOnGameCompleted(score, accuracy, mode, gameTime, { combo });
+            }}
+            hasRated={hasRated}
+            onCheckRatingStatus={checkRatingStatus}
           />
         );
       default:
@@ -205,16 +276,16 @@ export const GameScreen: React.FC<GameScreenProps> = ({ route, navigation }) => 
       
       {/* 統一導航欄 */}
       <GlassNavBar
-        title={mode === 'classic' ? '練習模式-假名' : '其他模式'}
+        title={mode === 'classic' ? t('mainMenu.practiceKana') : t('mainMenu.practiceKana')}
         leftButton={{
-          text: '← 返回',
+          text: `← ${t('common.back')}`,
           onPress: backToMenu,
           style: 'secondary',
         }}
         rightButton={
           gameState === 'playing' || gameState === 'paused'
             ? {
-                text: gameState === 'paused' ? '繼續' : '暫停',
+                text: gameState === 'paused' ? t('common.resume') : t('common.pause'),
                 onPress: togglePause,
                 style: 'primary',
               }
@@ -401,16 +472,18 @@ interface GameStartScreenProps {
 }
 
 const GameStartScreen: React.FC<GameStartScreenProps> = ({ onStart, mode, settings }) => {
+  const { t } = useTranslation();
+  
   const getDifficultyInfo = (difficulty: string) => {
     switch (difficulty) {
       case 'easy':
-        return { name: '簡單', color: TechColors.neonGreen, lives: 5 };
+        return { name: t('gameSettings.difficultyEasy'), color: TechColors.neonGreen, lives: 5 };
       case 'normal':
-        return { name: '普通', color: TechColors.neonBlue, lives: 3 };
+        return { name: t('gameSettings.difficultyNormal'), color: TechColors.neonBlue, lives: 3 };
       case 'hard':
-        return { name: '困難', color: TechColors.neonPink, lives: 1 };
+        return { name: t('gameSettings.difficultyHard'), color: TechColors.neonPink, lives: 1 };
       default:
-        return { name: '普通', color: TechColors.neonBlue, lives: 3 };
+        return { name: t('gameSettings.difficultyNormal'), color: TechColors.neonBlue, lives: 3 };
     }
   };
 
@@ -425,24 +498,24 @@ const GameStartScreen: React.FC<GameStartScreenProps> = ({ onStart, mode, settin
         style={styles.startContainer}
       >
         <Text style={styles.gameModeTitle}>
-          {mode === 'classic' ? '🎯 練習模式-假名' : '其他模式'}
+          {mode === 'classic' ? `🎯 ${t('mainMenu.practiceKana')}` : t('mainMenu.practiceKana')}
         </Text>
         <Text style={styles.instructions}>
-          輸入日文假名來完成單詞！{'\n'}
-          正確輸入可獲得分數和連擊獎勵。
+          {t('gamePlay.startTyping')}{'\n'}
+          {t('gamePlay.startTyping')}
         </Text>
         
         {/* 難度信息 */}
         {settings && (
           <View style={styles.settingsInfo}>
             <Text style={[styles.settingText, { color: difficultyInfo.color }]}>
-              難度：{difficultyInfo.name} (❤️ {difficultyInfo.lives} 生命)
+              {t('gameSettings.difficulty')}：{difficultyInfo.name} (❤️ {difficultyInfo.lives} {t('gameSettings.lives')})
             </Text>
             <Text style={styles.settingText}>
-              提示：{settings.showHints ? '開啟' : '關閉'}
+              {t('gameSettings.showHints')}：{settings.showHints ? t('common.start') : t('common.close')}
             </Text>
             <Text style={styles.settingText}>
-              詞彙等級：{settings.vocabularyLevel?.toUpperCase() || 'N5'}
+              {t('gameSettings.vocabularyLevel')}：{settings.vocabularyLevel?.toUpperCase() || 'N5'}
             </Text>
           </View>
         )}
@@ -455,7 +528,7 @@ const GameStartScreen: React.FC<GameStartScreenProps> = ({ onStart, mode, settin
           ]}
           onPress={onStart}
         >
-          <Text style={styles.startButtonText}>🚀 開始遊戲</Text>
+          <Text style={styles.startButtonText}>🚀 {t('gameSettings.startGame')}</Text>
         </Pressable>
       </GlassContainer>
     </View>
@@ -480,6 +553,7 @@ const GamePlayScreen: React.FC<GamePlayScreenProps> = ({
   combo,
   gameTime,
 }) => {
+  const { t } = useTranslation();
   // 顯示難度（N5~N1）
   const jlptMap: Record<string, string> = {
     beginner: 'N5',
@@ -500,10 +574,10 @@ const GamePlayScreen: React.FC<GamePlayScreenProps> = ({
           glowEffect={false}
           style={styles.hintContainer}
         >
-          <Text style={styles.hintText}>難度: {jlpt}</Text>
-          <Text style={styles.hintText}>解釋: {currentWord.meaning}</Text>
+          <Text style={styles.hintText}>{t('gamePlay.difficulty')}: {jlpt}</Text>
+          <Text style={styles.hintText}>{t('gamePlay.meaning')}: {currentWord.meaning}</Text>
           {currentWord.kanji && (
-            <Text style={styles.hintText}>漢字: {currentWord.kanji}</Text>
+            <Text style={styles.hintText}>{t('gamePlay.kanji')}: {currentWord.kanji}</Text>
           )}
         </GlassContainer>
       )}
@@ -538,12 +612,12 @@ const GamePlayScreen: React.FC<GamePlayScreenProps> = ({
           glowEffect={true}
           style={styles.inputDisplayContainer}
         >
-          <Text style={styles.inputDisplayLabel}>你的輸入:</Text>
+          <Text style={styles.inputDisplayLabel}>{t('gamePlay.yourInput')}:</Text>
           <TextInput
             style={styles.inputDisplayBox}
             value={userInput}
             onChangeText={onInputChange}
-            placeholder="開始輸入..."
+            placeholder={t('gamePlay.startTyping')}
             placeholderTextColor={TechTheme.textSecondary}
             autoFocus
           />
@@ -700,6 +774,9 @@ interface GameEndScreenProps {
   gameTime: number;
   onRestart: () => void;
   onBackToMenu: () => void;
+  onRatingPrompt?: () => void;
+  hasRated?: boolean;
+  onCheckRatingStatus?: () => void;
 }
 
 const GameEndScreen: React.FC<GameEndScreenProps> = ({
@@ -707,7 +784,19 @@ const GameEndScreen: React.FC<GameEndScreenProps> = ({
   gameTime,
   onRestart,
   onBackToMenu,
-}) => (
+  onRatingPrompt,
+  hasRated = false,
+  onCheckRatingStatus,
+}) => {
+  const { t } = useTranslation();
+  // 組件掛載時檢查評分狀態
+  React.useEffect(() => {
+    if (onCheckRatingStatus) {
+      onCheckRatingStatus();
+    }
+  }, [onCheckRatingStatus]);
+
+  return (
   <View style={styles.centerContainer}>
     <GlassContainer
       variant="surface"
@@ -715,10 +804,10 @@ const GameEndScreen: React.FC<GameEndScreenProps> = ({
       neonBorder={true}
       style={styles.endGameContainer}
     >
-      <Text style={styles.gameOverText}>🎮 遊戲結束！</Text>
-      <Text style={styles.finalScoreText}>最終分數: {score}</Text>
+                      <Text style={styles.gameOverText}>🎮 {t('gamePlay.gameOver')}！</Text>
+      <Text style={styles.finalScoreText}>{t('gameEnd.finalScore')}: {score}</Text>
       <Text style={styles.gameTimeText}>
-        遊戲時間: {Math.floor(gameTime / 60)}:{(gameTime % 60).toString().padStart(2, '0')}
+        {t('gamePlay.time')}: {Math.floor(gameTime / 60)}:{(gameTime % 60).toString().padStart(2, '0')}
       </Text>
       
       <View style={styles.endGameButtons}>
@@ -730,7 +819,7 @@ const GameEndScreen: React.FC<GameEndScreenProps> = ({
           ]}
           onPress={onRestart}
         >
-          <Text style={styles.restartButtonText}>🔄 再試一次</Text>
+          <Text style={styles.restartButtonText}>🔄 {t('gamePlay.tryAgain')}</Text>
         </Pressable>
         <Pressable
           style={({ pressed }) => [
@@ -739,12 +828,39 @@ const GameEndScreen: React.FC<GameEndScreenProps> = ({
           ]}
           onPress={onBackToMenu}
         >
-          <Text style={styles.menuButtonText}>🏠 回到主選單</Text>
+          <Text style={styles.menuButtonText}>🏠 {t('gameEnd.backToMenu')}</Text>
         </Pressable>
+        {/* 評分按鈕 - 只在表現良好且未評分時顯示 */}
+        {(() => {
+          const shouldShowRating = onRatingPrompt && (score > 1000 || gameTime > 60) && !hasRated;
+          console.log('🔍 經典模式評分按鈕顯示條件檢查:', { 
+            onRatingPrompt: !!onRatingPrompt, 
+            score, 
+            gameTime, 
+            hasRated,
+            shouldShowRating,
+            condition1: score > 1000,
+            condition2: gameTime > 60,
+            condition3: !hasRated
+          });
+          return shouldShowRating;
+        })() && (
+          <Pressable
+            style={({ pressed }) => [
+              styles.ratingButton,
+              pressed && styles.buttonPressed,
+              Shadows.neon.green,
+            ]}
+            onPress={onRatingPrompt}
+          >
+            <Text style={styles.ratingButtonText}>⭐ {t('about.rateUs')}</Text>
+          </Pressable>
+        )}
       </View>
     </GlassContainer>
   </View>
-);
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -821,6 +937,19 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   
+  // 滾動容器樣式
+  scrollContent: {
+    flexGrow: 1,
+    paddingBottom: Spacing.xl,
+  },
+  
+  startButtonContainer: {
+    paddingHorizontal: Spacing.lg,
+    paddingTop: Spacing.xl,
+    paddingBottom: Spacing.lg,
+    alignItems: 'center',
+  },
+  
   startButton: {
     backgroundColor: TechTheme.primary,
     paddingHorizontal: Spacing.xl,
@@ -829,7 +958,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: TechTheme.primary,
     alignItems: 'center',
-    marginTop: Spacing.xl,
+    width: '100%',
+    maxWidth: 300,
     ...Shadows.neon.blue,
   },
   
@@ -1063,13 +1193,31 @@ const styles = StyleSheet.create({
     paddingVertical: Spacing.md,
     borderRadius: 12,
     borderWidth: 1,
-    borderColor: TechTheme.border,
+    borderColor: TechTheme.textSecondary,
     width: '100%',
     alignItems: 'center',
   },
   
   menuButtonText: {
     color: TechTheme.text,
+    fontSize: Typography.sizes.ui.body,
+    fontWeight: Typography.weights.semibold,
+    letterSpacing: Typography.letterSpacing.ui,
+  },
+  
+  ratingButton: {
+    backgroundColor: TechColors.neonGreen,
+    paddingHorizontal: Spacing.xl,
+    paddingVertical: Spacing.md,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: TechColors.neonGreen,
+    width: '100%',
+    alignItems: 'center',
+  },
+  
+  ratingButtonText: {
+    color: TechTheme.background,
     fontSize: Typography.sizes.ui.body,
     fontWeight: Typography.weights.semibold,
     letterSpacing: Typography.letterSpacing.ui,
