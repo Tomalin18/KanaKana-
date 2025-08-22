@@ -1,4 +1,4 @@
-import type { DifficultyLevel, CombinedDifficultyLevel } from '../types';
+import type { DifficultyLevel, CombinedDifficultyLevel, TetrisWord } from '../types';
 
 /**
  * 俄羅斯方塊模式單字數據
@@ -7,21 +7,11 @@ import type { DifficultyLevel, CombinedDifficultyLevel } from '../types';
  * 總單字數: 15,234 個
  */
 
-export interface TetrisWord {
-  word: string;
-  kana: string;
-  meaning: string;
-  chineseMeaning?: string;
-  difficulty: DifficultyLevel;
-  category: string;
-  kanji?: string;
-  isKanji?: boolean;
-  jlptLevel?: 'n1' | 'n2' | 'n3' | 'n4' | 'n5';
-  id?: string;
-}
+// 從 types 重新匯出 TetrisWord
+export type { TetrisWord } from '../types';
 
-// 導入完整的詞彙系統
-import { allVocabulary } from './vocabulary-final';
+// 導入完整的詞彙系統（從資料庫版本）
+import { allVocabulary } from './vocabulary-final/database';
 
 // 避免重複的隨機選擇
 let recentWords: string[] = [];
@@ -259,7 +249,11 @@ export const getWordsByType = (words: TetrisWord[], wordType: 'hiragana' | 'kata
  * 獲取所有可用的單字類別（向後兼容）
  */
 export const getAllCategories = (): string[] => {
-  const categoriesSet = new Set(allVocabulary.map(word => word.category));
+  const categoriesSet = new Set(
+    allVocabulary
+      .map(word => word.category)
+      .filter((category): category is string => category !== undefined)
+  );
   const categories = Array.from(categoriesSet);
   return categories.sort();
 };
