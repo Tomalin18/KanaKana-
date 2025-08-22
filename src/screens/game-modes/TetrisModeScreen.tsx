@@ -19,7 +19,7 @@ import { GlassContainer } from '@/components/common/GlassContainer';
 import { PauseOverlay } from '@/components/common/PauseOverlay';
 import type { DifficultyLevel, CombinedDifficultyLevel } from '@/types';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { bossQuestions, BossQuestion } from '@/data/bossData';
+import { fetchAllBossQuestions, type BossQuestion } from '@/services/bossQuestionService';
 import { BlurView } from 'expo-blur';
 import { useRatingPrompt } from '@/hooks/useRatingPrompt';
 import { getRatingState } from '@/utils/ratingPrompt';
@@ -161,6 +161,7 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
   const [bossResult, setBossResult] = useState<'success' | 'fail' | null>(null);
   const bossLineAnim = useRef(new Animated.Value(1)).current;
   const [lastBossCleared, setLastBossCleared] = useState(0);
+  const [bossQuestions, setBossQuestions] = useState<BossQuestion[]>([]);
 
   // 新增主題色 index 狀態
   const [themeColorIndex, setThemeColorIndex] = useState(0);
@@ -174,6 +175,25 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
   
   // 評分狀態
   const [hasRated, setHasRated] = useState(false);
+
+  // 載入 Boss 題目
+  useEffect(() => {
+    const loadBossQuestions = async () => {
+      try {
+        const questions = await fetchAllBossQuestions();
+        if (questions.length === 0) {
+          console.warn('No boss questions loaded from database');
+        } else {
+          setBossQuestions(questions);
+          console.log(`Loaded ${questions.length} boss questions from database`);
+        }
+      } catch (error) {
+        console.error('Failed to load boss questions:', error);
+      }
+    };
+    
+    loadBossQuestions();
+  }, []);
 
   // 讀取本地最高紀錄
   useEffect(() => {
@@ -234,7 +254,8 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
       piecesCleared > 0 &&
       piecesCleared % 10 === 0 &&
       piecesCleared !== lastBossCleared &&
-      gameState === 'playing'
+      gameState === 'playing' &&
+      bossQuestions.length > 0
     ) {
       // 每次隨機抽一題
       const q = bossQuestions[Math.floor(Math.random() * bossQuestions.length)];
@@ -253,7 +274,7 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
         }).start();
       }
     }
-  }, [piecesCleared, gameState, bossMode, lastBossCleared]);
+  }, [piecesCleared, gameState, bossMode, lastBossCleared, bossQuestions]);
 
   // boss 倒數計時
   useEffect(() => {

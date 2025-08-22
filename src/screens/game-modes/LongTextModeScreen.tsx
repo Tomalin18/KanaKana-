@@ -12,7 +12,7 @@ import {
 import { useTranslation } from 'react-i18next';
 import { TechTheme, Typography, Spacing, Shadows, TechColors } from '@/constants/theme';
 import { validateJapaneseInput } from '@/utils/japaneseInput';
-import { getRandomLongText } from '@/data/longTexts';
+import { getRandomLongText } from '@/services/longTextService';
 import { createAdvancedTextMapping, splitTextForDisplay, getTargetCharAtPosition, validateInputAtPosition } from '@/utils/textMapping';
 import { GlassNavBar } from '@/components/common/GlassNavBar';
 import { GlassContainer } from '@/components/common/GlassContainer';
@@ -102,10 +102,15 @@ export const LongTextModeScreen: React.FC<LongTextModeScreenProps> = ({ route, n
   }, [currentPosition, textMapping, autoScroll]);
 
   // 遊戲開始
-  const startGame = useCallback(() => {
+  const startGame = useCallback(async () => {
     // 先生成文章內容
     const difficulty = settings.textLength === 'short' ? 'beginner' : 'normal';
-    const newText = getRandomLongText(difficulty);
+    const newText = await getRandomLongText(difficulty);
+    
+    if (!newText) {
+      console.error('Failed to get long text');
+      return;
+    }
     
     // 創建文本映射
     const displayContent = newText.displayContent || newText.content;
