@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { TechTheme, Typography, Spacing, Shadows, TechColors } from '@/constants/theme';
-import { getRandomWordByCombinedDifficulty, getVocabularyByJLPT } from '@/data/vocabulary-final';
+import { allVocabulary, type TetrisWord } from '@/data/vocabulary-final/database';
 import { useTypingDetection } from '@/hooks/useTypingDetection';
 import { DifficultySelector } from '@/components/common/DifficultySelector';
 import type { CombinedDifficultyLevel } from '@/types';
@@ -51,6 +51,7 @@ export const KanjiModeScreen: React.FC<KanjiModeScreenProps> = ({ route, navigat
   // 新增難度選擇狀態
   const [selectedDifficulty, setSelectedDifficulty] = useState<CombinedDifficultyLevel>('elementary');
   const [showDifficultySelector, setShowDifficultySelector] = useState(true);
+  const [vocabularyLoaded, setVocabularyLoaded] = useState(false);
 
   // 遊戲狀態
   const [gameState, setGameState] = useState<'idle' | 'playing' | 'paused' | 'finished'>('idle');
@@ -82,26 +83,42 @@ export const KanjiModeScreen: React.FC<KanjiModeScreenProps> = ({ route, navigat
 
   // 生成新漢字詞彙
   const generateNewWord = useCallback(() => {
-    // 根據選擇的難度過濾詞彙
-    const level = getJLPTLevelByDifficulty(selectedDifficulty);
+    // 改用 difficulty 來選擇詞彙，而不是 JLPT
+    let kanjiWords: TetrisWord[] = [];
     
-    // 使用新的詞彙系統，只選擇漢字詞彙
-    const allWords = getVocabularyByJLPT(level);
-    const kanjiWords = allWords.filter(word => word.isKanji && word.kanji);
+    switch (selectedDifficulty) {
+      case 'elementary':
+        // 初級：選擇 beginner 難度的漢字詞彙
+        kanjiWords = allVocabulary.filter(w => 
+          w.difficulty === 'beginner' && w.isKanji && w.kanji
+        );
+        break;
+      case 'intermediate':
+        // 中級：選擇 normal 難度 + n3 的漢字詞彙
+        kanjiWords = allVocabulary.filter(w => 
+          ((w.difficulty === 'normal' || w.difficulty === 'beginner') || w.jlptLevel === 'n3') 
+          && w.isKanji && w.kanji
+        );
+        break;
+      case 'advanced':
+        // 高級：選擇 hard/expert 難度 + n1/n2 的漢字詞彙
+        kanjiWords = allVocabulary.filter(w => 
+          ((w.difficulty === 'hard' || w.difficulty === 'expert') || 
+           (w.jlptLevel === 'n1' || w.jlptLevel === 'n2')) 
+          && w.isKanji && w.kanji
+        );
+        break;
+    }
     
-    // 如果當前JLPT等級沒有漢字詞彙，嘗試其他等級
+    console.log(`[KanjiMode] Difficulty ${selectedDifficulty}: Found ${kanjiWords.length} kanji words`);
+    
+    // 如果沒有找到漢字詞彙，嘗試放寬條件
     let availableKanjiWords = kanjiWords;
     if (kanjiWords.length === 0) {
-      // 嘗試所有JLPT等級的漢字詞彙
-      const allJLPTLevels = ['n5', 'n4', 'n3', 'n2', 'n1'];
-      for (const jlptLevel of allJLPTLevels) {
-        const wordsForLevel = getVocabularyByJLPT(jlptLevel as any);
-        const kanjiWordsForLevel = wordsForLevel.filter(word => word.isKanji && word.kanji);
-        if (kanjiWordsForLevel.length > 0) {
-          availableKanjiWords = kanjiWordsForLevel;
-          break;
-        }
-      }
+      console.log(`[KanjiMode] No kanji words for ${selectedDifficulty}, trying all kanji words...`);
+      // 使用所有有漢字的詞彙
+      availableKanjiWords = allVocabulary.filter(w => w.isKanji && w.kanji);
+      console.log(`[KanjiMode] Found ${availableKanjiWords.length} total kanji words`);
     }
     
     // 確保有漢字詞彙可用
@@ -149,24 +166,15 @@ export const KanjiModeScreen: React.FC<KanjiModeScreenProps> = ({ route, navigat
     setShowHint(false);
   }, [selectedDifficulty]);
 
-  // 根據組合難度獲取JLPT等級
-  const getJLPTLevelByDifficulty = (difficulty: CombinedDifficultyLevel): 'n5' | 'n4' | 'n3' | 'n2' | 'n1' => {
-    switch (difficulty) {
-      case 'elementary':
-        return Math.random() < 0.5 ? 'n5' : 'n4';
-      case 'intermediate':
-        const levels = ['n5', 'n4', 'n3', 'n2'];
-        return levels[Math.floor(Math.random() * levels.length)] as 'n5' | 'n4' | 'n3' | 'n2';
-      case 'advanced':
-        const allLevels = ['n5', 'n4', 'n3', 'n2', 'n1'];
-        return allLevels[Math.floor(Math.random() * allLevels.length)] as 'n5' | 'n4' | 'n3' | 'n2' | 'n1';
-      default:
-        return 'n5';
-    }
-  };
-
   // 遊戲開始
   const startGame = useCallback(() => {
+    // 檢查詞彙是否已載入
+    if (allVocabulary.length === 0) {
+      console.error('[KanjiMode] Cannot start game - vocabulary not loaded');
+      alert('詞彙資料尚未載入完成，請稍後再試');
+      return;
+    }
+    
     setGameState('playing');
     resetState();
     setGameTime(0);
@@ -199,6 +207,25 @@ export const KanjiModeScreen: React.FC<KanjiModeScreenProps> = ({ route, navigat
   const showHintHandler = useCallback(() => {
     setShowHint(true);
   }, []);
+  
+  // 檢查詞彙是否已載入
+  useEffect(() => {
+    const checkVocabulary = () => {
+      if (allVocabulary.length > 0) {
+        setVocabularyLoaded(true);
+        console.log('[KanjiMode] Vocabulary loaded:', allVocabulary.length, 'words');
+      }
+    };
+    
+    // 立即檢查
+    checkVocabulary();
+    
+    // 如果還沒載入，每秒檢查一次
+    if (!vocabularyLoaded) {
+      const interval = setInterval(checkVocabulary, 1000);
+      return () => clearInterval(interval);
+    }
+  }, [vocabularyLoaded]);
 
   // 遊戲計時器
   useEffect(() => {
@@ -219,6 +246,15 @@ export const KanjiModeScreen: React.FC<KanjiModeScreenProps> = ({ route, navigat
 
   // 渲染遊戲界面
   const renderGameContent = () => {
+    // 檢查詞彙是否已載入
+    if (!vocabularyLoaded) {
+      return (
+        <View style={[styles.container, styles.centerContent]}>
+          <Text style={styles.loadingText}>正在載入詞彙資料...</Text>
+        </View>
+      );
+    }
+    
     // 顯示難度選擇器
     if (showDifficultySelector) {
       return (
@@ -571,6 +607,16 @@ const styles = StyleSheet.create({
     backgroundColor: TechTheme.background,
   },
   
+  centerContent: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  
+  loadingText: {
+    fontSize: 18,
+    color: TechColors.neonBlue,
+    fontWeight: '600',
+  },
   
   // 星空背景
   starfield: {

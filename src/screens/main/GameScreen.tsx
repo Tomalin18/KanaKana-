@@ -13,7 +13,7 @@ import { useTranslation } from 'react-i18next';
 import { useRatingPrompt } from '@/hooks/useRatingPrompt';
 import { getRatingState } from '@/utils/ratingPrompt';
 import { TechTheme, Typography, Spacing, Shadows, TechColors } from '@/constants/theme';
-import { getRandomWordByCombinedDifficulty, type TetrisWord } from '@/data/vocabulary-final';
+import { getRandomWordByCombinedDifficulty, type TetrisWord } from '@/data/vocabulary-final/database';
 import { useTypingDetection } from '@/hooks/useTypingDetection';
 import { DifficultySelector } from '@/components/common/DifficultySelector';
 import type { CombinedDifficultyLevel, DifficultyLevel } from '@/types';

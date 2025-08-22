@@ -57,6 +57,21 @@ export interface Word {
   frequency: number;
 }
 
+// Tetris 模式專用的詞彙類型
+export interface TetrisWord {
+  id?: string;
+  word: string;
+  kana: string;
+  meaning: string;
+  chineseMeaning?: string;
+  difficulty: DifficultyLevel;
+  category?: string;
+  jlptLevel?: 'n1' | 'n2' | 'n3' | 'n4' | 'n5';
+  kanji?: string;
+  isKanji?: boolean;
+  complexity?: number;
+}
+
 export interface Bubble {
   id: string;
   word: Word;

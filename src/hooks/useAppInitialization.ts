@@ -1,6 +1,11 @@
 import { useState, useEffect } from 'react';
 import * as Font from 'expo-font';
 import { useVersionCheck } from './useVersionCheck';
+import { initializeVocabulary } from '@/data/vocabulary-final/database';
+import { preloadVocabulary } from '@/services/vocabularyService';
+import { preloadLongTexts } from '@/services/longTextService';
+import { preloadBossQuestions } from '@/services/bossQuestionService';
+import { preloadConfigs } from '@/services/configService';
 
 interface AppInitializationState {
   isReady: boolean;
@@ -22,14 +27,34 @@ export const useAppInitialization = (): AppInitializationState => {
   useEffect(() => {
     const initializeApp = async () => {
       try {
-        // 延遲確保應用程式有時間初始化
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        
         // 加載字體
         await Font.loadAsync({
           // 這裡可以加載自定義字體
           // 'CustomFont': require('@/assets/fonts/CustomFont.ttf'),
         });
+
+        // 清除舊快取（除錯用）
+        const { clearVocabularyCache } = await import('@/services/vocabularyService');
+        await clearVocabularyCache();
+        
+        // 初始化資料庫
+        console.log('Initializing vocabulary from database...');
+        const vocabInitialized = await initializeVocabulary();
+        if (!vocabInitialized) {
+          console.warn('Failed to initialize vocabulary from database');
+        }
+
+        // 預載詞彙資料到快取
+        await preloadVocabulary();
+        
+        // 預載長文資料
+        await preloadLongTexts();
+        
+        // 預載 Boss 題目
+        await preloadBossQuestions();
+        
+        // 預載系統配置
+        await preloadConfigs();
 
         // 這裡可以添加其他初始化邏輯
         // - 檢查日文輸入法設定

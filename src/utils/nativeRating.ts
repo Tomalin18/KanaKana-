@@ -1,7 +1,19 @@
 import { Platform } from 'react-native';
-import { requestReview, isAvailable } from 'react-native-store-review';
+import { requestReview } from 'react-native-store-review';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import i18next from 'i18next';
+
+// 檢查原生評分是否可用
+const isAvailable = (): boolean => {
+  // iOS 10.3+ 和 Android 5.0+ 支援應用內評分
+  if (Platform.OS === 'ios') {
+    const majorVersionIOS = parseInt(Platform.Version as string, 10);
+    return majorVersionIOS >= 10;
+  } else if (Platform.OS === 'android') {
+    return Platform.Version >= 21; // Android 5.0 (API 21)
+  }
+  return false;
+};
 
 // 原生評分配置
 const NATIVE_RATING_CONFIG = {
@@ -175,62 +187,70 @@ export const shouldShowNativeRating = async (
       let hasGoodPerformance = false;
       
       switch (mode) {
-        case 'classic':
+        case 'classic': {
+          const classicConditions = modeConditions as typeof NATIVE_RATING_CONFIG.GAME_MODE_CONDITIONS.classic;
           const combo = additionalData?.combo || 0;
           hasGoodPerformance = 
-            score >= modeConditions.MIN_SCORE ||
-            accuracy >= modeConditions.MIN_ACCURACY ||
-            gameTime >= modeConditions.MIN_GAME_TIME ||
-            combo >= modeConditions.MIN_COMBO;
+            score >= classicConditions.MIN_SCORE ||
+            accuracy >= classicConditions.MIN_ACCURACY ||
+            gameTime >= classicConditions.MIN_GAME_TIME ||
+            combo >= classicConditions.MIN_COMBO;
           console.log('🎯 經典模式檢查:', { 
             score, accuracy, gameTime, combo, hasGoodPerformance,
-            conditions: modeConditions
+            conditions: classicConditions
           });
           break;
+        }
           
-        case 'kanji_to_kana':
+        case 'kanji_to_kana': {
+          const kanjiConditions = modeConditions as typeof NATIVE_RATING_CONFIG.GAME_MODE_CONDITIONS.kanji_to_kana;
           const wordsCompleted = additionalData?.wordsCompleted || 0;
           hasGoodPerformance = 
-            score >= modeConditions.MIN_SCORE ||
-            accuracy >= modeConditions.MIN_ACCURACY ||
-            gameTime >= modeConditions.MIN_GAME_TIME ||
-            wordsCompleted >= modeConditions.MIN_WORDS_COMPLETED;
+            score >= kanjiConditions.MIN_SCORE ||
+            accuracy >= kanjiConditions.MIN_ACCURACY ||
+            gameTime >= kanjiConditions.MIN_GAME_TIME ||
+            wordsCompleted >= kanjiConditions.MIN_WORDS_COMPLETED;
           console.log('🎯 漢字模式檢查:', { 
             score, accuracy, gameTime, wordsCompleted, hasGoodPerformance,
-            conditions: modeConditions
+            conditions: kanjiConditions
           });
           break;
+        }
           
-        case 'long_text':
+        case 'long_text': {
+          const longTextConditions = modeConditions as typeof NATIVE_RATING_CONFIG.GAME_MODE_CONDITIONS.long_text;
           const textCompleted = additionalData?.textCompleted || 0;
           hasGoodPerformance = 
-            score >= modeConditions.MIN_SCORE ||
-            accuracy >= modeConditions.MIN_ACCURACY ||
-            gameTime >= modeConditions.MIN_GAME_TIME ||
-            textCompleted >= modeConditions.MIN_TEXT_COMPLETED;
+            score >= longTextConditions.MIN_SCORE ||
+            accuracy >= longTextConditions.MIN_ACCURACY ||
+            gameTime >= longTextConditions.MIN_GAME_TIME ||
+            textCompleted >= longTextConditions.MIN_TEXT_COMPLETED;
           console.log('🎯 長文模式檢查:', { 
             score, accuracy, gameTime, textCompleted, hasGoodPerformance,
-            conditions: modeConditions
+            conditions: longTextConditions
           });
           break;
+        }
           
-        case 'tetris_typing':
+        case 'tetris_typing': {
+          const tetrisConditions = modeConditions as typeof NATIVE_RATING_CONFIG.GAME_MODE_CONDITIONS.tetris_typing;
           const level = additionalData?.level || 0;
           const piecesCleared = additionalData?.piecesCleared || 0;
           const tetrisCombo = additionalData?.combo || 0;
           const isNewRecord = additionalData?.isNewRecord || false;
           
           hasGoodPerformance = 
-            score >= modeConditions.MIN_SCORE ||
-            level >= modeConditions.MIN_LEVEL ||
-            piecesCleared >= modeConditions.MIN_PIECES_CLEARED ||
-            tetrisCombo >= modeConditions.MIN_COMBO ||
+            score >= tetrisConditions.MIN_SCORE ||
+            level >= tetrisConditions.MIN_LEVEL ||
+            piecesCleared >= tetrisConditions.MIN_PIECES_CLEARED ||
+            tetrisCombo >= tetrisConditions.MIN_COMBO ||
             isNewRecord;
           console.log('🎯 俄羅斯方塊模式檢查:', { 
             score, level, piecesCleared, combo: tetrisCombo, isNewRecord, hasGoodPerformance,
-            conditions: modeConditions
+            conditions: tetrisConditions
           });
           break;
+        }
           
         default:
           console.log('❌ 未處理的遊戲模式:', mode);

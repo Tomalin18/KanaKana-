@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   Text,
   StyleSheet,
   Pressable,
   Animated,
+  ActivityIndicator,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { TechTheme, Typography, Spacing, Shadows, TechColors } from '@/constants/theme';
 import type { CombinedDifficultyLevel } from '@/types';
+import { getVocabularyStatistics } from '@/services/vocabularyService';
 
 export interface DifficultyOption {
   id: CombinedDifficultyLevel;
@@ -31,6 +33,38 @@ export const DifficultySelector: React.FC<DifficultySelectorProps> = ({
   disabled = false,
 }) => {
   const { t } = useTranslation();
+  const [wordCounts, setWordCounts] = useState<{
+    elementary: number;
+    intermediate: number;
+    advanced: number;
+  }>({ elementary: 0, intermediate: 0, advanced: 0 });
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // 載入詞彙統計數據
+    const loadStatistics = async () => {
+      try {
+        const stats = await getVocabularyStatistics();
+        setWordCounts({
+          elementary: stats.elementary,
+          intermediate: stats.intermediate,
+          advanced: stats.advanced,
+        });
+      } catch (error) {
+        console.error('Failed to load vocabulary statistics:', error);
+        // 使用預設值作為 fallback
+        setWordCounts({
+          elementary: 3480,
+          intermediate: 7558,
+          advanced: 14112,
+        });
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadStatistics();
+  }, []);
 
   const DIFFICULTY_OPTIONS: DifficultyOption[] = [
     {
@@ -38,7 +72,7 @@ export const DifficultySelector: React.FC<DifficultySelectorProps> = ({
       name: t('gameSettings.difficultyEasy'),
       description: t('difficulty.elementaryDescription'),
       jlptRange: 'N5-N4',
-      wordCount: 3480, // BEGINNER_WORDS + NORMAL_WORDS
+      wordCount: wordCounts.elementary,
       color: TechTheme.success,
     },
     {
@@ -46,7 +80,7 @@ export const DifficultySelector: React.FC<DifficultySelectorProps> = ({
       name: t('gameSettings.difficultyNormal'),
       description: t('difficulty.intermediateDescription'),
       jlptRange: 'N5-N2',
-      wordCount: 7558, // BEGINNER_WORDS + NORMAL_WORDS + HARD_WORDS + EXPERT_WORDS
+      wordCount: wordCounts.intermediate,
       color: TechTheme.warning,
     },
     {
@@ -54,7 +88,7 @@ export const DifficultySelector: React.FC<DifficultySelectorProps> = ({
       name: t('gameSettings.difficultyHard'),
       description: t('difficulty.advancedDescription'),
       jlptRange: 'N5-N1',
-      wordCount: 14112, // 所有詞彙
+      wordCount: wordCounts.advanced,
       color: TechTheme.error,
     },
   ];
@@ -144,7 +178,11 @@ export const DifficultySelector: React.FC<DifficultySelectorProps> = ({
               },
             ]}
           >
-            {option.wordCount.toLocaleString()} {t('difficulty.words')}
+            {isLoading ? (
+              <ActivityIndicator size="small" color={isSelected ? TechTheme.surface : TechTheme.textSecondary} />
+            ) : (
+              `${option.wordCount.toLocaleString()} ${t('difficulty.words')}`
+            )}
           </Text>
         </Pressable>
       </Animated.View>
