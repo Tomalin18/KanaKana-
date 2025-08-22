@@ -1,0 +1,225 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id           String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  email        String?       @unique
+  username     String?       @unique
+  isAnonymous  Boolean       @default(false) @map("is_anonymous")
+  createdAt    DateTime      @default(now()) @map("created_at")
+  updatedAt    DateTime      @updatedAt @map("updated_at")
+  lastLoginAt  DateTime?     @map("last_login_at")
+  authId       String?       @unique @map("auth_id") @db.Uuid
+  gameSessions GameSession[]
+  profile      UserProfile?
+  settings     UserSettings?
+
+  @@index([authId])
+  @@map("users")
+}
+
+model UserProfile {
+  id                  String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userId              String  @unique @map("user_id") @db.Uuid
+  displayName         String? @map("display_name")
+  avatarUrl           String? @map("avatar_url")
+  level               Int     @default(1)
+  experience          Int     @default(0)
+  totalGamesPlayed    Int     @default(0) @map("total_games_played")
+  totalWordsTyped     Int     @default(0) @map("total_words_typed")
+  totalScore          BigInt  @default(0) @map("total_score")
+  averageWpm          Float   @default(0) @map("average_wpm")
+  averageAccuracy     Float   @default(0) @map("average_accuracy")
+  preferredDifficulty String  @default("normal") @map("preferred_difficulty")
+  user                User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("user_profiles")
+}
+
+model UserSettings {
+  id            String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userId        String  @unique @map("user_id") @db.Uuid
+  soundEnabled  Boolean @default(true) @map("sound_enabled")
+  hapticEnabled Boolean @default(true) @map("haptic_enabled")
+  language      String  @default("zh_tw")
+  theme         String  @default("auto")
+  fontSize      String  @default("medium") @map("font_size")
+  showFurigana  Boolean @default(true) @map("show_furigana")
+  showMeaning   Boolean @default(true) @map("show_meaning")
+  autoPlayAudio Boolean @default(false) @map("auto_play_audio")
+  user          User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("user_settings")
+}
+
+model Vocabulary {
+  id                  String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  word                String
+  kana                String
+  meaning             String
+  chineseMeaning      String?  @map("chinese_meaning")
+  difficulty          String
+  category            String
+  jlptLevel           String?  @map("jlpt_level")
+  kanji               String?
+  isKanji             Boolean  @default(false) @map("is_kanji")
+  alternativeReadings Json?    @map("alternative_readings")
+  compoundInfo        Json?    @map("compound_info")
+  metadata            Json?
+  createdAt           DateTime @default(now()) @map("created_at")
+  updatedAt           DateTime @updatedAt @map("updated_at")
+  complexity          Int?
+
+  @@index([difficulty])
+  @@index([category])
+  @@index([jlptLevel])
+  @@index([difficulty, category])
+  @@index([difficulty, jlptLevel])
+  @@index([isKanji, difficulty])
+  @@index([word])
+  @@index([kana])
+  @@map("vocabulary")
+}
+
+model LongText {
+  id             String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  title          String
+  content        String
+  displayContent String?  @map("display_content")
+  inputContent   String?  @map("input_content")
+  difficulty     String
+  category       String
+  estimatedTime  Int      @map("estimated_time")
+  vocabularyList String[] @map("vocabulary_list")
+  textMapping    Json?    @map("text_mapping")
+  characterCount Int?     @map("character_count")
+  tags           String[] @default([])
+  createdAt      DateTime @default(now()) @map("created_at")
+  updatedAt      DateTime @updatedAt @map("updated_at")
+
+  @@index([difficulty])
+  @@index([category])
+  @@index([difficulty, category])
+  @@map("long_texts")
+}
+
+model BossQuestion {
+  id             String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  content        String
+  displayContent String   @map("display_content")
+  inputContent   String   @map("input_content")
+  timeLimit      Int      @map("time_limit")
+  difficulty     String?
+  sortOrder      Int?     @map("sort_order")
+  createdAt      DateTime @default(now()) @map("created_at")
+  updatedAt      DateTime @updatedAt @map("updated_at")
+
+  @@index([difficulty])
+  @@index([sortOrder])
+  @@map("boss_questions")
+}
+
+model GameSession {
+  id                String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userId            String?   @map("user_id") @db.Uuid
+  mode              String
+  difficulty        String
+  startTime         DateTime  @map("start_time")
+  endTime           DateTime? @map("end_time")
+  duration          Int?
+  score             Int       @default(0)
+  wordsTyped        Int       @default(0) @map("words_typed")
+  correctWords      Int       @default(0) @map("correct_words")
+  totalCharacters   Int       @default(0) @map("total_characters")
+  correctCharacters Int       @default(0) @map("correct_characters")
+  wpm               Float     @default(0)
+  accuracy          Float     @default(0)
+  maxCombo          Int       @default(0) @map("max_combo")
+  gameDetails       Json?     @map("game_details")
+  user              User?     @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+  @@index([mode])
+  @@index([score])
+  @@index([startTime])
+  @@index([userId, mode])
+  @@map("game_sessions")
+}
+
+model DataVersion {
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tableName   String   @map("table_name")
+  version     Int
+  description String?
+  appliedAt   DateTime @default(now()) @map("applied_at")
+
+  @@unique([tableName, version])
+  @@map("data_versions")
+}
+
+model SystemConfig {
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  key         String   @unique
+  value       Json
+  description String?
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@map("system_configs")
+}
+
+model FeatureFlag {
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  key         String   @unique
+  enabled     Boolean  @default(false)
+  description String?
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@map("feature_flags")
+}
+
+model DifficultyLevel {
+  id               String   @id
+  name             String
+  lives            Int
+  timeMultiplier   Float    @map("time_multiplier")
+  pointsMultiplier Float    @map("points_multiplier")
+  vocabularyLevel  String   @map("vocabulary_level")
+  sortOrder        Int      @map("sort_order")
+  createdAt        DateTime @default(now()) @map("created_at")
+  updatedAt        DateTime @updatedAt @map("updated_at")
+
+  @@map("difficulty_levels")
+}
+
+model Achievement {
+  id          String   @id
+  name        String
+  description String
+  points      Int
+  icon        String?
+  category    String?
+  sortOrder   Int      @map("sort_order")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@map("achievements")
+}
+
+model ScoringRule {
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  key         String   @unique
+  value       Float
+  description String?
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@map("scoring_rules")
+}
