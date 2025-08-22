@@ -9,6 +9,7 @@ import {
   StatusBar,
   Animated,
   Easing,
+  ScrollView,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { TechTheme, Typography, Spacing, Shadows, TechColors } from '@/constants/theme';
@@ -222,16 +223,24 @@ export const KanjiModeScreen: React.FC<KanjiModeScreenProps> = ({ route, navigat
     if (showDifficultySelector) {
       return (
         <View style={styles.container}>
-          <DifficultySelector
-            selectedDifficulty={selectedDifficulty}
-            onSelectDifficulty={setSelectedDifficulty}
-          />
-          <Pressable
-            style={styles.startButton}
-            onPress={startGame}
+          <ScrollView 
+            contentContainerStyle={styles.scrollContent}
+            showsVerticalScrollIndicator={false}
+            keyboardShouldPersistTaps="handled"
           >
-            <Text style={styles.startButtonText}>{t('gameSettings.startGame')}</Text>
-          </Pressable>
+            <DifficultySelector
+              selectedDifficulty={selectedDifficulty}
+              onSelectDifficulty={setSelectedDifficulty}
+            />
+            <View style={styles.startButtonContainer}>
+              <Pressable
+                style={styles.startButton}
+                onPress={startGame}
+              >
+                <Text style={styles.startButtonText}>{t('gameSettings.startGame')}</Text>
+              </Pressable>
+            </View>
+          </ScrollView>
         </View>
       );
     }
@@ -763,13 +772,27 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginBottom: Spacing.xs,
   },
+  // 滾動容器樣式
+  scrollContent: {
+    flexGrow: 1,
+    paddingBottom: Spacing.xl,
+  },
+  
+  startButtonContainer: {
+    paddingHorizontal: Spacing.lg,
+    paddingTop: Spacing.xl,
+    paddingBottom: Spacing.lg,
+    alignItems: 'center',
+  },
+  
   startButton: {
     backgroundColor: TechTheme.primary,
     borderRadius: 12,
     paddingVertical: Spacing.md,
     paddingHorizontal: Spacing.xl,
     alignItems: 'center',
-    marginTop: Spacing.xl,
+    width: '100%',
+    maxWidth: 300,
     ...Shadows.neon.blue,
   },
   startButtonText: {

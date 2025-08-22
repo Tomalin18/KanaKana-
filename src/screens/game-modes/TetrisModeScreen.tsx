@@ -1008,7 +1008,12 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
       switch (gameState) {
         case 'idle':
           return (
-            <View style={styles.menuContainer}>
+            <ScrollView 
+              style={styles.menuScrollView}
+              contentContainerStyle={styles.menuContainer}
+              showsVerticalScrollIndicator={false}
+              keyboardShouldPersistTaps="handled"
+            >
               <Animated.Text 
                 style={[
                   styles.title,
@@ -1032,27 +1037,29 @@ export const TetrisModeScreen: React.FC<TetrisModeScreenProps> = ({ route, navig
                 <Text style={{color: currentThemeColor, fontWeight: 'bold', fontSize: 16}}>📈 {t('tetris.bestLevel')}：{bestLevel}</Text>
                 <Text style={{color: currentThemeColor, fontWeight: 'bold', fontSize: 16}}>🧩 {t('tetris.bestCleared')}：{bestCleared}</Text>
               </View>
-              <TouchableOpacity 
-                style={styles.startButton} 
-                onPress={startGame}
-                onPressIn={() => {
-                  Animated.spring(buttonScale, {
-                    toValue: 0.95,
-                    useNativeDriver: true,
-                  }).start();
-                }}
-                onPressOut={() => {
-                  Animated.spring(buttonScale, {
-                    toValue: 1,
-                    useNativeDriver: true,
-                  }).start();
-                }}
-              >
-                <Animated.View style={{ transform: [{ scale: buttonScale }] }}>
-                  <Text style={styles.startButtonText}>🚀 {t('gameSettings.startGame')} 🚀</Text>
-                </Animated.View>
-              </TouchableOpacity>
-            </View>
+              <View style={styles.startButtonContainer}>
+                <TouchableOpacity 
+                  style={styles.startButton} 
+                  onPress={startGame}
+                  onPressIn={() => {
+                    Animated.spring(buttonScale, {
+                      toValue: 0.95,
+                      useNativeDriver: true,
+                    }).start();
+                  }}
+                  onPressOut={() => {
+                    Animated.spring(buttonScale, {
+                      toValue: 1,
+                      useNativeDriver: true,
+                    }).start();
+                  }}
+                >
+                  <Animated.View style={{ transform: [{ scale: buttonScale }] }}>
+                    <Text style={styles.startButtonText}>🚀 {t('gameSettings.startGame')} 🚀</Text>
+                  </Animated.View>
+                </TouchableOpacity>
+              </View>
+            </ScrollView>
           );
         
         case 'playing':
@@ -1301,12 +1308,21 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#0a0a0f',
   },
-  menuContainer: {
+  menuScrollView: {
     flex: 1,
+  },
+  menuContainer: {
+    flexGrow: 1,
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
+    paddingBottom: 40, // 增加底部間距
     backgroundColor: 'rgba(10, 10, 15, 0.95)',
+  },
+  startButtonContainer: {
+    marginTop: 20,
+    alignItems: 'center',
+    width: '100%',
   },
   title: {
     fontSize: 32,

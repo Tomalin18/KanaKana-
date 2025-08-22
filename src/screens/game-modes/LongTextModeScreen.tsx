@@ -367,19 +367,26 @@ const LongTextGameStartScreen: React.FC<LongTextGameStartScreenProps> = ({ onSta
   const { t } = useTranslation();
   
   return (
-  <View style={styles.centerContainer}>
-            <Text style={styles.gameModeTitle}>{t('mainMenu.longTextMode')}</Text>
-    <Text style={styles.instructions}>
-      {t('gamePlay.inputArticleContent')}
-    </Text>
-    <View style={styles.settingsInfo}>
-      <Text style={styles.settingText}>{t('gameSettings.textLength')}：{settings.textLength === 'short' ? t('gameSettings.textLengthShort') : t('gameSettings.textLengthMedium')}</Text>
-      <Text style={styles.settingText}>{t('gameSettings.showProgress')}：{settings.showProgress ? t('common.confirm') : t('common.cancel')}</Text>
-    </View>
-    <Pressable style={styles.startButton} onPress={onStart}>
-              <Text style={styles.startButtonText}>{t('gameSettings.startGame')}</Text>
-    </Pressable>
-  </View>
+    <ScrollView 
+      style={styles.scrollView}
+      contentContainerStyle={styles.centerContainer}
+      showsVerticalScrollIndicator={false}
+      keyboardShouldPersistTaps="handled"
+    >
+      <Text style={styles.gameModeTitle}>{t('mainMenu.longTextMode')}</Text>
+      <Text style={styles.instructions}>
+        {t('gamePlay.inputArticleContent')}
+      </Text>
+      <View style={styles.settingsInfo}>
+        <Text style={styles.settingText}>{t('gameSettings.textLength')}：{settings.textLength === 'short' ? t('gameSettings.textLengthShort') : t('gameSettings.textLengthMedium')}</Text>
+        <Text style={styles.settingText}>{t('gameSettings.showProgress')}：{settings.showProgress ? t('common.confirm') : t('common.cancel')}</Text>
+      </View>
+      <View style={styles.startButtonContainer}>
+        <Pressable style={styles.startButton} onPress={onStart}>
+          <Text style={styles.startButtonText}>{t('gameSettings.startGame')}</Text>
+        </Pressable>
+      </View>
+    </ScrollView>
   );
 };
 
@@ -600,11 +607,20 @@ const styles = StyleSheet.create({
     backgroundColor: TechColors.neonBlue,
     borderRadius: 50,
   },
-  centerContainer: {
+  scrollView: {
     flex: 1,
+  },
+  centerContainer: {
+    flexGrow: 1,
     justifyContent: 'center',
     alignItems: 'center',
     padding: Spacing.lg,
+    paddingBottom: Spacing.xl, // 增加底部間距
+  },
+  startButtonContainer: {
+    marginTop: Spacing.lg,
+    alignItems: 'center',
+    width: '100%',
   },
   gameContainer: {
     flex: 1,
@@ -638,6 +654,9 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     paddingVertical: Spacing.md,
     paddingHorizontal: Spacing.xl,
+    alignItems: 'center',
+    width: '100%',
+    maxWidth: 300,
   },
   startButtonText: {
     color: 'white',
