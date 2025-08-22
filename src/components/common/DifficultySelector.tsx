@@ -166,6 +166,7 @@ export const DifficultySelector: React.FC<DifficultySelectorProps> = ({
 const styles = StyleSheet.create({
   container: {
     padding: Spacing.lg,
+    paddingBottom: Spacing.md, // 減少底部間距
   },
   title: {
     fontSize: Typography.sizes.ui.title,
@@ -177,16 +178,16 @@ const styles = StyleSheet.create({
     fontSize: Typography.sizes.ui.body,
     color: TechTheme.textSecondary,
     textAlign: 'center',
-    marginBottom: Spacing.xl,
+    marginBottom: Spacing.lg, // 減少間距
   },
   optionsContainer: {
-    gap: Spacing.md,
+    gap: Spacing.sm, // 減少選項之間的間距
   },
   optionContainer: {
     ...Shadows.glass.medium,
   },
   option: {
-    padding: Spacing.lg,
+    padding: Spacing.md, // 減少內邊距
     borderRadius: 12,
     borderWidth: 2,
     borderColor: TechTheme.border,
@@ -212,7 +213,8 @@ const styles = StyleSheet.create({
   },
   optionDescription: {
     fontSize: Typography.sizes.ui.body,
-    marginBottom: Spacing.sm,
+    marginBottom: Spacing.xs, // 減少間距
+    lineHeight: 20, // 控制行高，讓文字更緊湊
   },
   wordCount: {
     fontSize: Typography.sizes.ui.caption,
