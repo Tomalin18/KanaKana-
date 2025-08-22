@@ -1553,7 +1553,7 @@ export const BEGINNER_WORDS: TetrisWord[] = [
   },
   {
     "word": "頂く",
-    "kana": "いただく",
+    "kana": "頂く",
     "meaning": "-- extra-modest expression for たべる 和 のむ; humble expression for もらう -- (-- extra-modest expression for たべる 和 のむ; humble expression for もらう --) (-- extra-modest expression for たべる 和 のむ; humble expression for もらう -- (-- extra-modest expression for たべる and のむ; humble expression for もらう --))",
     "difficulty": "beginner",
     "category": "一般",
@@ -2345,7 +2345,7 @@ export const BEGINNER_WORDS: TetrisWord[] = [
   },
   {
     "word": "嬉しい",
-    "kana": "うれしい",
+    "kana": "嬉しい",
     "meaning": "到 be happy; 到 be glad (到 be happy; 到 be glad) (到 be happy; 到 be glad (to be happy; to be glad))",
     "difficulty": "beginner",
     "category": "一般",

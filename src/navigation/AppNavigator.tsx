@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import type { GameMode, ClassicModeSettings, KanjiModeSettings } from '@/types';
 import { MainMenuScreen } from '@/screens/main/MainMenuScreen';
 import { GameScreen } from '@/screens/main/GameScreen';
+import { SettingsScreen } from '@/screens/common/SettingsScreen';
 
 export type RootStackParamList = {
   MainMenu: undefined;
@@ -11,6 +12,7 @@ export type RootStackParamList = {
     mode: GameMode;
     settings?: ClassicModeSettings | KanjiModeSettings;
   };
+  Settings: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -43,6 +45,13 @@ export const AppNavigator: React.FC = () => {
           options={{
             title: 'ゲーム',
             gestureEnabled: false, // 遊戲中禁用手勢返回
+          }}
+        />
+        <Stack.Screen 
+          name="Settings" 
+          component={SettingsScreen}
+          options={{
+            title: '設定',
           }}
         />
       </Stack.Navigator>
