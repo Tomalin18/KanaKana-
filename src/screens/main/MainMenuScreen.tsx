@@ -15,7 +15,7 @@ import type { RootStackParamList } from '@/navigation/AppNavigator';
 import type { GameMode, ClassicModeSettings, KanjiModeSettings } from '@/types';
 import { TechTheme, Typography, Spacing, Shadows, TechColors } from '@/constants/theme';
 import { GlassContainer } from '@/components/common';
-import { isFeatureEnabled } from '@/utils/featureFlags';
+import { getFeatureFlags } from '@/services/configService';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'MainMenu'>;
 
@@ -28,6 +28,13 @@ export const MainMenuScreen: React.FC<Props> = ({ navigation }) => {
 
   // 評分提示 Hook
   const { recordSession, triggerOnSessionCount } = useRatingPrompt();
+  
+  // 功能開關狀態
+  const [featureFlags, setFeatureFlags] = useState({
+    KANJI_MODE: true,
+    LONG_TEXT_MODE: false,
+    TETRIS_MODE: true,
+  });
 
   // 預設設定
   const defaultClassicSettings: ClassicModeSettings = {
@@ -64,6 +71,24 @@ export const MainMenuScreen: React.FC<Props> = ({ navigation }) => {
   };
 
 
+
+  // 載入功能開關
+  useEffect(() => {
+    const loadFeatureFlags = async () => {
+      try {
+        const flags = await getFeatureFlags();
+        setFeatureFlags({
+          KANJI_MODE: flags.KANJI_MODE,
+          LONG_TEXT_MODE: flags.LONG_TEXT_MODE,
+          TETRIS_MODE: flags.TETRIS_MODE,
+        });
+      } catch (error) {
+        console.error('Failed to load feature flags:', error);
+      }
+    };
+    
+    loadFeatureFlags();
+  }, []);
 
   // 記錄會話並檢查是否需要觸發評分提示
   useEffect(() => {
@@ -126,7 +151,7 @@ export const MainMenuScreen: React.FC<Props> = ({ navigation }) => {
             />
 
             {/* 新遊戲模式 */}
-            {isFeatureEnabled('KANJI_MODE') && (
+            {featureFlags.KANJI_MODE && (
               <GameModeButton
                 title={t('mainMenu.practiceKanji')}
                 subtitle={t('mainMenu.practiceKanjiSubtitle')}
@@ -137,7 +162,7 @@ export const MainMenuScreen: React.FC<Props> = ({ navigation }) => {
               />
             )}
 
-            {isFeatureEnabled('LONG_TEXT_MODE') && (
+            {featureFlags.LONG_TEXT_MODE && (
               <GameModeButton
                 title={t('mainMenu.longTextMode')}
                 subtitle={t('mainMenu.longTextModeSubtitle')}
@@ -148,7 +173,7 @@ export const MainMenuScreen: React.FC<Props> = ({ navigation }) => {
               />
             )}
 
-            {isFeatureEnabled('TETRIS_MODE') && (
+            {featureFlags.TETRIS_MODE && (
               <GameModeButton
                 title={t('mainMenu.tetrisMode')}
                 subtitle={t('mainMenu.tetrisModeSubtitle')}
