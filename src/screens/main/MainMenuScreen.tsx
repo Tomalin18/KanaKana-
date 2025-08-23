@@ -16,6 +16,9 @@ import type { GameMode, ClassicModeSettings, KanjiModeSettings } from '@/types';
 import { TechTheme, Typography, Spacing, Shadows, TechColors } from '@/constants/theme';
 import { GlassContainer } from '@/components/common';
 import { getFeatureFlags } from '@/services/configService';
+import { LoginModal } from '@/components/auth/LoginModal';
+import { authService } from '@/services/authService';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'MainMenu'>;
 
@@ -35,6 +38,10 @@ export const MainMenuScreen: React.FC<Props> = ({ navigation }) => {
     LONG_TEXT_MODE: false,
     TETRIS_MODE: true,
   });
+  
+  // 登入模態框狀態
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [loginTrigger, setLoginTrigger] = useState<'first_launch' | 'game_end' | 'manual'>('first_launch');
 
   // 預設設定
   const defaultClassicSettings: ClassicModeSettings = {
@@ -70,11 +77,25 @@ export const MainMenuScreen: React.FC<Props> = ({ navigation }) => {
     }
   };
 
+  const handleProfilePress = async () => {
+    // 檢查是否已登入
+    const user = await authService.getCurrentUser();
+    if (user) {
+      // 已登入，直接導航到 Profile 頁面
+      navigation.navigate('Profile');
+    } else {
+      // 未登入，顯示登入模態框
+      setLoginTrigger('profile');
+      setShowLoginModal(true);
+    }
+  };
 
 
-  // 載入功能開關
+
+  // 載入功能開關和檢查首次啟動
   useEffect(() => {
-    const loadFeatureFlags = async () => {
+    const initialize = async () => {
+      // 載入功能開關
       try {
         const flags = await getFeatureFlags();
         setFeatureFlags({
@@ -85,9 +106,20 @@ export const MainMenuScreen: React.FC<Props> = ({ navigation }) => {
       } catch (error) {
         console.error('Failed to load feature flags:', error);
       }
+      
+      // 檢查是否首次啟動且未登入
+      const hasShownLoginPrompt = await AsyncStorage.getItem('@has_shown_login_prompt');
+      const authState = await authService.checkAuthState();
+      
+      if (!hasShownLoginPrompt && authState === 'anonymous') {
+        // 首次啟動且未登入，顯示登入提示
+        setLoginTrigger('first_launch');
+        setShowLoginModal(true);
+        await AsyncStorage.setItem('@has_shown_login_prompt', 'true');
+      }
     };
     
-    loadFeatureFlags();
+    initialize();
   }, []);
 
   // 記錄會話並檢查是否需要觸發評分提示
@@ -184,6 +216,15 @@ export const MainMenuScreen: React.FC<Props> = ({ navigation }) => {
               />
             )}
 
+            {/* 個人檔案按鈕 */}
+            <GameModeButton
+              title={t('mainMenu.profile')}
+              subtitle="PROFILE"
+              description={t('mainMenu.profileDescription')}
+              emoji="👤"
+              onPress={handleProfilePress}
+            />
+            
             {/* 設定按鈕 - 使用與遊戲模式相同的樣式 */}
             <GameModeButton
               title={t('mainMenu.settings')}
@@ -196,9 +237,24 @@ export const MainMenuScreen: React.FC<Props> = ({ navigation }) => {
         </ScrollView>
       </SafeAreaView>
 
-
-
-
+      {/* 登入模態框 */}
+      <LoginModal
+        visible={showLoginModal}
+        onClose={() => setShowLoginModal(false)}
+        trigger={loginTrigger}
+        onLoginSuccess={async () => {
+          console.log('Login successful!');
+          setShowLoginModal(false);
+          
+          // 如果是從 Profile 按鈕觸發的登入，成功後導航到 Profile 頁面
+          if (loginTrigger === 'profile') {
+            // 稍微延遲以確保模態框關閉後再導航
+            setTimeout(() => {
+              navigation.navigate('Profile');
+            }, 100);
+          }
+        }}
+      />
     </View>
   );
 };
