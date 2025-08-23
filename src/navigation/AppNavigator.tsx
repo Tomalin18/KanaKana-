@@ -5,6 +5,7 @@ import type { GameMode, ClassicModeSettings, KanjiModeSettings } from '@/types';
 import { MainMenuScreen } from '@/screens/main/MainMenuScreen';
 import { GameScreen } from '@/screens/main/GameScreen';
 import { SettingsScreen } from '@/screens/common/SettingsScreen';
+import ProfileScreen from '@/screens/main/ProfileScreen';
 
 export type RootStackParamList = {
   MainMenu: undefined;
@@ -13,6 +14,7 @@ export type RootStackParamList = {
     settings?: ClassicModeSettings | KanjiModeSettings;
   };
   Settings: undefined;
+  Profile: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -52,6 +54,14 @@ export const AppNavigator: React.FC = () => {
           component={SettingsScreen}
           options={{
             title: '設定',
+          }}
+        />
+        <Stack.Screen 
+          name="Profile" 
+          component={ProfileScreen}
+          options={{
+            title: '個人檔案',
+            animation: 'slide_from_right',
           }}
         />
       </Stack.Navigator>
