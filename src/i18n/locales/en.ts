@@ -1,4 +1,36 @@
-export default {
+import type { TranslationResource } from '../types';
+
+const en: TranslationResource = {
+  // Profile
+  profile: {
+    title: 'Profile',
+    notLoggedIn: 'Not logged in',
+    goToLogin: 'Go to login',
+    anonymous: 'Anonymous user',
+    statistics: 'Statistics',
+    totalGames: 'Total games played',
+    totalScore: 'Total score',
+    achievements: 'Achievements',
+    accountSettings: 'Account settings',
+    syncData: 'Sync data',
+    privacy: 'Privacy settings',
+    deleteAccount: 'Delete account',
+    signOut: 'Sign out',
+    signOutTitle: 'Confirm sign out',
+    signOutMessage: 'Are you sure you want to sign out?',
+    signOutError: 'Sign out failed, please try again later',
+    syncDataMessage: 'Sync local data to cloud to ensure your progress is not lost',
+    syncDataSuccess: 'Data synced successfully',
+    syncDataError: 'Data sync failed, please try again later',
+    privacyMessage: 'We value your privacy, your data will be securely encrypted and stored',
+    deleteAccountWarning: 'Deleting your account will permanently remove all data, this action cannot be undone',
+    deleteAccountConfirm: 'I understand the risks',
+    deleteAccountFinalWarning: 'Final confirmation',
+    deleteAccountFinalMessage: 'Are you absolutely sure you want to delete your account? All game progress and achievements will be permanently lost',
+    deleteAccountFinalConfirm: 'Delete permanently',
+    deleteAccountError: 'Account deletion failed, please try again later',
+  },
+
   // Common
   common: {
     start: 'Start',
@@ -18,6 +50,7 @@ export default {
     success: 'Success',
     warning: 'Warning',
     info: 'Info',
+    ok: 'OK',
   },
 
   // Main Menu
@@ -38,6 +71,8 @@ export default {
     tetrisModeDescription: 'Type before the blocks fall - exciting and fun!',
     settings: 'Settings',
     about: 'About',
+    profile: 'Profile',
+    profileDescription: 'View personal profile and achievement statistics',
   },
 
   // Game Settings
@@ -102,13 +137,6 @@ export default {
     totalWords: 'Total Words',
     accuracy: 'Accuracy',
     averageSpeed: 'Average Speed',
-    bestCombo: 'Best Combo',
-    timeSpent: 'Time Spent',
-    newRecord: 'New Record!',
-    shareScore: 'Share Score',
-    playAgain: 'Play Again',
-    backToMenu: 'Back to Menu',
-    reviewMistakes: 'Review Mistakes',
   },
 
   // Difficulty Selection
@@ -123,6 +151,7 @@ export default {
 
   // Tetris Mode
   tetris: {
+    title: 'Tetris Mode',
     instruction1: '1. Each block will display a Japanese word or kanji. Please input the correct kana or romaji before the block lands to eliminate it.',
     instruction2: '2. Blocks will fall automatically. Input correctly to eliminate them.',
     instruction3: '3. Every 5 blocks eliminated will increase your level. The higher the level, the faster the blocks fall.',
@@ -151,6 +180,12 @@ export default {
     returningToGame: 'Returning to game...',
     remainingTime: 'Remaining Time',
     seconds: 'sec',
+    bestCombo: 'Best Combo',
+    timeSpent: 'Time Spent',
+    newRecord: 'New Record!',
+    shareScore: 'Share Score',
+    playAgain: 'Play Again',
+    reviewMistakes: 'Review Mistakes',
   },
 
   // Settings
@@ -330,4 +365,40 @@ export default {
     website: 'Official Website',
     github: 'GitHub',
   },
+
+  // Authentication
+  auth: {
+    welcomeTitle: 'Welcome to KanaKana',
+    welcomeSubtitle: 'Sign in to sync your progress to the cloud',
+    saveProgressTitle: 'Save Your Progress',
+    saveProgressSubtitle: 'Sign in to permanently save your game records',
+    loginTitle: 'Sign In',
+    loginSubtitle: 'Sign in to access full features',
+    continueWithGoogle: 'Continue with Google',
+    continueWithApple: 'Continue with Apple',
+    continueWithEmail: 'Sign in with Email',
+    continueAsGuest: 'Continue as Guest',
+    or: 'or',
+    privacyNotice: 'By signing in, you agree to our Terms of Service and Privacy Policy',
+    loginSuccess: 'Sign in successful',
+    loginFailed: 'Sign in failed',
+    dataWillSync: 'Your data will automatically sync to the cloud',
+    tryAgainLater: 'Please try again later',
+    email: 'Email',
+    password: 'Password',
+    confirmPassword: 'Confirm Password',
+    displayName: 'Display Name',
+    signIn: 'Sign In',
+    signUp: 'Sign Up',
+    signUpSuccess: 'Sign up successful',
+    alreadyHaveAccount: 'Already have an account? Click to sign in',
+    needAccount: 'Need an account? Click to sign up',
+    pleaseEnterEmailPassword: 'Please enter email and password',
+    passwordsDoNotMatch: 'Passwords do not match',
+    passwordTooShort: 'Password must be at least 6 characters',
+    unknownError: 'An unknown error occurred',
+  },
 };
+
+export default en;
+

@@ -1,4 +1,36 @@
-export default {
+import type { TranslationResource } from '../types';
+
+const ko: TranslationResource = {
+  // 프로필
+  profile: {
+    title: '프로필',
+    notLoggedIn: '로그인되지 않음',
+    goToLogin: '로그인하기',
+    anonymous: '익명 사용자',
+    statistics: '통계',
+    totalGames: '총 게임 횟수',
+    totalScore: '총 점수',
+    achievements: '업적',
+    accountSettings: '계정 설정',
+    syncData: '데이터 동기화',
+    privacy: '개인정보 설정',
+    deleteAccount: '계정 삭제',
+    signOut: '로그아웃',
+    signOutTitle: '로그아웃 확인',
+    signOutMessage: '로그아웃하시겠습니까?',
+    signOutError: '로그아웃에 실패했습니다. 나중에 다시 시도해주세요',
+    syncDataMessage: '로컬 데이터를 클라우드에 동기화하여 진행 상황이 손실되지 않도록 합니다',
+    syncDataSuccess: '데이터 동기화가 완료되었습니다',
+    syncDataError: '데이터 동기화에 실패했습니다. 나중에 다시 시도해주세요',
+    privacyMessage: '저희는 귀하의 개인정보를 소중히 여기며, 데이터는 안전하게 암호화되어 저장됩니다',
+    deleteAccountWarning: '계정을 삭제하면 모든 데이터가 영구적으로 제거되며, 이 작업은 되돌릴 수 없습니다',
+    deleteAccountConfirm: '위험을 이해했습니다',
+    deleteAccountFinalWarning: '최종 확인',
+    deleteAccountFinalMessage: '정말로 계정을 삭제하시겠습니까? 모든 게임 진행 상황과 업적이 영구적으로 손실됩니다',
+    deleteAccountFinalConfirm: '영구적으로 삭제',
+    deleteAccountError: '계정 삭제에 실패했습니다. 나중에 다시 시도해주세요',
+  },
+
   // 공통
   common: {
     start: '시작',
@@ -18,6 +50,7 @@ export default {
     success: '성공',
     warning: '경고',
     info: '정보',
+    ok: '확인',
   },
 
   // 메인 메뉴
@@ -38,6 +71,8 @@ export default {
     tetrisModeDescription: '블록이 떨어지기 전에 타이핑하세요 - 흥미진진하고 재미있습니다!',
     settings: '설정',
     about: '정보',
+    profile: '프로필',
+    profileDescription: '개인 프로필 및 업적 통계 보기',
   },
 
   // 게임 설정
@@ -102,13 +137,6 @@ export default {
     totalWords: '총 단어 수',
     accuracy: '정확도',
     averageSpeed: '평균 속도',
-    bestCombo: '최고 콤보',
-    timeSpent: '게임 시간',
-    newRecord: '새 기록!',
-    shareScore: '점수 공유',
-    playAgain: '다시 플레이',
-    backToMenu: '메뉴로 돌아가기',
-    reviewMistakes: '실수 복습',
   },
 
   // 설정
@@ -301,6 +329,7 @@ export default {
 
   // 테트리스 모드
   tetris: {
+    title: '테트리스 모드',
     instruction1: '1. 각 블록에는 일본어 단어나 한자가 표시됩니다. 블록이 착지하기 전에 올바른 가나나 로마자를 입력하여 블록을 제거하세요.',
     instruction2: '2. 블록은 자동으로 떨어집니다. 올바르게 입력하면 제거됩니다.',
     instruction3: '3. 5개의 블록을 제거할 때마다 레벨이 올라갑니다. 레벨이 높을수록 블록이 더 빨리 떨어집니다.',
@@ -329,5 +358,46 @@ export default {
     returningToGame: '게임으로 돌아갑니다...',
     remainingTime: '남은 시간',
     seconds: '초',
+    bestCombo: '최고 콤보',
+    timeSpent: '게임 시간',
+    newRecord: '새 기록!',
+    shareScore: '점수 공유',
+    playAgain: '다시 플레이',
+    reviewMistakes: '실수 복습',
+  },
+
+  // 인증
+  auth: {
+    welcomeTitle: 'KanaKana에 오신 것을 환영합니다',
+    welcomeSubtitle: '로그인하여 진행 상황을 클라우드에 동기화하세요',
+    saveProgressTitle: '진행 상황 저장',
+    saveProgressSubtitle: '로그인하여 게임 기록을 영구적으로 저장하세요',
+    loginTitle: '로그인',
+    loginSubtitle: '로그인하여 모든 기능에 액세스하세요',
+    continueWithGoogle: 'Google로 계속',
+    continueWithApple: 'Apple로 계속',
+    continueWithEmail: '이메일로 로그인',
+    continueAsGuest: '게스트로 계속',
+    or: '또는',
+    privacyNotice: '로그인하면 서비스 약관 및 개인정보 처리방침에 동의한 것으로 간주됩니다',
+    loginSuccess: '로그인 성공',
+    loginFailed: '로그인 실패',
+    dataWillSync: '데이터가 자동으로 클라우드에 동기화됩니다',
+    tryAgainLater: '나중에 다시 시도해주세요',
+    email: '이메일',
+    password: '비밀번호',
+    confirmPassword: '비밀번호 확인',
+    displayName: '표시 이름',
+    signIn: '로그인',
+    signUp: '회원가입',
+    signUpSuccess: '회원가입 성공',
+    alreadyHaveAccount: '이미 계정이 있으신가요? 로그인을 클릭하세요',
+    needAccount: '계정이 필요하신가요? 회원가입을 클릭하세요',
+    pleaseEnterEmailPassword: '이메일과 비밀번호를 입력해주세요',
+    passwordsDoNotMatch: '비밀번호가 일치하지 않습니다',
+    passwordTooShort: '비밀번호는 최소 6자리여야 합니다',
+    unknownError: '알 수 없는 오류가 발생했습니다',
   },
 };
+
+export default ko;

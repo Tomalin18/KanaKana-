@@ -1,4 +1,36 @@
-export default {
+import type { TranslationResource } from '../types';
+
+const ja: TranslationResource = {
+  // プロフィール
+  profile: {
+    title: 'プロフィール',
+    notLoggedIn: 'ログインしていません',
+    goToLogin: 'ログインへ',
+    anonymous: 'ゲストユーザー',
+    statistics: '統計',
+    totalGames: '総プレイ回数',
+    totalScore: '総スコア',
+    achievements: '実績',
+    accountSettings: 'アカウント設定',
+    syncData: 'データ同期',
+    privacy: 'プライバシー設定',
+    deleteAccount: 'アカウント削除',
+    signOut: 'サインアウト',
+    signOutTitle: 'サインアウト確認',
+    signOutMessage: 'サインアウトしますか？',
+    signOutError: 'サインアウトに失敗しました。後でもう一度お試しください',
+    syncDataMessage: 'ローカルデータをクラウドに同期して、進捗が失われないようにします',
+    syncDataSuccess: 'データの同期が完了しました',
+    syncDataError: 'データの同期に失敗しました。後でもう一度お試しください',
+    privacyMessage: '私たちはあなたのプライバシーを大切にし、データは安全に暗号化されて保存されます',
+    deleteAccountWarning: 'アカウントを削除すると、すべてのデータが永久に削除され、この操作は元に戻せません',
+    deleteAccountConfirm: 'リスクを理解しました',
+    deleteAccountFinalWarning: '最終確認',
+    deleteAccountFinalMessage: '本当にアカウントを削除しますか？すべてのゲーム進捗と実績が永久に失われます',
+    deleteAccountFinalConfirm: '永久に削除',
+    deleteAccountError: 'アカウント削除に失敗しました。後でもう一度お試しください',
+  },
+
   // 共通
   common: {
     start: '開始',
@@ -18,6 +50,7 @@ export default {
     success: '成功',
     warning: '警告',
     info: '情報',
+    ok: 'OK',
   },
 
   // メインメニュー
@@ -38,6 +71,8 @@ export default {
     tetrisModeDescription: 'ブロックが落ちる前にタイピング - 刺激的で楽しい！',
     settings: '設定',
     about: 'について',
+    profile: 'プロフィール',
+    profileDescription: 'プロフィールと実績統計を表示',
   },
 
   // ゲーム設定
@@ -102,13 +137,6 @@ export default {
     totalWords: '総単語数',
     accuracy: '正確性',
     averageSpeed: '平均速度',
-    bestCombo: '最高コンボ',
-    timeSpent: 'プレイ時間',
-    newRecord: '新記録！',
-    shareScore: 'スコアを共有',
-    playAgain: 'もう一度プレイ',
-    backToMenu: 'メニューに戻る',
-    reviewMistakes: '間違いを復習',
   },
 
   // 設定画面
@@ -273,6 +301,7 @@ export default {
     featureExplored: '🌟 探索完了！',
     sessionCount: '📚 学習パートナー！',
     defaultTitle: '⭐ KanaKanaが気に入りましたか？',
+    testTitle: '🧪 テスト評価プロンプト',
     unifiedMessage: 'KanaKanaをダウンロードしていただき、ありがとうございます！このアプリが役立つと思われる場合は、評価をお願いします。あなたのレビューは私たちの改善の原動力です！',
     later: '後で',
     rateNow: '今すぐ評価',
@@ -298,8 +327,9 @@ export default {
     words: '個の単語',
   },
 
-  // Tetris 模式
+  // テトリスモード
   tetris: {
+    title: 'テトリスモード',
     instruction1: '1. 各ブロックに日本語の単語や漢字が表示されます。ブロックが着地する前に正しい仮名やローマ字を入力してブロックを消去してください。',
     instruction2: '2. ブロックは自動的に落下します。正しく入力すると消去されます。',
     instruction3: '3. 5個のブロックを消去するごとにレベルが上がります。レベルが高いほどブロックの落下速度が速くなります。',
@@ -328,5 +358,46 @@ export default {
     returningToGame: 'ゲームに戻ります...',
     remainingTime: '残り時間',
     seconds: '秒',
+    bestCombo: '最高コンボ',
+    timeSpent: 'プレイ時間',
+    newRecord: '新記録！',
+    shareScore: 'スコアを共有',
+    playAgain: 'もう一度プレイ',
+    reviewMistakes: '間違いを復習',
+  },
+
+  // 認証
+  auth: {
+    welcomeTitle: 'KanaKanaへようこそ',
+    welcomeSubtitle: 'サインインして進捗をクラウドに同期',
+    saveProgressTitle: '進捗を保存',
+    saveProgressSubtitle: 'サインインしてゲーム記録を永続的に保存',
+    loginTitle: 'サインイン',
+    loginSubtitle: 'サインインして全機能にアクセス',
+    continueWithGoogle: 'Googleで続行',
+    continueWithApple: 'Appleで続行',
+    continueWithEmail: 'メールでサインイン',
+    continueAsGuest: 'ゲストとして続行',
+    or: 'または',
+    privacyNotice: 'サインインすることで、利用規約とプライバシーポリシーに同意したものとみなされます',
+    loginSuccess: 'サインイン成功',
+    loginFailed: 'サインイン失敗',
+    dataWillSync: 'データは自動的にクラウドに同期されます',
+    tryAgainLater: '後でもう一度お試しください',
+    email: 'メール',
+    password: 'パスワード',
+    confirmPassword: 'パスワード確認',
+    displayName: '表示名',
+    signIn: 'サインイン',
+    signUp: 'サインアップ',
+    signUpSuccess: 'サインアップ成功',
+    alreadyHaveAccount: '既にアカウントをお持ちですか？サインインをクリック',
+    needAccount: 'アカウントが必要ですか？サインアップをクリック',
+    pleaseEnterEmailPassword: 'メールアドレスとパスワードを入力してください',
+    passwordsDoNotMatch: 'パスワードが一致しません',
+    passwordTooShort: 'パスワードは6文字以上である必要があります',
+    unknownError: '不明なエラーが発生しました',
   },
 };
+
+export default ja;

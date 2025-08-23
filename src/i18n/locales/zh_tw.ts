@@ -1,4 +1,6 @@
-export default {
+import type { TranslationResource } from '../types';
+
+const zhTW: TranslationResource = {
   // 個人檔案
   profile: {
     title: '個人檔案',
@@ -397,3 +399,5 @@ export default {
     unknownError: '發生未知錯誤',
   },
 };
+
+export default zhTW;

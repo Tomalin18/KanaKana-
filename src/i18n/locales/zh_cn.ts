@@ -1,4 +1,36 @@
-export default {
+import type { TranslationResource } from '../types';
+
+const zhCN: TranslationResource = {
+  // 个人资料
+  profile: {
+    title: '个人资料',
+    notLoggedIn: '尚未登录',
+    goToLogin: '前往登录',
+    anonymous: '匿名用户',
+    statistics: '统计资料',
+    totalGames: '总游戏次数',
+    totalScore: '总得分',
+    achievements: '成就',
+    accountSettings: '账号设置',
+    syncData: '同步数据',
+    privacy: '隐私设置',
+    deleteAccount: '删除账号',
+    signOut: '退出登录',
+    signOutTitle: '确认退出登录',
+    signOutMessage: '您确定要退出登录吗？',
+    signOutError: '退出登录失败，请稍后再试',
+    syncDataMessage: '将本地数据同步到云端，确保您的进度不会丢失',
+    syncDataSuccess: '数据同步成功',
+    syncDataError: '数据同步失败，请稍后再试',
+    privacyMessage: '我们重视您的隐私，您的数据将被安全加密存储',
+    deleteAccountWarning: '删除账号将永久移除所有数据，此操作无法恢复',
+    deleteAccountConfirm: '我了解风险',
+    deleteAccountFinalWarning: '最后确认',
+    deleteAccountFinalMessage: '您真的确定要删除账号吗？所有游戏进度和成就将永久消失',
+    deleteAccountFinalConfirm: '永久删除',
+    deleteAccountError: '删除账号失败，请稍后再试',
+  },
+
   // 通用
   common: {
     start: '开始',
@@ -18,6 +50,7 @@ export default {
     success: '成功',
     warning: '警告',
     info: '信息',
+    ok: '确定',
   },
 
   // 主菜单
@@ -38,6 +71,8 @@ export default {
     tetrisModeDescription: '在方块掉落前输入完成，刺激有趣！',
     settings: '设置',
     about: '关于',
+    profile: '个人资料',
+    profileDescription: '查看个人资料与成就统计',
   },
 
   // 游戏设置
@@ -102,13 +137,6 @@ export default {
     totalWords: '总单词数',
     accuracy: '准确率',
     averageSpeed: '平均速度',
-    bestCombo: '最佳连击',
-    timeSpent: '游戏时间',
-    newRecord: '新纪录！',
-    shareScore: '分享分数',
-    playAgain: '再玩一次',
-    backToMenu: '返回主菜单',
-    reviewMistakes: '复习错误',
   },
 
   // 设置画面
@@ -301,6 +329,7 @@ export default {
 
   // 俄罗斯方块模式
   tetris: {
+    title: '俄罗斯方块模式',
     instruction1: '1. 每个方块上会显示日语单词或汉字，请在方块落地前输入正确的假名或罗马拼音消除方块。',
     instruction2: '2. 方块会自动下落，输入正确即可消除。',
     instruction3: '3. 每消除 5 个方块会提升等级，等级越高方块下落速度越快。',
@@ -329,5 +358,46 @@ export default {
     returningToGame: '即将返回游戏...',
     remainingTime: '剩余时间',
     seconds: '秒',
+    bestCombo: '最佳连击',
+    timeSpent: '游戏时间',
+    newRecord: '新记录！',
+    shareScore: '分享分数',
+    playAgain: '再玩一次',
+    reviewMistakes: '复习错误',
+  },
+
+  // 认证
+  auth: {
+    welcomeTitle: '欢迎来到 KanaKana',
+    welcomeSubtitle: '登录以同步您的进度到云端',
+    saveProgressTitle: '保存您的进度',
+    saveProgressSubtitle: '登录以永久保存您的游戏记录',
+    loginTitle: '登录',
+    loginSubtitle: '登录以访问完整功能',
+    continueWithGoogle: '使用 Google 继续',
+    continueWithApple: '使用 Apple 继续',
+    continueWithEmail: '使用邮箱登录',
+    continueAsGuest: '以访客身份继续',
+    or: '或',
+    privacyNotice: '登录即表示您同意我们的服务条款和隐私政策',
+    loginSuccess: '登录成功',
+    loginFailed: '登录失败',
+    dataWillSync: '您的数据将自动同步到云端',
+    tryAgainLater: '请稍后再试',
+    email: '邮箱',
+    password: '密码',
+    confirmPassword: '确认密码',
+    displayName: '显示名称',
+    signIn: '登录',
+    signUp: '注册',
+    signUpSuccess: '注册成功',
+    alreadyHaveAccount: '已有账号？点击登录',
+    needAccount: '需要账号？点击注册',
+    pleaseEnterEmailPassword: '请输入邮箱和密码',
+    passwordsDoNotMatch: '两次密码输入不一致',
+    passwordTooShort: '密码长度至少需要 6 位',
+    unknownError: '发生未知错误',
   },
 };
+
+export default zhCN;
