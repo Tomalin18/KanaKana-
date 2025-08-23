@@ -6,6 +6,7 @@ import { preloadVocabulary } from '@/services/vocabularyService';
 import { preloadLongTexts } from '@/services/longTextService';
 import { preloadBossQuestions } from '@/services/bossQuestionService';
 import { preloadConfigs } from '@/services/configService';
+import { authService } from '@/services/authService';
 
 interface AppInitializationState {
   isReady: boolean;
@@ -55,6 +56,10 @@ export const useAppInitialization = (): AppInitializationState => {
         
         // 預載系統配置
         await preloadConfigs();
+        
+        // 檢查認證狀態
+        const authState = await authService.checkAuthState();
+        console.log('Auth state on app init:', authState);
 
         // 這裡可以添加其他初始化邏輯
         // - 檢查日文輸入法設定
