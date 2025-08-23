@@ -1,4 +1,34 @@
 export default {
+  // 個人檔案
+  profile: {
+    title: '個人檔案',
+    notLoggedIn: '尚未登入',
+    goToLogin: '前往登入',
+    anonymous: '匿名使用者',
+    statistics: '統計資料',
+    totalGames: '總遊戲次數',
+    totalScore: '總得分',
+    achievements: '成就',
+    accountSettings: '帳號設定',
+    syncData: '同步資料',
+    privacy: '隱私設定',
+    deleteAccount: '刪除帳號',
+    signOut: '登出',
+    signOutTitle: '確認登出',
+    signOutMessage: '您確定要登出嗎？',
+    signOutError: '登出失敗，請稍後再試',
+    syncDataMessage: '將本地資料同步到雲端，確保您的進度不會遺失',
+    syncDataSuccess: '資料同步成功',
+    syncDataError: '資料同步失敗，請稍後再試',
+    privacyMessage: '我們重視您的隱私，您的資料將被安全加密儲存',
+    deleteAccountWarning: '刪除帳號將永久移除所有資料，此操作無法復原',
+    deleteAccountConfirm: '我了解風險',
+    deleteAccountFinalWarning: '最後確認',
+    deleteAccountFinalMessage: '您真的確定要刪除帳號嗎？所有遊戲進度和成就將永久消失',
+    deleteAccountFinalConfirm: '永久刪除',
+    deleteAccountError: '刪除帳號失敗，請稍後再試',
+  },
+
   // 通用
   common: {
     start: '開始',
@@ -18,6 +48,7 @@ export default {
     success: '成功',
     warning: '警告',
     info: '資訊',
+    ok: '確定',
   },
 
   // 主選單
@@ -38,6 +69,8 @@ export default {
     tetrisModeDescription: '在方塊掉落前輸入完成，刺激有趣！',
     settings: '設定',
     about: '關於',
+    profile: '個人檔案',
+    profileDescription: '查看個人資料與成就統計',
   },
 
   // 遊戲設定
@@ -329,5 +362,38 @@ export default {
     contact: '聯絡我們',
     website: '官方網站',
     github: 'GitHub',
+  },
+
+  // 認證
+  auth: {
+    welcomeTitle: '歡迎來到 KanaKana',
+    welcomeSubtitle: '登入以同步您的進度到雲端',
+    saveProgressTitle: '保存您的進度',
+    saveProgressSubtitle: '登入以永久保存您的遊戲記錄',
+    loginTitle: '登入',
+    loginSubtitle: '登入以存取完整功能',
+    continueWithGoogle: '使用 Google 繼續',
+    continueWithApple: '使用 Apple 繼續',
+    continueWithEmail: '使用 Email 登入',
+    continueAsGuest: '以訪客身份繼續',
+    or: '或',
+    privacyNotice: '登入即表示您同意我們的服務條款和隱私政策',
+    loginSuccess: '登入成功',
+    loginFailed: '登入失敗',
+    dataWillSync: '您的資料將自動同步到雲端',
+    tryAgainLater: '請稍後再試',
+    email: 'Email',
+    password: '密碼',
+    confirmPassword: '確認密碼',
+    displayName: '顯示名稱',
+    signIn: '登入',
+    signUp: '註冊',
+    signUpSuccess: '註冊成功',
+    alreadyHaveAccount: '已有帳號？點擊登入',
+    needAccount: '需要帳號？點擊註冊',
+    pleaseEnterEmailPassword: '請輸入 Email 和密碼',
+    passwordsDoNotMatch: '兩次密碼輸入不一致',
+    passwordTooShort: '密碼長度至少需要 6 位',
+    unknownError: '發生未知錯誤',
   },
 };
