@@ -1,0 +1,10 @@
+# Supabase Configuration
+EXPO_PUBLIC_SUPABASE_URL=https://hfqvjkjtbexhvnkvwakn.supabase.co
+EXPO_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhmcXZqa2p0YmV4aHZua3Z3YWtuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTU4NjI4MjQsImV4cCI6MjA3MTQzODgyNH0.aQY-aj0xN3IxI_k3HdKf8IPtZU4G4tbjECh_3NSMidU
+
+# Database URLs for Prisma
+# Connect to Supabase via connection pooling (for production)
+DATABASE_URL="postgresql://postgres.hfqvjkjtbexhvnkvwakn:0yxMEqNUTqczCRnc@aws-1-ap-northeast-1.pooler.supabase.com:6543/postgres?pgbouncer=true"
+
+# Direct connection to the database (used for migrations)
+DIRECT_URL="postgresql://postgres.hfqvjkjtbexhvnkvwakn:0yxMEqNUTqczCRnc@aws-1-ap-northeast-1.pooler.supabase.com:5432/postgres"
