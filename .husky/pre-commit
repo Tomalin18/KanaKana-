@@ -14,10 +14,19 @@ NC='\033[0m' # No Color
 check_unwanted_files() {
     echo "${BLUE}🗑️  檢查垃圾檔案和備份檔案...${NC}"
     
-    FILES=$(git diff --cached --name-only)
     FOUND_UNWANTED=0
     
-    for file in $FILES; do
+    # 保存 IFS 並改成換行符號
+    OLD_IFS="$IFS"
+    IFS=$'\n'
+    
+    # 獲取所有檔案（包含空格的檔案名稱也能正確處理）
+    FILES=($(git diff --cached --name-only))
+    
+    # 恢復 IFS
+    IFS="$OLD_IFS"
+    
+    for file in "${FILES[@]}"; do
         # 檢查備份檔案
         if [[ $file =~ \.(backup|bak|old|orig|tmp|temp|cache|swp|swo)$ ]]; then
             echo "${RED}❌ 發現備份檔案: '$file'${NC}"
@@ -32,15 +41,13 @@ check_unwanted_files() {
         fi
         
         # 檢查以數字結尾的重複資料夾 (folder 2/, folder 3/, folder copy/, etc.)
-        # 只檢查路徑中的資料夾部分，不檢查檔案名稱
-        dir_path=$(dirname "$file")
-        if [[ $dir_path != "." ]]; then
-            # 檢查路徑中是否包含數字結尾或 copy 結尾的資料夾
-            if [[ $dir_path =~ (^|/)([^/]+\ [0-9]+|[^/]+\ copy|[^/]+\ \([0-9]+\))(/|$) ]]; then
-                echo "${RED}❌ 發現重複/備份資料夾: '$file'${NC}"
-                echo "${YELLOW}   檔案位於看起來像備份的資料夾中 (例如 'folder 2/', 'folder copy/')${NC}"
-                FOUND_UNWANTED=1
-            fi
+        # 檢查檔案路徑中是否包含空格+數字的資料夾
+        if echo "$file" | grep -E "(^|/)[^/]+[[:space:]]+[0-9]+(/|$)" > /dev/null || \
+           echo "$file" | grep -E "(^|/)[^/]+[[:space:]]+copy(/|$)" > /dev/null || \
+           echo "$file" | grep -E "(^|/)[^/]+[[:space:]]+\([0-9]+\)(/|$)" > /dev/null; then
+            echo "${RED}❌ 發現重複/備份資料夾: '$file'${NC}"
+            echo "${YELLOW}   檔案位於看起來像備份的資料夾中 (例如 'folder 2/', 'folder copy/')${NC}"
+            FOUND_UNWANTED=1
         fi
         
         # 檢查 macOS 系統檔案
