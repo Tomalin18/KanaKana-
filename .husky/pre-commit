@@ -1,0 +1,228 @@
+#!/bin/sh
+
+# 防止敏感資料和垃圾檔案被提交的 pre-commit hook
+echo "🔍 開始執行提交前檢查..."
+
+# 顏色定義
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+NC='\033[0m' # No Color
+
+# 檢查不應該被提交的檔案類型
+check_unwanted_files() {
+    echo "${BLUE}🗑️  檢查垃圾檔案和備份檔案...${NC}"
+    
+    FOUND_UNWANTED=0
+    
+    # 保存 IFS 並改成換行符號
+    OLD_IFS="$IFS"
+    IFS=$'\n'
+    
+    # 獲取所有檔案（包含空格的檔案名稱也能正確處理）
+    FILES=($(git diff --cached --name-only))
+    
+    # 恢復 IFS
+    IFS="$OLD_IFS"
+    
+    for file in "${FILES[@]}"; do
+        # 檢查備份檔案
+        if [[ $file =~ \.(backup|bak|old|orig|tmp|temp|cache|swp|swo)$ ]]; then
+            echo "${RED}❌ 發現備份檔案: '$file'${NC}"
+            echo "${YELLOW}   備份檔案不應該被提交到版本控制${NC}"
+            FOUND_UNWANTED=1
+        fi
+        
+        # 檢查編輯器暫存檔案
+        if [[ $file =~ ~$ ]] || [[ $file =~ ^\.\#.*$ ]] || [[ $file =~ ^\#.*\#$ ]]; then
+            echo "${RED}❌ 發現編輯器暫存檔案: '$file'${NC}"
+            FOUND_UNWANTED=1
+        fi
+        
+        # 檢查以數字結尾的重複資料夾 (folder 2/, folder 3/, folder copy/, etc.)
+        # 檢查檔案路徑中是否包含空格+數字的資料夾
+        if echo "$file" | grep -E "(^|/)[^/]+[[:space:]]+[0-9]+(/|$)" > /dev/null || \
+           echo "$file" | grep -E "(^|/)[^/]+[[:space:]]+copy(/|$)" > /dev/null || \
+           echo "$file" | grep -E "(^|/)[^/]+[[:space:]]+\([0-9]+\)(/|$)" > /dev/null; then
+            echo "${RED}❌ 發現重複/備份資料夾: '$file'${NC}"
+            echo "${YELLOW}   檔案位於看起來像備份的資料夾中 (例如 'folder 2/', 'folder copy/')${NC}"
+            FOUND_UNWANTED=1
+        fi
+        
+        # 檢查 macOS 系統檔案
+        if [[ $(basename "$file") == ".DS_Store" ]] || [[ $(basename "$file") == "Thumbs.db" ]]; then
+            echo "${RED}❌ 發現系統檔案: '$file'${NC}"
+            FOUND_UNWANTED=1
+        fi
+        
+        # 檢查 log 檔案
+        if [[ $file =~ \.(log|logs)$ ]]; then
+            echo "${RED}❌ 發現日誌檔案: '$file'${NC}"
+            FOUND_UNWANTED=1
+        fi
+        
+        # 檢查環境變數檔案（包括沒有副檔名的 env）
+        if [[ $(basename "$file") == "env" ]] || [[ $(basename "$file") =~ ^\.env ]]; then
+            echo "${RED}❌ 發現環境變數檔案: '$file'${NC}"
+            echo "${YELLOW}   環境變數檔案包含敏感資料，不應該被提交${NC}"
+            FOUND_UNWANTED=1
+        fi
+        
+        # 檢查 IDE 設定檔案夾
+        if [[ $file =~ \.(idea|vscode)/.*$ ]] && [[ ! $file =~ \.(vscode|idea)/(settings|launch|tasks|extensions)\.json$ ]]; then
+            echo "${YELLOW}⚠️  發現 IDE 設定檔案: '$file'${NC}"
+            echo "${YELLOW}   考慮將 IDE 設定加入 .gitignore${NC}"
+        fi
+    done
+    
+    if [ $FOUND_UNWANTED -eq 1 ]; then
+        echo ""
+        echo "${RED}========================================${NC}"
+        echo "${RED}❌ 發現不應該提交的檔案！${NC}"
+        echo "${RED}========================================${NC}"
+        echo ""
+        echo "${YELLOW}請使用以下指令移除這些檔案：${NC}"
+        echo "  git reset HEAD <檔案名稱>"
+        echo ""
+        echo "${YELLOW}並考慮將這些模式加入 .gitignore：${NC}"
+        echo "  *.backup"
+        echo "  *.bak"
+        echo "  * 2.*"
+        echo "  * copy.*"
+        echo ""
+        exit 1
+    fi
+}
+
+# 檢查檔案內容是否包含敏感資訊（強化版）
+check_sensitive_content() {
+    echo "${BLUE}📋 掃描檔案內容中的敏感資料...${NC}"
+    
+    # 獲取暫存的檔案列表
+    FILES=$(git diff --cached --name-only --diff-filter=ACM)
+    
+    if [ -z "$FILES" ]; then
+        return 0
+    fi
+    
+    FOUND_ISSUES=0
+    SCANNED_FILES=0
+    
+    for file in $FILES; do
+        # 跳過二進制檔案、圖片、和已知的安全檔案
+        if [[ $file =~ \.(jpg|jpeg|png|gif|pdf|zip|tar|gz|exe|dmg|iso|jar|woff|woff2|ttf|eot|svg|ico)$ ]]; then
+            continue
+        fi
+        
+        if [ ! -f "$file" ]; then
+            continue
+        fi
+        
+        SCANNED_FILES=$((SCANNED_FILES + 1))
+        
+        # 檢查實際的 Supabase keys（你提供的真實案例）
+        if grep -E "EXPO_PUBLIC_SUPABASE_URL\s*=\s*[\"']?https://[a-zA-Z0-9]+\.supabase\.co" "$file" > /dev/null; then
+            echo "${RED}❌ 發現 Supabase URL 在 '$file'${NC}"
+            echo "${YELLOW}   這看起來像是真實的 Supabase URL，請使用環境變數代替${NC}"
+            FOUND_ISSUES=1
+        fi
+        
+        if grep -E "EXPO_PUBLIC_SUPABASE_ANON_KEY\s*=\s*[\"']?eyJ[A-Za-z0-9+/=]+" "$file" > /dev/null; then
+            echo "${RED}❌ 發現 Supabase Anon Key 在 '$file'${NC}"
+            echo "${YELLOW}   這是一個 JWT token，不應該被硬編碼在程式碼中${NC}"
+            FOUND_ISSUES=1
+        fi
+        
+        # 檢查 PostgreSQL 連線字串
+        if grep -E "(DATABASE_URL|DIRECT_URL)\s*=\s*[\"']?postgresql://[^\"'\s]+" "$file" > /dev/null; then
+            echo "${RED}❌ 發現 PostgreSQL 連線字串在 '$file'${NC}"
+            echo "${YELLOW}   資料庫連線字串包含密碼，絕對不能提交${NC}"
+            FOUND_ISSUES=1
+        fi
+        
+        # 檢查其他常見的 API Keys 模式
+        if grep -E "api[_-]?key\s*[:=]\s*[\"'][^\"']{20,}[\"']" "$file" > /dev/null; then
+            echo "${RED}❌ 發現可能的 API Key 在 '$file'${NC}"
+            echo "${YELLOW}   請確認這不是真實的 API Key${NC}"
+            FOUND_ISSUES=1
+        fi
+        
+        # 檢查私鑰
+        if grep -E "\-\-\-\-\-BEGIN.*PRIVATE KEY\-\-\-\-\-" "$file" > /dev/null; then
+            echo "${RED}❌ 發現私鑰在 '$file'${NC}"
+            echo "${YELLOW}   私鑰絕對不能提交到版本控制${NC}"
+            FOUND_ISSUES=1
+        fi
+        
+        # 檢查 AWS 憑證
+        if grep -E "AKIA[A-Z0-9]{16}" "$file" > /dev/null; then
+            echo "${RED}❌ 發現 AWS Access Key ID 在 '$file'${NC}"
+            FOUND_ISSUES=1
+        fi
+        
+        if grep -E "aws[_-]?secret[_-]?access[_-]?key\s*[:=]\s*[\"'][^\"']{40}[\"']" "$file" > /dev/null; then
+            echo "${RED}❌ 發現 AWS Secret Access Key 在 '$file'${NC}"
+            FOUND_ISSUES=1
+        fi
+        
+        # 檢查 GitHub Tokens
+        if grep -E "(ghp|gho|ghs|ghu)_[A-Za-z0-9]{36}" "$file" > /dev/null; then
+            echo "${RED}❌ 發現 GitHub Token 在 '$file'${NC}"
+            FOUND_ISSUES=1
+        fi
+        
+        # 檢查密碼欄位（但要避免誤判）
+        if grep -E "password\s*[:=]\s*[\"'][^\"']{8,}[\"']" "$file" | grep -v -E "(placeholder|example|test|demo|dummy|sample)" > /dev/null; then
+            echo "${YELLOW}⚠️  發現可能的密碼在 '$file'${NC}"
+            echo "${YELLOW}   請確認這不是真實的密碼${NC}"
+            FOUND_ISSUES=1
+        fi
+        
+        # 檢查 JWT tokens
+        if grep -E "eyJ[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+" "$file" > /dev/null; then
+            echo "${RED}❌ 發現 JWT Token 在 '$file'${NC}"
+            echo "${YELLOW}   JWT tokens 不應該被硬編碼${NC}"
+            FOUND_ISSUES=1
+        fi
+    done
+    
+    echo "${BLUE}✓ 掃描了 $SCANNED_FILES 個檔案${NC}"
+    
+    if [ $FOUND_ISSUES -eq 1 ]; then
+        echo ""
+        echo "${RED}========================================${NC}"
+        echo "${RED}❌ 發現敏感資料！提交已被阻止。${NC}"
+        echo "${RED}========================================${NC}"
+        echo ""
+        echo "${YELLOW}建議的解決方案：${NC}"
+        echo "1. 將敏感資料移到 .env 檔案"
+        echo "2. 在程式碼中使用 process.env 或 import.meta.env 來讀取"
+        echo "3. 確保 .env 檔案已加入 .gitignore"
+        echo "4. 如果已經不小心 commit，使用 git reset 來撤銷"
+        echo ""
+        echo "${YELLOW}如果這是測試資料或範例程式碼：${NC}"
+        echo "請使用明顯的假資料，例如："
+        echo "  - 'your-api-key-here'"
+        echo "  - 'REPLACE_WITH_YOUR_KEY'"
+        echo "  - 'test-key-123'"
+        echo ""
+        exit 1
+    fi
+}
+
+# 執行所有檢查
+check_unwanted_files
+check_sensitive_content
+
+# 執行 lint 和 type check (暫時跳過以測試其他功能)
+# echo "${BLUE}📝 執行程式碼檢查...${NC}"
+# npm run lint:fix
+# npm run type-check
+
+# if [ $? -ne 0 ]; then
+#     echo "${RED}❌ 程式碼檢查失敗，請修正錯誤後再提交${NC}"
+#     exit 1
+# fi
+
+echo "${GREEN}✅ 所有檢查通過，繼續提交...${NC}"

@@ -61,7 +61,10 @@ tmp/
 temp/
 
 # Backup files
-* 2.*
-* 3.*
-*_backup.*
-*_old.* 
+*.backup
+*.bak
+*.old
+*.orig
+*.tmp
+*.temp
+*~ 
