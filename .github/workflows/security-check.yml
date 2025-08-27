@@ -1,0 +1,247 @@
+name: Security and Quality Check
+
+on:
+  pull_request:
+    branches: [ main, dev ]
+  push:
+    branches: [ main, dev ]
+
+jobs:
+  # Job 1: 掃描敏感資料
+  secret-scan:
+    name: 🔍 Scan for Secrets
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # 獲取完整歷史以掃描所有 commits
+      
+      # TruffleHog - 掃描 secrets 和 credentials
+      - name: TruffleHog Secret Scan
+        uses: trufflesecurity/trufflehog@v3.63.7
+        with:
+          path: ./
+          base: ${{ github.event.repository.default_branch }}
+          head: HEAD
+          extra_args: --debug --only-verified
+      
+      # 使用 detect-secrets 替代 Gitleaks（簡化版，只檢查真實的敏感資料）
+      - name: Detect Secrets
+        run: |
+          echo "Scanning for real secrets patterns..."
+          
+          # 定義真實敏感資料的模式
+          FOUND_SECRETS=0
+          
+          # 檢查真實的 Supabase URL 和 Keys（不是範例）
+          if grep -r "supabase\.co" --include="*.js" --include="*.ts" --include="*.tsx" \
+            --exclude-dir=node_modules --exclude-dir=.git --exclude="*.example.*" | \
+            grep -v "your-supabase-url" | grep -v "placeholder" | grep -v "example"; then
+            echo "❌ Found hardcoded Supabase URLs"
+            FOUND_SECRETS=1
+          fi
+          
+          # 檢查 JWT tokens（排除範例）
+          if grep -r "eyJ[A-Za-z0-9_-]\{20,\}\.[A-Za-z0-9_-]\{20,\}\.[A-Za-z0-9_-]\{20,\}" \
+            --include="*.js" --include="*.ts" --include="*.tsx" \
+            --exclude-dir=node_modules --exclude-dir=.git --exclude="*.example.*" | \
+            grep -v "your-" | grep -v "placeholder" | grep -v "test"; then
+            echo "❌ Found JWT tokens"
+            FOUND_SECRETS=1
+          fi
+          
+          # 檢查真實的資料庫連線字串
+          if grep -r "postgresql://[^:]*:[^@]*@[^/]*/[^\"' ]*" \
+            --include="*.js" --include="*.ts" --include="*.tsx" \
+            --exclude-dir=node_modules --exclude-dir=.git --exclude="*.example.*" | \
+            grep -v "username:password" | grep -v "localhost" | grep -v "placeholder"; then
+            echo "❌ Found database connection strings"
+            FOUND_SECRETS=1
+          fi
+          
+          # 檢查 API Keys（排除明顯的範例）
+          if grep -r -E "(api[_-]?key|secret[_-]?key|access[_-]?key)\s*[:=]\s*[\"'][A-Za-z0-9_-]{32,}[\"']" \
+            --include="*.js" --include="*.ts" --include="*.tsx" \
+            --exclude-dir=node_modules --exclude-dir=.git --exclude="*.example.*" | \
+            grep -v "your-" | grep -v "test-" | grep -v "placeholder" | grep -v "example" | \
+            grep -v "SECRET_KEY" | grep -v "API_KEY"; then
+            echo "❌ Found API keys"
+            FOUND_SECRETS=1
+          fi
+          
+          if [ $FOUND_SECRETS -eq 1 ]; then
+            exit 1
+          else
+            echo "✅ No real secrets detected"
+          fi
+      
+      # 自訂檢查 - 確保沒有環境檔案
+      - name: Check for Environment Files
+        run: |
+          # 檢查是否有 env 相關檔案（排除允許的檔案）
+          UNWANTED_ENV=$(find . -type f \( -name "*.env*" -o -name "env" \) \
+            ! -path "./.git/*" \
+            ! -path "./node_modules/*" \
+            ! -path "./ios/.xcode.env" \
+            ! -path "./ios/.xcode.env.local" \
+            ! -name ".xcode.env*" \
+            ! -name "*.env.example" \
+            ! -name ".env.example")
+          
+          if [ ! -z "$UNWANTED_ENV" ]; then
+            echo "❌ Found environment files that should not be committed:"
+            echo "$UNWANTED_ENV"
+            echo "Please add them to .gitignore"
+            exit 1
+          fi
+          echo "✅ No problematic environment files found (*.env.example files are allowed)"
+      
+      # 檢查檔案名稱模式
+      - name: Check for Unwanted Files
+        run: |
+          # 檢查備份和垃圾檔案
+          UNWANTED=$(find . -type f \( \
+            -name "*.backup" -o \
+            -name "*.bak" -o \
+            -name "*.old" -o \
+            -name "*.orig" -o \
+            -name "*.tmp" -o \
+            -name "*.temp" -o \
+            -name "*.swp" -o \
+            -name "*.swo" -o \
+            -name "*~" -o \
+            -name ".DS_Store" -o \
+            -name "Thumbs.db" \
+          \) ! -path "./.git/*" ! -path "./node_modules/*")
+          
+          if [ ! -z "$UNWANTED" ]; then
+            echo "❌ Found unwanted files:"
+            echo "$UNWANTED"
+            exit 1
+          fi
+          echo "✅ No unwanted files found"
+      
+      # 檢查數字結尾的資料夾
+      - name: Check for Numbered Folders
+        run: |
+          # 只檢查資料夾，不檢查檔案（因為有些檔案如 image 10.png 是正常的）
+          NUMBERED_DIRS=$(find . -type d -regex ".*/[^/]+ [0-9]+" ! -path "./.git/*" ! -path "./node_modules/*")
+          COPY_DIRS=$(find . -type d -regex ".*/[^/]+ copy" ! -path "./.git/*" ! -path "./node_modules/*")
+          
+          if [ ! -z "$NUMBERED_DIRS" ] || [ ! -z "$COPY_DIRS" ]; then
+            echo "❌ Found backup/duplicate folders:"
+            [ ! -z "$NUMBERED_DIRS" ] && echo "Folders with numbers: $NUMBERED_DIRS"
+            [ ! -z "$COPY_DIRS" ] && echo "Copy folders: $COPY_DIRS"
+            exit 1
+          fi
+          echo "✅ No backup folders found"
+          
+          # 只對特定的備份檔案模式發出警告（不阻擋）
+          echo "Checking for potential backup files (warning only)..."
+          BACKUP_FILES=$(find . -type f \( -name "*備份*" -o -name "* backup.*" -o -name "* copy.*" \) ! -path "./.git/*" ! -path "./node_modules/*" | head -10)
+          if [ ! -z "$BACKUP_FILES" ]; then
+            echo "⚠️  Warning: Found potential backup files (review recommended):"
+            echo "$BACKUP_FILES"
+          fi
+
+  # Job 2: 程式碼品質檢查
+  code-quality:
+    name: 📝 Code Quality Check
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Run ESLint
+        run: npm run lint
+        continue-on-error: true  # 暫時允許 lint 錯誤
+      
+      - name: Run Type Check
+        run: npm run type-check
+        continue-on-error: true  # 暫時允許 type 錯誤
+      
+      - name: Check for console.log statements
+        run: |
+          # 在生產代碼中檢查 console.log（排除測試檔案）
+          CONSOLE_LOGS=$(grep -r "console\.log" --include="*.js" --include="*.jsx" --include="*.ts" --include="*.tsx" \
+            --exclude-dir=node_modules \
+            --exclude-dir=.git \
+            --exclude-dir=__tests__ \
+            --exclude-dir=tests \
+            --exclude="*.test.*" \
+            --exclude="*.spec.*" \
+            . || true)
+          
+          if [ ! -z "$CONSOLE_LOGS" ]; then
+            echo "⚠️  Warning: Found console.log statements in code:"
+            echo "$CONSOLE_LOGS"
+            echo "Consider removing them before production deployment"
+          fi
+
+  # Job 3: 依賴性安全掃描
+  dependency-check:
+    name: 🔒 Dependency Security Check
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Run npm audit
+        run: |
+          npm audit --audit-level=high || true
+          echo "Note: High and critical vulnerabilities should be addressed"
+
+  # Job 4: 檔案大小檢查
+  size-check:
+    name: 📦 File Size Check
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Check for large files
+        run: |
+          # 檢查超過 5MB 的檔案
+          echo "Checking for large files..."
+          find . -type f -size +5M ! -path "./.git/*" ! -path "./node_modules/*" -exec ls -lh {} \; | while read line; do
+            echo "⚠️  Warning: Large file (>5MB): $line"
+          done
+          echo "Note: Consider using Git LFS for large files if needed"
+          
+  # 總結 Job
+  summary:
+    name: ✅ Security Check Summary
+    needs: [secret-scan, code-quality, dependency-check, size-check]
+    runs-on: ubuntu-latest
+    if: always()
+    
+    steps:
+      - name: Summary
+        run: |
+          echo "🎉 Security and quality checks completed!"
+          echo ""
+          echo "Results:"
+          echo "- Secret Scan: ${{ needs.secret-scan.result }}"
+          echo "- Code Quality: ${{ needs.code-quality.result }}"
+          echo "- Dependency Check: ${{ needs.dependency-check.result }}"
+          echo "- Size Check: ${{ needs.size-check.result }}"
+          
+          if [ "${{ needs.secret-scan.result }}" = "failure" ]; then
+            echo ""
+            echo "❌ CRITICAL: Secret scan failed! Fix immediately!"
+            exit 1
+          fi

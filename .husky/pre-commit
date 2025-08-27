@@ -62,8 +62,9 @@ check_unwanted_files() {
             FOUND_UNWANTED=1
         fi
         
-        # 檢查環境變數檔案（包括沒有副檔名的 env）
-        if [[ $(basename "$file") == "env" ]] || [[ $(basename "$file") =~ ^\.env ]]; then
+        # 檢查環境變數檔案（包括沒有副檔名的 env，但排除 .env.example）
+        if [[ $(basename "$file") == "env" ]] || \
+           ([[ $(basename "$file") =~ ^\.env ]] && [[ $(basename "$file") != ".env.example" ]]); then
             echo "${RED}❌ 發現環境變數檔案: '$file'${NC}"
             echo "${YELLOW}   環境變數檔案包含敏感資料，不應該被提交${NC}"
             FOUND_UNWANTED=1
