@@ -31,25 +31,49 @@ jobs:
       - name: Detect Secrets
         run: |
           pip install detect-secrets
-          detect-secrets scan --all-files --force-use-all-plugins --exclude-files '\.git/.*' | python -c "
+          
+          # 掃描但排除已知的誤報檔案
+          detect-secrets scan --all-files --force-use-all-plugins \
+            --exclude-files '\.git/.*|node_modules/.*|pnpm-lock\.yaml|package-lock\.json|\.gitsecrets|.*\.xcscheme' \
+            --exclude-lines 'SECRET_PATTERN|SECRET_KEYWORD|password.*placeholder|password.*example' | python -c "
           import sys, json
           results = json.load(sys.stdin)
           if results.get('results'):
-              print('❌ Found potential secrets:')
+              # 過濾掉誤報
+              real_secrets = {}
               for file, secrets in results['results'].items():
-                  for secret in secrets:
-                      print(f'  {file}:{secret[\"line_number\"]} - {secret[\"type\"]}')"
+                  filtered = [s for s in secrets if 
+                    not ('High Entropy' in s['type'] and any(x in file for x in ['lock', '.xcscheme', '.gitsecrets'])) and
+                    not ('Secret Keyword' in s['type'] and '.gitsecrets' in file)]
+                  if filtered:
+                      real_secrets[file] = filtered
+              
+              if real_secrets:
+                  print('❌ Found potential secrets:')
+                  for file, secrets in real_secrets.items():
+                      for secret in secrets:
+                          print(f'  {file}:{secret[\"line_number\"]} - {secret[\"type\"]}')
+                  sys.exit(1)
+          print('✅ No secrets detected')"
       
       # 自訂檢查 - 確保沒有環境檔案
       - name: Check for Environment Files
         run: |
-          # 檢查是否有 env 相關檔案
-          if find . -type f \( -name "*.env*" -o -name "env" \) ! -path "./.git/*" ! -path "./node_modules/*" | grep .; then
-            echo "❌ Found environment files that should not be committed!"
+          # 檢查是否有 env 相關檔案（排除 iOS 需要的 .xcode.env 檔案）
+          UNWANTED_ENV=$(find . -type f \( -name "*.env*" -o -name "env" \) \
+            ! -path "./.git/*" \
+            ! -path "./node_modules/*" \
+            ! -path "./ios/.xcode.env" \
+            ! -path "./ios/.xcode.env.local" \
+            ! -name ".xcode.env*")
+          
+          if [ ! -z "$UNWANTED_ENV" ]; then
+            echo "❌ Found environment files that should not be committed:"
+            echo "$UNWANTED_ENV"
             echo "Please add them to .gitignore"
             exit 1
           fi
-          echo "✅ No environment files found"
+          echo "✅ No problematic environment files found"
       
       # 檢查檔案名稱模式
       - name: Check for Unwanted Files
@@ -76,20 +100,24 @@ jobs:
           fi
           echo "✅ No unwanted files found"
       
-      # 檢查數字結尾的資料夾
-      - name: Check for Numbered Folders
+      # 檢查數字結尾的資料夾和檔案
+      - name: Check for Numbered Folders and Files
         run: |
           # 尋找空格+數字結尾的資料夾
           NUMBERED_DIRS=$(find . -type d -regex ".*/[^/]+ [0-9]+" ! -path "./.git/*" ! -path "./node_modules/*")
           COPY_DIRS=$(find . -type d -regex ".*/[^/]+ copy" ! -path "./.git/*" ! -path "./node_modules/*")
           
-          if [ ! -z "$NUMBERED_DIRS" ] || [ ! -z "$COPY_DIRS" ]; then
-            echo "❌ Found backup/duplicate folders:"
-            [ ! -z "$NUMBERED_DIRS" ] && echo "$NUMBERED_DIRS"
-            [ ! -z "$COPY_DIRS" ] && echo "$COPY_DIRS"
+          # 尋找空格+數字結尾的檔案（像是 .xcode.env 2.local）
+          NUMBERED_FILES=$(find . -type f -regex ".*/[^/]+ [0-9]+\.[^/]+" ! -path "./.git/*" ! -path "./node_modules/*")
+          
+          if [ ! -z "$NUMBERED_DIRS" ] || [ ! -z "$COPY_DIRS" ] || [ ! -z "$NUMBERED_FILES" ]; then
+            echo "❌ Found backup/duplicate folders or files:"
+            [ ! -z "$NUMBERED_DIRS" ] && echo "Folders with numbers: $NUMBERED_DIRS"
+            [ ! -z "$COPY_DIRS" ] && echo "Copy folders: $COPY_DIRS"
+            [ ! -z "$NUMBERED_FILES" ] && echo "Files with numbers: $NUMBERED_FILES"
             exit 1
           fi
-          echo "✅ No backup folders found"
+          echo "✅ No backup folders or files found"
 
   # Job 2: 程式碼品質檢查
   code-quality:
