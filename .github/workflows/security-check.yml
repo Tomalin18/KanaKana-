@@ -27,11 +27,18 @@ jobs:
           head: HEAD
           extra_args: --debug --only-verified
       
-      # GitLeaks - 另一個強大的 secret 掃描工具
-      - name: Gitleaks Secret Scan
-        uses: gitleaks/gitleaks-action@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # 使用 detect-secrets 替代 Gitleaks
+      - name: Detect Secrets
+        run: |
+          pip install detect-secrets
+          detect-secrets scan --all-files --force-use-all-plugins --exclude-files '\.git/.*' | python -c "
+          import sys, json
+          results = json.load(sys.stdin)
+          if results.get('results'):
+              print('❌ Found potential secrets:')
+              for file, secrets in results['results'].items():
+                  for secret in secrets:
+                      print(f'  {file}:{secret[\"line_number\"]} - {secret[\"type\"]}')"
       
       # 自訂檢查 - 確保沒有環境檔案
       - name: Check for Environment Files
