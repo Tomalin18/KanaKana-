@@ -80,13 +80,15 @@ jobs:
       # 自訂檢查 - 確保沒有環境檔案
       - name: Check for Environment Files
         run: |
-          # 檢查是否有 env 相關檔案（排除 iOS 需要的 .xcode.env 檔案）
+          # 檢查是否有 env 相關檔案（排除允許的檔案）
           UNWANTED_ENV=$(find . -type f \( -name "*.env*" -o -name "env" \) \
             ! -path "./.git/*" \
             ! -path "./node_modules/*" \
             ! -path "./ios/.xcode.env" \
             ! -path "./ios/.xcode.env.local" \
-            ! -name ".xcode.env*")
+            ! -name ".xcode.env*" \
+            ! -name "*.env.example" \
+            ! -name ".env.example")
           
           if [ ! -z "$UNWANTED_ENV" ]; then
             echo "❌ Found environment files that should not be committed:"
@@ -94,7 +96,7 @@ jobs:
             echo "Please add them to .gitignore"
             exit 1
           fi
-          echo "✅ No problematic environment files found"
+          echo "✅ No problematic environment files found (*.env.example files are allowed)"
       
       # 檢查檔案名稱模式
       - name: Check for Unwanted Files
