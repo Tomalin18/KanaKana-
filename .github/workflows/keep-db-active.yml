@@ -1,0 +1,81 @@
+name: Keep Supabase Active
+
+on:
+  schedule:
+    # Run every 6 hours (4 times a day)
+    - cron: '0 */6 * * *'
+  workflow_dispatch: # Allow manual triggering
+
+jobs:
+  keep-alive:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Keep Database Active
+        env:
+          SUPABASE_URL: https://${{ secrets.SUPABASE_PROJECT_ID }}.supabase.co
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+        run: |
+          # Create a simple Node.js script to ping the database
+          cat > keep-alive.js << 'EOF'
+          async function keepAlive() {
+            try {
+              const supabaseUrl = process.env.SUPABASE_URL;
+              const serviceKey = process.env.SUPABASE_SERVICE_KEY;
+              
+              if (!supabaseUrl || !serviceKey) {
+                throw new Error('Missing required environment variables');
+              }
+              
+              // Query users table (read-only operation)
+              const response = await fetch(`${supabaseUrl}/rest/v1/users?select=id&limit=1`, {
+                headers: {
+                  'apikey': serviceKey,
+                  'Authorization': `Bearer ${serviceKey}`
+                }
+              });
+              
+              if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+              }
+              
+              const data = await response.json();
+              console.log('✅ Successfully pinged Supabase');
+              console.log('📅 Timestamp:', new Date().toISOString());
+              console.log('📊 Query result:', data.length, 'record(s) found');
+              
+              // Query additional tables to ensure database activity
+              const tables = [
+                'vocabulary',
+                'game_sessions',
+                'system_configs',
+                'feature_flags'
+              ];
+              
+              for (const table of tables) {
+                try {
+                  const tableResponse = await fetch(`${supabaseUrl}/rest/v1/${table}?select=id&limit=1`, {
+                    headers: {
+                      'apikey': serviceKey,
+                      'Authorization': `Bearer ${serviceKey}`
+                    }
+                  });
+                  console.log(`📊 ${table} table check - Status: ${tableResponse.status}`);
+                } catch (err) {
+                  console.log(`⚠️ ${table} table query failed (may be empty)`);
+                }
+              }
+              
+              console.log('✨ Keep-alive job completed successfully');
+              
+            } catch (error) {
+              console.error('❌ Keep-alive error:', error.message);
+              process.exit(1);
+            }
+          }
+          
+          keepAlive();
+          EOF
+          
+          # Run the keep-alive script
+          node keep-alive.js
